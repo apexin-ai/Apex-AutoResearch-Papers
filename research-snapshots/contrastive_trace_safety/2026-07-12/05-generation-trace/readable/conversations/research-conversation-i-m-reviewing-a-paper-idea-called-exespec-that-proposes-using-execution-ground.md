@@ -1,0 +1,6016 @@
+# Research conversation: I'm reviewing a paper idea called "ExeSpec" that proposes using execution-grounded behavioral specifications (preconditi
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 102
+- **Recorded user turns:** 1
+- **Tool calls:** 46
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-ab768184e99694848.jsonl`
+- **Structured JSON:** [`86cdcf063811c0a0484f.json`](../../sessions/86/86cdcf063811c0a0484f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+102 recorded events
+
+### User
+
+_source line 1 · 2026-05-12T00:56:46.485Z_
+
+I'm reviewing a paper idea called "ExeSpec" that proposes using execution-grounded behavioral specifications (preconditions, postconditions, invariants, type constraints) as structured intermediate reasoning for LLM code tasks, WITHOUT training. It positions itself against test-based methods like AlphaCodium, CodeT, Self-Debugging, and S*.
+
+I need to find competing work the authors may have missed. Please do multiple WebSearches with different keyword combinations:
+
+1. Search: "specification guided code generation LLM 2025 2026" 
+2. Search: "precondition postcondition LLM code repair 2025 2026"
+3. Search: "formal specification inference code LLM"
+4. Search: "contract-based code generation language model"
+5. Search: "invariant guided program repair LLM"
+6. Search: "property-based testing LLM code generation"
+7. Search: "execution feedback code refinement inference time 2025 2026"
+8. Search: "structured reasoning code LLM beyond test cases"
+9. Search: site:arxiv.org "behavioral specification" code LLM 2025 2026
+10. Search: "test-free code verification LLM"
+
+For each search, report the most relevant papers found that are NOT in this list of already-cited works:
+- AlphaCodium, CodeT, Self-Debugging, S*, BACE, Self-Spec, EG-CFG, Think Like You Execute, Think Anywhere, SpecRover, CURE, CodeSpecBench, VibeRepair, SSDE, SCoT, RLEF, Revisit Self-Debugging
+
+Focus on papers from 2024-2026 that could be direct competitors or highly related. For any promising hit, try to fetch the abstract.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "23f85b10-8370-4405-99c7-f38d212d757a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T00:56:46.488Z_
+
+```json
+{
+  "parentUuid": "23f85b10-8370-4405-99c7-f38d212d757a",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e00f36c5-b4cd-4ba0-a646-28f0c59c2f5b",
+  "timestamp": "2026-05-12T00:56:46.488Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-12T00:56:48.382Z_
+
+
+
+I'll launch all 10 searches in parallel to find competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e00f36c5-b4cd-4ba0-a646-28f0c59c2f5b",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMDQHR3fdncoSehZ1s",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3eeb4cb1-7d54-43d0-ab7c-06f7dd93d2fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKpngbHEfBXP87L5VujgD5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 962,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T00:56:48.960Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RqmDRTYN8rgt83JVXrhrWr`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3eeb4cb1-7d54-43d0-ab7c-06f7dd93d2fe",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMDQHR3fdncoSehZ1s",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6d1d655f-1ab8-4818-9413-61dd4fb420d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKpngbHEfBXP87L5VujgD5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 962
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 962,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-12T00:56:48.964Z_
+
+<details><summary>↩ Tool result · `toolu_01RqmDRTYN8rgt83JVXrhrWr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d1d655f-1ab8-4818-9413-61dd4fb420d3",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "112d8557-28ee-420f-a4ba-ee1a16b79c07",
+  "sourceToolAssistantUUID": "6d1d655f-1ab8-4818-9413-61dd4fb420d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-12T00:56:51.236Z_
+
+
+
+Now let me launch all 10 searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "112d8557-28ee-420f-a4ba-ee1a16b79c07",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ce74c900-e5b6-4e34-83c0-cdd1113208b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T00:56:51.721Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0145gXUy8ETEJ7bF6UuqUVFc`</summary>
+
+```json
+{
+  "query": "specification guided code generation LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce74c900-e5b6-4e34-83c0-cdd1113208b3",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cacc372f-a91a-457e-9641-6d7935205cf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-12T00:56:52.663Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EpeNDqcegBa1Mh3xLWhKEQ`</summary>
+
+```json
+{
+  "query": "precondition postcondition LLM code repair 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cacc372f-a91a-457e-9641-6d7935205cf8",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ea831d95-f674-40e9-b4c2-08dacb52097a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T00:56:53.137Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EMagJreC72TzyAjKVwYbpL`</summary>
+
+```json
+{
+  "query": "formal specification inference code LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea831d95-f674-40e9-b4c2-08dacb52097a",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d0a0eb0e-7151-44bc-99da-102d631f1bc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T00:56:53.663Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D1kYH7BbWvtWQoCgDadLdb`</summary>
+
+```json
+{
+  "query": "contract-based code generation language model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0a0eb0e-7151-44bc-99da-102d631f1bc5",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3df8cc5a-c889-4324-b47d-ce8753d13051",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T00:56:54.309Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VpsVdzcrjjFgYd2x6VhEm2`</summary>
+
+```json
+{
+  "query": "invariant guided program repair LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3df8cc5a-c889-4324-b47d-ce8753d13051",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2046c4ba-bb88-4b7d-9750-0d47d184a7c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T00:56:54.614Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KUa6aJDxwXAqRjohJ3Gh4Q`</summary>
+
+```json
+{
+  "query": "property-based testing LLM code generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2046c4ba-bb88-4b7d-9750-0d47d184a7c1",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "460f59c7-86d9-45c5-b95b-d3f85f6349d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T00:56:55.107Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UtazZamnbpSLvLpVoEbpLn`</summary>
+
+```json
+{
+  "query": "execution feedback code refinement inference time 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "460f59c7-86d9-45c5-b95b-d3f85f6349d3",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b067941f-0753-4eb9-b487-f88658f644f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T00:56:55.494Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CD73i7u33vosWPo1CY25YD`</summary>
+
+```json
+{
+  "query": "structured reasoning code LLM beyond test cases"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b067941f-0753-4eb9-b487-f88658f644f4",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ee235d36-7959-438c-8f74-991e7419f06d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1905,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T00:56:56.501Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UqFfPaLk43wWwuP6dRRH8c`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"behavioral specification\" code LLM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee235d36-7959-438c-8f74-991e7419f06d",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "61cfd2b4-24ed-422c-9a21-f495ccbedb6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1905
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 9185,
+          "cache_creation_input_tokens": 1905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1905,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-12T00:56:56.544Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NRWzerWc4m62CgpwcyyvDo`</summary>
+
+```json
+{
+  "query": "test-free code verification LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61cfd2b4-24ed-422c-9a21-f495ccbedb6f",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmMQGPNzfLPtT1fQVfn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aeee5d70-e244-45aa-89ab-a42634392f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NRyE7XUZJcq5fjPGQx9c8Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1905,
+      "cache_read_input_tokens": 9185,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1905
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 9185,
+          "cache_creation_input_tokens": 1905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1905,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T00:56:59.308Z_
+
+<details><summary>↩ Tool result · `toolu_0145gXUy8ETEJ7bF6UuqUVFc`</summary>
+
+```text
+Web search results for query: "specification guided code generation LLM 2025 2026"
+
+Links: [{"title":"Understanding Specification-Driven Code Generation with LLMs: An Empirical Study Design**This paper is a Stage 1 Registered Report. The study protocol and analysis plan were peer reviewed and accepted at SANER 2026 with a Continuity Acceptance (CA) score for Stage 2.","url":"https://arxiv.org/html/2601.03878v1"},{"title":"My LLM coding workflow going into 2026 | by Addy Osmani | Medium","url":"https://medium.com/@addyosmani/my-llm-coding-workflow-going-into-2026-52fe1681325e"},{"title":"Self-Spec: Model-Authored Specifications for Reliable LLM Code Generation | OpenReview","url":"https://openreview.net/forum?id=6pr7BUGkLp"},{"title":"Distilling Multi-Agent Coding into a Single Small LLM","url":"https://aclanthology.org/2026.findings-eacl.346.pdf"},{"title":"Requirements Development and Formalization for Reliable Code Generation: A Multi-Agent Vision (ASE 2025 - New Ideas and Emerging Results) - ASE 2025","url":"https://conf.researchr.org/details/ase-2025/ase-2025-nier-track/30/Requirements-Development-and-Formalization-for-Reliable-Code-Generation-A-Multi-Agen"},{"title":"LLM-Generated Code in 2025: Trends and Predictions - Revelo","url":"https://www.revelo.com/blog/llm-code-generation-2025-trends-predictions-human-data"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"},{"title":"5 Open-Source Coding LLMs You Can Run Locally in 2026","url":"https://www.labellerr.com/blog/best-coding-llms/"},{"title":"Usage of Large Language Model for Code Generation Tasks: A Review | SN Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s42979-025-04241-5"},{"title":"LLM Code Quality Becomes Undeniable in 2026, Willison Predicts | ASCII News","url":"https://ascii.co.uk/news/article/news-20260118-5300f989/llm-code-quality-becomes-undeniable-in-2026-willison-predict"}]
+
+Based on the search results, here's what recent research and developments show about specification-guided code generation with LLMs in 2025-2026:
+
+## Key Research and Tools
+
+Large Language Models are increasingly integrated into software development workflows, with tools like CURRANTE—a Visual Studio Code extension—enabling a human-in-the-loop workflow for LLM-assisted code generation that guides developers through three sequential stages: Specification, Tests, and Function.
+
+## Self-Authored Specifications
+
+Recent work explores whether LLMs code more reliably when they first author a task-specific specification language and then implement strictly from that spec, introducing Self-Spec—a lightweight approach that prompts a model to design a compact spec schema, instantiate it from a problem's docstring, resolve ambiguities via Q&A, and generate code only from the confirmed spec. Self-Spec improves performance on HumanEval for stronger models like GPT-4o (87%→92%) and Claude 3.7 (92%→94%).
+
+## Formal Specifications for Reliable Code Generation
+
+A multi-agent framework called ReDeFo for reliable code generation incorporates three agents with knowledge and techniques of formal methods into the requirements-to-code pipeline, with the core being the use of formal specifications to bridge the gap between ambiguous natural language requirements and precise executable code.
+
+## Industry Outlook for 2026
+
+The shift from LLMs as coding assistants to primary code generators fundamentally changes software engineering skill requirements, with developers needing to prepare for a paradigm shift toward architecture, specification, and agent oversight rather than syntax generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cacc372f-a91a-457e-9641-6d7935205cf8",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "8aeccc23-5c6b-49ee-935b-51e2472dda12",
+  "sourceToolAssistantUUID": "cacc372f-a91a-457e-9641-6d7935205cf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T00:57:00.514Z_
+
+<details><summary>↩ Tool result · `toolu_01EpeNDqcegBa1Mh3xLWhKEQ`</summary>
+
+```text
+Web search results for query: "precondition postcondition LLM code repair 2025 2026"
+
+Links: [{"title":"Automatic Generation of Formal Specification and ...","url":"https://arxiv.org/pdf/2601.12845"},{"title":"Potential Runtime Error-Guided Specification Synthesis for ...","url":"https://www.arxiv.org/pdf/2512.24594"},{"title":"Beyond Postconditions: Can Large Language Models infer Formal Contracts for","url":"https://arxiv.org/pdf/2510.12702"},{"title":"Hoare Logic for Code and Cloud: What 1969 Computer Science Offers 2026 Engineering","url":"https://zircon.tech/blog/hoare-logic-for-code-and-cloud-what-1969-computer-science-offers-2026-engineering/"},{"title":"An Automatic Approach to Weakest Precondition ...","url":"https://arxiv.org/pdf/2507.05272"},{"title":"LLMs as Code Generators for Model-Driven Development Yoonsik Cheon","url":"https://www.scitepress.org/Papers/2025/135803/135803.pdf"},{"title":"Code Repair with LLMs gives an Exploration-Exploitation Tradeoff | OpenReview","url":"https://openreview.net/forum?id=o863gX6DxA"},{"title":"LLM For Loop Invariant Generation and Fixing","url":"https://arxiv.org/pdf/2511.06552"},{"title":"Preconditions and Postconditions as Design Constraints ...","url":"https://ieeexplore.ieee.org/iel8/6287639/10820123/11218044.pdf"},{"title":"Automated Generation of Code Contracts – Generative AI to the Rescue?","url":"https://scg.unibe.ch/archive/papers/Grei24a-CodeContracts.pdf"}]
+
+Based on the web search results, here's what I found about precondition, postcondition, and LLM-based code repair in 2025-2026:
+
+## Key Recent Research
+
+**Specification Generation & Repair:**
+Claude Opus 4.5 produced correct solutions for programs with overly weak preconditions or overly strong postconditions. NL2Contract is a task of employing LLMs to translate informal natural language into formal functional contracts, consisting of postconditions as well as preconditions.
+
+**Advanced Verification Approaches:**
+Research published in April 2026 presents Preguss, which uses potential runtime error analysis to either construct necessary specifications certifying RTE-freeness or help locate root causes triggering RTEs, and employs modular synthesis of interprocedural specifications.
+
+**Hoare Logic Integration:**
+NeuroInv combines LLMs with Hoare logic by using an LLM to derive candidate loop invariants via backward-chaining weakest precondition reasoning, then a symbolic component repairs them using counterexamples from the verifier. On 150 Java programs, NeuroInv achieved a 99.5% success rate at generating correct invariants.
+
+**Loop Invariant Synthesis:**
+Research studying LLM effectiveness focuses on their ability to create and repair loop invariants, examining whether LLMs can repair incorrect loop invariants.
+
+**Contract Generation Quality:**
+More than 95% of the contracts generated by fine-tuned LLMs are well-formed, with syntactic errors often provoked by small and easy-to-fix errors such as missing closing symbols.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea831d95-f674-40e9-b4c2-08dacb52097a",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "26ebb9ff-5a90-4629-b65e-8e13003fbd2f",
+  "sourceToolAssistantUUID": "ea831d95-f674-40e9-b4c2-08dacb52097a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T00:57:00.539Z_
+
+<details><summary>↩ Tool result · `toolu_01UqFfPaLk43wWwuP6dRRH8c`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "behavioral specification" code LLM 2025"
+
+Links: [{"title":"CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation","url":"https://arxiv.org/html/2604.12268v1"}]
+
+The search found a relevant result from arxiv.org. Here's what I found:
+
+CodeSpecBench is a benchmark for evaluating LLMs on generating executable behavioral specifications from natural language problem descriptions. 
+
+The ability of LLMs to generate executable behavioral specifications remains underexplored. These specifications characterize program behavior through preconditions and postconditions, where preconditions delimit admissible inputs and program states, while postconditions prescribe the properties that outputs and resulting program states must satisfy.
+
+The research finds that generating executable behavioral specifications is substantially more challenging for LLMs than generating code solutions, suggesting that strong code generation performance does not necessarily imply a deep understanding of intended program behavior. In their more complex scenario, the best-performing model, Claude-4.5-Sonnet, achieves only a 20.2% pass rate.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61cfd2b4-24ed-422c-9a21-f495ccbedb6f",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "65a703d0-dec4-4206-aff6-f815d5ee4279",
+  "sourceToolAssistantUUID": "61cfd2b4-24ed-422c-9a21-f495ccbedb6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T00:57:01.087Z_
+
+<details><summary>↩ Tool result · `toolu_01D1kYH7BbWvtWQoCgDadLdb`</summary>
+
+```text
+Web search results for query: "contract-based code generation language model"
+
+Links: [{"title":"CodeBC: A More Secure Large Language Model for Smart Contract Code Generation in Blockchain","url":"https://arxiv.org/html/2504.21043v1.pdf"},{"title":"[2504.21043v1] CodeBC: A More Secure Large Language Model for Smart Contract Code Generation in Blockchain","url":"https://arxiv.org/abs/2504.21043v1"},{"title":"GitHub - andstor/smart-contract-code-generation: :brain: Smart contract code generation based on large-scale transformer-based language model. · GitHub","url":"https://github.com/andstor/smart-contract-code-generation"},{"title":"[2504.21043] CodeBC: A More Secure Large Language Model for Smart Contract Code Generation in Blockchain","url":"https://arxiv.org/abs/2504.21043"},{"title":"SolGen: Secure Smart Contract Code Generation Using Large Language Models Via Masked Prompting | Proceedings of the 18th Innovations in Software Engineering Conference","url":"https://dl.acm.org/doi/10.1145/3717383.3717394"},{"title":"Towards the LLM-Based Generation of Formal Specifications from Natural-Language Contracts: Early Experiments with Symboleo This work is funded by the ORF-RE Grant CyPreSS: Software Techniques for the Engineering of Cyber-Physical Systems, the SSHRC Grant Autonomy through Cyberjustice Technologies (ACT), and the NSERC Discovery Grant From Legal Contracts to Smart Contract.","url":"https://arxiv.org/html/2411.15898v1"},{"title":"Generative Large Language Model usage in Smart Contract Vulnerability Detection Generative AI, including ChatGPT and Cursor IDE, has been used to assist with code and latex table formatting.","url":"https://arxiv.org/html/2504.04685"},{"title":"SmartCoder-R1: Towards Secure and Explainable Smart Contract Generation with Security-Aware Group Relative Policy Optimization","url":"https://arxiv.org/html/2509.09942v1"},{"title":"Code Generation of Smart Contracts with LLMs:","url":"https://lucaneg.github.io/papers/ISSRE25.pdf"},{"title":"Do Large Language Models Respect Contracts? Evaluating and Enforcing Contract-Adherence in Code Generation","url":"https://arxiv.org/html/2510.12047v1"}]
+
+Here are the search results for "contract-based code generation language model":
+
+## Key Findings
+
+The search results reveal several active areas of research in contract-based code generation:
+
+### Smart Contract Security Focus
+CodeBC is a code generation model specifically designed for generating secure smart contracts in blockchain, employing a three-stage fine-tuning approach based on CodeLlama. It leverages vulnerability and security tags to teach the model the differences between vulnerable and secure code, and during the inference phase, the model leverages security tags to generate secure and robust code.
+
+### Alternative Approaches
+SolGen examines the utilization of large language models for the automatic generation of Solidity smart contracts based on specified criteria, while simultaneously ensuring the elimination of vulnerabilities through a novel masking strategy.
+
+SmartCoder-R1 is a novel framework for secure and explainable smart contract generation based on Qwen2.5-Coder-7B, beginning with Continual Pre-training to specialize the base model on the nuances of smart contract code.
+
+### Formal Specification from Contracts
+Research is targeting the automated generation of Symboleo specifications from business contracts in English using Large Language Models, where different domain-specific languages were proposed to formally specify requirements stated in legal contracts, with Symboleo being a promising language in that area.
+
+### Contract Adherence Evaluation
+The PACT framework extends evaluation datasets to generate test cases focused on contract violations and introduces novel metrics to quantify contract adherence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3df8cc5a-c889-4324-b47d-ce8753d13051",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "a303c728-bb35-4ba2-bd62-bd6f8c8e403d",
+  "sourceToolAssistantUUID": "3df8cc5a-c889-4324-b47d-ce8753d13051",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T00:57:01.282Z_
+
+<details><summary>↩ Tool result · `toolu_01KUa6aJDxwXAqRjohJ3Gh4Q`</summary>
+
+```text
+Web search results for query: "property-based testing LLM code generation"
+
+Links: [{"title":"Use Property-Based Testing to Bridge LLM Code Generation and Validation","url":"https://arxiv.org/html/2506.18315v1"},{"title":"[2506.18315] Use Property-Based Testing to Bridge LLM Code Generation and Validation","url":"https://arxiv.org/abs/2506.18315"},{"title":"From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing | Proceedings of the 33rd ACM International Conference on the Foundations of Software Engineering","url":"https://dl.acm.org/doi/10.1145/3696630.3728702"},{"title":"From Exploration to Specification: LLM-Based Property Generation for Mobile App Testing","url":"https://arxiv.org/html/2604.13463"},{"title":"Enhanced LLM code generation with property-based testing! New Framework PGS to Break Self-Deception | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media","url":"https://ai-scholar.tech/en/articles/llm-paper/property-generated-solver"},{"title":"Paper page - Use Property-Based Testing to Bridge LLM Code Generation and Validation","url":"https://huggingface.co/papers/2506.18315"},{"title":"Can Large Language Models Write Good Property-Based Tests? Vasudev Vikram","url":"https://arxiv.org/pdf/2307.04346"},{"title":"Use Property-Based Testing to Bridge LLM Code Generation and Validation | alphaXiv","url":"https://www.alphaxiv.org/overview/2506.18315v1"},{"title":"LLM-based Unit Test Generation via Property Retrieval","url":"https://arxiv.org/html/2410.13542v1"},{"title":"[Literature Review] Use Property-Based Testing to Bridge LLM Code Generation and Validation","url":"https://www.themoonlight.io/en/review/use-property-based-testing-to-bridge-llm-code-generation-and-validation"}]
+
+Based on the search results, here's what I found about property-based testing and LLM code generation:
+
+## Overview
+
+Property-Based Testing (PBT) is being used to validate high-level program properties or invariants, instead of relying on specific input-output examples in the context of LLM code generation.
+
+## Key Challenge
+
+Large Language Models (LLMs) excel at code generation, but ensuring their outputs to be functionally correct, especially in complex programming tasks, is a persistent challenge. Traditional Test-Driven Development (TDD) often fails because of the scarcity of high-quality test cases or the pitfalls of automated test generation, including biased tests or inaccurate output predictions that can misdirect the correction process.
+
+## Property-Generated Solver (PGS) Framework
+
+A recent research framework addressing this issue is the Property-Generated Solver. It employs two collaborative LLM-based agents: a Generator dedicated to code generation and iterative refinement, and a Tester that manages the PBT life-cycle and formulate semantically rich feedback from property violations.
+
+The Generator produces initial candidate programs, and these agents collaborate iteratively: the Tester rigorously validates them using defined properties, while the Generator refines the programs based on the feedback from validation results.
+
+## Results
+
+Extensive experimental results on multiple code generation benchmarks demonstrate that Property-Generated Solver achieves substantial pass@1 improvements, ranging from 23.1% to 37.3% relative gains over established TDD methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "460f59c7-86d9-45c5-b95b-d3f85f6349d3",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "768c46b5-a838-4b2d-a429-ce419945a893",
+  "sourceToolAssistantUUID": "460f59c7-86d9-45c5-b95b-d3f85f6349d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T00:57:01.985Z_
+
+<details><summary>↩ Tool result · `toolu_01EMagJreC72TzyAjKVwYbpL`</summary>
+
+```text
+Web search results for query: "formal specification inference code LLM"
+
+Links: [{"title":"Beyond Postconditions: Can Large Language Models infer Formal Contracts for","url":"https://arxiv.org/pdf/2510.12702"},{"title":"FormalSpecCpp: A Dataset of C++ Formal Specifications created using LLMs","url":"https://arxiv.org/pdf/2502.15217"},{"title":"FormalSpecCpp: A Dataset of C++ Formal Specifications created using LLMs","url":"https://www.osti.gov/servlets/purl/2564074"},{"title":"Automatic Generation of Formal Specification and ...","url":"https://arxiv.org/pdf/2601.12845"},{"title":"CLEVER: A Curated Benchmark for Formally Verified Code Generation","url":"https://arxiv.org/pdf/2505.13938"},{"title":"Leveraging LLMs for Formal Software Requirements: Challenges and Prospects","url":"https://ceur-ws.org/Vol-4142/paper11.pdf"},{"title":"Can LLMs Reason About Program Semantics? A ...","url":"https://aclanthology.org/2025.acl-long.1068.pdf"},{"title":"Creating an LLM Benchmark Suite for Specification Inference","url":"https://ethz.ch/content/dam/ethz/special-interest/infk/chair-program-method/pm/documents/Education/Theses/wiwest_MastersProjectDescription.pdf"},{"title":"An LLM Benchmark Suite for Specification Inference Master Thesis William West","url":"https://ethz.ch/content/dam/ethz/special-interest/infk/chair-program-method/pm/documents/Education/Theses/wiwest_Masters_Thesis.pdf"},{"title":"Formal Reasoning Meets LLMs: Toward AI for Mathematics and Verification – Communications of the ACM","url":"https://cacm.acm.org/research/formal-reasoning-meets-llms-toward-ai-for-mathematics-and-verification/"}]
+
+Based on the search results, here's what I found about formal specification inference using LLMs:
+
+## Overview
+
+Large Language Models (LLMs) have shown promise in inferring formal postconditions from natural language hints embedded in code such as function names, comments or documentation. This is an active area of research addressing a significant gap in software verification.
+
+## Key Challenges
+
+The adoption of formal specifications in practice has been hampered by the lack of such specifications in real world code. Additionally, using generated postconditions as specifications in a subsequent verification often leads verifiers to suggest invalid inputs, hinting at potential issues that ultimately turn out to be false alarms.
+
+## Recent Approaches
+
+Several research initiatives are exploring this space:
+
+- **NL2Contract**: A task of employing LLMs to translate informal natural language into formal functional contracts, consisting of postconditions as well as preconditions.
+
+- **FormalSpecCpp**: Recent research has demonstrated the potential of LLMs in generating specifications and code for formal verification languages like Dafny and Java.
+
+- **Specification Verification**: FormalBench provides a large-scale dataset of 700 manually validated Java programs and 6,219 augmented programs covering various control flow structures, and evaluates LLMs across four critical dimensions: their effectiveness in synthesizing complete and consistent specifications, robustness against semantic-preserving code transformations, the impact of advanced prompting techniques, and root causes of failures.
+
+## Practical Considerations
+
+A key challenge is to ensure the trustworthiness of the generated specifications—that they accurately reflect developers' intent.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0a0eb0e-7151-44bc-99da-102d631f1bc5",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "984f0626-8f5c-4510-93ce-4f9b07ea8ffd",
+  "sourceToolAssistantUUID": "d0a0eb0e-7151-44bc-99da-102d631f1bc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T00:57:02.217Z_
+
+<details><summary>↩ Tool result · `toolu_01VpsVdzcrjjFgYd2x6VhEm2`</summary>
+
+```text
+Web search results for query: "invariant guided program repair LLM"
+
+Links: [{"title":"LLM For Loop Invariant Generation and Fixing","url":"https://arxiv.org/pdf/2511.06552"},{"title":"Code Repair with LLMs gives an Exploration-Exploitation Tradeoff Hao Tang","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/d5c56ec4f69c9a473089b16000d3f8cd-Paper-Conference.pdf"},{"title":"LLM For Loop Invariant Generation and Fixing: How Far Are We?","url":"https://arxiv.org/html/2511.06552v1"},{"title":"A Neurosymbolic Approach to Loop Invariant Generation ...","url":"https://arxiv.org/pdf/2512.15816"},{"title":"Specification-Guided Repair of Arithmetic Errors in Dafny Programs using LLMs","url":"https://arxiv.org/html/2507.03659"},{"title":"Quokka: Accelerating Program Verification with LLMs via Invariant Synthesis","url":"https://arxiv.org/html/2509.21629"},{"title":"Automatic Generation of Formal Specification and ...","url":"https://arxiv.org/pdf/2601.12845"},{"title":"Specification-Guided Repair of Arithmetic Errors in Dafny Programs using LLMs","url":"https://www.arxiv.org/pdf/2507.03659v2"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Not All Invariants Are Equal: Curating Training Data to Accelerate Program Verification with SLMs","url":"https://arxiv.org/html/2603.15510"}]
+
+Based on the search results, I found several relevant research papers and approaches on invariant-guided program repair using LLMs:
+
+## Key Research Areas
+
+**Loop Invariant Generation and Repair:**
+
+LLMs can achieve up to 49% success in generating verified invariants by following guiding instructions, but with few-shot prompting the success rate increases to 76%. When invariants are incorrect, systems create repair prompts using verifier feedback and ask the LLM to revise the invariant.
+
+**Neurosymbolic Approaches:**
+
+NeuroInv is a neurosymbolic approach to loop invariant generation comprising a neural reasoning module that leverages LLMs and Hoare logic to derive candidate invariants, and a verification-guided symbolic module that iteratively repairs invariants using counterexamples. NeuroInv achieves a 99.5% success rate, substantially outperforming other evaluated approaches.
+
+**Specification-Guided Repair:**
+
+An approach for Dafny programs uses formal specifications as oracles for fault localization and repair, localizing faults through Hoare logic and applying LLMs to synthesize candidate fixes. This tool achieves 89.7% fault localization success rate and 74.18% repair success rate with GPT-4o mini.
+
+**Verification-Oriented Frameworks:**
+
+Quokka is an evaluation-oriented framework for LLM-based invariant synthesis that directly evaluates LLM-generated invariants by checking whether each invariant is valid and whether it helps prove the target assertion.
+
+These approaches show that combining LLM capabilities with formal verification feedback and symbolic reasoning significantly improves program repair accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2046c4ba-bb88-4b7d-9750-0d47d184a7c1",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "42756006-70c3-4293-a9a0-fb24ffd4cdfb",
+  "sourceToolAssistantUUID": "2046c4ba-bb88-4b7d-9750-0d47d184a7c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T00:57:03.416Z_
+
+<details><summary>↩ Tool result · `toolu_01UtazZamnbpSLvLpVoEbpLn`</summary>
+
+```text
+Web search results for query: "execution feedback code refinement inference time 2025 2026"
+
+Links: [{"title":"[2604.05137] EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback","url":"https://arxiv.org/abs/2604.05137"},{"title":"EffiPair: Improving the Efficiency of LLM-generated Code ...","url":"https://arxiv.org/pdf/2604.05137"},{"title":"One Refiner to Unlock Them All: Inference-Time Reasoning Elicitation via Reinforcement Query Refinement","url":"https://arxiv.org/html/2604.25444"},{"title":"Reasoning Through Execution: Unifying Process and Outcome Rewards for Code Generation | OpenReview","url":"https://openreview.net/forum?id=pLQtovjXiw"},{"title":"EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback","url":"https://arxiv.org/html/2604.05137"},{"title":"CYCLE: Learning to Self-Refine the Code Generation","url":"https://arxiv.org/html/2403.18746v1"},{"title":"Paper page - Outcome-Refining Process Supervision for Code Generation","url":"https://huggingface.co/papers/2412.15118"},{"title":"Execution Guided Line-by-Line Code Generation Boaz Lavon Shahar Katz Lior Wolf","url":"https://arxiv.org/pdf/2506.10948"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/ea57b59754ad29efe7883e4e0068916c6193cbb6.pdf"},{"title":"PROREFINE: INFERENCE-TIME PROMPT REFINEMENT","url":"https://openreview.net/pdf/aae73fe588bdba177b1687b0c6aa685ee5b05083.pdf"}]
+
+Based on the search results, here's what I found about execution feedback, code refinement, and inference time in 2025-2026:
+
+## Key Recent Developments
+
+**EffiPair Framework (April 2026)**
+
+EffiPair is an inference-time iterative refinement framework that generates multiple candidate solutions, identifies program pairs with large efficiency gaps, summarizes their execution differences into lightweight feedback, and uses this signal to produce more efficient solutions. With DeepSeek-Chat V3.2, EffiPair achieves up to 1.5x speedup over generation without performance feedback, while reducing token usage by more than 90% compared to prior work.
+
+**Outcome-Refining Process Supervision (ORPS)**
+
+ORPS is a framework that enhances LLMs' code generation abilities by treating the refinement of execution outcomes as the process to be supervised, enabling models to perform deep reasoning with step-by-step verification and refinement through concrete execution signals and tree-structured exploration during inference. This methodology achieves substantial improvements across multiple benchmark datasets, with an average increase of 26.9% in correctness and 42.2% in code generation efficiency.
+
+**Execution-Guided Line-by-Line Code Generation (EG-CFG)**
+
+Rather than refinement techniques that operate at coarse granularity between complete solution attempts, this method provides continuous feedback at the token level by integrating execution signals.
+
+**ReVeal Framework**
+
+ReVeal structures long-horizon reasoning into iterative generation and verification turns, where at each turn the model generates candidate code and self-verifies its correctness.
+
+These approaches represent a shift toward inference-time code refinement strategies that leverage execution feedback to improve both code correctness and efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b067941f-0753-4eb9-b487-f88658f644f4",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "b247a5d5-8d2f-4c50-bdcf-650877634ab8",
+  "sourceToolAssistantUUID": "b067941f-0753-4eb9-b487-f88658f644f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T00:57:04.130Z_
+
+<details><summary>↩ Tool result · `toolu_01CD73i7u33vosWPo1CY25YD`</summary>
+
+```text
+Web search results for query: "structured reasoning code LLM beyond test cases"
+
+Links: [{"title":"StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation","url":"https://arxiv.org/html/2604.14631"},{"title":"How Does LLM Reasoning Work for Code? A Survey and a Call to Action","url":"https://arxiv.org/html/2506.13932v1"},{"title":"[2604.14631] StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation","url":"https://arxiv.org/abs/2604.14631"},{"title":"Meta's new structured prompting technique makes LLMs significantly better at code review — boosting accuracy to 93% in some cases | VentureBeat","url":"https://venturebeat.com/orchestration/metas-new-structured-prompting-technique-makes-llms-significantly-better-at"},{"title":"Code to Think, Think to Code: A Survey on Code-Enhanced Reasoning and Reasoning-Driven Code Intelligence in LLMs","url":"https://arxiv.org/html/2502.19411v1"},{"title":"Reasoning beyond limits: Advances and open problems for LLMs - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S240595952500133X"},{"title":"From Scenario to Code: Structured Prompting for LLM-Based Unit Test Generation | Proceedings of the 2025 7th World Symposium on Software Engineering","url":"https://dl.acm.org/doi/full/10.1145/3779657.3779658"},{"title":"Cerberus: Multi-Agent Reasoning and Coverage-Guided Exploration for Static Detection of Runtime Errors","url":"https://arxiv.org/html/2512.21431v1"},{"title":"Solving the LLM Black Box Problem with Structured Reasoning - DEV Community","url":"https://dev.to/lyricalstring/solving-the-llm-black-box-problem-with-structured-reasoning-h3l"},{"title":"SWE-InfraBench: Evaluating Language Models on Cloud Infrastructure Code","url":"https://assets.amazon.science/28/40/7bfdfa7541168a7adb7ec6674e1d/scipub-approval152134-41334456-sweinfrabench-evaluating-language-models-on-cloud-infrastructure-code.pdf"}]
+
+The search results reveal several important approaches to structured reasoning in LLMs for code generation that go beyond test cases:
+
+## Key Frameworks and Approaches
+
+**StoryCoder** is one of the most prominent recent approaches. StoryCoder is a narrative reformulation framework that transforms code generation questions into coherent natural language narratives, providing richer contextual structure than simple rephrasings. Narrative reformulation guides models toward correct algorithmic strategies, reduces implementation errors, and induces a more modular code structure.
+
+**Semi-Formal Reasoning** offers another structured approach. "Semi-formal reasoning" is a structured prompting technique where the AI agent must fill out a logical certificate by explicitly stating premises, tracing concrete execution paths, and deriving formal conclusions before providing an answer.
+
+**Code-Form Plans** represent another method for structural enhancement. CodePlan introduces "code-form plans" — structured pseudocode that organizes reasoning steps across diverse tasks, showing how code structures enhance reasoning coherence and interpretability without requiring execution.
+
+## Multi-Phase and Multi-Agent Approaches
+
+Recent work has moved beyond single-step reasoning. A two-step zero-shot prompting approach conducts test generation in 2 steps: test scenario identification where the LLM first generates possible test scenarios, and test case synthesis where the LLM generates unit test code specific to each identified scenario.
+
+Cerberus improves guidance provided to the LLM for exception detection through a structured two-phase prompting mechanism.
+
+## Broader Survey Findings
+
+In large language models, code and reasoning reinforce each other: code offers an abstract, modular, and logic-driven structure that supports reasoning, while reasoning translates high-level goals into smaller, executable steps, providing verifiable execution paths, enforcing logical decomposition, and enabling runtime validation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee235d36-7959-438c-8f74-991e7419f06d",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "14492590-3804-4d1c-8ea7-1cb102b59b1c",
+  "sourceToolAssistantUUID": "ee235d36-7959-438c-8f74-991e7419f06d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T00:57:04.744Z_
+
+<details><summary>↩ Tool result · `toolu_01NRWzerWc4m62CgpwcyyvDo`</summary>
+
+```text
+Web search results for query: "test-free code verification LLM"
+
+Links: [{"title":"GitHub - WENGSYX/Self-Verification: We have released the code and demo program required for LLM with self-verification","url":"https://github.com/WENGSYX/Self-Verification"},{"title":"GitHub - LLM-Testing/LLM4SoftwareTesting · GitHub","url":"https://github.com/LLM-Testing/LLM4SoftwareTesting"},{"title":"GitHub - confident-ai/deepeval: The LLM Evaluation Framework · GitHub","url":"https://github.com/confident-ai/deepeval"},{"title":"GitHub - akitaonrails/llm-coding-benchmark: Simple benchmark to test the most popular open source and commercial LLMs with automated OpenCode · GitHub","url":"https://github.com/akitaonrails/llm-coding-benchmark"},{"title":"Validating LLM-Generated Programs with Metamorphic Prompt Testing","url":"https://arxiv.org/html/2406.06864v1"},{"title":"LiveBench","url":"https://livebench.ai/"},{"title":"GitHub - llm-as-a-verifier/llm-as-a-verifier · GitHub","url":"https://github.com/llm-as-a-verifier/llm-as-a-verifier"},{"title":"PREFACE - A Reinforcement Learning Framework for Code Verification via LLM Prompt Repair | Proceedings of the Great Lakes Symposium on VLSI 2025","url":"https://dl.acm.org/doi/10.1145/3716368.3735300"},{"title":"GitHub - codefuse-ai/Awesome-Code-LLM: [TMLR] A curated list of language modeling researches for code (and other software engineering activities), plus related datasets. · GitHub","url":"https://github.com/codefuse-ai/Awesome-Code-LLM"},{"title":"GitHub - Pavelevich/llm-checker: Advanced CLI tool that scans your hardware and tells you exactly which LLM or sLLM models you can run locally, with full Ollama integration. · GitHub","url":"https://github.com/Pavelevich/llm-checker"}]
+
+Based on the search results, here are some relevant findings about test-free code verification with LLMs:
+
+## Key Research and Tools
+
+A notable paper titled "Large Language Models for Test-Free Fault Localization" was published at ICSE 2024, indicating active research in this area.
+
+### Metamorphic Prompt Testing
+One approach called metamorphic prompt testing has been proposed, which detects flaws in code by detecting inconsistencies - the idea is that intrinsic consistency exists among correct code pieces but may not exist among flawed code pieces. The method varies a given prompt to multiple prompts with paraphrasing and asks the LLM to generate multiple code versions, then validates whether semantic relations still hold through cross-validation. This approach was able to detect 75% of erroneous programs generated by GPT-4, with a false positive rate of 8.6%.
+
+### LLM-as-a-Verifier Framework
+LLM-as-a-Verifier is a general-purpose verification framework that provides fine-grained feedback by scaling scoring granularity, repeated verification, and criteria decompositions.
+
+### PREFACE Framework
+A model-agnostic framework called PREFACE couples LLMs with a lightweight reinforcement learning agent to enable formally verifiable code generation without costly model fine-tuning. The system works with Dafny code and uses a generation-verification loop where an RL agent learns to iteratively refine prompts to improve verification success.
+
+### Software Testing with LLMs
+LLMs have proven efficient in the mid to late stages of the software testing lifecycle, including test case preparation, bug analysis, debugging, and repair.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aeee5d70-e244-45aa-89ab-a42634392f20",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "7ba4d4d8-848b-4c35-a0f7-561fcdf190fb",
+  "sourceToolAssistantUUID": "aeee5d70-e244-45aa-89ab-a42634392f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-12T00:57:07.724Z_
+
+Excellent results. Now let me fetch the abstracts/details for the most promising papers that are NOT already in the cited works list.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ba4d4d8-848b-4c35-a0f7-561fcdf190fb",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3b5ed8fb-7c34-4bcc-91b7-cde096fe4dad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-12T00:57:08.826Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MNncW4wCeHNbW56yyav4fx`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.18315",
+  "prompt": "Extract the full title, authors, and abstract of this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b5ed8fb-7c34-4bcc-91b7-cde096fe4dad",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2db631a2-c875-4216-8a0a-ee05dbe790ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-12T00:57:09.671Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JX4z1Dp1B1F3euBwMAJg1r`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.03878v1",
+  "prompt": "Extract the full title, authors, and abstract of this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2db631a2-c875-4216-8a0a-ee05dbe790ee",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "624cbb63-d02f-44d4-95d9-8280e8808cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-12T00:57:10.257Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01EkVeDMoKzEDXmUgmqkCWHL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.12702",
+  "prompt": "Extract the full title, authors, and abstract of this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "624cbb63-d02f-44d4-95d9-8280e8808cef",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ecd52e1d-df70-43b5-93df-b58c9ea850a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-12T00:57:11.048Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PNcWc664H2s8jYfcAbHb4K`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.14631",
+  "prompt": "Extract the full title, authors, and abstract of this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecd52e1d-df70-43b5-93df-b58c9ea850a3",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "05bb0413-abde-41fb-80e6-b0a3a51561b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-12T00:57:12.201Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014XP87uQxazcDzgtXuWZ7pQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.15816",
+  "prompt": "Extract the full title, authors, and abstract of this paper (NeuroInv)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05bb0413-abde-41fb-80e6-b0a3a51561b0",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6f6f588d-1d1a-4fed-9c88-aa4c93bce708",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-12T00:57:12.524Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01W2vUgFr8rv1U3oq2YYmtwq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.12845",
+  "prompt": "Extract the full title, authors, and abstract of this paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f6f588d-1d1a-4fed-9c88-aa4c93bce708",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9d0cdc2f-bf01-4cd4-8389-7db5c2de2372",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-12T00:57:13.257Z_
+
+<details><summary>↩ Tool result · `toolu_01MNncW4wCeHNbW56yyav4fx`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback"
+
+**Authors:** Lehan He, Zeren Chen, Zhe Zhang, Xiang Gao, Lu Sheng
+
+**Abstract:** The paper presents the Property-Generated Solver (PGS), a method for improving code quality generated by large language models. Rather than focusing on test quantity, PGS emphasizes "feedback quality" by checking "high-level program properties" and providing "the simplest failing counterexample to the LLM." The approach yields notable improvements, including "an improvement of up to 13.4% in pass@1 against other TDD-based methods" and "a bug fix rate 1.4x-1.6x higher than the strongest debugging-based approaches," establishing new performance standards in automated code refinement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2db631a2-c875-4216-8a0a-ee05dbe790ee",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "60554be0-e915-4fbd-87ce-ef92def8a1f9",
+  "sourceToolAssistantUUID": "2db631a2-c875-4216-8a0a-ee05dbe790ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-12T00:57:13.461Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017F2xMdMPZJmCpaiKJ9PwzL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2507.03659",
+  "prompt": "Extract the full title, authors, and abstract of this paper about specification-guided repair."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60554be0-e915-4fbd-87ce-ef92def8a1f9",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b4d0129e-95c8-4e04-8c25-baa88be3c9b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-12T00:57:14.431Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KiyyJJAkTj7zvwkDaLKGfC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.05137",
+  "prompt": "Extract the full title, authors, and abstract of this paper (EffiPair)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4d0129e-95c8-4e04-8c25-baa88be3c9b1",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c7eaefb8-94ef-4b37-809c-aee1c1fcf832",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-12T00:57:14.603Z_
+
+<details><summary>↩ Tool result · `toolu_01JX4z1Dp1B1F3euBwMAJg1r`</summary>
+
+```text
+# Paper Information
+
+**Full Title:** Understanding Specification-Driven Code Generation with LLMs: An Empirical Study Design
+
+**Authors:** Giovanni Rosa, David Moreno-Lumbreras, Gregorio Robles, Jesús M. González-Barahona
+
+**Abstract:**
+
+Large Language Models are increasingly integrated into software development workflows, yet their behavior in structured, specification-driven processes remains poorly understood. This paper presents an empirical study design using CURRANTE, a Visual Studio Code extension that enables a human-in-the-loop workflow for LLM-assisted code generation. The tool guides developers through three sequential stages—Specification, Tests, and Function—allowing them to define requirements, generate and refine test suites, and produce functions that satisfy those tests. Participants will solve medium-difficulty problems from the LiveCodeBench dataset, while the tool records fine-grained interaction logs, effectiveness metrics (such as pass rate and all-pass completion), efficiency indicators (such as time-to-pass), and iteration behaviors. The study aims to analyze how human intervention in specification and test refinement influences the quality and dynamics of LLM-generated code. The results will provide empirical insights into the design of next-generation development environments that align human reasoning with model-driven code generation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "624cbb63-d02f-44d4-95d9-8280e8808cef",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "46226bce-1c02-4ba2-b4fe-b87e2ad63cab",
+  "sourceToolAssistantUUID": "624cbb63-d02f-44d4-95d9-8280e8808cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-12T00:57:14.745Z_
+
+<details><summary>↩ Tool result · `toolu_01EkVeDMoKzEDXmUgmqkCWHL`</summary>
+
+```text
+# Paper Details
+
+**Title:** "Beyond Postconditions: Can Large Language Models infer Formal Contracts for Automatic Software Verification?"
+
+**Authors:** Cedric Richter and Heike Wehrheim
+
+**Abstract Summary:**
+
+The paper addresses a significant challenge in software verification: the scarcity of formal specifications in real-world code. The researchers investigate whether LLMs can generate complete functional contracts—encompassing both preconditions and postconditions—from natural language cues like function names and comments.
+
+Key findings include:
+
+- The team introduced NL2Contract, a task focused on converting informal language into formal functional contracts
+- LLMs demonstrated effectiveness at generating contracts that remain logically sound across all possible inputs
+- Generated contracts possessed sufficient expressiveness to distinguish between buggy and correct code
+- When verifiers utilized LLM-inferred contracts, they produced significantly fewer false alarms compared to using postconditions alone
+- The inferred preconditions generally aligned with developer intentions, enabling real-world bug detection
+
+The work demonstrates that comprehensive contract inference can meaningfully improve automatic software verification outcomes by reducing spurious warnings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ecd52e1d-df70-43b5-93df-b58c9ea850a3",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "f9c2dfe6-0724-474e-9cd9-8c99d193bd7c",
+  "sourceToolAssistantUUID": "ecd52e1d-df70-43b5-93df-b58c9ea850a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-12T00:57:15.344Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FBrtA9JyG8ZwG6VrVtSZDj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.15217",
+  "prompt": "Extract the full title, authors, and abstract of this paper (FormalSpecCpp)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9c2dfe6-0724-474e-9cd9-8c99d193bd7c",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a2161275-221b-495f-a3fc-96fdc6ede6b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T00:57:16.056Z_
+
+<details><summary>↩ Tool result · `toolu_01PNcWc664H2s8jYfcAbHb4K`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:**
+"StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation"
+
+**Authors:**
+Geonhui Jang, Dongyoon Han, YoungJoon Yoo
+
+**Abstract:**
+The researchers introduce StoryCoder, a framework that converts code generation problems into coherent natural language narratives rather than presenting fragmented information. Each narrative includes a task overview, constraints, and test case examples, organized by algorithm and genre selection.
+
+Testing across 11 models on HumanEval, LiveCodeBench, and CodeForces benchmarks revealed consistent gains, averaging "18.7% improvement in zero-shot pass@10." Beyond accuracy improvements, the approach guides models toward correct algorithms, minimizes implementation mistakes, and produces more modular code. The findings suggest structured problem representation benefits code generation across different model scales and architectures. The authors provide code availability through a GitHub repository.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05bb0413-abde-41fb-80e6-b0a3a51561b0",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "f3d7e34a-50e0-4ab2-930d-7b1634799768",
+  "sourceToolAssistantUUID": "05bb0413-abde-41fb-80e6-b0a3a51561b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T00:57:16.244Z_
+
+<details><summary>↩ Tool result · `toolu_01W2vUgFr8rv1U3oq2YYmtwq`</summary>
+
+```text
+# Paper Details
+
+**Full Title:**
+"Automatic Generation of Formal Specification and Verification Annotations Using LLMs and Test Oracles"
+
+**Authors:**
+João Pascoal Faria, Emanuel Trigo, Vinicius Honorato, Rui Abreu
+
+**Abstract:**
+The researchers explore how large language models can automatically generate formal verification constructs for programs written in Dafny. Their multimodel approach combining Claude Opus 4.5 and GPT-5.2 successfully generated correct annotations for 98.2% of 110 test programs within 8 repair iterations using verifier feedback. The study found that proof-helper annotations present the greatest difficulty for current LLMs, and test case assertions functioned as validation tools for verifying generated pre/postconditions. The authors also developed a Visual Studio Code extension integrating this automation capability.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d0cdc2f-bf01-4cd4-8389-7db5c2de2372",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "bb5b505a-811f-4a85-a980-889f8e4e4171",
+  "sourceToolAssistantUUID": "9d0cdc2f-bf01-4cd4-8389-7db5c2de2372",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-12T00:57:16.304Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015You57kCQULBMQXbXsyT8N`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.12047",
+  "prompt": "Extract the full title, authors, and abstract of this paper about contract adherence in code generation (PACT)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb5b505a-811f-4a85-a980-889f8e4e4171",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmNZV3tbvSqUZGi2wEF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "536654af-8f78-40c7-bbcb-9a0e51a06159",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hy2KE7gZjDVozr84jewUpz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9360,
+      "cache_read_input_tokens": 11090,
+      "output_tokens": 856,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9360
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 856,
+          "cache_read_input_tokens": 11090,
+          "cache_creation_input_tokens": 9360,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9360,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-12T00:57:16.396Z_
+
+<details><summary>↩ Tool result · `toolu_014XP87uQxazcDzgtXuWZ7pQ`</summary>
+
+```text
+# NeuroInv Paper Details
+
+**Full Title:**
+"A Neurosymbolic Approach to Loop Invariant Generation via Weakest Precondition Reasoning"
+
+**Authors:**
+- Daragh King
+- Vasileios Koutavas
+- Laura Kovacs
+
+**Abstract:**
+The paper addresses the challenge of automatically generating loop invariants for program verification. NeuroInv combines two components: a neural module leveraging LLMs and Hoare logic to create invariant candidates through backward-chaining weakest precondition reasoning, and a symbolic verification module that refines invariants using counterexamples from OpenJML. 
+
+Testing on 150 Java programs covering single and multiple loops, arrays, branching, and noisy code segments achieved a "99.5% success rate." The approach demonstrated scalability on a separate benchmark of 10 larger multi-loop programs averaging 7 loops each, "substantially outperforming the other evaluated approaches."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f6f588d-1d1a-4fed-9c88-aa4c93bce708",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "e8874cb2-b898-431a-a689-a22d8ca26c65",
+  "sourceToolAssistantUUID": "6f6f588d-1d1a-4fed-9c88-aa4c93bce708",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-12T00:57:17.368Z_
+
+<details><summary>↩ Tool result · `toolu_017F2xMdMPZJmCpaiKJ9PwzL`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "Specification-Guided Repair of Arithmetic Errors in Dafny Programs using LLMs"
+
+**Authors:** Valentina Wu, Alexandra Mendes, Alexandre Abreu
+
+**Abstract:**
+
+The research addresses automated program repair for Dafny programs that fail formal verification. Rather than relying on test suites, the authors leverage formal specifications as validation criteria. Their approach uses Hoare logic to analyze program state and employs large language models to generate repair candidates, focusing specifically on arithmetic bugs.
+
+The team evaluated their tool against DafnyBench, a collection of real-world Dafny programs, comparing multiple models including GPT-4o mini, Llama 3, Mistral 7B, and Llemma 7B. The results demonstrate that "fault localization coverage" reached nearly 90%, with GPT-4o mini achieving the best repair success rate of approximately 74%. The authors conclude their work demonstrates the value of integrating formal reasoning with AI-based synthesis techniques for program repair.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4d0129e-95c8-4e04-8c25-baa88be3c9b1",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "29d1b5ed-b506-4c86-b1cc-43765c773821",
+  "sourceToolAssistantUUID": "b4d0129e-95c8-4e04-8c25-baa88be3c9b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-12T00:57:18.434Z_
+
+<details><summary>↩ Tool result · `toolu_01KiyyJJAkTj7zvwkDaLKGfC`</summary>
+
+```text
+# EffiPair Paper Details
+
+**Full Title:** "EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback"
+
+**Authors:** Samira Hajizadeh and Suman Jana
+
+**Abstract Summary:**
+
+The paper addresses a common problem where large language models generate code that works correctly but runs inefficiently. Rather than relying on traditional profiling methods, the researchers introduce Relative Contrastive Feedback (RCF), which "compares two structurally similar programs for the same task and highlights the differences associated with better efficiency."
+
+The EffiPair framework operates at test time without requiring model fine-tuning. It works by generating multiple solutions, identifying program pairs with significant efficiency differences, extracting lightweight feedback from their execution variations, and using this information to produce more optimized code. 
+
+Key results show that with DeepSeek-Chat V3.2, the approach achieved "up to 1.5x speedup over generation without performance feedback, while reducing token usage by more than 90%" compared to prior methods.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c7eaefb8-94ef-4b37-809c-aee1c1fcf832",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "4504e5ae-2b93-48a8-b014-bd602dd639c2",
+  "sourceToolAssistantUUID": "c7eaefb8-94ef-4b37-809c-aee1c1fcf832",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-12T00:57:19.243Z_
+
+<details><summary>↩ Tool result · `toolu_01FBrtA9JyG8ZwG6VrVtSZDj`</summary>
+
+```text
+# FormalSpecCpp Paper Details
+
+**Full Title:** "FormalSpecCpp: A Dataset of C++ Formal Specifications created using LLMs"
+
+**Authors:** Madhurima Chakraborty, Peter Pirkelbauer, Qing Yi
+
+**Abstract Summary:**
+
+The paper introduces FormalSpecCpp, described as "the first comprehensive collection of C++ programs with well-defined preconditions and postconditions." This dataset addresses a gap in standardized benchmarks for verifying formal specifications in C++ code.
+
+The research serves multiple purposes: it provides "a structured benchmark for evaluating specification inference tools and testing the accuracy of generated specifications." Researchers can leverage it to benchmark tools, fine-tune LLMs for specification generation, and examine how formal specifications enhance program verification and testing.
+
+The authors emphasize their commitment to advancing the field by making the dataset publicly available through their GitHub repository, intending to support progress in program verification, specification inference, and AI-assisted software development.
+
+**Publication Details:** Accepted at the 2025 IEEE/ACM 22nd International Conference on Mining Software Repositories (MSR)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2161275-221b-495f-a3fc-96fdc6ede6b5",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "69217cd4-f91e-4406-9147-625d95931238",
+  "sourceToolAssistantUUID": "a2161275-221b-495f-a3fc-96fdc6ede6b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-12T00:57:21.317Z_
+
+<details><summary>↩ Tool result · `toolu_015You57kCQULBMQXbXsyT8N`</summary>
+
+```text
+# ContractEval: Code Contract Satisfaction Benchmark
+
+**Full Title:** ContractEval: A Benchmark for Evaluating Contract-Satisfying Assertions in Code Generation
+
+**Authors:** Soohan Lim, Joonghyuk Hahn, Hyunwoo Park, Sang-Ki Ko, Yo-Sub Han
+
+**Abstract Summary:**
+
+The researchers present a new evaluation framework addressing a gap in code generation assessment. Standard benchmarks measure functional correctness only on well-formed inputs, potentially missing cases where generated code fails to enforce necessary preconditions—or "contracts."
+
+The benchmark comprises 364 tasks built on HumanEval+ and MBPP+, featuring: reconstructed descriptions explicitly stating contracts, synthesized test cases created via an LLM-SMT solver pipeline, and reference implementations with contracts.
+
+Key findings reveal a significant disparity: when evaluating five open-source code language models, models achieved "pass@1 of 75-82% with 0% contract satisfaction" under standard prompting. Even with explicit contract statements in prompts, satisfaction rates only reached 23-41%. This work establishes contract enforcement as "a crucial and previously overlooked axis of code generation quality."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "536654af-8f78-40c7-bbcb-9a0e51a06159",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "c1199ecd-6a09-4c71-addc-d083e49a9cc2",
+  "sourceToolAssistantUUID": "536654af-8f78-40c7-bbcb-9a0e51a06159",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-12T00:57:23.668Z_
+
+Now let me fetch a few more promising papers that appeared in the results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1199ecd-6a09-4c71-addc-d083e49a9cc2",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "17fb000f-b60d-4f54-913a-f61bbb4209cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-12T00:57:24.730Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XMiZhaTc8TZL2A3yMxbkYs`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.24594",
+  "prompt": "Extract the full title, authors, and abstract of this paper (Preguss - potential runtime error guided specification synthesis)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17fb000f-b60d-4f54-913a-f61bbb4209cf",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e245a880-0842-4bc6-85c2-68491a897558",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-12T00:57:26.290Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Gt1SsrQhENQ6CfDDGguyBm`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.21629",
+  "prompt": "Extract the full title, authors, and abstract of this paper (Quokka - program verification with LLMs via invariant synthesis)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e245a880-0842-4bc6-85c2-68491a897558",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c87a31dd-b87f-473b-80f0-7c8bb437d0fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-12T00:57:27.083Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FSUvGZRCH2DvafuVNx1QkN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.13938",
+  "prompt": "Extract the full title, authors, and abstract of this paper (CLEVER benchmark for formally verified code generation)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c87a31dd-b87f-473b-80f0-7c8bb437d0fc",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "76629cf6-7b25-44c2-874d-480f2ca580d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-12T00:57:28.034Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013524jvHwkZrBcAjXzppxPj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2406.06864",
+  "prompt": "Extract the full title, authors, and abstract of this paper about metamorphic prompt testing for validating LLM-generated programs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76629cf6-7b25-44c2-874d-480f2ca580d7",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "86e71e52-8e91-4479-baca-14310b85bd65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-12T00:57:29.442Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AjCz5NKcQE7bxnPbXr4rUX`</summary>
+
+```json
+{
+  "url": "https://dl.acm.org/doi/10.1145/3696630.3728702",
+  "prompt": "Extract the full title, authors, and abstract of this paper about property-based testing for LLM code generation (From Prompts to Properties)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86e71e52-8e91-4479-baca-14310b85bd65",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "02e62c70-9fdf-4bc0-beb1-700abcf2be15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-12T00:57:29.840Z_
+
+<details><summary>↩ Tool result · `toolu_01XMiZhaTc8TZL2A3yMxbkYs`</summary>
+
+```text
+# Preguss Paper Summary
+
+**Full Title:**
+"A Tale of 1001 LoC: Potential Runtime Error-Guided Specification Synthesis for Verifying Large-Scale Programs"
+
+**Authors:**
+Zhongyi Wang, Tengjie Lin, Mingshuai Chen, Haokun Li, Mingqi Yang, Xiao Yi, Shengchao Qin, Yixing Luo, Xiaofeng Li, Bin Gu, Liqiang Lu, Jianwei Yin
+
+**Abstract:**
+The research presents Preguss, a framework combining static analysis and deductive verification to automate formal specification generation. The system employs a two-pronged approach: identifying and prioritizing verification units through potential runtime error detection, then synthesizing interprocedural specifications using language models at the unit level. According to the authors, this methodology demonstrates "substantial" improvements over prior LLM-based approaches and enables "highly automated RTE-freeness verification for real-world programs with over a thousand LoC, with a reduction of 80.6%~88.9% human verification effort."
+
+**Publication Status:**
+Accepted at OOPSLA 2026 (April 2026 publication)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e245a880-0842-4bc6-85c2-68491a897558",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "0f1e2e93-36ba-436c-b5f2-ee6dfdc86526",
+  "sourceToolAssistantUUID": "e245a880-0842-4bc6-85c2-68491a897558",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-12T00:57:29.667Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01AjCz5NKcQE7bxnPbXr4rUX`</summary>
+
+```text
+Request failed with status code 403
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02e62c70-9fdf-4bc0-beb1-700abcf2be15",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "93856f0e-613a-432a-bf70-cd83e99c555c",
+  "toolUseResult": "Error: Request failed with status code 403",
+  "sourceToolAssistantUUID": "02e62c70-9fdf-4bc0-beb1-700abcf2be15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-12T00:57:30.022Z_
+
+<details><summary>↩ Tool result · `toolu_01Gt1SsrQhENQ6CfDDGguyBm`</summary>
+
+```text
+# Quokka: Program Verification with LLMs via Invariant Synthesis
+
+**Title:** "Quokka: Accelerating Program Verification with LLMs via Invariant Synthesis"
+
+**Authors:** Anjiang Wei, Tianran Sun, Tarun Suresh, Haoze Wu, Ke Wang, and Alex Aiken
+
+**Abstract:**
+
+The paper addresses the challenge of automatically discovering loop invariants for program verification. The researchers present Quokka, a framework designed to leverage large language models for generating useful invariants. Rather than treating model outputs as noisy data requiring extensive refinement, this approach emphasizes direct validation—determining whether each generated invariant successfully helps prove target assertions.
+
+The study evaluated nine state-of-the-art LLMs using a benchmark containing 866 instances from SV-COMP. Results indicate that supervised fine-tuning and Best-of-N sampling techniques provide measurable performance gains, with Quokka surpassing previous LLM-based verification approaches. The researchers have made their implementation and datasets openly accessible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c87a31dd-b87f-473b-80f0-7c8bb437d0fc",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "07b8cfe5-7e14-4571-b811-b4f6d88d9473",
+  "sourceToolAssistantUUID": "c87a31dd-b87f-473b-80f0-7c8bb437d0fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-12T00:57:30.381Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DZzJFX5Y8jUvULjqx1Kx2a`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.10948",
+  "prompt": "Extract the full title, authors, and abstract of this paper about execution guided line-by-line code generation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07b8cfe5-7e14-4571-b811-b4f6d88d9473",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cbb77ea0-ffa6-4e9a-b0fd-999c856b38ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-12T00:57:31.854Z_
+
+<details><summary>↩ Tool result · `toolu_013524jvHwkZrBcAjXzppxPj`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Validating LLM-Generated Programs with Metamorphic Prompt Testing"
+
+**Authors:** Xiaoyin Wang and Dakai Zhu
+
+**Abstract Summary:**
+
+The paper addresses quality concerns surrounding code generated by large language models like GPT-4. The researchers propose a novel validation technique that leverages an important insight: "intrinsic consistency always exists among correct code pieces but may not exist among flawed code pieces."
+
+Their approach involves rephrasing prompts and generating multiple code versions from an LLM, then cross-validating whether semantic relationships hold across these variations. Testing on HumanEval benchmarks demonstrated the method "is able to detect 75 percent of the erroneous programs generated by GPT-4, with a false positive rate of 8.6 percent."
+
+This work contributes to ensuring reliability of AI-assisted software development as LLMs become more integrated into development workflows.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86e71e52-8e91-4479-baca-14310b85bd65",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "ef18f12a-f54f-414d-8ba6-d2b5ff562231",
+  "sourceToolAssistantUUID": "86e71e52-8e91-4479-baca-14310b85bd65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-12T00:57:31.858Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Jv9rMwzgQZyqHN46uRs6K3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2412.15118",
+  "prompt": "Extract the full title, authors, and abstract of this paper about outcome-refining process supervision for code generation (ORPS)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef18f12a-f54f-414d-8ba6-d2b5ff562231",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f2beff34-36e9-4123-b574-4a42ef03db52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3531,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-12T00:57:31.898Z_
+
+<details><summary>↩ Tool result · `toolu_01FSUvGZRCH2DvafuVNx1QkN`</summary>
+
+```text
+# CLEVER: Formally Verified Code Generation Benchmark
+
+**Full Title:** "CLEVER: A Curated Benchmark for Formally Verified Code Generation"
+
+**Authors:** Amitayush Thakur, Jasper Lee, George Tsoukalas, Meghana Sistla, Matthew Zhao, Stefan Zetzsche, Greg Durrett, Yisong Yue, and Swarat Chaudhuri
+
+**Abstract Summary:**
+
+The paper introduces CLEVER, containing 161 problems designed to evaluate end-to-end verified code generation in Lean. Each problem requires generating both a specification and a Lean implementation that provably satisfies it. 
+
+Key distinguishing features include avoidance of "test-case supervision, LLM-generated annotations, and specifications that leak implementation logic or allow vacuous solutions." All outputs undergo post-hoc verification using Lean's type checker.
+
+The researchers evaluated multiple "few-shot and agentic approaches based on state-of-the-art language models," finding that complete verification remains challenging. The benchmark, evaluation code, and datasets are publicly available on GitHub and HuggingFace, establishing this as a demanding benchmark for program synthesis and formal reasoning tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76629cf6-7b25-44c2-874d-480f2ca580d7",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "f878b22d-347d-472a-91c9-3d19527183ec",
+  "sourceToolAssistantUUID": "76629cf6-7b25-44c2-874d-480f2ca580d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-12T00:57:32.608Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VSxi1t1H7oaapum8RRQTPJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.15510",
+  "prompt": "Extract the full title, authors, and abstract of this paper about curating training data for program verification with SLMs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f878b22d-347d-472a-91c9-3d19527183ec",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmPnJWQipccDPp6xamv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "15585e71-a638-4086-be9d-f434700f1169",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Vyjky4j41Tpmau9ir6Wkh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3531,
+      "cache_read_input_tokens": 20450,
+      "output_tokens": 768,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3531
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 768,
+          "cache_read_input_tokens": 20450,
+          "cache_creation_input_tokens": 3531,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3531,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T00:57:34.653Z_
+
+<details><summary>↩ Tool result · `toolu_01DZzJFX5Y8jUvULjqx1Kx2a`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "Execution Guided Line-by-Line Code Generation"
+
+**Authors:** Boaz Lavon, Shahar Katz, Lior Wolf
+
+**Abstract:**
+
+The researchers present a method called Execution-Guided Classifier-Free Guidance (EG-CFG) that integrates real-time execution feedback into code generation by language models. Unlike traditional LLMs that generate code without leveraging execution signals during inference, this approach provides "line-by-line feedback that guides the generation process toward executable solutions."
+
+The technique operates through three stages: sampling candidate completions via beam search, extracting execution signals by testing candidates, and incorporating these signals into prompts. The method maintains consistent feedback within lines while refreshing at line boundaries, preserving syntactic structure.
+
+A key advantage is native parallelism support, allowing "multiple agents operate in parallel, exploring diverse reasoning paths." Experiments demonstrate significant improvements across various coding tasks, from foundational problems to competitive programming challenges, achieving state-of-the-art performance. The authors have made their code publicly available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cbb77ea0-ffa6-4e9a-b0fd-999c856b38ab",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "80b83baa-55b1-4a87-9f4f-692934c234bd",
+  "sourceToolAssistantUUID": "cbb77ea0-ffa6-4e9a-b0fd-999c856b38ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-12T00:57:36.677Z_
+
+<details><summary>↩ Tool result · `toolu_01Jv9rMwzgQZyqHN46uRs6K3`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** "Reasoning Through Execution: Unifying Process and Outcome Rewards for Code Generation"
+
+**Authors:** Zhuohao Yu, Weizheng Gu, Yidong Wang, Xingru Jiang, Zhengran Zeng, Jindong Wang, Wei Ye, and Shikun Zhang
+
+**Abstract:**
+
+The researchers present a method addressing limitations in how large language models handle complex coding tasks. Traditional approaches either depend on learned reward models (requiring expensive training data) or fail at intricate problems needing multiple coordinated steps. 
+
+Their solution, Outcome Refining Process Supervision (ORPS), merges process and outcome supervision through executable verification. The system uses tree-structured search to generate alternatives, evaluates execution metrics, and ranks candidates through self-critique mechanisms combining runtime feedback with reasoning.
+
+Results demonstrate significant improvements: "26.9% higher correctness and 42.2% improved code efficiency" across five models and three benchmarks. The approach helps LLMs overcome suboptimal solutions in code generation by combining verifiable outcomes with structured reasoning strategies. The code is publicly available on GitHub.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2beff34-36e9-4123-b574-4a42ef03db52",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "3662cf1d-c085-4bcf-810e-b372067dafb2",
+  "sourceToolAssistantUUID": "f2beff34-36e9-4123-b574-4a42ef03db52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-12T00:57:37.215Z_
+
+<details><summary>↩ Tool result · `toolu_01VSxi1t1H7oaapum8RRQTPJ`</summary>
+
+```text
+# Paper Information
+
+**Title:** "Not All Invariants Are Equal: Curating Training Data to Accelerate Program Verification with SLMs"
+
+**Authors:** Ido Pinto, Yizhak Yisrael Elboher, Haoze Wu, Nina Narodytska, and Guy Katz
+
+**Abstract:**
+
+The researchers address a key challenge in automated program verification: synthesizing inductive loop invariants. While large language models show potential, they frequently struggle with difficult cases, producing invalid or ineffective invariants. The team introduces Wonda, a data refinement pipeline that improves noisy verifier-generated invariants through "AST-based normalization, followed by LLM-driven semantic rewriting and augmentation with provable quality guarantees."
+
+Their approach enables small language models to match the performance of significantly larger baselines. Specifically, a 4-billion parameter fine-tuned model matches a 120-billion parameter model's effectiveness and approaches state-of-the-art results. On challenging test cases, their method doubles invariant correctness rates and improves virtual best performance metrics by up to 14.2% without added computational overhead during reasoning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15585e71-a638-4086-be9d-f434700f1169",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "9623a658-f671-474c-8ac4-2eb9056dd02f",
+  "sourceToolAssistantUUID": "15585e71-a638-4086-be9d-f434700f1169",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-12T00:57:39.703Z_
+
+Let me do a few more targeted searches to cover additional angles.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9623a658-f671-474c-8ac4-2eb9056dd02f",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmQxHJjmEAWRomNz3bp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6052de75-b906-4efa-b068-a9b8135a9a13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SyKXTsmrPbQZ8KmTUGfUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2720,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2720,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-12T00:57:40.717Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KSA2fBEUSWfp6po1tsEC8L`</summary>
+
+```json
+{
+  "query": "arxiv \"design by contract\" LLM code generation postcondition precondition 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6052de75-b906-4efa-b068-a9b8135a9a13",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmQxHJjmEAWRomNz3bp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "890682af-fbae-4c44-ba42-2126b55aea54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SyKXTsmrPbQZ8KmTUGfUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2720,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2720,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-12T00:57:41.185Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016hX8CPqGmLbYFwK8f1V2XJ`</summary>
+
+```json
+{
+  "query": "LLM code generation \"without tests\" specification verification inference 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "890682af-fbae-4c44-ba42-2126b55aea54",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmQxHJjmEAWRomNz3bp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "60587114-f740-4bae-8c08-b0d754873c7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SyKXTsmrPbQZ8KmTUGfUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2720,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2720,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-12T00:57:42.126Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PeEeWgNWtUFpWof7cRMQgH`</summary>
+
+```json
+{
+  "query": "\"code generation\" LLM \"chain of thought\" specification constraint reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60587114-f740-4bae-8c08-b0d754873c7e",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmQxHJjmEAWRomNz3bp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1c763c73-10df-4498-af26-ab2fb1a53665",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SyKXTsmrPbQZ8KmTUGfUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2720,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2720,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-12T00:57:42.546Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FpaXJvKzhquNzMzJdYKFQZ`</summary>
+
+```json
+{
+  "query": "arxiv \"type constraint\" \"code generation\" LLM reasoning intermediate 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c763c73-10df-4498-af26-ab2fb1a53665",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmQxHJjmEAWRomNz3bp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dd04b9f6-b38b-4698-87a2-99fbcc787e77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SyKXTsmrPbQZ8KmTUGfUu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2720,
+      "cache_read_input_tokens": 23981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2720,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-12T00:57:49.987Z_
+
+<details><summary>↩ Tool result · `toolu_01PeEeWgNWtUFpWof7cRMQgH`</summary>
+
+```text
+Web search results for query: ""code generation" LLM "chain of thought" specification constraint reasoning 2025 2026"
+
+Links: [{"title":"Bridging the Gap between User Intent and LLM: A Requirement Alignment Approach for Code Generation","url":"https://arxiv.org/html/2604.16198v1"},{"title":"ICML Poster Revisiting Chain-of-Thought in Code Generation: Do Language Models Need to Learn Reasoning before Coding?","url":"https://icml.cc/virtual/2025/poster/43621"},{"title":"Revisiting Chain-of-Thought in Code Generation: Do Language Models Need to Learn Reasoning before Coding? | OpenReview","url":"https://openreview.net/forum?id=wSZeQoJ1Vk&noteId=xk2GgPJcxR"},{"title":"Constraint decay: The Fragility of LLM Agents in Backend Code Generation","url":"https://arxiv.org/html/2605.06445"},{"title":"Structured Chain-of-Thought Prompting for Code Generation","url":"https://ligechina.github.io/My%20Papers/2025%20-%20TOSEM%20-%20Structured%20Chain-of-Thought%20Prompting%20for%20Code%20Generation.pdf"},{"title":"A framework for assessing the capabilities of code generation of constraint domain-specific languages with large language models","url":"https://arxiv.org/html/2603.05278v1"},{"title":"Uncertainty-Guided Chain-of-Thought for Code Generation with LLMs","url":"https://arxiv.org/html/2503.15341v1"},{"title":"Reasoning in Large Language Models: From Chain-of-Thought to Massively Decomposed Agentic Processes[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202512.2242"},{"title":"Reasoning with constrained LLM generation - CRANE","url":"https://arxiv.org/pdf/2502.09061"},{"title":"Revisiting Chain-of-Thought in Code Generation: Do Language Models Need to Learn Reasoning before Coding?","url":"https://proceedings.mlr.press/v267/liu25ah.html"}]
+
+I found relevant research on code generation with LLMs using chain-of-thought and constraint reasoning. Here are some key findings from the search:
+
+## Recent Trends in Code Generation with Chain-of-Thought
+
+**Structured Chain-of-Thought Prompting**: SCoT (Li et al., 2025a) introduces structured chain-of-thought prompting to guide the model through explicit intermediate steps prior to code generation.
+
+**Counterintuitive Finding on CoT Order**: The traditional approach—reasoning first, then generating code—does not significantly improve code quality. Reversing the order works better: if the model writes the code first and then explains its reasoning, performance improves significantly. In fact, a 9.86% relative performance improvement can be achieved simply by changing the order between CoT and code.
+
+## Constraint and Specification Handling
+
+**Constraint Decay in Backend Code**: Recent work addresses the challenge that LLM agents demonstrate remarkable proficiency in "shallow" generation tasks with broad and loosely defined requirements. This flexibility is well suited to rapid prototyping and frontend interfaces, but this permissiveness becomes a liability when the target is a production-grade backend.
+
+**Constrained Generation**: Pre-trained LLM outputs do not always comply with downstream tools' input requirements. Constrained decoding algorithms address this issue by projecting the LLM output onto user-specified formal constraints.
+
+**Requirement Alignment**: Methods designed to enhance the generation process include structured chain-of-thought prompting, difficulty-aware routing, and iterative plan-code-test workflows.
+
+These findings highlight an active research area with emerging insights about how reasoning and code generation interact in LLMs, particularly around specification constraints and architectural requirements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c763c73-10df-4498-af26-ab2fb1a53665",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "0d58d32a-8545-488b-a2fe-3140dcfdd854",
+  "sourceToolAssistantUUID": "1c763c73-10df-4498-af26-ab2fb1a53665",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-12T00:57:50.267Z_
+
+<details><summary>↩ Tool result · `toolu_016hX8CPqGmLbYFwK8f1V2XJ`</summary>
+
+```text
+Web search results for query: "LLM code generation "without tests" specification verification inference 2025"
+
+Links: [{"title":"Benchmarking Verifiable Code Generation - VERINA","url":"https://arxiv.org/pdf/2505.23135"},{"title":"Towards Formal Verification of LLM-Generated Code from Natural Language Prompts","url":"https://arxiv.org/pdf/2507.13290"},{"title":"LLM-Based Code Translation Needs Formal Compositional Reasoning Alvin Cheung","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-174.pdf"},{"title":"Rethinking Verification for LLM Code Generation: From Generation to Testing | OpenReview","url":"https://openreview.net/forum?id=Gp2vgxWROE"},{"title":"CLEVER: A Curated Benchmark for Formally Verified Code Generation","url":"https://arxiv.org/pdf/2505.13938"},{"title":"Rethinking Verification for LLM Code Generation: From Generation to Testing","url":"https://arxiv.org/pdf/2507.06920"},{"title":"A Survey on Code Generation with LLM-based Agents","url":"https://arxiv.org/html/2508.00083v1"},{"title":"Rethinking the Evaluation of Secure Code Generation Shih-Chieh Dai","url":"https://arxiv.org/pdf/2503.15554"},{"title":"NeurIPS Poster Rethinking Verification for LLM Code Generation: From Generation to Testing","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/118941"},{"title":"Benchmarking Large Language Models for Compositional ...","url":"https://arxiv.org/pdf/2509.23061"}]
+
+I found several highly relevant papers and resources on LLM code generation with specification verification. Here's a summary of the key findings:
+
+## Recent Benchmarks and Approaches (2025)
+
+VERINA (Verifiable Code Generation Arena) is a high-quality benchmark to comprehensively evaluate verifiable code generation, consisting of 189 programming challenges with detailed problem descriptions, code, specifications, proofs, and comprehensive test suites.
+
+The CLEVER benchmark requires generating a specification from a natural language statement and proving an isomorphism between the generated specification and a human-written specification, then generating a Lean implementation and proving its correctness according to the human-written specification.
+
+## Key Challenges in Verification Without Tests
+
+A fundamental challenge is that there is no formal specification: the natural language prompt is inherently informal and may be ambiguous, vague, or incomplete, which means traditional approaches that provide formal guarantees are not immediately applicable without a formal specification.
+
+Due to their probabilistic nature, LLMs alone cannot provide formal guarantees for the generated code, and the generated code often contains bugs, such as functional errors and security vulnerabilities.
+
+## Specification-Based Verification Systems
+
+One approach proposes incorporating a Formal Query Language that can represent a user's intent in a formally defined but natural language-like manner, creating a formal specification of the user intent which can be used to verify that LLM-generated code matches the user's intent.
+
+The Astrogator system is able to formally prove correctness of generated code in 83% of cases and precisely identify incorrect LLM generated code in 92% of cases.
+
+## Test Suite Quality Issues
+
+Benchmarks like HumanEval (avg. 7.7 tests/problem), MBPP (3 tests/problem), and EvalPlus (which saw a 15% pass rate drop with 80× more tests) indicate the fragility of current evaluation setups due to sparse test coverage.
+
+This search reveals an active area of research in 2025 focused on generating verifiable code with formal specifications rather than relying solely on test cases.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60587114-f740-4bae-8c08-b0d754873c7e",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "e4250ae8-0993-4594-a54a-6b0464b25e9a",
+  "sourceToolAssistantUUID": "60587114-f740-4bae-8c08-b0d754873c7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-12T00:57:50.906Z_
+
+<details><summary>↩ Tool result · `toolu_01KSA2fBEUSWfp6po1tsEC8L`</summary>
+
+```text
+Web search results for query: "arxiv "design by contract" LLM code generation postcondition precondition 2024 2025"
+
+Links: [{"title":"Beyond Postconditions: Can Large Language Models infer Formal Contracts for","url":"https://arxiv.org/pdf/2510.12702"},{"title":"Beyond Code Generation: Assessing Code LLM Maturity with Postconditions","url":"https://arxiv.org/html/2407.14118v1"},{"title":"LLMs and Fuzzing in Tandem: A New Approach to Automatically Generating Weakest Preconditions","url":"https://arxiv.org/html/2507.05272"},{"title":"[2510.12702] Beyond Postconditions: Can Large Language Models infer Formal Contracts for Automatic Software Verification?","url":"https://arxiv.org/abs/2510.12702"},{"title":"Automatic Generation of Formal Specification and ...","url":"https://arxiv.org/pdf/2601.12845"},{"title":"A Study of Preconditions and Postconditions as Design ...","url":"https://commons.erau.edu/cgi/viewcontent.cgi?article=1917&context=edt"},{"title":"FuzzFeed: An Automatic Approach to Weakest Precondition Generation using LLMs and Fuzzing This work was conducted with the financial support of the Research Ireland Centre for Research Training in Digitally-Enhanced Reality (d-real) under Grant No. 18/CRT/6224, Taighde Éireann – Research Ireland under Grant number 13/RC/2094/\\_2, and the ERC Consolidator Grant ARTIST 101002685. For the purpose of Open Access, the author has applied a CC BY public copyright licence to any Author Accepted Manuscript versio","url":"https://arxiv.org/html/2507.05272v1"},{"title":"Preconditions and Postconditions as Design Constraints for LLM Code Generation | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/11218044/"},{"title":"Preconditions and Postconditions as Design Constraints ...","url":"https://ieeexplore.ieee.org/iel8/6287639/10820123/11218044.pdf"},{"title":"FormalSpecCpp: A Dataset of C++ Formal Specifications created using LLMs","url":"https://arxiv.org/pdf/2502.15217"}]
+
+I found several relevant papers on arXiv about design by contract, LLMs, and code generation with preconditions and postconditions from 2024-2025. Here are the key results:
+
+## Recent ArXiv Papers (2024-2025)
+
+1. **"Beyond Postconditions: Can Large Language Models infer Formal Contracts for Automatic Software Verification?"** (October 2025)
+   - Introduces NL2Contract, the task of employing LLMs to translate informal natural language into formal functional contracts, consisting of postconditions as well as preconditions
+   - LLMs are generally effective at generating functional contracts sound for all possible inputs, the generated contracts are sufficiently expressive for discriminating buggy from correct behavior, and verifiers supplied with LLM inferred functional contracts produce fewer false alarms than when provided with postconditions alone
+
+2. **"Beyond Code Generation: Assessing Code LLM Maturity with Postconditions"** (July 2024)
+   - Proposes a more holistic approach to evaluating code LLMs through a maturity model based on the postcondition generation problem, aiming to capture a broader spectrum of LLM capabilities
+
+3. **"LLMs and Fuzzing in Tandem: A New Approach to Automatically Generating Weakest Preconditions"** (December 2025, recently updated July 2025)
+   - Proposes the combination of Large Language Models (LLMs) and fuzz testing for generating weakest preconditions, introducing Fuzzing Guidance which directs LLMs towards correct preconditions using program execution feedback
+
+4. **"Preconditions and Postconditions as Design Constraints for LLM Code Generation"** (2024, published in IEEE)
+   - Few studies have investigated how formal software engineering constraints such as explicit preconditions and postconditions as part of the Design-by-Contract paradigm influence class-level generation tasks; results demonstrate that incorporating explicit design constraints during prompting significantly boosts initial generation accuracy
+
+5. **"FormalSpecCpp: A Dataset of C++ Formal Specifications created using LLMs"** (February 2025)
+   - Formal specifications define the expected behavior of software using precise mathematical statements, typically through preconditions (requirements before execution) and postconditions (guarantees after execution)
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "890682af-fbae-4c44-ba42-2126b55aea54",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "2952d726-144d-467d-bd37-8c01ef76fb57",
+  "sourceToolAssistantUUID": "890682af-fbae-4c44-ba42-2126b55aea54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-12T00:57:51.342Z_
+
+<details><summary>↩ Tool result · `toolu_01FpaXJvKzhquNzMzJdYKFQZ`</summary>
+
+```text
+Web search results for query: "arxiv "type constraint" "code generation" LLM reasoning intermediate 2024 2025"
+
+Links: [{"title":"[2504.09246] Type-Constrained Code Generation with Language Models","url":"https://arxiv.org/abs/2504.09246"},{"title":"Type-Constrained Code Generation with Language Models","url":"https://arxiv.org/pdf/2504.09246"},{"title":"Think Anywhere in Code Generation","url":"https://arxiv.org/html/2603.29957v3"},{"title":"Reasoning with constrained LLM generation - CRANE","url":"https://arxiv.org/pdf/2502.09061"},{"title":"CRANE: Reasoning with constrained LLM generation","url":"https://arxiv.org/html/2502.09061v4"},{"title":"Appendix","url":"https://arxiv.org/html/2603.03305"},{"title":"Play by the Type Rules: Inferring Constraints for LLM Functions in Declarative Programs","url":"https://arxiv.org/html/2509.20208v1"},{"title":"Correctness-Guaranteed Code Generation via Constrained Decoding","url":"https://arxiv.org/html/2508.15866v1"},{"title":"Evaluating Code Reasoning Abilities of Large Language Models Under Real-World Settings","url":"https://arxiv.org/html/2512.14917v1"},{"title":"Constrained Decoding of Diffusion LLMs with Context-Free Grammars","url":"https://arxiv.org/html/2508.10111v1"}]
+
+I found several highly relevant papers on arXiv that match your search query about type constraints, code generation, and LLM reasoning with intermediate steps. Here are the key results:
+
+## Primary Results:
+
+1. **Type-Constrained Code Generation with Language Models** (arXiv:2504.09246, May 2025)
+   - Develops novel prefix automata and a search over inhabitable types, forming a sound approach to enforce well-typedness on LLM-generated code
+   - Formalizes the approach on a foundational simply-typed language and extends it to TypeScript, showing that the approach reduces compilation errors by more than half and significantly increases functional correctness in code synthesis, translation, and repair tasks
+
+2. **CRANE: Reasoning with Constrained LLM Generation** (arXiv:2502.09061, February 2025)
+   - Effectively alternates between unconstrained generation for reasoning and constrained generation for producing structurally correct outputs
+   - Theoretically shows that the loss of expressivity of LLMs under constrained decoding arises because the output grammar is too restrictive to accommodate the intermediate reasoning steps required to compute the answer
+
+3. **Think Anywhere in Code Generation** (arXiv:2603.29957, recent)
+   - Guides LLMs to alternate between thinking and answering, enabling incremental refinement based on intermediate results
+   - Achieves state-of-the-art performance on four mainstream code generation benchmarks (LeetCode, LiveCodeBench, HumanEval, and MBPP)
+
+4. **Play by the Type Rules: Inferring Constraints for LLM Functions in Declarative Programs** (arXiv:2509.20208, September 2025)
+   - Builds on work by Mündler et al. (2025) who present an algorithm to enforce the well-typedness of LLM-generated TypeScript code, and explores type inference and constraints for integrating LLM outputs into a declarative query language
+
+These papers directly address the intersection of type constraints, code generation, and LLM reasoning with intermediate steps that you're interested in.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd04b9f6-b38b-4698-87a2-99fbcc787e77",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "6e20c669-0e5a-43b1-82ae-8a280284f554",
+  "sourceToolAssistantUUID": "dd04b9f6-b38b-4698-87a2-99fbcc787e77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-12T00:57:54.006Z_
+
+Let me fetch a few more key abstracts for the most directly relevant papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e20c669-0e5a-43b1-82ae-8a280284f554",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b8b1ebd1-6f7e-41ab-9f80-14a8d75313b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-12T00:57:54.957Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Fum7A6PtowDmxsfERtpAT2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.09246",
+  "prompt": "Extract the full title, authors, and abstract of this paper about type-constrained code generation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8b1ebd1-6f7e-41ab-9f80-14a8d75313b1",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "78e0cee5-ced7-4f34-b3a3-b6783af17df0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-12T00:57:56.054Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BhsAusX3M5FrNwjyJ5G5Nu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2407.14118",
+  "prompt": "Extract the full title, authors, and abstract of this paper about assessing code LLM maturity with postconditions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78e0cee5-ced7-4f34-b3a3-b6783af17df0",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a3d5a768-7bf5-46a6-8213-0f662ba25d6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-12T00:57:57.433Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JUp4oCUq1gZmfe8rg7ybSC`</summary>
+
+```json
+{
+  "url": "https://ieeexplore.ieee.org/document/11218044/",
+  "prompt": "Extract the full title, authors, and abstract of this paper about preconditions and postconditions as design constraints for LLM code generation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3d5a768-7bf5-46a6-8213-0f662ba25d6a",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1319a218-729d-4f12-8a04-c62577a13e7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-12T00:57:58.113Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JUp4oCUq1gZmfe8rg7ybSC`</summary>
+
+```text
+Request failed with status code 418
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1319a218-729d-4f12-8a04-c62577a13e7e",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "65408f62-834a-4983-8f39-596e64110c2e",
+  "toolUseResult": "Error: Request failed with status code 418",
+  "sourceToolAssistantUUID": "1319a218-729d-4f12-8a04-c62577a13e7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-12T00:57:58.422Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014SoVaXAiAQYz9DmGdRzBQk`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.23135",
+  "prompt": "Extract the full title, authors, and abstract of this paper (VERINA - benchmarking verifiable code generation)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65408f62-834a-4983-8f39-596e64110c2e",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "48f5483c-69cd-416a-a7af-e1b9aa59473f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-12T00:57:59.424Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FUAgwvWSVDaQsumsGfKttF`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2507.13290",
+  "prompt": "Extract the full title, authors, and abstract of this paper about formal verification of LLM-generated code (Astrogator)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48f5483c-69cd-416a-a7af-e1b9aa59473f",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "987d053d-eb2c-4808-b434-23ab0e034b20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-12T00:57:59.692Z_
+
+<details><summary>↩ Tool result · `toolu_01BhsAusX3M5FrNwjyJ5G5Nu`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "Beyond Code Generation: Assessing Code LLM Maturity with Postconditions"
+
+**Authors:** Fusen He, Juan Zhai, and Minxue Pan
+
+**Abstract:**
+
+The researchers argue that existing code LLM evaluation benchmarks like EvalPlus focus narrowly on code generation tasks. They propose an alternative assessment approach centered on postcondition generation, which demands that language models understand code semantics, process natural language, and generate precise programming-language postconditions.
+
+The team designed a maturity framework recognizing that postconditions have varying complexity levels, making them suitable for evaluating model sophistication. They augmented the EvalPlus dataset into a postcondition testing benchmark and evaluated multiple open-source models. Their findings reveal substantial areas where current code LLMs need improvement, with implementation details available at their GitHub repository.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3d5a768-7bf5-46a6-8213-0f662ba25d6a",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "3e00683f-e219-4d2f-b465-eaef2297c457",
+  "sourceToolAssistantUUID": "a3d5a768-7bf5-46a6-8213-0f662ba25d6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-12T00:58:00.271Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ne7TskfG7FkzTZoVF8ecju`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2507.06920",
+  "prompt": "Extract the full title, authors, and abstract of this paper about rethinking verification for LLM code generation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e00683f-e219-4d2f-b465-eaef2297c457",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3ed1921d-b4fd-4f66-b888-5b32a9c26674",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-12T00:58:02.160Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Gae9ovzaU8bU5odJEQeWS7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2507.05272",
+  "prompt": "Extract the full title, authors, and abstract of this paper about FuzzFeed - weakest precondition generation using LLMs and fuzzing."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ed1921d-b4fd-4f66-b888-5b32a9c26674",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "25ddff5f-d5db-4b95-8e0d-0b8a2db6013d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4374,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-12T00:58:02.703Z_
+
+<details><summary>↩ Tool result · `toolu_014SoVaXAiAQYz9DmGdRzBQk`</summary>
+
+```text
+# VERINA: Benchmarking Verifiable Code Generation
+
+**Full Title:** VERINA: Benchmarking Verifiable Code Generation
+
+**Authors:** Zhe Ye, Zhengxu Yan, Jingxuan He, Timothe Kasriel, Kaiyu Yang, and Dawn Song
+
+**Abstract Summary:**
+
+This research introduces VERINA, a benchmark designed to comprehensively evaluate code generation systems that simultaneously produce code, formal specifications, and mathematical proofs. The study addresses a critical gap in current evaluation methods, which typically assess individual components rather than their combined effectiveness.
+
+The benchmark comprises 189 carefully curated tasks implemented in Lean, each with problem descriptions, reference implementations, formal specifications, and extensive test suites. Testing leading language models revealed substantial difficulties, particularly with proof generation. The research found that "The best model, OpenAI o3, achieves a 72.6% code correctness rate, 52.3% for specification soundness and completeness, and a mere 4.9% proof success rate."
+
+The authors make both their dataset and evaluation code publicly available to support future research progress in this emerging area.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48f5483c-69cd-416a-a7af-e1b9aa59473f",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "eb96bfa5-6547-4d5e-8c52-f82fb4e18a59",
+  "sourceToolAssistantUUID": "48f5483c-69cd-416a-a7af-e1b9aa59473f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-12T00:58:03.092Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QfvHFhywEepLU3qoMkAzWn`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.16198",
+  "prompt": "Extract the full title, authors, and abstract of this paper about requirement alignment for code generation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb96bfa5-6547-4d5e-8c52-f82fb4e18a59",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmRzhgpZKJiESvmcxTr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "560fbd1f-5c62-4af9-bc10-093fa9f8bd87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UiZXtZsB4S2gBqq9d72KuS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 26701,
+      "output_tokens": 756,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4374
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 756,
+          "cache_read_input_tokens": 26701,
+          "cache_creation_input_tokens": 4374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4374,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-12T00:58:04.187Z_
+
+<details><summary>↩ Tool result · `toolu_01FUAgwvWSVDaQsumsGfKttF`</summary>
+
+```text
+# Paper Information
+
+**Full Title:** "Towards Formal Verification of LLM-Generated Code from Natural Language Prompts"
+
+**Authors:** Aaron Councilman, David Jiahao Fu, Aryan Gupta, Chengxiao Wang, David Grove, Yu-Xiong Wang, and Vikram Adve
+
+**Abstract Summary:**
+
+The research addresses reliability concerns with LLM-generated code by proposing a system called Astrogator. The key innovation involves using "a Formal Query Language that can represent a user's intent in a formally defined but natural language-like manner" that users can validate. This specification then verifies whether the generated code aligns with user intentions.
+
+Implemented for Ansible programming, Astrogator includes a formal query language, calculus for representing Ansible program behavior, and verification tools. A notable feature is "the use of a Knowledge Base to capture system-specific implementation dependencies" that reduces required system knowledge when formulating queries.
+
+The benchmark evaluation demonstrates strong performance: the verifier successfully validates correct code in 83% of test cases and identifies flawed code in 92% of instances across 21 code-generation tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "987d053d-eb2c-4808-b434-23ab0e034b20",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "fe37c7f3-e889-4865-bd8f-c1b16541db2f",
+  "sourceToolAssistantUUID": "987d053d-eb2c-4808-b434-23ab0e034b20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-12T00:58:04.558Z_
+
+<details><summary>↩ Tool result · `toolu_01Fum7A6PtowDmxsfERtpAT2`</summary>
+
+```text
+# Type-Constrained Code Generation with Language Models
+
+**Authors:** Niels Mündler, Jingxuan He, Hao Wang, Koushik Sen, Dawn Song, and Martin Vechev
+
+**Abstract:**
+
+The research addresses a significant limitation in LLM-based code generation: the production of uncompilable output due to typing errors. The team developed a type-constrained decoding method that "leverages type systems to guide code generation." Their approach introduces novel prefix automata and a search mechanism over inhabitable types to enforce proper typing in generated code.
+
+The method was formalized using a simply-typed foundational language and extended to TypeScript for practical application. Testing on HumanEval and MBPP benchmarks demonstrated substantial improvements: "compilation errors by more than half" were eliminated, with significant gains in functional correctness across code synthesis, translation, and repair tasks. The solution proved effective for various LLM sizes and families, including leading open-weight models exceeding 30 billion parameters, demonstrating broad applicability of this formal-rule-based constraint approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78e0cee5-ced7-4f34-b3a3-b6783af17df0",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "9d93820f-a71c-464d-b65c-58fa39b75700",
+  "sourceToolAssistantUUID": "78e0cee5-ced7-4f34-b3a3-b6783af17df0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-12T00:58:04.939Z_
+
+<details><summary>↩ Tool result · `toolu_01Ne7TskfG7FkzTZoVF8ecju`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** "Rethinking Verification for LLM Code Generation: From Generation to Testing"
+
+**Authors:** Zihan Ma, Taolin Zhang, Maosong Cao, Junnan Liu, Wenwei Zhang, Minnan Luo, Songyang Zhang, and Kai Chen
+
+**Abstract:**
+
+The researchers identify a critical problem: existing code-generation benchmarks like HumanEval contain "only a limited number of homogeneous test cases, resulting in subtle faults going undetected." This inflates performance metrics and undermines reward estimation in reinforcement learning systems.
+
+To address this, the team proposes three main contributions:
+
+1. **Multi-dimensional metrics** for evaluating test-suite quality and thoroughness
+2. **SAGA**, a collaborative approach blending human programming knowledge with LLM reasoning to improve test case coverage and quality
+3. **TCGBench**, a benchmark specifically designed for test-case generation research
+
+Their results demonstrate that SAGA achieved a 90.62% fault detection rate and 32.58% verifier accuracy on their benchmark—outperforming LiveCodeBench-v6 by 10.78% on verifier accuracy. The authors advocate for more rigorous evaluation foundations in LLM code generation and reinforcement learning applications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ed1921d-b4fd-4f66-b888-5b32a9c26674",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "9bbfceb8-a094-4b0f-bec8-014ba4f49693",
+  "sourceToolAssistantUUID": "3ed1921d-b4fd-4f66-b888-5b32a9c26674",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-12T00:58:06.222Z_
+
+<details><summary>↩ Tool result · `toolu_01Gae9ovzaU8bU5odJEQeWS7`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** "LLMs and Fuzzing in Tandem: A New Approach to Automatically Generating Weakest Preconditions"
+
+**Authors:** Daragh King, Vasileios Koutavas, Laura Kovacs
+
+**Abstract Summary:**
+
+The research addresses weakest precondition (WP) generation, which identifies the broadest set of initial program states ensuring all terminating executions meet a specified postcondition. The authors propose combining large language models with fuzz testing through "Fuzzing Guidance" (FG)—a technique that directs LLMs toward valid WPs using execution feedback.
+
+Their approach leverages fuzzing to approximately validate candidate WPs, then returns this information to the LLM for refined context. Testing on deterministic Java array programs demonstrates that LLMs can produce viable WP candidates, with performance substantially improved through the FG technique.
+
+**Key Details:**
+- Submitted: July 3, 2025
+- arXiv ID: 2507.05272
+- Categories: Software Engineering, AI, Logic in Computer Science
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25ddff5f-d5db-4b95-8e0d-0b8a2db6013d",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "eb00d4da-ad99-4db0-baae-ecadb5976263",
+  "sourceToolAssistantUUID": "25ddff5f-d5db-4b95-8e0d-0b8a2db6013d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-12T00:58:07.109Z_
+
+<details><summary>↩ Tool result · `toolu_01QfvHFhywEepLU3qoMkAzWn`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:**
+"Bridging the Gap between User Intent and LLM: A Requirement Alignment Approach for Code Generation"
+
+**Authors:**
+Jia Li, Ruiqi Bai, Yangkang Luo, Yiran Zhang, Wentao Yang, Zeyu Sun, Tiankuo Zhao, Dongming Jin, Lei Li, and Zhi Jin
+
+**Abstract Summary:**
+The researchers introduce REA-Coder, a method addressing a critical assumption in code generation: that language models accurately comprehend user requirements. The approach involves identifying misalignments between requirements and LLM understanding, then refining those requirements before code generation. The system iteratively verifies generated code against aligned requirements. Testing across four different LLMs on five programming benchmarks demonstrated substantial performance gains, with improvements ranging from 7.93% to 30.25%, validating that "requirement alignment" significantly enhances LLM-based code generation effectiveness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "560fbd1f-5c62-4af9-bc10-093fa9f8bd87",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "7b605366-9302-4a76-ae05-0038c82b5100",
+  "sourceToolAssistantUUID": "560fbd1f-5c62-4af9-bc10-093fa9f8bd87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-12T00:58:15.340Z_
+
+Now let me do one final round of targeted searches to make sure I don't miss any direct competitors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b605366-9302-4a76-ae05-0038c82b5100",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmTA71hq5uA8L9ac5cS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fc34df98-5904-4c0f-9348-1cb4542a18b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oGHx1NK9dHLmVRZTs5SKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 31075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2654,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-12T00:58:15.904Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019E2oLFhDd5GPMcan2s3gAc`</summary>
+
+```json
+{
+  "query": "arxiv \"specification as reasoning\" OR \"specification-driven reasoning\" code LLM 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc34df98-5904-4c0f-9348-1cb4542a18b7",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmTA71hq5uA8L9ac5cS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "827641de-82bf-4ec0-9bbc-1ada9eeeae3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oGHx1NK9dHLmVRZTs5SKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 31075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2654,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-12T00:58:16.469Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011K6ecbivPBgECXoH8rA8Ls`</summary>
+
+```json
+{
+  "query": "arxiv LLM code \"assert\" \"invariant\" intermediate representation structured output generation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "827641de-82bf-4ec0-9bbc-1ada9eeeae3d",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmTA71hq5uA8L9ac5cS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b8e7afd1-f917-43a4-98d8-e28d2f407f5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oGHx1NK9dHLmVRZTs5SKZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 31075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2654,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-12T00:58:21.213Z_
+
+<details><summary>↩ Tool result · `toolu_019E2oLFhDd5GPMcan2s3gAc`</summary>
+
+```text
+Web search results for query: "arxiv "specification as reasoning" OR "specification-driven reasoning" code LLM 2024 2025 2026"
+
+No links found.
+
+The search was completed. However, the search results appear to be empty or the specific query didn't return results. This could mean:
+
+1. The exact phrase combination you're searching for may not have many (or any) arxiv papers indexed by web search
+2. The papers may use slightly different terminology
+3. The search query with multiple quoted phrases might be too restrictive
+
+Would you like me to try a modified search with different keywords? For example, I could search for:
+- Just "specification driven reasoning code" without the arxiv constraint
+- "specification reasoning" LLM without the OR operator
+- Individual concepts like "specification LLM code 2024"
+- Or any other variation you'd prefer
+
+Let me know how you'd like to proceed!
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "827641de-82bf-4ec0-9bbc-1ada9eeeae3d",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "bcb71394-15ca-4818-8a10-33a38f66c65f",
+  "sourceToolAssistantUUID": "827641de-82bf-4ec0-9bbc-1ada9eeeae3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-12T00:58:24.764Z_
+
+<details><summary>↩ Tool result · `toolu_011K6ecbivPBgECXoH8rA8Ls`</summary>
+
+```text
+Web search results for query: "arxiv LLM code "assert" "invariant" intermediate representation structured output generation 2025"
+
+Links: [{"title":"AssertCoder: LLM-Based Assertion Generation via Multimodal Specification Extraction","url":"https://arxiv.org/html/2507.10338v1"},{"title":"AssertCoder: LLM-Based Assertion Generation via ...","url":"https://arxiv.org/pdf/2507.10338"},{"title":"arXiv:2505.15873v2 [cs.PL] 26 May 2025 Abstractions-of-Thought:","url":"https://www.arxiv.org/pdf/2505.15873"},{"title":"Can Large Language Models Understand Intermediate Representations in Compilers?","url":"https://arxiv.org/html/2502.06854v2"},{"title":"[2502.06854] Can Large Language Models Understand Intermediate Representations in Compilers?","url":"https://arxiv.org/abs/2502.06854"},{"title":"Abstraction-of-Thought: Intermediate Representations for LLM Reasoning in Hardware Design","url":"https://arxiv.org/html/2505.15873v1"},{"title":"[2505.15873] Abstractions-of-Thought: Intermediate Representations for LLM Reasoning in Hardware Design","url":"https://arxiv.org/abs/2505.15873"},{"title":"Can Large Language Models Understand Intermediate Representations?","url":"https://arxiv.org/html/2502.06854v1"},{"title":"arXiv:2507.03254v1 [cs.AI] 4 Jul 2025","url":"https://arxiv.org/pdf/2507.03254"},{"title":"NL in the Middle: Code Translation with LLMs and Intermediate Representations","url":"https://arxiv.org/html/2507.08627v2"}]
+
+I've found several relevant arxiv papers matching your search query. Here are the key findings:
+
+## Most Relevant Results
+
+**1. AssertCoder: LLM-Based Assertion Generation via Multimodal Specification Extraction (2507.10338)**
+
+AssertCoder is a unified framework for synthesizing SVAs from multimodal hardware design specifications, consolidating information into a unified intermediate representation that enables assertion generation via a multi-step chain-of-thought prompting strategy. The framework incorporates a mutation-guided evaluation and refinement with model checking, allowing regeneration of assertions in response to undetected mutations iteratively.
+
+**2. Abstractions-of-Thought: Intermediate Representations for LLM Reasoning in Hardware Design (2505.15873)**
+
+AoT consists of: (1) an LLM-based classification of hardware design patterns, (2) a structured intermediate representation (IR) to separate functional decomposition from code syntax, and (3) a line-by-line pseudocode solution enabling a more direct mapping to the final Verilog implementation. AoT demonstrates improvements in functionality while significantly reducing the generated tokens by 1.8-5.2x compared to baseline techniques.
+
+**3. Can Large Language Models Understand Intermediate Representations in Compilers? (2502.06854)**
+
+This paper assesses LLM performance across four core tasks: control flow graph reconstruction, decompilation, code summarization, and execution reasoning. The execution reasoning task asks LLMs to determine whether assertions on output states will hold.
+
+**4. NL in the Middle: Code Translation with LLMs and Intermediate Representations (2507.08627)**
+
+This work investigates whether LLM-based code translation can benefit from intermediate representations in the form of natural language summaries and abstract syntax trees, finding that CoT with an intermediate NL summary performs best with an increase of 13.8% and 6.7% in successful translations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8e7afd1-f917-43a4-98d8-e28d2f407f5d",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "7a26fe7b-0cdb-43b1-9914-3ba9af855772",
+  "sourceToolAssistantUUID": "b8e7afd1-f917-43a4-98d8-e28d2f407f5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-12T00:58:28.790Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017aMC3eADJWTTQ5YdqyJz99`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.15873",
+  "prompt": "Extract the full title, authors, and abstract of this paper (Abstractions-of-Thought)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a26fe7b-0cdb-43b1-9914-3ba9af855772",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmUTckFosUhfHCu6YrS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a992a56-96d8-40f2-9be4-f315b2457bd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DgcspHYNqg6AssFT7d7Qbj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1466,
+      "cache_read_input_tokens": 33729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1466,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-12T00:58:31.231Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GjSnbQqd2D8LsfcxhWkRog`</summary>
+
+```json
+{
+  "url": "https://conf.researchr.org/details/ase-2025/ase-2025-nier-track/30/Requirements-Development-and-Formalization-for-Reliable-Code-Generation-A-Multi-Agen",
+  "prompt": "Extract the full title, authors, and abstract of this paper about requirements development and formalization for reliable code generation (ReDeFo)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a992a56-96d8-40f2-9be4-f315b2457bd9",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmUTckFosUhfHCu6YrS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "de955406-5e8a-48a3-be33-39d08fc8c840",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DgcspHYNqg6AssFT7d7Qbj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1466,
+      "cache_read_input_tokens": 33729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1466,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-12T00:58:32.191Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FDbyxHzi3j8sepfQb8hLs3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.15866",
+  "prompt": "Extract the full title, authors, and abstract of this paper about correctness-guaranteed code generation via constrained decoding."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de955406-5e8a-48a3-be33-39d08fc8c840",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmUTckFosUhfHCu6YrS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "29b9a1e4-c379-4c1f-89a3-f3b810884acd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DgcspHYNqg6AssFT7d7Qbj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1466,
+      "cache_read_input_tokens": 33729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1466,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-12T00:58:33.288Z_
+
+<details><summary>↩ Tool result · `toolu_017aMC3eADJWTTQ5YdqyJz99`</summary>
+
+```text
+# Abstractions-of-Thought Paper Details
+
+**Title:** "Abstractions-of-Thought: Intermediate Representations for LLM Reasoning in Hardware Design"
+
+**Authors:** Matthew DeLorenzo, Kevin Tieu, Prithwish Jana, Piyush Jha, Dileep Kalathil, Vijay Ganesh, and Jeyavijayan Rajendran
+
+**Abstract Summary:**
+
+The researchers developed a training-free prompting framework to enhance how large language models generate hardware description language code from natural language instructions. Their method, called Abstractions-of-Thought (AoT), operates through three sequential stages: classifying hardware design patterns using an LLM, creating a structured intermediate representation separating functional logic from syntax, and generating line-by-line pseudocode for direct Verilog mapping.
+
+When tested on the VerilogEval benchmark, AoT "demonstrates improvements in functionality when applied to large non-reasoning models" such as GPT-4o. The approach outperformed baseline techniques and "significantly reducing the generated tokens by 1.8-5.2x compared to popular Tree-of-Thought prompting," making it both more effective and more efficient for hardware design tasks in data-limited scenarios.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a992a56-96d8-40f2-9be4-f315b2457bd9",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "0c03cf5e-a0d1-45c1-8078-9ed8390123f6",
+  "sourceToolAssistantUUID": "8a992a56-96d8-40f2-9be4-f315b2457bd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-12T00:58:35.375Z_
+
+<details><summary>↩ Tool result · `toolu_01FDbyxHzi3j8sepfQb8hLs3`</summary>
+
+```text
+# Paper Details
+
+**Title:** "Correctness-Guaranteed Code Generation via Constrained Decoding"
+
+**Authors:** Lingxiao Li, Salar Rahili, Yiwei Zhao
+
+**Abstract:** The paper presents a constrained decoding method for ensuring semantic correctness in language model-generated programs. The approach employs "a context-sensitive parser, which, at each step, outputs a regular expression" to direct token generation toward valid program continuations. The authors introduce a dynamic tree of parsers framework that combines context-free grammars with contextual information like variable scoping and type constraints. They demonstrate their technique through sLua (a strongly-typed Lua variant) and validate it by generating game mechanics for a roguelike video game, extending guarantees to runtime correctness in their application domain.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29b9a1e4-c379-4c1f-89a3-f3b810884acd",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "7e6e182b-27e5-4f32-afc5-3f7fb3ddb169",
+  "sourceToolAssistantUUID": "29b9a1e4-c379-4c1f-89a3-f3b810884acd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-12T00:58:37.245Z_
+
+<details><summary>↩ Tool result · `toolu_01GjSnbQqd2D8LsfcxhWkRog`</summary>
+
+```text
+# ReDeFo: Requirements Development and Formalization for Reliable Code Generation
+
+## Full Title
+"Requirements Development and Formalization for Reliable Code Generation: A Multi-Agent Vision"
+
+## Authors
+- Xu Lu (Xidian University)
+- Weisong Sun (Nanyang Technological University)
+- Yiran Zhang
+- Ming Hu (Singapore Management University)
+- Cong Tian (Xidian University)
+- Zhi Jin (Peking University)
+- Yang Liu (Nanyang Technological University)
+
+## Abstract Summary
+The paper presents ReDeFo, a framework addressing limitations in LLM-based code generation. The authors note that while "Large Language Models (LLMs) has catalyzed a revolutionary breakthrough" in automated code generation, "existing methods that only rely on LLMs remain inadequate in the quality of generated code, offering no guarantees of satisfying practical requirements."
+
+The framework incorporates three specialized agents equipped with formal methods expertise to strengthen the requirements-to-code pipeline. The core innovation leverages formal specifications to bridge the gap between imprecise natural language requirements and precise executable code, enabling verification of correctness and enforcement of critical properties throughout development.
+
+**Conference Details:** ASE 2025 NIER Track | Wednesday, November 19, 2025 | 16:20-16:30 (Seoul time) | Grand Hall 6
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de955406-5e8a-48a3-be33-39d08fc8c840",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "ab768184e99694848",
+  "type": "user",
+  "uuid": "906e21c7-b7e3-4f71-be5a-91c4745b79e5",
+  "sourceToolAssistantUUID": "de955406-5e8a-48a3-be33-39d08fc8c840",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-12T01:00:09.726Z_
+
+Here is my comprehensive report of potentially missed competing work, organized by relevance tier.
+
+---
+
+## TIER 1 -- DIRECT COMPETITORS (Highest relevance to ExeSpec)
+
+These papers operate in nearly the same conceptual space: using specifications (preconditions, postconditions, contracts, properties) as structured intermediates for LLM code tasks, often without training.
+
+### 1. Property-Generated Solver (PGS)
+- **Paper:** "Use Property-Based Testing to Bridge LLM Code Generation and Validation" (arXiv:2506.18315)
+- **Authors:** Lehan He, Zeren Chen, Zhe Zhang, Xiang Gao, Lu Sheng
+- **Why it matters:** PGS uses two LLM agents -- a Generator and a Tester -- where the Tester generates high-level program *properties* (not just test cases) and provides the simplest failing counterexample as feedback. It achieves 23-37% relative pass@1 gains over TDD methods. This is extremely close to ExeSpec's idea of using behavioral specifications instead of tests, though PGS frames them as PBT properties rather than preconditions/postconditions.
+- [arXiv link](https://arxiv.org/abs/2506.18315)
+
+### 2. NL2Contract / "Beyond Postconditions"
+- **Paper:** "Beyond Postconditions: Can Large Language Models infer Formal Contracts for Automatic Software Verification?" (arXiv:2510.12702)
+- **Authors:** Cedric Richter, Heike Wehrheim
+- **Why it matters:** Directly studies LLMs generating complete functional contracts (both preconditions AND postconditions) from natural language. Shows that LLM-inferred contracts reduce false alarms vs. postconditions alone and can discriminate buggy from correct code. The framing of "contracts as verification artifacts generated by LLMs" is very close to ExeSpec's behavioral specifications.
+- [arXiv link](https://arxiv.org/abs/2510.12702)
+
+### 3. ContractEval / PACT
+- **Paper:** "Do Large Language Models Respect Contracts? Evaluating and Enforcing Contract-Adherence in Code Generation" (arXiv:2510.12047)
+- **Authors:** Soohan Lim, Joonghyuk Hahn, Hyunwoo Park, Sang-Ki Ko, Yo-Sub Han
+- **Why it matters:** Introduces ContractEval, a benchmark of 364 tasks testing whether LLM-generated code satisfies precondition/postcondition contracts. Key finding: models achieve 75-82% pass@1 but 0% contract satisfaction under standard prompting; even with explicit contract prompts, only 23-41% satisfaction. Establishes contract enforcement as "a crucial and previously overlooked axis of code generation quality." Directly validates the problem ExeSpec addresses.
+- [arXiv link](https://arxiv.org/abs/2510.12047)
+
+### 4. "Preconditions and Postconditions as Design Constraints for LLM Code Generation"
+- **Published:** IEEE Access, 2024/2025
+- **Why it matters:** Directly studies how explicit preconditions and postconditions in the Design-by-Contract paradigm affect class-level LLM code generation. Finds that incorporating explicit design constraints during prompting significantly boosts initial generation accuracy. This is essentially a controlled experiment validating ExeSpec's core premise.
+- [IEEE Xplore](https://ieeexplore.ieee.org/document/11218044/)
+
+### 5. ReDeFo
+- **Paper:** "Requirements Development and Formalization for Reliable Code Generation: A Multi-Agent Vision" (ASE 2025 NIER)
+- **Authors:** Xu Lu, Weisong Sun, Yiran Zhang, Ming Hu, Cong Tian, Zhi Jin, Yang Liu
+- **Why it matters:** Multi-agent framework that uses formal specifications to bridge natural language requirements and executable code. Three agents with formal methods knowledge verify correctness and enforce critical properties. Very similar pipeline concept to ExeSpec but uses multi-agent architecture.
+- [ASE 2025](https://conf.researchr.org/details/ase-2025/ase-2025-nier-track/30/)
+
+### 6. "From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing"
+- **Published:** FSE 2025 (ACM SIGSOFT)
+- **Why it matters:** Proposes rethinking LLM code generation validation using property-based testing rather than example-based tests. Directly challenges the test-based paradigm that ExeSpec also critiques.
+- [ACM DL](https://dl.acm.org/doi/10.1145/3696630.3728702)
+
+### 7. Type-Constrained Code Generation
+- **Paper:** "Type-Constrained Code Generation with Language Models" (arXiv:2504.09246)
+- **Authors:** Niels Mundler, Jingxuan He, Hao Wang, Koushik Sen, Dawn Song, Martin Vechev
+- **Why it matters:** Enforces type constraints during LLM decoding via novel prefix automata. Reduces compilation errors by more than half and improves functional correctness. ExeSpec includes type constraints as one of its specification dimensions -- this paper shows type enforcement alone already helps substantially.
+- [arXiv link](https://arxiv.org/abs/2504.09246)
+
+---
+
+## TIER 2 -- STRONGLY RELATED (Complementary or overlapping methods)
+
+### 8. Preguss
+- **Paper:** "A Tale of 1001 LoC: Potential Runtime Error-Guided Specification Synthesis for Verifying Large-Scale Programs" (OOPSLA 2026, arXiv:2512.24594)
+- **Authors:** Zhongyi Wang et al.
+- **Why it matters:** Uses LLMs to synthesize interprocedural specifications (pre/postconditions) guided by potential runtime errors. Achieves 80-89% reduction in human verification effort on programs >1000 LoC. Relevant as it shows LLM-generated specifications being used for practical verification at scale.
+- [arXiv link](https://arxiv.org/abs/2512.24594)
+
+### 9. NeuroInv
+- **Paper:** "A Neurosymbolic Approach to Loop Invariant Generation via Weakest Precondition Reasoning" (arXiv:2512.15816)
+- **Authors:** Daragh King, Vasileios Koutavas, Laura Kovacs
+- **Why it matters:** Neurosymbolic system combining LLMs with Hoare logic for invariant generation via weakest precondition backward chaining, plus symbolic repair using counterexamples. 99.5% success rate on 150 Java programs. Relevant because ExeSpec uses invariants as one specification type.
+- [arXiv link](https://arxiv.org/abs/2512.15816)
+
+### 10. Specification-Guided Repair of Dafny Programs
+- **Paper:** "Specification-Guided Repair of Arithmetic Errors in Dafny Programs using LLMs" (arXiv:2507.03659)
+- **Authors:** Valentina Wu, Alexandra Mendes, Alexandre Abreu
+- **Why it matters:** Uses formal specifications (not tests) as oracles for fault localization and repair via Hoare logic. 89.7% fault localization, 74% repair rate. Shows specifications guiding LLM repair without test cases -- exactly ExeSpec's use case for code repair.
+- [arXiv link](https://arxiv.org/abs/2507.03659)
+
+### 11. FuzzFeed
+- **Paper:** "LLMs and Fuzzing in Tandem: A New Approach to Automatically Generating Weakest Preconditions" (arXiv:2507.05272)
+- **Authors:** Daragh King, Vasileios Koutavas, Laura Kovacs
+- **Why it matters:** Combines LLMs with fuzz testing to generate weakest preconditions, using execution feedback to guide the LLM. Relevant to ExeSpec's precondition generation component.
+- [arXiv link](https://arxiv.org/abs/2507.05272)
+
+### 12. ORPS (Outcome-Refining Process Supervision)
+- **Paper:** "Reasoning Through Execution: Unifying Process and Outcome Rewards for Code Generation" (arXiv:2412.15118)
+- **Authors:** Zhuohao Yu et al.
+- **Why it matters:** Uses execution-based verification with tree-structured exploration during inference. 26.9% higher correctness, 42.2% improved efficiency. Combines execution signals with structured reasoning -- a different take on execution-grounded intermediate reasoning.
+- [arXiv link](https://arxiv.org/abs/2412.15118)
+
+### 13. Abstractions-of-Thought (AoT)
+- **Paper:** "Abstractions-of-Thought: Intermediate Representations for LLM Reasoning in Hardware Design" (arXiv:2505.15873)
+- **Authors:** Matthew DeLorenzo et al.
+- **Why it matters:** Training-free prompting framework that uses a structured intermediate representation separating functional decomposition from syntax. Though for hardware (Verilog), the concept of using structured IRs as reasoning scaffolds at inference time is methodologically parallel to ExeSpec. Reduces tokens 1.8-5.2x vs. Tree-of-Thought.
+- [arXiv link](https://arxiv.org/abs/2505.15873)
+
+### 14. StoryCoder
+- **Paper:** "StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation" (arXiv:2604.14631)
+- **Authors:** Geonhui Jang, Dongyoon Han, YoungJoon Yoo
+- **Why it matters:** Converts code problems into structured narratives including constraints and invariants. 18.7% improvement in zero-shot pass@10. Relevant as another training-free structured intermediate reasoning approach, though it uses narratives rather than formal specifications.
+- [arXiv link](https://arxiv.org/abs/2604.14631)
+
+### 15. CRANE
+- **Paper:** "Reasoning with Constrained LLM Generation" (arXiv:2502.09061)
+- **Why it matters:** Alternates between unconstrained generation for reasoning and constrained generation for correct outputs. Theoretically shows that constrained decoding loses expressivity because the grammar is too restrictive for intermediate reasoning steps. Relevant to ExeSpec's argument about structured intermediate reasoning.
+- [arXiv link](https://arxiv.org/abs/2502.09061)
+
+---
+
+## TIER 3 -- BENCHMARKS AND EVALUATION FRAMEWORKS
+
+### 16. VERINA
+- **Paper:** "VERINA: Benchmarking Verifiable Code Generation" (arXiv:2505.23135)
+- **Authors:** Zhe Ye et al.
+- **Why it matters:** 189-task benchmark for generating code + specifications + proofs in Lean. Best model (o3) achieves only 4.9% proof success. Could serve as an evaluation benchmark for ExeSpec-style approaches.
+- [arXiv link](https://arxiv.org/abs/2505.23135)
+
+### 17. CLEVER
+- **Paper:** "CLEVER: A Curated Benchmark for Formally Verified Code Generation" (arXiv:2505.13938)
+- **Authors:** Amitayush Thakur et al.
+- **Why it matters:** 161 problems requiring specification generation + implementation + proof in Lean. No test-case supervision allowed. Relevant as a test-free evaluation framework.
+- [arXiv link](https://arxiv.org/abs/2505.13938)
+
+### 18. "Beyond Code Generation: Assessing Code LLM Maturity with Postconditions"
+- **Paper:** arXiv:2407.14118
+- **Authors:** Fusen He, Juan Zhai, Minxue Pan
+- **Why it matters:** Proposes postcondition generation as a maturity metric for code LLMs, arguing it captures semantic understanding better than code generation benchmarks.
+- [arXiv link](https://arxiv.org/abs/2407.14118)
+
+### 19. FormalSpecCpp
+- **Paper:** "FormalSpecCpp: A Dataset of C++ Formal Specifications created using LLMs" (arXiv:2502.15217, MSR 2025)
+- **Authors:** Madhurima Chakraborty, Peter Pirkelbauer, Qing Yi
+- **Why it matters:** First comprehensive C++ dataset with preconditions and postconditions, created using LLMs. Benchmarking resource for specification inference.
+- [arXiv link](https://arxiv.org/abs/2502.15217)
+
+### 20. Astrogator
+- **Paper:** "Towards Formal Verification of LLM-Generated Code from Natural Language Prompts" (arXiv:2507.13290)
+- **Authors:** Aaron Councilman et al.
+- **Why it matters:** Uses a Formal Query Language to capture user intent and verify LLM code. 83% correct code validation, 92% flawed code detection. Represents the "formal spec as verification oracle" approach.
+- [arXiv link](https://arxiv.org/abs/2507.13290)
+
+---
+
+## TIER 4 -- PERIPHERALLY RELEVANT
+
+### 21. Metamorphic Prompt Testing (arXiv:2406.06864)
+- Test-free validation via prompt paraphrasing and cross-validation. 75% error detection rate.
+
+### 22. REA-Coder (arXiv:2604.16198)
+- Requirement alignment before code generation. 7-30% improvement.
+
+### 23. SAGA / TCGBench (arXiv:2507.06920)
+- Better test generation via human + LLM collaboration. Relevant to ExeSpec's critique of test-based methods.
+
+### 24. Quokka (arXiv:2509.21629)
+- LLM-based invariant synthesis for program verification with direct validation framework.
+
+### 25. Correctness-Guaranteed Code Generation via Constrained Decoding (arXiv:2508.15866)
+- Context-sensitive constrained decoding enforcing type and scoping rules during generation.
+
+---
+
+## SUMMARY OF HIGHEST-PRIORITY GAPS
+
+The papers ExeSpec most urgently needs to cite or differentiate against are:
+
+1. **PGS** (arXiv:2506.18315) -- Uses properties (not tests) as feedback; most direct methodological competitor
+2. **NL2Contract** (arXiv:2510.12702) -- LLMs generating full contracts (pre+post); validates the core idea
+3. **ContractEval** (arXiv:2510.12047) -- Benchmarks contract satisfaction; shows the problem is real
+4. **"Preconditions and Postconditions as Design Constraints"** (IEEE) -- Controlled study of exactly ExeSpec's premise
+5. **ReDeFo** (ASE 2025) -- Multi-agent formal specification pipeline; architectural competitor
+6. **Type-Constrained Code Generation** (arXiv:2504.09246) -- Proves type constraints alone help substantially
+7. **Specification-Guided Repair of Dafny** (arXiv:2507.03659) -- Spec-guided repair without tests
+
+Sources:
+- [PGS - Property-Based Testing for LLM Code](https://arxiv.org/abs/2506.18315)
+- [NL2Contract - Beyond Postconditions](https://arxiv.org/abs/2510.12702)
+- [ContractEval](https://arxiv.org/abs/2510.12047)
+- [Preconditions/Postconditions as Design Constraints](https://ieeexplore.ieee.org/document/11218044/)
+- [ReDeFo - ASE 2025](https://conf.researchr.org/details/ase-2025/ase-2025-nier-track/30/)
+- [Type-Constrained Code Generation](https://arxiv.org/abs/2504.09246)
+- [Spec-Guided Repair of Dafny Programs](https://arxiv.org/abs/2507.03659)
+- [Preguss - OOPSLA 2026](https://arxiv.org/abs/2512.24594)
+- [NeuroInv](https://arxiv.org/abs/2512.15816)
+- [FuzzFeed - Weakest Preconditions](https://arxiv.org/abs/2507.05272)
+- [ORPS](https://arxiv.org/abs/2412.15118)
+- [Abstractions-of-Thought](https://arxiv.org/abs/2505.15873)
+- [StoryCoder](https://arxiv.org/abs/2604.14631)
+- [CRANE](https://arxiv.org/abs/2502.09061)
+- [VERINA](https://arxiv.org/abs/2505.23135)
+- [CLEVER](https://arxiv.org/abs/2505.13938)
+- [LLM Maturity with Postconditions](https://arxiv.org/abs/2407.14118)
+- [FormalSpecCpp](https://arxiv.org/abs/2502.15217)
+- [Astrogator](https://arxiv.org/abs/2507.13290)
+- [Metamorphic Prompt Testing](https://arxiv.org/abs/2406.06864)
+- [REA-Coder](https://arxiv.org/abs/2604.16198)
+- [SAGA / TCGBench](https://arxiv.org/abs/2507.06920)
+- [Quokka](https://arxiv.org/abs/2509.21629)
+- [Constrained Decoding for Correctness](https://arxiv.org/abs/2508.15866)
+- [Specification-Driven Code Generation Study - SANER 2026](https://arxiv.org/html/2601.03878v1)
+- [From Prompts to Properties - FSE 2025](https://dl.acm.org/doi/10.1145/3696630.3728702)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "906e21c7-b7e3-4f71-be5a-91c4745b79e5",
+  "isSidechain": true,
+  "agentId": "ab768184e99694848",
+  "requestId": "req_011CawmVNwjTuiEmu6vhdYrK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fe8ae8a2-2a59-4722-be62-7c8c5de235e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CzhXVpnrWWR1qk4eaStyQ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 208,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 35195,
+      "output_tokens": 4483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 978
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 208,
+          "output_tokens": 4483,
+          "cache_read_input_tokens": 35195,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 978,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

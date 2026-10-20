@@ -1,0 +1,1968 @@
+# Research conversation: [飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 这项目初始idea是讲什么的，用大白话和我讲清楚
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 5
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-3/86f1a5e2-7a55-4c9d-b25f-5c3b522521d6.jsonl`
+- **Structured JSON:** [`8a744275e8ba5c096d46.json`](../../sessions/8a/8a744275e8ba5c096d46.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T10:55:34.702Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T10:55:34.702Z",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "content": "[飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 这项目初始idea是讲什么的，用大白话和我讲清楚"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T10:55:34.705Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T10:55:34.705Z",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T10:55:34.738Z_
+
+[飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 这项目初始idea是讲什么的，用大白话和我讲清楚
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6a276064-f27a-4382-b799-65a5550c4275",
+  "type": "user",
+  "uuid": "06dd5b58-d590-4b39-a443-5bea38c68ca3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T10:55:34.737Z_
+
+```json
+{
+  "parentUuid": "06dd5b58-d590-4b39-a443-5bea38c68ca3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compare_wandb_runs",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__fetch_wandb_run_history",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_best_wandb_run",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_pending_ideas",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_wandb_runs",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compare_wandb_runs",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__fetch_wandb_run_history",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_best_wandb_run",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_pending_ideas",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_wandb_runs",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9a234185-85e5-4a70-b430-e7737fd8a45a",
+  "timestamp": "2026-05-17T10:55:34.737Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T10:55:34.738Z_
+
+```json
+{
+  "parentUuid": "9a234185-85e5-4a70-b430-e7737fd8a45a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6f44423d-3b44-4dc6-b10a-d48b635a9e02",
+  "timestamp": "2026-05-17T10:55:34.738Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-17T10:55:34.738Z_
+
+```json
+{
+  "parentUuid": "6f44423d-3b44-4dc6-b10a-d48b635a9e02",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7f2d10c1-8ae1-40ec-92d5-84978a3bc9c2",
+  "timestamp": "2026-05-17T10:55:34.738Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Explain project initial idea in simple terms",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-17T10:55:39.085Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+用户想了解项目的初始idea，用通俗的语言解释。我需要读取项目的背景文件来了解。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f2d10c1-8ae1-40ec-92d5-84978a3bc9c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb824DfiY97g3iZ2c4Gnj",
+  "type": "assistant",
+  "uuid": "9013d933-f3e0-4c25-ac82-185bebd810b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUvxFnNcMpXifwW3uGcYyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14056,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-17T10:55:40.004Z_
+
+让我先读一下项目背景资料。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9013d933-f3e0-4c25-ac82-185bebd810b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb824DfiY97g3iZ2c4Gnj",
+  "type": "assistant",
+  "uuid": "f430bfd4-37cd-4e08-bb4d-86ebe580c215",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUvxFnNcMpXifwW3uGcYyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14056,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T10:55:40.645Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Tfr49JaN7FYGgzfa9ZDTRW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f430bfd4-37cd-4e08-bb4d-86ebe580c215",
+  "isSidechain": false,
+  "requestId": "req_011Cb824DfiY97g3iZ2c4Gnj",
+  "type": "assistant",
+  "uuid": "3a4e19b4-9a7f-4803-b531-28485a96d40e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUvxFnNcMpXifwW3uGcYyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14056,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T10:55:40.653Z_
+
+<details><summary>↩ Tool result · `toolu_01Tfr49JaN7FYGgzfa9ZDTRW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a4e19b4-9a7f-4803-b531-28485a96d40e",
+  "isSidechain": false,
+  "promptId": "6a276064-f27a-4382-b799-65a5550c4275",
+  "type": "user",
+  "uuid": "ca2b03c3-c4c4-48a9-95ab-c8ec93ce912c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 52
+  },
+  "sourceToolAssistantUUID": "3a4e19b4-9a7f-4803-b531-28485a96d40e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T10:55:43.380Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017Jh6LVSkH57gVEghkdHSAV`</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca2b03c3-c4c4-48a9-95ab-c8ec93ce912c",
+  "isSidechain": false,
+  "requestId": "req_011Cb824fHqLokuS4UTFnFpi",
+  "type": "assistant",
+  "uuid": "780bf827-72f8-4404-9e23-538837417392",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D4UHPAgWK7zGP633336Y51",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 617,
+      "cache_read_input_tokens": 25897,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 617,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 25897,
+          "cache_creation_input_tokens": 617,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 617
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T10:55:43.394Z_
+
+<details><summary>↩ Tool result · `toolu_017Jh6LVSkH57gVEghkdHSAV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\", \"content\": \"# Project Memory\\n\\n## Key Results\\n\\n### Paired Bootstrap: HS vs Text Accuracy & Precision (2026-05-17)\\n- r1-8b (n=43 test traces): acc +8.2pp p=0.005***, prec +22.4pp p=0.000***\\n- R1-32B (n=20 test traces): acc +6.2pp p=0.13, prec +9.4pp p=0.064 (underpowered)\\n- QwQ-32B (n=19 test traces): acc +0.9pp p=0.83, prec +5.8pp p=0.35 (underpowered + convergence issue)\\n- **OpenThinker-7B (n=47 test traces, Layer 16): acc +10.7pp p=0.000***, prec +21.9pp p=0.000***, FPR -17.1pp p=0.000***\\n- Bonferroni threshold: 0.0167. R1-8B acc+prec pass; OT-7B 3/3 all pass (strongest result).\\n- Report: artifacts/acc_precision_bootstrap/report.md + artifacts/ot7b_layer16_verification/report.md\\n\\n### Model Configurations (best per model)\\n- r1-8b: Layer 14 (≈L12, negligible diff), W=15, hidden_dim=4096, 209 jailbreak traces. Depth ~39-45%.\\n- R1-32B: Layer 10 (index 10), W=10, hidden_dim=5120, 100 jailbreak traces. Depth ~16%.\\n- QwQ-32B: Layer 2 (index 2), W=5, hidden_dim=5120, 95 jailbreak traces. Depth ~3%.\\n- OpenThinker-7B: **Layer 16** (corrected from Layer 0), W=3, hidden_dim=3584, 228 jailbreak traces. Depth ~57%.\\n\\n### Layer Verification Results (2026-05-17)\\n- **OT-7B Layer 16 >> Layer 0**: precision +10.9pp, FPR -8.8pp, Bonferroni 3/3 (was 2/3). Layer 0 was M001 bug artifact (bal_acc × crossing_rate).\\n- **R1-8B full sweep (0-24)**: L12 (0.7871) ≈ L14 (0.7830), +0.004 negligible. Early layers competitive but not superior. Layer 0 worst (0.7103).\\n- **Cross-model pattern**: 32B models peak at early layers (2-3% depth); 7-8B models peak at middle layers (39-57% depth). Signal distribution differs by scale, not by architecture.\\n\\n### HarmThoughts Dataset Census (2026-05-17)\\n- ot-7b (OpenThinker-7B, Qwen2.5-7B): 333 traces, 270 jailbreak, avg 80 sent/trace\\n- r1-8b (R1-Distill-Llama-8B): 324 traces, 270 jailbreak, avg 45.5 sent/trace\\n- r1-32b (R1-Distill-Qwen-32B): 221 traces, 179 jailbreak, avg 38.6 sent/trace\\n- QwQ (QwQ-32B): 140 traces, 115 jailbreak, avg 50 sent/trace\\n- Total: 1,018 traces, 56,931 sentences\\n- Architecture split: Llama (324 traces) vs Qwen (694 traces)\\n\\n### Path B Annotation Validation Failed (2026-05-17)\\n- TF-IDF+LR: safety F1=0.59, CP agreement=56.1%\\n- MiniLM+LR: safety F1=0.51, CP agreement=53.4%\\n- Root cause: safety-aware vs non-safety sentence distinction is too semantically subtle for simple classifiers. Safety recall 41-46%.\\n- Implication: generating new traces requires LLM API annotation or fine-tuned DeBERTa\\n\\n## Environment Notes\\n- Python: /root/miniconda3/bin/python3.12\\n- HF_ENDPOINT=https://hf-mirror.com required for dataset access\\n- sklearn 1.8.0, torch 2.10.0+cu128, sentence-transformers 5.4.1\\n- For high-dim LR (>50k features): use solver='liblinear' (saga/lbfgs too slow)\\n- PYTHONUNBUFFERED=1 needed for nohup output visibility\\n- OpenThinker-7B HF repo: open-thoughts/OpenThinker-7B (15.2GB BF16, Qwen2ForCausalLM)\\n- Server has 2× RTX PRO 6000 Blackwell (98GB VRAM each)\\n\\n## Lessons\\n- Workers tend to launch background processes and exit prematurely. Task prompts must explicitly say \\\"DO NOT use nohup/&/background. Run synchronously.\\\"\\n- HarmThoughts sentence counts ≠ trace counts. 8,525 R1-32B sentences = only 221 traces (100 jailbreak+CP).\\n- M001 layer selection bug (bal_acc × crossing_rate) persisted in OT-7B pipeline. Always verify best layer with pure bal_acc ranking.\\n\", \"total_chars\": 3329, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "780bf827-72f8-4404-9e23-538837417392",
+  "isSidechain": false,
+  "promptId": "6a276064-f27a-4382-b799-65a5550c4275",
+  "type": "user",
+  "uuid": "83c28a94-b95a-4dae-9245-ba20cd06073d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## Key Results\\\\n\\\\n### Paired Bootstrap: HS vs Text Accuracy & Precision (2026-05-17)\\\\n- r1-8b (n=43 test traces): acc +8.2pp p=0.005***, prec +22.4pp p=0.000***\\\\n- R1-32B (n=20 test traces): acc +6.2pp p=0.13, prec +9.4pp p=0.064 (underpowered)\\\\n- QwQ-32B (n=19 test traces): acc +0.9pp p=0.83, prec +5.8pp p=0.35 (underpowered + convergence issue)\\\\n- **OpenThinker-7B (n=47 test traces, Layer 16): acc +10.7pp p=0.000***, prec +21.9pp p=0.000***, FPR -17.1pp p=0.000***\\\\n- Bonferroni threshold: 0.0167. R1-8B acc+prec pass; OT-7B 3/3 all pass (strongest result).\\\\n- Report: artifacts/acc_precision_bootstrap/report.md + artifacts/ot7b_layer16_verification/report.md\\\\n\\\\n### Model Configurations (best per model)\\\\n- r1-8b: Layer 14 (≈L12, negligible diff), W=15, hidden_dim=4096, 209 jailbreak traces. Depth ~39-45%.\\\\n- R1-32B: Layer 10 (index 10), W=10, hidden_dim=5120, 100 jailbreak traces. Depth ~16%.\\\\n- QwQ-32B: Layer 2 (index 2), W=5, hidden_dim=5120, 95 jailbreak traces. Depth ~3%.\\\\n- OpenThinker-7B: **Layer 16** (corrected from Layer 0), W=3, hidden_dim=3584, 228 jailbreak traces. Depth ~57%.\\\\n\\\\n### Layer Verification Results (2026-05-17)\\\\n- **OT-7B Layer 16 >> Layer 0**: precision +10.9pp, FPR -8.8pp, Bonferroni 3/3 (was 2/3). Layer 0 was M001 bug artifact (bal_acc × crossing_rate).\\\\n- **R1-8B full sweep (0-24)**: L12 (0.7871) ≈ L14 (0.7830), +0.004 negligible. Early layers competitive but not superior. Layer 0 worst (0.7103).\\\\n- **Cross-model pattern**: 32B models peak at early layers (2-3% depth); 7-8B models peak at middle layers (39-57% depth). Signal distribution differs by scale, not by architecture.\\\\n\\\\n### HarmThoughts Dataset Census (2026-05-17)\\\\n- ot-7b (OpenThinker-7B, Qwen2.5-7B): 333 traces, 270 jailbreak, avg 80 sent/trace\\\\n- r1-8b (R1-Distill-Llama-8B): 324 traces, 270 jailbreak, avg 45.5 sent/trace\\\\n- r1-32b (R1-Distill-Qwen-32B): 221 traces, 179 jailbreak, avg 38.6 sent/trace\\\\n- QwQ (QwQ-32B): 140 traces, 115 jailbreak, avg 50 sent/trace\\\\n- Total: 1,018 traces, 56,931 sentences\\\\n- Architecture split: Llama (324 traces) vs Qwen (694 traces)\\\\n\\\\n### Path B Annotation Validation Failed (2026-05-17)\\\\n- TF-IDF+LR: safety F1=0.59, CP agreement=56.1%\\\\n- MiniLM+LR: safety F1=0.51, CP agreement=53.4%\\\\n- Root cause: safety-aware vs non-safety sentence distinction is too semantically subtle for simple classifiers. Safety recall 41-46%.\\\\n- Implication: generating new traces requires LLM API annotation or fine-tuned DeBERTa\\\\n\\\\n## Environment Notes\\\\n- Python: /root/miniconda3/bin/python3.12\\\\n- HF_ENDPOINT=https://hf-mirror.com required for dataset access\\\\n- sklearn 1.8.0, torch 2.10.0+cu128, sentence-transformers 5.4.1\\\\n- For high-dim LR (>50k features): use solver='liblinear' (saga/lbfgs too slow)\\\\n- PYTHONUNBUFFERED=1 needed for nohup output visibility\\\\n- OpenThinker-7B HF repo: open-thoughts/OpenThinker-7B (15.2GB BF16, Qwen2ForCausalLM)\\\\n- Server has 2× RTX PRO 6000 Blackwell (98GB VRAM each)\\\\n\\\\n## Lessons\\\\n- Workers tend to launch background processes and exit prematurely. Task prompts must explicitly say \\\\\\\"DO NOT use nohup/&/background. Run synchronously.\\\\\\\"\\\\n- HarmThoughts sentence counts ≠ trace counts. 8,525 R1-32B sentences = only 221 traces (100 jailbreak+CP).\\\\n- M001 layer selection bug (bal_acc × crossing_rate) persisted in OT-7B pipeline. Always verify best layer with pure bal_acc ranking.\\\\n\\\", \\\"total_chars\\\": 3329, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/memory.md\", \"content\": \"# Project Memory\\n\\n## Key Results\\n\\n### Paired Bootstrap: HS vs Text Accuracy & Precision (2026-05-17)\\n- r1-8b (n=43 test traces): acc +8.2pp p=0.005***, prec +22.4pp p=0.000***\\n- R1-32B (n=20 test traces): acc +6.2pp p=0.13, prec +9.4pp p=0.064 (underpowered)\\n- QwQ-32B (n=19 test traces): acc +0.9pp p=0.83, prec +5.8pp p=0.35 (underpowered + convergence issue)\\n- **OpenThinker-7B (n=47 test traces, Layer 16): acc +10.7pp p=0.000***, prec +21.9pp p=0.000***, FPR -17.1pp p=0.000***\\n- Bonferroni threshold: 0.0167. R1-8B acc+prec pass; OT-7B 3/3 all pass (strongest result).\\n- Report: artifacts/acc_precision_bootstrap/report.md + artifacts/ot7b_layer16_verification/report.md\\n\\n### Model Configurations (best per model)\\n- r1-8b: Layer 14 (≈L12, negligible diff), W=15, hidden_dim=4096, 209 jailbreak traces. Depth ~39-45%.\\n- R1-32B: Layer 10 (index 10), W=10, hidden_dim=5120, 100 jailbreak traces. Depth ~16%.\\n- QwQ-32B: Layer 2 (index 2), W=5, hidden_dim=5120, 95 jailbreak traces. Depth ~3%.\\n- OpenThinker-7B: **Layer 16** (corrected from Layer 0), W=3, hidden_dim=3584, 228 jailbreak traces. Depth ~57%.\\n\\n### Layer Verification Results (2026-05-17)\\n- **OT-7B Layer 16 >> Layer 0**: precision +10.9pp, FPR -8.8pp, Bonferroni 3/3 (was 2/3). Layer 0 was M001 bug artifact (bal_acc × crossing_rate).\\n- **R1-8B full sweep (0-24)**: L12 (0.7871) ≈ L14 (0.7830), +0.004 negligible. Early layers competitive but not superior. Layer 0 worst (0.7103).\\n- **Cross-model pattern**: 32B models peak at early layers (2-3% depth); 7-8B models peak at middle layers (39-57% depth). Signal distribution differs by scale, not by architecture.\\n\\n### HarmThoughts Dataset Census (2026-05-17)\\n- ot-7b (OpenThinker-7B, Qwen2.5-7B): 333 traces, 270 jailbreak, avg 80 sent/trace\\n- r1-8b (R1-Distill-Llama-8B): 324 traces, 270 jailbreak, avg 45.5 sent/trace\\n- r1-32b (R1-Distill-Qwen-32B): 221 traces, 179 jailbreak, avg 38.6 sent/trace\\n- QwQ (QwQ-32B): 140 traces, 115 jailbreak, avg 50 sent/trace\\n- Total: 1,018 traces, 56,931 sentences\\n- Architecture split: Llama (324 traces) vs Qwen (694 traces)\\n\\n### Path B Annotation Validation Failed (2026-05-17)\\n- TF-IDF+LR: safety F1=0.59, CP agreement=56.1%\\n- MiniLM+LR: safety F1=0.51, CP agreement=53.4%\\n- Root cause: safety-aware vs non-safety sentence distinction is too semantically subtle for simple classifiers. Safety recall 41-46%.\\n- Implication: generating new traces requires LLM API annotation or fine-tuned DeBERTa\\n\\n## Environment Notes\\n- Python: /root/miniconda3/bin/python3.12\\n- HF_ENDPOINT=https://hf-mirror.com required for dataset access\\n- sklearn 1.8.0, torch 2.10.0+cu128, sentence-transformers 5.4.1\\n- For high-dim LR (>50k features): use solver='liblinear' (saga/lbfgs too slow)\\n- PYTHONUNBUFFERED=1 needed for nohup output visibility\\n- OpenThinker-7B HF repo: open-thoughts/OpenThinker-7B (15.2GB BF16, Qwen2ForCausalLM)\\n- Server has 2× RTX PRO 6000 Blackwell (98GB VRAM each)\\n\\n## Lessons\\n- Workers tend to launch background processes and exit prematurely. Task prompts must explicitly say \\\"DO NOT use nohup/&/background. Run synchronously.\\\"\\n- HarmThoughts sentence counts ≠ trace counts. 8,525 R1-32B sentences = only 221 traces (100 jailbreak+CP).\\n- M001 layer selection bug (bal_acc × crossing_rate) persisted in OT-7B pipeline. Always verify best layer with pure bal_acc ranking.\\n\", \"total_chars\": 3329, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "780bf827-72f8-4404-9e23-538837417392",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T10:55:43.662Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_0155BcXkzA9vh7fgeCRqKxRX`</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83c28a94-b95a-4dae-9245-ba20cd06073d",
+  "isSidechain": false,
+  "requestId": "req_011Cb824fHqLokuS4UTFnFpi",
+  "type": "assistant",
+  "uuid": "acc93eff-50b6-4249-adef-8e27bf18eecf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D4UHPAgWK7zGP633336Y51",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 617,
+      "cache_read_input_tokens": 25897,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 617,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 25897,
+          "cache_creation_input_tokens": 617,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 617
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T10:55:43.673Z_
+
+<details><summary>↩ Tool result · `toolu_0155BcXkzA9vh7fgeCRqKxRX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/ROADMAP.md\", \"content\": \"# contrastive_trace_safety — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:44 UTC | 更新原因: D023 OT-7B 完成后全面更新：framing 升级 scale-dependent，三路扩展结果汇总，进入论文最终修订阶段\\n\\n## 核心方向\\nReasoning model 安全承诺检测的首个系统性评估。4 models / 2 architectures / 2 training methods / 2 scales。核心发现：(1) 时序上下文普遍改善 text probes；(2) HS 优势是 scale-dependent（7-8B 显著，32B 不显著）；(3) 3/12 Holm-Bonferroni 通过（2 个独立模型）。详见 paper_framing.md。\\n\\n## 当前阶段: 论文最终修订 → 提交审稿\\n\\n**目标**: EMNLP 2026 Main Conference, ARR DDL May 25\\n\\n### 三路扩展结果总结（D022-D023）\\n\\n| Path | 目标 | 结果 | 状态 |\\n|------|------|------|------|\\n| A: 加模型 OT-7B | Architecture+training confound | ✅ SUCCESS: bal_acc p=0.001, FPR p=0.007 Bonferroni sig | 完成 |\\n| B: 加数据 32B | Statistical power | ❌ DROPPED: 本地 annotation validation F1=0.59 | 降级 |\\n| C: Adaptive window | Novelty ceiling | ❌ DROPPED: 改进在噪声范围内 | Discussion mention |\\n\\n### 审稿 Round 2 修复\\n\\n| 类型 | 条目 | 状态 |\\n|------|------|------|\\n| Critical | W1: Holm-Bonferroni (now 12 tests, 3 survive) | ✅ 完成 |\\n| Critical | W2: Transfer appendix 实现细节 | ✅ 完成 |\\n| Warning | W3-W14: 全部文本修改 | ✅ 完成 |\\n\\n### 4-Model Holm-Bonferroni Summary\\n\\n| Model | Scale | Arch | Significant | Holm-Bonf |\\n|-------|-------|------|-------------|-----------|\\n| R1-8B | 8B | Llama | precision p<0.001, acc p=0.005 | ✅✅ |\\n| OT-7B | 7B | Qwen | bal_acc p=0.001 | ✅ |\\n| R1-32B | 32B | Qwen | directional p=0.064 | ❌ |\\n| QwQ-32B | 32B | Qwen | none p=0.35 | ❌ |\\n\\n## 近期任务\\n- [ ] Paper Agent 大 Patch: 整合 OT-7B 到全文（Table/Figure/Abstract/Intro/Method/Results/Discussion）\\n- [ ] Holm-Bonferroni 更新为 12 tests（step-down 表写入论文）\\n- [ ] Claim 2 framing 从 \\\"model-dependent\\\" 升级为 \\\"scale-dependent\\\"\\n- [ ] OT-7B 特殊性讨论（layer 0, W=3 peak, precision 35.7%）\\n- [ ] 提交最终审稿 submit_paper_to_review (continue mode)\\n\\n## GPU 预算\\n- 分配: 2x RTX PRO 6000 Blackwell (autodl-rtx6000)\\n- 当前: 两卡空闲（全部实验已完成，进入纯写作阶段）\\n- 实验总计: 18 experiments (9 success, 9 negative, 0 failed)\\n\\n## 关键时间线\\n- May 17: OT-7B pipeline 完成 (D023), 审稿 Round 2 fixes 全部完成\\n- May 17-19: Paper Agent 大 Patch（OT-7B 整合 + framing 升级）\\n- May 20-23: 最终审稿 + 修订\\n- **May 25: ARR DDL**\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D026 | 2026-05-17 | D026: OT-7B M001 修正 — best layer 从 0 改为 16 (57% de | exp_ot7b_full_pipeline |\\n| D025 | 2026-05-17 | D025: 批准 R1-8B layer 0-11 补测 + OT-7B layer 16 验证。R | exp_ot7b_full_pipeline |\\n| D024 | 2026-05-17 | D024: Framing 升级 — Claim 2 从 \\\"model-dependent\\\" 升级为 | exp_ot7b_full_pipeline, acc_prec_bootstrap |\\n| D023 | 2026-05-17 | D023: OT-7B Bonferroni 显著（bal_acc p=0.001, FPR p=0 | exp_ot7b_full_pipeline |\\n| D022 | 2026-05-17 | D022: 用户指令三路并行扩展——加模型(A)+加数据(B)+加方法(C)，冲 Main Conf | — |\\n| D021 | 2026-05-17 | Negative 实验复盘：识别 3 条被遗漏的方法改进线索，暂不开新实验 | exp_007_window_ablation, exp_014_bocpd_poc, exp_003_cross_transfer |\\n| D020 | 2026-05-17 | D019 修正：R1-32B selectivity 为 7.5pp（layer 10），论文改为分 | exp_c2_control_task |\\n| D019 | 2026-05-17 | QwQ layer 2 selectivity 15.3pp 通过有效性阈值，论文 selectiv | exp_c2_control_task |\\n| D018 | 2026-05-17 | Claim 2 统计基础确立: r1-8b HS precision +22.4pp (p<0.00 | acc_prec_bootstrap |\\n| D017 | 2026-05-17 | D016 修正: \\\"3/3 accuracy advantage\\\" 是选择性报告。QwQ 上 HS  | 32b_acc_extract |\\n\\n\", \"lines\": 70}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "acc93eff-50b6-4249-adef-8e27bf18eecf",
+  "isSidechain": false,
+  "promptId": "6a276064-f27a-4382-b799-65a5550c4275",
+  "type": "user",
+  "uuid": "2b1824e2-bbc5-495b-aceb-71442e3d5959",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/ROADMAP.md\\\", \\\"content\\\": \\\"# contrastive_trace_safety — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 08:44 UTC | 更新原因: D023 OT-7B 完成后全面更新：framing 升级 scale-dependent，三路扩展结果汇总，进入论文最终修订阶段\\\\n\\\\n## 核心方向\\\\nReasoning model 安全承诺检测的首个系统性评估。4 models / 2 architectures / 2 training methods / 2 scales。核心发现：(1) 时序上下文普遍改善 text probes；(2) HS 优势是 scale-dependent（7-8B 显著，32B 不显著）；(3) 3/12 Holm-Bonferroni 通过（2 个独立模型）。详见 paper_framing.md。\\\\n\\\\n## 当前阶段: 论文最终修订 → 提交审稿\\\\n\\\\n**目标**: EMNLP 2026 Main Conference, ARR DDL May 25\\\\n\\\\n### 三路扩展结果总结（D022-D023）\\\\n\\\\n| Path | 目标 | 结果 | 状态 |\\\\n|------|------|------|------|\\\\n| A: 加模型 OT-7B | Architecture+training confound | ✅ SUCCESS: bal_acc p=0.001, FPR p=0.007 Bonferroni sig | 完成 |\\\\n| B: 加数据 32B | Statistical power | ❌ DROPPED: 本地 annotation validation F1=0.59 | 降级 |\\\\n| C: Adaptive window | Novelty ceiling | ❌ DROPPED: 改进在噪声范围内 | Discussion mention |\\\\n\\\\n### 审稿 Round 2 修复\\\\n\\\\n| 类型 | 条目 | 状态 |\\\\n|------|------|------|\\\\n| Critical | W1: Holm-Bonferroni (now 12 tests, 3 survive) | ✅ 完成 |\\\\n| Critical | W2: Transfer appendix 实现细节 | ✅ 完成 |\\\\n| Warning | W3-W14: 全部文本修改 | ✅ 完成 |\\\\n\\\\n### 4-Model Holm-Bonferroni Summary\\\\n\\\\n| Model | Scale | Arch | Significant | Holm-Bonf |\\\\n|-------|-------|------|-------------|-----------|\\\\n| R1-8B | 8B | Llama | precision p<0.001, acc p=0.005 | ✅✅ |\\\\n| OT-7B | 7B | Qwen | bal_acc p=0.001 | ✅ |\\\\n| R1-32B | 32B | Qwen | directional p=0.064 | ❌ |\\\\n| QwQ-32B | 32B | Qwen | none p=0.35 | ❌ |\\\\n\\\\n## 近期任务\\\\n- [ ] Paper Agent 大 Patch: 整合 OT-7B 到全文（Table/Figure/Abstract/Intro/Method/Results/Discussion）\\\\n- [ ] Holm-Bonferroni 更新为 12 tests（step-down 表写入论文）\\\\n- [ ] Claim 2 framing 从 \\\\\\\"model-dependent\\\\\\\" 升级为 \\\\\\\"scale-dependent\\\\\\\"\\\\n- [ ] OT-7B 特殊性讨论（layer 0, W=3 peak, precision 35.7%）\\\\n- [ ] 提交最终审稿 submit_paper_to_review (continue mode)\\\\n\\\\n## GPU 预算\\\\n- 分配: 2x RTX PRO 6000 Blackwell (autodl-rtx6000)\\\\n- 当前: 两卡空闲（全部实验已完成，进入纯写作阶段）\\\\n- 实验总计: 18 experiments (9 success, 9 negative, 0 failed)\\\\n\\\\n## 关键时间线\\\\n- May 17: OT-7B pipeline 完成 (D023), 审稿 Round 2 fixes 全部完成\\\\n- May 17-19: Paper Agent 大 Patch（OT-7B 整合 + framing 升级）\\\\n- May 20-23: 最终审稿 + 修订\\\\n- **May 25: ARR DDL**\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D026 | 2026-05-17 | D026: OT-7B M001 修正 — best layer 从 0 改为 16 (57% de | exp_ot7b_full_pipeline |\\\\n| D025 | 2026-05-17 | D025: 批准 R1-8B layer 0-11 补测 + OT-7B layer 16 验证。R | exp_ot7b_full_pipeline |\\\\n| D024 | 2026-05-17 | D024: Framing 升级 — Claim 2 从 \\\\\\\"model-dependent\\\\\\\" 升级为 | exp_ot7b_full_pipeline, acc_prec_bootstrap |\\\\n| D023 | 2026-05-17 | D023: OT-7B Bonferroni 显著（bal_acc p=0.001, FPR p=0 | exp_ot7b_full_pipeline |\\\\n| D022 | 2026-05-17 | D022: 用户指令三路并行扩展——加模型(A)+加数据(B)+加方法(C)，冲 Main Conf | — |\\\\n| D021 | 2026-05-17 | Negative 实验复盘：识别 3 条被遗漏的方法改进线索，暂不开新实验 | exp_007_window_ablation, exp_014_bocpd_poc, exp_003_cross_transfer |\\\\n| D020 | 2026-05-17 | D019 修正：R1-32B selectivity 为 7.5pp（layer 10），论文改为分 | exp_c2_control_task |\\\\n| D019 | 2026-05-17 | QwQ layer 2 selectivity 15.3pp 通过有效性阈值，论文 selectiv | exp_c2_control_task |\\\\n| D018 | 2026-05-17 | Claim 2 统计基础确立: r1-8b HS precision +22.4pp (p<0.00 | acc_prec_bootstrap |\\\\n| D017 | 2026-05-17 | D016 修正: \\\\\\\"3/3 accuracy advantage\\\\\\\" 是选择性报告。QwQ 上 HS  | 32b_acc_extract |\\\\n\\\\n\\\", \\\"lines\\\": 70}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/ROADMAP.md\", \"content\": \"# contrastive_trace_safety — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:44 UTC | 更新原因: D023 OT-7B 完成后全面更新：framing 升级 scale-dependent，三路扩展结果汇总，进入论文最终修订阶段\\n\\n## 核心方向\\nReasoning model 安全承诺检测的首个系统性评估。4 models / 2 architectures / 2 training methods / 2 scales。核心发现：(1) 时序上下文普遍改善 text probes；(2) HS 优势是 scale-dependent（7-8B 显著，32B 不显著）；(3) 3/12 Holm-Bonferroni 通过（2 个独立模型）。详见 paper_framing.md。\\n\\n## 当前阶段: 论文最终修订 → 提交审稿\\n\\n**目标**: EMNLP 2026 Main Conference, ARR DDL May 25\\n\\n### 三路扩展结果总结（D022-D023）\\n\\n| Path | 目标 | 结果 | 状态 |\\n|------|------|------|------|\\n| A: 加模型 OT-7B | Architecture+training confound | ✅ SUCCESS: bal_acc p=0.001, FPR p=0.007 Bonferroni sig | 完成 |\\n| B: 加数据 32B | Statistical power | ❌ DROPPED: 本地 annotation validation F1=0.59 | 降级 |\\n| C: Adaptive window | Novelty ceiling | ❌ DROPPED: 改进在噪声范围内 | Discussion mention |\\n\\n### 审稿 Round 2 修复\\n\\n| 类型 | 条目 | 状态 |\\n|------|------|------|\\n| Critical | W1: Holm-Bonferroni (now 12 tests, 3 survive) | ✅ 完成 |\\n| Critical | W2: Transfer appendix 实现细节 | ✅ 完成 |\\n| Warning | W3-W14: 全部文本修改 | ✅ 完成 |\\n\\n### 4-Model Holm-Bonferroni Summary\\n\\n| Model | Scale | Arch | Significant | Holm-Bonf |\\n|-------|-------|------|-------------|-----------|\\n| R1-8B | 8B | Llama | precision p<0.001, acc p=0.005 | ✅✅ |\\n| OT-7B | 7B | Qwen | bal_acc p=0.001 | ✅ |\\n| R1-32B | 32B | Qwen | directional p=0.064 | ❌ |\\n| QwQ-32B | 32B | Qwen | none p=0.35 | ❌ |\\n\\n## 近期任务\\n- [ ] Paper Agent 大 Patch: 整合 OT-7B 到全文（Table/Figure/Abstract/Intro/Method/Results/Discussion）\\n- [ ] Holm-Bonferroni 更新为 12 tests（step-down 表写入论文）\\n- [ ] Claim 2 framing 从 \\\"model-dependent\\\" 升级为 \\\"scale-dependent\\\"\\n- [ ] OT-7B 特殊性讨论（layer 0, W=3 peak, precision 35.7%）\\n- [ ] 提交最终审稿 submit_paper_to_review (continue mode)\\n\\n## GPU 预算\\n- 分配: 2x RTX PRO 6000 Blackwell (autodl-rtx6000)\\n- 当前: 两卡空闲（全部实验已完成，进入纯写作阶段）\\n- 实验总计: 18 experiments (9 success, 9 negative, 0 failed)\\n\\n## 关键时间线\\n- May 17: OT-7B pipeline 完成 (D023), 审稿 Round 2 fixes 全部完成\\n- May 17-19: Paper Agent 大 Patch（OT-7B 整合 + framing 升级）\\n- May 20-23: 最终审稿 + 修订\\n- **May 25: ARR DDL**\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D026 | 2026-05-17 | D026: OT-7B M001 修正 — best layer 从 0 改为 16 (57% de | exp_ot7b_full_pipeline |\\n| D025 | 2026-05-17 | D025: 批准 R1-8B layer 0-11 补测 + OT-7B layer 16 验证。R | exp_ot7b_full_pipeline |\\n| D024 | 2026-05-17 | D024: Framing 升级 — Claim 2 从 \\\"model-dependent\\\" 升级为 | exp_ot7b_full_pipeline, acc_prec_bootstrap |\\n| D023 | 2026-05-17 | D023: OT-7B Bonferroni 显著（bal_acc p=0.001, FPR p=0 | exp_ot7b_full_pipeline |\\n| D022 | 2026-05-17 | D022: 用户指令三路并行扩展——加模型(A)+加数据(B)+加方法(C)，冲 Main Conf | — |\\n| D021 | 2026-05-17 | Negative 实验复盘：识别 3 条被遗漏的方法改进线索，暂不开新实验 | exp_007_window_ablation, exp_014_bocpd_poc, exp_003_cross_transfer |\\n| D020 | 2026-05-17 | D019 修正：R1-32B selectivity 为 7.5pp（layer 10），论文改为分 | exp_c2_control_task |\\n| D019 | 2026-05-17 | QwQ layer 2 selectivity 15.3pp 通过有效性阈值，论文 selectiv | exp_c2_control_task |\\n| D018 | 2026-05-17 | Claim 2 统计基础确立: r1-8b HS precision +22.4pp (p<0.00 | acc_prec_bootstrap |\\n| D017 | 2026-05-17 | D016 修正: \\\"3/3 accuracy advantage\\\" 是选择性报告。QwQ 上 HS  | 32b_acc_extract |\\n\\n\", \"lines\": 70}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "acc93eff-50b6-4249-adef-8e27bf18eecf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 这项目初始idea是讲什么的，用大白话和我讲清楚",
+  "leafUuid": "2b1824e2-bbc5-495b-aceb-71442e3d5959",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Explain project initial idea in simple terms",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-17T10:55:46.316Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the paper_framing.md to get a clearer picture of the core idea.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b1824e2-bbc5-495b-aceb-71442e3d5959",
+  "isSidechain": false,
+  "requestId": "req_011Cb824szZdcxAd3DfRMQ3Y",
+  "type": "assistant",
+  "uuid": "912667ec-c389-4d89-b1f5-a7f13caef808",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTNbNyjge6x8DVRRR2DGUZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3682,
+      "cache_read_input_tokens": 26514,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3682,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 26514,
+          "cache_creation_input_tokens": 3682,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3682
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-17T10:55:47.750Z_
+
+再读一下 paper framing 文件，把核心 idea 搞清楚。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "912667ec-c389-4d89-b1f5-a7f13caef808",
+  "isSidechain": false,
+  "requestId": "req_011Cb824szZdcxAd3DfRMQ3Y",
+  "type": "assistant",
+  "uuid": "75191cca-0deb-4dac-bf51-c809815fd3ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTNbNyjge6x8DVRRR2DGUZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3682,
+      "cache_read_input_tokens": 26514,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3682,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 26514,
+          "cache_creation_input_tokens": 3682,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3682
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T10:55:48.444Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01FBzBWECsUqCJ1gLthJ9tgK`</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75191cca-0deb-4dac-bf51-c809815fd3ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb824szZdcxAd3DfRMQ3Y",
+  "type": "assistant",
+  "uuid": "1f852e9c-1df9-49e3-964d-0cef5f1e8f4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTNbNyjge6x8DVRRR2DGUZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3682,
+      "cache_read_input_tokens": 26514,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3682,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 26514,
+          "cache_creation_input_tokens": 3682,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3682
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T10:55:48.461Z_
+
+<details><summary>↩ Tool result · `toolu_01FBzBWECsUqCJ1gLthJ9tgK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/paper_framing.md\", \"content\": \"# Paper Framing — contrastive_trace_safety\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (LLM Security Track)\\n- Deadline: ARR submission May 25, 2026\\n\\n## Core Claims (3 claims, 4 models, D024+D026 升级后)\\n\\n1. **Temporal context universally improves text probes; HS temporal gains are model-dependent** (D014 + D023 nuanced) — Temporal context is the most robust improvement across all 4 models and both modalities. Text probes benefit consistently from larger windows across all models. HS probes benefit in 3/4 models; OT-7B HS peaks at W=3 and declines at larger W (confirmed on both layer 0 and layer 16).\\n\\n   **HS temporal gains** (W=1→best, 3 original models): accuracy +3pp (77.8%→81.0%), precision +13pp (69.3%→82.2%), FPR halved (9.65%→4.83%).\\n   **OT-7B HS temporal** (layer 16): bal_acc peaks at W=3 (68.8%), declines to 65.9% at W=25 (-2.9pp). BUT precision and FPR continue improving (prec 42.8%→49.4%, FPR 12.0%→7.5%). Temporal saturation is bal_acc-specific; larger W trades bal_acc for better precision/FPR. Confirmed on both layer 0 and layer 16 — genuine OT-7B characteristic.\\n   **Text temporal gains** (all 4 models, W=1→best): universally +3-12pp bal_acc, +8-23pp precision, FPR reduced.\\n\\n   **IMPORTANT: coverage direction depends on detection criterion K.** K=1 (single crossing): coverage DECREASES with W. K=5 (consecutive crossings): coverage may INCREASE with W. Claim 1 is about accuracy/precision improvement, NOT coverage.\\n\\n   The core insight: \\\"Temporal context universally improves text probes across all 4 models. For HS probes, 3/4 models benefit from larger temporal windows, while OT-7B shows early saturation (W=3 peak). The modality gap itself is scale-dependent (see Claim 2), but temporal improvement for text is universal.\\\"\\n\\n2. **Scale-dependent HS advantage: definitive at 7-8B, directional-to-absent at 32B** (D018 + D023 + D026 升级) —\\n\\n   **7-8B models: HS significantly outperforms text (2/2 models)**\\n\\n   **R1-8B (Llama-8B, R1-distilled, n=43):**\\n   - Precision: 69.7% vs 47.2% (+22.4pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - Accuracy: 81.3% vs 72.9% (+8.2pp, p=0.005, **Holm-Bonferroni ✅**)\\n   - Pre-CP FPR: 14.8% vs 22.2% (-7.4pp, p=0.044, Holm-Bonferroni ❌)\\n\\n   **OT-7B (Qwen-7B, STILL-trained, n=47, layer 16, matched W=3) — D026 M001 corrected:**\\n   - Bal Acc: 68.8% vs 57.9% (+10.9pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - Precision: 46.6% vs 25.4% (+21.2pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - Pre-CP FPR: 10.0% vs 27.1% (-17.1pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - **3/3 metrics significant — OT-7B is now the cleanest single-model evidence**\\n\\n   **32B models: no significant HS advantage (0/2 models), but qualitatively different**\\n   - R1-32B (Qwen-32B, distilled): precision +9.4pp (p=0.064), accuracy +6.2pp (p=0.13) — directional, likely underpowered (effect sizes similar to 7-8B but n=20 vs 43-47)\\n   - QwQ-32B (Qwen-32B, native): precision +5.8pp (p=0.35), accuracy +0.9pp (p=0.83) — genuinely absent effect (bal_acc +0.9pp is negligible)\\n   - R1-32B vs QwQ-32B difference may reflect training method (distilled vs native) as additional moderator beyond scale. Discussion should note this.\\n\\n   **Scale-dependent framing**: HS advantage is robust at 7-8B (2/2 models, cross-architecture Llama+Qwen, cross-training distilled+STILL) and absent at 32B (0/2 models). 32B models show both smaller effect sizes (R1-32B precision +9.4pp vs R1-8B +22.4pp) AND smaller test sets (n=19-20 vs n=43-47). Both reduced power and genuinely weaker effects may contribute to non-significance at 32B. Paper Limitations must acknowledge this confound. Scale remains the primary moderator candidate given the 2x2 architecture/training control.\\n\\n   **Holm-Bonferroni correction (12 tests = 4 models x 3 metrics)**:\\n   Step-down results (α=0.05):\\n   | Rank | Test | p-value | α_adj | Result |\\n   |------|------|---------|-------|--------|\\n   | 1 | R1-8B precision | <0.001 | 0.00417 | ✅ REJECT |\\n   | 2 | OT-7B bal_acc | <0.001 | 0.00455 | ✅ REJECT |\\n   | 3 | OT-7B precision | <0.001 | 0.005 | ✅ REJECT |\\n   | 4 | OT-7B FPR | <0.001 | 0.00556 | ✅ REJECT |\\n   | 5 | R1-8B accuracy | 0.005 | 0.00625 | ✅ REJECT |\\n   | 6 | R1-8B FPR | 0.044 | 0.00714 | ❌ stop |\\n   **5/12 tests survive**, from 2 independent models. OT-7B contributes 3/3 (all metrics). R1-8B contributes 2/3.\\n   NOTE: R1-8B accuracy at step 5 now has comfortable margin (p=0.005 vs α=0.00625). No longer borderline.\\n\\n   **FPR dual reporting**: Step-level (r1-8b: HS 8.8%, text 20.5%) vs trace-level (HS 14.8%, text 22.2%). Both reported.\\n\\n   **FPR reversal RESOLVED (D026)**: With layer 16, OT-7B HS FPR (10.0%) < Text FPR at ANY window (text best W=25: 16.1%). HS dominates text on FPR under all conditions at 7-8B scale. Previous layer 0 artifact (HS 18.8% > text@W=25 16.1%) is gone.\\n\\n   **Effect size consistency**: Precision advantage is remarkably consistent across architecturally distinct 7-8B models: +22.4pp (Llama-based R1-8B) and +21.2pp (Qwen-based OT-7B). This cross-architecture convergence strengthens the scale-dependent interpretation.\\n\\n   Paper recommended claim: \\\"At 7-8B scale, HS probes significantly outperform text probes with remarkably consistent precision advantages (+22.4pp on R1-8B, +21.2pp on OT-7B; all p<0.001), with 5 of 12 tests surviving Holm-Bonferroni correction. At 32B scale, differences are directional but not statistically significant, revealing a scale-dependent phenomenon.\\\"\\n\\n3. **HS and text monitoring exhibit different detection timing profiles** (narrowed from old Claim 3) — On r1-8b: HS temporal LR detects AT the commitment point (lead ~0) while text detects ~10 steps earlier. GRU achieves modest positive lead (+4.5+-3.0, worst seed +0.9). BOCPD/CUSUM fail to improve over simple thresholds. The oracle's +31-step advantage shows hidden states encode current safety state but poorly predict future trajectory. On 32B models: timing profiles vary (QwQ GRU lead +15.9, R1-32B +8.8) but FPR differences are non-significant, so the precision-vs-timing tradeoff is 7-8B-specific. OT-7B: HS lead=32.9, Text lead=41.6 at matched W=3 — both high due to long traces (~80 sentences).\\n\\n## RETRACTED: Former Claim 4 (Layer Depth Patterns)\\n\\nOptimal layer depths show scale-dependent pattern: 7-8B models use mid-layers (R1-8B: layer 14, 45%; OT-7B: layer 16, 57%), 32B models use early layers (R1-32B: layer 10, 15.6%; QwQ-32B: layer 2, 3.1%). R1-8B full sweep (layers 0-24) confirmed layer 14 optimal — early layers NOT better (layer 0 worst at 71.0% vs layer 14 at 78.3%). Layer selection must be per-model (sweep required). NOT a claim — practical finding for Discussion section.\\n\\n## Story Spine\\n\\n- **Problem**: Reasoning models exhibit \\\"self-jailbreak\\\" — safety reasoning and harmful execution interleave throughout extended CoT, culminating in a \\\"commitment point\\\" where safety reasoning permanently ceases. Existing hidden-state detectors (TrajGuard, SafeSwitch, SIREN) target adversarial INPUT attacks on instruction-tuned models; they have never been evaluated on reasoning-model self-jailbreak where the threat is the model's OWN reasoning process.\\n\\n- **Existing approaches & gaps**: Hidden-state detectors achieve 95% defense on standard LLMs (TrajGuard) but operate at token-level. Reasoning-model safety analysis (Self-Jailbreaking, HarmThoughts) characterizes the phenomenon without providing deployable detectors. Text-level CoT monitors (SafeRemind, SafeThink) are vulnerable to pathological CoT. No prior work systematically compares detection modalities for reasoning-model self-jailbreak.\\n\\n- **Our framing**: We provide the first systematic evaluation of detection methods for reasoning-model safety commitment across **4 models, 2 architectures (Llama + Qwen), 2 training methods (R1-distilled + STILL), and 2 scales (7-8B + 32B)**, comparing hidden-state probes, text-based probes, sequence models (GRU), change-point detection (BOCPD/CUSUM), and unsupervised methods (Mahalanobis). We discover that: (a) temporal context is the most robust improvement, benefiting text probes universally across all 4 models; (b) HS advantage over text is **scale-dependent** — significant at 7-8B (2/2 models, 5/6 metrics surviving Holm-Bonferroni), absent at 32B (0/2 models); (c) existing methods designed for other settings (TrajGuard, BOCPD) fail on reasoning model commitment; (d) safety representations are model-specific (cross-transfer fails entirely), validated by control task (selectivity 7.5-18.5pp).\\n\\n- **Headline result**: \\\"Temporal context universally improves text probe accuracy across all 4 models. The HS advantage over text probes is scale-dependent: at 7-8B, HS probes achieve significantly higher precision (R1-8B +22.4pp; OT-7B +21.2pp), balanced accuracy (+8.2pp; +10.9pp), and lower FPR (OT-7B -17.1pp), with 5 of 12 tests surviving Holm-Bonferroni correction. At 32B, HS-text differences are directional but not statistically significant. These findings, combined with the failure of unsupervised and change-point methods, establish the practical landscape for monitoring reasoning-model safety commitment.\\\"\\n\\n## Key Evidence Summary\\n\\n### R1-8B (Llama-8B, R1-distilled, n=43 test, class_weight=balanced, 60/20/20 split — CANONICAL)\\n\\nBest layer: 14 (45% depth). Full sweep layers 0-24 confirmed: layer 12 marginally better (+0.4pp bal_acc), no practical difference.\\n\\n| Method | Coverage | Lead Time | Pre-CP FPR | Safe FPR |\\n|--------|----------|-----------|------------|----------|\\n| HS Static LR L14 | — | -2.0 | **9.7%** | — |\\n| HS Temporal W=5 | — | +0.6 | **10.2%** | — |\\n| HS Temporal W=15 | — | **-0.1** | **8.8%** | — |\\n| Text Temporal W=15 | — | +10.3* | 20.5% | — |\\n| GRU Multi-7L (3-seed) | 72.9+-4.0% | +4.5+-3.0 | 16.5+-4.1% | — |\\n\\n*Text lead time inflated by high pre-CP FPR (trigger-happy detection)\\nNOTE: HS LR lead time collapsed to ~0 with balanced weights — HS detects AT commitment, not before. Only GRU achieves positive lead (+4.5, worst seed +0.9).\\n\\n### OT-7B (Qwen-7B, STILL-trained, n=47 test, 228 total traces) — D026 CORRECTED to layer 16\\n\\nBest layer: **16 (57% depth)**. M001 corrected: layer 0 was selected by bal_acc x crossing_rate bug; layer 16 selected by bal_acc.\\n\\n| Method | Bal Acc | Precision | Coverage | Pre-CP FPR | Lead |\\n|--------|---------|-----------|----------|-----------|------|\\n| HS Temporal W=3 L16 (best) | **68.8%** | **46.6%** | 53.2% | **10.0%** | — |\\n| Text Temporal W=25 (best) | 61.4% | 32.9% | 66.0% | 16.1% | 45.5 |\\n| Text Temporal W=3 (matched) | 57.9% | 25.4% | — | 27.1% | — |\\n\\nBootstrap (layer 16, matched W=3): bal_acc +10.9pp (p<0.001 ✅), precision +21.2pp (p<0.001 ✅), FPR -17.1pp (p<0.001 ✅) — **3/3 Holm-Bonferroni**\\nSelectivity: 18.5pp (highest across all models)\\nNOTE: OT-7B precision (46.6%) still lower than R1-8B (69.7%) due to longer traces (~80 sentences vs ~30). Expected and explained in Results.\\nNOTE: HS temporal gains reverse after W=3 (confirmed on layer 16). Text probes improve normally with larger W.\\nNOTE: HS FPR@layer16 (10.0%) < Text FPR at best W=25 (16.1%) — HS dominates on FPR under ALL conditions. Previous FPR reversal was layer 0 artifact.\\n\\n### 32B Cross-Architecture (D010, layer selection corrected)\\n\\n| Model | Best Layer | GRU (multi-layer, 3-seed) | HS pre-CP FPR | Text pre-CP FPR | p-value | Claim 2 |\\n|-------|-----------|--------------------------|--------------|----------------|---------|---------|\\n| R1-32B (64L) | 10 (15.6%) | cov=23%, lead=+8.8, FPR=11.4% | 26.0% | 24.6% | 0.999 | ❌ directional |\\n| QwQ-32B (64L) | 2 (3.1%) | cov=84%, lead=+15.9, FPR=28.9% | 22.4% | 21.4% | 0.904 | ❌ NO DIFF |\\n\\nR1-32B GRU extremely unstable: crossing 5%/25%/40% across seeds.\\n\\n### 4-Model Holm-Bonferroni Summary (D026 updated)\\n\\n| Model | Arch | Training | Scale | Significant Metrics (Holm-Bonf) | Selectivity |\\n|-------|------|----------|-------|----|-----|\\n| R1-8B | Llama | R1-distilled | 8B | precision (p<0.001) ✅, accuracy (p=0.005) ✅ | 12.5pp |\\n| OT-7B | Qwen | STILL | 7B | bal_acc (p<0.001) ✅, precision (p<0.001) ✅, FPR (p<0.001)\\n\\n... [截断: 省略 4048 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 16048, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f852e9c-1df9-49e3-964d-0cef5f1e8f4c",
+  "isSidechain": false,
+  "promptId": "6a276064-f27a-4382-b799-65a5550c4275",
+  "type": "user",
+  "uuid": "be5d4197-b68e-419a-ad5b-50fe6558964f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — contrastive_trace_safety\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (LLM Security Track)\\\\n- Deadline: ARR submission May 25, 2026\\\\n\\\\n## Core Claims (3 claims, 4 models, D024+D026 升级后)\\\\n\\\\n1. **Temporal context universally improves text probes; HS temporal gains are model-dependent** (D014 + D023 nuanced) — Temporal context is the most robust improvement across all 4 models and both modalities. Text probes benefit consistently from larger windows across all models. HS probes benefit in 3/4 models; OT-7B HS peaks at W=3 and declines at larger W (confirmed on both layer 0 and layer 16).\\\\n\\\\n   **HS temporal gains** (W=1→best, 3 original models): accuracy +3pp (77.8%→81.0%), precision +13pp (69.3%→82.2%), FPR halved (9.65%→4.83%).\\\\n   **OT-7B HS temporal** (layer 16): bal_acc peaks at W=3 (68.8%), declines to 65.9% at W=25 (-2.9pp). BUT precision and FPR continue improving (prec 42.8%→49.4%, FPR 12.0%→7.5%). Temporal saturation is bal_acc-specific; larger W trades bal_acc for better precision/FPR. Confirmed on both layer 0 and layer 16 — genuine OT-7B characteristic.\\\\n   **Text temporal gains** (all 4 models, W=1→best): universally +3-12pp bal_acc, +8-23pp precision, FPR reduced.\\\\n\\\\n   **IMPORTANT: coverage direction depends on detection criterion K.** K=1 (single crossing): coverage DECREASES with W. K=5 (consecutive crossings): coverage may INCREASE with W. Claim 1 is about accuracy/precision improvement, NOT coverage.\\\\n\\\\n   The core insight: \\\\\\\"Temporal context universally improves text probes across all 4 models. For HS probes, 3/4 models benefit from larger temporal windows, while OT-7B shows early saturation (W=3 peak). The modality gap itself is scale-dependent (see Claim 2), but temporal improvement for text is universal.\\\\\\\"\\\\n\\\\n2. **Scale-dependent HS advantage: definitive at 7-8B, directional-to-absent at 32B** (D018 + D023 + D026 升级) —\\\\n\\\\n   **7-8B models: HS significantly outperforms text (2/2 models)**\\\\n\\\\n   **R1-8B (Llama-8B, R1-distilled, n=43):**\\\\n   - Precision: 69.7% vs 47.2% (+22.4pp, p<0.001, **Holm-Bonferroni ✅**)\\\\n   - Accuracy: 81.3% vs 72.9% (+8.2pp, p=0.005, **Holm-Bonferroni ✅**)\\\\n   - Pre-CP FPR: 14.8% vs 22.2% (-7.4pp, p=0.044, Holm-Bonferroni ❌)\\\\n\\\\n   **OT-7B (Qwen-7B, STILL-trained, n=47, layer 16, matched W=3) — D026 M001 corrected:**\\\\n   - Bal Acc: 68.8% vs 57.9% (+10.9pp, p<0.001, **Holm-Bonferroni ✅**)\\\\n   - Precision: 46.6% vs 25.4% (+21.2pp, p<0.001, **Holm-Bonferroni ✅**)\\\\n   - Pre-CP FPR: 10.0% vs 27.1% (-17.1pp, p<0.001, **Holm-Bonferroni ✅**)\\\\n   - **3/3 metrics significant — OT-7B is now the cleanest single-model evidence**\\\\n\\\\n   **32B models: no significant HS advantage (0/2 models), but qualitatively different**\\\\n   - R1-32B (Qwen-32B, distilled): precision +9.4pp (p=0.064), accuracy +6.2pp (p=0.13) — directional, likely underpowered (effect sizes similar to 7-8B but n=20 vs 43-47)\\\\n   - QwQ-32B (Qwen-32B, native): precision +5.8pp (p=0.35), accuracy +0.9pp (p=0.83) — genuinely absent effect (bal_acc +0.9pp is negligible)\\\\n   - R1-32B vs QwQ-32B difference may reflect training method (distilled vs native) as additional moderator beyond scale. Discussion should note this.\\\\n\\\\n   **Scale-dependent framing**: HS advantage is robust at 7-8B (2/2 models, cross-architecture Llama+Qwen, cross-training distilled+STILL) and absent at 32B (0/2 models). 32B models show both smaller effect sizes (R1-32B precision +9.4pp vs R1-8B +22.4pp) AND smaller test sets (n=19-20 vs n=43-47). Both reduced power and genuinely weaker effects may contribute to non-significance at 32B. Paper Limitations must acknowledge this confound. Scale remains the primary moderator candidate given the 2x2 architecture/training control.\\\\n\\\\n   **Holm-Bonferroni correction (12 tests = 4 models x 3 metrics)**:\\\\n   Step-down results (α=0.05):\\\\n   | Rank | Test | p-value | α_adj | Result |\\\\n   |------|------|---------|-------|--------|\\\\n   | 1 | R1-8B precision | <0.001 | 0.00417 | ✅ REJECT |\\\\n   | 2 | OT-7B bal_acc | <0.001 | 0.00455 | ✅ REJECT |\\\\n   | 3 | OT-7B precision | <0.001 | 0.005 | ✅ REJECT |\\\\n   | 4 | OT-7B FPR | <0.001 | 0.00556 | ✅ REJECT |\\\\n   | 5 | R1-8B accuracy | 0.005 | 0.00625 | ✅ REJECT |\\\\n   | 6 | R1-8B FPR | 0.044 | 0.00714 | ❌ stop |\\\\n   **5/12 tests survive**, from 2 independent models. OT-7B contributes 3/3 (all metrics). R1-8B contributes 2/3.\\\\n   NOTE: R1-8B accuracy at step 5 now has comfortable margin (p=0.005 vs α=0.00625). No longer borderline.\\\\n\\\\n   **FPR dual reporting**: Step-level (r1-8b: HS 8.8%, text 20.5%) vs trace-level (HS 14.8%, text 22.2%). Both reported.\\\\n\\\\n   **FPR reversal RESOLVED (D026)**: With layer 16, OT-7B HS FPR (10.0%) < Text FPR at ANY window (text best W=25: 16.1%). HS dominates text on FPR under all conditions at 7-8B scale. Previous layer 0 artifact (HS 18.8% > text@W=25 16.1%) is gone.\\\\n\\\\n   **Effect size consistency**: Precision advantage is remarkably consistent across architecturally distinct 7-8B models: +22.4pp (Llama-based R1-8B) and +21.2pp (Qwen-based OT-7B). This cross-architecture convergence strengthens the scale-dependent interpretation.\\\\n\\\\n   Paper recommended claim: \\\\\\\"At 7-8B scale, HS probes significantly outperform text probes with remarkably consistent precision advantages (+22.4pp on R1-8B, +21.2pp on OT-7B; all p<0.001), with 5 of 12 tests surviving Holm-Bonferroni correction. At 32B scale, differences are directional but not statistically significant, revealing a scale-dependent phenomenon.\\\\\\\"\\\\n\\\\n3. **HS and text monitoring exhibit different detection timing profiles** (narrowed from old Claim 3) — On r1-8b: HS temporal LR detects AT the commitment point (lead ~0) while text detects ~10 steps earlier. GRU achieves modest positive lead (+4.5+-3.0, worst seed +0.9). BOCPD/CUSUM fail to improve over simple thresholds. The oracle's +31-step advantage shows hidden states encode current safety state but poorly predict future trajectory. On 32B models: timing profiles vary (QwQ GRU lead +15.9, R1-32B +8.8) but FPR differences are non-significant, so the precision-vs-timing tradeoff is 7-8B-specific. OT-7B: HS lead=32.9, Text lead=41.6 at matched W=3 — both high due to long traces (~80 sentences).\\\\n\\\\n## RETRACTED: Former Claim 4 (Layer Depth Patterns)\\\\n\\\\nOptimal layer depths show scale-dependent pattern: 7-8B models use mid-layers (R1-8B: layer 14, 45%; OT-7B: layer 16, 57%), 32B models use early layers (R1-32B: layer 10, 15.6%; QwQ-32B: layer 2, 3.1%). R1-8B full sweep (layers 0-24) confirmed layer 14 optimal — early layers NOT better (layer 0 worst at 71.0% vs layer 14 at 78.3%). Layer selection must be per-model (sweep required). NOT a claim — practical finding for Discussion section.\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Reasoning models exhibit \\\\\\\"self-jailbreak\\\\\\\" — safety reasoning and harmful execution interleave throughout extended CoT, culminating in a \\\\\\\"commitment point\\\\\\\" where safety reasoning permanently ceases. Existing hidden-state detectors (TrajGuard, SafeSwitch, SIREN) target adversarial INPUT attacks on instruction-tuned models; they have never been evaluated on reasoning-model self-jailbreak where the threat is the model's OWN reasoning process.\\\\n\\\\n- **Existing approaches & gaps**: Hidden-state detectors achieve 95% defense on standard LLMs (TrajGuard) but operate at token-level. Reasoning-model safety analysis (Self-Jailbreaking, HarmThoughts) characterizes the phenomenon without providing deployable detectors. Text-level CoT monitors (SafeRemind, SafeThink) are vulnerable to pathological CoT. No prior work systematically compares detection modalities for reasoning-model self-jailbreak.\\\\n\\\\n- **Our framing**: We provide the first systematic evaluation of detection methods for reasoning-model safety commitment across **4 models, 2 architectures (Llama + Qwen), 2 training methods (R1-distilled + STILL), and 2 scales (7-8B + 32B)**, comparing hidden-state probes, text-based probes, sequence models (GRU), change-point detection (BOCPD/CUSUM), and unsupervised methods (Mahalanobis). We discover that: (a) temporal context is the most robust improvement, benefiting text probes universally across all 4 models; (b) HS advantage over text is **scale-dependent** — significant at 7-8B (2/2 models, 5/6 metrics surviving Holm-Bonferroni), absent at 32B (0/2 models); (c) existing methods designed for other settings (TrajGuard, BOCPD) fail on reasoning model commitment; (d) safety representations are model-specific (cross-transfer fails entirely), validated by control task (selectivity 7.5-18.5pp).\\\\n\\\\n- **Headline result**: \\\\\\\"Temporal context universally improves text probe accuracy across all 4 models. The HS advantage over text probes is scale-dependent: at 7-8B, HS probes achieve significantly higher precision (R1-8B +22.4pp; OT-7B +21.2pp), balanced accuracy (+8.2pp; +10.9pp), and lower FPR (OT-7B -17.1pp), with 5 of 12 tests surviving Holm-Bonferroni correction. At 32B, HS-text differences are directional but not statistically significant. These findings, combined with the failure of unsupervised and change-point methods, establish the practical landscape for monitoring reasoning-model safety commitment.\\\\\\\"\\\\n\\\\n## Key Evidence Summary\\\\n\\\\n### R1-8B (Llama-8B, R1-distilled, n=43 test, class_weight=balanced, 60/20/20 split — CANONICAL)\\\\n\\\\nBest layer: 14 (45% depth). Full sweep layers 0-24 confirmed: layer 12 marginally better (+0.4pp bal_acc), no practical difference.\\\\n\\\\n| Method | Coverage | Lead Time | Pre-CP FPR | Safe FPR |\\\\n|--------|----------|-----------|------------|----------|\\\\n| HS Static LR L14 | — | -2.0 | **9.7%** | — |\\\\n| HS Temporal W=5 | — | +0.6 | **10.2%** | — |\\\\n| HS Temporal W=15 | — | **-0.1** | **8.8%** | — |\\\\n| Text Temporal W=15 | — | +10.3* | 20.5% | — |\\\\n| GRU Multi-7L (3-seed) | 72.9+-4.0% | +4.5+-3.0 | 16.5+-4.1% | — |\\\\n\\\\n*Text lead time inflated by high pre-CP FPR (trigger-happy detection)\\\\nNOTE: HS LR lead time collapsed to ~0 with balanced weights — HS detects AT commitment, not before. Only GRU achieves positive lead (+4.5, worst seed +0.9).\\\\n\\\\n### OT-7B (Qwen-7B, STILL-trained, n=47 test, 228 total traces) — D026 CORRECTED to layer 16\\\\n\\\\nBest layer: **16 (57% depth)**. M001 corrected: layer 0 was selected by bal_acc x crossing_rate bug; layer 16 selected by bal_acc.\\\\n\\\\n| Method | Bal Acc | Precision | Coverage | Pre-CP FPR | Lead |\\\\n|--------|---------|-----------|----------|-----------|------|\\\\n| HS Temporal W=3 L16 (best) | **68.8%** | **46.6%** | 53.2% | **10.0%** | — |\\\\n| Text Temporal W=25 (best) | 61.4% | 32.9% | 66.0% | 16.1% | 45.5 |\\\\n| Text Temporal W=3 (matched) | 57.9% | 25.4% | — | 27.1% | — |\\\\n\\\\nBootstrap (layer 16, matched W=3): bal_acc +10.9pp (p<0.001 ✅), precision +21.2pp (p<0.001 ✅), FPR -17.1pp (p<0.001 ✅) — **3/3 Holm-Bonferroni**\\\\nSelectivity: 18.5pp (highest across all models)\\\\nNOTE: OT-7B precision (46.6%) still lower than R1-8B (69.7%) due to longer traces (~80 sentences vs ~30). Expected and explained in Results.\\\\nNOTE: HS temporal gains reverse after W=3 (confirmed on layer 16). Text probes improve normally with larger W.\\\\nNOTE: HS FPR@layer16 (10.0%) < Text FPR at best W=25 (16.1%) — HS dominates on FPR under ALL conditions. Previous FPR reversal was layer 0 artifact.\\\\n\\\\n### 32B Cross-Architecture (D010, layer selection corrected)\\\\n\\\\n| Model | Best Layer | GRU (multi-layer, 3-seed) | HS pre-CP FPR | Text pre-CP FPR | p-value | Claim 2 |\\\\n|-------|-----------|--------------------------|--------------|----------------|---------|---------|\\\\n| R1-32B (64L) | 10 (15.6%) | cov=23%, lead=+8.8, FPR=11.4% | 26.0% | 24.6% | 0.999 | ❌ directional |\\\\n| QwQ-32B (64L) | 2 (3.1%) | cov=84%, lead=+15.9, FPR=28.9% | 22.4% | 21.4% | 0.904 | ❌ NO DIFF |\\\\n\\\\nR1-32B GRU extremely unstable: crossing 5%/25%/40% across seeds.\\\\n\\\\n### 4-Model Holm-Bonferroni Summary (D026 updated)\\\\n\\\\n| Model | Arch | Training | Scale | Significant Metrics (Holm-Bonf) | Selectivity |\\\\n|-------|------|----------|-------|----|-----|\\\\n| R1-8B | Llama | R1-distilled | 8B | precision (p<0.001) ✅, accuracy (p=0.005) ✅ | 12.5pp |\\\\n| OT-7B | Qwen | STILL | 7B | bal_acc (p<0.001) ✅, precision (p<0.001) ✅, FPR (p<0.001)\\\\n\\\\n... [截断: 省略 4048 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 16048, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/paper_framing.md\", \"content\": \"# Paper Framing — contrastive_trace_safety\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (LLM Security Track)\\n- Deadline: ARR submission May 25, 2026\\n\\n## Core Claims (3 claims, 4 models, D024+D026 升级后)\\n\\n1. **Temporal context universally improves text probes; HS temporal gains are model-dependent** (D014 + D023 nuanced) — Temporal context is the most robust improvement across all 4 models and both modalities. Text probes benefit consistently from larger windows across all models. HS probes benefit in 3/4 models; OT-7B HS peaks at W=3 and declines at larger W (confirmed on both layer 0 and layer 16).\\n\\n   **HS temporal gains** (W=1→best, 3 original models): accuracy +3pp (77.8%→81.0%), precision +13pp (69.3%→82.2%), FPR halved (9.65%→4.83%).\\n   **OT-7B HS temporal** (layer 16): bal_acc peaks at W=3 (68.8%), declines to 65.9% at W=25 (-2.9pp). BUT precision and FPR continue improving (prec 42.8%→49.4%, FPR 12.0%→7.5%). Temporal saturation is bal_acc-specific; larger W trades bal_acc for better precision/FPR. Confirmed on both layer 0 and layer 16 — genuine OT-7B characteristic.\\n   **Text temporal gains** (all 4 models, W=1→best): universally +3-12pp bal_acc, +8-23pp precision, FPR reduced.\\n\\n   **IMPORTANT: coverage direction depends on detection criterion K.** K=1 (single crossing): coverage DECREASES with W. K=5 (consecutive crossings): coverage may INCREASE with W. Claim 1 is about accuracy/precision improvement, NOT coverage.\\n\\n   The core insight: \\\"Temporal context universally improves text probes across all 4 models. For HS probes, 3/4 models benefit from larger temporal windows, while OT-7B shows early saturation (W=3 peak). The modality gap itself is scale-dependent (see Claim 2), but temporal improvement for text is universal.\\\"\\n\\n2. **Scale-dependent HS advantage: definitive at 7-8B, directional-to-absent at 32B** (D018 + D023 + D026 升级) —\\n\\n   **7-8B models: HS significantly outperforms text (2/2 models)**\\n\\n   **R1-8B (Llama-8B, R1-distilled, n=43):**\\n   - Precision: 69.7% vs 47.2% (+22.4pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - Accuracy: 81.3% vs 72.9% (+8.2pp, p=0.005, **Holm-Bonferroni ✅**)\\n   - Pre-CP FPR: 14.8% vs 22.2% (-7.4pp, p=0.044, Holm-Bonferroni ❌)\\n\\n   **OT-7B (Qwen-7B, STILL-trained, n=47, layer 16, matched W=3) — D026 M001 corrected:**\\n   - Bal Acc: 68.8% vs 57.9% (+10.9pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - Precision: 46.6% vs 25.4% (+21.2pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - Pre-CP FPR: 10.0% vs 27.1% (-17.1pp, p<0.001, **Holm-Bonferroni ✅**)\\n   - **3/3 metrics significant — OT-7B is now the cleanest single-model evidence**\\n\\n   **32B models: no significant HS advantage (0/2 models), but qualitatively different**\\n   - R1-32B (Qwen-32B, distilled): precision +9.4pp (p=0.064), accuracy +6.2pp (p=0.13) — directional, likely underpowered (effect sizes similar to 7-8B but n=20 vs 43-47)\\n   - QwQ-32B (Qwen-32B, native): precision +5.8pp (p=0.35), accuracy +0.9pp (p=0.83) — genuinely absent effect (bal_acc +0.9pp is negligible)\\n   - R1-32B vs QwQ-32B difference may reflect training method (distilled vs native) as additional moderator beyond scale. Discussion should note this.\\n\\n   **Scale-dependent framing**: HS advantage is robust at 7-8B (2/2 models, cross-architecture Llama+Qwen, cross-training distilled+STILL) and absent at 32B (0/2 models). 32B models show both smaller effect sizes (R1-32B precision +9.4pp vs R1-8B +22.4pp) AND smaller test sets (n=19-20 vs n=43-47). Both reduced power and genuinely weaker effects may contribute to non-significance at 32B. Paper Limitations must acknowledge this confound. Scale remains the primary moderator candidate given the 2x2 architecture/training control.\\n\\n   **Holm-Bonferroni correction (12 tests = 4 models x 3 metrics)**:\\n   Step-down results (α=0.05):\\n   | Rank | Test | p-value | α_adj | Result |\\n   |------|------|---------|-------|--------|\\n   | 1 | R1-8B precision | <0.001 | 0.00417 | ✅ REJECT |\\n   | 2 | OT-7B bal_acc | <0.001 | 0.00455 | ✅ REJECT |\\n   | 3 | OT-7B precision | <0.001 | 0.005 | ✅ REJECT |\\n   | 4 | OT-7B FPR | <0.001 | 0.00556 | ✅ REJECT |\\n   | 5 | R1-8B accuracy | 0.005 | 0.00625 | ✅ REJECT |\\n   | 6 | R1-8B FPR | 0.044 | 0.00714 | ❌ stop |\\n   **5/12 tests survive**, from 2 independent models. OT-7B contributes 3/3 (all metrics). R1-8B contributes 2/3.\\n   NOTE: R1-8B accuracy at step 5 now has comfortable margin (p=0.005 vs α=0.00625). No longer borderline.\\n\\n   **FPR dual reporting**: Step-level (r1-8b: HS 8.8%, text 20.5%) vs trace-level (HS 14.8%, text 22.2%). Both reported.\\n\\n   **FPR reversal RESOLVED (D026)**: With layer 16, OT-7B HS FPR (10.0%) < Text FPR at ANY window (text best W=25: 16.1%). HS dominates text on FPR under all conditions at 7-8B scale. Previous layer 0 artifact (HS 18.8% > text@W=25 16.1%) is gone.\\n\\n   **Effect size consistency**: Precision advantage is remarkably consistent across architecturally distinct 7-8B models: +22.4pp (Llama-based R1-8B) and +21.2pp (Qwen-based OT-7B). This cross-architecture convergence strengthens the scale-dependent interpretation.\\n\\n   Paper recommended claim: \\\"At 7-8B scale, HS probes significantly outperform text probes with remarkably consistent precision advantages (+22.4pp on R1-8B, +21.2pp on OT-7B; all p<0.001), with 5 of 12 tests surviving Holm-Bonferroni correction. At 32B scale, differences are directional but not statistically significant, revealing a scale-dependent phenomenon.\\\"\\n\\n3. **HS and text monitoring exhibit different detection timing profiles** (narrowed from old Claim 3) — On r1-8b: HS temporal LR detects AT the commitment point (lead ~0) while text detects ~10 steps earlier. GRU achieves modest positive lead (+4.5+-3.0, worst seed +0.9). BOCPD/CUSUM fail to improve over simple thresholds. The oracle's +31-step advantage shows hidden states encode current safety state but poorly predict future trajectory. On 32B models: timing profiles vary (QwQ GRU lead +15.9, R1-32B +8.8) but FPR differences are non-significant, so the precision-vs-timing tradeoff is 7-8B-specific. OT-7B: HS lead=32.9, Text lead=41.6 at matched W=3 — both high due to long traces (~80 sentences).\\n\\n## RETRACTED: Former Claim 4 (Layer Depth Patterns)\\n\\nOptimal layer depths show scale-dependent pattern: 7-8B models use mid-layers (R1-8B: layer 14, 45%; OT-7B: layer 16, 57%), 32B models use early layers (R1-32B: layer 10, 15.6%; QwQ-32B: layer 2, 3.1%). R1-8B full sweep (layers 0-24) confirmed layer 14 optimal — early layers NOT better (layer 0 worst at 71.0% vs layer 14 at 78.3%). Layer selection must be per-model (sweep required). NOT a claim — practical finding for Discussion section.\\n\\n## Story Spine\\n\\n- **Problem**: Reasoning models exhibit \\\"self-jailbreak\\\" — safety reasoning and harmful execution interleave throughout extended CoT, culminating in a \\\"commitment point\\\" where safety reasoning permanently ceases. Existing hidden-state detectors (TrajGuard, SafeSwitch, SIREN) target adversarial INPUT attacks on instruction-tuned models; they have never been evaluated on reasoning-model self-jailbreak where the threat is the model's OWN reasoning process.\\n\\n- **Existing approaches & gaps**: Hidden-state detectors achieve 95% defense on standard LLMs (TrajGuard) but operate at token-level. Reasoning-model safety analysis (Self-Jailbreaking, HarmThoughts) characterizes the phenomenon without providing deployable detectors. Text-level CoT monitors (SafeRemind, SafeThink) are vulnerable to pathological CoT. No prior work systematically compares detection modalities for reasoning-model self-jailbreak.\\n\\n- **Our framing**: We provide the first systematic evaluation of detection methods for reasoning-model safety commitment across **4 models, 2 architectures (Llama + Qwen), 2 training methods (R1-distilled + STILL), and 2 scales (7-8B + 32B)**, comparing hidden-state probes, text-based probes, sequence models (GRU), change-point detection (BOCPD/CUSUM), and unsupervised methods (Mahalanobis). We discover that: (a) temporal context is the most robust improvement, benefiting text probes universally across all 4 models; (b) HS advantage over text is **scale-dependent** — significant at 7-8B (2/2 models, 5/6 metrics surviving Holm-Bonferroni), absent at 32B (0/2 models); (c) existing methods designed for other settings (TrajGuard, BOCPD) fail on reasoning model commitment; (d) safety representations are model-specific (cross-transfer fails entirely), validated by control task (selectivity 7.5-18.5pp).\\n\\n- **Headline result**: \\\"Temporal context universally improves text probe accuracy across all 4 models. The HS advantage over text probes is scale-dependent: at 7-8B, HS probes achieve significantly higher precision (R1-8B +22.4pp; OT-7B +21.2pp), balanced accuracy (+8.2pp; +10.9pp), and lower FPR (OT-7B -17.1pp), with 5 of 12 tests surviving Holm-Bonferroni correction. At 32B, HS-text differences are directional but not statistically significant. These findings, combined with the failure of unsupervised and change-point methods, establish the practical landscape for monitoring reasoning-model safety commitment.\\\"\\n\\n## Key Evidence Summary\\n\\n### R1-8B (Llama-8B, R1-distilled, n=43 test, class_weight=balanced, 60/20/20 split — CANONICAL)\\n\\nBest layer: 14 (45% depth). Full sweep layers 0-24 confirmed: layer 12 marginally better (+0.4pp bal_acc), no practical difference.\\n\\n| Method | Coverage | Lead Time | Pre-CP FPR | Safe FPR |\\n|--------|----------|-----------|------------|----------|\\n| HS Static LR L14 | — | -2.0 | **9.7%** | — |\\n| HS Temporal W=5 | — | +0.6 | **10.2%** | — |\\n| HS Temporal W=15 | — | **-0.1** | **8.8%** | — |\\n| Text Temporal W=15 | — | +10.3* | 20.5% | — |\\n| GRU Multi-7L (3-seed) | 72.9+-4.0% | +4.5+-3.0 | 16.5+-4.1% | — |\\n\\n*Text lead time inflated by high pre-CP FPR (trigger-happy detection)\\nNOTE: HS LR lead time collapsed to ~0 with balanced weights — HS detects AT commitment, not before. Only GRU achieves positive lead (+4.5, worst seed +0.9).\\n\\n### OT-7B (Qwen-7B, STILL-trained, n=47 test, 228 total traces) — D026 CORRECTED to layer 16\\n\\nBest layer: **16 (57% depth)**. M001 corrected: layer 0 was selected by bal_acc x crossing_rate bug; layer 16 selected by bal_acc.\\n\\n| Method | Bal Acc | Precision | Coverage | Pre-CP FPR | Lead |\\n|--------|---------|-----------|----------|-----------|------|\\n| HS Temporal W=3 L16 (best) | **68.8%** | **46.6%** | 53.2% | **10.0%** | — |\\n| Text Temporal W=25 (best) | 61.4% | 32.9% | 66.0% | 16.1% | 45.5 |\\n| Text Temporal W=3 (matched) | 57.9% | 25.4% | — | 27.1% | — |\\n\\nBootstrap (layer 16, matched W=3): bal_acc +10.9pp (p<0.001 ✅), precision +21.2pp (p<0.001 ✅), FPR -17.1pp (p<0.001 ✅) — **3/3 Holm-Bonferroni**\\nSelectivity: 18.5pp (highest across all models)\\nNOTE: OT-7B precision (46.6%) still lower than R1-8B (69.7%) due to longer traces (~80 sentences vs ~30). Expected and explained in Results.\\nNOTE: HS temporal gains reverse after W=3 (confirmed on layer 16). Text probes improve normally with larger W.\\nNOTE: HS FPR@layer16 (10.0%) < Text FPR at best W=25 (16.1%) — HS dominates on FPR under ALL conditions. Previous FPR reversal was layer 0 artifact.\\n\\n### 32B Cross-Architecture (D010, layer selection corrected)\\n\\n| Model | Best Layer | GRU (multi-layer, 3-seed) | HS pre-CP FPR | Text pre-CP FPR | p-value | Claim 2 |\\n|-------|-----------|--------------------------|--------------|----------------|---------|---------|\\n| R1-32B (64L) | 10 (15.6%) | cov=23%, lead=+8.8, FPR=11.4% | 26.0% | 24.6% | 0.999 | ❌ directional |\\n| QwQ-32B (64L) | 2 (3.1%) | cov=84%, lead=+15.9, FPR=28.9% | 22.4% | 21.4% | 0.904 | ❌ NO DIFF |\\n\\nR1-32B GRU extremely unstable: crossing 5%/25%/40% across seeds.\\n\\n### 4-Model Holm-Bonferroni Summary (D026 updated)\\n\\n| Model | Arch | Training | Scale | Significant Metrics (Holm-Bonf) | Selectivity |\\n|-------|------|----------|-------|----|-----|\\n| R1-8B | Llama | R1-distilled | 8B | precision (p<0.001) ✅, accuracy (p=0.005) ✅ | 12.5pp |\\n| OT-7B | Qwen | STILL | 7B | bal_acc (p<0.001) ✅, precision (p<0.001) ✅, FPR (p<0.001)\\n\\n... [截断: 省略 4048 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 16048, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1f852e9c-1df9-49e3-964d-0cef5f1e8f4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 这项目初始idea是讲什么的，用大白话和我讲清楚",
+  "leafUuid": "be5d4197-b68e-419a-ad5b-50fe6558964f",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Explain project initial idea in simple terms",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Explain project initial idea in simple terms",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25 · 2026-05-17T10:56:51.962Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T10:56:51.962Z",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "content": "[服务器重启后首条消息] 当前日期: 2026-05-17。服务器刚重启，项目状态可能已更新。不要依赖对话历史中的状态信息，以 registry 当前值为准。\n\n**用户消息：** [飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 那现在实验做的怎么样，支持原来的idea吗"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26 · 2026-05-17T10:56:51.963Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T10:56:51.963Z",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 27 · 2026-05-17T10:56:51.955Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be5d4197-b68e-419a-ad5b-50fe6558964f",
+  "isSidechain": false,
+  "promptId": "4c41abf9-54c8-45ff-8956-01fb66b7dbd2",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "06e23181-1320-42cd-bc4c-71dbb1542754",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-17T10:56:51.956Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06e23181-1320-42cd-bc4c-71dbb1542754",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "aacc7744-8dc3-40c6-8a85-3aa20c3ed1d5",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "2463e773-e590-47a3-929f-9b7b6d6f7f6a",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+14 recorded events
+
+### User
+
+_source line 29 · 2026-05-17T10:56:52.038Z_
+
+[服务器重启后首条消息] 当前日期: 2026-05-17。服务器刚重启，项目状态可能已更新。不要依赖对话历史中的状态信息，以 registry 当前值为准。
+
+**用户消息：** [飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 那现在实验做的怎么样，支持原来的idea吗
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aacc7744-8dc3-40c6-8a85-3aa20c3ed1d5",
+  "isSidechain": false,
+  "promptId": "4c41abf9-54c8-45ff-8956-01fb66b7dbd2",
+  "type": "user",
+  "uuid": "9f0201bd-9c3c-45bc-b8ad-af60f6eb8240",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-17T10:56:56.181Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+用户想知道实验进展和结果是否支持原始idea。我已经从之前的读取中了解了不少，但按照服务器重启提示，我应该重新读取最新的registry和report来获取当前状态。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f0201bd-9c3c-45bc-b8ad-af60f6eb8240",
+  "isSidechain": false,
+  "requestId": "req_011Cb829vBR81XnPidJ58Rq2",
+  "type": "assistant",
+  "uuid": "cca9d1f4-3358-45c0-86d5-08b460025dc2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qB4uYDukicHpwVxwDVfn9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 156,
+      "cache_read_input_tokens": 35067,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 35067,
+          "cache_creation_input_tokens": 156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T10:56:57.970Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0165mjYetZo36zr76KyAVWsu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cca9d1f4-3358-45c0-86d5-08b460025dc2",
+  "isSidechain": false,
+  "requestId": "req_011Cb829vBR81XnPidJ58Rq2",
+  "type": "assistant",
+  "uuid": "b946e555-04cc-492a-8e4a-5ac0ae45724b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qB4uYDukicHpwVxwDVfn9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 156,
+      "cache_read_input_tokens": 35067,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 35067,
+          "cache_creation_input_tokens": 156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T10:56:57.978Z_
+
+<details><summary>↩ Tool result · `toolu_0165mjYetZo36zr76KyAVWsu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b946e555-04cc-492a-8e4a-5ac0ae45724b",
+  "isSidechain": false,
+  "promptId": "4c41abf9-54c8-45ff-8956-01fb66b7dbd2",
+  "type": "user",
+  "uuid": "42e57d85-8164-4f47-83bc-ffdad5f0c391",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 52
+  },
+  "sourceToolAssistantUUID": "b946e555-04cc-492a-8e4a-5ac0ae45724b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T10:57:00.940Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0178nwmZtgHcY5hvcoUAPYYE`</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42e57d85-8164-4f47-83bc-ffdad5f0c391",
+  "isSidechain": false,
+  "requestId": "req_011Cb82AMviodRDKCAaHe5Z9",
+  "type": "assistant",
+  "uuid": "e85de545-2e4e-4cb7-bb7b-460b35b56ccc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015u3Zh78f6Mgzm7R7LoxPKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 35223,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 35223,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T10:57:01.020Z_
+
+<details><summary>↩ Tool result · `toolu_0178nwmZtgHcY5hvcoUAPYYE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_ot7b_full_pipeline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:13:10.826Z\", \"updated_at\": \"2026-05-17T09:35:33.041Z\", \"hypothesis\": \"If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific.\", \"parent\": \"exp_001a_r1_32b\", \"metrics\": {\"n_traces\": 228, \"best_layer\": 16, \"best_layer_depth_pct\": 57.1, \"best_layer_score\": 0.6876, \"best_hs_window\": 3, \"best_hs_bal_acc\": 0.6876, \"best_hs_precision\": 0.4664, \"best_hs_pre_cp_fpr\": 0.1004, \"best_hs_coverage\": 0.5319, \"best_hs_lead\": 21.6, \"best_text_window\": 25, \"best_text_bal_acc\": 0.6141, \"best_text_precision\": 0.3291, \"best_text_pre_cp_fpr\": 0.1605, \"bootstrap_bal_acc_delta\": 0.1067, \"bootstrap_bal_acc_p\": 0, \"bootstrap_bal_acc_bonf\": true, \"bootstrap_precision_delta\": 0.2189, \"bootstrap_precision_p\": 0, \"bootstrap_precision_bonf\": true, \"bootstrap_fpr_delta\": -0.1705, \"bootstrap_fpr_p\": 0, \"bootstrap_fpr_bonf\": true, \"selectivity_pp\": 18.5, \"selectivity_real_acc\": 0.6721, \"selectivity_random_mean\": 0.487, \"layer_verification\": \"Layer 16 verified superior to Layer 0: +1.6pp bal_acc, +10.9pp precision, -8.8pp FPR, 3/3 Bonferroni (was 2/3)\", \"r1_8b_layer_supplement\": \"Full sweep layers 0-24 confirmed: best=L12 (0.7871) ≈ L14 (0.7830), no early-layer dominance. R1-8B peaks at ~39% depth, differs from 32B models.\"}, \"conclusion\": \"success\"}, \"exp_pathb_annotation_validation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:13:13.591Z\", \"updated_at\": \"2026-05-17T07:01:11.805Z\", \"hypothesis\": \"A local classifier trained on existing HarmThoughts annotations (56K sentences, 16 classes) can reproduce safety/non-safety binary labels with F1 >= 0.90 and CP position agreement within ±1 step, validating automated annotation for new trace generation.\", \"conclusion\": \"negative\", \"metrics\": {\"tfidf_lr_f1\": 0.5899, \"tfidf_lr_cp_agreement\": 0.561, \"minilm_lr_f1\": 0.5149, \"minilm_lr_cp_agreement\": 0.534, \"threshold_f1\": 0.9, \"threshold_cp\": 0.85, \"failure_reason\": \"Safety recall extremely low (41-46%). Simple classifiers cannot distinguish subtle safety-aware expressions in CoT from regular reasoning. CP MAE=5-6 sentences.\", \"recommendation\": \"Need LLM API annotation or fine-tuned DeBERTa 16-class classifier\"}}, \"exp_c2_control_task\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T22:58:13.110Z\", \"updated_at\": \"2026-05-17T02:07:07.094Z\", \"hypothesis\": \"If HS probes learn safety state beyond position, selectivity (real_acc - random_label_acc) should be >5pp, and position-only baseline should underperform real probes especially on pre-CP FPR metric.\", \"parent\": \"exp_001a_r1_32b\", \"conclusion\": \"success\", \"metrics\": {\"r1_8b_selectivity\": 0.1245, \"r1_32b_selectivity\": 0.075, \"r1_32b_selectivity_note\": \"layer 10 (corrected best layer). Old layer 2 = 0.168\", \"r1_32b_layer10_real_acc\": 0.583, \"r1_32b_layer10_random_mean\": 0.508, \"r1_32b_layer10_random_std\": 0.051, \"qwq_32b_selectivity\": 0.153, \"qwq_32b_selectivity_note\": \"layer 2 (corrected from layer 1 = 0.189)\", \"r1_8b_hs_pre_fpr\": 0.0809, \"r1_8b_position_pre_fpr\": 0.1581, \"r1_8b_cp_position_mean\": 0.705, \"qwq_32b_layer2_real_acc\": 0.678, \"qwq_32b_layer2_random_mean\": 0.526, \"qwq_32b_layer2_random_std\": 0.076, \"qwq_32b_layer2_position_acc\": 0.706, \"qwq_32b_layer2_hs_pre_fpr\": 0.2903, \"qwq_32b_layer2_position_pre_fpr\": 0.25, \"qwq_32b_layer2_issue\": \"position_baseline (70.6%) > HS probe (67.8%)\"}}, \"exp_007_window_ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T23:47:25.609Z\", \"updated_at\": \"2026-05-17T01:35:47.819Z\", \"hypothesis\": \"Coverage increases monotonically with window size W but with diminishing returns, plateauing around W=10-15 across all three models, demonstrating that temporal context is the key mechanism for commitment detection improvement.\", \"parent\": \"diag_d3_regularized_probes\", \"conclusion\": \"negative\", \"metrics\": {\"r1_8b\": {\"W1\": {\"bal_acc\": 0.7783, \"precision\": 0.6926, \"coverage\": 0.7209, \"precp_fpr_trace\": 0.1037, \"precp_fpr_step\": 0.0965, \"lead_mean\": 13.84}, \"W3\": {\"bal_acc\": 0.7902, \"precision\": 0.7228, \"coverage\": 0.6977, \"precp_fpr_trace\": 0.0988, \"precp_fpr_step\": 0.085, \"lead_mean\": 12.07}, \"W5\": {\"bal_acc\": 0.781, \"precision\": 0.7258, \"coverage\": 0.6512, \"precp_fpr_trace\": 0.0913, \"precp_fpr_step\": 0.0809, \"lead_mean\": 8.25}, \"W10\": {\"bal_acc\": 0.7925, \"precision\": 0.7431, \"coverage\": 0.5581, \"precp_fpr_trace\": 0.0865, \"precp_fpr_step\": 0.0761, \"lead_mean\": 10.04}, \"W15\": {\"bal_acc\": 0.8017, \"precision\": 0.7767, \"coverage\": 0.5116, \"precp_fpr_trace\": 0.0701, \"precp_fpr_step\": 0.0639, \"lead_mean\": 7.23}, \"W20\": {\"bal_acc\": 0.8072, \"precision\": 0.7862, \"coverage\": 0.5349, \"precp_fpr_trace\": 0.0661, \"precp_fpr_step\": 0.0612, \"lead_mean\": 7.43}, \"W25\": {\"bal_acc\": 0.8095, \"precision\": 0.8216, \"coverage\": 0.4884, \"precp_fpr_trace\": 0.0545, \"precp_fpr_step\": 0.0483, \"lead_mean\": 8.14}, \"best_bal_acc_W\": 25}, \"r1_32b\": {\"W1\": {\"bal_acc\": 0.7182, \"precision\": 0.549, \"coverage\": 0.8, \"precp_fpr_trace\": 0.2764, \"precp_fpr_step\": 0.3203, \"lead_mean\": 12.88}, \"W3\": {\"bal_acc\": 0.7252, \"precision\": 0.56, \"coverage\": 0.8, \"precp_fpr_trace\": 0.2576, \"precp_fpr_step\": 0.3064, \"lead_mean\": 11.38}, \"W5\": {\"bal_acc\": 0.7309, \"precision\": 0.575, \"coverage\": 0.75, \"precp_fpr_trace\": 0.2393, \"precp_fpr_step\": 0.2841, \"lead_mean\": 11.07}, \"W10\": {\"bal_acc\": 0.7371, \"precision\": 0.6093, \"coverage\": 0.7, \"precp_fpr_trace\": 0.1891, \"precp_fpr_step\": 0.234, \"lead_mean\": 10.79}, \"W15\": {\"bal_acc\": 0.7207, \"precision\": 0.5907, \"coverage\": 0.7, \"precp_fpr_trace\": 0.2089, \"precp_fpr_step\": 0.2451, \"lead_mean\": 10.86}, \"W20\": {\"bal_acc\": 0.6961, \"precision\": 0.5628, \"coverage\": 0.65, \"precp_fpr_trace\": 0.2193, \"precp_fpr_step\": 0.2618, \"lead_mean\": 9.62}, \"W25\": {\"bal_acc\": 0.7028, \"precision\": 0.5662, \"coverage\": 0.7, \"precp_fpr_trace\": 0.2282, \"precp_fpr_step\": 0.2646, \"lead_mean\": 10.71}, \"best_bal_acc_W\": 10}, \"qwq_32b\": {\"W1\": {\"bal_acc\": 0.7298, \"precision\": 0.5435, \"coverage\": 0.7895, \"precp_fpr_trace\": 0.185, \"precp_fpr_step\": 0.2276, \"lead_mean\": 19.73}, \"W3\": {\"bal_acc\": 0.7452, \"precision\": 0.5647, \"coverage\": 0.7368, \"precp_fpr_trace\": 0.175, \"precp_fpr_step\": 0.2141, \"lead_mean\": 20.64}, \"W5\": {\"bal_acc\": 0.761, \"precision\": 0.5733, \"coverage\": 0.7368, \"precp_fpr_trace\": 0.1795, \"precp_fpr_step\": 0.2168, \"lead_mean\": 20.07}, \"W10\": {\"bal_acc\": 0.7469, \"precision\": 0.5714, \"coverage\": 0.7368, \"precp_fpr_trace\": 0.1707, \"precp_fpr_step\": 0.2073, \"lead_mean\": 18.43}, \"W15\": {\"bal_acc\": 0.7412, \"precision\": 0.5816, \"coverage\": 0.6842, \"precp_fpr_trace\": 0.1605, \"precp_fpr_step\": 0.1911, \"lead_mean\": 15.77}, \"W20\": {\"bal_acc\": 0.7542, \"precision\": 0.6024, \"coverage\": 0.6316, \"precp_fpr_trace\": 0.1567, \"precp_fpr_step\": 0.1789, \"lead_mean\": 15.75}, \"W25\": {\"bal_acc\": 0.7624, \"precision\": 0.6177, \"coverage\": 0.5789, \"precp_fpr_trace\": 0.1476, \"precp_fpr_step\": 0.1694, \"lead_mean\": 14.91}, \"best_bal_acc_W\": 25}, \"finding\": \"Coverage monotonically DECREASES with W across all 3 models. Temporal context creates precision-sensitivity tradeoff (higher W → higher precision, lower coverage, lower FPR). R1-8B dominates (lowest FPR, highest precision). QwQ-32B FPR significantly lower than R1-32B with larger lead_mean.\"}}, \"exp_003_cross_transfer\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T22:23:29.492Z\", \"updated_at\": \"2026-05-16T23:09:24.435Z\", \"hypothesis\": \"Safety commitment probes trained on one reasoning model can transfer to other architectures/scales via simple dimension projection, because the safety signal is a universal representation rather than model-specific.\", \"parent\": \"exp_001a_r1_32b\", \"conclusion\": \"negative\", \"metrics\": {\"baselines\": {\"r1_8b_acc\": 0.8234, \"r1_32b_acc\": 0.6516, \"qwq_32b_acc\": 0.7171}, \"best_transfer_acc\": {\"r1_8b_to_r1_32b\": 0.522, \"r1_8b_to_qwq\": 0.5948, \"r1_32b_to_qwq\": 0.5499, \"qwq_to_r1_32b\": 0.6726, \"r1_32b_to_r1_8b\": 0.5828}, \"transfer_method\": \"PCA projection\", \"conclusion_detail\": \"Simple PCA projection insufficient for zero-shot cross-model transfer. Signal is model-specific in geometric encoding.\"}}, \"exp_001b_qwq_32b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:21:46.602Z\", \"updated_at\": \"2026-05-16T22:57:08.301Z\", \"hypothesis\": \"Temporal probes on QwQ-32B hidden states will show same pattern as r1-8b: temporal coverage significantly exceeds static, best layer near 44% depth (~layer 28), confirming cross-architecture generalization even across model families (Llama vs Qwen).\", \"metrics\": {\"m001_corrected\": true, \"best_layer_old\": 1, \"best_layer_corrected\": 2, \"layer_selection_metric\": \"balanced_accuracy × crossing_rate (scheme B)\", \"layer2_bal_acc\": 0.73, \"layer2_crossing_rate\": 0.47, \"gru_single_bal_acc_mean\": 0.694, \"gru_single_crossing_mean\": 0.75, \"gru_single_lead_mean\": 19.3, \"gru_single_precp_fpr_mean\": 0.303, \"gru_multi_bal_acc_mean\": 0.724, \"gru_multi_crossing_mean\": 0.84, \"gru_multi_lead_mean\": 15.9, \"gru_multi_precp_fpr_mean\": 0.289, \"temporal_lr_best_window\": 5, \"temporal_lr_w5_bal_acc\": 0.761, \"temporal_lr_w5_crossing\": 0.42, \"temporal_lr_w5_lead\": 23.5, \"temporal_lr_w5_precp_fpr\": 0.18, \"bootstrap_phase5_invalid\": true, \"bootstrap_phase5_bug\": \"M002 - text_baseline_predictions() in exp_001b_bootstrap.py used midpoint heuristic, not sentence embeddings\", \"corrected_hs_vs_text\": {\"hs_bal_acc\": 0.679, \"text_bal_acc\": 0.671, \"acc_delta\": 0.009, \"acc_p_value_two_sided\": 0.828, \"hs_precision\": 0.583, \"text_precision\": 0.525, \"prec_delta\": 0.057, \"prec_p_value_two_sided\": 0.346, \"hs_precp_fpr\": 0.208, \"text_precp_fpr\": 0.178, \"fpr_delta\": 0.03, \"fpr_p_value_two_sided\": 0.43, \"bonferroni_alpha\": 0.017, \"bonferroni_pass\": false, \"test_type\": \"two-sided\", \"solver\": \"liblinear\", \"note\": \"No significant HS vs text difference on QwQ-32B. HS FPR slightly worse than text.\"}, \"bootstrap_conclusion\": \"no_significant_difference\"}, \"conclusion\": \"success\", \"notes\": \"M002 impact: Phase 5 bootstrap in original exp_001b used midpoint heuristic instead of sentence embeddings for text baseline. Corrected paired bootstrap (W=5, layer 2) shows no significant HS vs text difference on QwQ-32B (acc Δ+0.9pp p=0.828, prec Δ+5.7pp p=0.346, FPR Δ+3.0pp p=0.785). Main hypothesis (temporal probe cross-architecture generalization) unaffected.\"}, \"exp_001a_r1_32b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:21:46.146Z\", \"updated_at\": \"2026-05-16T22:57:07.274Z\", \"hypothesis\": \"Temporal probes on R1-Distill-Qwen-32B hidden states will show same pattern as r1-8b: temporal coverage significantly exceeds static, best layer near 44% depth (~layer 28), confirming cross-architecture generalization of commitment detection.\", \"metrics\": {\"m001_corrected\": true, \"best_layer_old\": 2, \"best_layer_corrected\": 10, \"layer_selection_metric\": \"balanced_accuracy × crossing_rate (scheme B)\", \"layer10_bal_acc\": 0.718, \"layer10_crossing_rate\": 0.6, \"gru_single_bal_acc_mean\": 0.675, \"gru_single_crossing_mean\": 0.3, \"gru_single_lead_mean\": 9.1, \"gru_single_precp_fpr_mean\": 0.135, \"gru_multi_bal_acc_mean\": 0.655, \"gru_multi_crossing_mean\": 0.23, \"gru_multi_lead_mean\": 8.8, \"gru_multi_precp_fpr_mean\": 0.114, \"temporal_lr_best_window\": 10, \"temporal_lr_w10_bal_acc\": 0.737, \"temporal_lr_w10_crossing\": 0.5, \"temporal_lr_w10_lead\": 9, \"temporal_lr_w10_precp_fpr\": 0.189, \"bootstrap_hs_precp_fpr\": 0.26, \"bootstrap_text_precp_fpr\": 0.246, \"bootstrap_diff\": 0.014, \"bootstrap_p_value\": 0.999, \"bootstrap_ci95\": [-0.103, 0.127], \"bootstrap_conclusion\": \"no_significant_difference\", \"paired_bootstrap_corrected\": {\"hs_bal_acc\": 0.794, \"text_bal_acc\": 0.711, \"acc_delta\": 0.084, \"acc_p_value_two_sided\": 0.08, \"hs_precision\": 0.61, \"text_precision\": 0.516, \"prec_delta\": 0.094, \"prec_p_value_two_sided\": 0.05, \"hs_precp_fpr\": 0.242, \"text_precp_fpr\": 0.326, \"fpr_delta\": -0.084, \"fpr_p_value_two_sided\": 0.114, \"bonferroni_alpha\": 0.017, \"bonferroni_pass\": false, \"test_type\": \"two-sided\", \"solver\": \"liblinear\", \"canonical_file\": \"artifacts/r1_32b_paired_bootstrap/results.json\", \"note\": \"directional but ns after Bonferroni. n=20 test traces insufficient power. Old m001 FPR=0.246 used lbfgs solver (non-canonical).\"}}, \"conclusion\": \"success\"}, \"exp_015_fpr_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:00:55.369Z\", \"updated_at\": \"2026-05-16T21:19:56.311Z\", \"hypothesis\": \"Text temporal probe's high lead time (+11.5) is inflated by false positives (trigger-happy). If text FPR >> HS FPR, the early detection is illusory and hidden-state monitoring remains necessary. If FPR comparable, paper motivation needs restructuring.\", \"parent\": \"exp_013_text_baseline\", \"conclusion\": \"success\", \"metrics\": {\"text_static_safe_fpr\": 0.502, \"text_static_precp_fpr\": 0.356, \"text_static_precision\": 0.448, \"text_static_coverage\": 0.605, \"text_static_lead\": 4.3, \"text_static_acc\": 0.661, \"text_temporal_safe_fpr\": 0.385, \"text_temporal_precp_fpr\": 0.272, \"text_temporal_precision\": 0.487, \"text_temporal_coverage\": 0.651, \"text_temporal_lead\": 11.5, \"text_temporal_acc\": 0.678, \"hs_static_safe_fpr\": 0.39, \"hs_static_precp_fpr\": 0.162, \"hs_static_precision\": 0.622, \"hs_static_coverage\": 0.605, \"hs_static_lead\": 3, \"hs_static_acc\": 0.768, \"hs_temporal_safe_fpr\": 0.392, \"hs_temporal_precp_fpr\": 0.16, \"hs_temporal_precision\": 0.583, \"hs_temporal_coverage\": 0.651, \"hs_temporal_lead\": 4.9, \"hs_temporal_acc\": 0.726, \"gru_safe_fpr\": 0.521, \"gru_precp_fpr\": 0.188, \"gru_precision\": 0.648, \"gru_coverage\": 0.744, \"gru_lead\": 5.25, \"gru_acc\": 0.816}}, \"exp_014_bocpd_poc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:02:47.275Z\", \"updated_at\": \"2026-05-16T21:14:13.437Z\", \"hypothesis\": \"BOCPD/CUSUM on probe score sequences may detect commitment earlier than raw threshold crossing by identifying distributional shift points. Potential breakthrough for Claim 3 (pre-textual detection).\", \"parent\": \"diag_gru_probe\", \"conclusion\": \"negative\", \"metrics\": {\"bocpd_lambda10\": {\"detection_rate\": 0.93, \"mean_lead\": 3.45, \"median_lead\": 0, \"early_count\": 16, \"late_count\": 19}, \"bocpd_lambda100\": {\"detection_rate\": 0.674, \"mean_lead\": 1.03, \"median_lead\": 0}, \"cusum_best_t03h3\": {\"detection_rate\": 0.651, \"mean_lead\": 0.89, \"median_lead\": -4}, \"fcp_baseline\": {\"detection_rate\": 0.651, \"mean_lead\": 4.89, \"median_lead\": 0}, \"head_to_head_bocpd_vs_fcp\": {\"bocpd_wins\": 16, \"fcp_wins\": 6, \"ties\": 5}, \"verdict\": \"BOCPD higher detection (93% vs 65%) but lower mean lead (3.45 vs 4.89). CUSUM universally worse. Neither method achieves earlier detection than simple threshold crossing on average.\"}}, \"exp_006_bootstrap_ci\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:34:57.453Z\", \"updated_at\": \"2026-05-16T21:06:23.334Z\", \"hypothesis\": \"Temporal methods' apparent advantage over static methods (crossing rate +20pp, lead time +3 steps on r1-8b) reflects genuine signal improvement rather than noise — bootstrap CIs should show non-overlapping intervals and paired p < 0.05.\", \"conclusion\": \"negative\", \"metrics\": {\"static_lr_acc\": \"0.768 [0.702,0.827]\", \"static_lr_crossing\": \"60.4% [44.2,74.4]\", \"static_lr_lead\": \"+2.9 [-2.8,+9.5]\", \"temporal_lr_acc\": \"0.731 [0.654,0.804]\", \"temporal_lr_crossing\": \"60.6% [46.5,74.4]\", \"temporal_lr_lead\": \"+5.0 [-0.8,+11.9]\", \"gru_single_acc\": \"0.790 [0.734,0.848]\", \"gru_single_crossing\": \"51.4% [37.2,67.4]\", \"gru_single_lead\": \"-2.0 [-8.6,+4.9]\", \"gru_multi_acc\": \"0.799 [0.742,0.854]\", \"gru_multi_crossing\": \"51.4% [37.2,67.4]\", \"gru_multi_lead\": \"-0.4 [-6.4,+6.1]\", \"paired_temporal_vs_static_lead_p\": 0.19, \"paired_gru_vs_static_lead_p\": 0.94, \"paired_gru_vs_temporal_lead_p\": 0.99}}, \"exp_013_text_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:40:49.092Z\", \"updated_at\": \"2026-05-16T21:05:47.544Z\", \"hypothesis\": \"Text-based sentence embeddings (all-MiniLM-L6-v2) should underperform hidden-state probes on commitment detection because surface text may not reveal internal model state shifts. If text matches hidden-state performance, paper motivation needs restructuring.\", \"conclusion\": \"success\", \"metrics\": {\"text_static_coverage\": 0.605, \"text_static_lead\": 4.3, \"text_static_acc\": 0.661, \"text_static_auroc\": 0.7384, \"text_temporal_w15_coverage\": 0.651, \"text_temporal_w15_lead\": 11.5, \"text_temporal_w15_acc\": 0.678, \"text_temporal_w15_auroc\": 0.759, \"hs_acc_advantage\": \"15-18pp\"}}, \"exp_005_trajguard_mahalanobis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:34:56.736Z\", \"updated_at\": \"2026-05-16T21:04:54.120Z\", \"hypothesis\": \"Mahalanobis distance from safe trace distribution should fail as commitment detector because PCA shows discriminative signal is in minor components, not the principal directions that dominate covariance\", \"parent\": \"diag_d2_pca_viz\", \"conclusion\": \"negative\", \"metrics\": {\"best_k5_crossing_rate\": 0.302, \"best_k5_lead_mean\": 16.4, \"best_k5_config\": \"pca_64_p75\", \"best_k3_crossing_rate\": 0.605, \"best_k3_lead_mean\": 20.4, \"delta_max_rate\": 0.023, \"safe_md_mean\": 6.66, \"jb_pre_md_mean\": 6.73, \"jb_post_md_mean\": 6.64}}, \"exp_gru256_multilayer\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:40:47.187Z\", \"updated_at\": \"2026-05-16T19:44:29.860Z\", \"conclusion\": \"success\", \"metrics\": {\"gru_single_l14\": {\"acc\": 0.8386, \"crossing_rate\": 0.721, \"lead_mean\": 3.5, \"lead_median\": 0, \"pos_lead\": \"13/31\"}, \"gru_multi_7l\": {\"acc\": 0.8094, \"crossing_rate\": 0.767, \"lead_mean\": 4.7, \"lead_median\": 0, \"pos_lead\": \"13/33\"}, \"lr_single_l14\": {\"acc\": 0.8172, \"crossing_rate\": 0.465, \"lead_mean\": -2, \"lead_median\": -2, \"pos_lead\": \"6/20\"}, \"lr_multi_7l\": {\"acc\": 0.806, \"crossing_rate\": 0.395, \"lead_mean\": 1.1, \"lead_median\": 0, \"pos_lead\": \"6/17\"}, \"delta_gru_vs_lr\": 3.7}}, \"diag_gru_probe\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:38:52.099Z\", \"updated_at\": \"2026-05-16T19:42:44.428Z\", \"metrics\": {\"test_acc\": 0.8305, \"test_acc_std\": 0.1856, \"crossing_rate\": 0.6744, \"lead_mean\": -0.207, \"lead_median\": -1, \"lead_std\": 13, \"positive_lead_rate\": 0.345, \"n_positive_lead\": 10, \"n_detected\": 29, \"early_stop_epoch\": 14, \"model_params\": 1622913}, \"conclusion\": \"negative\", \"notes\": \"GRU improves lead time slightly (mean -0.2 vs Temporal LR -1.1) but still negative. 34.5% positive lead rate with high variance (std=13). Early stopping at epoch 14 suggests overfitting. Sequential modeling alone insufficient for reliable early warning.\"}, \"diag_d2_pca_viz\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:04.743Z\", \"updated_at\": \"2026-05-16T19:36:43.042Z\", \"conclusion\": \"success\", \"metrics\": {\"fisher_orig_L12\": 17.462, \"fisher_orig_L14\": 17.875, \"fisher_orig_L20\": 18.614, \"fisher_orig_L24\": 18.106, \"fisher_pca_L12\": 0.953, \"fisher_pca_L14\": 0.928, \"fisher_pca_L20\": 0.92, \"fisher_pca_L24\": 1.111, \"var_explained_3pc\": 0.166, \"test_steps\": 1835}}, \"diag_d3_regularized_probes\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:07.038Z\", \"updated_at\": \"2026-05-16T19:36:06.531Z\", \"conclusion\": \"negative\", \"metrics\": {\"static_lr_acc\": 0.8172, \"static_lr_crossing_rate\": 0.4651, \"static_lr_lead_mean\": -2, \"temporal_lr_w5_acc\": 0.8274, \"temporal_lr_w5_crossing_rate\": 0.6512, \"temporal_lr_w5_lead_mean\": -1.18, \"temporal_lr_w10_acc\": 0.8364, \"temporal_lr_w10_crossing_rate\": 0.6512, \"temporal_lr_w10_lead_mean\": -0.61, \"temporal_lr_w15_acc\": 0.8478, \"temporal_lr_w15_crossing_rate\": 0.7674, \"temporal_lr_w15_lead_mean\": -1.09, \"best_temporal_delta_over_static\": 1.39, \"pass_criterion_met\": false}}, \"diag_d4_oracle_upper_bound\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:02.931Z\", \"updated_at\": \"2026-05-16T19:33:25.131Z\", \"metrics\": {\"K5_detection_rate\": 100, \"K5_early_detection_rate\": 76.7, \"K5_mean_lead_time\": 31, \"K5_median_lead_time\": 29, \"K1_early_detection_rate\": 83.7, \"K8_early_detection_rate\": 65.1, \"pre_cp_mean_longest_streak\": 14.6, \"test_traces\": 43}, \"conclusion\": \"success\"}, \"diag_d1_layer_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:00.134Z\", \"updated_at\": \"2026-05-16T19:31:47.837Z\", \"hypothesis\": \"If safety commitment signal is distributed across transformer depth, layers near 40-50% depth should outperform the default layer 20 (62% depth) because mid-layer representations encode semantic state before it's compressed into output predictions.\", \"conclusion\": \"negative\", \"metrics\": {\"best_layer_idx\": 2, \"best_model_layer\": 14, \"best_acc\": 0.8114, \"best_f1\": 0.6455, \"best_crossing_rate\": 0.186, \"best_lead_mean\": 8.38, \"best_lead_median\": 6, \"default_layer20_acc\": 0.7831, \"num_traces\": 209, \"split\": \"125/41/43\"}}}, \"count\": 18, \"total\": 18, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0662}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e85de545-2e4e-4cb7-bb7b-460b35b56ccc",
+  "isSidechain": false,
+  "promptId": "4c41abf9-54c8-45ff-8956-01fb66b7dbd2",
+  "type": "user",
+  "uuid": "03d27556-e824-4d27-9e44-6c5c4d7ba215",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_ot7b_full_pipeline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T06:13:10.826Z\\\", \\\"updated_at\\\": \\\"2026-05-17T09:35:33.041Z\\\", \\\"hypothesis\\\": \\\"If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific.\\\", \\\"parent\\\": \\\"exp_001a_r1_32b\\\", \\\"metrics\\\": {\\\"n_traces\\\": 228, \\\"best_layer\\\": 16, \\\"best_layer_depth_pct\\\": 57.1, \\\"best_layer_score\\\": 0.6876, \\\"best_hs_window\\\": 3, \\\"best_hs_bal_acc\\\": 0.6876, \\\"best_hs_precision\\\": 0.4664, \\\"best_hs_pre_cp_fpr\\\": 0.1004, \\\"best_hs_coverage\\\": 0.5319, \\\"best_hs_lead\\\": 21.6, \\\"best_text_window\\\": 25, \\\"best_text_bal_acc\\\": 0.6141, \\\"best_text_precision\\\": 0.3291, \\\"best_text_pre_cp_fpr\\\": 0.1605, \\\"bootstrap_bal_acc_delta\\\": 0.1067, \\\"bootstrap_bal_acc_p\\\": 0, \\\"bootstrap_bal_acc_bonf\\\": true, \\\"bootstrap_precision_delta\\\": 0.2189, \\\"bootstrap_precision_p\\\": 0, \\\"bootstrap_precision_bonf\\\": true, \\\"bootstrap_fpr_delta\\\": -0.1705, \\\"bootstrap_fpr_p\\\": 0, \\\"bootstrap_fpr_bonf\\\": true, \\\"selectivity_pp\\\": 18.5, \\\"selectivity_real_acc\\\": 0.6721, \\\"selectivity_random_mean\\\": 0.487, \\\"layer_verification\\\": \\\"Layer 16 verified superior to Layer 0: +1.6pp bal_acc, +10.9pp precision, -8.8pp FPR, 3/3 Bonferroni (was 2/3)\\\", \\\"r1_8b_layer_supplement\\\": \\\"Full sweep layers 0-24 confirmed: best=L12 (0.7871) ≈ L14 (0.7830), no early-layer dominance. R1-8B peaks at ~39% depth, differs from 32B models.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_pathb_annotation_validation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T06:13:13.591Z\\\", \\\"updated_at\\\": \\\"2026-05-17T07:01:11.805Z\\\", \\\"hypothesis\\\": \\\"A local classifier trained on existing HarmThoughts annotations (56K sentences, 16 classes) can reproduce safety/non-safety binary labels with F1 >= 0.90 and CP position agreement within ±1 step, validating automated annotation for new trace generation.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"tfidf_lr_f1\\\": 0.5899, \\\"tfidf_lr_cp_agreement\\\": 0.561, \\\"minilm_lr_f1\\\": 0.5149, \\\"minilm_lr_cp_agreement\\\": 0.534, \\\"threshold_f1\\\": 0.9, \\\"threshold_cp\\\": 0.85, \\\"failure_reason\\\": \\\"Safety recall extremely low (41-46%). Simple classifiers cannot distinguish subtle safety-aware expressions in CoT from regular reasoning. CP MAE=5-6 sentences.\\\", \\\"recommendation\\\": \\\"Need LLM API annotation or fine-tuned DeBERTa 16-class classifier\\\"}}, \\\"exp_c2_control_task\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T22:58:13.110Z\\\", \\\"updated_at\\\": \\\"2026-05-17T02:07:07.094Z\\\", \\\"hypothesis\\\": \\\"If HS probes learn safety state beyond position, selectivity (real_acc - random_label_acc) should be >5pp, and position-only baseline should underperform real probes especially on pre-CP FPR metric.\\\", \\\"parent\\\": \\\"exp_001a_r1_32b\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"r1_8b_selectivity\\\": 0.1245, \\\"r1_32b_selectivity\\\": 0.075, \\\"r1_32b_selectivity_note\\\": \\\"layer 10 (corrected best layer). Old layer 2 = 0.168\\\", \\\"r1_32b_layer10_real_acc\\\": 0.583, \\\"r1_32b_layer10_random_mean\\\": 0.508, \\\"r1_32b_layer10_random_std\\\": 0.051, \\\"qwq_32b_selectivity\\\": 0.153, \\\"qwq_32b_selectivity_note\\\": \\\"layer 2 (corrected from layer 1 = 0.189)\\\", \\\"r1_8b_hs_pre_fpr\\\": 0.0809, \\\"r1_8b_position_pre_fpr\\\": 0.1581, \\\"r1_8b_cp_position_mean\\\": 0.705, \\\"qwq_32b_layer2_real_acc\\\": 0.678, \\\"qwq_32b_layer2_random_mean\\\": 0.526, \\\"qwq_32b_layer2_random_std\\\": 0.076, \\\"qwq_32b_layer2_position_acc\\\": 0.706, \\\"qwq_32b_layer2_hs_pre_fpr\\\": 0.2903, \\\"qwq_32b_layer2_position_pre_fpr\\\": 0.25, \\\"qwq_32b_layer2_issue\\\": \\\"position_baseline (70.6%) > HS probe (67.8%)\\\"}}, \\\"exp_007_window_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T23:47:25.609Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:35:47.819Z\\\", \\\"hypothesis\\\": \\\"Coverage increases monotonically with window size W but with diminishing returns, plateauing around W=10-15 across all three models, demonstrating that temporal context is the key mechanism for commitment detection improvement.\\\", \\\"parent\\\": \\\"diag_d3_regularized_probes\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"r1_8b\\\": {\\\"W1\\\": {\\\"bal_acc\\\": 0.7783, \\\"precision\\\": 0.6926, \\\"coverage\\\": 0.7209, \\\"precp_fpr_trace\\\": 0.1037, \\\"precp_fpr_step\\\": 0.0965, \\\"lead_mean\\\": 13.84}, \\\"W3\\\": {\\\"bal_acc\\\": 0.7902, \\\"precision\\\": 0.7228, \\\"coverage\\\": 0.6977, \\\"precp_fpr_trace\\\": 0.0988, \\\"precp_fpr_step\\\": 0.085, \\\"lead_mean\\\": 12.07}, \\\"W5\\\": {\\\"bal_acc\\\": 0.781, \\\"precision\\\": 0.7258, \\\"coverage\\\": 0.6512, \\\"precp_fpr_trace\\\": 0.0913, \\\"precp_fpr_step\\\": 0.0809, \\\"lead_mean\\\": 8.25}, \\\"W10\\\": {\\\"bal_acc\\\": 0.7925, \\\"precision\\\": 0.7431, \\\"coverage\\\": 0.5581, \\\"precp_fpr_trace\\\": 0.0865, \\\"precp_fpr_step\\\": 0.0761, \\\"lead_mean\\\": 10.04}, \\\"W15\\\": {\\\"bal_acc\\\": 0.8017, \\\"precision\\\": 0.7767, \\\"coverage\\\": 0.5116, \\\"precp_fpr_trace\\\": 0.0701, \\\"precp_fpr_step\\\": 0.0639, \\\"lead_mean\\\": 7.23}, \\\"W20\\\": {\\\"bal_acc\\\": 0.8072, \\\"precision\\\": 0.7862, \\\"coverage\\\": 0.5349, \\\"precp_fpr_trace\\\": 0.0661, \\\"precp_fpr_step\\\": 0.0612, \\\"lead_mean\\\": 7.43}, \\\"W25\\\": {\\\"bal_acc\\\": 0.8095, \\\"precision\\\": 0.8216, \\\"coverage\\\": 0.4884, \\\"precp_fpr_trace\\\": 0.0545, \\\"precp_fpr_step\\\": 0.0483, \\\"lead_mean\\\": 8.14}, \\\"best_bal_acc_W\\\": 25}, \\\"r1_32b\\\": {\\\"W1\\\": {\\\"bal_acc\\\": 0.7182, \\\"precision\\\": 0.549, \\\"coverage\\\": 0.8, \\\"precp_fpr_trace\\\": 0.2764, \\\"precp_fpr_step\\\": 0.3203, \\\"lead_mean\\\": 12.88}, \\\"W3\\\": {\\\"bal_acc\\\": 0.7252, \\\"precision\\\": 0.56, \\\"coverage\\\": 0.8, \\\"precp_fpr_trace\\\": 0.2576, \\\"precp_fpr_step\\\": 0.3064, \\\"lead_mean\\\": 11.38}, \\\"W5\\\": {\\\"bal_acc\\\": 0.7309, \\\"precision\\\": 0.575, \\\"coverage\\\": 0.75, \\\"precp_fpr_trace\\\": 0.2393, \\\"precp_fpr_step\\\": 0.2841, \\\"lead_mean\\\": 11.07}, \\\"W10\\\": {\\\"bal_acc\\\": 0.7371, \\\"precision\\\": 0.6093, \\\"coverage\\\": 0.7, \\\"precp_fpr_trace\\\": 0.1891, \\\"precp_fpr_step\\\": 0.234, \\\"lead_mean\\\": 10.79}, \\\"W15\\\": {\\\"bal_acc\\\": 0.7207, \\\"precision\\\": 0.5907, \\\"coverage\\\": 0.7, \\\"precp_fpr_trace\\\": 0.2089, \\\"precp_fpr_step\\\": 0.2451, \\\"lead_mean\\\": 10.86}, \\\"W20\\\": {\\\"bal_acc\\\": 0.6961, \\\"precision\\\": 0.5628, \\\"coverage\\\": 0.65, \\\"precp_fpr_trace\\\": 0.2193, \\\"precp_fpr_step\\\": 0.2618, \\\"lead_mean\\\": 9.62}, \\\"W25\\\": {\\\"bal_acc\\\": 0.7028, \\\"precision\\\": 0.5662, \\\"coverage\\\": 0.7, \\\"precp_fpr_trace\\\": 0.2282, \\\"precp_fpr_step\\\": 0.2646, \\\"lead_mean\\\": 10.71}, \\\"best_bal_acc_W\\\": 10}, \\\"qwq_32b\\\": {\\\"W1\\\": {\\\"bal_acc\\\": 0.7298, \\\"precision\\\": 0.5435, \\\"coverage\\\": 0.7895, \\\"precp_fpr_trace\\\": 0.185, \\\"precp_fpr_step\\\": 0.2276, \\\"lead_mean\\\": 19.73}, \\\"W3\\\": {\\\"bal_acc\\\": 0.7452, \\\"precision\\\": 0.5647, \\\"coverage\\\": 0.7368, \\\"precp_fpr_trace\\\": 0.175, \\\"precp_fpr_step\\\": 0.2141, \\\"lead_mean\\\": 20.64}, \\\"W5\\\": {\\\"bal_acc\\\": 0.761, \\\"precision\\\": 0.5733, \\\"coverage\\\": 0.7368, \\\"precp_fpr_trace\\\": 0.1795, \\\"precp_fpr_step\\\": 0.2168, \\\"lead_mean\\\": 20.07}, \\\"W10\\\": {\\\"bal_acc\\\": 0.7469, \\\"precision\\\": 0.5714, \\\"coverage\\\": 0.7368, \\\"precp_fpr_trace\\\": 0.1707, \\\"precp_fpr_step\\\": 0.2073, \\\"lead_mean\\\": 18.43}, \\\"W15\\\": {\\\"bal_acc\\\": 0.7412, \\\"precision\\\": 0.5816, \\\"coverage\\\": 0.6842, \\\"precp_fpr_trace\\\": 0.1605, \\\"precp_fpr_step\\\": 0.1911, \\\"lead_mean\\\": 15.77}, \\\"W20\\\": {\\\"bal_acc\\\": 0.7542, \\\"precision\\\": 0.6024, \\\"coverage\\\": 0.6316, \\\"precp_fpr_trace\\\": 0.1567, \\\"precp_fpr_step\\\": 0.1789, \\\"lead_mean\\\": 15.75}, \\\"W25\\\": {\\\"bal_acc\\\": 0.7624, \\\"precision\\\": 0.6177, \\\"coverage\\\": 0.5789, \\\"precp_fpr_trace\\\": 0.1476, \\\"precp_fpr_step\\\": 0.1694, \\\"lead_mean\\\": 14.91}, \\\"best_bal_acc_W\\\": 25}, \\\"finding\\\": \\\"Coverage monotonically DECREASES with W across all 3 models. Temporal context creates precision-sensitivity tradeoff (higher W → higher precision, lower coverage, lower FPR). R1-8B dominates (lowest FPR, highest precision). QwQ-32B FPR significantly lower than R1-32B with larger lead_mean.\\\"}}, \\\"exp_003_cross_transfer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T22:23:29.492Z\\\", \\\"updated_at\\\": \\\"2026-05-16T23:09:24.435Z\\\", \\\"hypothesis\\\": \\\"Safety commitment probes trained on one reasoning model can transfer to other architectures/scales via simple dimension projection, because the safety signal is a universal representation rather than model-specific.\\\", \\\"parent\\\": \\\"exp_001a_r1_32b\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"baselines\\\": {\\\"r1_8b_acc\\\": 0.8234, \\\"r1_32b_acc\\\": 0.6516, \\\"qwq_32b_acc\\\": 0.7171}, \\\"best_transfer_acc\\\": {\\\"r1_8b_to_r1_32b\\\": 0.522, \\\"r1_8b_to_qwq\\\": 0.5948, \\\"r1_32b_to_qwq\\\": 0.5499, \\\"qwq_to_r1_32b\\\": 0.6726, \\\"r1_32b_to_r1_8b\\\": 0.5828}, \\\"transfer_method\\\": \\\"PCA projection\\\", \\\"conclusion_detail\\\": \\\"Simple PCA projection insufficient for zero-shot cross-model transfer. Signal is model-specific in geometric encoding.\\\"}}, \\\"exp_001b_qwq_32b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T21:21:46.602Z\\\", \\\"updated_at\\\": \\\"2026-05-16T22:57:08.301Z\\\", \\\"hypothesis\\\": \\\"Temporal probes on QwQ-32B hidden states will show same pattern as r1-8b: temporal coverage significantly exceeds static, best layer near 44% depth (~layer 28), confirming cross-architecture generalization even across model families (Llama vs Qwen).\\\", \\\"metrics\\\": {\\\"m001_corrected\\\": true, \\\"best_layer_old\\\": 1, \\\"best_layer_corrected\\\": 2, \\\"layer_selection_metric\\\": \\\"balanced_accuracy × crossing_rate (scheme B)\\\", \\\"layer2_bal_acc\\\": 0.73, \\\"layer2_crossing_rate\\\": 0.47, \\\"gru_single_bal_acc_mean\\\": 0.694, \\\"gru_single_crossing_mean\\\": 0.75, \\\"gru_single_lead_mean\\\": 19.3, \\\"gru_single_precp_fpr_mean\\\": 0.303, \\\"gru_multi_bal_acc_mean\\\": 0.724, \\\"gru_multi_crossing_mean\\\": 0.84, \\\"gru_multi_lead_mean\\\": 15.9, \\\"gru_multi_precp_fpr_mean\\\": 0.289, \\\"temporal_lr_best_window\\\": 5, \\\"temporal_lr_w5_bal_acc\\\": 0.761, \\\"temporal_lr_w5_crossing\\\": 0.42, \\\"temporal_lr_w5_lead\\\": 23.5, \\\"temporal_lr_w5_precp_fpr\\\": 0.18, \\\"bootstrap_phase5_invalid\\\": true, \\\"bootstrap_phase5_bug\\\": \\\"M002 - text_baseline_predictions() in exp_001b_bootstrap.py used midpoint heuristic, not sentence embeddings\\\", \\\"corrected_hs_vs_text\\\": {\\\"hs_bal_acc\\\": 0.679, \\\"text_bal_acc\\\": 0.671, \\\"acc_delta\\\": 0.009, \\\"acc_p_value_two_sided\\\": 0.828, \\\"hs_precision\\\": 0.583, \\\"text_precision\\\": 0.525, \\\"prec_delta\\\": 0.057, \\\"prec_p_value_two_sided\\\": 0.346, \\\"hs_precp_fpr\\\": 0.208, \\\"text_precp_fpr\\\": 0.178, \\\"fpr_delta\\\": 0.03, \\\"fpr_p_value_two_sided\\\": 0.43, \\\"bonferroni_alpha\\\": 0.017, \\\"bonferroni_pass\\\": false, \\\"test_type\\\": \\\"two-sided\\\", \\\"solver\\\": \\\"liblinear\\\", \\\"note\\\": \\\"No significant HS vs text difference on QwQ-32B. HS FPR slightly worse than text.\\\"}, \\\"bootstrap_conclusion\\\": \\\"no_significant_difference\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"M002 impact: Phase 5 bootstrap in original exp_001b used midpoint heuristic instead of sentence embeddings for text baseline. Corrected paired bootstrap (W=5, layer 2) shows no significant HS vs text difference on QwQ-32B (acc Δ+0.9pp p=0.828, prec Δ+5.7pp p=0.346, FPR Δ+3.0pp p=0.785). Main hypothesis (temporal probe cross-architecture generalization) unaffected.\\\"}, \\\"exp_001a_r1_32b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T21:21:46.146Z\\\", \\\"updated_at\\\": \\\"2026-05-16T22:57:07.274Z\\\", \\\"hypothesis\\\": \\\"Temporal probes on R1-Distill-Qwen-32B hidden states will show same pattern as r1-8b: temporal coverage significantly exceeds static, best layer near 44% depth (~layer 28), confirming cross-architecture generalization of commitment detection.\\\", \\\"metrics\\\": {\\\"m001_corrected\\\": true, \\\"best_layer_old\\\": 2, \\\"best_layer_corrected\\\": 10, \\\"layer_selection_metric\\\": \\\"balanced_accuracy × crossing_rate (scheme B)\\\", \\\"layer10_bal_acc\\\": 0.718, \\\"layer10_crossing_rate\\\": 0.6, \\\"gru_single_bal_acc_mean\\\": 0.675, \\\"gru_single_crossing_mean\\\": 0.3, \\\"gru_single_lead_mean\\\": 9.1, \\\"gru_single_precp_fpr_mean\\\": 0.135, \\\"gru_multi_bal_acc_mean\\\": 0.655, \\\"gru_multi_crossing_mean\\\": 0.23, \\\"gru_multi_lead_mean\\\": 8.8, \\\"gru_multi_precp_fpr_mean\\\": 0.114, \\\"temporal_lr_best_window\\\": 10, \\\"temporal_lr_w10_bal_acc\\\": 0.737, \\\"temporal_lr_w10_crossing\\\": 0.5, \\\"temporal_lr_w10_lead\\\": 9, \\\"temporal_lr_w10_precp_fpr\\\": 0.189, \\\"bootstrap_hs_precp_fpr\\\": 0.26, \\\"bootstrap_text_precp_fpr\\\": 0.246, \\\"bootstrap_diff\\\": 0.014, \\\"bootstrap_p_value\\\": 0.999, \\\"bootstrap_ci95\\\": [-0.103, 0.127], \\\"bootstrap_conclusion\\\": \\\"no_significant_difference\\\", \\\"paired_bootstrap_corrected\\\": {\\\"hs_bal_acc\\\": 0.794, \\\"text_bal_acc\\\": 0.711, \\\"acc_delta\\\": 0.084, \\\"acc_p_value_two_sided\\\": 0.08, \\\"hs_precision\\\": 0.61, \\\"text_precision\\\": 0.516, \\\"prec_delta\\\": 0.094, \\\"prec_p_value_two_sided\\\": 0.05, \\\"hs_precp_fpr\\\": 0.242, \\\"text_precp_fpr\\\": 0.326, \\\"fpr_delta\\\": -0.084, \\\"fpr_p_value_two_sided\\\": 0.114, \\\"bonferroni_alpha\\\": 0.017, \\\"bonferroni_pass\\\": false, \\\"test_type\\\": \\\"two-sided\\\", \\\"solver\\\": \\\"liblinear\\\", \\\"canonical_file\\\": \\\"artifacts/r1_32b_paired_bootstrap/results.json\\\", \\\"note\\\": \\\"directional but ns after Bonferroni. n=20 test traces insufficient power. Old m001 FPR=0.246 used lbfgs solver (non-canonical).\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_015_fpr_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T21:00:55.369Z\\\", \\\"updated_at\\\": \\\"2026-05-16T21:19:56.311Z\\\", \\\"hypothesis\\\": \\\"Text temporal probe's high lead time (+11.5) is inflated by false positives (trigger-happy). If text FPR >> HS FPR, the early detection is illusory and hidden-state monitoring remains necessary. If FPR comparable, paper motivation needs restructuring.\\\", \\\"parent\\\": \\\"exp_013_text_baseline\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"text_static_safe_fpr\\\": 0.502, \\\"text_static_precp_fpr\\\": 0.356, \\\"text_static_precision\\\": 0.448, \\\"text_static_coverage\\\": 0.605, \\\"text_static_lead\\\": 4.3, \\\"text_static_acc\\\": 0.661, \\\"text_temporal_safe_fpr\\\": 0.385, \\\"text_temporal_precp_fpr\\\": 0.272, \\\"text_temporal_precision\\\": 0.487, \\\"text_temporal_coverage\\\": 0.651, \\\"text_temporal_lead\\\": 11.5, \\\"text_temporal_acc\\\": 0.678, \\\"hs_static_safe_fpr\\\": 0.39, \\\"hs_static_precp_fpr\\\": 0.162, \\\"hs_static_precision\\\": 0.622, \\\"hs_static_coverage\\\": 0.605, \\\"hs_static_lead\\\": 3, \\\"hs_static_acc\\\": 0.768, \\\"hs_temporal_safe_fpr\\\": 0.392, \\\"hs_temporal_precp_fpr\\\": 0.16, \\\"hs_temporal_precision\\\": 0.583, \\\"hs_temporal_coverage\\\": 0.651, \\\"hs_temporal_lead\\\": 4.9, \\\"hs_temporal_acc\\\": 0.726, \\\"gru_safe_fpr\\\": 0.521, \\\"gru_precp_fpr\\\": 0.188, \\\"gru_precision\\\": 0.648, \\\"gru_coverage\\\": 0.744, \\\"gru_lead\\\": 5.25, \\\"gru_acc\\\": 0.816}}, \\\"exp_014_bocpd_poc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T21:02:47.275Z\\\", \\\"updated_at\\\": \\\"2026-05-16T21:14:13.437Z\\\", \\\"hypothesis\\\": \\\"BOCPD/CUSUM on probe score sequences may detect commitment earlier than raw threshold crossing by identifying distributional shift points. Potential breakthrough for Claim 3 (pre-textual detection).\\\", \\\"parent\\\": \\\"diag_gru_probe\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"bocpd_lambda10\\\": {\\\"detection_rate\\\": 0.93, \\\"mean_lead\\\": 3.45, \\\"median_lead\\\": 0, \\\"early_count\\\": 16, \\\"late_count\\\": 19}, \\\"bocpd_lambda100\\\": {\\\"detection_rate\\\": 0.674, \\\"mean_lead\\\": 1.03, \\\"median_lead\\\": 0}, \\\"cusum_best_t03h3\\\": {\\\"detection_rate\\\": 0.651, \\\"mean_lead\\\": 0.89, \\\"median_lead\\\": -4}, \\\"fcp_baseline\\\": {\\\"detection_rate\\\": 0.651, \\\"mean_lead\\\": 4.89, \\\"median_lead\\\": 0}, \\\"head_to_head_bocpd_vs_fcp\\\": {\\\"bocpd_wins\\\": 16, \\\"fcp_wins\\\": 6, \\\"ties\\\": 5}, \\\"verdict\\\": \\\"BOCPD higher detection (93% vs 65%) but lower mean lead (3.45 vs 4.89). CUSUM universally worse. Neither method achieves earlier detection than simple threshold crossing on average.\\\"}}, \\\"exp_006_bootstrap_ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T20:34:57.453Z\\\", \\\"updated_at\\\": \\\"2026-05-16T21:06:23.334Z\\\", \\\"hypothesis\\\": \\\"Temporal methods' apparent advantage over static methods (crossing rate +20pp, lead time +3 steps on r1-8b) reflects genuine signal improvement rather than noise — bootstrap CIs should show non-overlapping intervals and paired p < 0.05.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"static_lr_acc\\\": \\\"0.768 [0.702,0.827]\\\", \\\"static_lr_crossing\\\": \\\"60.4% [44.2,74.4]\\\", \\\"static_lr_lead\\\": \\\"+2.9 [-2.8,+9.5]\\\", \\\"temporal_lr_acc\\\": \\\"0.731 [0.654,0.804]\\\", \\\"temporal_lr_crossing\\\": \\\"60.6% [46.5,74.4]\\\", \\\"temporal_lr_lead\\\": \\\"+5.0 [-0.8,+11.9]\\\", \\\"gru_single_acc\\\": \\\"0.790 [0.734,0.848]\\\", \\\"gru_single_crossing\\\": \\\"51.4% [37.2,67.4]\\\", \\\"gru_single_lead\\\": \\\"-2.0 [-8.6,+4.9]\\\", \\\"gru_multi_acc\\\": \\\"0.799 [0.742,0.854]\\\", \\\"gru_multi_crossing\\\": \\\"51.4% [37.2,67.4]\\\", \\\"gru_multi_lead\\\": \\\"-0.4 [-6.4,+6.1]\\\", \\\"paired_temporal_vs_static_lead_p\\\": 0.19, \\\"paired_gru_vs_static_lead_p\\\": 0.94, \\\"paired_gru_vs_temporal_lead_p\\\": 0.99}}, \\\"exp_013_text_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T20:40:49.092Z\\\", \\\"updated_at\\\": \\\"2026-05-16T21:05:47.544Z\\\", \\\"hypothesis\\\": \\\"Text-based sentence embeddings (all-MiniLM-L6-v2) should underperform hidden-state probes on commitment detection because surface text may not reveal internal model state shifts. If text matches hidden-state performance, paper motivation needs restructuring.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"text_static_coverage\\\": 0.605, \\\"text_static_lead\\\": 4.3, \\\"text_static_acc\\\": 0.661, \\\"text_static_auroc\\\": 0.7384, \\\"text_temporal_w15_coverage\\\": 0.651, \\\"text_temporal_w15_lead\\\": 11.5, \\\"text_temporal_w15_acc\\\": 0.678, \\\"text_temporal_w15_auroc\\\": 0.759, \\\"hs_acc_advantage\\\": \\\"15-18pp\\\"}}, \\\"exp_005_trajguard_mahalanobis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T20:34:56.736Z\\\", \\\"updated_at\\\": \\\"2026-05-16T21:04:54.120Z\\\", \\\"hypothesis\\\": \\\"Mahalanobis distance from safe trace distribution should fail as commitment detector because PCA shows discriminative signal is in minor components, not the principal directions that dominate covariance\\\", \\\"parent\\\": \\\"diag_d2_pca_viz\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"best_k5_crossing_rate\\\": 0.302, \\\"best_k5_lead_mean\\\": 16.4, \\\"best_k5_config\\\": \\\"pca_64_p75\\\", \\\"best_k3_crossing_rate\\\": 0.605, \\\"best_k3_lead_mean\\\": 20.4, \\\"delta_max_rate\\\": 0.023, \\\"safe_md_mean\\\": 6.66, \\\"jb_pre_md_mean\\\": 6.73, \\\"jb_post_md_mean\\\": 6.64}}, \\\"exp_gru256_multilayer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T19:40:47.187Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:44:29.860Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gru_single_l14\\\": {\\\"acc\\\": 0.8386, \\\"crossing_rate\\\": 0.721, \\\"lead_mean\\\": 3.5, \\\"lead_median\\\": 0, \\\"pos_lead\\\": \\\"13/31\\\"}, \\\"gru_multi_7l\\\": {\\\"acc\\\": 0.8094, \\\"crossing_rate\\\": 0.767, \\\"lead_mean\\\": 4.7, \\\"lead_median\\\": 0, \\\"pos_lead\\\": \\\"13/33\\\"}, \\\"lr_single_l14\\\": {\\\"acc\\\": 0.8172, \\\"crossing_rate\\\": 0.465, \\\"lead_mean\\\": -2, \\\"lead_median\\\": -2, \\\"pos_lead\\\": \\\"6/20\\\"}, \\\"lr_multi_7l\\\": {\\\"acc\\\": 0.806, \\\"crossing_rate\\\": 0.395, \\\"lead_mean\\\": 1.1, \\\"lead_median\\\": 0, \\\"pos_lead\\\": \\\"6/17\\\"}, \\\"delta_gru_vs_lr\\\": 3.7}}, \\\"diag_gru_probe\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T19:38:52.099Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:42:44.428Z\\\", \\\"metrics\\\": {\\\"test_acc\\\": 0.8305, \\\"test_acc_std\\\": 0.1856, \\\"crossing_rate\\\": 0.6744, \\\"lead_mean\\\": -0.207, \\\"lead_median\\\": -1, \\\"lead_std\\\": 13, \\\"positive_lead_rate\\\": 0.345, \\\"n_positive_lead\\\": 10, \\\"n_detected\\\": 29, \\\"early_stop_epoch\\\": 14, \\\"model_params\\\": 1622913}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"GRU improves lead time slightly (mean -0.2 vs Temporal LR -1.1) but still negative. 34.5% positive lead rate with high variance (std=13). Early stopping at epoch 14 suggests overfitting. Sequential modeling alone insufficient for reliable early warning.\\\"}, \\\"diag_d2_pca_viz\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T19:29:04.743Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:36:43.042Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"fisher_orig_L12\\\": 17.462, \\\"fisher_orig_L14\\\": 17.875, \\\"fisher_orig_L20\\\": 18.614, \\\"fisher_orig_L24\\\": 18.106, \\\"fisher_pca_L12\\\": 0.953, \\\"fisher_pca_L14\\\": 0.928, \\\"fisher_pca_L20\\\": 0.92, \\\"fisher_pca_L24\\\": 1.111, \\\"var_explained_3pc\\\": 0.166, \\\"test_steps\\\": 1835}}, \\\"diag_d3_regularized_probes\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T19:29:07.038Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:36:06.531Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"static_lr_acc\\\": 0.8172, \\\"static_lr_crossing_rate\\\": 0.4651, \\\"static_lr_lead_mean\\\": -2, \\\"temporal_lr_w5_acc\\\": 0.8274, \\\"temporal_lr_w5_crossing_rate\\\": 0.6512, \\\"temporal_lr_w5_lead_mean\\\": -1.18, \\\"temporal_lr_w10_acc\\\": 0.8364, \\\"temporal_lr_w10_crossing_rate\\\": 0.6512, \\\"temporal_lr_w10_lead_mean\\\": -0.61, \\\"temporal_lr_w15_acc\\\": 0.8478, \\\"temporal_lr_w15_crossing_rate\\\": 0.7674, \\\"temporal_lr_w15_lead_mean\\\": -1.09, \\\"best_temporal_delta_over_static\\\": 1.39, \\\"pass_criterion_met\\\": false}}, \\\"diag_d4_oracle_upper_bound\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T19:29:02.931Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:33:25.131Z\\\", \\\"metrics\\\": {\\\"K5_detection_rate\\\": 100, \\\"K5_early_detection_rate\\\": 76.7, \\\"K5_mean_lead_time\\\": 31, \\\"K5_median_lead_time\\\": 29, \\\"K1_early_detection_rate\\\": 83.7, \\\"K8_early_detection_rate\\\": 65.1, \\\"pre_cp_mean_longest_streak\\\": 14.6, \\\"test_traces\\\": 43}, \\\"conclusion\\\": \\\"success\\\"}, \\\"diag_d1_layer_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T19:29:00.134Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:31:47.837Z\\\", \\\"hypothesis\\\": \\\"If safety commitment signal is distributed across transformer depth, layers near 40-50% depth should outperform the default layer 20 (62% depth) because mid-layer representations encode semantic state before it's compressed into output predictions.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"best_layer_idx\\\": 2, \\\"best_model_layer\\\": 14, \\\"best_acc\\\": 0.8114, \\\"best_f1\\\": 0.6455, \\\"best_crossing_rate\\\": 0.186, \\\"best_lead_mean\\\": 8.38, \\\"best_lead_median\\\": 6, \\\"default_layer20_acc\\\": 0.7831, \\\"num_traces\\\": 209, \\\"split\\\": \\\"125/41/43\\\"}}}, \\\"count\\\": 18, \\\"total\\\": 18, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0662}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_ot7b_full_pipeline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:13:10.826Z\", \"updated_at\": \"2026-05-17T09:35:33.041Z\", \"hypothesis\": \"If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific.\", \"parent\": \"exp_001a_r1_32b\", \"metrics\": {\"n_traces\": 228, \"best_layer\": 16, \"best_layer_depth_pct\": 57.1, \"best_layer_score\": 0.6876, \"best_hs_window\": 3, \"best_hs_bal_acc\": 0.6876, \"best_hs_precision\": 0.4664, \"best_hs_pre_cp_fpr\": 0.1004, \"best_hs_coverage\": 0.5319, \"best_hs_lead\": 21.6, \"best_text_window\": 25, \"best_text_bal_acc\": 0.6141, \"best_text_precision\": 0.3291, \"best_text_pre_cp_fpr\": 0.1605, \"bootstrap_bal_acc_delta\": 0.1067, \"bootstrap_bal_acc_p\": 0, \"bootstrap_bal_acc_bonf\": true, \"bootstrap_precision_delta\": 0.2189, \"bootstrap_precision_p\": 0, \"bootstrap_precision_bonf\": true, \"bootstrap_fpr_delta\": -0.1705, \"bootstrap_fpr_p\": 0, \"bootstrap_fpr_bonf\": true, \"selectivity_pp\": 18.5, \"selectivity_real_acc\": 0.6721, \"selectivity_random_mean\": 0.487, \"layer_verification\": \"Layer 16 verified superior to Layer 0: +1.6pp bal_acc, +10.9pp precision, -8.8pp FPR, 3/3 Bonferroni (was 2/3)\", \"r1_8b_layer_supplement\": \"Full sweep layers 0-24 confirmed: best=L12 (0.7871) ≈ L14 (0.7830), no early-layer dominance. R1-8B peaks at ~39% depth, differs from 32B models.\"}, \"conclusion\": \"success\"}, \"exp_pathb_annotation_validation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:13:13.591Z\", \"updated_at\": \"2026-05-17T07:01:11.805Z\", \"hypothesis\": \"A local classifier trained on existing HarmThoughts annotations (56K sentences, 16 classes) can reproduce safety/non-safety binary labels with F1 >= 0.90 and CP position agreement within ±1 step, validating automated annotation for new trace generation.\", \"conclusion\": \"negative\", \"metrics\": {\"tfidf_lr_f1\": 0.5899, \"tfidf_lr_cp_agreement\": 0.561, \"minilm_lr_f1\": 0.5149, \"minilm_lr_cp_agreement\": 0.534, \"threshold_f1\": 0.9, \"threshold_cp\": 0.85, \"failure_reason\": \"Safety recall extremely low (41-46%). Simple classifiers cannot distinguish subtle safety-aware expressions in CoT from regular reasoning. CP MAE=5-6 sentences.\", \"recommendation\": \"Need LLM API annotation or fine-tuned DeBERTa 16-class classifier\"}}, \"exp_c2_control_task\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T22:58:13.110Z\", \"updated_at\": \"2026-05-17T02:07:07.094Z\", \"hypothesis\": \"If HS probes learn safety state beyond position, selectivity (real_acc - random_label_acc) should be >5pp, and position-only baseline should underperform real probes especially on pre-CP FPR metric.\", \"parent\": \"exp_001a_r1_32b\", \"conclusion\": \"success\", \"metrics\": {\"r1_8b_selectivity\": 0.1245, \"r1_32b_selectivity\": 0.075, \"r1_32b_selectivity_note\": \"layer 10 (corrected best layer). Old layer 2 = 0.168\", \"r1_32b_layer10_real_acc\": 0.583, \"r1_32b_layer10_random_mean\": 0.508, \"r1_32b_layer10_random_std\": 0.051, \"qwq_32b_selectivity\": 0.153, \"qwq_32b_selectivity_note\": \"layer 2 (corrected from layer 1 = 0.189)\", \"r1_8b_hs_pre_fpr\": 0.0809, \"r1_8b_position_pre_fpr\": 0.1581, \"r1_8b_cp_position_mean\": 0.705, \"qwq_32b_layer2_real_acc\": 0.678, \"qwq_32b_layer2_random_mean\": 0.526, \"qwq_32b_layer2_random_std\": 0.076, \"qwq_32b_layer2_position_acc\": 0.706, \"qwq_32b_layer2_hs_pre_fpr\": 0.2903, \"qwq_32b_layer2_position_pre_fpr\": 0.25, \"qwq_32b_layer2_issue\": \"position_baseline (70.6%) > HS probe (67.8%)\"}}, \"exp_007_window_ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T23:47:25.609Z\", \"updated_at\": \"2026-05-17T01:35:47.819Z\", \"hypothesis\": \"Coverage increases monotonically with window size W but with diminishing returns, plateauing around W=10-15 across all three models, demonstrating that temporal context is the key mechanism for commitment detection improvement.\", \"parent\": \"diag_d3_regularized_probes\", \"conclusion\": \"negative\", \"metrics\": {\"r1_8b\": {\"W1\": {\"bal_acc\": 0.7783, \"precision\": 0.6926, \"coverage\": 0.7209, \"precp_fpr_trace\": 0.1037, \"precp_fpr_step\": 0.0965, \"lead_mean\": 13.84}, \"W3\": {\"bal_acc\": 0.7902, \"precision\": 0.7228, \"coverage\": 0.6977, \"precp_fpr_trace\": 0.0988, \"precp_fpr_step\": 0.085, \"lead_mean\": 12.07}, \"W5\": {\"bal_acc\": 0.781, \"precision\": 0.7258, \"coverage\": 0.6512, \"precp_fpr_trace\": 0.0913, \"precp_fpr_step\": 0.0809, \"lead_mean\": 8.25}, \"W10\": {\"bal_acc\": 0.7925, \"precision\": 0.7431, \"coverage\": 0.5581, \"precp_fpr_trace\": 0.0865, \"precp_fpr_step\": 0.0761, \"lead_mean\": 10.04}, \"W15\": {\"bal_acc\": 0.8017, \"precision\": 0.7767, \"coverage\": 0.5116, \"precp_fpr_trace\": 0.0701, \"precp_fpr_step\": 0.0639, \"lead_mean\": 7.23}, \"W20\": {\"bal_acc\": 0.8072, \"precision\": 0.7862, \"coverage\": 0.5349, \"precp_fpr_trace\": 0.0661, \"precp_fpr_step\": 0.0612, \"lead_mean\": 7.43}, \"W25\": {\"bal_acc\": 0.8095, \"precision\": 0.8216, \"coverage\": 0.4884, \"precp_fpr_trace\": 0.0545, \"precp_fpr_step\": 0.0483, \"lead_mean\": 8.14}, \"best_bal_acc_W\": 25}, \"r1_32b\": {\"W1\": {\"bal_acc\": 0.7182, \"precision\": 0.549, \"coverage\": 0.8, \"precp_fpr_trace\": 0.2764, \"precp_fpr_step\": 0.3203, \"lead_mean\": 12.88}, \"W3\": {\"bal_acc\": 0.7252, \"precision\": 0.56, \"coverage\": 0.8, \"precp_fpr_trace\": 0.2576, \"precp_fpr_step\": 0.3064, \"lead_mean\": 11.38}, \"W5\": {\"bal_acc\": 0.7309, \"precision\": 0.575, \"coverage\": 0.75, \"precp_fpr_trace\": 0.2393, \"precp_fpr_step\": 0.2841, \"lead_mean\": 11.07}, \"W10\": {\"bal_acc\": 0.7371, \"precision\": 0.6093, \"coverage\": 0.7, \"precp_fpr_trace\": 0.1891, \"precp_fpr_step\": 0.234, \"lead_mean\": 10.79}, \"W15\": {\"bal_acc\": 0.7207, \"precision\": 0.5907, \"coverage\": 0.7, \"precp_fpr_trace\": 0.2089, \"precp_fpr_step\": 0.2451, \"lead_mean\": 10.86}, \"W20\": {\"bal_acc\": 0.6961, \"precision\": 0.5628, \"coverage\": 0.65, \"precp_fpr_trace\": 0.2193, \"precp_fpr_step\": 0.2618, \"lead_mean\": 9.62}, \"W25\": {\"bal_acc\": 0.7028, \"precision\": 0.5662, \"coverage\": 0.7, \"precp_fpr_trace\": 0.2282, \"precp_fpr_step\": 0.2646, \"lead_mean\": 10.71}, \"best_bal_acc_W\": 10}, \"qwq_32b\": {\"W1\": {\"bal_acc\": 0.7298, \"precision\": 0.5435, \"coverage\": 0.7895, \"precp_fpr_trace\": 0.185, \"precp_fpr_step\": 0.2276, \"lead_mean\": 19.73}, \"W3\": {\"bal_acc\": 0.7452, \"precision\": 0.5647, \"coverage\": 0.7368, \"precp_fpr_trace\": 0.175, \"precp_fpr_step\": 0.2141, \"lead_mean\": 20.64}, \"W5\": {\"bal_acc\": 0.761, \"precision\": 0.5733, \"coverage\": 0.7368, \"precp_fpr_trace\": 0.1795, \"precp_fpr_step\": 0.2168, \"lead_mean\": 20.07}, \"W10\": {\"bal_acc\": 0.7469, \"precision\": 0.5714, \"coverage\": 0.7368, \"precp_fpr_trace\": 0.1707, \"precp_fpr_step\": 0.2073, \"lead_mean\": 18.43}, \"W15\": {\"bal_acc\": 0.7412, \"precision\": 0.5816, \"coverage\": 0.6842, \"precp_fpr_trace\": 0.1605, \"precp_fpr_step\": 0.1911, \"lead_mean\": 15.77}, \"W20\": {\"bal_acc\": 0.7542, \"precision\": 0.6024, \"coverage\": 0.6316, \"precp_fpr_trace\": 0.1567, \"precp_fpr_step\": 0.1789, \"lead_mean\": 15.75}, \"W25\": {\"bal_acc\": 0.7624, \"precision\": 0.6177, \"coverage\": 0.5789, \"precp_fpr_trace\": 0.1476, \"precp_fpr_step\": 0.1694, \"lead_mean\": 14.91}, \"best_bal_acc_W\": 25}, \"finding\": \"Coverage monotonically DECREASES with W across all 3 models. Temporal context creates precision-sensitivity tradeoff (higher W → higher precision, lower coverage, lower FPR). R1-8B dominates (lowest FPR, highest precision). QwQ-32B FPR significantly lower than R1-32B with larger lead_mean.\"}}, \"exp_003_cross_transfer\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T22:23:29.492Z\", \"updated_at\": \"2026-05-16T23:09:24.435Z\", \"hypothesis\": \"Safety commitment probes trained on one reasoning model can transfer to other architectures/scales via simple dimension projection, because the safety signal is a universal representation rather than model-specific.\", \"parent\": \"exp_001a_r1_32b\", \"conclusion\": \"negative\", \"metrics\": {\"baselines\": {\"r1_8b_acc\": 0.8234, \"r1_32b_acc\": 0.6516, \"qwq_32b_acc\": 0.7171}, \"best_transfer_acc\": {\"r1_8b_to_r1_32b\": 0.522, \"r1_8b_to_qwq\": 0.5948, \"r1_32b_to_qwq\": 0.5499, \"qwq_to_r1_32b\": 0.6726, \"r1_32b_to_r1_8b\": 0.5828}, \"transfer_method\": \"PCA projection\", \"conclusion_detail\": \"Simple PCA projection insufficient for zero-shot cross-model transfer. Signal is model-specific in geometric encoding.\"}}, \"exp_001b_qwq_32b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:21:46.602Z\", \"updated_at\": \"2026-05-16T22:57:08.301Z\", \"hypothesis\": \"Temporal probes on QwQ-32B hidden states will show same pattern as r1-8b: temporal coverage significantly exceeds static, best layer near 44% depth (~layer 28), confirming cross-architecture generalization even across model families (Llama vs Qwen).\", \"metrics\": {\"m001_corrected\": true, \"best_layer_old\": 1, \"best_layer_corrected\": 2, \"layer_selection_metric\": \"balanced_accuracy × crossing_rate (scheme B)\", \"layer2_bal_acc\": 0.73, \"layer2_crossing_rate\": 0.47, \"gru_single_bal_acc_mean\": 0.694, \"gru_single_crossing_mean\": 0.75, \"gru_single_lead_mean\": 19.3, \"gru_single_precp_fpr_mean\": 0.303, \"gru_multi_bal_acc_mean\": 0.724, \"gru_multi_crossing_mean\": 0.84, \"gru_multi_lead_mean\": 15.9, \"gru_multi_precp_fpr_mean\": 0.289, \"temporal_lr_best_window\": 5, \"temporal_lr_w5_bal_acc\": 0.761, \"temporal_lr_w5_crossing\": 0.42, \"temporal_lr_w5_lead\": 23.5, \"temporal_lr_w5_precp_fpr\": 0.18, \"bootstrap_phase5_invalid\": true, \"bootstrap_phase5_bug\": \"M002 - text_baseline_predictions() in exp_001b_bootstrap.py used midpoint heuristic, not sentence embeddings\", \"corrected_hs_vs_text\": {\"hs_bal_acc\": 0.679, \"text_bal_acc\": 0.671, \"acc_delta\": 0.009, \"acc_p_value_two_sided\": 0.828, \"hs_precision\": 0.583, \"text_precision\": 0.525, \"prec_delta\": 0.057, \"prec_p_value_two_sided\": 0.346, \"hs_precp_fpr\": 0.208, \"text_precp_fpr\": 0.178, \"fpr_delta\": 0.03, \"fpr_p_value_two_sided\": 0.43, \"bonferroni_alpha\": 0.017, \"bonferroni_pass\": false, \"test_type\": \"two-sided\", \"solver\": \"liblinear\", \"note\": \"No significant HS vs text difference on QwQ-32B. HS FPR slightly worse than text.\"}, \"bootstrap_conclusion\": \"no_significant_difference\"}, \"conclusion\": \"success\", \"notes\": \"M002 impact: Phase 5 bootstrap in original exp_001b used midpoint heuristic instead of sentence embeddings for text baseline. Corrected paired bootstrap (W=5, layer 2) shows no significant HS vs text difference on QwQ-32B (acc Δ+0.9pp p=0.828, prec Δ+5.7pp p=0.346, FPR Δ+3.0pp p=0.785). Main hypothesis (temporal probe cross-architecture generalization) unaffected.\"}, \"exp_001a_r1_32b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:21:46.146Z\", \"updated_at\": \"2026-05-16T22:57:07.274Z\", \"hypothesis\": \"Temporal probes on R1-Distill-Qwen-32B hidden states will show same pattern as r1-8b: temporal coverage significantly exceeds static, best layer near 44% depth (~layer 28), confirming cross-architecture generalization of commitment detection.\", \"metrics\": {\"m001_corrected\": true, \"best_layer_old\": 2, \"best_layer_corrected\": 10, \"layer_selection_metric\": \"balanced_accuracy × crossing_rate (scheme B)\", \"layer10_bal_acc\": 0.718, \"layer10_crossing_rate\": 0.6, \"gru_single_bal_acc_mean\": 0.675, \"gru_single_crossing_mean\": 0.3, \"gru_single_lead_mean\": 9.1, \"gru_single_precp_fpr_mean\": 0.135, \"gru_multi_bal_acc_mean\": 0.655, \"gru_multi_crossing_mean\": 0.23, \"gru_multi_lead_mean\": 8.8, \"gru_multi_precp_fpr_mean\": 0.114, \"temporal_lr_best_window\": 10, \"temporal_lr_w10_bal_acc\": 0.737, \"temporal_lr_w10_crossing\": 0.5, \"temporal_lr_w10_lead\": 9, \"temporal_lr_w10_precp_fpr\": 0.189, \"bootstrap_hs_precp_fpr\": 0.26, \"bootstrap_text_precp_fpr\": 0.246, \"bootstrap_diff\": 0.014, \"bootstrap_p_value\": 0.999, \"bootstrap_ci95\": [-0.103, 0.127], \"bootstrap_conclusion\": \"no_significant_difference\", \"paired_bootstrap_corrected\": {\"hs_bal_acc\": 0.794, \"text_bal_acc\": 0.711, \"acc_delta\": 0.084, \"acc_p_value_two_sided\": 0.08, \"hs_precision\": 0.61, \"text_precision\": 0.516, \"prec_delta\": 0.094, \"prec_p_value_two_sided\": 0.05, \"hs_precp_fpr\": 0.242, \"text_precp_fpr\": 0.326, \"fpr_delta\": -0.084, \"fpr_p_value_two_sided\": 0.114, \"bonferroni_alpha\": 0.017, \"bonferroni_pass\": false, \"test_type\": \"two-sided\", \"solver\": \"liblinear\", \"canonical_file\": \"artifacts/r1_32b_paired_bootstrap/results.json\", \"note\": \"directional but ns after Bonferroni. n=20 test traces insufficient power. Old m001 FPR=0.246 used lbfgs solver (non-canonical).\"}}, \"conclusion\": \"success\"}, \"exp_015_fpr_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:00:55.369Z\", \"updated_at\": \"2026-05-16T21:19:56.311Z\", \"hypothesis\": \"Text temporal probe's high lead time (+11.5) is inflated by false positives (trigger-happy). If text FPR >> HS FPR, the early detection is illusory and hidden-state monitoring remains necessary. If FPR comparable, paper motivation needs restructuring.\", \"parent\": \"exp_013_text_baseline\", \"conclusion\": \"success\", \"metrics\": {\"text_static_safe_fpr\": 0.502, \"text_static_precp_fpr\": 0.356, \"text_static_precision\": 0.448, \"text_static_coverage\": 0.605, \"text_static_lead\": 4.3, \"text_static_acc\": 0.661, \"text_temporal_safe_fpr\": 0.385, \"text_temporal_precp_fpr\": 0.272, \"text_temporal_precision\": 0.487, \"text_temporal_coverage\": 0.651, \"text_temporal_lead\": 11.5, \"text_temporal_acc\": 0.678, \"hs_static_safe_fpr\": 0.39, \"hs_static_precp_fpr\": 0.162, \"hs_static_precision\": 0.622, \"hs_static_coverage\": 0.605, \"hs_static_lead\": 3, \"hs_static_acc\": 0.768, \"hs_temporal_safe_fpr\": 0.392, \"hs_temporal_precp_fpr\": 0.16, \"hs_temporal_precision\": 0.583, \"hs_temporal_coverage\": 0.651, \"hs_temporal_lead\": 4.9, \"hs_temporal_acc\": 0.726, \"gru_safe_fpr\": 0.521, \"gru_precp_fpr\": 0.188, \"gru_precision\": 0.648, \"gru_coverage\": 0.744, \"gru_lead\": 5.25, \"gru_acc\": 0.816}}, \"exp_014_bocpd_poc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:02:47.275Z\", \"updated_at\": \"2026-05-16T21:14:13.437Z\", \"hypothesis\": \"BOCPD/CUSUM on probe score sequences may detect commitment earlier than raw threshold crossing by identifying distributional shift points. Potential breakthrough for Claim 3 (pre-textual detection).\", \"parent\": \"diag_gru_probe\", \"conclusion\": \"negative\", \"metrics\": {\"bocpd_lambda10\": {\"detection_rate\": 0.93, \"mean_lead\": 3.45, \"median_lead\": 0, \"early_count\": 16, \"late_count\": 19}, \"bocpd_lambda100\": {\"detection_rate\": 0.674, \"mean_lead\": 1.03, \"median_lead\": 0}, \"cusum_best_t03h3\": {\"detection_rate\": 0.651, \"mean_lead\": 0.89, \"median_lead\": -4}, \"fcp_baseline\": {\"detection_rate\": 0.651, \"mean_lead\": 4.89, \"median_lead\": 0}, \"head_to_head_bocpd_vs_fcp\": {\"bocpd_wins\": 16, \"fcp_wins\": 6, \"ties\": 5}, \"verdict\": \"BOCPD higher detection (93% vs 65%) but lower mean lead (3.45 vs 4.89). CUSUM universally worse. Neither method achieves earlier detection than simple threshold crossing on average.\"}}, \"exp_006_bootstrap_ci\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:34:57.453Z\", \"updated_at\": \"2026-05-16T21:06:23.334Z\", \"hypothesis\": \"Temporal methods' apparent advantage over static methods (crossing rate +20pp, lead time +3 steps on r1-8b) reflects genuine signal improvement rather than noise — bootstrap CIs should show non-overlapping intervals and paired p < 0.05.\", \"conclusion\": \"negative\", \"metrics\": {\"static_lr_acc\": \"0.768 [0.702,0.827]\", \"static_lr_crossing\": \"60.4% [44.2,74.4]\", \"static_lr_lead\": \"+2.9 [-2.8,+9.5]\", \"temporal_lr_acc\": \"0.731 [0.654,0.804]\", \"temporal_lr_crossing\": \"60.6% [46.5,74.4]\", \"temporal_lr_lead\": \"+5.0 [-0.8,+11.9]\", \"gru_single_acc\": \"0.790 [0.734,0.848]\", \"gru_single_crossing\": \"51.4% [37.2,67.4]\", \"gru_single_lead\": \"-2.0 [-8.6,+4.9]\", \"gru_multi_acc\": \"0.799 [0.742,0.854]\", \"gru_multi_crossing\": \"51.4% [37.2,67.4]\", \"gru_multi_lead\": \"-0.4 [-6.4,+6.1]\", \"paired_temporal_vs_static_lead_p\": 0.19, \"paired_gru_vs_static_lead_p\": 0.94, \"paired_gru_vs_temporal_lead_p\": 0.99}}, \"exp_013_text_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:40:49.092Z\", \"updated_at\": \"2026-05-16T21:05:47.544Z\", \"hypothesis\": \"Text-based sentence embeddings (all-MiniLM-L6-v2) should underperform hidden-state probes on commitment detection because surface text may not reveal internal model state shifts. If text matches hidden-state performance, paper motivation needs restructuring.\", \"conclusion\": \"success\", \"metrics\": {\"text_static_coverage\": 0.605, \"text_static_lead\": 4.3, \"text_static_acc\": 0.661, \"text_static_auroc\": 0.7384, \"text_temporal_w15_coverage\": 0.651, \"text_temporal_w15_lead\": 11.5, \"text_temporal_w15_acc\": 0.678, \"text_temporal_w15_auroc\": 0.759, \"hs_acc_advantage\": \"15-18pp\"}}, \"exp_005_trajguard_mahalanobis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:34:56.736Z\", \"updated_at\": \"2026-05-16T21:04:54.120Z\", \"hypothesis\": \"Mahalanobis distance from safe trace distribution should fail as commitment detector because PCA shows discriminative signal is in minor components, not the principal directions that dominate covariance\", \"parent\": \"diag_d2_pca_viz\", \"conclusion\": \"negative\", \"metrics\": {\"best_k5_crossing_rate\": 0.302, \"best_k5_lead_mean\": 16.4, \"best_k5_config\": \"pca_64_p75\", \"best_k3_crossing_rate\": 0.605, \"best_k3_lead_mean\": 20.4, \"delta_max_rate\": 0.023, \"safe_md_mean\": 6.66, \"jb_pre_md_mean\": 6.73, \"jb_post_md_mean\": 6.64}}, \"exp_gru256_multilayer\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:40:47.187Z\", \"updated_at\": \"2026-05-16T19:44:29.860Z\", \"conclusion\": \"success\", \"metrics\": {\"gru_single_l14\": {\"acc\": 0.8386, \"crossing_rate\": 0.721, \"lead_mean\": 3.5, \"lead_median\": 0, \"pos_lead\": \"13/31\"}, \"gru_multi_7l\": {\"acc\": 0.8094, \"crossing_rate\": 0.767, \"lead_mean\": 4.7, \"lead_median\": 0, \"pos_lead\": \"13/33\"}, \"lr_single_l14\": {\"acc\": 0.8172, \"crossing_rate\": 0.465, \"lead_mean\": -2, \"lead_median\": -2, \"pos_lead\": \"6/20\"}, \"lr_multi_7l\": {\"acc\": 0.806, \"crossing_rate\": 0.395, \"lead_mean\": 1.1, \"lead_median\": 0, \"pos_lead\": \"6/17\"}, \"delta_gru_vs_lr\": 3.7}}, \"diag_gru_probe\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:38:52.099Z\", \"updated_at\": \"2026-05-16T19:42:44.428Z\", \"metrics\": {\"test_acc\": 0.8305, \"test_acc_std\": 0.1856, \"crossing_rate\": 0.6744, \"lead_mean\": -0.207, \"lead_median\": -1, \"lead_std\": 13, \"positive_lead_rate\": 0.345, \"n_positive_lead\": 10, \"n_detected\": 29, \"early_stop_epoch\": 14, \"model_params\": 1622913}, \"conclusion\": \"negative\", \"notes\": \"GRU improves lead time slightly (mean -0.2 vs Temporal LR -1.1) but still negative. 34.5% positive lead rate with high variance (std=13). Early stopping at epoch 14 suggests overfitting. Sequential modeling alone insufficient for reliable early warning.\"}, \"diag_d2_pca_viz\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:04.743Z\", \"updated_at\": \"2026-05-16T19:36:43.042Z\", \"conclusion\": \"success\", \"metrics\": {\"fisher_orig_L12\": 17.462, \"fisher_orig_L14\": 17.875, \"fisher_orig_L20\": 18.614, \"fisher_orig_L24\": 18.106, \"fisher_pca_L12\": 0.953, \"fisher_pca_L14\": 0.928, \"fisher_pca_L20\": 0.92, \"fisher_pca_L24\": 1.111, \"var_explained_3pc\": 0.166, \"test_steps\": 1835}}, \"diag_d3_regularized_probes\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:07.038Z\", \"updated_at\": \"2026-05-16T19:36:06.531Z\", \"conclusion\": \"negative\", \"metrics\": {\"static_lr_acc\": 0.8172, \"static_lr_crossing_rate\": 0.4651, \"static_lr_lead_mean\": -2, \"temporal_lr_w5_acc\": 0.8274, \"temporal_lr_w5_crossing_rate\": 0.6512, \"temporal_lr_w5_lead_mean\": -1.18, \"temporal_lr_w10_acc\": 0.8364, \"temporal_lr_w10_crossing_rate\": 0.6512, \"temporal_lr_w10_lead_mean\": -0.61, \"temporal_lr_w15_acc\": 0.8478, \"temporal_lr_w15_crossing_rate\": 0.7674, \"temporal_lr_w15_lead_mean\": -1.09, \"best_temporal_delta_over_static\": 1.39, \"pass_criterion_met\": false}}, \"diag_d4_oracle_upper_bound\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:02.931Z\", \"updated_at\": \"2026-05-16T19:33:25.131Z\", \"metrics\": {\"K5_detection_rate\": 100, \"K5_early_detection_rate\": 76.7, \"K5_mean_lead_time\": 31, \"K5_median_lead_time\": 29, \"K1_early_detection_rate\": 83.7, \"K8_early_detection_rate\": 65.1, \"pre_cp_mean_longest_streak\": 14.6, \"test_traces\": 43}, \"conclusion\": \"success\"}, \"diag_d1_layer_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:29:00.134Z\", \"updated_at\": \"2026-05-16T19:31:47.837Z\", \"hypothesis\": \"If safety commitment signal is distributed across transformer depth, layers near 40-50% depth should outperform the default layer 20 (62% depth) because mid-layer representations encode semantic state before it's compressed into output predictions.\", \"conclusion\": \"negative\", \"metrics\": {\"best_layer_idx\": 2, \"best_model_layer\": 14, \"best_acc\": 0.8114, \"best_f1\": 0.6455, \"best_crossing_rate\": 0.186, \"best_lead_mean\": 8.38, \"best_lead_median\": 6, \"default_layer20_acc\": 0.7831, \"num_traces\": 209, \"split\": \"125/41/43\"}}}, \"count\": 18, \"total\": 18, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0662}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e85de545-2e4e-4cb7-bb7b-460b35b56ccc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T10:57:01.035Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01RzAgeQjhBYXyQLBnPgEdQU`</summary>
+
+```json
+{
+  "project": "contrastive_trace_safety",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03d27556-e824-4d27-9e44-6c5c4d7ba215",
+  "isSidechain": false,
+  "requestId": "req_011Cb82AMviodRDKCAaHe5Z9",
+  "type": "assistant",
+  "uuid": "ede8a568-37b4-4156-9d62-b6199c7a017b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015u3Zh78f6Mgzm7R7LoxPKx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 35223,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 35223,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T10:57:01.057Z_
+
+<details><summary>↩ Tool result · `toolu_01RzAgeQjhBYXyQLBnPgEdQU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_ot7b_full_pipeline** (success): If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific. ← 基于 exp_001a_r1_32b\\n- **exp_pathb_annotation_validation** (negative): A local classifier trained on existing HarmThoughts annotations (56K sentences, 16 classes) can reproduce safety/non-safety binary labels with F1 >= 0.90 and CP position agreement within ±1 step, validating automated annotation for new trace generation.\\n  [Path B Annotation Validation Report](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_pathb_annotation_validation/report/report.md)\\n- **exp_c2_control_task** (success): If HS probes learn safety state beyond position, selectivity (real_acc - random_label_acc) should be >5pp, and position-only baseline should underperform real probes especially on pre-CP FPR metric. ← 基于 exp_001a_r1_32b\\n  [C2 Control Task Results](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_c2_control_task/data/c2_control_summary.txt) | [C2 Control Task Report](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_c2_control_task/report/report_c2_control.md)\\n\\n## 趋势\\n成功 9 / 负向 9 / 失败 0 / 共 18\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-rtx6000: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 1585, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ede8a568-37b4-4156-9d62-b6199c7a017b",
+  "isSidechain": false,
+  "promptId": "4c41abf9-54c8-45ff-8956-01fb66b7dbd2",
+  "type": "user",
+  "uuid": "89cbaa30-19f1-45e8-9383-3d93be097f64",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp_ot7b_full_pipeline** (success): If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific. ← 基于 exp_001a_r1_32b\\\\n- **exp_pathb_annotation_validation** (negative): A local classifier trained on existing HarmThoughts annotations (56K sentences, 16 classes) can reproduce safety/non-safety binary labels with F1 >= 0.90 and CP position agreement within ±1 step, validating automated annotation for new trace generation.\\\\n  [Path B Annotation Validation Report](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_pathb_annotation_validation/report/report.md)\\\\n- **exp_c2_control_task** (success): If HS probes learn safety state beyond position, selectivity (real_acc - random_label_acc) should be >5pp, and position-only baseline should underperform real probes especially on pre-CP FPR metric. ← 基于 exp_001a_r1_32b\\\\n  [C2 Control Task Results](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_c2_control_task/data/c2_control_summary.txt) | [C2 Control Task Report](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_c2_control_task/report/report_c2_control.md)\\\\n\\\\n## 趋势\\\\n成功 9 / 负向 9 / 失败 0 / 共 18\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nautodl-rtx6000: 空闲 cuda:0, cuda:1\\\\n\\\\n## 告警\\\\n（无）\\\\n\\\", \\\"total_chars\\\": 1585, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_ot7b_full_pipeline** (success): If HS probe precision advantage generalizes beyond DeepSeek-R1 distilled models, OpenThinker-7B (STILL-trained, non-R1-distilled reasoning model on Qwen2.5-7B) should show HS vs text precision gap comparable to R1-8B, confirming the signal is inherent to reasoning models rather than R1-distillation-specific. ← 基于 exp_001a_r1_32b\\n- **exp_pathb_annotation_validation** (negative): A local classifier trained on existing HarmThoughts annotations (56K sentences, 16 classes) can reproduce safety/non-safety binary labels with F1 >= 0.90 and CP position agreement within ±1 step, validating automated annotation for new trace generation.\\n  [Path B Annotation Validation Report](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_pathb_annotation_validation/report/report.md)\\n- **exp_c2_control_task** (success): If HS probes learn safety state beyond position, selectivity (real_acc - random_label_acc) should be >5pp, and position-only baseline should underperform real probes especially on pre-CP FPR metric. ← 基于 exp_001a_r1_32b\\n  [C2 Control Task Results](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_c2_control_task/data/c2_control_summary.txt) | [C2 Control Task Report](/api/workspace-files/projects/contrastive_trace_safety/artifacts/exp_c2_control_task/report/report_c2_control.md)\\n\\n## 趋势\\n成功 9 / 负向 9 / 失败 0 / 共 18\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-rtx6000: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 1585, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ede8a568-37b4-4156-9d62-b6199c7a017b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-17T10:57:01.060Z_
+
+```json
+{
+  "parentUuid": "89cbaa30-19f1-45e8-9383-3d93be097f64",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "aeccc0fe-34d5-490a-b745-66c0306d773a",
+  "timestamp": "2026-05-17T10:57:01.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[服务器重启后首条消息] 当前日期: 2026-05-17。服务器刚重启，项目状态可能已更新。不要依赖对话历史中的状态信息，以 registry 当前值为准。  **用户消息：** [飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 那现在实验做的怎么样，支持原来的idea吗",
+  "leafUuid": "aeccc0fe-34d5-490a-b745-66c0306d773a",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Explain project initial idea in simple terms",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Explain project initial idea in simple terms",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41 · 2026-05-25T05:33:21.202Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-25T05:33:21.202Z",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "content": "[服务器重启后首条消息] 当前日期: 2026-05-25。服务器刚重启，项目状态可能已更新。不要依赖对话历史中的状态信息，以 registry 当前值为准。\n\n**用户消息：** [飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 周哥看看"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42 · 2026-05-25T05:33:21.202Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-25T05:33:21.202Z",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6"
+}
+```
+
+---
+
+## Round 4
+
+2 recorded events
+
+### User
+
+_source line 43 · 2026-05-25T05:33:21.193Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aeccc0fe-34d5-490a-b745-66c0306d773a",
+  "isSidechain": false,
+  "promptId": "cf64cc26-e476-430a-8a58-1f9d94094fd5",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "aee3f4ee-cd82-4d23-9998-c48d745d138c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-25T05:33:21.194Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aee3f4ee-cd82-4d23-9998-c48d745d138c",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "377e0414-7db2-4133-9a79-39e707a6219c",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "c48eebfe-eeb3-48be-a260-4a9f50352c3c",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+1 recorded events
+
+### User
+
+_source line 45 · 2026-05-25T05:33:21.313Z_
+
+[服务器重启后首条消息] 当前日期: 2026-05-25。服务器刚重启，项目状态可能已更新。不要依赖对话历史中的状态信息，以 registry 当前值为准。
+
+**用户消息：** [飞书用户 曹晓玉 (ou_b3766914524731ff8750bf9a9c18fcb4)]: 周哥看看
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "377e0414-7db2-4133-9a79-39e707a6219c",
+  "isSidechain": false,
+  "promptId": "cf64cc26-e476-430a-8a58-1f9d94094fd5",
+  "type": "user",
+  "uuid": "77819dff-7730-4aba-9d54-30cce2f73913",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/briefer_b6dd81f4",
+  "sessionId": "86f1a5e2-7a55-4c9d-b25f-5c3b522521d6",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

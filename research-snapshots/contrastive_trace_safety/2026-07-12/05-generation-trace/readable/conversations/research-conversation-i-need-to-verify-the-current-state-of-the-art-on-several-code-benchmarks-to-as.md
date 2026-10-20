@@ -1,0 +1,2725 @@
+# Research conversation: I need to verify the current state-of-the-art on several code benchmarks to assess whether a proposed method has realist
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-a7e449c952c5042c3.jsonl`
+- **Structured JSON:** [`11c63bde8fc07d832e1e.json`](../../sessions/11/11c63bde8fc07d832e1e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+40 recorded events
+
+### User
+
+_source line 1 · 2026-05-12T00:56:52.977Z_
+
+I need to verify the current state-of-the-art on several code benchmarks to assess whether a proposed method has realistic positioning. Please search for the following:
+
+1. Search: "SWE-bench Verified leaderboard 2026 state of the art" - What are the current top scores on SWE-bench Verified? What methods achieve them?
+2. Search: "CodeContests benchmark SOTA 2025 2026" - What are the best results on CodeContests? Is AlphaCodium's 44% pass@5 still competitive?
+3. Search: "DebugBench LLM debugging benchmark results 2025 2026" - What are the current best results?
+4. Search: "CrossCodeEval benchmark results 2025 2026" - Current SOTA?
+5. Search: site:paperswithcode.com "SWE-bench" - Check leaderboard
+6. Search: "Qwen2.5-Coder-32B performance benchmarks" - What does this model achieve on standard code benchmarks?
+7. Search: "training-free code generation improvement 2025 2026 inference time" - What training-free methods currently achieve the best results?
+
+Report what you find for each search. I want to know if the proposed baselines (Qwen2.5-Coder-7B/32B) and the claimed gaps are realistic.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "08da91d1-6c1a-4dd0-b2a1-cc21584a8a6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T00:56:52.980Z_
+
+```json
+{
+  "parentUuid": "08da91d1-6c1a-4dd0-b2a1-cc21584a8a6e",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "111ecb0f-b9da-4b84-a1cc-5cf5d64b4965",
+  "timestamp": "2026-05-12T00:56:52.980Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-12T00:56:57.813Z_
+
+
+
+I'll conduct all seven searches in parallel to gather the latest benchmark data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "111ecb0f-b9da-4b84-a1cc-5cf5d64b4965",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmMhQmH9q9GobvhvgFw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "185ec0a0-7e1f-4d27-af26-5bafb76b5e48",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013f8j8qr5aSLGoS7RQhVxpK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 865,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T00:56:58.104Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LUMJSoe6cr9SmX2FpmqbWV`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "185ec0a0-7e1f-4d27-af26-5bafb76b5e48",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmMhQmH9q9GobvhvgFw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "26a3efb8-b1d5-4042-ae06-b6e659fa21ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013f8j8qr5aSLGoS7RQhVxpK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 865
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 865,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-12T00:56:58.108Z_
+
+<details><summary>↩ Tool result · `toolu_01LUMJSoe6cr9SmX2FpmqbWV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26a3efb8-b1d5-4042-ae06-b6e659fa21ea",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "447c4548-569d-4a37-84b4-3a670bf305ff",
+  "sourceToolAssistantUUID": "26a3efb8-b1d5-4042-ae06-b6e659fa21ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-12T00:57:01.041Z_
+
+
+
+Now let me run all seven searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "447c4548-569d-4a37-84b4-3a670bf305ff",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmN5J9aV5beiqLmUq1C",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f1d2c83f-e6ba-4735-929c-24b813d78664",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFrRK8K9jXVrdGwjQLWF2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 9088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1409,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T00:57:01.570Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WsPPS48qNCS8Bt84fpz5Ay`</summary>
+
+```json
+{
+  "query": "SWE-bench Verified leaderboard 2026 state of the art top scores"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1d2c83f-e6ba-4735-929c-24b813d78664",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmN5J9aV5beiqLmUq1C",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1cb9517f-6f9c-47d1-a000-d9900294bbb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFrRK8K9jXVrdGwjQLWF2v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 9088,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1409
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 9088,
+          "cache_creation_input_tokens": 1409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1409,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T00:57:08.583Z_
+
+<details><summary>↩ Tool result · `toolu_01WsPPS48qNCS8Bt84fpz5Ay`</summary>
+
+```text
+Web search results for query: "SWE-bench Verified leaderboard 2026 state of the art top scores"
+
+Links: [{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%","url":"https://www.morphllm.com/swe-bench-pro"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Verified Benchmark 2026: 44 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/sweVerified"},{"title":"SWE-bench Lite Leaderboard 2026 - Compare AI Model Scores","url":"https://pricepertoken.com/leaderboards/benchmark/swe-bench-lite"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"}]
+
+Based on the latest search results for SWE-bench Verified leaderboard in 2026, here are the state-of-the-art top scores:
+
+## Top Scores (as of May 2026)
+
+Claude Mythos Preview leads the SWE-bench Verified leaderboard with 93.9%, followed by Claude Opus 4.7 (Adaptive) at 87.6% and GPT-5.3 Codex at 85%.
+
+Additional top performers include:
+- Claude Mythos Preview leads with 93.9%, followed by Claude Opus 4.7 at 87.6% and Claude Opus 4.5 at 80.9%
+
+Another source reports slightly different rankings:
+- GPT 5.5 leads with 82.60%, Claude Opus 4.7 follows at 82.00%, and Gemini 3.1 Pro Preview comes in third with 78.80%
+
+## Important Context
+
+It's worth noting that the best model scores 46% on Pro but 81% on Verified, because Verified is contaminated. OpenAI's audit found that every frontier model tested could reproduce verbatim gold patches for certain SWE-Bench Verified tasks, and OpenAI has stopped reporting Verified scores and recommends SWE-Bench Pro instead.
+
+This significant discrepancy highlights that while SWE-bench Verified remains widely cited, the newer SWE-Bench Pro benchmark is considered more reliable for evaluating true model capabilities on contamination-resistant tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1cb9517f-6f9c-47d1-a000-d9900294bbb7",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "0a910fa1-11e1-4a4e-8a04-010588773226",
+  "sourceToolAssistantUUID": "1cb9517f-6f9c-47d1-a000-d9900294bbb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T00:57:11.461Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016nzoKFrm4Se1Pr2LV1DAVB`</summary>
+
+```json
+{
+  "query": "CodeContests benchmark SOTA 2025 2026 best results pass rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a910fa1-11e1-4a4e-8a04-010588773226",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmNqro75vsM7zsPtuvU",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e9f5c742-6af9-416e-bb41-30d3df83fee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVBT19bsKBdmNyiADzcBEb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 10497,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 898
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 10497,
+          "cache_creation_input_tokens": 898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 898,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T00:57:19.505Z_
+
+<details><summary>↩ Tool result · `toolu_016nzoKFrm4Se1Pr2LV1DAVB`</summary>
+
+```text
+Web search results for query: "CodeContests benchmark SOTA 2025 2026 best results pass rate"
+
+Links: [{"title":"AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/code-generation"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"Codesota — the open, callable registry of SOTA","url":"https://www.codesota.com/"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"Papers with Code is Dead — Best Alternatives 2026 by Use Case | Codesota | CodeSOTA","url":"https://www.codesota.com/papers-with-code"},{"title":"OCR Benchmark Leaderboard 2026: Best OCR Models Compared | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/ocr"},{"title":"CodeContests Benchmark (Code Generation)","url":"https://paperswithcode.com/sota/code-generation-on-codecontests"},{"title":"Speech AI Leaderboard 2026: Best STT, ASR and TTS Models | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/speech"},{"title":"LiveCodeBench Leaderboard - Holistic and Contamination Free Evaluation","url":"https://livecodebench.github.io/leaderboard.html"},{"title":"Changelog — dated updates to the Codesota registry | CodeSOTA","url":"https://www.codesota.com/changelog"}]
+
+Based on the search results, I found information about coding benchmarks and state-of-the-art results for 2025-2026, though the specific "CodeContests" benchmark leaderboard details weren't fully displayed in the results. Here's what I found:
+
+## Recent SOTA Results (2025-2026)
+
+Claude Opus 4.7 shipped on 2026-04-16 and leads SWE-bench Verified at 87.6% under the Claude Code harness, though this is for the SWE-bench benchmark rather than CodeContests specifically.
+
+For coding benchmarks more broadly, the strongest model on the LiveCodeBench Pro board is Gemini 3 Pro at 2439 Elo rating, which uses an Elo-based evaluation system comparable to the Codeforces human scale where top human contestants sit around 3800.
+
+## Available Benchmark Information
+
+The search results indicate that as of April 27, 2026, Codesota tracks a callable registry with 17 research areas and 1,008 results, including multiple coding benchmarks. LiveCodeBench Pro is built by Olympiad medalists from continuously-updated Codeforces, ICPC and IOI problems, with each LLM treated as a virtual Codeforces contestant fit to a Bayesian MAP Elo on the standard Codeforces scale.
+
+However, the specific pass rates for the CodeContests benchmark itself were not fully displayed in these search results. You may need to visit the Codesota website or the Papers with Code archive directly for detailed CodeContests leaderboard information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9f5c742-6af9-416e-bb41-30d3df83fee1",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "458a0073-6f2d-4622-9823-5fa2c4caa084",
+  "sourceToolAssistantUUID": "e9f5c742-6af9-416e-bb41-30d3df83fee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T00:57:21.995Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DkQ7hQeV4pb28dog3wfPC9`</summary>
+
+```json
+{
+  "query": "DebugBench LLM debugging benchmark results 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "458a0073-6f2d-4622-9823-5fa2c4caa084",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmPeaQnGZr97p884hCQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2915cd50-c9b1-4975-a4f8-510f19f1443d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U6sZ3PhSuAPFMu9zz3xc6q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 11395,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 919,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T00:57:27.294Z_
+
+<details><summary>↩ Tool result · `toolu_01DkQ7hQeV4pb28dog3wfPC9`</summary>
+
+```text
+Web search results for query: "DebugBench LLM debugging benchmark results 2025 2026"
+
+Links: [{"title":"[2401.04621] DebugBench: Evaluating Debugging Capability of Large Language Models","url":"https://arxiv.org/abs/2401.04621"},{"title":"DebugBench: Evaluating Debugging Capability of Large ...","url":"https://aclanthology.org/2024.findings-acl.247.pdf"},{"title":"GitHub - thunlp/DebugBench: The repository for paper \"DebugBench: \"Evaluating Debugging Capability of Large Language Models\". · GitHub","url":"https://github.com/thunlp/DebugBench"},{"title":"DebugBench: Evaluating Debugging Capability of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.findings-acl.247/"},{"title":"Debugging with Open-Source Large Language Models: An Evaluation","url":"https://dl.acm.org/doi/fullHtml/10.1145/3674805.3690758"},{"title":"DebugBench: Evaluating Debugging Capability of Large Language Models","url":"https://openreview.net/pdf/f3e7b01b7edc2ac558a684981bd38c590ff89cb3.pdf"},{"title":"DebugBench: Evaluating Debugging Capability of Large Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/debugbench-evaluating-debugging-capability-large-language-models"},{"title":"DebugBench: Evaluating Debugging Capability of Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/384218799_DebugBench_Evaluating_Debugging_Capability_of_Large_Language_Models"},{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"},{"title":"DebugBench: Evaluating Debugging Capability of Large Language Models [Quick Review]","url":"https://liner.com/review/debugbench-evaluating-debugging-capability-large-language-models"}]
+
+Based on the search results, here's what I found about DebugBench LLM debugging benchmark results:
+
+## DebugBench Overview
+
+DebugBench is an LLM debugging benchmark consisting of 4,253 instances that covers four major bug categories and 18 minor types in C++, Java, and Python. The benchmark was constructed by collecting code snippets from the LeetCode community, implanting bugs into source data with GPT-4, and conducting rigorous quality checks.
+
+## Key Results
+
+**Commercial vs. Open-Source Models:**
+Commercial LLMs like GPT-4 and GPT-3.5-turbo demonstrated debugging performance significantly below human proficiency in a zero-shot setting, achieving pass rates of 75.0% and 62.1% respectively. Open-source LLMs generally exhibit even lower debugging pass rates than their commercial counterparts in zero-shot scenarios, suggesting that the pre-training data of open-source models may lack sufficient debugging-related information.
+
+**Open-Source Model Performance:**
+Open-source LLMs achieved scores ranging from 43.9% to 66.6% with DeepSeek-Coder achieving the best score for all three programming languages.
+
+**Bug Type Difficulty:**
+The difficulty of debugging varies considerably across different bug types for both LLMs and humans; syntax and reference errors are comparatively easier to fix, while logical errors and instances with multiple bugs pose a much greater challenge.
+
+Note: The original DebugBench research was published in 2024. The search results did not contain specific new benchmark results specifically released in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2915cd50-c9b1-4975-a4f8-510f19f1443d",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "59f867ae-3b4e-479c-abfd-d50bb2936aca",
+  "sourceToolAssistantUUID": "2915cd50-c9b1-4975-a4f8-510f19f1443d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T00:57:34.742Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A469zPEFHoEzjYH23cJKBK`</summary>
+
+```json
+{
+  "query": "CrossCodeEval benchmark results 2025 2026 cross-file code completion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59f867ae-3b4e-479c-abfd-d50bb2936aca",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmQDtdo7dqWGtkP4hj3",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d181dd8c-ecde-427a-a0a6-96fc7eac9ccb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MqW9WYLzRHdxxodgUwcjQ4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1025,
+      "cache_read_input_tokens": 12314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1025,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T00:57:42.478Z_
+
+<details><summary>↩ Tool result · `toolu_01A469zPEFHoEzjYH23cJKBK`</summary>
+
+```text
+Web search results for query: "CrossCodeEval benchmark results 2025 2026 cross-file code completion"
+
+Links: [{"title":"GitHub - amazon-science/cceval: CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion (NeurIPS 2023)","url":"https://github.com/amazon-science/cceval"},{"title":"[2310.11248] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://arxiv.org/abs/2310.11248"},{"title":"CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion | OpenReview","url":"https://openreview.net/forum?id=wgDcbBMSfh"},{"title":"CrossCodeEval Benchmark","url":"https://www.emergentmind.com/topics/crosscodeeval-benchmark"},{"title":"CrossCodeEval","url":"https://crosscodeeval.github.io/"},{"title":"CrossCodeEval: A diverse and multilingual benchmark for cross-file code completion - Amazon Science","url":"https://www.amazon.science/publications/crosscodeeval-a-diverse-and-multilingual-benchmark-for-cross-file-code-completion"},{"title":"NeurIPS Poster CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://neurips.cc/virtual/2023/poster/73423"},{"title":"CrossCodeEval: Cross-File Code Evaluation","url":"https://www.emergentmind.com/topics/crosscodeeval"},{"title":"[PDF] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CrossCodeEval:-A-Diverse-and-Multilingual-Benchmark-Ding-Wang/f1bd7ea3a63b78a60b5d90d91fdb4a1d7ac0de8e"},{"title":"A Diverse and Multilingual Benchmark for Cross-File Code ...","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/920f2dced7d32ab2ba2f1970bc306af6-Paper-Datasets_and_Benchmarks.pdf"}]
+
+Based on the search results, here's what I found about CrossCodeEval benchmark results for 2025-2026:
+
+## Overview
+
+CrossCodeEval is a diverse and multilingual code completion benchmark from NeurIPS 2023 that necessitates an in-depth cross-file contextual understanding to complete code accurately. The benchmark is built on real-world, open-sourced, permissively-licensed repositories in four popular programming languages: Python, Java, TypeScript, and C#.
+
+## Recent Benchmark Results (2025-2026)
+
+Baseline exact match (EM) is consistently less than 11% across languages, demonstrating extreme difficulty without external context. 
+
+When retrieval-augmented generation is applied, EM typically doubles or triples, for example CodeGen2.5–7B jumps from 7.7% (in-file) to 14.5% with BM25 on Python.
+
+Current state-of-the-art for 7B–16B LLMs with advanced retrieval and static analysis achieves EM up to 44% (Java; GrepRAG) and approximately 35% (Python; STALL⁺ + RAG).
+
+## Key Findings
+
+Extensive experiments demonstrate that CrossCodeEval is extremely challenging when relevant cross-file context is absent, with clear improvements when adding context. However, despite such improvements, the pinnacle of performance remains notably unattained even with the highest-performing model.
+
+Combining static analysis with retrieval-augmented generation or graph/lexical retrieval yields the highest gains, particularly in static languages like Java, while methods based purely on BM25 retrieval are consistently outperformed by approaches that inject semantic, structural, or dependency-aware context.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d181dd8c-ecde-427a-a0a6-96fc7eac9ccb",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "8389553e-164b-42cb-8070-9293abfadabd",
+  "sourceToolAssistantUUID": "d181dd8c-ecde-427a-a0a6-96fc7eac9ccb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T00:57:45.540Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GPDZt5GSULb5V7GzyfT8Q8`</summary>
+
+```json
+{
+  "query": "site:paperswithcode.com SWE-bench leaderboard 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8389553e-164b-42cb-8070-9293abfadabd",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmRLnQDVcs5ZK9CmYnc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "44b44564-c771-4eba-bbd5-800cd08a2e4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cwpjz5kgJAgxtpXbMReGRT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 13339,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1059
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 13339,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1059,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T00:57:50.996Z_
+
+<details><summary>↩ Tool result · `toolu_01GPDZt5GSULb5V7GzyfT8Q8`</summary>
+
+```text
+Web search results for query: "site:paperswithcode.com SWE-bench leaderboard 2026"
+
+Links: [{"title":"SWE-bench-lite Benchmark (Bug fixing)","url":"https://paperswithcode.com/sota/bug-fixing-on-swe-bench"},{"title":"SWE-bench-lite Dataset","url":"https://paperswithcode.com/dataset/swe-bench"},{"title":"SWE-Bench+: Enhanced Coding Benchmark for LLMs | Papers With Code","url":"https://cs.paperswithcode.com/paper/swe-bench-enhanced-coding-benchmark-for-llms"},{"title":"Paper page - Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving","url":"https://paperswithcode.com/paper/multi-swe-bench-a-multilingual-benchmark-for"},{"title":"SWE-bench-java: A GitHub Issue Resolving Benchmark for Java | Papers With Code","url":"https://paperswithcode.com/paper/swe-bench-java-a-github-issue-resolving"},{"title":"Can Language Models Resolve Real-World GitHub Issues?","url":"https://paperswithcode.com/paper/swe-bench-can-language-models-resolve-real"},{"title":"SWE-bench Multimodal: Do AI Systems Generalize to ...","url":"https://paperswithcode.com/paper/swe-bench-multimodal-do-ai-systems-generalize"},{"title":"Papers with Code - Paper tables with annotated results for SWE-bench: Can Language Models Resolve Real-World GitHub Issues?","url":"https://paperswithcode.com/paper/swe-bench-can-language-models-resolve-real/review/"},{"title":"Papers with Code - LEGOBench: Scientific Leaderboard Generation Benchmark","url":"https://paperswithcode.com/paper/legobench-leaderboard-generation-benchmark"},{"title":"Paper page - τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains","url":"https://paperswithcode.com/paper/t-bench-a-benchmark-for-tool-agent-user"}]
+
+I found search results related to SWE-bench on Papers With Code. The results show various papers and benchmarks related to SWE-bench, including different variants like SWE-bench-lite, SWE-bench-java, Multi-SWE-bench, and SWE-bench Multimodal. However, the search results don't contain specific detailed information about the current 2026 leaderboard standings or recent rankings.
+
+The search results include references to:
+- OpenDevin, a platform for developing AI agents that interact with the world by writing code, using command lines, and browsing the web, with support for multiple agents and evaluation benchmarks
+- SWE-bench-java, a Java version of SWE-bench with a publicly released dataset, Docker-based evaluation environment and leaderboard
+- Multi-SWE-bench with 4,723 well-structured instances spanning seven programming languages
+
+To get the most current 2026 leaderboard data, you would likely want to visit the Papers With Code SWE-bench leaderboard page directly at https://paperswithcode.com/sota/bug-fixing-on-swe-bench or the specific benchmark pages referenced in the results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44b44564-c771-4eba-bbd5-800cd08a2e4f",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "713f104e-8cd2-4f7e-93c6-72e8fb9dafa2",
+  "sourceToolAssistantUUID": "44b44564-c771-4eba-bbd5-800cd08a2e4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T00:57:54.191Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015uLMarVmGLnsVmxbEw2a2z`</summary>
+
+```json
+{
+  "query": "Qwen2.5-Coder-32B performance benchmarks HumanEval MBPP code generation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "713f104e-8cd2-4f7e-93c6-72e8fb9dafa2",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmRyEPR6ceYmYz6tdyb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "897f13f7-f261-4c9c-b96b-9717630f418a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUg6mryFjGezuyWnth76px",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 14398,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 906
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 14398,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 906,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T00:58:02.249Z_
+
+<details><summary>↩ Tool result · `toolu_015uLMarVmGLnsVmxbEw2a2z`</summary>
+
+```text
+Web search results for query: "Qwen2.5-Coder-32B performance benchmarks HumanEval MBPP code generation 2025"
+
+Links: [{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical. | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-coder-family/"},{"title":"Technical Report Qwen2.5-Coder Technical Report Binyuan Hui* Jian Yang*","url":"https://arxiv.org/pdf/2409.12186"},{"title":"Qwen2.5-Coder Technical Report","url":"https://arxiv.org/html/2409.12186v1"},{"title":"Qwen 2.5 Coder 32B | Open Laboratory","url":"https://openlaboratory.ai/models/qwen-2_5-coder-32b"},{"title":"Qwen2.5-Coder 32B Instruct vs Qwen3 32B Comparison","url":"https://llm-stats.com/models/compare/qwen-2.5-coder-32b-instruct-vs-qwen3-32b"},{"title":"Qwen2.5-Coder] LLM specialized for code generation, completion, and mathematical reasoning tasks | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media","url":"https://ai-scholar.tech/en/articles/large-language-models/Qwen2.5-Coder"},{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical - Alibaba Cloud Community","url":"https://www.alibabacloud.com/blog/qwen2-5-coder-series-powerful-diverse-practical_601765"},{"title":"Qwen2.5-LLM: Extending the boundary of LLMs | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-llm/"},{"title":"Qwen 2.5 Coder 32B Hardware Requirements: Running a 32B Coding Model Locally | CraftRigs","url":"https://craftrigs.com/guides/qwen-2-5-coder-32b-hardware-guide/"},{"title":"2025-01-06 Qwen2.5 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2412.15115"}]
+
+Based on the web search results, here's a comprehensive overview of Qwen2.5-Coder-32B performance benchmarks:
+
+## Code Generation Performance
+
+Qwen2.5-Coder-32B-Instruct has achieved the best performance among open-source models on multiple popular code generation benchmarks (EvalPlus, LiveCodeBench, BigCodeBench), and has competitive performance with GPT-4o.
+
+### HumanEval and MBPP Results
+
+Qwen2.5-Coder have shown impressive performance in basic code generation, achieving state-of-the-art results among open-source models of the same size and surpassing even larger models. It scored 61.6% on HumanEval, which compares very favorably with other models of similar size.
+
+## Code Completion Benchmarks
+
+Qwen2.5-Coder-32B has demonstrated strong code completion capabilities on pre-trained models, achieving SOTA performance on a total of 5 benchmarks: Humaneval-Infilling, CrossCodeEval, CrossCodeLongEval, RepoEval, and SAFIM.
+
+## Code Repair Performance
+
+Qwen2.5-Coder-32B-Instruct scored 73.7 on Aider, performing comparably to GPT-4o on Aider. Additionally, Qwen2.5-Coder-32B-Instruct scored 75.2 on MdEval, ranking first among all open-source models.
+
+## Multilingual Programming Support
+
+Qwen2.5-Coder-32B-Instruct performs excellently across more than 40 programming languages, scoring 65.9 on McEval, with impressive performances in languages like Haskell and Racket.
+
+## Model Architecture
+
+The model was trained on approximately 5.5 trillion tokens of code and instructional data, and demonstrates performance across various coding benchmarks including HumanEval, MBPP, and multilingual programming evaluations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "897f13f7-f261-4c9c-b96b-9717630f418a",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "d438d7d4-7d5a-45e8-b527-6f0c4002d4a3",
+  "sourceToolAssistantUUID": "897f13f7-f261-4c9c-b96b-9717630f418a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T00:58:04.702Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015qEecMTJcy9e5JsEwwcA76`</summary>
+
+```json
+{
+  "query": "training-free code generation improvement 2025 2026 inference time methods"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d438d7d4-7d5a-45e8-b527-6f0c4002d4a3",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmSonds5Qhizqmt5HuT",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7752134d-dc53-4951-a1ed-c48b7b6f5f1c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6XThb8hAFTuEjSipLkYAF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 15304,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1188
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 15304,
+          "cache_creation_input_tokens": 1188,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1188,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T00:58:13.832Z_
+
+<details><summary>↩ Tool result · `toolu_015qEecMTJcy9e5JsEwwcA76`</summary>
+
+```text
+Web search results for query: "training-free code generation improvement 2025 2026 inference time methods"
+
+Links: [{"title":"EffiPair: Improving the Efficiency of LLM-generated Code with Relative Contrastive Feedback","url":"https://arxiv.org/html/2604.05137"},{"title":"Inference-Time Techniques for Efficient Code Generation Jacqueline He","url":"https://courses.cs.washington.edu/courses/cse503/25wi/final-reports/Inference-Time%20Techniques%20for%20Efficient%20Code%20Generation.pdf"},{"title":"Iterative Code Generation Methods","url":"https://www.emergentmind.com/topics/iterative-code-generation"},{"title":"Inference-Time Enhancements","url":"https://www.emergentmind.com/topics/inference-time-enhancements"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"},{"title":"2025 AI wrapped","url":"https://lambda.ai/blog/2025-ai-wrapped"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=PzSG5nKe1q"},{"title":"Training-Free Test-Time Contrastive Learning for Large Language Models","url":"https://arxiv.org/html/2604.13552v1"},{"title":"Large Language Models for Code Generation: A Comprehensive Survey of Challenges, Techniques, Evaluation, and Applications","url":"https://arxiv.org/html/2503.01245v2"}]
+
+Based on the search results, here are key findings about training-free code generation improvements and inference-time methods in 2025-2026:
+
+## Training-Free Inference-Time Methods
+
+EffiPair is a training-free inference-time framework for improving the efficiency of LLM-generated code through Relative Contrastive Feedback (RCF). Instead of relying on isolated scalar profiling signals, EffiPair compares structurally similar candidates with different efficiency profiles and distills their differences into compact guidance for refinement. This approach improves runtime efficiency while preserving, and sometimes improving, functional correctness.
+
+## Broader Inference-Time Scaling Approaches
+
+Independent self-improvement methods include parallel or constrained decoding and contrastive logit manipulation, while context-aware methods use external context without model updates, and model-aided enhancements involve external models for speculative decoding or reranking.
+
+Latent-trajectory early accept reduces token usage by 48–70% compared to self-consistency, while improving accuracy by 2.6% on average.
+
+## Industry Trends
+
+There will be more focus on inference-time scaling in 2026, which means spending more time and money after training when letting the LLM generate the answer. Inference-time compute, like allocating significant resources during generation rather than just during training, became the breakthrough that unlocked new capabilities.
+
+## Iterative Code Generation Frameworks
+
+Execution-based, human-in-the-loop, or tool-augmented feedback is critical to correcting errors unobservable via static prompts. AST-based detectors identify reintroduction of previously resolved errors and prompt the LLM to avoid regression, improving instruction and conversation accuracy by >10%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7752134d-dc53-4951-a1ed-c48b7b6f5f1c",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "80199f74-c986-469f-80fd-c4c9cf38980e",
+  "sourceToolAssistantUUID": "7752134d-dc53-4951-a1ed-c48b7b6f5f1c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-12T00:58:16.567Z_
+
+Let me do a few more targeted searches to fill in gaps, particularly on CodeContests SOTA and more precise numbers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80199f74-c986-469f-80fd-c4c9cf38980e",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmTest98NytGf9nZ49w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "971fb1a3-5522-4d55-a2dd-a96b49588ae0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SmxiZhJyJnwZw8gEwEoaXc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 16492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1063,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-12T00:58:17.288Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XdamifxQxfAYpp7VF1opZS`</summary>
+
+```json
+{
+  "query": "CodeContests competitive programming benchmark pass rate AlphaCode AlphaCodium 2025 2026 leaderboard"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "971fb1a3-5522-4d55-a2dd-a96b49588ae0",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmTest98NytGf9nZ49w",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "23cdedc6-41fe-494f-a638-ca94a7feacb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SmxiZhJyJnwZw8gEwEoaXc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 16492,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1063
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 16492,
+          "cache_creation_input_tokens": 1063,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1063,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T00:58:25.834Z_
+
+<details><summary>↩ Tool result · `toolu_01XdamifxQxfAYpp7VF1opZS`</summary>
+
+```text
+Web search results for query: "CodeContests competitive programming benchmark pass rate AlphaCode AlphaCodium 2025 2026 leaderboard"
+
+Links: [{"title":"google-deepmind/code_contests - CodeContests","url":"https://github.com/google-deepmind/code_contests"},{"title":"[2203.07814] Competition-Level Code Generation with AlphaCode","url":"https://ar5iv.labs.arxiv.org/html/2203.07814"},{"title":"AlphaCode Statistics 2026","url":"https://www.aboutchromebooks.com/alphacode-statistics/"},{"title":"[AlphaCodium] Highest performance code generation method specialized for programming | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media","url":"https://ai-scholar.tech/en/articles/large-language-models/alpha-codium"},{"title":"Competitive programming with AlphaCode — Google DeepMind","url":"https://deepmind.google/discover/blog/competitive-programming-with-alphacode/"},{"title":"Competition-level code generation with AlphaCode | Science","url":"https://www.science.org/doi/10.1126/science.abq1158"},{"title":"GitHub - Codium-ai/AlphaCodium: Official implementation for the paper: \"Code Generation with AlphaCodium: From Prompt Engineering to Flow Engineering\"\"","url":"https://github.com/Codium-ai/alphacodium"},{"title":"CodeContests Dataset Overview","url":"https://www.emergentmind.com/topics/codecontests-dataset"},{"title":"AlphaCode Statistics 2026","url":"https://www.companieshistory.com/alphacode-statistics/"},{"title":"State-of-the-art Code Generation with AlphaCodium - From Prompt Engineering to Flow Engineering","url":"https://www.qodo.ai/blog/qodoflow-state-of-the-art-code-generation-for-code-contests/"}]
+
+Based on the web search results, here's comprehensive information about CodeContests competitive programming benchmark and the pass rates for AlphaCode and AlphaCodium:
+
+## CodeContests Dataset Overview
+
+CodeContests is a competitive programming dataset for machine-learning. The dataset contains approximately 15,000 programming problems with 30 million human code samples. The dataset achieved a 4% false positive rate compared to 30-60% in previous benchmarks, resulting from temporal splitting where training data predates evaluation problems, additional generated tests, and filtering for problems with sufficient test coverage.
+
+## AlphaCode Performance
+
+AlphaCode achieved an average ranking in the top 54.3% in simulated evaluations on recent programming competitions on the Codeforces platform. More specifically, AlphaCode 2 solves 43% of competitive programming problems, representing a 1.7-times improvement over the original AlphaCode which solved 25% of problems.
+
+AlphaCode 2 achieved 85th percentile ranking on Codeforces, placing it between Expert and Candidate Master categories as of 2026.
+
+## AlphaCodium Performance
+
+AlphaCodium, developed by CodiumAI in January 2024, achieved 44% accuracy on the CodeContests dataset using GPT-4 with flow engineering techniques, representing a 25-percentage-point improvement over GPT-4's baseline 19% performance.
+
+## Leaderboard & Comparative Results
+
+On the validation set, GPT-4 accuracy (pass@5) increased from 19% with a single well-designed direct prompt to 44% with the AlphaCodium.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23cdedc6-41fe-494f-a638-ca94a7feacb4",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "3390ba4c-8b35-49a0-b94c-be68c8481b66",
+  "sourceToolAssistantUUID": "23cdedc6-41fe-494f-a638-ca94a7feacb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-12T00:58:28.947Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XYP8qkwy7EeM7RvzX1K1tV`</summary>
+
+```json
+{
+  "query": "Qwen2.5-Coder-7B benchmark scores HumanEval EvalPlus pass@1 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3390ba4c-8b35-49a0-b94c-be68c8481b66",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmUY9MDimQiT1p9mjFY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "99d807d6-dca8-4c87-ab38-a31ad08c3df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B61WvyRSkzywF15h5ddNxd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 990,
+      "cache_read_input_tokens": 17555,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 990
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 17555,
+          "cache_creation_input_tokens": 990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 990,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T00:58:35.563Z_
+
+<details><summary>↩ Tool result · `toolu_01XYP8qkwy7EeM7RvzX1K1tV`</summary>
+
+```text
+Web search results for query: "Qwen2.5-Coder-7B benchmark scores HumanEval EvalPlus pass@1 2025"
+
+Links: [{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical. | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-coder-family/"},{"title":"Qwen2.5-Coder Technical Report","url":"https://arxiv.org/html/2409.12186v1"},{"title":"Technical Report Qwen2.5-Coder Technical Report Binyuan Hui* Jian Yang*","url":"https://arxiv.org/pdf/2409.12186"},{"title":"Qwen2.5-Coder] LLM specialized for code generation, completion, and mathematical reasoning tasks | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media","url":"https://ai-scholar.tech/en/articles/large-language-models/Qwen2.5-Coder"},{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical - Alibaba Cloud Community","url":"https://www.alibabacloud.com/blog/qwen2-5-coder-series-powerful-diverse-practical_601765"},{"title":"Qwen2.5-LLM: Extending the boundary of LLMs | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-llm/"},{"title":"Evaluating Large Language Models on Self-invoking Code ...","url":"https://aclanthology.org/2025.findings-acl.686.pdf"},{"title":"Qwen2.5-Coder-instruct-3b only achieves 45.12 pass@1 on humaneval using Opencompass · Issue #420 · QwenLM/Qwen3-Coder","url":"https://github.com/QwenLM/Qwen3-Coder/issues/420"},{"title":"Qwen2.5-Coder 7B Instruct Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/qwen-2.5-coder-7b-instruct"},{"title":"EvalPlus Leaderboard","url":"https://evalplus.github.io/leaderboard.html"}]
+
+Based on the search results, I found the benchmark scores for Qwen2.5-Coder-7B on HumanEval and EvalPlus:
+
+## Qwen2.5-Coder-7B Benchmark Results
+
+Qwen2.5-Coder-7B-Instruct achieved an impressive 84.1% accuracy rate on HumanEval+, making it notable among its peers. For HumanEval (the base benchmark), it scored 61.6%.
+
+According to the technical documentation, Qwen2.5-Coder-7B-Instruct demonstrated superior accuracy, significantly outperforming other models with comparable parameters and even exceeded the performance of larger models with over 20 billion parameters.
+
+The results show strong performance on EvalPlus benchmarks, with Qwen2.5-Coder-32B-Instruct achieving the best performance among open-source models on multiple popular code generation benchmarks (EvalPlus, LiveCodeBench, BigCodeBench), indicating that the family of models performs well on these evaluation suites.
+
+The pass@1 scores you're looking for are:
+- **HumanEval: 61.6%**
+- **HumanEval+: 84.1%**
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99d807d6-dca8-4c87-ab38-a31ad08c3df2",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "7b6574db-1040-4b3c-93d7-a7ffc5e8f9c2",
+  "sourceToolAssistantUUID": "99d807d6-dca8-4c87-ab38-a31ad08c3df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-12T00:58:43.259Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K2smhrAiR5QGvzFLJR5e24`</summary>
+
+```json
+{
+  "query": "SWE-bench Verified top scores 2026 percentage resolved Claude OpenAI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b6574db-1040-4b3c-93d7-a7ffc5e8f9c2",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmVFn8gGvU24YBsU2yS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d2f36e38-ec7e-402f-a18f-4a14ce0f3921",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcpcbCD6duNnzUu85WsWcG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 18545,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 997
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 18545,
+          "cache_creation_input_tokens": 997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 997,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-12T00:58:49.662Z_
+
+<details><summary>↩ Tool result · `toolu_01K2smhrAiR5QGvzFLJR5e24`</summary>
+
+```text
+Web search results for query: "SWE-bench Verified top scores 2026 percentage resolved Claude OpenAI"
+
+Links: [{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-bench Verified Benchmark 2026: 44 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/sweVerified"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%","url":"https://www.morphllm.com/swe-bench-pro"},{"title":"SWE-Bench Coding Agent Leaderboard 2026: Claude vs GPT | Awesome Agents","url":"https://awesomeagents.ai/leaderboards/swe-bench-coding-agent-leaderboard/"},{"title":"SWE-Bench 2026: Claude 77.2% vs GPT-5 74.9% | Full Leaderboard | Local AI Master","url":"https://localaimaster.com/models/swe-bench-explained-ai-benchmarks"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-bench Results Viewer","url":"https://www.swebench.com/viewer.html"}]
+
+Based on the search results, here are the top SWE-bench Verified scores for 2026:
+
+As of May 7, 2026, Claude Mythos Preview leads the SWE-bench Verified leaderboard with 93.9%, followed by Claude Opus 4.7 (Adaptive) (87.6%) and GPT-5.3 Codex (85%).
+
+For additional context on the top performers:
+
+- Gemini 3.1 Pro Preview (02/26) comes in third with 78.80%, with Claude Opus 4.6 (Thinking) and GPT 5.4 tied at 78.20%, and GPT 5.3 Codex at 78.00%.
+
+It's important to note that OpenAI has stopped reporting Verified scores after finding that every frontier model showed training data contamination on the dataset, and OpenAI has stopped reporting Verified scores and recommends SWE-Bench Pro instead. Claude Opus 4.5 scores 80.9% on SWE-bench Verified while the same model on SWE-bench Pro using standardised scaffolding scores 45.9%, highlighting the significant difference in difficulty between the two benchmark variants.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2f36e38-ec7e-402f-a18f-4a14ce0f3921",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "4580766f-002b-495e-828d-5702b5286c0f",
+  "sourceToolAssistantUUID": "d2f36e38-ec7e-402f-a18f-4a14ce0f3921",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-12T00:58:51.707Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LCcurDAhRcsb7RGr9YebpM`</summary>
+
+```json
+{
+  "query": "Qwen2.5-Coder-32B HumanEval pass@1 score exact number EvalPlus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4580766f-002b-495e-828d-5702b5286c0f",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmWHzrnMfcrCooEoTBR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7b34a7f2-feec-42f8-9546-5ab77558f060",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDm6mbEFASQwDPBCXK21DH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 854,
+      "cache_read_input_tokens": 19542,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 854
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 19542,
+          "cache_creation_input_tokens": 854,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 854,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T00:58:54.941Z_
+
+<details><summary>↩ Tool result · `toolu_01LCcurDAhRcsb7RGr9YebpM`</summary>
+
+```text
+Web search results for query: "Qwen2.5-Coder-32B HumanEval pass@1 score exact number EvalPlus"
+
+Links: [{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical. | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-coder-family/"},{"title":"Technical Report Qwen2.5-Coder Technical Report Binyuan Hui* Jian Yang*","url":"https://arxiv.org/pdf/2409.12186"},{"title":"Qwen2.5-Coder-instruct-3b only achieves 45.12 pass@1 on humaneval using Opencompass · Issue #420 · QwenLM/Qwen3-Coder","url":"https://github.com/QwenLM/Qwen3-Coder/issues/420"},{"title":"qwen2.5-coder","url":"https://ollama.com/library/qwen2.5-coder"},{"title":"Qwen2.5-Coder Technical Report","url":"https://arxiv.org/html/2409.12186v3"},{"title":"HumanEval: When Machines Learned to Code","url":"https://runloop.ai/blog/humaneval-when-machines-learned-to-code"},{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical - Alibaba Cloud Community","url":"https://www.alibabacloud.com/blog/qwen2-5-coder-series-powerful-diverse-practical_601765"},{"title":"Qwen2.5-Coder] LLM specialized for code generation, completion, and mathematical reasoning tasks | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media","url":"https://ai-scholar.tech/en/articles/large-language-models/Qwen2.5-Coder"},{"title":"[Leaderboard Submission] Qwen3.6 35B A3B (Local Q4_K_M) HumanEval+ & MBPP+ · Issue #299 · evalplus/evalplus","url":"https://github.com/evalplus/evalplus/issues/299"},{"title":"Qwen2.5-LLM: Extending the boundary of LLMs | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-llm/"}]
+
+Based on the search results, Qwen2.5-Coder-32B-Instruct achieves 87.2% on EvalPlus tests. This represents the model's exact HumanEval pass@1 score on the EvalPlus benchmark, which is a more rigorous version of HumanEval that includes additional test cases.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b34a7f2-feec-42f8-9546-5ab77558f060",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "81b9c8c0-2af4-467b-8f6b-302bdcd5a236",
+  "sourceToolAssistantUUID": "7b34a7f2-feec-42f8-9546-5ab77558f060",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-12T00:58:57.447Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016UjLLE9g16xEuwYnaYgVtR`</summary>
+
+```json
+{
+  "query": "\"Qwen2.5-Coder\" \"32B\" HumanEval \"92\" OR \"93\" OR \"90\" OR \"88\" OR \"87\" pass@1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81b9c8c0-2af4-467b-8f6b-302bdcd5a236",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmWgZuzS6YYEVQzFAKv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b635d4b2-9d7c-4367-b674-8c385aa447e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FCzbwgf7x1vGRB1iA1faC6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 802,
+      "cache_read_input_tokens": 20396,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 802
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 20396,
+          "cache_creation_input_tokens": 802,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 802,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T00:59:01.606Z_
+
+<details><summary>↩ Tool result · `toolu_016UjLLE9g16xEuwYnaYgVtR`</summary>
+
+```text
+Web search results for query: ""Qwen2.5-Coder" "32B" HumanEval "92" OR "93" OR "90" OR "88" OR "87" pass@1"
+
+Links: [{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical. | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-coder-family/"},{"title":"Qwen2.5-Coder-instruct-3b only achieves 45.12 pass@1 on humaneval using Opencompass · Issue #420 · QwenLM/Qwen3-Coder","url":"https://github.com/QwenLM/Qwen3-Coder/issues/420"},{"title":"qwen2.5-coder","url":"https://ollama.com/library/qwen2.5-coder"},{"title":"Qwen2.5-Coder-32B-Instruct Overview","url":"https://www.emergentmind.com/topics/qwen2-5-coder-32b-instruct"},{"title":"Qwen2.5-Coder Technical Report","url":"https://arxiv.org/html/2409.12186v3"},{"title":"Technical Report Qwen2.5-Coder Technical Report Binyuan Hui* Jian Yang*","url":"https://arxiv.org/pdf/2409.12186"},{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical - Alibaba Cloud Community","url":"https://www.alibabacloud.com/blog/qwen2-5-coder-series-powerful-diverse-practical_601765"},{"title":"qwen2.5-coder-32b-instruct Model by Qwen","url":"https://build.nvidia.com/qwen/qwen2_5-coder-32b-instruct/modelcard"},{"title":"Qwen2.5-32B: Advanced Code Language Model","url":"https://www.emergentmind.com/topics/qwen2-5-32b"},{"title":"Qwen/Qwen2.5-3B-Instruct-GGUF Free Chat Online - skywork.ai - Skywork ai","url":"https://skywork.ai/blog/models/qwen-qwen2-5-3b-instruct-gguf-free-chat-online-skywork-ai/"}]
+
+Based on the search results, I found the specific HumanEval pass@1 performance metric you were looking for:
+
+Qwen2.5-Coder-32B-Instruct achieves up to 88.4% HumanEval pass@1. This matches one of the scores in your query range (88).
+
+Ablation studies show that HumanEval (0-shot) pass@1 improves from 75.2% (SFT-only) → 81.3% (+DPO) → 88.4% (+GRPO), demonstrating significant benefit from both RL stages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b635d4b2-9d7c-4367-b674-8c385aa447e2",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "3c2590dd-bcf4-4264-9043-e79f0cc8aad0",
+  "sourceToolAssistantUUID": "b635d4b2-9d7c-4367-b674-8c385aa447e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-12T00:59:04.522Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WDZFi3pUdTMg6JfaXebaBy`</summary>
+
+```json
+{
+  "query": "LiveCodeBench Qwen2.5-Coder results competitive programming 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c2590dd-bcf4-4264-9043-e79f0cc8aad0",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmXB8Pcz6NBy5yDwLnR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c8ddff38-ea7e-4aa9-99ba-573500ee929f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kto1Zu11TX149TWtBz6YoV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 21198,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 879
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 21198,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 879,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-12T00:59:10.605Z_
+
+<details><summary>↩ Tool result · `toolu_01WDZFi3pUdTMg6JfaXebaBy`</summary>
+
+```text
+Web search results for query: "LiveCodeBench Qwen2.5-Coder results competitive programming 2025"
+
+Links: [{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"},{"title":"Qwen3-Coder-Next Technical Report","url":"https://arxiv.org/html/2603.00729v1"},{"title":"OJBench: A Competition Level Code Benchmark For Large Language Models","url":"https://arxiv.org/html/2506.16395v2"},{"title":"Technical Report Qwen2.5-Coder Technical Report Binyuan Hui* Jian Yang*","url":"https://arxiv.org/pdf/2409.12186"},{"title":"LiveCodeBench Benchmark Leaderboard | Artificial Analysis","url":"https://artificialanalysis.ai/evaluations/livecodebench"},{"title":"Qwen3-Coder-Next: Pushing Small Hybrid Models","url":"https://qwen.ai/blog?id=qwen3-coder-next"},{"title":"Qwen2.5-Coder Series: Powerful, Diverse, Practical. | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-coder-family/"},{"title":"Qwen 2.5 Coder and Qwen 3 Lead in Open Source LLM Over DeepSeek and Meta | NextBigFuture.com","url":"https://www.nextbigfuture.com/2025/05/qwen-2-5-coder-and-qwen-3-lead-in-open-source-llm-over-deepseek-and-meta.html"},{"title":"LiveCodeBench v6 Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/livecodebench-v6"},{"title":"LiveCodeBench Leaderboard - Holistic and Contamination Free Evaluation","url":"https://livecodebench.github.io/leaderboard.html"}]
+
+Based on the search results, here's what I found about Qwen2.5-Coder's LiveCodeBench performance in competitive programming:
+
+## Qwen2.5-Coder LiveCodeBench Results
+
+Qwen2.5-Coder-32B-Instruct has achieved the best performance among open-source models on multiple popular code generation benchmarks including LiveCodeBench, and has competitive performance with GPT-4o.
+
+Qwen 2.5 Coder/Max is currently the top open-source model for coding, with the highest HumanEval (~70–72%), LiveCodeBench (70.7), and Elo (2056) scores among open models.
+
+## Competitive Programming Performance
+
+For Ollama, Qwen2.5-Coder 32B is noted as strong on competitive programming. Additionally, DeepSeek V3/Coder V2 remains strong, especially in reasoning/math, but is slightly behind Qwen in code generation and competitive programming Elo.
+
+The results demonstrate that Qwen2.5-Coder, particularly the 32B variant, is a leading open-source model for competitive programming tasks as of 2025, with strong performance on the LiveCodeBench benchmark that measures capabilities on actual competitive programming problems from platforms like LeetCode, AtCoder, and CodeForces.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c8ddff38-ea7e-4aa9-99ba-573500ee929f",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "e3292647-0695-4132-84df-f9235954e353",
+  "sourceToolAssistantUUID": "c8ddff38-ea7e-4aa9-99ba-573500ee929f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-12T00:59:13.008Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DZuTdonBvR4ovDWZYa19Qo`</summary>
+
+```json
+{
+  "query": "DebugBench GPT-4o Claude Sonnet score debugging accuracy 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3292647-0695-4132-84df-f9235954e353",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmXqZgenwyUqmtQkwic",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4969fd82-63aa-4c97-9be2-fba2cc255651",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0166uYuz26wbrahfoYroejZ3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 22077,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 942
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 22077,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 942,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-12T00:59:18.131Z_
+
+<details><summary>↩ Tool result · `toolu_01DZuTdonBvR4ovDWZYa19Qo`</summary>
+
+```text
+Web search results for query: "DebugBench GPT-4o Claude Sonnet score debugging accuracy 2025"
+
+Links: [{"title":"SWE-bench Results Viewer","url":"https://www.swebench.com/viewer.html"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"Benchmarking the Benchmarks: New GPT and Claude Releases Continue to One-Up Themselves","url":"https://blog.kilo.ai/p/benchmarking-the-benchmarks-new-gpt"},{"title":"AI Model Benchmarks May 2026 | Compare GPT-5, Claude 4.5, Gemini 2.5, Grok 4 | LM Council","url":"https://lmcouncil.ai/benchmarks"},{"title":"Claude 3.5 Sonnet vs GPT 4o: Model Comparison 2025 | Galileo","url":"https://galileo.ai/blog/claude-3-5-sonnet-vs-gpt-4o-enterprise-ai-model-comparison"},{"title":"Best AI for Coding 2026 - Top Coding Models","url":"https://llm-stats.com/leaderboards/best-ai-for-coding"},{"title":"LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing","url":"https://iternal.ai/llm-selection-guide"},{"title":"SWE-Bench 2026: Claude 77.2% vs GPT-5 74.9% | Full Leaderboard | Local AI Master","url":"https://localaimaster.com/models/swe-bench-explained-ai-benchmarks"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"AI coding benchmarks - Failing Fast","url":"https://failingfast.io/ai-coding-guide/benchmarks/"}]
+
+Based on the search results, I wasn't able to find specific information about "DebugBench" scores for GPT-4o and Claude Sonnet. The search returned results about various coding and software engineering benchmarks like SWE-bench, Arena Code, and other performance metrics from 2025-2026, but DebugBench specifically wasn't mentioned in the results.
+
+The search did reveal related information about GPT-4o and Claude Sonnet performance on coding benchmarks:
+
+- As of May 2026, Claude Sonnet 4.6 ranks among the top coding models with an arena score of 1063
+- GPT 5.5 leads SWE-bench Verified with 82.60% performance, while Claude Opus 4.7 follows at 82.00%
+
+However, if you're looking specifically for DebugBench debugging accuracy scores for these models, you may need to check specialized AI benchmark repositories, research papers, or the official DebugBench documentation directly, as this specific benchmark doesn't appear in the current search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4969fd82-63aa-4c97-9be2-fba2cc255651",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "e501702d-2133-40d1-a1e1-1b7d8a3cdad0",
+  "sourceToolAssistantUUID": "4969fd82-63aa-4c97-9be2-fba2cc255651",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-12T00:59:20.503Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TJnADDAxQypbPzwRBXrQeZ`</summary>
+
+```json
+{
+  "query": "CodeContests pass rate o1 o3 GPT-4 2025 competitive programming solve rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e501702d-2133-40d1-a1e1-1b7d8a3cdad0",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmYPjSsuhMDTsSsvMxf",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8de6bea1-7bb8-4d66-b159-9adf866815ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kHbLoJTG4HAJWmhD7taGT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 23019,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 848
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 23019,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 848,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-12T00:59:27.575Z_
+
+<details><summary>↩ Tool result · `toolu_01TJnADDAxQypbPzwRBXrQeZ`</summary>
+
+```text
+Web search results for query: "CodeContests pass rate o1 o3 GPT-4 2025 competitive programming solve rate"
+
+Links: [{"title":"Learning to reason with LLMs | OpenAI","url":"https://openai.com/index/learning-to-reason-with-llms/"},{"title":"Competitive Programming with Large Reasoning Models","url":"https://arxiv.org/html/2502.06807v1"},{"title":"New OpenAI model achieves 1800 rating - Codeforces","url":"https://codeforces.com/blog/entry/133874"},{"title":"Latest chat-GPT only have a codeforces rating of 392 - Codeforces","url":"https://codeforces.com/blog/entry/113910"},{"title":"Some Thoughts on GPT - Codeforces","url":"https://codeforces.com/blog/entry/137543"},{"title":"(PDF) CodeContests+: High-Quality Test Case Generation for Competitive Programming","url":"https://www.researchgate.net/publication/392514571_CodeContests_High-Quality_Test_Case_Generation_for_Competitive_Programming"},{"title":"[2502.06807] Competitive Programming with Large Reasoning Models","url":"https://arxiv.org/abs/2502.06807"},{"title":"CodeContests Dataset Overview","url":"https://www.emergentmind.com/topics/codecontests-dataset"},{"title":"arXiv:2506.11928v1 [cs.SE] 13 Jun 2025 2025-06-13","url":"https://arxiv.org/pdf/2506.11928"},{"title":"OpenAI’s O4 and GPT‑4.1: A New Chapter in AI Language Models | by Roberto Infante | Medium","url":"https://medium.com/@roberto.g.infante/openais-o4-and-gpt-4-1-a-new-chapter-in-ai-language-models-05103b53794c"}]
+
+Based on the search results, here are the key findings regarding competitive programming performance metrics for different AI models:
+
+## Codeforces Elo Ratings
+
+GPT-4o achieved an Elo rating of 808, which is in the 11th percentile of human competitors. In contrast, o1 achieved an Elo rating of 1807, performing better than 93% of competitors.
+
+o3 recently achieved a 2700 rating in OpenAI's Codeforces test, which means fewer than 200 active users worldwide have a higher rating.
+
+## International Olympiad in Informatics (IOI) Performance
+
+For the 2024 IOI competition, o1-ioi ranked in the 49th percentile in the 2024 International Olympiad in Informatics under competition rules. However, when evaluating later models such as o3, o3 achieves gold without hand-crafted domain-specific strategies or relaxed constraints.
+
+## CodeContests Dataset Performance
+
+Regarding the CodeContests dataset specifically, RL-trained models on CodeContests+ and CodeContests-O yield higher success rates on LiveCodeBench (Pass@1 up to 34.57%) compared to pretraining-only baselines.
+
+The progression shows a dramatic improvement from GPT-4o (808 rating) to o1 (1807 rating) to o3 (2700 rating) in competitive programming performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8de6bea1-7bb8-4d66-b159-9adf866815ea",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "bfaf075d-a24d-4da1-8f81-a1032b3249b4",
+  "sourceToolAssistantUUID": "8de6bea1-7bb8-4d66-b159-9adf866815ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-12T00:59:36.808Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JdZcW2zC62DD7799ffTZzY`</summary>
+
+```json
+{
+  "query": "training-free inference time code generation SOTA self-repair self-debugging reflection 2025 results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfaf075d-a24d-4da1-8f81-a1032b3249b4",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmZ68oj6Hiya9mpm7ks",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "48854acb-89e2-4039-959f-a12370ab7460",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFfi7M6vFH7FncbEwsYRN4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 23867,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 920
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 23867,
+          "cache_creation_input_tokens": 920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 920,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-12T00:59:45.499Z_
+
+<details><summary>↩ Tool result · `toolu_01JdZcW2zC62DD7799ffTZzY`</summary>
+
+```text
+Web search results for query: "training-free inference time code generation SOTA self-repair self-debugging reflection 2025 results"
+
+Links: [{"title":"ReflexiCoder: Teaching Large Language Models to Self-Reflect on Generated Code and Self-Correct It via Reinforcement Learning","url":"https://arxiv.org/html/2603.05863"},{"title":"[2601.00894] When to Ponder: Adaptive Compute Allocation for Code Generation via Test-Time Training","url":"https://arxiv.org/abs/2601.00894"},{"title":"GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub","url":"https://github.com/verl-project/verl"},{"title":"Inference-Time Techniques for Efficient Code Generation Jacqueline He","url":"https://courses.cs.washington.edu/courses/cse503/25wi/final-reports/Inference-Time%20Techniques%20for%20Efficient%20Code%20Generation.pdf"},{"title":"Self-Reflective Repair Frameworks","url":"https://www.emergentmind.com/topics/self-reflective-repair-frameworks"},{"title":"How Many Tries Does It Take? Iterative Self-Repair in LLM Code Generation Across Model Scales and Benchmarks","url":"https://arxiv.org/html/2604.10508v1"},{"title":"(PDF) Revisit Self-Debugging with Self-Generated Tests for Code Generation","url":"https://www.researchgate.net/publication/388317008_Revisit_Self-Debugging_with_Self-Generated_Tests_for_Code_Generation"},{"title":"ReCode: Improving LLM-based Code Repair with Fine-Grained Retrieval-Augmented Generation","url":"https://arxiv.org/html/2509.02330v1"},{"title":"When to Ponder: Adaptive Compute Allocation for Code Generation via Test-Time Training","url":"https://arxiv.org/html/2601.00894v1"},{"title":"Code Generation Benchmarks 2026: SOTA LLMs ...","url":"https://www.codesota.com/code-generation"}]
+
+I've completed a web search for training-free inference time code generation with state-of-the-art self-repair and self-debugging techniques in 2025. Here are the key findings:
+
+## ReflexiCoder - A Leading Approach
+
+ReflexiCoder is a Reinforcement Learning framework designed to internalize structured reasoning trajectories including initial reasoning, code generation, reflection for bugs and optimization, and correction directly into model weights, shifting the paradigm from external-dependent refinement to intrinsic, fully autonomous self-reflection and self-correction capabilities at inference time.
+
+ReflexiCoder-8B achieves state-of-the-art results among open-source models: 94.51% on HumanEval, 35.00% on BigCodeBench, 52.21% on LiveCodeBench, and 37.34% on CodeForces in a single-attempt setting. The framework is token-efficient, consuming approximately 40% fewer tokens in iterative mode compared to the base model.
+
+## PonderTTT - Training-Free Adaptive Compute
+
+PonderTTT proposes a gating strategy using Test-Time Training layer's self-supervised reconstruction loss to selectively trigger updates, with the gating decision itself being training-free—requiring no learned classifier or auxiliary networks, only a single scalar threshold calibrated on unlabeled data.
+
+## Self-Repair Effectiveness
+
+Iterative self-repair with error feedback is universally effective for improving LLM code generation across multiple models, spanning different model families and both dense and mixture-of-experts architectures.
+
+## Contemporary Self-Reflective Repair Frameworks
+
+Structured Reflection formalizes agent activity into a three-stage Reflect→Call→Final pipeline where the Reflect stage elicits diagnosis of failed tool interactions, Call proposes corrected tool use, and Final emits the amended answer, optimized via sequence-level reinforcement learning.
+
+These results highlight significant progress in training-free and efficient inference-time techniques for code generation in 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48854acb-89e2-4039-959f-a12370ab7460",
+  "isSidechain": true,
+  "promptId": "9e08ddf0-33d2-4d92-a77f-55540a5b8b2a",
+  "agentId": "a7e449c952c5042c3",
+  "type": "user",
+  "uuid": "49930a2b-1d97-4ef5-8cce-56907691c743",
+  "sourceToolAssistantUUID": "48854acb-89e2-4039-959f-a12370ab7460",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-12T01:00:59.862Z_
+
+Here is a consolidated report for each of your seven searches.
+
+---
+
+## 1. SWE-bench Verified -- Current SOTA
+
+The leaderboard is now widely regarded as **contaminated**. OpenAI's audit found frontier models can reproduce verbatim gold patches, and OpenAI has stopped reporting Verified scores, recommending **SWE-bench Pro** instead.
+
+**Verified top scores (May 2026):**
+| Rank | System | % Resolved |
+|------|--------|-----------|
+| 1 | Claude Mythos Preview | 93.9% |
+| 2 | Claude Opus 4.7 (Adaptive) | 87.6% |
+| 3 | GPT-5.3 Codex | ~85% |
+| 4 | Claude Opus 4.5 | 80.9% |
+
+**SWE-bench Pro (contamination-resistant):**
+The *same* best model scores only ~46% on Pro vs. ~81% on Verified. Claude Opus 4.5 scores 45.9% on Pro with standardized scaffolding. This massive gap is evidence of benchmark contamination on Verified.
+
+**Implication for your proposal:** If your paper cites SWE-bench Verified numbers, reviewers will likely challenge them. SWE-bench Pro is now the credible variant.
+
+---
+
+## 2. CodeContests -- SOTA and AlphaCodium Positioning
+
+**AlphaCodium (GPT-4 + flow engineering):** 44% pass@5 on CodeContests validation set (up from GPT-4 baseline of 19%).
+
+**AlphaCode 2 (DeepMind, Gemini-based):** Solves 43% of problems; achieved 85th percentile on Codeforces (between Expert and Candidate Master).
+
+**Reasoning models have dramatically surpassed both:**
+- **o1:** Codeforces Elo ~1807 (93rd percentile of humans)
+- **o3:** Codeforces Elo ~2700 (top ~200 active users worldwide); gold medal at IOI without hand-crafted strategies
+- RL-trained models on CodeContests+ achieve Pass@1 up to 34.57% on LiveCodeBench
+
+**Implication:** AlphaCodium's 44% pass@5 is **no longer competitive** as a SOTA claim. The reasoning-model era (o1/o3) has moved the frontier significantly. However, AlphaCodium's result is still a valid reference point for *training-free, flow-engineering approaches* applied to standard LLMs.
+
+---
+
+## 3. DebugBench -- Current Best Results
+
+DebugBench (4,253 instances, C++/Java/Python, 4 bug categories, 18 minor types):
+
+**Original paper results (2024):**
+- GPT-4: 75.0% (zero-shot)
+- GPT-3.5-turbo: 62.1%
+- Open-source models: 43.9%--66.6% (DeepSeek-Coder best among OSS)
+- Human proficiency is *above* all of these
+
+**No widely-cited 2025-2026 updates** were found. The benchmark appears to have seen limited adoption beyond the original paper. No results for GPT-4o, Claude Sonnet, or o1/o3 on DebugBench were found in search results.
+
+**Implication:** DebugBench is a relatively niche benchmark. If your paper reports results on it, there is limited competition to compare against, which makes the gap claim harder to validate but also harder for reviewers to challenge with counter-evidence.
+
+---
+
+## 4. CrossCodeEval -- Current SOTA
+
+CrossCodeEval (NeurIPS 2023; cross-file code completion in Python/Java/TypeScript/C#):
+
+- **Baseline (no cross-file context):** Exact Match (EM) consistently < 11%
+- **With BM25 retrieval:** EM roughly doubles/triples (e.g., CodeGen2.5-7B: 7.7% -> 14.5% on Python)
+- **Current SOTA for 7B-16B models with advanced retrieval + static analysis:**
+  - Java: **EM ~44%** (GrepRAG)
+  - Python: **EM ~35%** (STALL+ + RAG)
+
+**Implication:** The benchmark is still genuinely hard. Performance remains low enough that a meaningful improvement (e.g., +5-10% EM) would be noteworthy. The gap between in-file-only and retrieval-augmented is large and well-documented.
+
+---
+
+## 5. Papers with Code SWE-bench
+
+Papers with Code tracks the SWE-bench-lite variant. The site also now lists variants including SWE-bench-java, Multi-SWE-bench (7 languages, 4,723 instances), and SWE-bench Multimodal. The leaderboard data largely mirrors what is reported on swebench.com (see item 1 above).
+
+---
+
+## 6. Qwen2.5-Coder-32B Performance
+
+**Qwen2.5-Coder-32B-Instruct key scores:**
+| Benchmark | Score |
+|-----------|-------|
+| HumanEval pass@1 | 88.4% (after SFT+DPO+GRPO) |
+| HumanEval+ | ~87.2% |
+| Aider (code repair) | 73.7 |
+| MdEval | 75.2 (1st among OSS) |
+| McEval (40+ languages) | 65.9 |
+| LiveCodeBench Elo | ~2056 |
+
+**Qwen2.5-Coder-7B-Instruct:**
+| Benchmark | Score |
+|-----------|-------|
+| HumanEval+ | 84.1% |
+| HumanEval | 61.6% |
+
+The 32B variant is described as achieving "competitive performance with GPT-4o" and is the **best open-source model** on EvalPlus, LiveCodeBench, and BigCodeBench. The 7B variant outperforms many models with 20B+ parameters.
+
+**Implication:** Qwen2.5-Coder-7B and -32B are strong, well-documented baselines. Using them is defensible. However, note that **Qwen3-Coder** has since been released, so reviewers may ask why you did not use the newer model. The 32B model's 88.4% HumanEval score means there is limited headroom on that benchmark -- improvements need to be demonstrated on harder benchmarks (LiveCodeBench, SWE-bench, CrossCodeEval) to be convincing.
+
+---
+
+## 7. Training-Free / Inference-Time Code Generation Methods
+
+**Key methods and results:**
+
+- **ReflexiCoder-8B (2025-2026):** Uses RL to internalize self-reflection. Achieves 94.51% HumanEval, 35.00% BigCodeBench, 52.21% LiveCodeBench, 37.34% CodeForces in single-attempt. Uses ~40% fewer tokens than base in iterative mode. (Note: this involves RL training, so is not purely training-free.)
+
+- **EffiPair:** Training-free framework using Relative Contrastive Feedback. Compares structurally similar candidates with different efficiency profiles to improve runtime efficiency while preserving correctness.
+
+- **PonderTTT:** Training-free adaptive compute allocation using test-time training with a gating strategy. Requires no learned classifier -- only a single scalar threshold calibrated on unlabeled data.
+
+- **Self-repair / self-debugging:** Universally effective across model families. AST-based detectors identify reintroduction of previously resolved errors, improving accuracy by >10%.
+
+- **Latent-trajectory early accept:** Reduces token usage by 48-70% vs. self-consistency while improving accuracy by 2.6% on average.
+
+**Implication:** The space is active. If your method is truly training-free, the competitive landscape includes EffiPair, PonderTTT, and various self-repair frameworks. The key differentiator will be showing gains on hard benchmarks (not just HumanEval where scores are already >90%).
+
+---
+
+## Overall Assessment: Are the Proposed Baselines and Gaps Realistic?
+
+1. **Qwen2.5-Coder-7B/32B as baselines:** Reasonable and well-documented, but Qwen3-Coder now exists. Reviewers may push for newer baselines.
+
+2. **HumanEval gaps:** Very limited headroom (32B already at 88.4%). Claims of improvement here are hard to make impressive.
+
+3. **CodeContests gap vs. AlphaCodium:** If positioning against AlphaCodium's 44%, be aware that reasoning models (o1/o3) have far surpassed this. The comparison is only valid within the "training-free + standard LLM" category.
+
+4. **SWE-bench Verified:** Numbers are contaminated. Use SWE-bench Pro if possible, or clearly caveat Verified results.
+
+5. **DebugBench / CrossCodeEval:** These remain genuinely hard with room for improvement. They are better venues to demonstrate meaningful gaps than saturated benchmarks like HumanEval.
+
+Sources:
+- [SWE-bench Verified Leaderboard - llm-stats.com](https://llm-stats.com/benchmarks/swe-bench-verified)
+- [SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%](https://www.morphllm.com/swe-bench-pro)
+- [SWE-bench Official Leaderboards](https://www.swebench.com/)
+- [SWE-bench Verified - BenchLM.ai](https://benchlm.ai/benchmarks/sweVerified)
+- [SWE-bench Verified - Epoch AI](https://epoch.ai/benchmarks/swe-bench-verified)
+- [CodeContests - Papers with Code](https://paperswithcode.com/sota/code-generation-on-codecontests)
+- [AlphaCodium - Qodo Blog](https://www.qodo.ai/blog/qodoflow-state-of-the-art-code-generation-for-code-contests/)
+- [AlphaCode Statistics](https://www.aboutchromebooks.com/alphacode-statistics/)
+- [Competitive Programming with Large Reasoning Models (o3)](https://arxiv.org/abs/2502.06807)
+- [DebugBench Paper - arXiv](https://arxiv.org/abs/2401.04621)
+- [DebugBench - ACL Anthology](https://aclanthology.org/2024.findings-acl.247/)
+- [CrossCodeEval - GitHub](https://github.com/amazon-science/cceval)
+- [CrossCodeEval Paper - arXiv](https://arxiv.org/abs/2310.11248)
+- [Qwen2.5-Coder Family Blog](https://qwenlm.github.io/blog/qwen2.5-coder-family/)
+- [Qwen2.5-Coder Technical Report](https://arxiv.org/html/2409.12186v3)
+- [Qwen2.5-Coder-32B Overview - Emergent Mind](https://www.emergentmind.com/topics/qwen2-5-coder-32b-instruct)
+- [EffiPair - arXiv](https://arxiv.org/html/2604.05137)
+- [Inference-Time Techniques for Efficient Code Generation (UW)](https://courses.cs.washington.edu/courses/cse503/25wi/final-reports/Inference-Time%20Techniques%20for%20Efficient%20Code%20Generation.pdf)
+- [ReflexiCoder - arXiv](https://arxiv.org/html/2603.05863)
+- [PonderTTT - arXiv](https://arxiv.org/abs/2601.00894)
+- [Self-Repair in LLM Code Generation](https://arxiv.org/html/2604.10508v1)
+- [LiveCodeBench Leaderboard](https://livecodebench.github.io/leaderboard.html)
+- [Best LLM for Coding 2026 - WhatLLM](https://whatllm.org/best-llm-for-coding)
+- [CodeSOTA Code Generation Leaderboard](https://www.codesota.com/code-generation)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49930a2b-1d97-4ef5-8cce-56907691c743",
+  "isSidechain": true,
+  "agentId": "a7e449c952c5042c3",
+  "requestId": "req_011CawmaQkGXeHp2VnnLsAHF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9c58ba2b-6a0c-4ed4-993d-018e7ba1b1e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dfc514ab-163a-43aa-8fe2-f6ee8596621e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Arw5Gpxmn4hhZzSBz2E7mf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1195,
+      "cache_read_input_tokens": 24787,
+      "output_tokens": 3093,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1195
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3093,
+          "cache_read_input_tokens": 24787,
+          "cache_creation_input_tokens": 1195,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1195,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

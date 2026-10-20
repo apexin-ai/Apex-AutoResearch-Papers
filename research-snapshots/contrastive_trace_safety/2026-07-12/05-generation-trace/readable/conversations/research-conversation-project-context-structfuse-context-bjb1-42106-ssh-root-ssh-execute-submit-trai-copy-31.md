@@ -1,0 +1,3672 @@
+# Research conversation: <project_context> # 项目: structfuse-context ## 运行环境 - 服务器名: bjb1-42106 - SSH 账户: root（调用 ssh_execute / submit_training_jo
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-1/96b222a8-1429-4958-ab38-47572af7509c.jsonl`
+- **Structured JSON:** [`6ae10cbaf2e9eced867e.json`](../../sessions/6a/6ae10cbaf2e9eced867e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T01:53:01.749Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T01:53:01.749Z",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "content": "&lt;project_context>\n# 项目: structfuse-context\n\n## 运行环境\n- 服务器名: bjb1-42106\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/structfuse\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：撰写 Method Section 和 Experiment Setup 初稿\n\n写两个 markdown 文件到本地 artifacts 目录。这些内容描述已定型的架构和实验设置，不依赖 M2 最终结果。\n\n### 产出路径（本地写入，用 Write 工具）\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md`\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiment_setup_v1.md`\n\n### 先读取以下文件获取准确信息\n\n用 read_project_file 读取：\n- `paper_framing.md` — 论文 story arc 和 claims\n- `ROADMAP.md` — 研究方向概览\n- `memory.md` — 决策记录和经验\n\n用 read_registry 获取实验配置细节（特别是 m2_full_qwen_continued 和 m2_full_starcoder_resumed 的 spec 字段，含训练超参）。\n\n### Method Section 内容 (method_v1.md)\n\n按以下结构撰写，学术论文风格，简洁准确：\n\n#### 3.1 Problem Formulation\n- Code retrieval 任务定义\n- Contrastive learning 框架\n\n#### 3.2 Structural Information Extraction (M1)\n- CodeQL bounded data-flow analysis\n- Call graph + data-flow graph 提取\n- Reachability 判定（connected vs disconnected files）\n- Beniget fallback for CodeQL failures\n- 覆盖率统计：structural data rate, timeout rate\n\n#### 3.3 Structure-Aware Negative Mining (Core Contribution)\n- 三种策略定义：\n  - **Random**: uniform sampling from candidate pool\n  - **Embedding distance**: cosine similarity-based hard negative mining using pretrained encoder\n  - **Dataflow-aware**: embedding distance mining + structural reachability filtering (exclude files connected via call/data-flow graph)\n- 数学形式化（如有）\n- 与 BM25 baseline 的关系\n\n#### 3.4 Contrastive Fine-tuning (M2)\n- LoRA fine-tuning setup\n- InfoNCE loss\n- Dual checkpoint strategy (best_by_val_loss + best_by_recall_at_1)\n- Early stopping\n\n### Experiment Setup 内容 (experiment_setup_v1.md)\n\n#### 4.1 Dataset\n- 来源：CodeSearchNet (Python subset)\n- 规模：131 repos, ~44K instances (after M1 extraction)\n- Train/val split 策略\n- 每 seed 的 train/val 大小 (~11.3K train, ~3K val)\n\n#### 4.2 Models\n- **Qwen2.5-Coder-3B**: 为什么选（strong code understanding, instruction-tuned variant available）\n- **StarCoder2-3B**: 为什么选（encoder-agnostic validation, different pretraining objective）\n\n#### 4.3 Training Configuration\n从 registry spec 提取准确数值：\n- lr=2e-5, batch_size=8, num_negatives=7 (K=7)\n- max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01\n- temperature=0.07, LoRA r=16, gradient_checkpointing=True\n- proj_dim=256\n- Seeds: 42, 43, 44\n- Epochs: 2 (with early_stopping_patience=2), s42 用 3 epochs 提供 overfitting curve\n- Hardware: 2× RTX PRO 6000 96GB\n\n#### 4.4 Evaluation Metrics\n- R@1, R@5, R@10 (pool_size=50)\n- val_loss (InfoNCE)\n- Bootstrap 95% CI, Cohen's d\n- Per-seed consistency\n\n### 写作规范\n- 学术论文风格，第三人称\n- 所有数字必须有出处（registry / 配置文件）\n- 不 cherry-pick，不夸大\n- 留 placeholder 标记 [TBD] 给尚未确定的数字（如最终 M2 结果）\n- 每个定量 claim 标注数据来源\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T01:53:01.752Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T01:53:01.752Z",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+## Round 1
+
+60 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T01:53:01.789Z_
+
+&lt;project_context>
+# 项目: structfuse-context
+
+## 运行环境
+- 服务器名: bjb1-42106
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/structfuse
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：撰写 Method Section 和 Experiment Setup 初稿
+
+写两个 markdown 文件到本地 artifacts 目录。这些内容描述已定型的架构和实验设置，不依赖 M2 最终结果。
+
+### 产出路径（本地写入，用 Write 工具）
+1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md`
+2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiment_setup_v1.md`
+
+### 先读取以下文件获取准确信息
+
+用 read_project_file 读取：
+- `paper_framing.md` — 论文 story arc 和 claims
+- `ROADMAP.md` — 研究方向概览
+- `memory.md` — 决策记录和经验
+
+用 read_registry 获取实验配置细节（特别是 m2_full_qwen_continued 和 m2_full_starcoder_resumed 的 spec 字段，含训练超参）。
+
+### Method Section 内容 (method_v1.md)
+
+按以下结构撰写，学术论文风格，简洁准确：
+
+#### 3.1 Problem Formulation
+- Code retrieval 任务定义
+- Contrastive learning 框架
+
+#### 3.2 Structural Information Extraction (M1)
+- CodeQL bounded data-flow analysis
+- Call graph + data-flow graph 提取
+- Reachability 判定（connected vs disconnected files）
+- Beniget fallback for CodeQL failures
+- 覆盖率统计：structural data rate, timeout rate
+
+#### 3.3 Structure-Aware Negative Mining (Core Contribution)
+- 三种策略定义：
+  - **Random**: uniform sampling from candidate pool
+  - **Embedding distance**: cosine similarity-based hard negative mining using pretrained encoder
+  - **Dataflow-aware**: embedding distance mining + structural reachability filtering (exclude files connected via call/data-flow graph)
+- 数学形式化（如有）
+- 与 BM25 baseline 的关系
+
+#### 3.4 Contrastive Fine-tuning (M2)
+- LoRA fine-tuning setup
+- InfoNCE loss
+- Dual checkpoint strategy (best_by_val_loss + best_by_recall_at_1)
+- Early stopping
+
+### Experiment Setup 内容 (experiment_setup_v1.md)
+
+#### 4.1 Dataset
+- 来源：CodeSearchNet (Python subset)
+- 规模：131 repos, ~44K instances (after M1 extraction)
+- Train/val split 策略
+- 每 seed 的 train/val 大小 (~11.3K train, ~3K val)
+
+#### 4.2 Models
+- **Qwen2.5-Coder-3B**: 为什么选（strong code understanding, instruction-tuned variant available）
+- **StarCoder2-3B**: 为什么选（encoder-agnostic validation, different pretraining objective）
+
+#### 4.3 Training Configuration
+从 registry spec 提取准确数值：
+- lr=2e-5, batch_size=8, num_negatives=7 (K=7)
+- max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01
+- temperature=0.07, LoRA r=16, gradient_checkpointing=True
+- proj_dim=256
+- Seeds: 42, 43, 44
+- Epochs: 2 (with early_stopping_patience=2), s42 用 3 epochs 提供 overfitting curve
+- Hardware: 2× RTX PRO 6000 96GB
+
+#### 4.4 Evaluation Metrics
+- R@1, R@5, R@10 (pool_size=50)
+- val_loss (InfoNCE)
+- Bootstrap 95% CI, Cohen's d
+- Per-seed consistency
+
+### 写作规范
+- 学术论文风格，第三人称
+- 所有数字必须有出处（registry / 配置文件）
+- 不 cherry-pick，不夸大
+- 留 placeholder 标记 [TBD] 给尚未确定的数字（如最终 M2 结果）
+- 每个定量 claim 标注数据来源
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "2e7b1bf0-f53c-4804-ab0a-796d1551cf2a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T01:53:01.788Z_
+
+```json
+{
+  "parentUuid": "2e7b1bf0-f53c-4804-ab0a-796d1551cf2a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0f3cdfc7-a863-4a5d-b848-e743c89db45f",
+  "timestamp": "2026-05-15T01:53:01.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T01:53:01.788Z_
+
+```json
+{
+  "parentUuid": "0f3cdfc7-a863-4a5d-b848-e743c89db45f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "584975c8-bb30-49e5-97df-b6beefcb945e",
+  "timestamp": "2026-05-15T01:53:01.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T01:53:01.788Z_
+
+```json
+{
+  "parentUuid": "584975c8-bb30-49e5-97df-b6beefcb945e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "bf784a8c-5a8f-4666-996b-3274d2eb2c57",
+  "timestamp": "2026-05-15T01:53:01.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-15T01:53:01.788Z_
+
+```json
+{
+  "parentUuid": "bf784a8c-5a8f-4666-996b-3274d2eb2c57",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a49bad9b-cf2b-4546-896f-1831dfe0b469",
+  "timestamp": "2026-05-15T01:53:01.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write Method and Experiment Setup sections",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T01:53:04.603Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the required project files to gather accurate information for writing the method and experiment setup drafts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a49bad9b-cf2b-4546-896f-1831dfe0b469",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X4meBHvrk7HtXtpDuS",
+  "type": "assistant",
+  "uuid": "bcd7a0ad-182b-4243-8670-659c935b798a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gJLy3tYwrMPx2kDQexUha",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12343,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-15T01:53:05.652Z_
+
+先读取所需的项目文件和 registry 信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcd7a0ad-182b-4243-8670-659c935b798a",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X4meBHvrk7HtXtpDuS",
+  "type": "assistant",
+  "uuid": "61984ed4-4d3c-4c3b-9967-9a6c8f9b1fe4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gJLy3tYwrMPx2kDQexUha",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12343,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T01:53:06.266Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DjkoRXGWys4y1wrezZg1gm`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61984ed4-4d3c-4c3b-9967-9a6c8f9b1fe4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X4meBHvrk7HtXtpDuS",
+  "type": "assistant",
+  "uuid": "f57c1a76-16b7-4878-9633-38a4e34abc34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gJLy3tYwrMPx2kDQexUha",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12343,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T01:53:06.275Z_
+
+<details><summary>↩ Tool result · `toolu_01DjkoRXGWys4y1wrezZg1gm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f57c1a76-16b7-4878-9633-38a4e34abc34",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "59a32ed7-f5ed-4a10-90de-c7f1a45d3da5",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "f57c1a76-16b7-4878-9633-38a4e34abc34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T01:53:11.968Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01BfcNisVwHhthh54yBt99Ea`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59a32ed7-f5ed-4a10-90de-c7f1a45d3da5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X56q6ETrTz8EtsB5iS",
+  "type": "assistant",
+  "uuid": "12f4b9a0-7d02-4db3-8504-58cee7614fa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjxJtSE3N6pcTssJnGHyQX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 23790,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 23790,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T01:53:12.004Z_
+
+<details><summary>↩ Tool result · `toolu_01BfcNisVwHhthh54yBt99Ea`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\", \"content\": \"# Paper Framing — StructFuse\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3)\\n\\n1. **Simple static embedding-distance mining suffices for contrastive code retrieval, challenging the assumption that expensive gradient-based hard negative methods are necessary.** CoCoHaNeRe (ACM TOSEM 2025) argues non-differentiable embedding negatives are \\\"slow and ineffective\\\" compared to gradient-based methods — our results show that in structural code retrieval, simple embedding-distance mining yields +1.6–2.0pp R@1 over random baselines across two decoder-only encoders with distinct pretraining corpora and representation geometries (Qwen2.5-Coder-3B, StarCoder2-3B), without requiring gradient-based mechanisms.\\n\\n2. **[Exploratory observation] Structure-grounded (dataflow) negatives interact with encoder representation geometry, but do not consistently outperform embedding mining.** Pilot data shows dataflow < embedding on both encoders (Qwen: -1.2pp, StarCoder: -1.0pp R@1 vs embedding). The interaction pattern — Qwen (saturated, pos_sim > 0.98) shows smaller gap than StarCoder (healthy, pos_sim ~ 0.80) — suggests representation geometry mediates strategy effectiveness. neg_difficulty margin analysis (+17% Qwen, +28% StarCoder) provides mechanistic evidence for this interaction. Pending: multi-seed confirmation + plan_005 stratified analysis + plan_015 dynamic mining control. This is reported as an observation with mechanistic hypothesis, not an established finding.\\n\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL provides a practical pipeline for computing structural connectivity at scale.** 0% timeout, 78% connected-not-gold rate (Z%), 123/131 repos with output at full scale. [Dream [M][W] flag: this is supporting methodology, not a primary research contribution. Drop speculative generalization claims (molecular networks, etc.) — no evidence. Frame as practical tool that enables the study, not a standalone contribution.]\\n\\n## Story Spine\\n\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers rely on text similarity alone, but lexical similarity ≠ structural relevance. Hard negative mining is the standard approach to improve contrastive retrievers, yet the field lacks systematic understanding of what negative selection strategies work for code and why.\\n\\n- **Existing approaches & gaps**:\\n  - Text-based retrieval (SweRank, SWE-Fixer): blind to structural dependencies\\n  - Graph-guided at inference (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no training signal\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\n  - CoCoHaNeRe (ACM TOSEM 2025): argues gradient-based hard negative methods outperform non-differentiable embedding negatives — but does not test simple static embedding-distance mining in structural code retrieval settings\\n  - Gap: no systematic study comparing negative mining strategies with proper controls, and no mechanistic explanation for when/why each strategy works\\n\\n- **Our contribution**: A systematic analysis of hard negative mining strategies for contrastive code retrieval. We (1) show that simple static embedding-distance mining suffices, challenging the assumption that expensive gradient-based methods are necessary (CoCoHaNeRe's premise), (2) observe that structure-grounded (dataflow) negatives interact with encoder representation geometry and provide mechanistic analysis of when/why different strategies yield different outcomes, and (3) validate findings on downstream SWE-bench task evaluation.\\n\\n- **Headline result template**: \\\"Simple static embedding-distance mining consistently improves code retrieval (+1.6–2.0pp R@1, 2 encoders), challenging the need for expensive gradient-based hard negative methods. Structure-grounded (dataflow) negatives show encoder-dependent interaction patterns — representation geometry analysis via negative difficulty provides mechanistic explanation for when different mining strategies are effective.\\\"\\n\\n## Core Insight\\n\\nThe effectiveness of hard negative mining strategies depends on the encoder's representation geometry. When the pretrained space is saturated (high pos_sim → low margin between positive and negative), the encoder needs harder negatives from an orthogonal signal dimension (structure). When the space has healthy separation, embedding-distance mining alone captures sufficient difficulty gradient. This encoder-strategy interaction explains contradictory findings in prior work.\\n\\n## Dual-Pillar Motivation\\n\\n1. **Primary — Systematic analysis challenging gradient-based assumptions**: Prior work (CoCoHaNeRe, ACM TOSEM 2025) assumes expensive gradient-based hard negative methods are necessary for effective code search. Our controlled comparison shows simple static embedding-distance mining suffices in structural code retrieval, isolating the effect of each strategy.\\n2. **Secondary — Mechanistic explanation via representation geometry**: neg_difficulty analysis (margin distribution × strategy × encoder) provides explanatory depth beyond empirical comparison, enabling practitioners to predict which strategy suits their encoder without exhaustive experiments.\\n\\n## Formal Definition\\n\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\n\\nThe structural graph is externally fixed and does not update with the encoder (drift-immune).\\n\\n## Title Options\\n\\n- Primary: \\\"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining Strategies and Representation Geometry\\\"\\n- Alternative: \\\"Beyond Gradient-Based Mining: Static Embedding Negatives Suffice for Contrastive Code Retrieval\\\" [contingent: activate only if M2 dataflow conditional benefit confirmed across encoders]\\n- Backup: \\\"Simple Embedding Mining Suffices: Challenging Gradient-Based Assumptions in Hard Negative Mining for Code\\\"\\n\\n## Venue Fit\\n\\n1. **EMNLP Main fit**: Empirical analysis + mechanistic insight papers are a strong EMNLP archetype (cf. \\\"Do Language Models...\\\" papers). Contribution is understanding, not just a new method.\\n2. **NLP audience**: Frame as contrastive learning methodology with code as instantiation. Representation geometry analysis generalizes beyond code.\\n3. **Against \\\"incremental\\\" criticism**: Paper challenges a prevalent assumption + provides mechanistic explanation for strategy × encoder interaction + validates on downstream task. Three contributions, not one marginal improvement.\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response | Evidence |\\n|---------|----------|----------|\\n| Only 2 encoders — can you generalize? | n=2 is minimum for interaction claim; we frame as observation with mechanism, not universal law; two decoder-only encoders with distinct pretraining (Fill vs FIM) and representation geometry (pos_sim 0.99 vs 0.80) provide meaningful variation | plan_013 (done), m2_full runs |\\n| BM25 vs true embedding negatives? | Run BM25 negatives to empirically compare with embedding-distance mining, grounding the comparison against CoCoHaNeRe's gradient-based premise | plan_018 |\\n| Pool size sensitivity? | Evaluate at pool {50, 100, 200, 500} to confirm strategy rankings hold at realistic sizes | plan_019 |\\n| Stratified by structural data availability? | Report per-stratum R@1 for 34% with structural data vs 66% fallback | plan_005 (extended) |\\n| Temperature regime specificity | Ablate τ ∈ {0.05, 0.1, 0.2} | plan_014 |\\n| No downstream task evaluation | SWE-bench Lite end-to-end with LLM agent | plan_003 |\\n| Static vs dynamic mining confound | Clarify mining is static; add dynamic baseline | plan_015 |\\n| CodeQL scalability at larger scale | 0% timeout, 78% Z%, 123 repos; m1_reextract_v2 adds more | plan_006 (done) |\\n| Why not compare inference-time graph methods? | Complementary: they navigate at inference, we mine at training. Discuss relationship. | plan_017 |\\n| Single benchmark | Add RepoBench-R cross-file retrieval | plan_004 |\\n| Statistical significance | Bootstrap 95% CI for all comparisons; full M2 = 9 seeds × 3 strategies × 2 encoders | plan_016, m2_full |\\n| \\\"Complementary signal\\\" overstatement | Temper: \\\"conditionally beneficial\\\" not \\\"always complementary\\\" | Writing discipline |\\n| Missing related work | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\n\\n## Evidence Status\\n\\n### Confirmed findings (basis for claims):\\n- D017: True embedding mining helps (+2.0pp Qwen, +1.6pp StarCoder) — challenges gradient-based necessity assumption\\n- D021/neg_difficulty: Qwen pos_sim=0.9855 (saturated), StarCoder pos_sim=0.7985 (healthy); margin differential explains strategy interaction\\n- m2_embed_verify (pilot): 3-strategy comparison confirms ranking (embedding > random, dataflow conditional)\\n- plan_013 (StarCoder pilot): Confirms cross-encoder pattern — embedding helps both, dataflow helps Qwen only\\n- plan_006: CodeQL scalability confirmed at 123-repo scale\\n\\n### In progress:\\n- m2_full_qwen: random s42 DONE (R@1=0.5527), s43 DONE (R@1=0.5554), s44 RUNNING (eval@500 R@1=0.6009). 2/10 runs complete, ~50h remaining.\\n- m2_full_starcoder: random s42 DONE (R@1=0.4604, from parent), s43 RUNNING (eval@500 R@1=0.4708). 1/9+ runs complete, ~65-70h remaining.\\n- m1_reextract_v2: 80.8% complete (22,842/28,276), 0 ERROR, ETA ~15:00 CST May 15\\n\\n### Planned (priority order):\\n- plan_018: BM25 negative baseline (Dream #1 consensus gap — grounds comparison against CoCoHaNeRe's premise)\\n- plan_003: SWE-bench Lite eval (biggest lever for paper strength)\\n- plan_019: Pool size sensitivity (Dream consensus — external validity)\\n- plan_014: Temperature ablation (Dream reviewer concern)\\n- plan_004: RepoBench-R second benchmark (with multi-seed CIs)\\n- plan_015: Dynamic mining baseline\\n- plan_005: Stratified analysis (extended: structural-available vs fallback stratum)\\n- plan_007/008/009: Additional ablations\\n\\n## Contingency (if full M2 results weaken claims)\\n\\n### All 18 runs confirm pilot pattern: Best case\\n- Full statistical power, paper as framed above\\n- Target: EMNLP Main\\n\\n### Dataflow benefit disappears even for Qwen at full scale: Pivot to 2-claim paper\\n- Drop Claim 2 to analysis observation\\n- Paper becomes: \\\"Simple embedding mining suffices (challenging gradient-based assumption) + CodeQL extraction is practical + representation geometry analysis explains prior contradictions\\\"\\n- Still publishable: challenging gradient-based assumption + mechanistic analysis is sufficient for EMNLP Main\\n\\n### BM25 negatives ≈ random (not harmful): Narrative pivot needed [D030 contingency]\\n- If plan_018 shows BM25 negatives perform ≈ random (not << random), the \\\"challenging gradient-based assumption\\\" narrative needs adjustment\\n- Pivot: \\\"systematic comparison reveals embedding-distance mining is the only strategy that consistently helps; gradient-based methods may not be necessary even when BM25 provides no signal\\\"\\n- Paper remains valid as systematic analysis — the core finding (simple embedding mining suffices) stands regardless of BM25 outcome\\n- Claim 1 core preserved: \\\"Simple static embedding-distance mining consistently improves code retrieval without gradient-based mechanisms\\\"\\n- Impact: BM25 result determines narrative nuance, not core contribution\\n\\n### Embedding mining also loses advantage at full scale: Major reassessment needed\\n- Recheck data pipeline for bugs (full-scale data may have distribution differences)\\n- If confirmed: negative result paper — \\\"Why Hard Negative Mining Doesn't Scale for Code Retrieval\\\"\\n- Discuss with user before committing direction\\n\\n## Deprecated Claims (with reason)\\n\\n- ~~\\\"Embedding-distance hard negatives actively harm code retrieval\\\"~~ — FALSIFIED by D017. Original evidence (-27pp R@1) was from BM25-proxy negatives incorrectly labeled as embedding_distance in MVP. True embedding mining shows consistent improvement. Preserved here to prevent regression.\\n\", \"total_chars\": 12022, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12f4b9a0-7d02-4db3-8504-58cee7614fa7",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "f8a8692b-deff-455f-b833-a02e11ada6b7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — StructFuse\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3)\\\\n\\\\n1. **Simple static embedding-distance mining suffices for contrastive code retrieval, challenging the assumption that expensive gradient-based hard negative methods are necessary.** CoCoHaNeRe (ACM TOSEM 2025) argues non-differentiable embedding negatives are \\\\\\\"slow and ineffective\\\\\\\" compared to gradient-based methods — our results show that in structural code retrieval, simple embedding-distance mining yields +1.6–2.0pp R@1 over random baselines across two decoder-only encoders with distinct pretraining corpora and representation geometries (Qwen2.5-Coder-3B, StarCoder2-3B), without requiring gradient-based mechanisms.\\\\n\\\\n2. **[Exploratory observation] Structure-grounded (dataflow) negatives interact with encoder representation geometry, but do not consistently outperform embedding mining.** Pilot data shows dataflow < embedding on both encoders (Qwen: -1.2pp, StarCoder: -1.0pp R@1 vs embedding). The interaction pattern — Qwen (saturated, pos_sim > 0.98) shows smaller gap than StarCoder (healthy, pos_sim ~ 0.80) — suggests representation geometry mediates strategy effectiveness. neg_difficulty margin analysis (+17% Qwen, +28% StarCoder) provides mechanistic evidence for this interaction. Pending: multi-seed confirmation + plan_005 stratified analysis + plan_015 dynamic mining control. This is reported as an observation with mechanistic hypothesis, not an established finding.\\\\n\\\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL provides a practical pipeline for computing structural connectivity at scale.** 0% timeout, 78% connected-not-gold rate (Z%), 123/131 repos with output at full scale. [Dream [M][W] flag: this is supporting methodology, not a primary research contribution. Drop speculative generalization claims (molecular networks, etc.) — no evidence. Frame as practical tool that enables the study, not a standalone contribution.]\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers rely on text similarity alone, but lexical similarity ≠ structural relevance. Hard negative mining is the standard approach to improve contrastive retrievers, yet the field lacks systematic understanding of what negative selection strategies work for code and why.\\\\n\\\\n- **Existing approaches & gaps**:\\\\n  - Text-based retrieval (SweRank, SWE-Fixer): blind to structural dependencies\\\\n  - Graph-guided at inference (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no training signal\\\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\\\n  - CoCoHaNeRe (ACM TOSEM 2025): argues gradient-based hard negative methods outperform non-differentiable embedding negatives — but does not test simple static embedding-distance mining in structural code retrieval settings\\\\n  - Gap: no systematic study comparing negative mining strategies with proper controls, and no mechanistic explanation for when/why each strategy works\\\\n\\\\n- **Our contribution**: A systematic analysis of hard negative mining strategies for contrastive code retrieval. We (1) show that simple static embedding-distance mining suffices, challenging the assumption that expensive gradient-based methods are necessary (CoCoHaNeRe's premise), (2) observe that structure-grounded (dataflow) negatives interact with encoder representation geometry and provide mechanistic analysis of when/why different strategies yield different outcomes, and (3) validate findings on downstream SWE-bench task evaluation.\\\\n\\\\n- **Headline result template**: \\\\\\\"Simple static embedding-distance mining consistently improves code retrieval (+1.6–2.0pp R@1, 2 encoders), challenging the need for expensive gradient-based hard negative methods. Structure-grounded (dataflow) negatives show encoder-dependent interaction patterns — representation geometry analysis via negative difficulty provides mechanistic explanation for when different mining strategies are effective.\\\\\\\"\\\\n\\\\n## Core Insight\\\\n\\\\nThe effectiveness of hard negative mining strategies depends on the encoder's representation geometry. When the pretrained space is saturated (high pos_sim → low margin between positive and negative), the encoder needs harder negatives from an orthogonal signal dimension (structure). When the space has healthy separation, embedding-distance mining alone captures sufficient difficulty gradient. This encoder-strategy interaction explains contradictory findings in prior work.\\\\n\\\\n## Dual-Pillar Motivation\\\\n\\\\n1. **Primary — Systematic analysis challenging gradient-based assumptions**: Prior work (CoCoHaNeRe, ACM TOSEM 2025) assumes expensive gradient-based hard negative methods are necessary for effective code search. Our controlled comparison shows simple static embedding-distance mining suffices in structural code retrieval, isolating the effect of each strategy.\\\\n2. **Secondary — Mechanistic explanation via representation geometry**: neg_difficulty analysis (margin distribution × strategy × encoder) provides explanatory depth beyond empirical comparison, enabling practitioners to predict which strategy suits their encoder without exhaustive experiments.\\\\n\\\\n## Formal Definition\\\\n\\\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\\\n\\\\nThe structural graph is externally fixed and does not update with the encoder (drift-immune).\\\\n\\\\n## Title Options\\\\n\\\\n- Primary: \\\\\\\"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining Strategies and Representation Geometry\\\\\\\"\\\\n- Alternative: \\\\\\\"Beyond Gradient-Based Mining: Static Embedding Negatives Suffice for Contrastive Code Retrieval\\\\\\\" [contingent: activate only if M2 dataflow conditional benefit confirmed across encoders]\\\\n- Backup: \\\\\\\"Simple Embedding Mining Suffices: Challenging Gradient-Based Assumptions in Hard Negative Mining for Code\\\\\\\"\\\\n\\\\n## Venue Fit\\\\n\\\\n1. **EMNLP Main fit**: Empirical analysis + mechanistic insight papers are a strong EMNLP archetype (cf. \\\\\\\"Do Language Models...\\\\\\\" papers). Contribution is understanding, not just a new method.\\\\n2. **NLP audience**: Frame as contrastive learning methodology with code as instantiation. Representation geometry analysis generalizes beyond code.\\\\n3. **Against \\\\\\\"incremental\\\\\\\" criticism**: Paper challenges a prevalent assumption + provides mechanistic explanation for strategy × encoder interaction + validates on downstream task. Three contributions, not one marginal improvement.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response | Evidence |\\\\n|---------|----------|----------|\\\\n| Only 2 encoders — can you generalize? | n=2 is minimum for interaction claim; we frame as observation with mechanism, not universal law; two decoder-only encoders with distinct pretraining (Fill vs FIM) and representation geometry (pos_sim 0.99 vs 0.80) provide meaningful variation | plan_013 (done), m2_full runs |\\\\n| BM25 vs true embedding negatives? | Run BM25 negatives to empirically compare with embedding-distance mining, grounding the comparison against CoCoHaNeRe's gradient-based premise | plan_018 |\\\\n| Pool size sensitivity? | Evaluate at pool {50, 100, 200, 500} to confirm strategy rankings hold at realistic sizes | plan_019 |\\\\n| Stratified by structural data availability? | Report per-stratum R@1 for 34% with structural data vs 66% fallback | plan_005 (extended) |\\\\n| Temperature regime specificity | Ablate τ ∈ {0.05, 0.1, 0.2} | plan_014 |\\\\n| No downstream task evaluation | SWE-bench Lite end-to-end with LLM agent | plan_003 |\\\\n| Static vs dynamic mining confound | Clarify mining is static; add dynamic baseline | plan_015 |\\\\n| CodeQL scalability at larger scale | 0% timeout, 78% Z%, 123 repos; m1_reextract_v2 adds more | plan_006 (done) |\\\\n| Why not compare inference-time graph methods? | Complementary: they navigate at inference, we mine at training. Discuss relationship. | plan_017 |\\\\n| Single benchmark | Add RepoBench-R cross-file retrieval | plan_004 |\\\\n| Statistical significance | Bootstrap 95% CI for all comparisons; full M2 = 9 seeds × 3 strategies × 2 encoders | plan_016, m2_full |\\\\n| \\\\\\\"Complementary signal\\\\\\\" overstatement | Temper: \\\\\\\"conditionally beneficial\\\\\\\" not \\\\\\\"always complementary\\\\\\\" | Writing discipline |\\\\n| Missing related work | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\\\n\\\\n## Evidence Status\\\\n\\\\n### Confirmed findings (basis for claims):\\\\n- D017: True embedding mining helps (+2.0pp Qwen, +1.6pp StarCoder) — challenges gradient-based necessity assumption\\\\n- D021/neg_difficulty: Qwen pos_sim=0.9855 (saturated), StarCoder pos_sim=0.7985 (healthy); margin differential explains strategy interaction\\\\n- m2_embed_verify (pilot): 3-strategy comparison confirms ranking (embedding > random, dataflow conditional)\\\\n- plan_013 (StarCoder pilot): Confirms cross-encoder pattern — embedding helps both, dataflow helps Qwen only\\\\n- plan_006: CodeQL scalability confirmed at 123-repo scale\\\\n\\\\n### In progress:\\\\n- m2_full_qwen: random s42 DONE (R@1=0.5527), s43 DONE (R@1=0.5554), s44 RUNNING (eval@500 R@1=0.6009). 2/10 runs complete, ~50h remaining.\\\\n- m2_full_starcoder: random s42 DONE (R@1=0.4604, from parent), s43 RUNNING (eval@500 R@1=0.4708). 1/9+ runs complete, ~65-70h remaining.\\\\n- m1_reextract_v2: 80.8% complete (22,842/28,276), 0 ERROR, ETA ~15:00 CST May 15\\\\n\\\\n### Planned (priority order):\\\\n- plan_018: BM25 negative baseline (Dream #1 consensus gap — grounds comparison against CoCoHaNeRe's premise)\\\\n- plan_003: SWE-bench Lite eval (biggest lever for paper strength)\\\\n- plan_019: Pool size sensitivity (Dream consensus — external validity)\\\\n- plan_014: Temperature ablation (Dream reviewer concern)\\\\n- plan_004: RepoBench-R second benchmark (with multi-seed CIs)\\\\n- plan_015: Dynamic mining baseline\\\\n- plan_005: Stratified analysis (extended: structural-available vs fallback stratum)\\\\n- plan_007/008/009: Additional ablations\\\\n\\\\n## Contingency (if full M2 results weaken claims)\\\\n\\\\n### All 18 runs confirm pilot pattern: Best case\\\\n- Full statistical power, paper as framed above\\\\n- Target: EMNLP Main\\\\n\\\\n### Dataflow benefit disappears even for Qwen at full scale: Pivot to 2-claim paper\\\\n- Drop Claim 2 to analysis observation\\\\n- Paper becomes: \\\\\\\"Simple embedding mining suffices (challenging gradient-based assumption) + CodeQL extraction is practical + representation geometry analysis explains prior contradictions\\\\\\\"\\\\n- Still publishable: challenging gradient-based assumption + mechanistic analysis is sufficient for EMNLP Main\\\\n\\\\n### BM25 negatives ≈ random (not harmful): Narrative pivot needed [D030 contingency]\\\\n- If plan_018 shows BM25 negatives perform ≈ random (not << random), the \\\\\\\"challenging gradient-based assumption\\\\\\\" narrative needs adjustment\\\\n- Pivot: \\\\\\\"systematic comparison reveals embedding-distance mining is the only strategy that consistently helps; gradient-based methods may not be necessary even when BM25 provides no signal\\\\\\\"\\\\n- Paper remains valid as systematic analysis — the core finding (simple embedding mining suffices) stands regardless of BM25 outcome\\\\n- Claim 1 core preserved: \\\\\\\"Simple static embedding-distance mining consistently improves code retrieval without gradient-based mechanisms\\\\\\\"\\\\n- Impact: BM25 result determines narrative nuance, not core contribution\\\\n\\\\n### Embedding mining also loses advantage at full scale: Major reassessment needed\\\\n- Recheck data pipeline for bugs (full-scale data may have distribution differences)\\\\n- If confirmed: negative result paper — \\\\\\\"Why Hard Negative Mining Doesn't Scale for Code Retrieval\\\\\\\"\\\\n- Discuss with user before committing direction\\\\n\\\\n## Deprecated Claims (with reason)\\\\n\\\\n- ~~\\\\\\\"Embedding-distance hard negatives actively harm code retrieval\\\\\\\"~~ — FALSIFIED by D017. Original evidence (-27pp R@1) was from BM25-proxy negatives incorrectly labeled as embedding_distance in MVP. True embedding mining shows consistent improvement. Preserved here to prevent regression.\\\\n\\\", \\\"total_chars\\\": 12022, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\", \"content\": \"# Paper Framing — StructFuse\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3)\\n\\n1. **Simple static embedding-distance mining suffices for contrastive code retrieval, challenging the assumption that expensive gradient-based hard negative methods are necessary.** CoCoHaNeRe (ACM TOSEM 2025) argues non-differentiable embedding negatives are \\\"slow and ineffective\\\" compared to gradient-based methods — our results show that in structural code retrieval, simple embedding-distance mining yields +1.6–2.0pp R@1 over random baselines across two decoder-only encoders with distinct pretraining corpora and representation geometries (Qwen2.5-Coder-3B, StarCoder2-3B), without requiring gradient-based mechanisms.\\n\\n2. **[Exploratory observation] Structure-grounded (dataflow) negatives interact with encoder representation geometry, but do not consistently outperform embedding mining.** Pilot data shows dataflow < embedding on both encoders (Qwen: -1.2pp, StarCoder: -1.0pp R@1 vs embedding). The interaction pattern — Qwen (saturated, pos_sim > 0.98) shows smaller gap than StarCoder (healthy, pos_sim ~ 0.80) — suggests representation geometry mediates strategy effectiveness. neg_difficulty margin analysis (+17% Qwen, +28% StarCoder) provides mechanistic evidence for this interaction. Pending: multi-seed confirmation + plan_005 stratified analysis + plan_015 dynamic mining control. This is reported as an observation with mechanistic hypothesis, not an established finding.\\n\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL provides a practical pipeline for computing structural connectivity at scale.** 0% timeout, 78% connected-not-gold rate (Z%), 123/131 repos with output at full scale. [Dream [M][W] flag: this is supporting methodology, not a primary research contribution. Drop speculative generalization claims (molecular networks, etc.) — no evidence. Frame as practical tool that enables the study, not a standalone contribution.]\\n\\n## Story Spine\\n\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers rely on text similarity alone, but lexical similarity ≠ structural relevance. Hard negative mining is the standard approach to improve contrastive retrievers, yet the field lacks systematic understanding of what negative selection strategies work for code and why.\\n\\n- **Existing approaches & gaps**:\\n  - Text-based retrieval (SweRank, SWE-Fixer): blind to structural dependencies\\n  - Graph-guided at inference (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no training signal\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\n  - CoCoHaNeRe (ACM TOSEM 2025): argues gradient-based hard negative methods outperform non-differentiable embedding negatives — but does not test simple static embedding-distance mining in structural code retrieval settings\\n  - Gap: no systematic study comparing negative mining strategies with proper controls, and no mechanistic explanation for when/why each strategy works\\n\\n- **Our contribution**: A systematic analysis of hard negative mining strategies for contrastive code retrieval. We (1) show that simple static embedding-distance mining suffices, challenging the assumption that expensive gradient-based methods are necessary (CoCoHaNeRe's premise), (2) observe that structure-grounded (dataflow) negatives interact with encoder representation geometry and provide mechanistic analysis of when/why different strategies yield different outcomes, and (3) validate findings on downstream SWE-bench task evaluation.\\n\\n- **Headline result template**: \\\"Simple static embedding-distance mining consistently improves code retrieval (+1.6–2.0pp R@1, 2 encoders), challenging the need for expensive gradient-based hard negative methods. Structure-grounded (dataflow) negatives show encoder-dependent interaction patterns — representation geometry analysis via negative difficulty provides mechanistic explanation for when different mining strategies are effective.\\\"\\n\\n## Core Insight\\n\\nThe effectiveness of hard negative mining strategies depends on the encoder's representation geometry. When the pretrained space is saturated (high pos_sim → low margin between positive and negative), the encoder needs harder negatives from an orthogonal signal dimension (structure). When the space has healthy separation, embedding-distance mining alone captures sufficient difficulty gradient. This encoder-strategy interaction explains contradictory findings in prior work.\\n\\n## Dual-Pillar Motivation\\n\\n1. **Primary — Systematic analysis challenging gradient-based assumptions**: Prior work (CoCoHaNeRe, ACM TOSEM 2025) assumes expensive gradient-based hard negative methods are necessary for effective code search. Our controlled comparison shows simple static embedding-distance mining suffices in structural code retrieval, isolating the effect of each strategy.\\n2. **Secondary — Mechanistic explanation via representation geometry**: neg_difficulty analysis (margin distribution × strategy × encoder) provides explanatory depth beyond empirical comparison, enabling practitioners to predict which strategy suits their encoder without exhaustive experiments.\\n\\n## Formal Definition\\n\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\n\\nThe structural graph is externally fixed and does not update with the encoder (drift-immune).\\n\\n## Title Options\\n\\n- Primary: \\\"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining Strategies and Representation Geometry\\\"\\n- Alternative: \\\"Beyond Gradient-Based Mining: Static Embedding Negatives Suffice for Contrastive Code Retrieval\\\" [contingent: activate only if M2 dataflow conditional benefit confirmed across encoders]\\n- Backup: \\\"Simple Embedding Mining Suffices: Challenging Gradient-Based Assumptions in Hard Negative Mining for Code\\\"\\n\\n## Venue Fit\\n\\n1. **EMNLP Main fit**: Empirical analysis + mechanistic insight papers are a strong EMNLP archetype (cf. \\\"Do Language Models...\\\" papers). Contribution is understanding, not just a new method.\\n2. **NLP audience**: Frame as contrastive learning methodology with code as instantiation. Representation geometry analysis generalizes beyond code.\\n3. **Against \\\"incremental\\\" criticism**: Paper challenges a prevalent assumption + provides mechanistic explanation for strategy × encoder interaction + validates on downstream task. Three contributions, not one marginal improvement.\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response | Evidence |\\n|---------|----------|----------|\\n| Only 2 encoders — can you generalize? | n=2 is minimum for interaction claim; we frame as observation with mechanism, not universal law; two decoder-only encoders with distinct pretraining (Fill vs FIM) and representation geometry (pos_sim 0.99 vs 0.80) provide meaningful variation | plan_013 (done), m2_full runs |\\n| BM25 vs true embedding negatives? | Run BM25 negatives to empirically compare with embedding-distance mining, grounding the comparison against CoCoHaNeRe's gradient-based premise | plan_018 |\\n| Pool size sensitivity? | Evaluate at pool {50, 100, 200, 500} to confirm strategy rankings hold at realistic sizes | plan_019 |\\n| Stratified by structural data availability? | Report per-stratum R@1 for 34% with structural data vs 66% fallback | plan_005 (extended) |\\n| Temperature regime specificity | Ablate τ ∈ {0.05, 0.1, 0.2} | plan_014 |\\n| No downstream task evaluation | SWE-bench Lite end-to-end with LLM agent | plan_003 |\\n| Static vs dynamic mining confound | Clarify mining is static; add dynamic baseline | plan_015 |\\n| CodeQL scalability at larger scale | 0% timeout, 78% Z%, 123 repos; m1_reextract_v2 adds more | plan_006 (done) |\\n| Why not compare inference-time graph methods? | Complementary: they navigate at inference, we mine at training. Discuss relationship. | plan_017 |\\n| Single benchmark | Add RepoBench-R cross-file retrieval | plan_004 |\\n| Statistical significance | Bootstrap 95% CI for all comparisons; full M2 = 9 seeds × 3 strategies × 2 encoders | plan_016, m2_full |\\n| \\\"Complementary signal\\\" overstatement | Temper: \\\"conditionally beneficial\\\" not \\\"always complementary\\\" | Writing discipline |\\n| Missing related work | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\n\\n## Evidence Status\\n\\n### Confirmed findings (basis for claims):\\n- D017: True embedding mining helps (+2.0pp Qwen, +1.6pp StarCoder) — challenges gradient-based necessity assumption\\n- D021/neg_difficulty: Qwen pos_sim=0.9855 (saturated), StarCoder pos_sim=0.7985 (healthy); margin differential explains strategy interaction\\n- m2_embed_verify (pilot): 3-strategy comparison confirms ranking (embedding > random, dataflow conditional)\\n- plan_013 (StarCoder pilot): Confirms cross-encoder pattern — embedding helps both, dataflow helps Qwen only\\n- plan_006: CodeQL scalability confirmed at 123-repo scale\\n\\n### In progress:\\n- m2_full_qwen: random s42 DONE (R@1=0.5527), s43 DONE (R@1=0.5554), s44 RUNNING (eval@500 R@1=0.6009). 2/10 runs complete, ~50h remaining.\\n- m2_full_starcoder: random s42 DONE (R@1=0.4604, from parent), s43 RUNNING (eval@500 R@1=0.4708). 1/9+ runs complete, ~65-70h remaining.\\n- m1_reextract_v2: 80.8% complete (22,842/28,276), 0 ERROR, ETA ~15:00 CST May 15\\n\\n### Planned (priority order):\\n- plan_018: BM25 negative baseline (Dream #1 consensus gap — grounds comparison against CoCoHaNeRe's premise)\\n- plan_003: SWE-bench Lite eval (biggest lever for paper strength)\\n- plan_019: Pool size sensitivity (Dream consensus — external validity)\\n- plan_014: Temperature ablation (Dream reviewer concern)\\n- plan_004: RepoBench-R second benchmark (with multi-seed CIs)\\n- plan_015: Dynamic mining baseline\\n- plan_005: Stratified analysis (extended: structural-available vs fallback stratum)\\n- plan_007/008/009: Additional ablations\\n\\n## Contingency (if full M2 results weaken claims)\\n\\n### All 18 runs confirm pilot pattern: Best case\\n- Full statistical power, paper as framed above\\n- Target: EMNLP Main\\n\\n### Dataflow benefit disappears even for Qwen at full scale: Pivot to 2-claim paper\\n- Drop Claim 2 to analysis observation\\n- Paper becomes: \\\"Simple embedding mining suffices (challenging gradient-based assumption) + CodeQL extraction is practical + representation geometry analysis explains prior contradictions\\\"\\n- Still publishable: challenging gradient-based assumption + mechanistic analysis is sufficient for EMNLP Main\\n\\n### BM25 negatives ≈ random (not harmful): Narrative pivot needed [D030 contingency]\\n- If plan_018 shows BM25 negatives perform ≈ random (not << random), the \\\"challenging gradient-based assumption\\\" narrative needs adjustment\\n- Pivot: \\\"systematic comparison reveals embedding-distance mining is the only strategy that consistently helps; gradient-based methods may not be necessary even when BM25 provides no signal\\\"\\n- Paper remains valid as systematic analysis — the core finding (simple embedding mining suffices) stands regardless of BM25 outcome\\n- Claim 1 core preserved: \\\"Simple static embedding-distance mining consistently improves code retrieval without gradient-based mechanisms\\\"\\n- Impact: BM25 result determines narrative nuance, not core contribution\\n\\n### Embedding mining also loses advantage at full scale: Major reassessment needed\\n- Recheck data pipeline for bugs (full-scale data may have distribution differences)\\n- If confirmed: negative result paper — \\\"Why Hard Negative Mining Doesn't Scale for Code Retrieval\\\"\\n- Discuss with user before committing direction\\n\\n## Deprecated Claims (with reason)\\n\\n- ~~\\\"Embedding-distance hard negatives actively harm code retrieval\\\"~~ — FALSIFIED by D017. Original evidence (-27pp R@1) was from BM25-proxy negatives incorrectly labeled as embedding_distance in MVP. True embedding mining shows consistent improvement. Preserved here to prevent regression.\\n\", \"total_chars\": 12022, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "12f4b9a0-7d02-4db3-8504-58cee7614fa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T01:53:12.940Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016v5F2C91MjW6f9myaj5UWu`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "ROADMAP.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8a8692b-deff-455f-b833-a02e11ada6b7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X56q6ETrTz8EtsB5iS",
+  "type": "assistant",
+  "uuid": "e4e19b08-5cf8-4757-a443-184a6ad955a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjxJtSE3N6pcTssJnGHyQX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 23790,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 23790,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T01:53:12.951Z_
+
+<details><summary>↩ Tool result · `toolu_016v5F2C91MjW6f9myaj5UWu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/ROADMAP.md\", \"content\": \"# StructFuse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 18:50 UTC | 更新原因: D035 post-M2 优先级确定，Claim 2 降级，plan_017 DONE，registry 状态同步\\n\\n## 核心方向\\nTrue embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1). BM25 baseline empirically closes CoCoHaNeRe correction argument. Structure-grounded negatives conditional on representation saturation (n=2, exploratory observation per D035). 详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\n- **M2 全量训练**: Qwen random_s44 running (cuda:0, PID 337267), StarCoder random_s43 running (cuda:1, PID 519791)。ETA: 两卡 **~May 17**\\n- **Registry 同步**: m2_full_qwen_continued + m2_full_starcoder_resumed 均 RUNNING，cron 已注册\\n- **BM25 Phase 2 watcher**: 两个 tmux watcher 监控链 PID，完成后自动触发 BM25 训练\\n- **plan_017 ✅**: Discussion draft + literature comparison (8 papers, citations verified) → DONE\\n- **plan_018 Phase 1 ✅**: BM25 data ready, 3 seeds aligned, stratified overlap 分析完成\\n- **neg_difficulty 可视化 ✅**: 3 张图表 (margin/similarity/heatmap)\\n- **K/checkpoint 文档 ✅**: 已更新 Qwen 4/5 same, StarCoder 0/3 same\\n- **m1_reextract_v2**: 后台 (~80% done, ETA today)\\n\\n## Post-M2 优先级 (D035)\\n| Priority | Plan | Description | GPU hours | 状态 |\\n|----------|------|-------------|-----------|------|\\n| **P0** | plan_003 | SWE-bench Lite (300) e2e eval | 40h | dry-run 验证中 |\\n| **P0** | plan_018 Phase 2 | BM25 训练 Qwen+StarCoder | 15h | watcher 自动触发 |\\n| **P1** | plan_004 | RepoBench-R (多seed+CIs) | 15h | planned |\\n| **P1** | plan_019 | Pool size sensitivity | 5h | planned |\\n| **P1** | plan_005 | 分层分析 (Claim 2 支撑) | 5h | planned |\\n| ~~砍掉~~ | plan_007-012,014 | 推迟到 camera-ready | — | deferred |\\n\\n## 近期任务\\n- [ ] plan_003 SWE-bench dry-run（worker 进行中）\\n- [ ] M2 full runs 完成 (~May 17) → BM25 watcher 自动启动\\n- [ ] 统计检验 — M2 完成后立即执行\\n- [ ] plan_003 正式 eval — M2 best checkpoint 出后启动\\n- [ ] plan_004 + plan_019 — post-M2 第二批\\n- [ ] plan_005 分层分析 — 0 GPU，可提前做\\n- [ ] 论文写作提分重点：related work 25+ citations, checkpoint criterion+K, Claim 2→exploratory\\n- [ ] 论文初稿 (~May 24)\\n\\n## 写作提分路径 (Best R1: → 5/6)\\n1. ✅ 明确 checkpoint selection criterion + K (negatives per query) — documented\\n2. Report both checkpoint criteria 结果\\n3. ✅ Claim 2 → \\\"exploratory observation with testable prediction\\\" (D035)\\n4. 34% structural coverage 分层为主报告\\n5. Related work 扩展到 25+ citations\\n6. 每个 claim 附 CI + p-value\\n7. Sub-group 分析加 CI 或明确标注 \\\"underpowered\\\"\\n\\n## GPU 预算\\n- **bjb1-42106**: 2× RTX PRO 6000 96GB, 满载 M2\\n- **Post-M2 关键路径** (D035):\\n  - Must-do: plan_003 (40h) + plan_018 Phase 2 (15h) = 55h → 并行 2 GPU ≈ 28h\\n  - Should-do: plan_004 (15h) + plan_019 (5h) + plan_005 (5h) = 25h → ~13h\\n  - Total: 80h / 2 GPU ≈ 40h real ≈ 1.7 天\\n- **时间线**: M2(~May 17) → post-M2(~May 19) → 写作(~May 20-24) → ARR May 25\\n\\n## 关键风险\\n1. **ARR May 25**: M2 提前到 ~May 17，时间线更可行\\n2. **Median=WR 固有**: novelty/effect-size/n=2 不可修复，目标最大化 Best case\\n3. **BM25 narrative**: Phase 2 结果决定叙事方向（harm→correction / neutral→systematic comparison）\\n4. **plan_003 依赖**: 可能需要 LLM API key (Qwen3.6-27B)，dry-run 确认中\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D040 | 2026-05-14 | Claim 1 framing 微调：从\\\"纠正 embedding negatives 不行的误解\\\" | plan_017_literature |\\n| D039 | 2026-05-14 | 分层分析 R@1 数据无效：dry-run mock predictions，非真实模型结果。con | worker_analysis_dataflow_reposize_confound, m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D038 | 2026-05-14 | Plan 005 分层分析需额外控制 pool_size；dataflow richness 维度不 | plan_005_stratified |\\n| D037 | 2026-05-14 | D037: M2 checkpoint 改为只存 LoRA adapter weights，不存 m | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D036 | 2026-05-14 | M2 checkpoint 选择统一用 R@1 而非 val_loss 作为 primary cri | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D035 | 2026-05-14 | Claim 2 降级：从 \\\"conditional benefit beyond embedding | m2_embed_verify, plan_013_starcoder |\\n| D034 | 2026-05-14 | Re-dream gate 未通过但决定继续：median=WR 由不可修复因素驱动（novelty | dream_20260514T162530, plan_018 |\\n| D033 | 2026-05-14 | D031 修正：BM25 top-7 overlap 远低于 k=50 的 87%，大 repo 仅 | plan_018 |\\n| D032 | 2026-05-14 | plan_015 缩减为 1 seed × dynamic_ep (~11h)；BM25 overl | plan_015, plan_018 |\\n| D031 | 2026-05-14 | BM25 Phase 1 完成: 87% overlap with embedding_distan | plan_018, plan_015 |\\n\\n\", \"total_chars\": 4163, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4e19b08-5cf8-4757-a443-184a6ad955a6",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "9dfed83f-9819-4a70-a83d-d62a54d4a9b2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/ROADMAP.md\\\", \\\"content\\\": \\\"# StructFuse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 18:50 UTC | 更新原因: D035 post-M2 优先级确定，Claim 2 降级，plan_017 DONE，registry 状态同步\\\\n\\\\n## 核心方向\\\\nTrue embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1). BM25 baseline empirically closes CoCoHaNeRe correction argument. Structure-grounded negatives conditional on representation saturation (n=2, exploratory observation per D035). 详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\\\n- **M2 全量训练**: Qwen random_s44 running (cuda:0, PID 337267), StarCoder random_s43 running (cuda:1, PID 519791)。ETA: 两卡 **~May 17**\\\\n- **Registry 同步**: m2_full_qwen_continued + m2_full_starcoder_resumed 均 RUNNING，cron 已注册\\\\n- **BM25 Phase 2 watcher**: 两个 tmux watcher 监控链 PID，完成后自动触发 BM25 训练\\\\n- **plan_017 ✅**: Discussion draft + literature comparison (8 papers, citations verified) → DONE\\\\n- **plan_018 Phase 1 ✅**: BM25 data ready, 3 seeds aligned, stratified overlap 分析完成\\\\n- **neg_difficulty 可视化 ✅**: 3 张图表 (margin/similarity/heatmap)\\\\n- **K/checkpoint 文档 ✅**: 已更新 Qwen 4/5 same, StarCoder 0/3 same\\\\n- **m1_reextract_v2**: 后台 (~80% done, ETA today)\\\\n\\\\n## Post-M2 优先级 (D035)\\\\n| Priority | Plan | Description | GPU hours | 状态 |\\\\n|----------|------|-------------|-----------|------|\\\\n| **P0** | plan_003 | SWE-bench Lite (300) e2e eval | 40h | dry-run 验证中 |\\\\n| **P0** | plan_018 Phase 2 | BM25 训练 Qwen+StarCoder | 15h | watcher 自动触发 |\\\\n| **P1** | plan_004 | RepoBench-R (多seed+CIs) | 15h | planned |\\\\n| **P1** | plan_019 | Pool size sensitivity | 5h | planned |\\\\n| **P1** | plan_005 | 分层分析 (Claim 2 支撑) | 5h | planned |\\\\n| ~~砍掉~~ | plan_007-012,014 | 推迟到 camera-ready | — | deferred |\\\\n\\\\n## 近期任务\\\\n- [ ] plan_003 SWE-bench dry-run（worker 进行中）\\\\n- [ ] M2 full runs 完成 (~May 17) → BM25 watcher 自动启动\\\\n- [ ] 统计检验 — M2 完成后立即执行\\\\n- [ ] plan_003 正式 eval — M2 best checkpoint 出后启动\\\\n- [ ] plan_004 + plan_019 — post-M2 第二批\\\\n- [ ] plan_005 分层分析 — 0 GPU，可提前做\\\\n- [ ] 论文写作提分重点：related work 25+ citations, checkpoint criterion+K, Claim 2→exploratory\\\\n- [ ] 论文初稿 (~May 24)\\\\n\\\\n## 写作提分路径 (Best R1: → 5/6)\\\\n1. ✅ 明确 checkpoint selection criterion + K (negatives per query) — documented\\\\n2. Report both checkpoint criteria 结果\\\\n3. ✅ Claim 2 → \\\\\\\"exploratory observation with testable prediction\\\\\\\" (D035)\\\\n4. 34% structural coverage 分层为主报告\\\\n5. Related work 扩展到 25+ citations\\\\n6. 每个 claim 附 CI + p-value\\\\n7. Sub-group 分析加 CI 或明确标注 \\\\\\\"underpowered\\\\\\\"\\\\n\\\\n## GPU 预算\\\\n- **bjb1-42106**: 2× RTX PRO 6000 96GB, 满载 M2\\\\n- **Post-M2 关键路径** (D035):\\\\n  - Must-do: plan_003 (40h) + plan_018 Phase 2 (15h) = 55h → 并行 2 GPU ≈ 28h\\\\n  - Should-do: plan_004 (15h) + plan_019 (5h) + plan_005 (5h) = 25h → ~13h\\\\n  - Total: 80h / 2 GPU ≈ 40h real ≈ 1.7 天\\\\n- **时间线**: M2(~May 17) → post-M2(~May 19) → 写作(~May 20-24) → ARR May 25\\\\n\\\\n## 关键风险\\\\n1. **ARR May 25**: M2 提前到 ~May 17，时间线更可行\\\\n2. **Median=WR 固有**: novelty/effect-size/n=2 不可修复，目标最大化 Best case\\\\n3. **BM25 narrative**: Phase 2 结果决定叙事方向（harm→correction / neutral→systematic comparison）\\\\n4. **plan_003 依赖**: 可能需要 LLM API key (Qwen3.6-27B)，dry-run 确认中\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D040 | 2026-05-14 | Claim 1 framing 微调：从\\\\\\\"纠正 embedding negatives 不行的误解\\\\\\\" | plan_017_literature |\\\\n| D039 | 2026-05-14 | 分层分析 R@1 数据无效：dry-run mock predictions，非真实模型结果。con | worker_analysis_dataflow_reposize_confound, m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D038 | 2026-05-14 | Plan 005 分层分析需额外控制 pool_size；dataflow richness 维度不 | plan_005_stratified |\\\\n| D037 | 2026-05-14 | D037: M2 checkpoint 改为只存 LoRA adapter weights，不存 m | m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D036 | 2026-05-14 | M2 checkpoint 选择统一用 R@1 而非 val_loss 作为 primary cri | m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D035 | 2026-05-14 | Claim 2 降级：从 \\\\\\\"conditional benefit beyond embedding | m2_embed_verify, plan_013_starcoder |\\\\n| D034 | 2026-05-14 | Re-dream gate 未通过但决定继续：median=WR 由不可修复因素驱动（novelty | dream_20260514T162530, plan_018 |\\\\n| D033 | 2026-05-14 | D031 修正：BM25 top-7 overlap 远低于 k=50 的 87%，大 repo 仅 | plan_018 |\\\\n| D032 | 2026-05-14 | plan_015 缩减为 1 seed × dynamic_ep (~11h)；BM25 overl | plan_015, plan_018 |\\\\n| D031 | 2026-05-14 | BM25 Phase 1 完成: 87% overlap with embedding_distan | plan_018, plan_015 |\\\\n\\\\n\\\", \\\"total_chars\\\": 4163, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/ROADMAP.md\", \"content\": \"# StructFuse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 18:50 UTC | 更新原因: D035 post-M2 优先级确定，Claim 2 降级，plan_017 DONE，registry 状态同步\\n\\n## 核心方向\\nTrue embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1). BM25 baseline empirically closes CoCoHaNeRe correction argument. Structure-grounded negatives conditional on representation saturation (n=2, exploratory observation per D035). 详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\n- **M2 全量训练**: Qwen random_s44 running (cuda:0, PID 337267), StarCoder random_s43 running (cuda:1, PID 519791)。ETA: 两卡 **~May 17**\\n- **Registry 同步**: m2_full_qwen_continued + m2_full_starcoder_resumed 均 RUNNING，cron 已注册\\n- **BM25 Phase 2 watcher**: 两个 tmux watcher 监控链 PID，完成后自动触发 BM25 训练\\n- **plan_017 ✅**: Discussion draft + literature comparison (8 papers, citations verified) → DONE\\n- **plan_018 Phase 1 ✅**: BM25 data ready, 3 seeds aligned, stratified overlap 分析完成\\n- **neg_difficulty 可视化 ✅**: 3 张图表 (margin/similarity/heatmap)\\n- **K/checkpoint 文档 ✅**: 已更新 Qwen 4/5 same, StarCoder 0/3 same\\n- **m1_reextract_v2**: 后台 (~80% done, ETA today)\\n\\n## Post-M2 优先级 (D035)\\n| Priority | Plan | Description | GPU hours | 状态 |\\n|----------|------|-------------|-----------|------|\\n| **P0** | plan_003 | SWE-bench Lite (300) e2e eval | 40h | dry-run 验证中 |\\n| **P0** | plan_018 Phase 2 | BM25 训练 Qwen+StarCoder | 15h | watcher 自动触发 |\\n| **P1** | plan_004 | RepoBench-R (多seed+CIs) | 15h | planned |\\n| **P1** | plan_019 | Pool size sensitivity | 5h | planned |\\n| **P1** | plan_005 | 分层分析 (Claim 2 支撑) | 5h | planned |\\n| ~~砍掉~~ | plan_007-012,014 | 推迟到 camera-ready | — | deferred |\\n\\n## 近期任务\\n- [ ] plan_003 SWE-bench dry-run（worker 进行中）\\n- [ ] M2 full runs 完成 (~May 17) → BM25 watcher 自动启动\\n- [ ] 统计检验 — M2 完成后立即执行\\n- [ ] plan_003 正式 eval — M2 best checkpoint 出后启动\\n- [ ] plan_004 + plan_019 — post-M2 第二批\\n- [ ] plan_005 分层分析 — 0 GPU，可提前做\\n- [ ] 论文写作提分重点：related work 25+ citations, checkpoint criterion+K, Claim 2→exploratory\\n- [ ] 论文初稿 (~May 24)\\n\\n## 写作提分路径 (Best R1: → 5/6)\\n1. ✅ 明确 checkpoint selection criterion + K (negatives per query) — documented\\n2. Report both checkpoint criteria 结果\\n3. ✅ Claim 2 → \\\"exploratory observation with testable prediction\\\" (D035)\\n4. 34% structural coverage 分层为主报告\\n5. Related work 扩展到 25+ citations\\n6. 每个 claim 附 CI + p-value\\n7. Sub-group 分析加 CI 或明确标注 \\\"underpowered\\\"\\n\\n## GPU 预算\\n- **bjb1-42106**: 2× RTX PRO 6000 96GB, 满载 M2\\n- **Post-M2 关键路径** (D035):\\n  - Must-do: plan_003 (40h) + plan_018 Phase 2 (15h) = 55h → 并行 2 GPU ≈ 28h\\n  - Should-do: plan_004 (15h) + plan_019 (5h) + plan_005 (5h) = 25h → ~13h\\n  - Total: 80h / 2 GPU ≈ 40h real ≈ 1.7 天\\n- **时间线**: M2(~May 17) → post-M2(~May 19) → 写作(~May 20-24) → ARR May 25\\n\\n## 关键风险\\n1. **ARR May 25**: M2 提前到 ~May 17，时间线更可行\\n2. **Median=WR 固有**: novelty/effect-size/n=2 不可修复，目标最大化 Best case\\n3. **BM25 narrative**: Phase 2 结果决定叙事方向（harm→correction / neutral→systematic comparison）\\n4. **plan_003 依赖**: 可能需要 LLM API key (Qwen3.6-27B)，dry-run 确认中\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D040 | 2026-05-14 | Claim 1 framing 微调：从\\\"纠正 embedding negatives 不行的误解\\\" | plan_017_literature |\\n| D039 | 2026-05-14 | 分层分析 R@1 数据无效：dry-run mock predictions，非真实模型结果。con | worker_analysis_dataflow_reposize_confound, m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D038 | 2026-05-14 | Plan 005 分层分析需额外控制 pool_size；dataflow richness 维度不 | plan_005_stratified |\\n| D037 | 2026-05-14 | D037: M2 checkpoint 改为只存 LoRA adapter weights，不存 m | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D036 | 2026-05-14 | M2 checkpoint 选择统一用 R@1 而非 val_loss 作为 primary cri | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D035 | 2026-05-14 | Claim 2 降级：从 \\\"conditional benefit beyond embedding | m2_embed_verify, plan_013_starcoder |\\n| D034 | 2026-05-14 | Re-dream gate 未通过但决定继续：median=WR 由不可修复因素驱动（novelty | dream_20260514T162530, plan_018 |\\n| D033 | 2026-05-14 | D031 修正：BM25 top-7 overlap 远低于 k=50 的 87%，大 repo 仅 | plan_018 |\\n| D032 | 2026-05-14 | plan_015 缩减为 1 seed × dynamic_ep (~11h)；BM25 overl | plan_015, plan_018 |\\n| D031 | 2026-05-14 | BM25 Phase 1 完成: 87% overlap with embedding_distan | plan_018, plan_015 |\\n\\n\", \"total_chars\": 4163, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e4e19b08-5cf8-4757-a443-184a6ad955a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T01:53:13.496Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_019f2ABVuyu2y9NNc3YK1eS6`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9dfed83f-9819-4a70-a83d-d62a54d4a9b2",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X56q6ETrTz8EtsB5iS",
+  "type": "assistant",
+  "uuid": "21bc82d0-0ab5-4eb2-b576-8264d42cea78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjxJtSE3N6pcTssJnGHyQX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 23790,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 23790,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T01:53:13.507Z_
+
+<details><summary>↩ Tool result · `toolu_019f2ABVuyu2y9NNc3YK1eS6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/memory.md\", \"content\": \"# Inference-Time Graph Methods 文献对比\\n\\n## 对比表\\n\\n| Method | Paper | Venue | Graph Type | Usage Stage | Inter-proc Data-Flow | Task | Scalability | Key Diff from StructFuse |\\n|--------|-------|-------|-----------|-------------|---------------------|------|-------------|--------------------------|\\n| **CodexGraph** | Bridging LLMs and Code Repositories via Code Graph Databases | NAACL 2025 (arXiv:2408.03910) | Code graph DB (MODULE/CLASS/FUNCTION nodes; CONTAINS/INHERITS/USES edges) | Inference-time | No. Static analysis for symbol relations only | General repo-level coding (completion, issue resolution) | CrossCodeEval, SWE-bench, EvoCodeBench | Agent queries graph DB at inference; task-agnostic schema but no data-flow semantics |\\n| **LocAgent** | Graph-Guided LLM Agents for Code Localization | ACL 2025 (arXiv:2503.09089) | Directed heterogeneous graph (code entities + dependency edges) | Inference-time | No. Dependency edges, not data-flow | Fault localization | 92.7% file-level accuracy; SWE-bench +12% Pass@10 | Agent multi-hop graph reasoning at inference; needs fine-tuned 32B model |\\n| **RANGER** | RANGER — Repository-Level Agent for Graph-Enhanced Retrieval | arXiv:2509.25257 (Sep 2025) | Knowledge graph + MCTS traversal | Inference-time | No | Code search, QA, cross-file retrieval, completion | CodeSearchNet, RepoQA, RepoBench, CrossCodeEval | MCTS-guided graph exploration; dual-stage (Cypher + MCTS); higher inference cost due to cross-encoder scoring |\\n| **RepoGraph** | Enhancing AI SE with Repository-level Code Graph | ICLR 2025 (arXiv:2410.14684) | Repo-level code graph (class hierarchy, call graph, file structure) | Inference-time | No. Structural relations only | Software engineering / issue resolution | SWE-bench (+32.8% relative); CrossCodeEval | Plug-in module for existing agents; repo-wide navigation; no semantic analysis |\\n| **GraphCoder** | Enhancing Repo-Level Code Completion via Code Context Graph | ASE 2024 (arXiv:2406.07003) | Code Context Graph (CFG + CDG + DDG) | Inference-time | Partial. Data dependence graph but **intra-procedural** only | Code completion | Repository-level benchmarks | Coarse-to-fine retrieval with CCG; closest to StructFuse in using data/control flow, but intra-proc and at inference-time |\\n| **CodeRAG** | Supportive Code Retrieval on Bigraph for Real-World Code Generation | arXiv:2504.10046 (Apr 2025) | Bigraph (requirement graph + DS-code graph) | Inference-time | No. Dependency + semantic edges | Repo-level code generation | DevEval (+40.90 Pass@1 w/ GPT-4o) | Dual-graph (requirements + code); agentic reasoning; high inference overhead |\\n| **ARISE** | ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair | arXiv:2605.03117 (May 2026), Seddik & Fard | Multi-granularity program graph (statement nodes + def-use edges) | Inference-time | Partial. **Intra-procedural** def-use edges + data-flow slicing tool | Fault localization + repair | SWE-bench Lite (300 issues); +17.0 Function Recall@1 | Closest to StructFuse in data-flow usage; but intra-proc only, agent queries at inference |\\n| **CodeGRAG** | Bridging NL and PL via Graphical RAG | arXiv:2405.02355 (2024) | Composed syntax graph (AST + DFG + CFG) | Both (GNN training + graph prompt at inference) | Partial. DFG extraction but function-level | Code generation (cross-lingual) | Multiple PLs | Only method with training-time component (GNN soft prompts); but graph also used at inference |\\n| **StructFuse** (Ours) | Structure-Grounded Hard Negatives via CodeQL Data-Flow | — | Inter-procedural data-flow graph (CodeQL taint tracking) | **Training-time only** | **Yes. Full inter-procedural** (source→sink across call boundaries) | Code retrieval (contrastive training) | Large-scale repos with CodeQL | Zero inference overhead; graph used offline for negative mining; inter-proc data-flow |\\n\\n## Discussion 要点\\n\\n### StructFuse vs Inference-Time Graph Methods: 互补性与差异性\\n\\n1. **Cost-accuracy tradeoff**: Inference-time methods (CodexGraph, RANGER, RepoGraph) achieve high precision by constructing and querying graphs per request, but incur significant latency (graph construction + traversal + LLM calls). StructFuse amortizes all graph computation to training time—once the encoder is trained with structure-grounded negatives, inference is a single embedding lookup with zero graph overhead. This makes StructFuse suitable for latency-sensitive production retrieval where inference-time graph methods are impractical.\\n\\n2. **Data-flow depth**: Most inference-time methods use structural graphs (call graphs, class hierarchies, file dependencies). Only GraphCoder and ARISE incorporate data/control flow, but limited to **intra-procedural** scope. StructFuse uniquely leverages **inter-procedural** data-flow via CodeQL's taint tracking, capturing cross-function semantic relationships (e.g., a sanitizer function that transforms data between source and sink across call boundaries). This deeper semantic signal generates harder, more informative negatives.\\n\\n3. **Complementarity**: StructFuse and inference-time methods are orthogonal and composable. A StructFuse-trained encoder can serve as the embedding backbone for systems like RANGER or CodexGraph, providing better initial retrieval that reduces the graph agent's search space. Conversely, inference-time graph methods can provide reranking on top of StructFuse retrieval for tasks requiring maximum precision.\\n\\n4. **Scalability model**: Inference-time methods scale linearly with query volume (each query triggers graph operations). StructFuse's cost is front-loaded: CodeQL analysis runs once per repository update, and the resulting negatives improve the encoder permanently. For high-QPS code search services, this one-time investment yields compounding returns.\\n\\n5. **Task generality vs specialization**: Inference-time graph agents (CodexGraph, RepoGraph) are task-agnostic but require powerful LLMs as backends. StructFuse produces a specialized retrieval encoder that excels at the code search task without LLM inference, making it deployable as a lightweight, efficient first-stage retriever in multi-stage pipelines.\\n\\n## Related Work 段落草稿 (~200 words)\\n\\n**Graph-Based Methods for Code Understanding.**\\nRecent work has explored leveraging code graphs to enhance LLM-based software engineering. Inference-time approaches construct and query graphs during each interaction: CodexGraph (Liu et al., NAACL 2025) builds a code graph database that LLM agents query via structured interfaces; RepoGraph (Ouyang et al., ICLR 2025) provides repository-level navigation as a plug-in module for SE agents; LocAgent (ACL 2025) and RANGER (Shah et al., 2025) employ graph-guided multi-hop reasoning and MCTS-based traversal for code localization and retrieval, respectively. GraphCoder (ASE 2024) incorporates intra-procedural control-flow and data-dependence graphs for code completion retrieval, while ARISE (Seddik & Fard, 2026) extends this with statement-level def-use edges for fault localization. CodeGRAG (2024) bridges training and inference by using GNN-encoded graph prompts.\\n\\nThese methods achieve strong results but impose substantial inference-time costs—graph construction, traversal, and often multiple LLM calls per query. Moreover, their data-flow analysis remains intra-procedural. StructFuse takes a fundamentally different approach: we leverage CodeQL's inter-procedural taint tracking to generate structure-grounded hard negatives at **training time**, producing an encoder that captures cross-function data-flow semantics without any graph overhead at inference. This positions StructFuse as complementary to inference-time graph methods—it can serve as an efficient first-stage retriever whose embeddings already encode deep structural relationships that other methods must compute on-the-fly.\\n\\n---\\n\\n## 参考文献（全部已验证 2026-05-14）\\n\\n- CodexGraph: arXiv:2408.03910, Liu et al., NAACL 2025\\n- LocAgent: arXiv:2503.09089, Chen et al., ACL 2025\\n- RANGER: arXiv:2509.25257, Shah et al., 2025 ✅ verified\\n- RepoGraph: arXiv:2410.14684, Ouyang et al., ICLR 2025\\n- GraphCoder: arXiv:2406.07003, Liu et al., ASE 2024\\n- CodeRAG: arXiv:2504.10046, 2025\\n- ARISE: arXiv:2605.03117, Seddik & Fard, 2026 ✅ verified (full title: \\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair\\\")\\n- CodeGRAG: arXiv:2405.02355, 2024\\n\\n---\\n\\n## BM25 Negative Mining 策略洞察 (2026-05-14, updated)\\n\\n**两层重叠率数据（注意区分）**：\\n- **k=50 全候选重叠**（mining worker 报告）：BM25 vs embedding 87.1%, vs random 76.2%, vs dataflow 71.8%\\n- **top-7 Jaccard**（训练实际用的 num_negatives=7，分层分析）：差异远大于全候选\\n\\n**分层 top-7 Jaccard 重叠率**（seed 42, 2920 matched queries / 12290 total）：\\n| 层级 | BM25 vs Embedding | BM25 vs Random | BM25 vs Dataflow |\\n|------|-------------------|----------------|------------------|\\n| Small (<50 files, 39 repos) | 0.668 | 0.411 | 0.667 |\\n| Medium (50-200, 29 repos) | 0.380 | 0.067 | 0.363 |\\n| Large (200+, 15 repos) | 0.297 | 0.007 | 0.405 |\\n\\n**核心修正**：之前基于 87% 预测\\\"Phase 2 中 BM25 R@1 很可能接近 embedding\\\"——这个预测可能不成立。在中大 repo（训练数据主体）上 top-7 Jaccard 仅 30-38%，BM25 和 embedding 选出的训练 negatives 大部分不同。Phase 2 训练结果将真正区分两种策略。\\n\\n**意外发现**：BM25 vs dataflow 在大 repo 上重叠率（0.405）高于 vs embedding（0.297）。词汇相似性信号与数据流依赖有部分对齐，而纯 embedding 距离选择了不同维度的 hard negatives。\\n\\n---\\n\\n## 运维经验 (2026-05-14)\\n\\n**Registry 状态机 workaround**：当长链训练（多 run 串行）中途因 cron timeout 或子进程退出导致 registry 状态误标（DONE/failed 或 ANALYZING），而实际训练仍在跑时，不可回退状态。解决方案：创建 `{exp_id}_resumed` / `{exp_id}_continued` 新 entry，步进 PREPARING→QUEUED→ALLOCATED→RUNNING，注册 cron 监控实际 PID。原 entry 保留历史 metrics。\\n\\n**Bash 预读陷阱**：运行中的 bash 脚本已将循环体/数组预读到内存，磁盘上修改脚本文件不影响执行。需要在链外设置独立 tmux watcher 监控链 PID 退出后手动触发后续任务。\\n\\n**BM25 Phase 2 触发机制**：两个 tmux watcher（`bm25_starcoder_watcher`, `bm25_qwen_watcher`）每 5 分钟检查链 PID 存活，退出后自动启动 BM25 脚本。watcher 启动的训练不经过 submit_training_job，需在链完成回调中补注册 cron。\\n\\n---\\n\\n## 关键决策记录\\n\\n**m1_reextract_v2 数据使用决策 (2026-05-14, Director Session 8)**：即使 reextract 将数据从 ~16K 增至 ~44K，不重跑 M2。原因：ARR May 25 DDL 不允许再加 4-5 天重训。处理方式：(1) post-M2 完成后若有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline；(2) 论文中作为 scalability/data efficiency 讨论点；(3) 全量重训留 camera-ready。\", \"total_chars\": 10174, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21bc82d0-0ab5-4eb2-b576-8264d42cea78",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "9bc528ee-8554-446e-8cd9-0e723044e979",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/memory.md\\\", \\\"content\\\": \\\"# Inference-Time Graph Methods 文献对比\\\\n\\\\n## 对比表\\\\n\\\\n| Method | Paper | Venue | Graph Type | Usage Stage | Inter-proc Data-Flow | Task | Scalability | Key Diff from StructFuse |\\\\n|--------|-------|-------|-----------|-------------|---------------------|------|-------------|--------------------------|\\\\n| **CodexGraph** | Bridging LLMs and Code Repositories via Code Graph Databases | NAACL 2025 (arXiv:2408.03910) | Code graph DB (MODULE/CLASS/FUNCTION nodes; CONTAINS/INHERITS/USES edges) | Inference-time | No. Static analysis for symbol relations only | General repo-level coding (completion, issue resolution) | CrossCodeEval, SWE-bench, EvoCodeBench | Agent queries graph DB at inference; task-agnostic schema but no data-flow semantics |\\\\n| **LocAgent** | Graph-Guided LLM Agents for Code Localization | ACL 2025 (arXiv:2503.09089) | Directed heterogeneous graph (code entities + dependency edges) | Inference-time | No. Dependency edges, not data-flow | Fault localization | 92.7% file-level accuracy; SWE-bench +12% Pass@10 | Agent multi-hop graph reasoning at inference; needs fine-tuned 32B model |\\\\n| **RANGER** | RANGER — Repository-Level Agent for Graph-Enhanced Retrieval | arXiv:2509.25257 (Sep 2025) | Knowledge graph + MCTS traversal | Inference-time | No | Code search, QA, cross-file retrieval, completion | CodeSearchNet, RepoQA, RepoBench, CrossCodeEval | MCTS-guided graph exploration; dual-stage (Cypher + MCTS); higher inference cost due to cross-encoder scoring |\\\\n| **RepoGraph** | Enhancing AI SE with Repository-level Code Graph | ICLR 2025 (arXiv:2410.14684) | Repo-level code graph (class hierarchy, call graph, file structure) | Inference-time | No. Structural relations only | Software engineering / issue resolution | SWE-bench (+32.8% relative); CrossCodeEval | Plug-in module for existing agents; repo-wide navigation; no semantic analysis |\\\\n| **GraphCoder** | Enhancing Repo-Level Code Completion via Code Context Graph | ASE 2024 (arXiv:2406.07003) | Code Context Graph (CFG + CDG + DDG) | Inference-time | Partial. Data dependence graph but **intra-procedural** only | Code completion | Repository-level benchmarks | Coarse-to-fine retrieval with CCG; closest to StructFuse in using data/control flow, but intra-proc and at inference-time |\\\\n| **CodeRAG** | Supportive Code Retrieval on Bigraph for Real-World Code Generation | arXiv:2504.10046 (Apr 2025) | Bigraph (requirement graph + DS-code graph) | Inference-time | No. Dependency + semantic edges | Repo-level code generation | DevEval (+40.90 Pass@1 w/ GPT-4o) | Dual-graph (requirements + code); agentic reasoning; high inference overhead |\\\\n| **ARISE** | ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair | arXiv:2605.03117 (May 2026), Seddik & Fard | Multi-granularity program graph (statement nodes + def-use edges) | Inference-time | Partial. **Intra-procedural** def-use edges + data-flow slicing tool | Fault localization + repair | SWE-bench Lite (300 issues); +17.0 Function Recall@1 | Closest to StructFuse in data-flow usage; but intra-proc only, agent queries at inference |\\\\n| **CodeGRAG** | Bridging NL and PL via Graphical RAG | arXiv:2405.02355 (2024) | Composed syntax graph (AST + DFG + CFG) | Both (GNN training + graph prompt at inference) | Partial. DFG extraction but function-level | Code generation (cross-lingual) | Multiple PLs | Only method with training-time component (GNN soft prompts); but graph also used at inference |\\\\n| **StructFuse** (Ours) | Structure-Grounded Hard Negatives via CodeQL Data-Flow | — | Inter-procedural data-flow graph (CodeQL taint tracking) | **Training-time only** | **Yes. Full inter-procedural** (source→sink across call boundaries) | Code retrieval (contrastive training) | Large-scale repos with CodeQL | Zero inference overhead; graph used offline for negative mining; inter-proc data-flow |\\\\n\\\\n## Discussion 要点\\\\n\\\\n### StructFuse vs Inference-Time Graph Methods: 互补性与差异性\\\\n\\\\n1. **Cost-accuracy tradeoff**: Inference-time methods (CodexGraph, RANGER, RepoGraph) achieve high precision by constructing and querying graphs per request, but incur significant latency (graph construction + traversal + LLM calls). StructFuse amortizes all graph computation to training time—once the encoder is trained with structure-grounded negatives, inference is a single embedding lookup with zero graph overhead. This makes StructFuse suitable for latency-sensitive production retrieval where inference-time graph methods are impractical.\\\\n\\\\n2. **Data-flow depth**: Most inference-time methods use structural graphs (call graphs, class hierarchies, file dependencies). Only GraphCoder and ARISE incorporate data/control flow, but limited to **intra-procedural** scope. StructFuse uniquely leverages **inter-procedural** data-flow via CodeQL's taint tracking, capturing cross-function semantic relationships (e.g., a sanitizer function that transforms data between source and sink across call boundaries). This deeper semantic signal generates harder, more informative negatives.\\\\n\\\\n3. **Complementarity**: StructFuse and inference-time methods are orthogonal and composable. A StructFuse-trained encoder can serve as the embedding backbone for systems like RANGER or CodexGraph, providing better initial retrieval that reduces the graph agent's search space. Conversely, inference-time graph methods can provide reranking on top of StructFuse retrieval for tasks requiring maximum precision.\\\\n\\\\n4. **Scalability model**: Inference-time methods scale linearly with query volume (each query triggers graph operations). StructFuse's cost is front-loaded: CodeQL analysis runs once per repository update, and the resulting negatives improve the encoder permanently. For high-QPS code search services, this one-time investment yields compounding returns.\\\\n\\\\n5. **Task generality vs specialization**: Inference-time graph agents (CodexGraph, RepoGraph) are task-agnostic but require powerful LLMs as backends. StructFuse produces a specialized retrieval encoder that excels at the code search task without LLM inference, making it deployable as a lightweight, efficient first-stage retriever in multi-stage pipelines.\\\\n\\\\n## Related Work 段落草稿 (~200 words)\\\\n\\\\n**Graph-Based Methods for Code Understanding.**\\\\nRecent work has explored leveraging code graphs to enhance LLM-based software engineering. Inference-time approaches construct and query graphs during each interaction: CodexGraph (Liu et al., NAACL 2025) builds a code graph database that LLM agents query via structured interfaces; RepoGraph (Ouyang et al., ICLR 2025) provides repository-level navigation as a plug-in module for SE agents; LocAgent (ACL 2025) and RANGER (Shah et al., 2025) employ graph-guided multi-hop reasoning and MCTS-based traversal for code localization and retrieval, respectively. GraphCoder (ASE 2024) incorporates intra-procedural control-flow and data-dependence graphs for code completion retrieval, while ARISE (Seddik & Fard, 2026) extends this with statement-level def-use edges for fault localization. CodeGRAG (2024) bridges training and inference by using GNN-encoded graph prompts.\\\\n\\\\nThese methods achieve strong results but impose substantial inference-time costs—graph construction, traversal, and often multiple LLM calls per query. Moreover, their data-flow analysis remains intra-procedural. StructFuse takes a fundamentally different approach: we leverage CodeQL's inter-procedural taint tracking to generate structure-grounded hard negatives at **training time**, producing an encoder that captures cross-function data-flow semantics without any graph overhead at inference. This positions StructFuse as complementary to inference-time graph methods—it can serve as an efficient first-stage retriever whose embeddings already encode deep structural relationships that other methods must compute on-the-fly.\\\\n\\\\n---\\\\n\\\\n## 参考文献（全部已验证 2026-05-14）\\\\n\\\\n- CodexGraph: arXiv:2408.03910, Liu et al., NAACL 2025\\\\n- LocAgent: arXiv:2503.09089, Chen et al., ACL 2025\\\\n- RANGER: arXiv:2509.25257, Shah et al., 2025 ✅ verified\\\\n- RepoGraph: arXiv:2410.14684, Ouyang et al., ICLR 2025\\\\n- GraphCoder: arXiv:2406.07003, Liu et al., ASE 2024\\\\n- CodeRAG: arXiv:2504.10046, 2025\\\\n- ARISE: arXiv:2605.03117, Seddik & Fard, 2026 ✅ verified (full title: \\\\\\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair\\\\\\\")\\\\n- CodeGRAG: arXiv:2405.02355, 2024\\\\n\\\\n---\\\\n\\\\n## BM25 Negative Mining 策略洞察 (2026-05-14, updated)\\\\n\\\\n**两层重叠率数据（注意区分）**：\\\\n- **k=50 全候选重叠**（mining worker 报告）：BM25 vs embedding 87.1%, vs random 76.2%, vs dataflow 71.8%\\\\n- **top-7 Jaccard**（训练实际用的 num_negatives=7，分层分析）：差异远大于全候选\\\\n\\\\n**分层 top-7 Jaccard 重叠率**（seed 42, 2920 matched queries / 12290 total）：\\\\n| 层级 | BM25 vs Embedding | BM25 vs Random | BM25 vs Dataflow |\\\\n|------|-------------------|----------------|------------------|\\\\n| Small (<50 files, 39 repos) | 0.668 | 0.411 | 0.667 |\\\\n| Medium (50-200, 29 repos) | 0.380 | 0.067 | 0.363 |\\\\n| Large (200+, 15 repos) | 0.297 | 0.007 | 0.405 |\\\\n\\\\n**核心修正**：之前基于 87% 预测\\\\\\\"Phase 2 中 BM25 R@1 很可能接近 embedding\\\\\\\"——这个预测可能不成立。在中大 repo（训练数据主体）上 top-7 Jaccard 仅 30-38%，BM25 和 embedding 选出的训练 negatives 大部分不同。Phase 2 训练结果将真正区分两种策略。\\\\n\\\\n**意外发现**：BM25 vs dataflow 在大 repo 上重叠率（0.405）高于 vs embedding（0.297）。词汇相似性信号与数据流依赖有部分对齐，而纯 embedding 距离选择了不同维度的 hard negatives。\\\\n\\\\n---\\\\n\\\\n## 运维经验 (2026-05-14)\\\\n\\\\n**Registry 状态机 workaround**：当长链训练（多 run 串行）中途因 cron timeout 或子进程退出导致 registry 状态误标（DONE/failed 或 ANALYZING），而实际训练仍在跑时，不可回退状态。解决方案：创建 `{exp_id}_resumed` / `{exp_id}_continued` 新 entry，步进 PREPARING→QUEUED→ALLOCATED→RUNNING，注册 cron 监控实际 PID。原 entry 保留历史 metrics。\\\\n\\\\n**Bash 预读陷阱**：运行中的 bash 脚本已将循环体/数组预读到内存，磁盘上修改脚本文件不影响执行。需要在链外设置独立 tmux watcher 监控链 PID 退出后手动触发后续任务。\\\\n\\\\n**BM25 Phase 2 触发机制**：两个 tmux watcher（`bm25_starcoder_watcher`, `bm25_qwen_watcher`）每 5 分钟检查链 PID 存活，退出后自动启动 BM25 脚本。watcher 启动的训练不经过 submit_training_job，需在链完成回调中补注册 cron。\\\\n\\\\n---\\\\n\\\\n## 关键决策记录\\\\n\\\\n**m1_reextract_v2 数据使用决策 (2026-05-14, Director Session 8)**：即使 reextract 将数据从 ~16K 增至 ~44K，不重跑 M2。原因：ARR May 25 DDL 不允许再加 4-5 天重训。处理方式：(1) post-M2 完成后若有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline；(2) 论文中作为 scalability/data efficiency 讨论点；(3) 全量重训留 camera-ready。\\\", \\\"total_chars\\\": 10174, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/memory.md\", \"content\": \"# Inference-Time Graph Methods 文献对比\\n\\n## 对比表\\n\\n| Method | Paper | Venue | Graph Type | Usage Stage | Inter-proc Data-Flow | Task | Scalability | Key Diff from StructFuse |\\n|--------|-------|-------|-----------|-------------|---------------------|------|-------------|--------------------------|\\n| **CodexGraph** | Bridging LLMs and Code Repositories via Code Graph Databases | NAACL 2025 (arXiv:2408.03910) | Code graph DB (MODULE/CLASS/FUNCTION nodes; CONTAINS/INHERITS/USES edges) | Inference-time | No. Static analysis for symbol relations only | General repo-level coding (completion, issue resolution) | CrossCodeEval, SWE-bench, EvoCodeBench | Agent queries graph DB at inference; task-agnostic schema but no data-flow semantics |\\n| **LocAgent** | Graph-Guided LLM Agents for Code Localization | ACL 2025 (arXiv:2503.09089) | Directed heterogeneous graph (code entities + dependency edges) | Inference-time | No. Dependency edges, not data-flow | Fault localization | 92.7% file-level accuracy; SWE-bench +12% Pass@10 | Agent multi-hop graph reasoning at inference; needs fine-tuned 32B model |\\n| **RANGER** | RANGER — Repository-Level Agent for Graph-Enhanced Retrieval | arXiv:2509.25257 (Sep 2025) | Knowledge graph + MCTS traversal | Inference-time | No | Code search, QA, cross-file retrieval, completion | CodeSearchNet, RepoQA, RepoBench, CrossCodeEval | MCTS-guided graph exploration; dual-stage (Cypher + MCTS); higher inference cost due to cross-encoder scoring |\\n| **RepoGraph** | Enhancing AI SE with Repository-level Code Graph | ICLR 2025 (arXiv:2410.14684) | Repo-level code graph (class hierarchy, call graph, file structure) | Inference-time | No. Structural relations only | Software engineering / issue resolution | SWE-bench (+32.8% relative); CrossCodeEval | Plug-in module for existing agents; repo-wide navigation; no semantic analysis |\\n| **GraphCoder** | Enhancing Repo-Level Code Completion via Code Context Graph | ASE 2024 (arXiv:2406.07003) | Code Context Graph (CFG + CDG + DDG) | Inference-time | Partial. Data dependence graph but **intra-procedural** only | Code completion | Repository-level benchmarks | Coarse-to-fine retrieval with CCG; closest to StructFuse in using data/control flow, but intra-proc and at inference-time |\\n| **CodeRAG** | Supportive Code Retrieval on Bigraph for Real-World Code Generation | arXiv:2504.10046 (Apr 2025) | Bigraph (requirement graph + DS-code graph) | Inference-time | No. Dependency + semantic edges | Repo-level code generation | DevEval (+40.90 Pass@1 w/ GPT-4o) | Dual-graph (requirements + code); agentic reasoning; high inference overhead |\\n| **ARISE** | ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair | arXiv:2605.03117 (May 2026), Seddik & Fard | Multi-granularity program graph (statement nodes + def-use edges) | Inference-time | Partial. **Intra-procedural** def-use edges + data-flow slicing tool | Fault localization + repair | SWE-bench Lite (300 issues); +17.0 Function Recall@1 | Closest to StructFuse in data-flow usage; but intra-proc only, agent queries at inference |\\n| **CodeGRAG** | Bridging NL and PL via Graphical RAG | arXiv:2405.02355 (2024) | Composed syntax graph (AST + DFG + CFG) | Both (GNN training + graph prompt at inference) | Partial. DFG extraction but function-level | Code generation (cross-lingual) | Multiple PLs | Only method with training-time component (GNN soft prompts); but graph also used at inference |\\n| **StructFuse** (Ours) | Structure-Grounded Hard Negatives via CodeQL Data-Flow | — | Inter-procedural data-flow graph (CodeQL taint tracking) | **Training-time only** | **Yes. Full inter-procedural** (source→sink across call boundaries) | Code retrieval (contrastive training) | Large-scale repos with CodeQL | Zero inference overhead; graph used offline for negative mining; inter-proc data-flow |\\n\\n## Discussion 要点\\n\\n### StructFuse vs Inference-Time Graph Methods: 互补性与差异性\\n\\n1. **Cost-accuracy tradeoff**: Inference-time methods (CodexGraph, RANGER, RepoGraph) achieve high precision by constructing and querying graphs per request, but incur significant latency (graph construction + traversal + LLM calls). StructFuse amortizes all graph computation to training time—once the encoder is trained with structure-grounded negatives, inference is a single embedding lookup with zero graph overhead. This makes StructFuse suitable for latency-sensitive production retrieval where inference-time graph methods are impractical.\\n\\n2. **Data-flow depth**: Most inference-time methods use structural graphs (call graphs, class hierarchies, file dependencies). Only GraphCoder and ARISE incorporate data/control flow, but limited to **intra-procedural** scope. StructFuse uniquely leverages **inter-procedural** data-flow via CodeQL's taint tracking, capturing cross-function semantic relationships (e.g., a sanitizer function that transforms data between source and sink across call boundaries). This deeper semantic signal generates harder, more informative negatives.\\n\\n3. **Complementarity**: StructFuse and inference-time methods are orthogonal and composable. A StructFuse-trained encoder can serve as the embedding backbone for systems like RANGER or CodexGraph, providing better initial retrieval that reduces the graph agent's search space. Conversely, inference-time graph methods can provide reranking on top of StructFuse retrieval for tasks requiring maximum precision.\\n\\n4. **Scalability model**: Inference-time methods scale linearly with query volume (each query triggers graph operations). StructFuse's cost is front-loaded: CodeQL analysis runs once per repository update, and the resulting negatives improve the encoder permanently. For high-QPS code search services, this one-time investment yields compounding returns.\\n\\n5. **Task generality vs specialization**: Inference-time graph agents (CodexGraph, RepoGraph) are task-agnostic but require powerful LLMs as backends. StructFuse produces a specialized retrieval encoder that excels at the code search task without LLM inference, making it deployable as a lightweight, efficient first-stage retriever in multi-stage pipelines.\\n\\n## Related Work 段落草稿 (~200 words)\\n\\n**Graph-Based Methods for Code Understanding.**\\nRecent work has explored leveraging code graphs to enhance LLM-based software engineering. Inference-time approaches construct and query graphs during each interaction: CodexGraph (Liu et al., NAACL 2025) builds a code graph database that LLM agents query via structured interfaces; RepoGraph (Ouyang et al., ICLR 2025) provides repository-level navigation as a plug-in module for SE agents; LocAgent (ACL 2025) and RANGER (Shah et al., 2025) employ graph-guided multi-hop reasoning and MCTS-based traversal for code localization and retrieval, respectively. GraphCoder (ASE 2024) incorporates intra-procedural control-flow and data-dependence graphs for code completion retrieval, while ARISE (Seddik & Fard, 2026) extends this with statement-level def-use edges for fault localization. CodeGRAG (2024) bridges training and inference by using GNN-encoded graph prompts.\\n\\nThese methods achieve strong results but impose substantial inference-time costs—graph construction, traversal, and often multiple LLM calls per query. Moreover, their data-flow analysis remains intra-procedural. StructFuse takes a fundamentally different approach: we leverage CodeQL's inter-procedural taint tracking to generate structure-grounded hard negatives at **training time**, producing an encoder that captures cross-function data-flow semantics without any graph overhead at inference. This positions StructFuse as complementary to inference-time graph methods—it can serve as an efficient first-stage retriever whose embeddings already encode deep structural relationships that other methods must compute on-the-fly.\\n\\n---\\n\\n## 参考文献（全部已验证 2026-05-14）\\n\\n- CodexGraph: arXiv:2408.03910, Liu et al., NAACL 2025\\n- LocAgent: arXiv:2503.09089, Chen et al., ACL 2025\\n- RANGER: arXiv:2509.25257, Shah et al., 2025 ✅ verified\\n- RepoGraph: arXiv:2410.14684, Ouyang et al., ICLR 2025\\n- GraphCoder: arXiv:2406.07003, Liu et al., ASE 2024\\n- CodeRAG: arXiv:2504.10046, 2025\\n- ARISE: arXiv:2605.03117, Seddik & Fard, 2026 ✅ verified (full title: \\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair\\\")\\n- CodeGRAG: arXiv:2405.02355, 2024\\n\\n---\\n\\n## BM25 Negative Mining 策略洞察 (2026-05-14, updated)\\n\\n**两层重叠率数据（注意区分）**：\\n- **k=50 全候选重叠**（mining worker 报告）：BM25 vs embedding 87.1%, vs random 76.2%, vs dataflow 71.8%\\n- **top-7 Jaccard**（训练实际用的 num_negatives=7，分层分析）：差异远大于全候选\\n\\n**分层 top-7 Jaccard 重叠率**（seed 42, 2920 matched queries / 12290 total）：\\n| 层级 | BM25 vs Embedding | BM25 vs Random | BM25 vs Dataflow |\\n|------|-------------------|----------------|------------------|\\n| Small (<50 files, 39 repos) | 0.668 | 0.411 | 0.667 |\\n| Medium (50-200, 29 repos) | 0.380 | 0.067 | 0.363 |\\n| Large (200+, 15 repos) | 0.297 | 0.007 | 0.405 |\\n\\n**核心修正**：之前基于 87% 预测\\\"Phase 2 中 BM25 R@1 很可能接近 embedding\\\"——这个预测可能不成立。在中大 repo（训练数据主体）上 top-7 Jaccard 仅 30-38%，BM25 和 embedding 选出的训练 negatives 大部分不同。Phase 2 训练结果将真正区分两种策略。\\n\\n**意外发现**：BM25 vs dataflow 在大 repo 上重叠率（0.405）高于 vs embedding（0.297）。词汇相似性信号与数据流依赖有部分对齐，而纯 embedding 距离选择了不同维度的 hard negatives。\\n\\n---\\n\\n## 运维经验 (2026-05-14)\\n\\n**Registry 状态机 workaround**：当长链训练（多 run 串行）中途因 cron timeout 或子进程退出导致 registry 状态误标（DONE/failed 或 ANALYZING），而实际训练仍在跑时，不可回退状态。解决方案：创建 `{exp_id}_resumed` / `{exp_id}_continued` 新 entry，步进 PREPARING→QUEUED→ALLOCATED→RUNNING，注册 cron 监控实际 PID。原 entry 保留历史 metrics。\\n\\n**Bash 预读陷阱**：运行中的 bash 脚本已将循环体/数组预读到内存，磁盘上修改脚本文件不影响执行。需要在链外设置独立 tmux watcher 监控链 PID 退出后手动触发后续任务。\\n\\n**BM25 Phase 2 触发机制**：两个 tmux watcher（`bm25_starcoder_watcher`, `bm25_qwen_watcher`）每 5 分钟检查链 PID 存活，退出后自动启动 BM25 脚本。watcher 启动的训练不经过 submit_training_job，需在链完成回调中补注册 cron。\\n\\n---\\n\\n## 关键决策记录\\n\\n**m1_reextract_v2 数据使用决策 (2026-05-14, Director Session 8)**：即使 reextract 将数据从 ~16K 增至 ~44K，不重跑 M2。原因：ARR May 25 DDL 不允许再加 4-5 天重训。处理方式：(1) post-M2 完成后若有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline；(2) 论文中作为 scalability/data efficiency 讨论点；(3) 全量重训留 camera-ready。\", \"total_chars\": 10174, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "21bc82d0-0ab5-4eb2-b576-8264d42cea78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T01:53:14.176Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0136jVXt1oGWUAtb7ExRncyf`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bc528ee-8554-446e-8cd9-0e723044e979",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X56q6ETrTz8EtsB5iS",
+  "type": "assistant",
+  "uuid": "563366f9-282c-47d0-9d16-f0a57ae7b523",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjxJtSE3N6pcTssJnGHyQX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 23790,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 23790,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "563366f9-282c-47d0-9d16-f0a57ae7b523",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write Method and Experiment Setup sections",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T01:53:14.673Z_
+
+<details><summary>↩ Tool result · `toolu_0136jVXt1oGWUAtb7ExRncyf`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (53.4KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/96b222a8-1429-4958-ab38-47572af7509c/tool-results/toolu_0136jVXt1oGWUAtb7ExRncyf.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_005_stratified\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:36:16.738Z\", \"updated_at\": \"2026-05-15T01:13:18.866Z\", \"hypothesis\": \"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\", \"parent\": \"m2_full_qwen\", \"notes\": \"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。\", \"metrics\": {\"confound_analysis\": {\"data_validity\": \"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\", \"valid_findings\": {\"distribution_structure\": \"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\", \"correlation\": {\"dataflow_edges_vs_repo_size_pearson_r\": 0.089}, \"cross_distribution\": {\"rich_in_large_xlarge_pct\": 99.3, \"rich_in_small\": 0, \"moderate_in_large_xlarge_pct\": 60.9}, \"implication\": \"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\"}, \"invalid_findings\": \"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\", \"artifacts_path\": \"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\", \"valid_artifact\": \"cross_tabulation.csv\"}}}, \"m1_reextract_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:00:20.578Z\", \"updated_at\": \"2026-05-15T01:12:42.413Z\", \"hypothesis\": \"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "563366f9-282c-47d0-9d16-f0a57ae7b523",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "0bc6e577-2c37-4a0d-98b0-30e9c415a52e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_005_stratified\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:13:18.866Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"data_validity\\\": \\\"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\\\", \\\"valid_findings\\\": {\\\"distribution_structure\\\": \\\"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"implication\\\": \\\"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\\\"}, \\\"invalid_findings\\\": \\\"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\", \\\"valid_artifact\\\": \\\"cross_tabulation.csv\\\"}}}, \\\"m1_reextract_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:00:20.578Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:12:42.413Z\\\", \\\"hypothesis\\\": \\\"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop, pack installed)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/\\\", \\\"data_count\\\": 28276, \\\"model_name\\\": \\\"N/A (CodeQL extraction)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m1_reextract_v2.log\\\", \\\"checkpoint_source\\\": \\\"rerun of m1_extraction failed instances (v2, CodeQL fixed)\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"notes\\\": \\\"M1 重提取 v2：CodeQL pack 已修复，端到端测试通过。28,276 instances / 82 repo groups / 4 workers 并行。启动 2026-05-14 03:59 CST。[诊断 07:06 CST] 活跃运行中，~15/82 groups 完成，2,469 次 call_graph 查询成功，预计还需 ~13-16h。仅前 4 个旧 repo（furl/pyasn1/feedparser/python-docx）复用 v1 旧 DB 有 18 次降级 WARNING，04:02 之后零失败。产出写入 all.jsonl（追加模式）。磁盘 97GB 可用。[Director 决策 Session 8] 即使数据量增至 ~44K，不重跑 M2（ARR May 25 DDL 不允许再加 4-5 天重训）。处理方式：(1) post-M2 完成后如有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline; (2) 论文中作为 scalability/data efficiency 讨论点; (3) 全量重训留 camera-ready。[进度检查 2026-05-15 05:05 CST] 80.8% 完成（22,842/28,276），0 ERROR，速率 ~560/hr，处理中大 repo：mozilla__bleach/sqlfluff/conan-io/Project-MONAI。产出为单独 .json 文件，尚未合并 all.jsonl。预计 ~15:00 CST May 15 完成。\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T09:12Z\\\", \\\"process\\\": \\\"alive (CPU, 4 workers)\\\", \\\"started\\\": \\\"2026-05-14T03:59Z\\\", \\\"elapsed_hours\\\": 29, \\\"total_instances\\\": 28276, \\\"completed_instances\\\": 24321, \\\"completion_pct\\\": 86, \\\"errors\\\": 0, \\\"active_repos\\\": {\\\"sqlfluff/sqlfluff\\\": \\\"1100/1272\\\", \\\"conan-io/conan\\\": \\\"700/972\\\", \\\"pydicom/pydicom\\\": \\\"500/1315\\\", \\\"Project-MONAI/MONAI\\\": \\\"200/524\\\"}, \\\"all_jsonl_lines\\\": 44173, \\\"disk_free_gb\\\": 78, \\\"eta\\\": \\\"~May 15 15:00-17:00 CST\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:12 CST\\\"}}, \\\"m2_full_starcoder_resumed\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:11:10.682Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_starcoder_resume.sh (8 runs: random_s43→s44→embedding×3→dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"519791\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"StarCoder2-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_starcoder\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T01:12Z\\\", \\\"process\\\": \\\"alive (PID 519791, uptime 7h06m)\\\", \\\"gpu\\\": \\\"cuda:1, 100% util, 54347/97887 MiB\\\", \\\"current_subrun\\\": \\\"random_s43 (1/8 in resumed chain)\\\", \\\"current_step\\\": \\\"1300/2810 (~46%)\\\", \\\"latest_loss\\\": 0.2495, \\\"lr\\\": \\\"1.30e-05\\\", \\\"completed_subruns\\\": 1, \\\"remaining_subruns\\\": 7, \\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.4604, \\\"best_val_loss\\\": 0.6134, \\\"source\\\": \\\"parent\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"eval_at_500\\\": {\\\"R@1\\\": 0.4708, \\\"val_loss\\\": 0.5279, \\\"best_val_loss\\\": true}, \\\"eval_at_1000\\\": {\\\"R@1\\\": 0.478, \\\"val_loss\\\": 0.543, \\\"early_stopping\\\": \\\"1/2\\\"}, \\\"note\\\": \\\"eval@1500 in ~1h, likely early stop if val_loss > 0.5279\\\"}, \\\"checkpoints\\\": [\\\"random_s42/best_by_val_loss\\\", \\\"random_s42/best_by_recall_at_1\\\", \\\"random_s43/best_by_val_loss\\\", \\\"random_s43/best_by_recall_at_1\\\"], \\\"bm25_watcher\\\": \\\"active (PID watcher on 519791, will start BM25 StarCoder on cuda:1 when chain finishes)\\\", \\\"eta_hours\\\": \\\"55-65\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:12 CST\\\"}}, \\\"m2_full_qwen_continued\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:11:10.448Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_qwen.sh (chain: random_s44 running → embedding×3 → dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"337267\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_qwen.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T01:12Z\\\", \\\"process\\\": \\\"alive (PID 337267, uptime 13h45m)\\\", \\\"gpu\\\": \\\"cuda:0, 100% util, 49521/97887 MiB\\\", \\\"current_subrun\\\": \\\"embedding_distance_s43 (3/9 in chain)\\\", \\\"current_step\\\": \\\"150/2810 (~5%)\\\", \\\"latest_loss\\\": 0.5041, \\\"lr\\\": \\\"1.06e-05\\\", \\\"completed_subruns\\\": 3, \\\"remaining_subruns\\\": 6, \\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5527, \\\"source\\\": \\\"parent m2_full_qwen\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5554, \\\"best_val_loss\\\": 0.4476, \\\"early_stopped\\\": \\\"step 1500\\\"}, \\\"random_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.6009, \\\"best_val_loss\\\": 0.4252, \\\"early_stopped\\\": \\\"step 1500\\\", \\\"best_step\\\": 500}, \\\"embedding_distance_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"step\\\": 150, \\\"started\\\": \\\"08:32 CST\\\"}, \\\"checkpoints\\\": [\\\"random_s42/best_by_val_loss\\\", \\\"random_s42/best_by_recall_at_1\\\", \\\"random_s43/best_by_val_loss\\\", \\\"random_s43/best_by_recall_at_1\\\", \\\"random_s44/best_by_val_loss\\\", \\\"random_s44/best_by_recall_at_1\\\", \\\"random_s44/final\\\"], \\\"bm25_watcher\\\": \\\"active (PID watcher on 337267, will start BM25 Qwen on cuda:0 when chain finishes)\\\", \\\"eta_hours\\\": \\\"50-55\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:12 CST\\\"}}, \\\"plan_017_literature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:49:00.477Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:45.149Z\\\", \\\"hypothesis\\\": \\\"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\", \\\"spec\\\": {\\\"command\\\": \\\"analysis only (no training)\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"papers_surveyed\\\": 8, \\\"citations_verified\\\": 8, \\\"discussion_draft\\\": \\\"artifacts/paper_drafts/discussion_v2.md\\\", \\\"artifact_id\\\": \\\"art_20260514_a2e1cd\\\"}, \\\"completed_at\\\": \\\"2026-05-14T18:49:39.557Z\\\", \\\"notes\\\": \\\"Inference-time graph method comparison 完成。8 papers surveyed，其中 6 篇纳入 literature_map.yaml 和 discussion_v2.md（CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph）。CodeGRAG 和 CodeRAG 经调研排除：CodeGRAG（arXiv 2405.02355）关注 NL→code generation 的 graph-augmented prompting，不涉及代码检索或对比学习；CodeRAG 系列（CodeRAG-Bench 2406.14497 / CodeRAG 2504.10046）关注 retrieval-augmented code generation benchmark 和 bigraph-based 代码生成，均为生成任务而非检索训练。两者与 StructFuse 的 scope（训练时结构信号用于对比学习代码检索）不符，故未纳入 discussion。\\\"}, \\\"m2_full_starcoder\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:15.415Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:04:29.245Z\\\", \\\"hypothesis\\\": \\\"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\\\", \\\"parent\\\": \\\"plan_013_starcoder\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/structfuse && bash run_m2_full_starcoder_resume.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"519791\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:03:12.079Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs。[2026-05-15 02:02 CST] cuda:1 进程冲突修复并重新提交（PID 519791, timeout=144h）。Registry 状态 DONE(failed) 是旧 cron timeout 标记，实际正在运行 random_s43 [1/8]。新 cron 已注册监控 PID 519791。序列：random_s43→s44→(待插入bm25_s42)→embedding×3→dataflow×3。random_s42 结果：best R@1=0.4604 at step 2500, val_loss=0.6134 at step 1000。\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"epoch\\\": \\\"3/3\\\", \\\"current_step\\\": 4200, \\\"total_steps\\\": 4242, \\\"total_steps_per_epoch\\\": 1414, \\\"eval_500\\\": {\\\"val_loss\\\": 0.6194, \\\"recall_at_1\\\": 0.435, \\\"recall_at_5\\\": 0.905, \\\"recall_at_10\\\": 1}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.6134, \\\"recall_at_1\\\": 0.454, \\\"recall_at_5\\\": 0.92, \\\"recall_at_10\\\": 1}, \\\"eval_1500\\\": {\\\"val_loss\\\": 0.6528, \\\"recall_at_1\\\": 0.449, \\\"recall_at_5\\\": 0.906, \\\"recall_at_10\\\": 1}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.6698, \\\"recall_at_1\\\": 0.4456, \\\"recall_at_5\\\": 0.906, \\\"recall_at_10\\\": 1}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.6342, \\\"recall_at_1\\\": 0.4604, \\\"recall_at_5\\\": 0.9117, \\\"recall_at_10\\\": 1}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.6516, \\\"recall_at_1\\\": 0.4544, \\\"recall_at_5\\\": 0.9077, \\\"recall_at_10\\\": 1}, \\\"eval_3500\\\": {\\\"val_loss\\\": 0.6588, \\\"recall_at_1\\\": 0.4534, \\\"recall_at_5\\\": 0.9057, \\\"recall_at_10\\\": 1}, \\\"eval_4000\\\": {\\\"val_loss\\\": 0.6637, \\\"recall_at_1\\\": 0.4547, \\\"recall_at_5\\\": 0.9003, \\\"recall_at_10\\\": 1}, \\\"best_checkpoint\\\": \\\"step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)\\\", \\\"conclusion\\\": \\\"effectively_complete (timeout at step 4200/4242, lr=7.8e-9, remaining 42 steps negligible)\\\"}, \\\"progress_snapshot\\\": \\\"2026-05-15T01:50 CST\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T17:49:54.474Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T17:49:55.304Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T17:49:56.408767+00:00\\\"}]}}, \\\"m2_full_qwen\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:00:29.323Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"73544\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_qwen.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T17:39:30.757Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed. [D026] s42 保持 3 epochs 提供完整 overfitting curve; s43/s44 及后续 runs 改为 2 epochs + early_stopping_patience=2。[STATUS 2026-05-15 00:19 CST] Registry 状态 ANALYZING 是 cron 自动设置（s42 进程退出触发），但实验实际仍在进行中。random_s43 在 cuda:0 正常运行，step 1200/2810 (43%)。eval@500 R@1=0.5357, eval@1000 R@1=0.5285 (early_stopping 1/2)。Best R@1=0.5357 at step 500。GPU 100% 利用率, 50.5/97.9GB VRAM。\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"epoch\\\": \\\"3/3\\\", \\\"total_steps\\\": 4242, \\\"total_steps_per_epoch\\\": 1414, \\\"eval_500\\\": {\\\"val_loss\\\": 0.4869, \\\"recall_at_1\\\": 0.533, \\\"recall_at_5\\\": 0.954, \\\"recall_at_10\\\": 1}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.4651, \\\"recall_at_1\\\": 0.553, \\\"recall_at_5\\\": 0.959, \\\"recall_at_10\\\": 1}, \\\"eval_1500\\\": {\\\"val_loss\\\": 0.5365, \\\"recall_at_1\\\": 0.523, \\\"recall_at_5\\\": 0.955, \\\"recall_at_10\\\": 1}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.5162, \\\"recall_at_1\\\": 0.523, \\\"recall_at_5\\\": 0.954, \\\"recall_at_10\\\": 1}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.5264, \\\"recall_at_1\\\": 0.527, \\\"recall_at_5\\\": 0.956, \\\"recall_at_10\\\": 1}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.5406, \\\"recall_at_1\\\": 0.536, \\\"recall_at_5\\\": 0.956, \\\"recall_at_10\\\": 1}, \\\"best_checkpoint\\\": \\\"step_1000 (val_loss=0.4651, R@1=0.5527)\\\", \\\"conclusion\\\": \\\"Overfit after step 1000. Best R@1=0.5527, +1.7pp vs pilot (0.5357). Full data helps.\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"epoch\\\": \\\"early_stopped\\\", \\\"total_steps_per_epoch\\\": 1405, \\\"eval_500\\\": {\\\"val_loss\\\": 0.4476, \\\"recall_at_1\\\": 0.5357}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.4637, \\\"recall_at_1\\\": 0.5285}, \\\"eval_1500\\\": {\\\"recall_at_1\\\": 0.5554}, \\\"best_by_val_loss\\\": \\\"step 500 (val_loss=0.4476)\\\", \\\"best_by_recall_at_1\\\": \\\"step 1500 (R@1=0.5554)\\\", \\\"conclusion\\\": \\\"Early stopped at step 1500. Best R@1=0.5554, consistent with s42 (0.5527). val_loss and R@1 criterion diverge.\\\"}, \\\"random_s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"note\\\": \\\"Auto-started 01:58 CST, epoch 1/2, 1408 batches/epoch\\\"}, \\\"progress_snapshot\\\": \\\"2026-05-15T02:00 CST\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T11:24:33.887Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T11:24:35.375104+00:00\\\"}]}}, \\\"plan_018_bm25\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:38:40.603Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:09:50.985Z\\\", \\\"hypothesis\\\": \\\"BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"Phase 1 (CPU) COMPLETE: BM25 negative mining 完成。3 seeds 数据生成，record counts 与其他策略完全一致，0 fallback。BM25 score 分布: mean=246.50, std=155.96。重叠率: BM25 vs embedding_distance ~87.1%, vs random ~76.2%, vs dataflow_aware ~71.8%。高 median=1.0 因小 repo 候选池≤50 文件导致策略完全重合，BM25 differentiation 主要在大 repo。脚本: /root/structfuse/scripts/mine_bm25_negatives.py。输出: /root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl。Phase 2 (GPU): 等 re-dream gate 通过 + M2 完成后训练。\\\", \\\"metrics\\\": {\\\"phase1_complete\\\": true, \\\"seed_42\\\": {\\\"train_records\\\": 11308, \\\"val_records\\\": 2980, \\\"train_size_mb\\\": 1280.8, \\\"val_size_mb\\\": 344.6}, \\\"seed_43\\\": {\\\"train_records\\\": 11236, \\\"val_records\\\": 3052, \\\"train_size_mb\\\": 1280.9, \\\"val_size_mb\\\": 316}, \\\"seed_44\\\": {\\\"train_records\\\": 11264, \\\"val_records\\\": 3024, \\\"train_size_mb\\\": 1347.1, \\\"val_size_mb\\\": 295.9}, \\\"bm25_score_dist\\\": {\\\"count\\\": 392954, \\\"mean\\\": 246.5, \\\"std\\\": 155.96, \\\"p25\\\": 128.38, \\\"p50\\\": 228.41, \\\"p75\\\": 347.85, \\\"max\\\": 2585.74}, \\\"overlap_overall\\\": {\\\"bm25_vs_embedding\\\": 0.871, \\\"bm25_vs_random\\\": 0.762, \\\"bm25_vs_dataflow\\\": 0.718, \\\"note\\\": \\\"k=50 full candidate overlap from mining worker\\\"}, \\\"overlap_stratified_top7_jaccard\\\": {\\\"small_lt50\\\": {\\\"repos\\\": 39, \\\"bm25_vs_embedding\\\": 0.668, \\\"bm25_vs_random\\\": 0.411, \\\"bm25_vs_dataflow\\\": 0.667}, \\\"medium_50_200\\\": {\\\"repos\\\": 29, \\\"bm25_vs_embedding\\\": 0.38, \\\"bm25_vs_random\\\": 0.067, \\\"bm25_vs_dataflow\\\": 0.363}, \\\"large_200plus\\\": {\\\"repos\\\": 15, \\\"bm25_vs_embedding\\\": 0.297, \\\"bm25_vs_random\\\": 0.007, \\\"bm25_vs_dataflow\\\": 0.405}, \\\"matched_queries\\\": 2920, \\\"total_queries\\\": 12290, \\\"note\\\": \\\"top-7 Jaccard on s42 matched queries only (24% match rate due to different train/val splits)\\\"}}}, \\\"plan_015_dynamic\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:03:24.316Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:03:30.544Z\\\", \\\"hypothesis\\\": \\\"Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。\\\", \\\"notes\\\": \\\"Director D031 缩减：原 44h → 11h 单卡。只跑 dynamic_ep × 1 seed (Qwen, s42)，跳过 dynamic_500。Post-M2 与 plan_003 并行（一卡 SWE-bench，一卡 dynamic_ep）。受 re-dream gate 约束。设计文档已由 Worker 完成。\\\"}, \\\"neg_difficulty_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:39:20.016Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:13:49.046Z\\\", \\\"hypothesis\\\": \\\"Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\\\", \\\"notes\\\": \\\"128 vs 2048 token 对比完成（2026-05-14 05:54 CST）。Qwen pos_sim 在 2048t 下 0.9855（比 128t 的 0.9804 更高），确认 ceiling 为 Qwen 表征的结构性特征，非截断 artifact。StarCoder margin 2.6-4.1x Qwen（2048t）。核心结论：pretrained representation separability varies across encoders，跨两种 token 长度成立。数据源：128t → stats_v2.json，2048t → stats_v3_2048.json。\\\", \\\"metrics\\\": {\\\"qwen_128\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.9804, \\\"neg_sim\\\": 0.899, \\\"margin\\\": 0.0816, \\\"pct_positive_margin\\\": 77.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.9804, \\\"neg_sim\\\": 0.959, \\\"margin\\\": 0.0209, \\\"pct_positive_margin\\\": 60.7}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.9805, \\\"neg_sim\\\": 0.95, \\\"margin\\\": 0.0309, \\\"pct_positive_margin\\\": 67.4}}, \\\"starcoder_128\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.757, \\\"neg_sim\\\": 0.553, \\\"margin\\\": 0.2039, \\\"pct_positive_margin\\\": 72.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.784, \\\"neg_sim\\\": 0.668, \\\"margin\\\": 0.1159, \\\"pct_positive_margin\\\": 59.2}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.761, \\\"neg_sim\\\": 0.659, \\\"margin\\\": 0.1022, \\\"pct_positive_margin\\\": 62.8}}, \\\"qwen_2048\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.9855, \\\"neg_sim\\\": 0.9111, \\\"margin\\\": 0.0743, \\\"margin_std\\\": 0.2322, \\\"pct_positive_margin\\\": 81.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.9855, \\\"neg_sim\\\": 0.9685, \\\"margin\\\": 0.017, \\\"margin_std\\\": 0.114, \\\"pct_positive_margin\\\": 58.8}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.9856, \\\"neg_sim\\\": 0.9563, \\\"margin\\\": 0.0293, \\\"margin_std\\\": 0.1407, \\\"pct_positive_margin\\\": 73.9}}, \\\"starcoder_2048\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.7985, \\\"neg_sim\\\": 0.6045, \\\"margin\\\": 0.194, \\\"margin_std\\\": 0.2788, \\\"pct_positive_margin\\\": 78}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.8079, \\\"neg_sim\\\": 0.7409, \\\"margin\\\": 0.067, \\\"margin_std\\\": 0.2056, \\\"pct_positive_margin\\\": 55}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.8009, \\\"neg_sim\\\": 0.6818, \\\"margin\\\": 0.1192, \\\"margin_std\\\": 0.2264, \\\"pct_positive_margin\\\": 70.4}}, \\\"sc_qwen_margin_ratio_128\\\": {\\\"random\\\": 2.5, \\\"embedding_distance\\\": 5.54, \\\"dataflow_aware\\\": 3.3}, \\\"sc_qwen_margin_ratio_2048\\\": {\\\"random\\\": 2.61, \\\"embedding_distance\\\": 3.94, \\\"dataflow_aware\\\": 4.07}}, \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python negative_difficulty_margin_v2.py (CPU analysis)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_data/\\\", \\\"data_count\\\": 11000, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B + StarCoder2-3B (pretrained, no training)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/negative_difficulty_stats_v3_2048.json\\\"}, \\\"completed_at\\\": \\\"2026-05-14T00:13:49.046Z\\\"}, \\\"m1_reextract\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:35:23.954Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:45:53.741Z\\\", \\\"hypothesis\\\": \\\"M1 重提取：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/\\\", \\\"data_count\\\": 28276, \\\"model_name\\\": \\\"N/A (CodeQL extraction)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"pid\\\": \\\"97358\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m1_rerun.log\\\", \\\"checkpoint_source\\\": \\\"rerun of m1_extraction failed instances\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A (failed, no output)\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"CodeQL query 100% 失败（exit status 2）。根因：Worker 安装 CodeQL CLI 2.25.4 时未执行 `codeql pack install`，`codeql/python-all@7.1.0` 标准库 pack 缺失。修复命令：`cd /root/structfuse/extraction/codeql_queries && /opt/codeql/codeql pack install`。已 kill 进程 + tmux session。无新数据产出（all.jsonl 未受影响）。等 Director 确认后修复重跑。\\\", \\\"completed_at\\\": \\\"2026-05-13T19:44:09.115Z\\\"}, \\\"m1_extraction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T21:00:02.300Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:26:13.901Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup bash scripts/run_m1_extraction.sh (8 CPU workers, CodeQL 2-hop)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/\\\", \\\"data_count\\\": 50869, \\\"model_name\\\": \\\"N/A (CodeQL extraction)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"description\\\": \\\"M1: 全量 5K repos CodeQL 提取, 131 unique (repo,commit) groups, 50869 instances\\\"}, \\\"metrics\\\": {\\\"total_instances_attempted\\\": 44173, \\\"instances_skipped\\\": 6696, \\\"total_instances\\\": 50869, \\\"codeql_success\\\": 15133, \\\"beniget_fallback\\\": 764, \\\"extraction_failed\\\": 28276, \\\"structural_data_rate\\\": 0.36, \\\"repos_with_output\\\": 123, \\\"repos_total\\\": 131, \\\"repo_coverage\\\": 0.939, \\\"skip_clone_failed\\\": 5852, \\\"skip_checkout_failed\\\": 836, \\\"skip_stale_handle\\\": 8, \\\"elapsed_minutes\\\": 837.8, \\\"avg_time_per_instance_s\\\": 8.9, \\\"output_size_gb\\\": 6.6, \\\"disk_usage_gb\\\": 13, \\\"output_file\\\": \\\"all.jsonl\\\"}, \\\"notes\\\": \\\"[2026-05-13 19:25] COMPLETED. 837.8min, 123/131 repos (93.9%), 15,897/44,173 instances with structural data (36.0%), 6,696 skipped (clone/checkout). Output: all.jsonl 6.6GB. [2026-05-13 19:23 UPDATE] 28,276 buggy_file_not_found errors 经验证并非上游数据质量问题——10/10 抽查的文件在 repo 中全部存在。根因是运行时瞬态文件系统故障（CodeQL 并行 database creation 导致磁盘耗尽，锐截止模式）。这些 instances 可通过重跑恢复。D022: 准备重跑脚本中，等 Director 确认后执行。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/all.jsonl\\\", \\\"log_path\\\": \\\"/tmp/m1_extraction.log\\\", \\\"completed_at\\\": \\\"2026-05-13T10:59:42.462Z\\\"}, \\\"plan_006_scalability\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T07:57:43.631Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:24:00.741Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"M1 scalability statistics analysis (29/131 repos)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/\\\", \\\"data_count\\\": 8171, \\\"model_name\\\": \\\"N/A (CPU analysis)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"description\\\": \\\"Plan 006: M1 extraction scalability stats - timeout rate, extraction time, coverage, Z% by repo size. Partial results from 29/131 repos.\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T07:57:58.176Z\\\", \\\"notes\\\": \\\"[2026-05-13 19:23] 全量统计 + error 分析 + fuzzy match 验证完成。关键发现: (1) 0 timeout; (2) 28,276 error 全部 buggy_file_not_found，但 fuzzy match 验证发现文件实际都存在——根因是运行时瞬态文件系统故障（锐截止模式：每个 repo 内先成功后突然全部失败，extraction_time=0.0s），可能是 CodeQL 并行数据库创建导致磁盘空间耗尽; (3) 这些 instance 可通过重跑恢复（当前 resolve_file_in_repo 对全部样本返回正确路径）; (4) 结构数据率 34.3% 有望提升至接近 100%（若重跑成功）; (5) Z% 随 repo 规模上升 (XL median 96%). Artifacts: plan006_full_scalability.json, art_20260513_d262da (error patterns)\\\", \\\"hypothesis\\\": \\\"Claim 3: CodeQL bounded data-flow extraction scales to large repos with acceptable timeout rates and provides meaningful structural coverage (Z%) that increases with repo complexity\\\", \\\"metrics\\\": {\\\"repos\\\": 123, \\\"total_instances\\\": 44173, \\\"structural_data_rate\\\": 0.343, \\\"error_rate\\\": 0.64, \\\"zero_timeout_rate\\\": true, \\\"processing_time\\\": {\\\"mean_s\\\": 8.93, \\\"median_s\\\": 0, \\\"p95_s\\\": 31.95, \\\"max_s\\\": 633.68, \\\"total_hours\\\": 109.58}, \\\"by_tier\\\": {\\\"small_lt50\\\": {\\\"repos\\\": 1, \\\"instances\\\": 500, \\\"error_rate\\\": 0.054, \\\"struct_rate\\\": 0.81, \\\"z_pct_mean\\\": 0.284, \\\"z_pct_median\\\": 0}, \\\"medium_50_200\\\": {\\\"repos\\\": 17, \\\"instances\\\": 4096, \\\"error_rate\\\": 0.485, \\\"struct_rate\\\": 0.472, \\\"z_pct_mean\\\": 0.444, \\\"z_pct_median\\\": 0.5}, \\\"large_200_500\\\": {\\\"repos\\\": 40, \\\"instances\\\": 13628, \\\"error_rate\\\": 0.639, \\\"struct_rate\\\": 0.343, \\\"z_pct_mean\\\": 0.604, \\\"z_pct_median\\\": 0.857}, \\\"xlarge_500plus\\\": {\\\"repos\\\": 29, \\\"instances\\\": 25949, \\\"error_rate\\\": 0.676, \\\"struct_rate\\\": 0.314, \\\"z_pct_mean\\\": 0.812, \\\"z_pct_median\\\": 0.96}}, \\\"instance_distribution\\\": {\\\"lt10\\\": 1, \\\"10_50\\\": 17, \\\"50_200\\\": 36, \\\"200_500\\\": 40, \\\"500plus\\\": 29}, \\\"artifact\\\": \\\"plan006_full_scalability.json\\\"}}, \\\"plan_013_starcoder\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T05:09:14.885Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:09:54.153Z\\\", \\\"hypothesis\\\": \\\"Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/structfuse/run_plan013_starcoder.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"23798\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/plan_013_starcoder.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T05:26:21.946Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_embed_verify_data/\\\", \\\"data_count\\\": 3282, \\\"model_name\\\": \\\"bigcode/starcoder2-3b\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 35338.2, \\\"gpu_hours\\\": 9.82}, \\\"notes\\\": \\\"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5078) > random (0.4922) > dataflow (0.4869). Embedding vs random: +1.6pp (consistent with Qwen). Dataflow vs random: -0.5pp (DIFFERS from Qwen where dataflow > random +0.8pp). Hypothesis NEGATIVE: strategy ranking NOT identical across encoders. Embedding > random is encoder-agnostic, dataflow position is encoder-dependent. Log: /root/runs/faith-evidence-ie/plan_013_starcoder.log. Cron misreported EXIT_CODE=129 but all strategies completed (confirmed via log extraction worker).\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_val_loss\\\": 0.5113, \\\"best_recall@1\\\": 0.4922, \\\"best_recall@5\\\": 0.98, \\\"best_recall@10\\\": 1, \\\"source\\\": \\\"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\\\"}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.4816, \\\"best_recall@1\\\": 0.5078, \\\"best_recall@5\\\": 0.9843, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.506, \\\"final_recall@1\\\": 0.5174}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.5255, \\\"best_recall@1\\\": 0.4869, \\\"best_recall@5\\\": 0.9695, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5509, \\\"final_recall@1\\\": 0.5078}}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-13T15:15:20.165Z\\\"}, \\\"m2_embed_verify\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T04:39:16.051Z\\\", \\\"updated_at\\\": \\\"2026-05-13T15:59:51.621Z\\\", \\\"hypothesis\\\": \\\"True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence.\\\", \\\"parent\\\": \\\"m2_early_pilot\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/structfuse/run_m2_embed_verify.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"29290\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_embed_verify.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T06:37:00.822Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_embed_verify_data/\\\", \\\"data_count\\\": 3282, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"training from scratch (not eval)\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\", \\\"wall_clock_seconds\\\": 31097.9, \\\"gpu_hours\\\": 8.64}, \\\"notes\\\": \\\"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5557) > dataflow (0.5436) > random (0.5357). Embedding vs random: +2.0pp. Dataflow vs random: +0.8pp. All best at step 500, overfitting after. Hypothesis confirmed: true embedding negatives are harder → Claim 2 supported. Log: /root/runs/faith-evidence-ie/m2_embed_verify.log. Cron misreported EXIT_CODE=2 but all strategies completed successfully (confirmed via log extraction worker).\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4834, \\\"best_recall@1\\\": 0.5357, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5978, \\\"final_recall@1\\\": 0.5122}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4603, \\\"best_recall@1\\\": 0.5557, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5935, \\\"final_recall@1\\\": 0.5209}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.5602, \\\"best_recall@1\\\": 0.5436, \\\"best_recall@5\\\": 0.9817, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.6201, \\\"final_recall@1\\\": 0.5287}}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T15:15:18.746Z\\\"}, \\\"mvp_p2b_contrastive_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T15:03:02.370Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:28.932Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"132149\\\", \\\"data_path\\\": \\\"/root/structfuse/mvp_data/training_data/\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B + LoRA\\\", \\\"seed\\\": \\\"42,123,7\\\", \\\"hypothesis\\\": \\\"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\\\", \\\"plan_id\\\": \\\"mvp_p2b_contrastive_training\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:04:44.396Z\\\", \\\"notes\\\": \\\"P2b 对比训练 v2，因磁盘空间不足被 kill。已被 p2b_5reruns（成功完成 9/9 runs）替代。\\\"}, \\\"p2b_dataflow_retrain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T19:49:00.303Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:27.706Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"build_p2b_data.py regeneration + dataflow 3-seed retrain\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"description\\\": \\\"BLOCKED: dataflow connections ⊆ gold files, strategies indistinguishable\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-13T04:17:02.055Z\\\", \\\"notes\\\": \\\"Dataflow 策略重训练计划，因 embedding_distance 命名问题（实际用 BM25 而非 embedding）被 Reviewer 发现后搁置。已被 m2_embed_verify（true embedding mining）替代。\\\"}, \\\"p2b_eval_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T16:27:50.967Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:24.721Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_eval_all.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"254053\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T16:27:50.945Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 42550.6, \\\"gpu_hours\\\": 11.82}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-13T04:17:01.561Z\\\", \\\"notes\\\": \\\"P2b 全量 eval（pool_size=26），被 D013 服务器迁移计划取消。已被 p2b_eval_4runs_pool50（pool_size=50）替代。\\\"}, \\\"m2_early_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:39:53.920Z\\\", \\\"updated_at\\\": \\\"2026-05-13T04:44:22.077Z\\\", \\\"hypothesis\\\": \\\"Early pilot on partial M1 data (24 repos, ~5K instances): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/structfuse/scripts/run_m2_pilot.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"795739\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T01:55:31.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_pilot_data/\\\", \\\"data_count\\\": 3418, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42/best_model.pt\\\", \\\"wall_clock_seconds\\\": 10130.8, \\\"gpu_hours\\\": 2.81}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"PID 795791 在 cqa1 cuda:4 运行，wrapper 脚本顺序跑 random→embedding→dataflow（set -e）。random 策略跑到 step 4000 后卡住（~45min 无新日志），embedding/dataflow 未启动。Best checkpoint at step 1500。Val_loss 持续恶化（0.5879→0.728），明显过拟合。另有 OOM 进程干扰（某进程试图在同 GPU 启动导致 OOM，可能破坏 GPU 状态）。eval recall@k bug 已确认。\\\", \\\"metrics\\\": {\\\"pid\\\": 795791, \\\"gpu\\\": \\\"cuda:4\\\", \\\"gpu_mem_mb\\\": 9342, \\\"gpu_util_pct\\\": 83, \\\"batch_size\\\": 2, \\\"num_negatives\\\": 3, \\\"max_seq_length\\\": 1024, \\\"strategy_running\\\": \\\"random (stuck at step 4000, epoch 3)\\\", \\\"strategies_completed\\\": \\\"0/3\\\", \\\"eval_1500\\\": {\\\"val_loss\\\": 0.5879, \\\"recall_at_1\\\": 0.4693, \\\"recall_at_5\\\": 0.4693, \\\"recall_at_10\\\": 0.4693}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.7089, \\\"recall_at_1\\\": 0.4398}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.6961, \\\"recall_at_1\\\": 0.4291}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.728, \\\"recall_at_1\\\": 0.4104}, \\\"eval_3500\\\": {\\\"val_loss\\\": 0.7022, \\\"recall_at_1\\\": 0.4439}, \\\"best_checkpoint\\\": \\\"step_1500 (val_loss=0.5879, 6.2GB)\\\", \\\"WARNING\\\": \\\"recall@1=recall@5=recall@10 confirmed eval bug. Process hung after step 4000 (~45min no output). Overfitting after step 1500.\\\", \\\"status_check_at\\\": \\\"2026-05-13T04:42:00Z\\\"}, \\\"completed_at\\\": \\\"2026-05-13T04:44:22.077Z\\\"}, \\\"m2_early_pilot_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:59:06.557Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:13:43.400Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/structfuse/run_m2_early_pilot.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"897651\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_early_pilot_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T02:04:31.768Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 551.6, \\\"gpu_hours\\\": 0.15}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"GPU 越界 cuda:0，违反项目 GPU 分配 gpu_ids=[\\\\\\\"cuda:4\\\\\\\"]。第二次 GPU 越界违规（首次 D005）。Worker 未正确映射 CUDA_VISIBLE_DEVICES。\\\", \\\"completed_at\\\": \\\"2026-05-13T02:13:43.400Z\\\"}, \\\"m2_early_pilot_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:52:52.724Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:13:31.039Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/structfuse/run_m2_early_pilot.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"766124\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_early_pilot_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T01:52:52.687Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_early_pilot_data/\\\", \\\"data_count\\\": 3418, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"N/A (this is training, not eval)\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 1238.4, \\\"gpu_hours\\\": 0.34}, \\\"hypothesis\\\": \\\"Early pilot on partial M1 data (24 repos, 2672 train + 746 val): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"notes\\\": \\\"wandb API key error, EXIT_CODE=1。首次提交因 wandb 未配置离线模式而立即退出。\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T02:13:31.040Z\\\"}, \\\"mvp_p2b_contrastive_training\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-12T12:37:44.628Z\\\", \\\"updated_at\\\": \\\"2026-05-13T01:31:27.220Z\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T16:19:50.297Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-12T13:16:21.735Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T13:16:22.517958+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T15:15:47.933008+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T16:19:51.082427+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"第2次失败: random策略3seeds全部完成(s42跳过/s123 recall@5=0.984/s456 recall@5=0.992), 但embedding策略s42启动即EXIT_CODE=2(shell syntax error). Worker worker_diagnose_mvp_p2b_contrastive_training_v2 正在诊断和修复run_p2b_all.sh的embedding配置部分\\\"}}, \\\"notes\\\": \\\"4/9 runs 完成 (random×3 + embedding_distance_s42), 5/9 失败 (磁盘满 torch.save RuntimeError). /root/autodl-tmp 93% (14GB剩余, 每个checkpoint 5.8GB). 失败从 embedding_distance_s123 开始级联.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"238645\\\", \\\"data_path\\\": \\\"/root/structfuse/mvp_data/training_data/\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B + LoRA\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"hypothesis\\\": \\\"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\\\", \\\"plan_id\\\": \\\"mvp_p2b_contrastive_training\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/\\\", \\\"log_path\\\": \\\"/tmp/p2b_all_runs.log\\\"}, \\\"metrics\\\": {\\\"random_s42_recall1\\\": 0.984, \\\"random_s123_recall1\\\": 0.984, \\\"random_s456_recall1\\\": 0.992, \\\"embedding_s42_recall1\\\": 0.874, \\\"random_mean_recall1\\\": 0.987, \\\"runs_completed\\\": 4, \\\"runs_failed\\\": 5, \\\"failure_type\\\": \\\"disk_full_torch_save\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b_eval_4runs_pool50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:10:54.579Z\\\", \\\"updated_at\\\": \\\"2026-05-13T00:27:50.197Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_p2b.py on 4 checkpoints with new val.jsonl pool_size=50\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"p2b_5reruns (random×3 + emb_dist×1)\\\", \\\"eval_data\\\": \\\"val.jsonl pool_size=50\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pool_size\\\": 50, \\\"n_samples\\\": 127, \\\"random_s42\\\": {\\\"recall@1\\\": 0.496, \\\"recall@5\\\": 0.843, \\\"recall@10\\\": 0.945}, \\\"random_s123\\\": {\\\"recall@1\\\": 0.535, \\\"recall@5\\\": 0.85, \\\"recall@10\\\": 0.921}, \\\"random_s456\\\": {\\\"recall@1\\\": 0.543, \\\"recall@5\\\": 0.843, \\\"recall@10\\\": 0.953}, \\\"emb_dist_s42\\\": {\\\"recall@1\\\": 0.488, \\\"recall@5\\\": 0.835, \\\"recall@10\\\": 0.874}, \\\"random_mean\\\": {\\\"recall@1\\\": 0.525, \\\"recall@5\\\": 0.845, \\\"recall@10\\\": 0.94}, \\\"emb_dist_vs_random_delta\\\": {\\\"recall@1\\\": -0.037, \\\"recall@5\\\": -0.01, \\\"recall@10\\\": -0.066}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/ (p2b_random_s42/123/456, p2b_embedding_distance_s42)\\\", \\\"log_path\\\": \\\"已清理 (2026-05-12 Director Step 1 指令 rm -rf)，metrics 保留在 registry\\\", \\\"completed_at\\\": \\\"2026-05-12T20:11:12.318Z\\\"}, \\\"d007_50repo_overlap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:37:24.289Z\\\", \\\"updated_at\\\": \\\"2026-05-12T20:37:39.566Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CodeQL 2-hop extraction + connected vs gold overlap stats on 50 repos\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 240, \\\"model_name\\\": \\\"N/A (CPU analysis)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"description\\\": \\\"50-repo overlap validation: Z=40.8%, original method viable\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_instances\\\": 240, \\\"instances_with_extra_connected\\\": 98, \\\"Z_pct\\\": 40.8, \\\"avg_connected_minus_gold\\\": 6, \\\"codeql_timeout_rate_pct\\\": 4, \\\"by_repo_size\\\": {\\\"small_lt50\\\": {\\\"Z_pct\\\": 38.6, \\\"avg_extra\\\": 2.5}, \\\"medium_50_200\\\": {\\\"Z_pct\\\": 55.7, \\\"avg_extra\\\": 11.8}, \\\"large_gt200\\\": {\\\"Z_pct\\\": 16.7, \\\"avg_extra\\\": 8.8}}, \\\"decision\\\": \\\"Z=40.8% >= 20% -> original method viable, proceed to M1\\\"}, \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"/root/structfuse/data/50repo_overlap_stats/\\\", \\\"completed_at\\\": \\\"2026-05-12T20:37:39.566Z\\\"}, \\\"p2b_5reruns\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T17:26:47.603Z\\\", \\\"updated_at\\\": \\\"2026-05-12T19:19:53.785Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_p2b_all.sh (skips 4 done, runs 5: emb_dist s123/456, dataflow s42/123/456)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"272732\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/p2b_5reruns.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T17:26:47.575Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"description\\\": \\\"Phase 2b 5 reruns: emb_dist s123/456 + dataflow_aware s42/123/456\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 2, \\\"lr\\\": \\\"2e-5\\\", \\\"num_negatives\\\": 3, \\\"max_seq_length\\\": 512, \\\"use_lora\\\": true, \\\"gradient_checkpointing\\\": true, \\\"eval_steps\\\": 50, \\\"save_steps\\\": 200, \\\"num_epochs\\\": 3}, \\\"wall_clock_seconds\\\": 6752.2, \\\"gpu_hours\\\": 1.88}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"val_loss\\\": 0.0347, \\\"recall@1\\\": 0.9843}, \\\"random_s123\\\": {\\\"val_loss\\\": 0.0446, \\\"recall@1\\\": 0.9843}, \\\"random_s456\\\": {\\\"val_loss\\\": 0.0188, \\\"recall@1\\\": 0.9921}, \\\"emb_dist_s42\\\": {\\\"val_loss\\\": 0.1876, \\\"recall@1\\\": 0.874}, \\\"emb_dist_s123\\\": {\\\"val_loss\\\": 0.1461, \\\"recall@1\\\": 0.874}, \\\"emb_dist_s456\\\": {\\\"val_loss\\\": 0.1281, \\\"recall@1\\\": 0.8819}, \\\"dataflow_s42\\\": {\\\"val_loss\\\": 0.1878, \\\"recall@1\\\": 0.874}, \\\"dataflow_s123\\\": {\\\"val_loss\\\": 0.146, \\\"recall@1\\\": 0.874}, \\\"dataflow_s456\\\": {\\\"val_loss\\\": 0.1278, \\\"recall@1\\\": 0.8819}, \\\"runs_completed\\\": 9, \\\"runs_failed\\\": 0, \\\"WARNING\\\": \\\"dataflow_aware ≈ embedding_distance to 4 decimal places across all seeds — likely code bug in negative sampling\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/ (9 dirs: p2b_{random,embedding_distance,dataflow_aware}_s{42,123,456})\\\", \\\"completed_at\\\": \\\"2026-05-12T19:19:19.793Z\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/p2b_5reruns.log\\\"}, \\\"p2b_eval_4runs_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T17:21:49.599Z\\\", \\\"updated_at\\\": \\\"2026-05-12T17:22:16.595Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval 4 runs (3 random seeds + 1 emb_dist) with pool_size=26\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"description\\\": \\\"Phase 2b eval v2: pool_size=26 评估 random vs emb_dist\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"random_seed42\\\": {\\\"recall@1\\\": 0.9449, \\\"recall@5\\\": 0.9843, \\\"recall@10\\\": 0.9843}, \\\"random_seed123\\\": {\\\"recall@1\\\": 0.9449, \\\"recall@5\\\": 0.9921, \\\"recall@10\\\": 0.9921}, \\\"random_seed456\\\": {\\\"recall@1\\\": 0.9291, \\\"recall@5\\\": 0.9921, \\\"recall@10\\\": 0.9921}, \\\"emb_dist_seed42\\\": {\\\"recall@1\\\": 0.6693, \\\"recall@5\\\": 0.8898, \\\"recall@10\\\": 0.9291}, \\\"pool_size\\\": 26, \\\"n_samples\\\": 127}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/ (4 runs: random_s42/123/456, emb_dist_s42)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/structfuse/eval_results/\\\", \\\"completed_at\\\": \\\"2026-05-12T17:22:16.595Z\\\"}, \\\"p2b-all-9runs\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:34:24.923Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:49.244Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"92636\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:34:24.908Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9084.3, \\\"gpu_hours\\\": 2.52}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:49.244Z\\\"}, \\\"p2b-smoke8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:32:22.931Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:48.324Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"91698\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:32:22.916Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9205.4, \\\"gpu_hours\\\": 2.56}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:48.324Z\\\"}, \\\"p2b-smoke7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:28:55.114Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:47.346Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"90758\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:28:55.101Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9412.2, \\\"gpu_hours\\\": 2.61}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:47.346Z\\\"}, \\\"p2b-smoke6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:22:54.445Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:46.413Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"89257\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:22:54.433Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9772.0, \\\"gpu_hours\\\": 2.71}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:46.413Z\\\"}, \\\"p2b-smoke5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:22:05.754Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:45.484Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"88719\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:22:05.744Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9819.7, \\\"gpu_hours\\\": 2.73}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:45.484Z\\\"}, \\\"p2b-smoke4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:20:53.305Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:44.066Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"87968\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:20:53.296Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9890.8, \\\"gpu_hours\\\": 2.75}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:44.066Z\\\"}, \\\"p2b-smoke3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:18:19.105Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:43.111Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"86879\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:18:19.098Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 10044.0, \\\"gpu_hours\\\": 2.79}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:43.111Z\\\"}, \\\"p2b-smoke2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:16:08.154Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:42.174Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"85793\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:16:08.148Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 10174.0, \\\"gpu_hours\\\": 2.83}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:42.174Z\\\"}, \\\"p2b-smoke-test\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:14:30.477Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:41.269Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"84805\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:14:30.472Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 10270.8, \\\"gpu_hours\\\": 2.85}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:41.270Z\\\"}, \\\"mvp_p2a_linear_proxy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:53:42.223Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:58:15.436Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python evaluation/linear_proxy.py (logistic regression on data-flow features + BM25)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/mvp_results/ + /root/structfuse/mvp_data/bm25/\\\", \\\"data_count\\\": 8, \\\"model_name\\\": \\\"LogisticRegression (scikit-learn)\\\", \\\"seed\\\": null, \\\"hypothesis\\\": \\\"H2-confirm: data-flow features 的线性分类器预测 bug-relevant 文件优于纯 BM25 baseline\\\", \\\"plan_id\\\": \\\"mvp_p2a_linear_proxy\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"df_bm25_auc\\\": 0.78, \\\"bm25_only_auc\\\": 0.476, \\\"auc_delta\\\": 0.304, \\\"df_bm25_mrr\\\": 0.556, \\\"bm25_only_mrr\\\": 0.115, \\\"mrr_delta\\\": 0.441, \\\"df_bm25_f1\\\": 0.143, \\\"bm25_only_f1\\\": 0.039, \\\"top_feature\\\": \\\"is_connected (+2.82)\\\", \\\"repos_evaluated\\\": 3, \\\"note\\\": \\\"3 repos / 3 positive samples, directional evidence\\\"}, \\\"checkpoint_path\\\": \\\"N/A (logistic regression, no checkpoint)\\\", \\\"log_path\\\": \\\"/root/structfuse/evaluation/linear_proxy.py output\\\", \\\"completed_at\\\": \\\"2026-05-12T11:58:15.436Z\\\"}, \\\"mvp_p1_codeql_feasibility\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:30:45.938Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:58:06.197Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python extraction/extract_dataflow.py + codeql query run (call_graph.ql + bounded_dataflow.ql)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse/mvp_data/repos (8 SWE-smith instances: flask, requests, pytest, pylint, xarray, astropy, sphinx, matplotlib)\\\", \\\"data_count\\\": 8, \\\"model_name\\\": \\\"N/A (CPU pipeline)\\\", \\\"seed\\\": null, \\\"hypothesis\\\": \\\"H1: CodeQL 2-hop bounded data-flow timeout <30%; H2: connected files gold patch coverage significantly > disconnected\\\", \\\"plan_id\\\": \\\"mvp_p1_codeql_feasibility\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"timeout_rate\\\": 0, \\\"repos_processed\\\": 8, \\\"repos_skipped\\\": 2, \\\"cg_mean_s\\\": 29.6, \\\"cg_max_s\\\": 119.8, \\\"df_mean_s\\\": 43.4, \\\"df_max_s\\\": 167.1, \\\"h2_connected_coverage\\\": 0.014815, \\\"h2_disconnected_coverage\\\": 0, \\\"h2_fisher_p\\\": 6.5e-09, \\\"h2_gold_in_connected_ratio\\\": 1, \\\"h2_note\\\": \\\"After path normalization fix: 8/8 gold in connected (was 6/8)\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/mvp_results/mvp_phase1_report.json\\\", \\\"checkpoint_path\\\": \\\"N/A (CPU pipeline, no model checkpoint)\\\", \\\"completed_at\\\": \\\"2026-05-12T11:31:16.335Z\\\"}}, \\\"count\\\": 37, \\\"total\\\": 37, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1124}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan_005_stratified\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:36:16.738Z\", \"updated_at\": \"2026-05-15T01:13:18.866Z\", \"hypothesis\": \"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\", \"parent\": \"m2_full_qwen\", \"notes\": \"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。\", \"metrics\": {\"confound_analysis\": {\"data_validity\": \"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\", \"valid_findings\": {\"distribution_structure\": \"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\", \"correlation\": {\"dataflow_edges_vs_repo_size_pearson_r\": 0.089}, \"cross_distribution\": {\"rich_in_large_xlarge_pct\": 99.3, \"rich_in_small\": 0, \"moderate_in_large_xlarge_pct\": 60.9}, \"implication\": \"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\"}, \"invalid_findings\": \"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\", \"artifacts_path\": \"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\", \"valid_artifact\": \"cross_tabulation.csv\"}}}, \"m1_reextract_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:00:20.578Z\", \"updated_at\": \"2026-05-15T01:12:42.413Z\", \"hypothesis\": \"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"spec\": {\"command\": \"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop, pack installed)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m1_data/\", \"data_count\": 28276, \"model_name\": \"N/A (CodeQL extraction)\", \"seed\": \"N/A\", \"log_path\": \"/root/runs/structfuse-context/m1_reextract_v2.log\", \"checkpoint_source\": \"rerun of m1_extraction failed instances (v2, CodeQL fixed)\", \"eval_data\": \"N/A\"}, \"notes\": \"M1 重提取 v2：CodeQL pack 已修复，端到端测试通过。28,276 instances / 82 repo groups / 4 workers 并行。启动 2026-05-14 03:59 CST。[诊断 07:06 CST] 活跃运行中，~15/82 groups 完成，2,469 次 call_graph 查询成功，预计还需 ~13-16h。仅前 4 个旧 repo（furl/pyasn1/feedparser/python-docx）复用 v1 旧 DB 有 18 次降级 WARNING，04:02 之后零失败。产出写入 all.jsonl（追加模式）。磁盘 97GB 可用。[Director 决策 Session 8] 即使数据量增至 ~44K，不重跑 M2（ARR May 25 DDL 不允许再加 4-5 天重训）。处理方式：(1) post-M2 完成后如有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline; (2) 论文中作为 scalability/data efficiency 讨论点; (3) 全量重训留 camera-ready。[进度检查 2026-05-15 05:05 CST] 80.8% 完成（22,842/28,276），0 ERROR，速率 ~560/hr，处理中大 repo：mozilla__bleach/sqlfluff/conan-io/Project-MONAI。产出为单独 .json 文件，尚未合并 all.jsonl。预计 ~15:00 CST May 15 完成。\", \"metrics\": {\"checked_at\": \"2026-05-15T09:12Z\", \"process\": \"alive (CPU, 4 workers)\", \"started\": \"2026-05-14T03:59Z\", \"elapsed_hours\": 29, \"total_instances\": 28276, \"completed_instances\": 24321, \"completion_pct\": 86, \"errors\": 0, \"active_repos\": {\"sqlfluff/sqlfluff\": \"1100/1272\", \"conan-io/conan\": \"700/972\", \"pydicom/pydicom\": \"500/1315\", \"Project-MONAI/MONAI\": \"200/524\"}, \"all_jsonl_lines\": 44173, \"disk_free_gb\": 78, \"eta\": \"~May 15 15:00-17:00 CST\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"m2_full_starcoder_resumed\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:44:19.253Z\", \"updated_at\": \"2026-05-15T01:11:10.682Z\", \"hypothesis\": \"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\", \"spec\": {\"command\": \"bash run_m2_full_starcoder_resume.sh (8 runs: random_s43→s44→embedding×3→dataflow×3)\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:1\"], \"pid\": \"519791\", \"log_path\": \"/root/runs/structfuse-context/m2_full_starcoder.log\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m2_training_data/\", \"data_count\": 11308, \"model_name\": \"StarCoder2-3B\", \"seed\": \"42,43,44\"}, \"parent\": \"m2_full_starcoder\", \"metrics\": {\"checked_at\": \"2026-05-15T01:12Z\", \"process\": \"alive (PID 519791, uptime 7h06m)\", \"gpu\": \"cuda:1, 100% util, 54347/97887 MiB\", \"current_subrun\": \"random_s43 (1/8 in resumed chain)\", \"current_step\": \"1300/2810 (~46%)\", \"latest_loss\": 0.2495, \"lr\": \"1.30e-05\", \"completed_subruns\": 1, \"remaining_subruns\": 7, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.4604, \"best_val_loss\": 0.6134, \"source\": \"parent\"}, \"random_s43\": {\"status\": \"RUNNING\", \"eval_at_500\": {\"R@1\": 0.4708, \"val_loss\": 0.5279, \"best_val_loss\": true}, \"eval_at_1000\": {\"R@1\": 0.478, \"val_loss\": 0.543, \"early_stopping\": \"1/2\"}, \"note\": \"eval@1500 in ~1h, likely early stop if val_loss > 0.5279\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\"], \"bm25_watcher\": \"active (PID watcher on 519791, will start BM25 StarCoder on cuda:1 when chain finishes)\", \"eta_hours\": \"55-65\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"m2_full_qwen_continued\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:44:20.646Z\", \"updated_at\": \"2026-05-15T01:11:10.448Z\", \"hypothesis\": \"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\", \"spec\": {\"command\": \"bash run_m2_full_qwen.sh (chain: random_s44 running → embedding×3 → dataflow×3)\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"337267\", \"log_path\": \"/root/runs/structfuse-context/m2_full_qwen.log\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m2_training_data/\", \"data_count\": 11308, \"model_name\": \"Qwen2.5-Coder-3B\", \"seed\": \"42,43,44\"}, \"parent\": \"m2_full_qwen\", \"metrics\": {\"checked_at\": \"2026-05-15T01:12Z\", \"process\": \"alive (PID 337267, uptime 13h45m)\", \"gpu\": \"cuda:0, 100% util, 49521/97887 MiB\", \"current_subrun\": \"embedding_distance_s43 (3/9 in chain)\", \"current_step\": \"150/2810 (~5%)\", \"latest_loss\": 0.5041, \"lr\": \"1.06e-05\", \"completed_subruns\": 3, \"remaining_subruns\": 6, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.5527, \"source\": \"parent m2_full_qwen\"}, \"random_s43\": {\"status\": \"DONE\", \"best_R1\": 0.5554, \"best_val_loss\": 0.4476, \"early_stopped\": \"step 1500\"}, \"random_s44\": {\"status\": \"DONE\", \"best_R1\": 0.6009, \"best_val_loss\": 0.4252, \"early_stopped\": \"step 1500\", \"best_step\": 500}, \"embedding_distance_s43\": {\"status\": \"RUNNING\", \"step\": 150, \"started\": \"08:32 CST\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\", \"random_s44/best_by_val_loss\", \"random_s44/best_by_recall_at_1\", \"random_s44/final\"], \"bm25_watcher\": \"active (PID watcher on 337267, will start BM25 Qwen on cuda:0 when chain finishes)\", \"eta_hours\": \"50-55\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"plan_017_literature\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:49:00.477Z\", \"updated_at\": \"2026-05-14T21:33:45.149Z\", \"hypothesis\": \"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\", \"spec\": {\"command\": \"analysis only (no training)\", \"server\": \"local\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"metrics\": {\"papers_surveyed\": 8, \"citations_verified\": 8, \"discussion_draft\": \"artifacts/paper_drafts/discussion_v2.md\", \"artifact_id\": \"art_20260514_a2e1cd\"}, \"completed_at\": \"2026-05-14T18:49:39.557Z\", \"notes\": \"Inference-time graph method comparison 完成。8 papers surveyed，其中 6 篇纳入 literature_map.yaml 和 discussion_v2.md（CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph）。CodeGRAG 和 CodeRAG 经调研排除：CodeGRAG（arXiv 2405.02355）关注 NL→code generation 的 graph-augmented prompting，不涉及代码检索或对比学习；CodeRAG 系列（CodeRAG-Bench 2406.14497 / CodeRAG 2504.10046）关注 retrieval-augmented code generation benchmark 和 bigraph-based 代码生成，均为生成任务而非检索训练。两者与 StructFuse 的 scope（训练时结构信号用于对比学习代码检索）不符，故未纳入 discussion。\"}, \"m2_full_starcoder\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:18:15.415Z\", \"updated_at\": \"2026-05-14T18:04:29.245Z\", \"hypothesis\": \"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\", \"parent\": \"plan_013_starcoder\", \"spec\": {\"command\": \"bash -c \\\"cd /root/structfuse && bash run_m2_full_starcoder_resume.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:1\"], \"pid\": \"519791\", \"log_path\": \"~/runs/structfuse-context/m2_full_starcoder.log\", \"submitted_at\": \"2026-05-14T18:03:12.079Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs。[2026-05-15 02:02 CST] cuda:1 进程冲突修复并重新提交（PID 519791, timeout=144h）。Registry 状态 DONE(failed) 是旧 cron timeout 标记，实际正在运行 random_s43 [1/8]。新 cron 已注册监控 PID 519791。序列：random_s43→s44→(待插入bm25_s42)→embedding×3→dataflow×3。random_s42 结果：best R@1=0.4604 at step 2500, val_loss=0.6134 at step 1000。\", \"metrics\": {\"random_s42\": {\"epoch\": \"3/3\", \"current_step\": 4200, \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.6194, \"recall_at_1\": 0.435, \"recall_at_5\": 0.905, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.6134, \"recall_at_1\": 0.454, \"recall_at_5\": 0.92, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.6528, \"recall_at_1\": 0.449, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.6698, \"recall_at_1\": 0.4456, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.6342, \"recall_at_1\": 0.4604, \"recall_at_5\": 0.9117, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.6516, \"recall_at_1\": 0.4544, \"recall_at_5\": 0.9077, \"recall_at_10\": 1}, \"eval_3500\": {\"val_loss\": 0.6588, \"recall_at_1\": 0.4534, \"recall_at_5\": 0.9057, \"recall_at_10\": 1}, \"eval_4000\": {\"val_loss\": 0.6637, \"recall_at_1\": 0.4547, \"recall_at_5\": 0.9003, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)\", \"conclusion\": \"effectively_complete (timeout at step 4200/4242, lr=7.8e-9, remaining 42 steps negligible)\"}, \"progress_snapshot\": \"2026-05-15T01:50 CST\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T17:49:54.474Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T17:49:55.304Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:49:56.408767+00:00\"}]}}, \"m2_full_qwen\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:18:14.870Z\", \"updated_at\": \"2026-05-14T18:00:29.323Z\", \"hypothesis\": \"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\", \"parent\": \"m2_embed_verify\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"73544\", \"log_path\": \"~/runs/structfuse-context/m2_full_qwen.log\", \"submitted_at\": \"2026-05-13T17:39:30.757Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed. [D026] s42 保持 3 epochs 提供完整 overfitting curve; s43/s44 及后续 runs 改为 2 epochs + early_stopping_patience=2。[STATUS 2026-05-15 00:19 CST] Registry 状态 ANALYZING 是 cron 自动设置（s42 进程退出触发），但实验实际仍在进行中。random_s43 在 cuda:0 正常运行，step 1200/2810 (43%)。eval@500 R@1=0.5357, eval@1000 R@1=0.5285 (early_stopping 1/2)。Best R@1=0.5357 at step 500。GPU 100% 利用率, 50.5/97.9GB VRAM。\", \"metrics\": {\"random_s42\": {\"status\": \"DONE\", \"epoch\": \"3/3\", \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.4869, \"recall_at_1\": 0.533, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.4651, \"recall_at_1\": 0.553, \"recall_at_5\": 0.959, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.5365, \"recall_at_1\": 0.523, \"recall_at_5\": 0.955, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.5162, \"recall_at_1\": 0.523, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.5264, \"recall_at_1\": 0.527, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.5406, \"recall_at_1\": 0.536, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.4651, R@1=0.5527)\", \"conclusion\": \"Overfit after step 1000. Best R@1=0.5527, +1.7pp vs pilot (0.5357). Full data helps.\"}, \"random_s43\": {\"status\": \"DONE\", \"epoch\": \"early_stopped\", \"total_steps_per_epoch\": 1405, \"eval_500\": {\"val_loss\": 0.4476, \"recall_at_1\": 0.5357}, \"eval_1000\": {\"val_loss\": 0.4637, \"recall_at_1\": 0.5285}, \"eval_1500\": {\"recall_at_1\": 0.5554}, \"best_by_val_loss\": \"step 500 (val_loss=0.4476)\", \"best_by_recall_at_1\": \"step 1500 (R@1=0.5554)\", \"conclusion\": \"Early stopped at step 1500. Best R@1=0.5554, consistent with s42 (0.5527). val_loss and R@1 criterion diverge.\"}, \"random_s44\": {\"status\": \"RUNNING\", \"note\": \"Auto-started 01:58 CST, epoch 1/2, 1408 batches/epoch\"}, \"progress_snapshot\": \"2026-05-15T02:00 CST\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T11:24:33.887Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T11:24:35.375104+00:00\"}]}}, \"plan_018_bm25\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:38:40.603Z\", \"updated_at\": \"2026-05-14T17:09:50.985Z\", \"hypothesis\": \"BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。\", \"parent\": \"m2_full_qwen\", \"notes\": \"Phase 1 (CPU) COMPLETE: BM25 negative mining 完成。3 seeds 数据生成，record counts 与其他策略完全一致，0 fallback。BM25 score 分布: mean=246.50, std=155.96。重叠率: BM25 vs embedding_distance ~87.1%, vs random ~76.2%, vs dataflow_aware ~71.8%。高 median=1.0 因小 repo 候选池≤50 文件导致策略完全重合，BM25 differentiation 主要在大 repo。脚本: /root/structfuse/scripts/mine_bm25_negatives.py。输出: /root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl。Phase 2 (GPU): 等 re-dream gate 通过 + M2 完成后训练。\", \"metrics\": {\"phase1_complete\": true, \"seed_42\": {\"train_records\": 11308, \"val_records\": 2980, \"train_size_mb\": 1280.8, \"val_size_mb\": 344.6}, \"seed_43\": {\"train_records\": 11236, \"val_records\": 3052, \"train_size_mb\": 1280.9, \"val_size_mb\": 316}, \"seed_44\": {\"train_records\": 11264, \"val_records\": 3024, \"train_size_mb\": 1347.1, \"val_size_mb\": 295.9}, \"bm25_score_dist\": {\"count\": 392954, \"mean\": 246.5, \"std\": 155.96, \"p25\": 128.38, \"p50\": 228.41, \"p75\": 347.85, \"max\": 2585.74}, \"overlap_overall\": {\"bm25_vs_embedding\": 0.871, \"bm25_vs_random\": 0.762, \"bm25_vs_dataflow\": 0.718, \"note\": \"k=50 full candidate overlap from mining worker\"}, \"overlap_stratified_top7_jaccard\": {\"small_lt50\": {\"repos\": 39, \"bm25_vs_embedding\": 0.668, \"bm25_vs_random\": 0.411, \"bm25_vs_dataflow\": 0.667}, \"medium_50_200\": {\"repos\": 29, \"bm25_vs_embedding\": 0.38, \"bm25_vs_random\": 0.067, \"bm25_vs_dataflow\": 0.363}, \"large_200plus\": {\"repos\": 15, \"bm25_vs_embedding\": 0.297, \"bm25_vs_random\": 0.007, \"bm25_vs_dataflow\": 0.405}, \"matched_queries\": 2920, \"total_queries\": 12290, \"note\": \"top-7 Jaccard on s42 matched queries only (24% match rate due to different train/val splits)\"}}}, \"plan_015_dynamic\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:03:24.316Z\", \"updated_at\": \"2026-05-14T17:03:30.544Z\", \"hypothesis\": \"Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。\", \"notes\": \"Director D031 缩减：原 44h → 11h 单卡。只跑 dynamic_ep × 1 seed (Qwen, s42)，跳过 dynamic_500。Post-M2 与 plan_003 并行（一卡 SWE-bench，一卡 dynamic_ep）。受 re-dream gate 约束。设计文档已由 Worker 完成。\"}, \"neg_difficulty_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:39:20.016Z\", \"updated_at\": \"2026-05-14T00:13:49.046Z\", \"hypothesis\": \"Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\", \"notes\": \"128 vs 2048 token 对比完成（2026-05-14 05:54 CST）。Qwen pos_sim 在 2048t 下 0.9855（比 128t 的 0.9804 更高），确认 ceiling 为 Qwen 表征的结构性特征，非截断 artifact。StarCoder margin 2.6-4.1x Qwen（2048t）。核心结论：pretrained representation separability varies across encoders，跨两种 token 长度成立。数据源：128t → stats_v2.json，2048t → stats_v3_2048.json。\", \"metrics\": {\"qwen_128\": {\"random\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.899, \"margin\": 0.0816, \"pct_positive_margin\": 77.8}, \"embedding_distance\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.959, \"margin\": 0.0209, \"pct_positive_margin\": 60.7}, \"dataflow_aware\": {\"pos_sim\": 0.9805, \"neg_sim\": 0.95, \"margin\": 0.0309, \"pct_positive_margin\": 67.4}}, \"starcoder_128\": {\"random\": {\"pos_sim\": 0.757, \"neg_sim\": 0.553, \"margin\": 0.2039, \"pct_positive_margin\": 72.8}, \"embedding_distance\": {\"pos_sim\": 0.784, \"neg_sim\": 0.668, \"margin\": 0.1159, \"pct_positive_margin\": 59.2}, \"dataflow_aware\": {\"pos_sim\": 0.761, \"neg_sim\": 0.659, \"margin\": 0.1022, \"pct_positive_margin\": 62.8}}, \"qwen_2048\": {\"random\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9111, \"margin\": 0.0743, \"margin_std\": 0.2322, \"pct_positive_margin\": 81.8}, \"embedding_distance\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9685, \"margin\": 0.017, \"margin_std\": 0.114, \"pct_positive_margin\": 58.8}, \"dataflow_aware\": {\"pos_sim\": 0.9856, \"neg_sim\": 0.9563, \"margin\": 0.0293, \"margin_std\": 0.1407, \"pct_positive_margin\": 73.9}}, \"starcoder_2048\": {\"random\": {\"pos_sim\": 0.7985, \"neg_sim\": 0.6045, \"margin\": 0.194, \"margin_std\": 0.2788, \"pct_positive_margin\": 78}, \"embedding_distance\": {\"pos_sim\": 0.8079, \"neg_sim\": 0.7409, \"margin\": 0.067, \"margin_std\": 0.2056, \"pct_positive_margin\": 55}, \"dataflow_aware\": {\"pos_sim\": 0.8009, \"neg_sim\": 0.6818, \"margin\": 0.1192, \"margin_std\": 0.2264, \"pct_positive_margin\": 70.4}}, \"sc_qwen_margin_ratio_128\": {\"random\": 2.5, \"embedding_distance\": 5.54, \"dataflow_aware\": 3.3}, \"sc_qwen_margin_ratio_2048\": {\"random\": 2.61, \"embedding_distance\": 3.94, \"dataflow_aware\": 4.07}}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python negative_difficulty_margin_v2.py (CPU analysis)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m2_data/\", \"data_count\": 11000, \"model_name\": \"Qwen2.5-Coder-3B + StarCoder2-3B (pretrained, no training)\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/root/autodl-tmp/structfuse/artifacts/negative_difficulty_stats_v3_2048.json\"}, \"completed_at\": \"2026-05-14T00:13:49.046Z\"}, \"m1_reextract\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:35:23.954Z\", \"updated_at\": \"2026-05-13T19:45:53.741Z\", \"hypothesis\": \"M1 重提取：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"spec\": {\"command\": \"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/m1_extraction/\", \"data_count\": 28276, \"model_name\": \"N/A (CodeQL extraction)\", \"seed\": \"N/A\", \"pid\": \"97358\", \"log_path\": \"/root/runs/structfuse-context/m1_rerun.log\", \"checkpoint_source\": \"rerun of m1_extraction failed instances\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"N/A (failed, no output)\"}, \"conclusion\": \"failed\", \"notes\": \"CodeQL query 100% 失败（exit status 2）。根因：Worker 安装 CodeQL CLI 2.25.4 时未执行 `codeql pack install`，`codeql/python-all@7.1.0` 标准库 pack 缺失。修复命令：`cd /root/structfuse/extraction/codeql_queries && /opt/codeql/codeql pack install`。已 kill 进程 + tmux session。无新数据产出（all.jsonl 未受影响）。等 Director 确认后修复重跑。\", \"completed_at\": \"2026-05-13T19:44:09.115Z\"}, \"m1_extraction\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T21:00:02.300Z\", \"updated_at\": \"2026-05-13T19:26:13.901Z\", \"spec\": {\"command\": \"nohup bash scripts/run_m1_extraction.sh (8 CPU workers, CodeQL 2-hop)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/structfuse/m1_extraction/\", \"data_count\": 50869, \"model_name\": \"N/A (CodeQL extraction)\", \"seed\": \"N/A\", \"description\": \"M1: 全量 5K repos CodeQL 提取, 131 unique (repo,commit) groups, 50869 instances\"}, \"metrics\": {\"total_instances_attempted\": 44173, \"instances_skipped\": 6696, \"total_instances\": 50869, \"codeql_success\": 15133, \"beniget_fallback\": 764, \"extraction_failed\": 28276, \"structural_data_rate\": 0.36, \"repos_with_output\": 123, \"repos_total\": 131, \"repo_coverage\": 0.939, \"skip_clone_failed\": 5852, \"skip_checkout_failed\": 836, \"skip_stale_handle\": 8, \"elapsed_minutes\": 837.8, \"avg_time_per_instance_s\": 8.9, \"output_size_gb\": 6.6, \"disk_usage_gb\": 13, \"output_file\": \"all.jsonl\"}, \"notes\": \"[2026-05-13 19:25] COMPLETED. 837.8min, 123/131 repos (93.9%), 15,897/44,173 instances with structural data (36.0%), 6,696 skipped (clone/checkout). Output: all.jsonl 6.6GB. [2026-05-13 19:23 UPDATE] 28,276 buggy_file_not_found errors 经验证并非上游数据质量问题——10/10 抽查的文件在 repo 中全部存在。根因是运行时瞬态文件系统故障（CodeQL 并行 database creation 导致磁盘耗尽，锐截止模式）。这些 instances 可通过重跑恢复。D022: 准备重跑脚本中，等 Director 确认后执行。\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/structfuse/m1_extraction/all.jsonl\", \"log_path\": \"/tmp/m1_extraction.log\", \"completed_at\": \"2026-05-13T10:59:42.462Z\"}, \"plan_006_scalability\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T07:57:43.631Z\", \"updated_at\": \"2026-05-13T19:24:00.741Z\", \"spec\": {\"command\": \"M1 scalability statistics analysis (29/131 repos)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/m1_extraction/\", \"data_count\": 8171, \"model_name\": \"N/A (CPU analysis)\", \"seed\": \"N/A\", \"description\": \"Plan 006: M1 extraction scalability stats - timeout rate, extraction time, coverage, Z% by repo size. Partial results from 29/131 repos.\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T07:57:58.176Z\", \"notes\": \"[2026-05-13 19:23] 全量统计 + error 分析 + fuzzy match 验证完成。关键发现: (1) 0 timeout; (2) 28,276 error 全部 buggy_file_not_found，但 fuzzy match 验证发现文件实际都存在——根因是运行时瞬态文件系统故障（锐截止模式：每个 repo 内先成功后突然全部失败，extraction_time=0.0s），可能是 CodeQL 并行数据库创建导致磁盘空间耗尽; (3) 这些 instance 可通过重跑恢复（当前 resolve_file_in_repo 对全部样本返回正确路径）; (4) 结构数据率 34.3% 有望提升至接近 100%（若重跑成功）; (5) Z% 随 repo 规模上升 (XL median 96%). Artifacts: plan006_full_scalability.json, art_20260513_d262da (error patterns)\", \"hypothesis\": \"Claim 3: CodeQL bounded data-flow extraction scales to large repos with acceptable timeout rates and provides meaningful structural coverage (Z%) that increases with repo complexity\", \"metrics\": {\"repos\": 123, \"total_instances\": 44173, \"structural_data_rate\": 0.343, \"error_rate\": 0.64, \"zero_timeout_rate\": true, \"processing_time\": {\"mean_s\": 8.93, \"median_s\": 0, \"p95_s\": 31.95, \"max_s\": 633.68, \"total_hours\": 109.58}, \"by_tier\": {\"small_lt50\": {\"repos\": 1, \"instances\": 500, \"error_rate\": 0.054, \"struct_rate\": 0.81, \"z_pct_mean\": 0.284, \"z_pct_median\": 0}, \"medium_50_200\": {\"repos\": 17, \"instances\": 4096, \"error_rate\": 0.485, \"struct_rate\": 0.472, \"z_pct_mean\": 0.444, \"z_pct_median\": 0.5}, \"large_200_500\": {\"repos\": 40, \"instances\": 13628, \"error_rate\": 0.639, \"struct_rate\": 0.343, \"z_pct_mean\": 0.604, \"z_pct_median\": 0.857}, \"xlarge_500plus\": {\"repos\": 29, \"instances\": 25949, \"error_rate\": 0.676, \"struct_rate\": 0.314, \"z_pct_mean\": 0.812, \"z_pct_median\": 0.96}}, \"instance_distribution\": {\"lt10\": 1, \"10_50\": 17, \"50_200\": 36, \"200_500\": 40, \"500plus\": 29}, \"artifact\": \"plan006_full_scalability.json\"}}, \"plan_013_starcoder\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T05:09:14.885Z\", \"updated_at\": \"2026-05-13T18:09:54.153Z\", \"hypothesis\": \"Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\", \"spec\": {\"command\": \"bash -c \\\"bash /root/structfuse/run_plan013_starcoder.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"23798\", \"log_path\": \"~/runs/structfuse-context/plan_013_starcoder.log\", \"submitted_at\": \"2026-05-13T05:26:21.946Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_embed_verify_data/\", \"data_count\": 3282, \"model_name\": \"bigcode/starcoder2-3b\", \"seed\": 42, \"wall_clock_seconds\": 35338.2, \"gpu_hours\": 9.82}, \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5078) > random (0.4922) > dataflow (0.4869). Embedding vs random: +1.6pp (consistent with Qwen). Dataflow vs random: -0.5pp (DIFFERS from Qwen where dataflow > random +0.8pp). Hypothesis NEGATIVE: strategy ranking NOT identical across encoders. Embedding > random is encoder-agnostic, dataflow position is encoder-dependent. Log: /root/runs/faith-evidence-ie/plan_013_starcoder.log. Cron misreported EXIT_CODE=129 but all strategies completed (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_val_loss\": 0.5113, \"best_recall@1\": 0.4922, \"best_recall@5\": 0.98, \"best_recall@10\": 1, \"source\": \"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\"}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.4816, \"best_recall@1\": 0.5078, \"best_recall@5\": 0.9843, \"best_recall@10\": 1, \"final_val_loss\": 0.506, \"final_recall@1\": 0.5174}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.5255, \"best_recall@1\": 0.4869, \"best_recall@5\": 0.9695, \"best_recall@10\": 1, \"final_val_loss\": 0.5509, \"final_recall@1\": 0.5078}}, \"failure_reason\": \"\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T15:15:20.165Z\"}, \"m2_embed_verify\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:39:16.051Z\", \"updated_at\": \"2026-05-13T15:59:51.621Z\", \"hypothesis\": \"True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence.\", \"parent\": \"m2_early_pilot\", \"spec\": {\"command\": \"bash -c \\\"bash /root/structfuse/run_m2_embed_verify.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:1\"], \"pid\": \"29290\", \"log_path\": \"~/runs/structfuse-context/m2_embed_verify.log\", \"submitted_at\": \"2026-05-13T06:37:00.822Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_embed_verify_data/\", \"data_count\": 3282, \"model_name\": \"Qwen/Qwen2.5-Coder-3B\", \"seed\": 42, \"checkpoint_source\": \"training from scratch (not eval)\", \"eval_data\": \"N/A (training, not eval)\", \"wall_clock_seconds\": 31097.9, \"gpu_hours\": 8.64}, \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5557) > dataflow (0.5436) > random (0.5357). Embedding vs random: +2.0pp. Dataflow vs random: +0.8pp. All best at step 500, overfitting after. Hypothesis confirmed: true embedding negatives are harder → Claim 2 supported. Log: /root/runs/faith-evidence-ie/m2_embed_verify.log. Cron misreported EXIT_CODE=2 but all strategies completed successfully (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4834, \"best_recall@1\": 0.5357, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5978, \"final_recall@1\": 0.5122}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4603, \"best_recall@1\": 0.5557, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5935, \"final_recall@1\": 0.5209}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.5602, \"best_recall@1\": 0.5436, \"best_recall@5\": 0.9817, \"best_recall@10\": 1, \"final_val_loss\": 0.6201, \"final_recall@1\": 0.5287}}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T15:15:18.746Z\"}, \"mvp_p2b_contrastive_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T15:03:02.370Z\", \"updated_at\": \"2026-05-13T07:23:28.932Z\", \"spec\": {\"command\": \"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"132149\", \"data_path\": \"/root/structfuse/mvp_data/training_data/\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B + LoRA\", \"seed\": \"42,123,7\", \"hypothesis\": \"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\", \"plan_id\": \"mvp_p2b_contrastive_training\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:04:44.396Z\", \"notes\": \"P2b 对比训练 v2，因磁盘空间不足被 kill。已被 p2b_5reruns（成功完成 9/9 runs）替代。\"}, \"p2b_dataflow_retrain\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T19:49:00.303Z\", \"updated_at\": \"2026-05-13T07:23:27.706Z\", \"spec\": {\"command\": \"build_p2b_data.py regeneration + dataflow 3-seed retrain\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 0, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"description\": \"BLOCKED: dataflow connections ⊆ gold files, strategies indistinguishable\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T04:17:02.055Z\", \"notes\": \"Dataflow 策略重训练计划，因 embedding_distance 命名问题（实际用 BM25 而非 embedding）被 Reviewer 发现后搁置。已被 m2_embed_verify（true embedding mining）替代。\"}, \"p2b_eval_all\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T16:27:50.967Z\", \"updated_at\": \"2026-05-13T07:23:24.721Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_eval_all.sh\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"254053\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T16:27:50.945Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 42550.6, \"gpu_hours\": 11.82}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-13T04:17:01.561Z\", \"notes\": \"P2b 全量 eval（pool_size=26），被 D013 服务器迁移计划取消。已被 p2b_eval_4runs_pool50（pool_size=50）替代。\"}, \"m2_early_pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:39:53.920Z\", \"updated_at\": \"2026-05-13T04:44:22.077Z\", \"hypothesis\": \"Early pilot on partial M1 data (24 repos, ~5K instances): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"spec\": {\"command\": \"bash /root/structfuse/scripts/run_m2_pilot.sh\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"795739\", \"log_path\": \"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42.log\", \"submitted_at\": \"2026-05-13T01:55:31.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_pilot_data/\", \"data_count\": 3418, \"model_name\": \"Qwen/Qwen2.5-Coder-3B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training, not eval)\", \"checkpoint_path\": \"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42/best_model.pt\", \"wall_clock_seconds\": 10130.8, \"gpu_hours\": 2.81}, \"conclusion\": \"killed\", \"notes\": \"PID 795791 在 cqa1 cuda:4 运行，wrapper 脚本顺序跑 random→embedding→dataflow（set -e）。random 策略跑到 step 4000 后卡住（~45min 无新日志），embedding/dataflow 未启动。Best checkpoint at step 1500。Val_loss 持续恶化（0.5879→0.728），明显过拟合。另有 OOM 进程干扰（某进程试图在同 GPU 启动导致 OOM，可能破坏 GPU 状态）。eval recall@k bug 已确认。\", \"metrics\": {\"pid\": 795791, \"gpu\": \"cuda:4\", \"gpu_mem_mb\": 9342, \"gpu_util_pct\": 83, \"batch_size\": 2, \"num_negatives\": 3, \"max_seq_length\": 1024, \"strategy_running\": \"random (stuck at step 4000, epoch 3)\", \"strategies_completed\": \"0/3\", \"eval_1500\": {\"val_loss\": 0.5879, \"recall_at_1\": 0.4693, \"recall_at_5\": 0.4693, \"recall_at_10\": 0.4693}, \"eval_2000\": {\"val_loss\": 0.7089, \"recall_at_1\": 0.4398}, \"eval_2500\": {\"val_loss\": 0.6961, \"recall_at_1\": 0.4291}, \"eval_3000\": {\"val_loss\": 0.728, \"recall_at_1\": 0.4104}, \"eval_3500\": {\"val_loss\": 0.7022, \"recall_at_1\": 0.4439}, \"best_checkpoint\": \"step_1500 (val_loss=0.5879, 6.2GB)\", \"WARNING\": \"recall@1=recall@5=recall@10 confirmed eval bug. Process hung after step 4000 (~45min no output). Overfitting after step 1500.\", \"status_check_at\": \"2026-05-13T04:42:00Z\"}, \"completed_at\": \"2026-05-13T04:44:22.077Z\"}, \"m2_early_pilot_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:59:06.557Z\", \"updated_at\": \"2026-05-13T02:13:43.400Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/structfuse/run_m2_early_pilot.sh\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"897651\", \"log_path\": \"~/runs/structfuse-context/m2_early_pilot_v3.log\", \"submitted_at\": \"2026-05-13T02:04:31.768Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 551.6, \"gpu_hours\": 0.15}, \"conclusion\": \"killed\", \"notes\": \"GPU 越界 cuda:0，违反项目 GPU 分配 gpu_ids=[\\\"cuda:4\\\"]。第二次 GPU 越界违规（首次 D005）。Worker 未正确映射 CUDA_VISIBLE_DEVICES。\", \"completed_at\": \"2026-05-13T02:13:43.400Z\"}, \"m2_early_pilot_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:52:52.724Z\", \"updated_at\": \"2026-05-13T02:13:31.039Z\", \"spec\": {\"command\": \"bash /root/structfuse/run_m2_early_pilot.sh\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"766124\", \"log_path\": \"~/runs/structfuse-context/m2_early_pilot_v2.log\", \"submitted_at\": \"2026-05-13T01:52:52.687Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_early_pilot_data/\", \"data_count\": 3418, \"model_name\": \"Qwen/Qwen2.5-Coder-3B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (this is training, not eval)\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 1238.4, \"gpu_hours\": 0.34}, \"hypothesis\": \"Early pilot on partial M1 data (24 repos, 2672 train + 746 val): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"parent\": \"m1_extraction\", \"notes\": \"wandb API key error, EXIT_CODE=1。首次提交因 wandb 未配置离线模式而立即退出。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T02:13:31.040Z\"}, \"mvp_p2b_contrastive_training\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-12T12:37:44.628Z\", \"updated_at\": \"2026-05-13T01:31:27.220Z\", \"reproduce\": {\"finished_at\": \"2026-05-12T16:19:50.297Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-12T13:16:21.735Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T13:16:22.517958+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:15:47.933008+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T16:19:51.082427+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第2次失败: random策略3seeds全部完成(s42跳过/s123 recall@5=0.984/s456 recall@5=0.992), 但embedding策略s42启动即EXIT_CODE=2(shell syntax error). Worker worker_diagnose_mvp_p2b_contrastive_training_v2 正在诊断和修复run_p2b_all.sh的embedding配置部分\"}}, \"notes\": \"4/9 runs 完成 (random×3 + embedding_distance_s42), 5/9 失败 (磁盘满 torch.save RuntimeError). /root/autodl-tmp 93% (14GB剩余, 每个checkpoint 5.8GB). 失败从 embedding_distance_s123 开始级联.\", \"spec\": {\"command\": \"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"238645\", \"data_path\": \"/root/structfuse/mvp_data/training_data/\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B + LoRA\", \"seed\": \"42,123,456\", \"hypothesis\": \"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\", \"plan_id\": \"mvp_p2b_contrastive_training\", \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/\", \"log_path\": \"/tmp/p2b_all_runs.log\"}, \"metrics\": {\"random_s42_recall1\": 0.984, \"random_s123_recall1\": 0.984, \"random_s456_recall1\": 0.992, \"embedding_s42_recall1\": 0.874, \"random_mean_recall1\": 0.987, \"runs_completed\": 4, \"runs_failed\": 5, \"failure_type\": \"disk_full_torch_save\"}, \"conclusion\": \"killed\"}, \"p2b_eval_4runs_pool50\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:10:54.579Z\", \"updated_at\": \"2026-05-13T00:27:50.197Z\", \"spec\": {\"command\": \"eval_p2b.py on 4 checkpoints with new val.jsonl pool_size=50\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"p2b_5reruns (random×3 + emb_dist×1)\", \"eval_data\": \"val.jsonl pool_size=50\"}, \"conclusion\": \"success\", \"metrics\": {\"pool_size\": 50, \"n_samples\": 127, \"random_s42\": {\"recall@1\": 0.496, \"recall@5\": 0.843, \"recall@10\": 0.945}, \"random_s123\": {\"recall@1\": 0.535, \"recall@5\": 0.85, \"recall@10\": 0.921}, \"random_s456\": {\"recall@1\": 0.543, \"recall@5\": 0.843, \"recall@10\": 0.953}, \"emb_dist_s42\": {\"recall@1\": 0.488, \"recall@5\": 0.835, \"recall@10\": 0.874}, \"random_mean\": {\"recall@1\": 0.525, \"recall@5\": 0.845, \"recall@10\": 0.94}, \"emb_dist_vs_random_delta\": {\"recall@1\": -0.037, \"recall@5\": -0.01, \"recall@10\": -0.066}}, \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/ (p2b_random_s42/123/456, p2b_embedding_distance_s42)\", \"log_path\": \"已清理 (2026-05-12 Director Step 1 指令 rm -rf)，metrics 保留在 registry\", \"completed_at\": \"2026-05-12T20:11:12.318Z\"}, \"d007_50repo_overlap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:37:24.289Z\", \"updated_at\": \"2026-05-12T20:37:39.566Z\", \"spec\": {\"command\": \"CodeQL 2-hop extraction + connected vs gold overlap stats on 50 repos\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 240, \"model_name\": \"N/A (CPU analysis)\", \"seed\": \"N/A\", \"description\": \"50-repo overlap validation: Z=40.8%, original method viable\"}, \"conclusion\": \"success\", \"metrics\": {\"total_instances\": 240, \"instances_with_extra_connected\": 98, \"Z_pct\": 40.8, \"avg_connected_minus_gold\": 6, \"codeql_timeout_rate_pct\": 4, \"by_repo_size\": {\"small_lt50\": {\"Z_pct\": 38.6, \"avg_extra\": 2.5}, \"medium_50_200\": {\"Z_pct\": 55.7, \"avg_extra\": 11.8}, \"large_gt200\": {\"Z_pct\": 16.7, \"avg_extra\": 8.8}}, \"decision\": \"Z=40.8% >= 20% -> original method viable, proceed to M1\"}, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/root/structfuse/data/50repo_overlap_stats/\", \"completed_at\": \"2026-05-12T20:37:39.566Z\"}, \"p2b_5reruns\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:26:47.603Z\", \"updated_at\": \"2026-05-12T19:19:53.785Z\", \"spec\": {\"command\": \"bash run_p2b_all.sh (skips 4 done, runs 5: emb_dist s123/456, dataflow s42/123/456)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"272732\", \"log_path\": \"~/runs/structfuse-context/p2b_5reruns.log\", \"submitted_at\": \"2026-05-12T17:26:47.575Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse\", \"data_count\": 500, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"description\": \"Phase 2b 5 reruns: emb_dist s123/456 + dataflow_aware s42/123/456\", \"hyperparams\": {\"batch_size\": 2, \"lr\": \"2e-5\", \"num_negatives\": 3, \"max_seq_length\": 512, \"use_lora\": true, \"gradient_checkpointing\": true, \"eval_steps\": 50, \"save_steps\": 200, \"num_epochs\": 3}, \"wall_clock_seconds\": 6752.2, \"gpu_hours\": 1.88}, \"conclusion\": \"success\", \"metrics\": {\"random_s42\": {\"val_loss\": 0.0347, \"recall@1\": 0.9843}, \"random_s123\": {\"val_loss\": 0.0446, \"recall@1\": 0.9843}, \"random_s456\": {\"val_loss\": 0.0188, \"recall@1\": 0.9921}, \"emb_dist_s42\": {\"val_loss\": 0.1876, \"recall@1\": 0.874}, \"emb_dist_s123\": {\"val_loss\": 0.1461, \"recall@1\": 0.874}, \"emb_dist_s456\": {\"val_loss\": 0.1281, \"recall@1\": 0.8819}, \"dataflow_s42\": {\"val_loss\": 0.1878, \"recall@1\": 0.874}, \"dataflow_s123\": {\"val_loss\": 0.146, \"recall@1\": 0.874}, \"dataflow_s456\": {\"val_loss\": 0.1278, \"recall@1\": 0.8819}, \"runs_completed\": 9, \"runs_failed\": 0, \"WARNING\": \"dataflow_aware ≈ embedding_distance to 4 decimal places across all seeds — likely code bug in negative sampling\"}, \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/ (9 dirs: p2b_{random,embedding_distance,dataflow_aware}_s{42,123,456})\", \"completed_at\": \"2026-05-12T19:19:19.793Z\", \"log_path\": \"~/runs/structfuse-context/p2b_5reruns.log\"}, \"p2b_eval_4runs_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:21:49.599Z\", \"updated_at\": \"2026-05-12T17:22:16.595Z\", \"spec\": {\"command\": \"eval 4 runs (3 random seeds + 1 emb_dist) with pool_size=26\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"description\": \"Phase 2b eval v2: pool_size=26 评估 random vs emb_dist\"}, \"conclusion\": \"success\", \"metrics\": {\"random_seed42\": {\"recall@1\": 0.9449, \"recall@5\": 0.9843, \"recall@10\": 0.9843}, \"random_seed123\": {\"recall@1\": 0.9449, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"random_seed456\": {\"recall@1\": 0.9291, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"emb_dist_seed42\": {\"recall@1\": 0.6693, \"recall@5\": 0.8898, \"recall@10\": 0.9291}, \"pool_size\": 26, \"n_samples\": 127}, \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/ (4 runs: random_s42/123/456, emb_dist_s42)\", \"log_path\": \"/root/autodl-tmp/structfuse/eval_results/\", \"completed_at\": \"2026-05-12T17:22:16.595Z\"}, \"p2b-all-9runs\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:34:24.923Z\", \"updated_at\": \"2026-05-12T15:05:49.244Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"92636\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:34:24.908Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9084.3, \"gpu_hours\": 2.52}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:49.244Z\"}, \"p2b-smoke8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:32:22.931Z\", \"updated_at\": \"2026-05-12T15:05:48.324Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"91698\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:32:22.916Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9205.4, \"gpu_hours\": 2.56}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:48.324Z\"}, \"p2b-smoke7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:28:55.114Z\", \"updated_at\": \"2026-05-12T15:05:47.346Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"90758\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:28:55.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9412.2, \"gpu_hours\": 2.61}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:47.346Z\"}, \"p2b-smoke6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:22:54.445Z\", \"updated_at\": \"2026-05-12T15:05:46.413Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"89257\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:22:54.433Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9772.0, \"gpu_hours\": 2.71}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:46.413Z\"}, \"p2b-smoke5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:22:05.754Z\", \"updated_at\": \"2026-05-12T15:05:45.484Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"88719\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:22:05.744Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9819.7, \"gpu_hours\": 2.73}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:45.484Z\"}, \"p2b-smoke4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:20:53.305Z\", \"updated_at\": \"2026-05-12T15:05:44.066Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"87968\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:20:53.296Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9890.8, \"gpu_hours\": 2.75}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:44.066Z\"}, \"p2b-smoke3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:18:19.105Z\", \"updated_at\": \"2026-05-12T15:05:43.111Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"86879\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:18:19.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 10044.0, \"gpu_hours\": 2.79}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:43.111Z\"}, \"p2b-smoke2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:16:08.154Z\", \"updated_at\": \"2026-05-12T15:05:42.174Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"85793\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:16:08.148Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 10174.0, \"gpu_hours\": 2.83}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:42.174Z\"}, \"p2b-smoke-test\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:14:30.477Z\", \"updated_at\": \"2026-05-12T15:05:41.269Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"84805\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:14:30.472Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 10270.8, \"gpu_hours\": 2.85}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:41.270Z\"}, \"mvp_p2a_linear_proxy\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:53:42.223Z\", \"updated_at\": \"2026-05-12T11:58:15.436Z\", \"spec\": {\"command\": \"python evaluation/linear_proxy.py (logistic regression on data-flow features + BM25)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/mvp_results/ + /root/structfuse/mvp_data/bm25/\", \"data_count\": 8, \"model_name\": \"LogisticRegression (scikit-learn)\", \"seed\": null, \"hypothesis\": \"H2-confirm: data-flow features 的线性分类器预测 bug-relevant 文件优于纯 BM25 baseline\", \"plan_id\": \"mvp_p2a_linear_proxy\"}, \"conclusion\": \"success\", \"metrics\": {\"df_bm25_auc\": 0.78, \"bm25_only_auc\": 0.476, \"auc_delta\": 0.304, \"df_bm25_mrr\": 0.556, \"bm25_only_mrr\": 0.115, \"mrr_delta\": 0.441, \"df_bm25_f1\": 0.143, \"bm25_only_f1\": 0.039, \"top_feature\": \"is_connected (+2.82)\", \"repos_evaluated\": 3, \"note\": \"3 repos / 3 positive samples, directional evidence\"}, \"checkpoint_path\": \"N/A (logistic regression, no checkpoint)\", \"log_path\": \"/root/structfuse/evaluation/linear_proxy.py output\", \"completed_at\": \"2026-05-12T11:58:15.436Z\"}, \"mvp_p1_codeql_feasibility\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:30:45.938Z\", \"updated_at\": \"2026-05-12T11:58:06.197Z\", \"spec\": {\"command\": \"python extraction/extract_dataflow.py + codeql query run (call_graph.ql + bounded_dataflow.ql)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse/mvp_data/repos (8 SWE-smith instances: flask, requests, pytest, pylint, xarray, astropy, sphinx, matplotlib)\", \"data_count\": 8, \"model_name\": \"N/A (CPU pipeline)\", \"seed\": null, \"hypothesis\": \"H1: CodeQL 2-hop bounded data-flow timeout <30%; H2: connected files gold patch coverage significantly > disconnected\", \"plan_id\": \"mvp_p1_codeql_feasibility\"}, \"conclusion\": \"success\", \"metrics\": {\"timeout_rate\": 0, \"repos_processed\": 8, \"repos_skipped\": 2, \"cg_mean_s\": 29.6, \"cg_max_s\": 119.8, \"df_mean_s\": 43.4, \"df_max_s\": 167.1, \"h2_connected_coverage\": 0.014815, \"h2_disconnected_coverage\": 0, \"h2_fisher_p\": 6.5e-09, \"h2_gold_in_connected_ratio\": 1, \"h2_note\": \"After path normalization fix: 8/8 gold in connected (was 6/8)\"}, \"log_path\": \"/root/autodl-tmp/mvp_results/mvp_phase1_report.json\", \"checkpoint_path\": \"N/A (CPU pipeline, no model checkpoint)\", \"completed_at\": \"2026-05-12T11:31:16.335Z\"}}, \"count\": 37, \"total\": 37, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1124}}"
+    }
+  },
+  "sourceToolAssistantUUID": "563366f9-282c-47d0-9d16-f0a57ae7b523",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0bc6e577-2c37-4a0d-98b0-30e9c415a52e",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write Method and Experiment Setup sections",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-15T01:53:19.049Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry output is large and was persisted to a file. Let me read the full registry output to get the spec fields for m2_full_qwen_continued and m2_full_starcoder_resumed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bc6e577-2c37-4a0d-98b0-30e9c415a52e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X5inK8ryeXBRGpijgZ",
+  "type": "assistant",
+  "uuid": "a105c7f7-a487-4b2f-a4a9-129d87faf1d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gf5BdPDw3W7q2vSZbPzs3J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10860,
+      "cache_read_input_tokens": 24627,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24627,
+          "cache_creation_input_tokens": 10860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-15T01:53:19.891Z_
+
+Let me read the full registry output to get the spec fields for the M2 experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a105c7f7-a487-4b2f-a4a9-129d87faf1d1",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X5inK8ryeXBRGpijgZ",
+  "type": "assistant",
+  "uuid": "b7e2df69-2906-45c9-b66d-8aaa705a614e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gf5BdPDw3W7q2vSZbPzs3J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10860,
+      "cache_read_input_tokens": 24627,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24627,
+          "cache_creation_input_tokens": 10860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T01:53:21.876Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RwpEDJv8GyTiVKQBaM34NQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/96b222a8-1429-4958-ab38-47572af7509c/tool-results/toolu_0136jVXt1oGWUAtb7ExRncyf.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7e2df69-2906-45c9-b66d-8aaa705a614e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X5inK8ryeXBRGpijgZ",
+  "type": "assistant",
+  "uuid": "c645e1d2-1a51-4da2-8ea9-eb55145a9593",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gf5BdPDw3W7q2vSZbPzs3J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10860,
+      "cache_read_input_tokens": 24627,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24627,
+          "cache_creation_input_tokens": 10860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T01:53:22.139Z_
+
+<details><summary>↩ Tool result · `toolu_01RwpEDJv8GyTiVKQBaM34NQ`</summary>
+
+```text
+1	{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_005_stratified\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:36:16.738Z\", \"updated_at\": \"2026-05-15T01:13:18.866Z\", \"hypothesis\": \"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\", \"parent\": \"m2_full_qwen\", \"notes\": \"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。\", \"metrics\": {\"confound_analysis\": {\"data_validity\": \"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\", \"valid_findings\": {\"distribution_structure\": \"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\", \"correlation\": {\"dataflow_edges_vs_repo_size_pearson_r\": 0.089}, \"cross_distribution\": {\"rich_in_large_xlarge_pct\": 99.3, \"rich_in_small\": 0, \"moderate_in_large_xlarge_pct\": 60.9}, \"implication\": \"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\"}, \"invalid_findings\": \"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\", \"artifacts_path\": \"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\", \"valid_artifact\": \"cross_tabulation.csv\"}}}, \"m1_reextract_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:00:20.578Z\", \"updated_at\": \"2026-05-15T01:12:42.413Z\", \"hypothesis\": \"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"spec\": {\"command\": \"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop, pack installed)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m1_data/\", \"data_count\": 28276, \"model_name\": \"N/A (CodeQL extraction)\", \"seed\": \"N/A\", \"log_path\": \"/root/runs/structfuse-context/m1_reextract_v2.log\", \"checkpoint_source\": \"rerun of m1_extraction failed instances (v2, CodeQL fixed)\", \"eval_data\": \"N/A\"}, \"notes\": \"M1 重提取 v2：CodeQL pack 已修复，端到端测试通过。28,276 instances / 82 repo groups / 4 workers 并行。启动 2026-05-14 03:59 CST。[诊断 07:06 CST] 活跃运行中，~15/82 groups 完成，2,469 次 call_graph 查询成功，预计还需 ~13-16h。仅前 4 个旧 repo（furl/pyasn1/feedparser/python-docx）复用 v1 旧 DB 有 18 次降级 WARNING，04:02 之后零失败。产出写入 all.jsonl（追加模式）。磁盘 97GB 可用。[Director 决策 Session 8] 即使数据量增至 ~44K，不重跑 M2（ARR May 25 DDL 不允许再加 4-5 天重训）。处理方式：(1) post-M2 完成后如有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline; (2) 论文中作为 scalability/data efficiency 讨论点; (3) 全量重训留 camera-ready。[进度检查 2026-05-15 05:05 CST] 80.8% 完成（22,842/28,276），0 ERROR，速率 ~560/hr，处理中大 repo：mozilla__bleach/sqlfluff/conan-io/Project-MONAI。产出为单独 .json 文件，尚未合并 all.jsonl。预计 ~15:00 CST May 15 完成。\", \"metrics\": {\"checked_at\": \"2026-05-15T09:12Z\", \"process\": \"alive (CPU, 4 workers)\", \"started\": \"2026-05-14T03:59Z\", \"elapsed_hours\": 29, \"total_instances\": 28276, \"completed_instances\": 24321, \"completion_pct\": 86, \"errors\": 0, \"active_repos\": {\"sqlfluff/sqlfluff\": \"1100/1272\", \"conan-io/conan\": \"700/972\", \"pydicom/pydicom\": \"500/1315\", \"Project-MONAI/MONAI\": \"200/524\"}, \"all_jsonl_lines\": 44173, \"disk_free_gb\": 78, \"eta\": \"~May 15 15:00-17:00 CST\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"m2_full_starcoder_resumed\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:44:19.253Z\", \"updated_at\": \"2026-05-15T01:11:10.682Z\", \"hypothesis\": \"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\", \"spec\": {\"command\": \"bash run_m2_full_starcoder_resume.sh (8 runs: random_s43→s44→embedding×3→dataflow×3)\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:1\"], \"pid\": \"519791\", \"log_path\": \"/root/runs/structfuse-context/m2_full_starcoder.log\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m2_training_data/\", \"data_count\": 11308, \"model_name\": \"StarCoder2-3B\", \"seed\": \"42,43,44\"}, \"parent\": \"m2_full_starcoder\", \"metrics\": {\"checked_at\": \"2026-05-15T01:12Z\", \"process\": \"alive (PID 519791, uptime 7h06m)\", \"gpu\": \"cuda:1, 100% util, 54347/97887 MiB\", \"current_subrun\": \"random_s43 (1/8 in resumed chain)\", \"current_step\": \"1300/2810 (~46%)\", \"latest_loss\": 0.2495, \"lr\": \"1.30e-05\", \"completed_subruns\": 1, \"remaining_subruns\": 7, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.4604, \"best_val_loss\": 0.6134, \"source\": \"parent\"}, \"random_s43\": {\"status\": \"RUNNING\", \"eval_at_500\": {\"R@1\": 0.4708, \"val_loss\": 0.5279, \"best_val_loss\": true}, \"eval_at_1000\": {\"R@1\": 0.478, \"val_loss\": 0.543, \"early_stopping\": \"1/2\"}, \"note\": \"eval@1500 in ~1h, likely early stop if val_loss > 0.5279\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\"], \"bm25_watcher\": \"active (PID watcher on 519791, will start BM25 StarCoder on cuda:1 when chain finishes)\", \"eta_hours\": \"55-65\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"m2_full_qwen_continued\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:44:20.646Z\", \"updated_at\": \"2026-05-15T01:11:10.448Z\", \"hypothesis\": \"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\", \"spec\": {\"command\": \"bash run_m2_full_qwen.sh (chain: random_s44 running → embedding×3 → dataflow×3)\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"337267\", \"log_path\": \"/root/runs/structfuse-context/m2_full_qwen.log\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m2_training_data/\", \"data_count\": 11308, \"model_name\": \"Qwen2.5-Coder-3B\", \"seed\": \"42,43,44\"}, \"parent\": \"m2_full_qwen\", \"metrics\": {\"checked_at\": \"2026-05-15T01:12Z\", \"process\": \"alive (PID 337267, uptime 13h45m)\", \"gpu\": \"cuda:0, 100% util, 49521/97887 MiB\", \"current_subrun\": \"embedding_distance_s43 (3/9 in chain)\", \"current_step\": \"150/2810 (~5%)\", \"latest_loss\": 0.5041, \"lr\": \"1.06e-05\", \"completed_subruns\": 3, \"remaining_subruns\": 6, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.5527, \"source\": \"parent m2_full_qwen\"}, \"random_s43\": {\"status\": \"DONE\", \"best_R1\": 0.5554, \"best_val_loss\": 0.4476, \"early_stopped\": \"step 1500\"}, \"random_s44\": {\"status\": \"DONE\", \"best_R1\": 0.6009, \"best_val_loss\": 0.4252, \"early_stopped\": \"step 1500\", \"best_step\": 500}, \"embedding_distance_s43\": {\"status\": \"RUNNING\", \"step\": 150, \"started\": \"08:32 CST\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\", \"random_s44/best_by_val_loss\", \"random_s44/best_by_recall_at_1\", \"random_s44/final\"], \"bm25_watcher\": \"active (PID watcher on 337267, will start BM25 Qwen on cuda:0 when chain finishes)\", \"eta_hours\": \"50-55\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"plan_017_literature\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:49:00.477Z\", \"updated_at\": \"2026-05-14T21:33:45.149Z\", \"hypothesis\": \"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\", \"spec\": {\"command\": \"analysis only (no training)\", \"server\": \"local\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"metrics\": {\"papers_surveyed\": 8, \"citations_verified\": 8, \"discussion_draft\": \"artifacts/paper_drafts/discussion_v2.md\", \"artifact_id\": \"art_20260514_a2e1cd\"}, \"completed_at\": \"2026-05-14T18:49:39.557Z\", \"notes\": \"Inference-time graph method comparison 完成。8 papers surveyed，其中 6 篇纳入 literature_map.yaml 和 discussion_v2.md（CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph）。CodeGRAG 和 CodeRAG 经调研排除：CodeGRAG（arXiv 2405.02355）关注 NL→code generation 的 graph-augmented prompting，不涉及代码检索或对比学习；CodeRAG 系列（CodeRAG-Bench 2406.14497 / CodeRAG 2504.10046）关注 retrieval-augmented code generation benchmark 和 bigraph-based 代码生成，均为生成任务而非检索训练。两者与 StructFuse 的 scope（训练时结构信号用于对比学习代码检索）不符，故未纳入 discussion。\"}, \"m2_full_starcoder\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:18:15.415Z\", \"updated_at\": \"2026-05-14T18:04:29.245Z\", \"hypothesis\": \"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\", \"parent\": \"plan_013_starcoder\", \"spec\": {\"command\": \"bash -c \\\"cd /root/structfuse && bash run_m2_full_starcoder_resume.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:1\"], \"pid\": \"519791\", \"log_path\": \"~/runs/structfuse-context/m2_full_starcoder.log\", \"submitted_at\": \"2026-05-14T18:03:12.079Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs。[2026-05-15 02:02 CST] cuda:1 进程冲突修复并重新提交（PID 519791, timeout=144h）。Registry 状态 DONE(failed) 是旧 cron timeout 标记，实际正在运行 random_s43 [1/8]。新 cron 已注册监控 PID 519791。序列：random_s43→s44→(待插入bm25_s42)→embedding×3→dataflow×3。random_s42 结果：best R@1=0.4604 at step 2500, val_loss=0.6134 at step 1000。\", \"metrics\": {\"random_s42\": {\"epoch\": \"3/3\", \"current_step\": 4200, \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.6194, \"recall_at_1\": 0.435, \"recall_at_5\": 0.905, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.6134, \"recall_at_1\": 0.454, \"recall_at_5\": 0.92, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.6528, \"recall_at_1\": 0.449, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.6698, \"recall_at_1\": 0.4456, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.6342, \"recall_at_1\": 0.4604, \"recall_at_5\": 0.9117, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.6516, \"recall_at_1\": 0.4544, \"recall_at_5\": 0.9077, \"recall_at_10\": 1}, \"eval_3500\": {\"val_loss\": 0.6588, \"recall_at_1\": 0.4534, \"recall_at_5\": 0.9057, \"recall_at_10\": 1}, \"eval_4000\": {\"val_loss\": 0.6637, \"recall_at_1\": 0.4547, \"recall_at_5\": 0.9003, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)\", \"conclusion\": \"effectively_complete (timeout at step 4200/4242, lr=7.8e-9, remaining 42 steps negligible)\"}, \"progress_snapshot\": \"2026-05-15T01:50 CST\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T17:49:54.474Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T17:49:55.304Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:49:56.408767+00:00\"}]}}, \"m2_full_qwen\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:18:14.870Z\", \"updated_at\": \"2026-05-14T18:00:29.323Z\", \"hypothesis\": \"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\", \"parent\": \"m2_embed_verify\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"73544\", \"log_path\": \"~/runs/structfuse-context/m2_full_qwen.log\", \"submitted_at\": \"2026-05-13T17:39:30.757Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed. [D026] s42 保持 3 epochs 提供完整 overfitting curve; s43/s44 及后续 runs 改为 2 epochs + early_stopping_patience=2。[STATUS 2026-05-15 00:19 CST] Registry 状态 ANALYZING 是 cron 自动设置（s42 进程退出触发），但实验实际仍在进行中。random_s43 在 cuda:0 正常运行，step 1200/2810 (43%)。eval@500 R@1=0.5357, eval@1000 R@1=0.5285 (early_stopping 1/2)。Best R@1=0.5357 at step 500。GPU 100% 利用率, 50.5/97.9GB VRAM。\", \"metrics\": {\"random_s42\": {\"status\": \"DONE\", \"epoch\": \"3/3\", \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.4869, \"recall_at_1\": 0.533, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.4651, \"recall_at_1\": 0.553, \"recall_at_5\": 0.959, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.5365, \"recall_at_1\": 0.523, \"recall_at_5\": 0.955, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.5162, \"recall_at_1\": 0.523, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.5264, \"recall_at_1\": 0.527, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.5406, \"recall_at_1\": 0.536, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.4651, R@1=0.5527)\", \"conclusion\": \"Overfit after step 1000. Best R@1=0.5527, +1.7pp vs pilot (0.5357). Full data helps.\"}, \"random_s43\": {\"status\": \"DONE\", \"epoch\": \"early_stopped\", \"total_steps_per_epoch\": 1405, \"eval_500\": {\"val_loss\": 0.4476, \"recall_at_1\": 0.5357}, \"eval_1000\": {\"val_loss\": 0.4637, \"recall_at_1\": 0.5285}, \"eval_1500\": {\"recall_at_1\": 0.5554}, \"best_by_val_loss\": \"step 500 (val_loss=0.4476)\", \"best_by_recall_at_1\": \"step 1500 (R@1=0.5554)\", \"conclusion\": \"Early stopped at step 1500. Best R@1=0.5554, consistent with s42 (0.5527). val_loss and R@1 criterion diverge.\"}, \"random_s44\": {\"status\": \"RUNNING\", \"note\": \"Auto-started 01:58 CST, epoch 1/2, 1408 batches/epoch\"}, \"progress_snapshot\": \"2026-05-15T02:00 CST\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T11:24:33.887Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T11:24:35.375104+00:00\"}]}}, \"plan_018_bm25\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:38:40.603Z\", \"updated_at\": \"2026-05-14T17:09:50.985Z\", \"hypothesis\": \"BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。\", \"parent\": \"m2_full_qwen\", \"notes\": \"Phase 1 (CPU) COMPLETE: BM25 negative mining 完成。3 seeds 数据生成，record counts 与其他策略完全一致，0 fallback。BM25 score 分布: mean=246.50, std=155.96。重叠率: BM25 vs embedding_distance ~87.1%, vs random ~76.2%, vs dataflow_aware ~71.8%。高 median=1.0 因小 repo 候选池≤50 文件导致策略完全重合，BM25 differentiation 主要在大 repo。脚本: /root/structfuse/scripts/mine_bm25_negatives.py。输出: /root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl。Phase 2 (GPU): 等 re-dream gate 通过 + M2 完成后训练。\", \"metrics\": {\"phase1_complete\": true, \"seed_42\": {\"train_records\": 11308, \"val_records\": 2980, \"train_size_mb\": 1280.8, \"val_size_mb\": 344.6}, \"seed_43\": {\"train_records\": 11236, \"val_records\": 3052, \"train_size_mb\": 1280.9, \"val_size_mb\": 316}, \"seed_44\": {\"train_records\": 11264, \"val_records\": 3024, \"train_size_mb\": 1347.1, \"val_size_mb\": 295.9}, \"bm25_score_dist\": {\"count\": 392954, \"mean\": 246.5, \"std\": 155.96, \"p25\": 128.38, \"p50\": 228.41, \"p75\": 347.85, \"max\": 2585.74}, \"overlap_overall\": {\"bm25_vs_embedding\": 0.871, \"bm25_vs_random\": 0.762, \"bm25_vs_dataflow\": 0.718, \"note\": \"k=50 full candidate overlap from mining worker\"}, \"overlap_stratified_top7_jaccard\": {\"small_lt50\": {\"repos\": 39, \"bm25_vs_embedding\": 0.668, \"bm25_vs_random\": 0.411, \"bm25_vs_dataflow\": 0.667}, \"medium_50_200\": {\"repos\": 29, \"bm25_vs_embedding\": 0.38, \"bm25_vs_random\": 0.067, \"bm25_vs_dataflow\": 0.363}, \"large_200plus\": {\"repos\": 15, \"bm25_vs_embedding\": 0.297, \"bm25_vs_random\": 0.007, \"bm25_vs_dataflow\": 0.405}, \"matched_queries\": 2920, \"total_queries\": 12290, \"note\": \"top-7 Jaccard on s42 matched queries only (24% match rate due to different train/val splits)\"}}}, \"plan_015_dynamic\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:03:24.316Z\", \"updated_at\": \"2026-05-14T17:03:30.544Z\", \"hypothesis\": \"Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。\", \"notes\": \"Director D031 缩减：原 44h → 11h 单卡。只跑 dynamic_ep × 1 seed (Qwen, s42)，跳过 dynamic_500。Post-M2 与 plan_003 并行（一卡 SWE-bench，一卡 dynamic_ep）。受 re-dream gate 约束。设计文档已由 Worker 完成。\"}, \"neg_difficulty_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:39:20.016Z\", \"updated_at\": \"2026-05-14T00:13:49.046Z\", \"hypothesis\": \"Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\", \"notes\": \"128 vs 2048 token 对比完成（2026-05-14 05:54 CST）。Qwen pos_sim 在 2048t 下 0.9855（比 128t 的 0.9804 更高），确认 ceiling 为 Qwen 表征的结构性特征，非截断 artifact。StarCoder margin 2.6-4.1x Qwen（2048t）。核心结论：pretrained representation separability varies across encoders，跨两种 token 长度成立。数据源：128t → stats_v2.json，2048t → stats_v3_2048.json。\", \"metrics\": {\"qwen_128\": {\"random\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.899, \"margin\": 0.0816, \"pct_positive_margin\": 77.8}, \"embedding_distance\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.959, \"margin\": 0.0209, \"pct_positive_margin\": 60.7}, \"dataflow_aware\": {\"pos_sim\": 0.9805, \"neg_sim\": 0.95, \"margin\": 0.0309, \"pct_positive_margin\": 67.4}}, \"starcoder_128\": {\"random\": {\"pos_sim\": 0.757, \"neg_sim\": 0.553, \"margin\": 0.2039, \"pct_positive_margin\": 72.8}, \"embedding_distance\": {\"pos_sim\": 0.784, \"neg_sim\": 0.668, \"margin\": 0.1159, \"pct_positive_margin\": 59.2}, \"dataflow_aware\": {\"pos_sim\": 0.761, \"neg_sim\": 0.659, \"margin\": 0.1022, \"pct_positive_margin\": 62.8}}, \"qwen_2048\": {\"random\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9111, \"margin\": 0.0743, \"margin_std\": 0.2322, \"pct_positive_margin\": 81.8}, \"embedding_distance\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9685, \"margin\": 0.017, \"margin_std\": 0.114, \"pct_positive_margin\": 58.8}, \"dataflow_aware\": {\"pos_sim\": 0.9856, \"neg_sim\": 0.9563, \"margin\": 0.0293, \"margin_std\": 0.1407, \"pct_positive_margin\": 73.9}}, \"starcoder_2048\": {\"random\": {\"pos_sim\": 0.7985, \"neg_sim\": 0.6045, \"margin\": 0.194, \"margin_std\": 0.2788, \"pct_positive_margin\": 78}, \"embedding_distance\": {\"pos_sim\": 0.8079, \"neg_sim\": 0.7409, \"margin\": 0.067, \"margin_std\": 0.2056, \"pct_positive_margin\": 55}, \"dataflow_aware\": {\"pos_sim\": 0.8009, \"neg_sim\": 0.6818, \"margin\": 0.1192, \"margin_std\": 0.2264, \"pct_positive_margin\": 70.4}}, \"sc_qwen_margin_ratio_128\": {\"random\": 2.5, \"embedding_distance\": 5.54, \"dataflow_aware\": 3.3}, \"sc_qwen_margin_ratio_2048\": {\"random\": 2.61, \"embedding_distance\": 3.94, \"dataflow_aware\": 4.07}}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python negative_difficulty_margin_v2.py (CPU analysis)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m2_data/\", \"data_count\": 11000, \"model_name\": \"Qwen2.5-Coder-3B + StarCoder2-3B (pretrained, no training)\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/root/autodl-tmp/structfuse/artifacts/negative_difficulty_stats_v3_2048.json\"}, \"completed_at\": \"2026-05-14T00:13:49.046Z\"}, \"m1_reextract\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:35:23.954Z\", \"updated_at\": \"2026-05-13T19:45:53.741Z\", \"hypothesis\": \"M1 重提取：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"spec\": {\"command\": \"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/m1_extraction/\", \"data_count\": 28276, \"model_name\": \"N/A (CodeQL extraction)\", \"seed\": \"N/A\", \"pid\": \"97358\", \"log_path\": \"/root/runs/structfuse-context/m1_rerun.log\", \"checkpoint_source\": \"rerun of m1_extraction failed instances\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"N/A (failed, no output)\"}, \"conclusion\": \"failed\", \"notes\": \"CodeQL query 100% 失败（exit status 2）。根因：Worker 安装 CodeQL CLI 2.25.4 时未执行 `codeql pack install`，`codeql/python-all@7.1.0` 标准库 pack 缺失。修复命令：`cd /root/structfuse/extraction/codeql_queries && /opt/codeql/codeql pack install`。已 kill 进程 + tmux session。无新数据产出（all.jsonl 未受影响）。等 Director 确认后修复重跑。\", \"completed_at\": \"2026-05-13T19:44:09.115Z\"}, \"m1_extraction\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T21:00:02.300Z\", \"updated_at\": \"2026-05-13T19:26:13.901Z\", \"spec\": {\"command\": \"nohup bash scripts/run_m1_extraction.sh (8 CPU workers, CodeQL 2-hop)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/structfuse/m1_extraction/\", \"data_count\": 50869, \"model_name\": \"N/A (CodeQL extraction)\", \"seed\": \"N/A\", \"description\": \"M1: 全量 5K repos CodeQL 提取, 131 unique (repo,commit) groups, 50869 instances\"}, \"metrics\": {\"total_instances_attempted\": 44173, \"instances_skipped\": 6696, \"total_instances\": 50869, \"codeql_success\": 15133, \"beniget_fallback\": 764, \"extraction_failed\": 28276, \"structural_data_rate\": 0.36, \"repos_with_output\": 123, \"repos_total\": 131, \"repo_coverage\": 0.939, \"skip_clone_failed\": 5852, \"skip_checkout_failed\": 836, \"skip_stale_handle\": 8, \"elapsed_minutes\": 837.8, \"avg_time_per_instance_s\": 8.9, \"output_size_gb\": 6.6, \"disk_usage_gb\": 13, \"output_file\": \"all.jsonl\"}, \"notes\": \"[2026-05-13 19:25] COMPLETED. 837.8min, 123/131 repos (93.9%), 15,897/44,173 instances with structural data (36.0%), 6,696 skipped (clone/checkout). Output: all.jsonl 6.6GB. [2026-05-13 19:23 UPDATE] 28,276 buggy_file_not_found errors 经验证并非上游数据质量问题——10/10 抽查的文件在 repo 中全部存在。根因是运行时瞬态文件系统故障（CodeQL 并行 database creation 导致磁盘耗尽，锐截止模式）。这些 instances 可通过重跑恢复。D022: 准备重跑脚本中，等 Director 确认后执行。\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/structfuse/m1_extraction/all.jsonl\", \"log_path\": \"/tmp/m1_extraction.log\", \"completed_at\": \"2026-05-13T10:59:42.462Z\"}, \"plan_006_scalability\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T07:57:43.631Z\", \"updated_at\": \"2026-05-13T19:24:00.741Z\", \"spec\": {\"command\": \"M1 scalability statistics analysis (29/131 repos)\", \"server\": \"bjb1-42106\", \"data_path\": \"/root/autodl-tmp/structfuse/m1_extraction/\", \"data_count\": 8171, \"model_name\": \"N/A (CPU analysis)\", \"seed\": \"N/A\", \"description\": \"Plan 006: M1 extraction scalability stats - timeout rate, extraction time, coverage, Z% by repo size. Partial results from 29/131 repos.\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T07:57:58.176Z\", \"notes\": \"[2026-05-13 19:23] 全量统计 + error 分析 + fuzzy match 验证完成。关键发现: (1) 0 timeout; (2) 28,276 error 全部 buggy_file_not_found，但 fuzzy match 验证发现文件实际都存在——根因是运行时瞬态文件系统故障（锐截止模式：每个 repo 内先成功后突然全部失败，extraction_time=0.0s），可能是 CodeQL 并行数据库创建导致磁盘空间耗尽; (3) 这些 instance 可通过重跑恢复（当前 resolve_file_in_repo 对全部样本返回正确路径）; (4) 结构数据率 34.3% 有望提升至接近 100%（若重跑成功）; (5) Z% 随 repo 规模上升 (XL median 96%). Artifacts: plan006_full_scalability.json, art_20260513_d262da (error patterns)\", \"hypothesis\": \"Claim 3: CodeQL bounded data-flow extraction scales to large repos with acceptable timeout rates and provides meaningful structural coverage (Z%) that increases with repo complexity\", \"metrics\": {\"repos\": 123, \"total_instances\": 44173, \"structural_data_rate\": 0.343, \"error_rate\": 0.64, \"zero_timeout_rate\": true, \"processing_time\": {\"mean_s\": 8.93, \"median_s\": 0, \"p95_s\": 31.95, \"max_s\": 633.68, \"total_hours\": 109.58}, \"by_tier\": {\"small_lt50\": {\"repos\": 1, \"instances\": 500, \"error_rate\": 0.054, \"struct_rate\": 0.81, \"z_pct_mean\": 0.284, \"z_pct_median\": 0}, \"medium_50_200\": {\"repos\": 17, \"instances\": 4096, \"error_rate\": 0.485, \"struct_rate\": 0.472, \"z_pct_mean\": 0.444, \"z_pct_median\": 0.5}, \"large_200_500\": {\"repos\": 40, \"instances\": 13628, \"error_rate\": 0.639, \"struct_rate\": 0.343, \"z_pct_mean\": 0.604, \"z_pct_median\": 0.857}, \"xlarge_500plus\": {\"repos\": 29, \"instances\": 25949, \"error_rate\": 0.676, \"struct_rate\": 0.314, \"z_pct_mean\": 0.812, \"z_pct_median\": 0.96}}, \"instance_distribution\": {\"lt10\": 1, \"10_50\": 17, \"50_200\": 36, \"200_500\": 40, \"500plus\": 29}, \"artifact\": \"plan006_full_scalability.json\"}}, \"plan_013_starcoder\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T05:09:14.885Z\", \"updated_at\": \"2026-05-13T18:09:54.153Z\", \"hypothesis\": \"Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\", \"spec\": {\"command\": \"bash -c \\\"bash /root/structfuse/run_plan013_starcoder.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"23798\", \"log_path\": \"~/runs/structfuse-context/plan_013_starcoder.log\", \"submitted_at\": \"2026-05-13T05:26:21.946Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_embed_verify_data/\", \"data_count\": 3282, \"model_name\": \"bigcode/starcoder2-3b\", \"seed\": 42, \"wall_clock_seconds\": 35338.2, \"gpu_hours\": 9.82}, \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5078) > random (0.4922) > dataflow (0.4869). Embedding vs random: +1.6pp (consistent with Qwen). Dataflow vs random: -0.5pp (DIFFERS from Qwen where dataflow > random +0.8pp). Hypothesis NEGATIVE: strategy ranking NOT identical across encoders. Embedding > random is encoder-agnostic, dataflow position is encoder-dependent. Log: /root/runs/faith-evidence-ie/plan_013_starcoder.log. Cron misreported EXIT_CODE=129 but all strategies completed (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_val_loss\": 0.5113, \"best_recall@1\": 0.4922, \"best_recall@5\": 0.98, \"best_recall@10\": 1, \"source\": \"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\"}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.4816, \"best_recall@1\": 0.5078, \"best_recall@5\": 0.9843, \"best_recall@10\": 1, \"final_val_loss\": 0.506, \"final_recall@1\": 0.5174}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.5255, \"best_recall@1\": 0.4869, \"best_recall@5\": 0.9695, \"best_recall@10\": 1, \"final_val_loss\": 0.5509, \"final_recall@1\": 0.5078}}, \"failure_reason\": \"\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T15:15:20.165Z\"}, \"m2_embed_verify\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:39:16.051Z\", \"updated_at\": \"2026-05-13T15:59:51.621Z\", \"hypothesis\": \"True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence.\", \"parent\": \"m2_early_pilot\", \"spec\": {\"command\": \"bash -c \\\"bash /root/structfuse/run_m2_embed_verify.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:1\"], \"pid\": \"29290\", \"log_path\": \"~/runs/structfuse-context/m2_embed_verify.log\", \"submitted_at\": \"2026-05-13T06:37:00.822Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_embed_verify_data/\", \"data_count\": 3282, \"model_name\": \"Qwen/Qwen2.5-Coder-3B\", \"seed\": 42, \"checkpoint_source\": \"training from scratch (not eval)\", \"eval_data\": \"N/A (training, not eval)\", \"wall_clock_seconds\": 31097.9, \"gpu_hours\": 8.64}, \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5557) > dataflow (0.5436) > random (0.5357). Embedding vs random: +2.0pp. Dataflow vs random: +0.8pp. All best at step 500, overfitting after. Hypothesis confirmed: true embedding negatives are harder → Claim 2 supported. Log: /root/runs/faith-evidence-ie/m2_embed_verify.log. Cron misreported EXIT_CODE=2 but all strategies completed successfully (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4834, \"best_recall@1\": 0.5357, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5978, \"final_recall@1\": 0.5122}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4603, \"best_recall@1\": 0.5557, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5935, \"final_recall@1\": 0.5209}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.5602, \"best_recall@1\": 0.5436, \"best_recall@5\": 0.9817, \"best_recall@10\": 1, \"final_val_loss\": 0.6201, \"final_recall@1\": 0.5287}}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T15:15:18.746Z\"}, \"mvp_p2b_contrastive_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T15:03:02.370Z\", \"updated_at\": \"2026-05-13T07:23:28.932Z\", \"spec\": {\"command\": \"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"132149\", \"data_path\": \"/root/structfuse/mvp_data/training_data/\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B + LoRA\", \"seed\": \"42,123,7\", \"hypothesis\": \"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\", \"plan_id\": \"mvp_p2b_contrastive_training\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:04:44.396Z\", \"notes\": \"P2b 对比训练 v2，因磁盘空间不足被 kill。已被 p2b_5reruns（成功完成 9/9 runs）替代。\"}, \"p2b_dataflow_retrain\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T19:49:00.303Z\", \"updated_at\": \"2026-05-13T07:23:27.706Z\", \"spec\": {\"command\": \"build_p2b_data.py regeneration + dataflow 3-seed retrain\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 0, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"description\": \"BLOCKED: dataflow connections ⊆ gold files, strategies indistinguishable\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T04:17:02.055Z\", \"notes\": \"Dataflow 策略重训练计划，因 embedding_distance 命名问题（实际用 BM25 而非 embedding）被 Reviewer 发现后搁置。已被 m2_embed_verify（true embedding mining）替代。\"}, \"p2b_eval_all\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T16:27:50.967Z\", \"updated_at\": \"2026-05-13T07:23:24.721Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_eval_all.sh\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"254053\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T16:27:50.945Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 42550.6, \"gpu_hours\": 11.82}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-13T04:17:01.561Z\", \"notes\": \"P2b 全量 eval（pool_size=26），被 D013 服务器迁移计划取消。已被 p2b_eval_4runs_pool50（pool_size=50）替代。\"}, \"m2_early_pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:39:53.920Z\", \"updated_at\": \"2026-05-13T04:44:22.077Z\", \"hypothesis\": \"Early pilot on partial M1 data (24 repos, ~5K instances): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"spec\": {\"command\": \"bash /root/structfuse/scripts/run_m2_pilot.sh\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"795739\", \"log_path\": \"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42.log\", \"submitted_at\": \"2026-05-13T01:55:31.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_pilot_data/\", \"data_count\": 3418, \"model_name\": \"Qwen/Qwen2.5-Coder-3B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training, not eval)\", \"checkpoint_path\": \"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42/best_model.pt\", \"wall_clock_seconds\": 10130.8, \"gpu_hours\": 2.81}, \"conclusion\": \"killed\", \"notes\": \"PID 795791 在 cqa1 cuda:4 运行，wrapper 脚本顺序跑 random→embedding→dataflow（set -e）。random 策略跑到 step 4000 后卡住（~45min 无新日志），embedding/dataflow 未启动。Best checkpoint at step 1500。Val_loss 持续恶化（0.5879→0.728），明显过拟合。另有 OOM 进程干扰（某进程试图在同 GPU 启动导致 OOM，可能破坏 GPU 状态）。eval recall@k bug 已确认。\", \"metrics\": {\"pid\": 795791, \"gpu\": \"cuda:4\", \"gpu_mem_mb\": 9342, \"gpu_util_pct\": 83, \"batch_size\": 2, \"num_negatives\": 3, \"max_seq_length\": 1024, \"strategy_running\": \"random (stuck at step 4000, epoch 3)\", \"strategies_completed\": \"0/3\", \"eval_1500\": {\"val_loss\": 0.5879, \"recall_at_1\": 0.4693, \"recall_at_5\": 0.4693, \"recall_at_10\": 0.4693}, \"eval_2000\": {\"val_loss\": 0.7089, \"recall_at_1\": 0.4398}, \"eval_2500\": {\"val_loss\": 0.6961, \"recall_at_1\": 0.4291}, \"eval_3000\": {\"val_loss\": 0.728, \"recall_at_1\": 0.4104}, \"eval_3500\": {\"val_loss\": 0.7022, \"recall_at_1\": 0.4439}, \"best_checkpoint\": \"step_1500 (val_loss=0.5879, 6.2GB)\", \"WARNING\": \"recall@1=recall@5=recall@10 confirmed eval bug. Process hung after step 4000 (~45min no output). Overfitting after step 1500.\", \"status_check_at\": \"2026-05-13T04:42:00Z\"}, \"completed_at\": \"2026-05-13T04:44:22.077Z\"}, \"m2_early_pilot_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:59:06.557Z\", \"updated_at\": \"2026-05-13T02:13:43.400Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/structfuse/run_m2_early_pilot.sh\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"897651\", \"log_path\": \"~/runs/structfuse-context/m2_early_pilot_v3.log\", \"submitted_at\": \"2026-05-13T02:04:31.768Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 551.6, \"gpu_hours\": 0.15}, \"conclusion\": \"killed\", \"notes\": \"GPU 越界 cuda:0，违反项目 GPU 分配 gpu_ids=[\\\"cuda:4\\\"]。第二次 GPU 越界违规（首次 D005）。Worker 未正确映射 CUDA_VISIBLE_DEVICES。\", \"completed_at\": \"2026-05-13T02:13:43.400Z\"}, \"m2_early_pilot_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:52:52.724Z\", \"updated_at\": \"2026-05-13T02:13:31.039Z\", \"spec\": {\"command\": \"bash /root/structfuse/run_m2_early_pilot.sh\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"766124\", \"log_path\": \"~/runs/structfuse-context/m2_early_pilot_v2.log\", \"submitted_at\": \"2026-05-13T01:52:52.687Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/m2_early_pilot_data/\", \"data_count\": 3418, \"model_name\": \"Qwen/Qwen2.5-Coder-3B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (this is training, not eval)\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 1238.4, \"gpu_hours\": 0.34}, \"hypothesis\": \"Early pilot on partial M1 data (24 repos, 2672 train + 746 val): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"parent\": \"m1_extraction\", \"notes\": \"wandb API key error, EXIT_CODE=1。首次提交因 wandb 未配置离线模式而立即退出。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T02:13:31.040Z\"}, \"mvp_p2b_contrastive_training\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-12T12:37:44.628Z\", \"updated_at\": \"2026-05-13T01:31:27.220Z\", \"reproduce\": {\"finished_at\": \"2026-05-12T16:19:50.297Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-12T13:16:21.735Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T13:16:22.517958+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:15:47.933008+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T16:19:51.082427+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第2次失败: random策略3seeds全部完成(s42跳过/s123 recall@5=0.984/s456 recall@5=0.992), 但embedding策略s42启动即EXIT_CODE=2(shell syntax error). Worker worker_diagnose_mvp_p2b_contrastive_training_v2 正在诊断和修复run_p2b_all.sh的embedding配置部分\"}}, \"notes\": \"4/9 runs 完成 (random×3 + embedding_distance_s42), 5/9 失败 (磁盘满 torch.save RuntimeError). /root/autodl-tmp 93% (14GB剩余, 每个checkpoint 5.8GB). 失败从 embedding_distance_s123 开始级联.\", \"spec\": {\"command\": \"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"238645\", \"data_path\": \"/root/structfuse/mvp_data/training_data/\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B + LoRA\", \"seed\": \"42,123,456\", \"hypothesis\": \"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\", \"plan_id\": \"mvp_p2b_contrastive_training\", \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/\", \"log_path\": \"/tmp/p2b_all_runs.log\"}, \"metrics\": {\"random_s42_recall1\": 0.984, \"random_s123_recall1\": 0.984, \"random_s456_recall1\": 0.992, \"embedding_s42_recall1\": 0.874, \"random_mean_recall1\": 0.987, \"runs_completed\": 4, \"runs_failed\": 5, \"failure_type\": \"disk_full_torch_save\"}, \"conclusion\": \"killed\"}, \"p2b_eval_4runs_pool50\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:10:54.579Z\", \"updated_at\": \"2026-05-13T00:27:50.197Z\", \"spec\": {\"command\": \"eval_p2b.py on 4 checkpoints with new val.jsonl pool_size=50\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"p2b_5reruns (random×3 + emb_dist×1)\", \"eval_data\": \"val.jsonl pool_size=50\"}, \"conclusion\": \"success\", \"metrics\": {\"pool_size\": 50, \"n_samples\": 127, \"random_s42\": {\"recall@1\": 0.496, \"recall@5\": 0.843, \"recall@10\": 0.945}, \"random_s123\": {\"recall@1\": 0.535, \"recall@5\": 0.85, \"recall@10\": 0.921}, \"random_s456\": {\"recall@1\": 0.543, \"recall@5\": 0.843, \"recall@10\": 0.953}, \"emb_dist_s42\": {\"recall@1\": 0.488, \"recall@5\": 0.835, \"recall@10\": 0.874}, \"random_mean\": {\"recall@1\": 0.525, \"recall@5\": 0.845, \"recall@10\": 0.94}, \"emb_dist_vs_random_delta\": {\"recall@1\": -0.037, \"recall@5\": -0.01, \"recall@10\": -0.066}}, \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/ (p2b_random_s42/123/456, p2b_embedding_distance_s42)\", \"log_path\": \"已清理 (2026-05-12 Director Step 1 指令 rm -rf)，metrics 保留在 registry\", \"completed_at\": \"2026-05-12T20:11:12.318Z\"}, \"d007_50repo_overlap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:37:24.289Z\", \"updated_at\": \"2026-05-12T20:37:39.566Z\", \"spec\": {\"command\": \"CodeQL 2-hop extraction + connected vs gold overlap stats on 50 repos\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 240, \"model_name\": \"N/A (CPU analysis)\", \"seed\": \"N/A\", \"description\": \"50-repo overlap validation: Z=40.8%, original method viable\"}, \"conclusion\": \"success\", \"metrics\": {\"total_instances\": 240, \"instances_with_extra_connected\": 98, \"Z_pct\": 40.8, \"avg_connected_minus_gold\": 6, \"codeql_timeout_rate_pct\": 4, \"by_repo_size\": {\"small_lt50\": {\"Z_pct\": 38.6, \"avg_extra\": 2.5}, \"medium_50_200\": {\"Z_pct\": 55.7, \"avg_extra\": 11.8}, \"large_gt200\": {\"Z_pct\": 16.7, \"avg_extra\": 8.8}}, \"decision\": \"Z=40.8% >= 20% -> original method viable, proceed to M1\"}, \"checkpoint_path\": \"N/A (analysis only)\", \"log_path\": \"/root/structfuse/data/50repo_overlap_stats/\", \"completed_at\": \"2026-05-12T20:37:39.566Z\"}, \"p2b_5reruns\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:26:47.603Z\", \"updated_at\": \"2026-05-12T19:19:53.785Z\", \"spec\": {\"command\": \"bash run_p2b_all.sh (skips 4 done, runs 5: emb_dist s123/456, dataflow s42/123/456)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"272732\", \"log_path\": \"~/runs/structfuse-context/p2b_5reruns.log\", \"submitted_at\": \"2026-05-12T17:26:47.575Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/structfuse\", \"data_count\": 500, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"description\": \"Phase 2b 5 reruns: emb_dist s123/456 + dataflow_aware s42/123/456\", \"hyperparams\": {\"batch_size\": 2, \"lr\": \"2e-5\", \"num_negatives\": 3, \"max_seq_length\": 512, \"use_lora\": true, \"gradient_checkpointing\": true, \"eval_steps\": 50, \"save_steps\": 200, \"num_epochs\": 3}, \"wall_clock_seconds\": 6752.2, \"gpu_hours\": 1.88}, \"conclusion\": \"success\", \"metrics\": {\"random_s42\": {\"val_loss\": 0.0347, \"recall@1\": 0.9843}, \"random_s123\": {\"val_loss\": 0.0446, \"recall@1\": 0.9843}, \"random_s456\": {\"val_loss\": 0.0188, \"recall@1\": 0.9921}, \"emb_dist_s42\": {\"val_loss\": 0.1876, \"recall@1\": 0.874}, \"emb_dist_s123\": {\"val_loss\": 0.1461, \"recall@1\": 0.874}, \"emb_dist_s456\": {\"val_loss\": 0.1281, \"recall@1\": 0.8819}, \"dataflow_s42\": {\"val_loss\": 0.1878, \"recall@1\": 0.874}, \"dataflow_s123\": {\"val_loss\": 0.146, \"recall@1\": 0.874}, \"dataflow_s456\": {\"val_loss\": 0.1278, \"recall@1\": 0.8819}, \"runs_completed\": 9, \"runs_failed\": 0, \"WARNING\": \"dataflow_aware ≈ embedding_distance to 4 decimal places across all seeds — likely code bug in negative sampling\"}, \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/ (9 dirs: p2b_{random,embedding_distance,dataflow_aware}_s{42,123,456})\", \"completed_at\": \"2026-05-12T19:19:19.793Z\", \"log_path\": \"~/runs/structfuse-context/p2b_5reruns.log\"}, \"p2b_eval_4runs_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T17:21:49.599Z\", \"updated_at\": \"2026-05-12T17:22:16.595Z\", \"spec\": {\"command\": \"eval 4 runs (3 random seeds + 1 emb_dist) with pool_size=26\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse\", \"data_count\": 127, \"model_name\": \"Qwen2.5-Coder-3B (LoRA)\", \"seed\": \"42,123,456\", \"description\": \"Phase 2b eval v2: pool_size=26 评估 random vs emb_dist\"}, \"conclusion\": \"success\", \"metrics\": {\"random_seed42\": {\"recall@1\": 0.9449, \"recall@5\": 0.9843, \"recall@10\": 0.9843}, \"random_seed123\": {\"recall@1\": 0.9449, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"random_seed456\": {\"recall@1\": 0.9291, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"emb_dist_seed42\": {\"recall@1\": 0.6693, \"recall@5\": 0.8898, \"recall@10\": 0.9291}, \"pool_size\": 26, \"n_samples\": 127}, \"checkpoint_path\": \"/root/autodl-tmp/structfuse/checkpoints/ (4 runs: random_s42/123/456, emb_dist_s42)\", \"log_path\": \"/root/autodl-tmp/structfuse/eval_results/\", \"completed_at\": \"2026-05-12T17:22:16.595Z\"}, \"p2b-all-9runs\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:34:24.923Z\", \"updated_at\": \"2026-05-12T15:05:49.244Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"92636\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:34:24.908Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9084.3, \"gpu_hours\": 2.52}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:49.244Z\"}, \"p2b-smoke8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:32:22.931Z\", \"updated_at\": \"2026-05-12T15:05:48.324Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"91698\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:32:22.916Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9205.4, \"gpu_hours\": 2.56}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:48.324Z\"}, \"p2b-smoke7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:28:55.114Z\", \"updated_at\": \"2026-05-12T15:05:47.346Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"90758\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:28:55.101Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9412.2, \"gpu_hours\": 2.61}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:47.346Z\"}, \"p2b-smoke6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:22:54.445Z\", \"updated_at\": \"2026-05-12T15:05:46.413Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"89257\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:22:54.433Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9772.0, \"gpu_hours\": 2.71}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:46.413Z\"}, \"p2b-smoke5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:22:05.754Z\", \"updated_at\": \"2026-05-12T15:05:45.484Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"88719\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:22:05.744Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9819.7, \"gpu_hours\": 2.73}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:45.484Z\"}, \"p2b-smoke4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:20:53.305Z\", \"updated_at\": \"2026-05-12T15:05:44.066Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"87968\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:20:53.296Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 9890.8, \"gpu_hours\": 2.75}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:44.066Z\"}, \"p2b-smoke3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:18:19.105Z\", \"updated_at\": \"2026-05-12T15:05:43.111Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"86879\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:18:19.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 10044.0, \"gpu_hours\": 2.79}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:43.111Z\"}, \"p2b-smoke2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:16:08.154Z\", \"updated_at\": \"2026-05-12T15:05:42.174Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"85793\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:16:08.148Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 10174.0, \"gpu_hours\": 2.83}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:42.174Z\"}, \"p2b-smoke-test\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:14:30.477Z\", \"updated_at\": \"2026-05-12T15:05:41.269Z\", \"spec\": {\"command\": \"obsolete smoke test\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"84805\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-12T12:14:30.472Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 10270.8, \"gpu_hours\": 2.85}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:05:41.270Z\"}, \"mvp_p2a_linear_proxy\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:53:42.223Z\", \"updated_at\": \"2026-05-12T11:58:15.436Z\", \"spec\": {\"command\": \"python evaluation/linear_proxy.py (logistic regression on data-flow features + BM25)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/mvp_results/ + /root/structfuse/mvp_data/bm25/\", \"data_count\": 8, \"model_name\": \"LogisticRegression (scikit-learn)\", \"seed\": null, \"hypothesis\": \"H2-confirm: data-flow features 的线性分类器预测 bug-relevant 文件优于纯 BM25 baseline\", \"plan_id\": \"mvp_p2a_linear_proxy\"}, \"conclusion\": \"success\", \"metrics\": {\"df_bm25_auc\": 0.78, \"bm25_only_auc\": 0.476, \"auc_delta\": 0.304, \"df_bm25_mrr\": 0.556, \"bm25_only_mrr\": 0.115, \"mrr_delta\": 0.441, \"df_bm25_f1\": 0.143, \"bm25_only_f1\": 0.039, \"top_feature\": \"is_connected (+2.82)\", \"repos_evaluated\": 3, \"note\": \"3 repos / 3 positive samples, directional evidence\"}, \"checkpoint_path\": \"N/A (logistic regression, no checkpoint)\", \"log_path\": \"/root/structfuse/evaluation/linear_proxy.py output\", \"completed_at\": \"2026-05-12T11:58:15.436Z\"}, \"mvp_p1_codeql_feasibility\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:30:45.938Z\", \"updated_at\": \"2026-05-12T11:58:06.197Z\", \"spec\": {\"command\": \"python extraction/extract_dataflow.py + codeql query run (call_graph.ql + bounded_dataflow.ql)\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/structfuse/mvp_data/repos (8 SWE-smith instances: flask, requests, pytest, pylint, xarray, astropy, sphinx, matplotlib)\", \"data_count\": 8, \"model_name\": \"N/A (CPU pipeline)\", \"seed\": null, \"hypothesis\": \"H1: CodeQL 2-hop bounded data-flow timeout <30%; H2: connected files gold patch coverage significantly > disconnected\", \"plan_id\": \"mvp_p1_codeql_feasibility\"}, \"conclusion\": \"success\", \"metrics\": {\"timeout_rate\": 0, \"repos_processed\": 8, \"repos_skipped\": 2, \"cg_mean_s\": 29.6, \"cg_max_s\": 119.8, \"df_mean_s\": 43.4, \"df_max_s\": 167.1, \"h2_connected_coverage\": 0.014815, \"h2_disconnected_coverage\": 0, \"h2_fisher_p\": 6.5e-09, \"h2_gold_in_connected_ratio\": 1, \"h2_note\": \"After path normalization fix: 8/8 gold in connected (was 6/8)\"}, \"log_path\": \"/root/autodl-tmp/mvp_results/mvp_phase1_report.json\", \"checkpoint_path\": \"N/A (CPU pipeline, no model checkpoint)\", \"completed_at\": \"2026-05-12T11:31:16.335Z\"}}, \"count\": 37, \"total\": 37, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1124}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c645e1d2-1a51-4da2-8ea9-eb55145a9593",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "d9595c2f-20cb-4c3c-8ba3-953447a1bd7d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/96b222a8-1429-4958-ab38-47572af7509c/tool-results/toolu_0136jVXt1oGWUAtb7ExRncyf.txt",
+      "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_005_stratified\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:13:18.866Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"data_validity\\\": \\\"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\\\", \\\"valid_findings\\\": {\\\"distribution_structure\\\": \\\"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"implication\\\": \\\"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\\\"}, \\\"invalid_findings\\\": \\\"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\", \\\"valid_artifact\\\": \\\"cross_tabulation.csv\\\"}}}, \\\"m1_reextract_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:00:20.578Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:12:42.413Z\\\", \\\"hypothesis\\\": \\\"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop, pack installed)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/\\\", \\\"data_count\\\": 28276, \\\"model_name\\\": \\\"N/A (CodeQL extraction)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m1_reextract_v2.log\\\", \\\"checkpoint_source\\\": \\\"rerun of m1_extraction failed instances (v2, CodeQL fixed)\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"notes\\\": \\\"M1 重提取 v2：CodeQL pack 已修复，端到端测试通过。28,276 instances / 82 repo groups / 4 workers 并行。启动 2026-05-14 03:59 CST。[诊断 07:06 CST] 活跃运行中，~15/82 groups 完成，2,469 次 call_graph 查询成功，预计还需 ~13-16h。仅前 4 个旧 repo（furl/pyasn1/feedparser/python-docx）复用 v1 旧 DB 有 18 次降级 WARNING，04:02 之后零失败。产出写入 all.jsonl（追加模式）。磁盘 97GB 可用。[Director 决策 Session 8] 即使数据量增至 ~44K，不重跑 M2（ARR May 25 DDL 不允许再加 4-5 天重训）。处理方式：(1) post-M2 完成后如有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline; (2) 论文中作为 scalability/data efficiency 讨论点; (3) 全量重训留 camera-ready。[进度检查 2026-05-15 05:05 CST] 80.8% 完成（22,842/28,276），0 ERROR，速率 ~560/hr，处理中大 repo：mozilla__bleach/sqlfluff/conan-io/Project-MONAI。产出为单独 .json 文件，尚未合并 all.jsonl。预计 ~15:00 CST May 15 完成。\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T09:12Z\\\", \\\"process\\\": \\\"alive (CPU, 4 workers)\\\", \\\"started\\\": \\\"2026-05-14T03:59Z\\\", \\\"elapsed_hours\\\": 29, \\\"total_instances\\\": 28276, \\\"completed_instances\\\": 24321, \\\"completion_pct\\\": 86, \\\"errors\\\": 0, \\\"active_repos\\\": {\\\"sqlfluff/sqlfluff\\\": \\\"1100/1272\\\", \\\"conan-io/conan\\\": \\\"700/972\\\", \\\"pydicom/pydicom\\\": \\\"500/1315\\\", \\\"Project-MONAI/MONAI\\\": \\\"200/524\\\"}, \\\"all_jsonl_lines\\\": 44173, \\\"disk_free_gb\\\": 78, \\\"eta\\\": \\\"~May 15 15:00-17:00 CST\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:12 CST\\\"}}, \\\"m2_full_starcoder_resumed\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:11:10.682Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_starcoder_resume.sh (8 runs: random_s43→s44→embedding×3→dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"519791\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"StarCoder2-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_starcoder\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T01:12Z\\\", \\\"process\\\": \\\"alive (PID 519791, uptime 7h06m)\\\", \\\"gpu\\\": \\\"cuda:1, 100% util, 54347/97887 MiB\\\", \\\"current_subrun\\\": \\\"random_s43 (1/8 in resumed chain)\\\", \\\"current_step\\\": \\\"1300/2810 (~46%)\\\", \\\"latest_loss\\\": 0.2495, \\\"lr\\\": \\\"1.30e-05\\\", \\\"completed_subruns\\\": 1, \\\"remaining_subruns\\\": 7, \\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.4604, \\\"best_val_loss\\\": 0.6134, \\\"source\\\": \\\"parent\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"eval_at_500\\\": {\\\"R@1\\\": 0.4708, \\\"val_loss\\\": 0.5279, \\\"best_val_loss\\\": true}, \\\"eval_at_1000\\\": {\\\"R@1\\\": 0.478, \\\"val_loss\\\": 0.543, \\\"early_stopping\\\": \\\"1/2\\\"}, \\\"note\\\": \\\"eval@1500 in ~1h, likely early stop if val_loss > 0.5279\\\"}, \\\"checkpoints\\\": [\\\"random_s42/best_by_val_loss\\\", \\\"random_s42/best_by_recall_at_1\\\", \\\"random_s43/best_by_val_loss\\\", \\\"random_s43/best_by_recall_at_1\\\"], \\\"bm25_watcher\\\": \\\"active (PID watcher on 519791, will start BM25 StarCoder on cuda:1 when chain finishes)\\\", \\\"eta_hours\\\": \\\"55-65\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:12 CST\\\"}}, \\\"m2_full_qwen_continued\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:11:10.448Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_qwen.sh (chain: random_s44 running → embedding×3 → dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"337267\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_qwen.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T01:12Z\\\", \\\"process\\\": \\\"alive (PID 337267, uptime 13h45m)\\\", \\\"gpu\\\": \\\"cuda:0, 100% util, 49521/97887 MiB\\\", \\\"current_subrun\\\": \\\"embedding_distance_s43 (3/9 in chain)\\\", \\\"current_step\\\": \\\"150/2810 (~5%)\\\", \\\"latest_loss\\\": 0.5041, \\\"lr\\\": \\\"1.06e-05\\\", \\\"completed_subruns\\\": 3, \\\"remaining_subruns\\\": 6, \\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5527, \\\"source\\\": \\\"parent m2_full_qwen\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5554, \\\"best_val_loss\\\": 0.4476, \\\"early_stopped\\\": \\\"step 1500\\\"}, \\\"random_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.6009, \\\"best_val_loss\\\": 0.4252, \\\"early_stopped\\\": \\\"step 1500\\\", \\\"best_step\\\": 500}, \\\"embedding_distance_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"step\\\": 150, \\\"started\\\": \\\"08:32 CST\\\"}, \\\"checkpoints\\\": [\\\"random_s42/best_by_val_loss\\\", \\\"random_s42/best_by_recall_at_1\\\", \\\"random_s43/best_by_val_loss\\\", \\\"random_s43/best_by_recall_at_1\\\", \\\"random_s44/best_by_val_loss\\\", \\\"random_s44/best_by_recall_at_1\\\", \\\"random_s44/final\\\"], \\\"bm25_watcher\\\": \\\"active (PID watcher on 337267, will start BM25 Qwen on cuda:0 when chain finishes)\\\", \\\"eta_hours\\\": \\\"50-55\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:12 CST\\\"}}, \\\"plan_017_literature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:49:00.477Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:45.149Z\\\", \\\"hypothesis\\\": \\\"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\", \\\"spec\\\": {\\\"command\\\": \\\"analysis only (no training)\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"papers_surveyed\\\": 8, \\\"citations_verified\\\": 8, \\\"discussion_draft\\\": \\\"artifacts/paper_drafts/discussion_v2.md\\\", \\\"artifact_id\\\": \\\"art_20260514_a2e1cd\\\"}, \\\"completed_at\\\": \\\"2026-05-14T18:49:39.557Z\\\", \\\"notes\\\": \\\"Inference-time graph method comparison 完成。8 papers surveyed，其中 6 篇纳入 literature_map.yaml 和 discussion_v2.md（CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph）。CodeGRAG 和 CodeRAG 经调研排除：CodeGRAG（arXiv 2405.02355）关注 NL→code generation 的 graph-augmented prompting，不涉及代码检索或对比学习；CodeRAG 系列（CodeRAG-Bench 2406.14497 / CodeRAG 2504.10046）关注 retrieval-augmented code generation benchmark 和 bigraph-based 代码生成，均为生成任务而非检索训练。两者与 StructFuse 的 scope（训练时结构信号用于对比学习代码检索）不符，故未纳入 discussion。\\\"}, \\\"m2_full_starcoder\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:15.415Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:04:29.245Z\\\", \\\"hypothesis\\\": \\\"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\\\", \\\"parent\\\": \\\"plan_013_starcoder\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/structfuse && bash run_m2_full_starcoder_resume.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"519791\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:03:12.079Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs。[2026-05-15 02:02 CST] cuda:1 进程冲突修复并重新提交（PID 519791, timeout=144h）。Registry 状态 DONE(failed) 是旧 cron timeout 标记，实际正在运行 random_s43 [1/8]。新 cron 已注册监控 PID 519791。序列：random_s43→s44→(待插入bm25_s42)→embedding×3→dataflow×3。random_s42 结果：best R@1=0.4604 at step 2500, val_loss=0.6134 at step 1000。\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"epoch\\\": \\\"3/3\\\", \\\"current_step\\\": 4200, \\\"total_steps\\\": 4242, \\\"total_steps_per_epoch\\\": 1414, \\\"eval_500\\\": {\\\"val_loss\\\": 0.6194, \\\"recall_at_1\\\": 0.435, \\\"recall_at_5\\\": 0.905, \\\"recall_at_10\\\": 1}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.6134, \\\"recall_at_1\\\": 0.454, \\\"recall_at_5\\\": 0.92, \\\"recall_at_10\\\": 1}, \\\"eval_1500\\\": {\\\"val_loss\\\": 0.6528, \\\"recall_at_1\\\": 0.449, \\\"recall_at_5\\\": 0.906, \\\"recall_at_10\\\": 1}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.6698, \\\"recall_at_1\\\": 0.4456, \\\"recall_at_5\\\": 0.906, \\\"recall_at_10\\\": 1}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.6342, \\\"recall_at_1\\\": 0.4604, \\\"recall_at_5\\\": 0.9117, \\\"recall_at_10\\\": 1}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.6516, \\\"recall_at_1\\\": 0.4544, \\\"recall_at_5\\\": 0.9077, \\\"recall_at_10\\\": 1}, \\\"eval_3500\\\": {\\\"val_loss\\\": 0.6588, \\\"recall_at_1\\\": 0.4534, \\\"recall_at_5\\\": 0.9057, \\\"recall_at_10\\\": 1}, \\\"eval_4000\\\": {\\\"val_loss\\\": 0.6637, \\\"recall_at_1\\\": 0.4547, \\\"recall_at_5\\\": 0.9003, \\\"recall_at_10\\\": 1}, \\\"best_checkpoint\\\": \\\"step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)\\\", \\\"conclusion\\\": \\\"effectively_complete (timeout at step 4200/4242, lr=7.8e-9, remaining 42 steps negligible)\\\"}, \\\"progress_snapshot\\\": \\\"2026-05-15T01:50 CST\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T17:49:54.474Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T17:49:55.304Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T17:49:56.408767+00:00\\\"}]}}, \\\"m2_full_qwen\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:00:29.323Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"73544\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_qwen.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T17:39:30.757Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed. [D026] s42 保持 3 epochs 提供完整 overfitting curve; s43/s44 及后续 runs 改为 2 epochs + early_stopping_patience=2。[STATUS 2026-05-15 00:19 CST] Registry 状态 ANALYZING 是 cron 自动设置（s42 进程退出触发），但实验实际仍在进行中。random_s43 在 cuda:0 正常运行，step 1200/2810 (43%)。eval@500 R@1=0.5357, eval@1000 R@1=0.5285 (early_stopping 1/2)。Best R@1=0.5357 at step 500。GPU 100% 利用率, 50.5/97.9GB VRAM。\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"epoch\\\": \\\"3/3\\\", \\\"total_steps\\\": 4242, \\\"total_steps_per_epoch\\\": 1414, \\\"eval_500\\\": {\\\"val_loss\\\": 0.4869, \\\"recall_at_1\\\": 0.533, \\\"recall_at_5\\\": 0.954, \\\"recall_at_10\\\": 1}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.4651, \\\"recall_at_1\\\": 0.553, \\\"recall_at_5\\\": 0.959, \\\"recall_at_10\\\": 1}, \\\"eval_1500\\\": {\\\"val_loss\\\": 0.5365, \\\"recall_at_1\\\": 0.523, \\\"recall_at_5\\\": 0.955, \\\"recall_at_10\\\": 1}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.5162, \\\"recall_at_1\\\": 0.523, \\\"recall_at_5\\\": 0.954, \\\"recall_at_10\\\": 1}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.5264, \\\"recall_at_1\\\": 0.527, \\\"recall_at_5\\\": 0.956, \\\"recall_at_10\\\": 1}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.5406, \\\"recall_at_1\\\": 0.536, \\\"recall_at_5\\\": 0.956, \\\"recall_at_10\\\": 1}, \\\"best_checkpoint\\\": \\\"step_1000 (val_loss=0.4651, R@1=0.5527)\\\", \\\"conclusion\\\": \\\"Overfit after step 1000. Best R@1=0.5527, +1.7pp vs pilot (0.5357). Full data helps.\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"epoch\\\": \\\"early_stopped\\\", \\\"total_steps_per_epoch\\\": 1405, \\\"eval_500\\\": {\\\"val_loss\\\": 0.4476, \\\"recall_at_1\\\": 0.5357}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.4637, \\\"recall_at_1\\\": 0.5285}, \\\"eval_1500\\\": {\\\"recall_at_1\\\": 0.5554}, \\\"best_by_val_loss\\\": \\\"step 500 (val_loss=0.4476)\\\", \\\"best_by_recall_at_1\\\": \\\"step 1500 (R@1=0.5554)\\\", \\\"conclusion\\\": \\\"Early stopped at step 1500. Best R@1=0.5554, consistent with s42 (0.5527). val_loss and R@1 criterion diverge.\\\"}, \\\"random_s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"note\\\": \\\"Auto-started 01:58 CST, epoch 1/2, 1408 batches/epoch\\\"}, \\\"progress_snapshot\\\": \\\"2026-05-15T02:00 CST\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T11:24:33.887Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T11:24:35.375104+00:00\\\"}]}}, \\\"plan_018_bm25\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:38:40.603Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:09:50.985Z\\\", \\\"hypothesis\\\": \\\"BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"Phase 1 (CPU) COMPLETE: BM25 negative mining 完成。3 seeds 数据生成，record counts 与其他策略完全一致，0 fallback。BM25 score 分布: mean=246.50, std=155.96。重叠率: BM25 vs embedding_distance ~87.1%, vs random ~76.2%, vs dataflow_aware ~71.8%。高 median=1.0 因小 repo 候选池≤50 文件导致策略完全重合，BM25 differentiation 主要在大 repo。脚本: /root/structfuse/scripts/mine_bm25_negatives.py。输出: /root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl。Phase 2 (GPU): 等 re-dream gate 通过 + M2 完成后训练。\\\", \\\"metrics\\\": {\\\"phase1_complete\\\": true, \\\"seed_42\\\": {\\\"train_records\\\": 11308, \\\"val_records\\\": 2980, \\\"train_size_mb\\\": 1280.8, \\\"val_size_mb\\\": 344.6}, \\\"seed_43\\\": {\\\"train_records\\\": 11236, \\\"val_records\\\": 3052, \\\"train_size_mb\\\": 1280.9, \\\"val_size_mb\\\": 316}, \\\"seed_44\\\": {\\\"train_records\\\": 11264, \\\"val_records\\\": 3024, \\\"train_size_mb\\\": 1347.1, \\\"val_size_mb\\\": 295.9}, \\\"bm25_score_dist\\\": {\\\"count\\\": 392954, \\\"mean\\\": 246.5, \\\"std\\\": 155.96, \\\"p25\\\": 128.38, \\\"p50\\\": 228.41, \\\"p75\\\": 347.85, \\\"max\\\": 2585.74}, \\\"overlap_overall\\\": {\\\"bm25_vs_embedding\\\": 0.871, \\\"bm25_vs_random\\\": 0.762, \\\"bm25_vs_dataflow\\\": 0.718, \\\"note\\\": \\\"k=50 full candidate overlap from mining worker\\\"}, \\\"overlap_stratified_top7_jaccard\\\": {\\\"small_lt50\\\": {\\\"repos\\\": 39, \\\"bm25_vs_embedding\\\": 0.668, \\\"bm25_vs_random\\\": 0.411, \\\"bm25_vs_dataflow\\\": 0.667}, \\\"medium_50_200\\\": {\\\"repos\\\": 29, \\\"bm25_vs_embedding\\\": 0.38, \\\"bm25_vs_random\\\": 0.067, \\\"bm25_vs_dataflow\\\": 0.363}, \\\"large_200plus\\\": {\\\"repos\\\": 15, \\\"bm25_vs_embedding\\\": 0.297, \\\"bm25_vs_random\\\": 0.007, \\\"bm25_vs_dataflow\\\": 0.405}, \\\"matched_queries\\\": 2920, \\\"total_queries\\\": 12290, \\\"note\\\": \\\"top-7 Jaccard on s42 matched queries only (24% match rate due to different train/val splits)\\\"}}}, \\\"plan_015_dynamic\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:03:24.316Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:03:30.544Z\\\", \\\"hypothesis\\\": \\\"Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。\\\", \\\"notes\\\": \\\"Director D031 缩减：原 44h → 11h 单卡。只跑 dynamic_ep × 1 seed (Qwen, s42)，跳过 dynamic_500。Post-M2 与 plan_003 并行（一卡 SWE-bench，一卡 dynamic_ep）。受 re-dream gate 约束。设计文档已由 Worker 完成。\\\"}, \\\"neg_difficulty_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:39:20.016Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:13:49.046Z\\\", \\\"hypothesis\\\": \\\"Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\\\", \\\"notes\\\": \\\"128 vs 2048 token 对比完成（2026-05-14 05:54 CST）。Qwen pos_sim 在 2048t 下 0.9855（比 128t 的 0.9804 更高），确认 ceiling 为 Qwen 表征的结构性特征，非截断 artifact。StarCoder margin 2.6-4.1x Qwen（2048t）。核心结论：pretrained representation separability varies across encoders，跨两种 token 长度成立。数据源：128t → stats_v2.json，2048t → stats_v3_2048.json。\\\", \\\"metrics\\\": {\\\"qwen_128\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.9804, \\\"neg_sim\\\": 0.899, \\\"margin\\\": 0.0816, \\\"pct_positive_margin\\\": 77.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.9804, \\\"neg_sim\\\": 0.959, \\\"margin\\\": 0.0209, \\\"pct_positive_margin\\\": 60.7}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.9805, \\\"neg_sim\\\": 0.95, \\\"margin\\\": 0.0309, \\\"pct_positive_margin\\\": 67.4}}, \\\"starcoder_128\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.757, \\\"neg_sim\\\": 0.553, \\\"margin\\\": 0.2039, \\\"pct_positive_margin\\\": 72.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.784, \\\"neg_sim\\\": 0.668, \\\"margin\\\": 0.1159, \\\"pct_positive_margin\\\": 59.2}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.761, \\\"neg_sim\\\": 0.659, \\\"margin\\\": 0.1022, \\\"pct_positive_margin\\\": 62.8}}, \\\"qwen_2048\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.9855, \\\"neg_sim\\\": 0.9111, \\\"margin\\\": 0.0743, \\\"margin_std\\\": 0.2322, \\\"pct_positive_margin\\\": 81.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.9855, \\\"neg_sim\\\": 0.9685, \\\"margin\\\": 0.017, \\\"margin_std\\\": 0.114, \\\"pct_positive_margin\\\": 58.8}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.9856, \\\"neg_sim\\\": 0.9563, \\\"margin\\\": 0.0293, \\\"margin_std\\\": 0.1407, \\\"pct_positive_margin\\\": 73.9}}, \\\"starcoder_2048\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.7985, \\\"neg_sim\\\": 0.6045, \\\"margin\\\": 0.194, \\\"margin_std\\\": 0.2788, \\\"pct_positive_margin\\\": 78}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.8079, \\\"neg_sim\\\": 0.7409, \\\"margin\\\": 0.067, \\\"margin_std\\\": 0.2056, \\\"pct_positive_margin\\\": 55}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.8009, \\\"neg_sim\\\": 0.6818, \\\"margin\\\": 0.1192, \\\"margin_std\\\": 0.2264, \\\"pct_positive_margin\\\": 70.4}}, \\\"sc_qwen_margin_ratio_128\\\": {\\\"random\\\": 2.5, \\\"embedding_distance\\\": 5.54, \\\"dataflow_aware\\\": 3.3}, \\\"sc_qwen_margin_ratio_2048\\\": {\\\"random\\\": 2.61, \\\"embedding_distance\\\": 3.94, \\\"dataflow_aware\\\": 4.07}}, \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python negative_difficulty_margin_v2.py (CPU analysis)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_data/\\\", \\\"data_count\\\": 11000, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B + StarCoder2-3B (pretrained, no training)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/negative_difficulty_stats_v3_2048.json\\\"}, \\\"completed_at\\\": \\\"2026-05-14T00:13:49.046Z\\\"}, \\\"m1_reextract\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:35:23.954Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:45:53.741Z\\\", \\\"hypothesis\\\": \\\"M1 重提取：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/rerun_m1_failed.sh (4 CPU workers, CodeQL 2-hop)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/\\\", \\\"data_count\\\": 28276, \\\"model_name\\\": \\\"N/A (CodeQL extraction)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"pid\\\": \\\"97358\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m1_rerun.log\\\", \\\"checkpoint_source\\\": \\\"rerun of m1_extraction failed instances\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A (failed, no output)\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"CodeQL query 100% 失败（exit status 2）。根因：Worker 安装 CodeQL CLI 2.25.4 时未执行 `codeql pack install`，`codeql/python-all@7.1.0` 标准库 pack 缺失。修复命令：`cd /root/structfuse/extraction/codeql_queries && /opt/codeql/codeql pack install`。已 kill 进程 + tmux session。无新数据产出（all.jsonl 未受影响）。等 Director 确认后修复重跑。\\\", \\\"completed_at\\\": \\\"2026-05-13T19:44:09.115Z\\\"}, \\\"m1_extraction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T21:00:02.300Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:26:13.901Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup bash scripts/run_m1_extraction.sh (8 CPU workers, CodeQL 2-hop)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/\\\", \\\"data_count\\\": 50869, \\\"model_name\\\": \\\"N/A (CodeQL extraction)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"description\\\": \\\"M1: 全量 5K repos CodeQL 提取, 131 unique (repo,commit) groups, 50869 instances\\\"}, \\\"metrics\\\": {\\\"total_instances_attempted\\\": 44173, \\\"instances_skipped\\\": 6696, \\\"total_instances\\\": 50869, \\\"codeql_success\\\": 15133, \\\"beniget_fallback\\\": 764, \\\"extraction_failed\\\": 28276, \\\"structural_data_rate\\\": 0.36, \\\"repos_with_output\\\": 123, \\\"repos_total\\\": 131, \\\"repo_coverage\\\": 0.939, \\\"skip_clone_failed\\\": 5852, \\\"skip_checkout_failed\\\": 836, \\\"skip_stale_handle\\\": 8, \\\"elapsed_minutes\\\": 837.8, \\\"avg_time_per_instance_s\\\": 8.9, \\\"output_size_gb\\\": 6.6, \\\"disk_usage_gb\\\": 13, \\\"output_file\\\": \\\"all.jsonl\\\"}, \\\"notes\\\": \\\"[2026-05-13 19:25] COMPLETED. 837.8min, 123/131 repos (93.9%), 15,897/44,173 instances with structural data (36.0%), 6,696 skipped (clone/checkout). Output: all.jsonl 6.6GB. [2026-05-13 19:23 UPDATE] 28,276 buggy_file_not_found errors 经验证并非上游数据质量问题——10/10 抽查的文件在 repo 中全部存在。根因是运行时瞬态文件系统故障（CodeQL 并行 database creation 导致磁盘耗尽，锐截止模式）。这些 instances 可通过重跑恢复。D022: 准备重跑脚本中，等 Director 确认后执行。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/all.jsonl\\\", \\\"log_path\\\": \\\"/tmp/m1_extraction.log\\\", \\\"completed_at\\\": \\\"2026-05-13T10:59:42.462Z\\\"}, \\\"plan_006_scalability\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T07:57:43.631Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:24:00.741Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"M1 scalability statistics analysis (29/131 repos)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m1_extraction/\\\", \\\"data_count\\\": 8171, \\\"model_name\\\": \\\"N/A (CPU analysis)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"description\\\": \\\"Plan 006: M1 extraction scalability stats - timeout rate, extraction time, coverage, Z% by repo size. Partial results from 29/131 repos.\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T07:57:58.176Z\\\", \\\"notes\\\": \\\"[2026-05-13 19:23] 全量统计 + error 分析 + fuzzy match 验证完成。关键发现: (1) 0 timeout; (2) 28,276 error 全部 buggy_file_not_found，但 fuzzy match 验证发现文件实际都存在——根因是运行时瞬态文件系统故障（锐截止模式：每个 repo 内先成功后突然全部失败，extraction_time=0.0s），可能是 CodeQL 并行数据库创建导致磁盘空间耗尽; (3) 这些 instance 可通过重跑恢复（当前 resolve_file_in_repo 对全部样本返回正确路径）; (4) 结构数据率 34.3% 有望提升至接近 100%（若重跑成功）; (5) Z% 随 repo 规模上升 (XL median 96%). Artifacts: plan006_full_scalability.json, art_20260513_d262da (error patterns)\\\", \\\"hypothesis\\\": \\\"Claim 3: CodeQL bounded data-flow extraction scales to large repos with acceptable timeout rates and provides meaningful structural coverage (Z%) that increases with repo complexity\\\", \\\"metrics\\\": {\\\"repos\\\": 123, \\\"total_instances\\\": 44173, \\\"structural_data_rate\\\": 0.343, \\\"error_rate\\\": 0.64, \\\"zero_timeout_rate\\\": true, \\\"processing_time\\\": {\\\"mean_s\\\": 8.93, \\\"median_s\\\": 0, \\\"p95_s\\\": 31.95, \\\"max_s\\\": 633.68, \\\"total_hours\\\": 109.58}, \\\"by_tier\\\": {\\\"small_lt50\\\": {\\\"repos\\\": 1, \\\"instances\\\": 500, \\\"error_rate\\\": 0.054, \\\"struct_rate\\\": 0.81, \\\"z_pct_mean\\\": 0.284, \\\"z_pct_median\\\": 0}, \\\"medium_50_200\\\": {\\\"repos\\\": 17, \\\"instances\\\": 4096, \\\"error_rate\\\": 0.485, \\\"struct_rate\\\": 0.472, \\\"z_pct_mean\\\": 0.444, \\\"z_pct_median\\\": 0.5}, \\\"large_200_500\\\": {\\\"repos\\\": 40, \\\"instances\\\": 13628, \\\"error_rate\\\": 0.639, \\\"struct_rate\\\": 0.343, \\\"z_pct_mean\\\": 0.604, \\\"z_pct_median\\\": 0.857}, \\\"xlarge_500plus\\\": {\\\"repos\\\": 29, \\\"instances\\\": 25949, \\\"error_rate\\\": 0.676, \\\"struct_rate\\\": 0.314, \\\"z_pct_mean\\\": 0.812, \\\"z_pct_median\\\": 0.96}}, \\\"instance_distribution\\\": {\\\"lt10\\\": 1, \\\"10_50\\\": 17, \\\"50_200\\\": 36, \\\"200_500\\\": 40, \\\"500plus\\\": 29}, \\\"artifact\\\": \\\"plan006_full_scalability.json\\\"}}, \\\"plan_013_starcoder\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T05:09:14.885Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:09:54.153Z\\\", \\\"hypothesis\\\": \\\"Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/structfuse/run_plan013_starcoder.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"23798\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/plan_013_starcoder.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T05:26:21.946Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_embed_verify_data/\\\", \\\"data_count\\\": 3282, \\\"model_name\\\": \\\"bigcode/starcoder2-3b\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 35338.2, \\\"gpu_hours\\\": 9.82}, \\\"notes\\\": \\\"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5078) > random (0.4922) > dataflow (0.4869). Embedding vs random: +1.6pp (consistent with Qwen). Dataflow vs random: -0.5pp (DIFFERS from Qwen where dataflow > random +0.8pp). Hypothesis NEGATIVE: strategy ranking NOT identical across encoders. Embedding > random is encoder-agnostic, dataflow position is encoder-dependent. Log: /root/runs/faith-evidence-ie/plan_013_starcoder.log. Cron misreported EXIT_CODE=129 but all strategies completed (confirmed via log extraction worker).\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_val_loss\\\": 0.5113, \\\"best_recall@1\\\": 0.4922, \\\"best_recall@5\\\": 0.98, \\\"best_recall@10\\\": 1, \\\"source\\\": \\\"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\\\"}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.4816, \\\"best_recall@1\\\": 0.5078, \\\"best_recall@5\\\": 0.9843, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.506, \\\"final_recall@1\\\": 0.5174}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.5255, \\\"best_recall@1\\\": 0.4869, \\\"best_recall@5\\\": 0.9695, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5509, \\\"final_recall@1\\\": 0.5078}}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-13T15:15:20.165Z\\\"}, \\\"m2_embed_verify\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T04:39:16.051Z\\\", \\\"updated_at\\\": \\\"2026-05-13T15:59:51.621Z\\\", \\\"hypothesis\\\": \\\"True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence.\\\", \\\"parent\\\": \\\"m2_early_pilot\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/structfuse/run_m2_embed_verify.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"29290\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_embed_verify.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T06:37:00.822Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_embed_verify_data/\\\", \\\"data_count\\\": 3282, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"training from scratch (not eval)\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\", \\\"wall_clock_seconds\\\": 31097.9, \\\"gpu_hours\\\": 8.64}, \\\"notes\\\": \\\"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5557) > dataflow (0.5436) > random (0.5357). Embedding vs random: +2.0pp. Dataflow vs random: +0.8pp. All best at step 500, overfitting after. Hypothesis confirmed: true embedding negatives are harder → Claim 2 supported. Log: /root/runs/faith-evidence-ie/m2_embed_verify.log. Cron misreported EXIT_CODE=2 but all strategies completed successfully (confirmed via log extraction worker).\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4834, \\\"best_recall@1\\\": 0.5357, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5978, \\\"final_recall@1\\\": 0.5122}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4603, \\\"best_recall@1\\\": 0.5557, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5935, \\\"final_recall@1\\\": 0.5209}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.5602, \\\"best_recall@1\\\": 0.5436, \\\"best_recall@5\\\": 0.9817, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.6201, \\\"final_recall@1\\\": 0.5287}}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T15:15:18.746Z\\\"}, \\\"mvp_p2b_contrastive_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T15:03:02.370Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:28.932Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"132149\\\", \\\"data_path\\\": \\\"/root/structfuse/mvp_data/training_data/\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B + LoRA\\\", \\\"seed\\\": \\\"42,123,7\\\", \\\"hypothesis\\\": \\\"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\\\", \\\"plan_id\\\": \\\"mvp_p2b_contrastive_training\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:04:44.396Z\\\", \\\"notes\\\": \\\"P2b 对比训练 v2，因磁盘空间不足被 kill。已被 p2b_5reruns（成功完成 9/9 runs）替代。\\\"}, \\\"p2b_dataflow_retrain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T19:49:00.303Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:27.706Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"build_p2b_data.py regeneration + dataflow 3-seed retrain\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"description\\\": \\\"BLOCKED: dataflow connections ⊆ gold files, strategies indistinguishable\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-13T04:17:02.055Z\\\", \\\"notes\\\": \\\"Dataflow 策略重训练计划，因 embedding_distance 命名问题（实际用 BM25 而非 embedding）被 Reviewer 发现后搁置。已被 m2_embed_verify（true embedding mining）替代。\\\"}, \\\"p2b_eval_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T16:27:50.967Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:24.721Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash scripts/run_eval_all.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"254053\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T16:27:50.945Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 42550.6, \\\"gpu_hours\\\": 11.82}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-13T04:17:01.561Z\\\", \\\"notes\\\": \\\"P2b 全量 eval（pool_size=26），被 D013 服务器迁移计划取消。已被 p2b_eval_4runs_pool50（pool_size=50）替代。\\\"}, \\\"m2_early_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:39:53.920Z\\\", \\\"updated_at\\\": \\\"2026-05-13T04:44:22.077Z\\\", \\\"hypothesis\\\": \\\"Early pilot on partial M1 data (24 repos, ~5K instances): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/structfuse/scripts/run_m2_pilot.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"795739\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T01:55:31.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_pilot_data/\\\", \\\"data_count\\\": 3418, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/m2_pilot_output/random_s42/best_model.pt\\\", \\\"wall_clock_seconds\\\": 10130.8, \\\"gpu_hours\\\": 2.81}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"PID 795791 在 cqa1 cuda:4 运行，wrapper 脚本顺序跑 random→embedding→dataflow（set -e）。random 策略跑到 step 4000 后卡住（~45min 无新日志），embedding/dataflow 未启动。Best checkpoint at step 1500。Val_loss 持续恶化（0.5879→0.728），明显过拟合。另有 OOM 进程干扰（某进程试图在同 GPU 启动导致 OOM，可能破坏 GPU 状态）。eval recall@k bug 已确认。\\\", \\\"metrics\\\": {\\\"pid\\\": 795791, \\\"gpu\\\": \\\"cuda:4\\\", \\\"gpu_mem_mb\\\": 9342, \\\"gpu_util_pct\\\": 83, \\\"batch_size\\\": 2, \\\"num_negatives\\\": 3, \\\"max_seq_length\\\": 1024, \\\"strategy_running\\\": \\\"random (stuck at step 4000, epoch 3)\\\", \\\"strategies_completed\\\": \\\"0/3\\\", \\\"eval_1500\\\": {\\\"val_loss\\\": 0.5879, \\\"recall_at_1\\\": 0.4693, \\\"recall_at_5\\\": 0.4693, \\\"recall_at_10\\\": 0.4693}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.7089, \\\"recall_at_1\\\": 0.4398}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.6961, \\\"recall_at_1\\\": 0.4291}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.728, \\\"recall_at_1\\\": 0.4104}, \\\"eval_3500\\\": {\\\"val_loss\\\": 0.7022, \\\"recall_at_1\\\": 0.4439}, \\\"best_checkpoint\\\": \\\"step_1500 (val_loss=0.5879, 6.2GB)\\\", \\\"WARNING\\\": \\\"recall@1=recall@5=recall@10 confirmed eval bug. Process hung after step 4000 (~45min no output). Overfitting after step 1500.\\\", \\\"status_check_at\\\": \\\"2026-05-13T04:42:00Z\\\"}, \\\"completed_at\\\": \\\"2026-05-13T04:44:22.077Z\\\"}, \\\"m2_early_pilot_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:59:06.557Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:13:43.400Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/structfuse/run_m2_early_pilot.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"897651\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_early_pilot_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T02:04:31.768Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 551.6, \\\"gpu_hours\\\": 0.15}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"GPU 越界 cuda:0，违反项目 GPU 分配 gpu_ids=[\\\\\\\"cuda:4\\\\\\\"]。第二次 GPU 越界违规（首次 D005）。Worker 未正确映射 CUDA_VISIBLE_DEVICES。\\\", \\\"completed_at\\\": \\\"2026-05-13T02:13:43.400Z\\\"}, \\\"m2_early_pilot_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:52:52.724Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:13:31.039Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/structfuse/run_m2_early_pilot.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"766124\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_early_pilot_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T01:52:52.687Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/m2_early_pilot_data/\\\", \\\"data_count\\\": 3418, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"N/A (this is training, not eval)\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 1238.4, \\\"gpu_hours\\\": 0.34}, \\\"hypothesis\\\": \\\"Early pilot on partial M1 data (24 repos, 2672 train + 746 val): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"notes\\\": \\\"wandb API key error, EXIT_CODE=1。首次提交因 wandb 未配置离线模式而立即退出。\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T02:13:31.040Z\\\"}, \\\"mvp_p2b_contrastive_training\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-12T12:37:44.628Z\\\", \\\"updated_at\\\": \\\"2026-05-13T01:31:27.220Z\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T16:19:50.297Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-12T13:16:21.735Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T13:16:22.517958+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T15:15:47.933008+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T16:19:51.082427+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"第2次失败: random策略3seeds全部完成(s42跳过/s123 recall@5=0.984/s456 recall@5=0.992), 但embedding策略s42启动即EXIT_CODE=2(shell syntax error). Worker worker_diagnose_mvp_p2b_contrastive_training_v2 正在诊断和修复run_p2b_all.sh的embedding配置部分\\\"}}, \\\"notes\\\": \\\"4/9 runs 完成 (random×3 + embedding_distance_s42), 5/9 失败 (磁盘满 torch.save RuntimeError). /root/autodl-tmp 93% (14GB剩余, 每个checkpoint 5.8GB). 失败从 embedding_distance_s123 开始级联.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_p2b_all.sh (9 runs: 3 strategies × 3 seeds)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"238645\\\", \\\"data_path\\\": \\\"/root/structfuse/mvp_data/training_data/\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B + LoRA\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"hypothesis\\\": \\\"H3: data-flow hard negatives vs random vs embedding-distance, 3-seed × 3-strategy contrastive training\\\", \\\"plan_id\\\": \\\"mvp_p2b_contrastive_training\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/\\\", \\\"log_path\\\": \\\"/tmp/p2b_all_runs.log\\\"}, \\\"metrics\\\": {\\\"random_s42_recall1\\\": 0.984, \\\"random_s123_recall1\\\": 0.984, \\\"random_s456_recall1\\\": 0.992, \\\"embedding_s42_recall1\\\": 0.874, \\\"random_mean_recall1\\\": 0.987, \\\"runs_completed\\\": 4, \\\"runs_failed\\\": 5, \\\"failure_type\\\": \\\"disk_full_torch_save\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b_eval_4runs_pool50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:10:54.579Z\\\", \\\"updated_at\\\": \\\"2026-05-13T00:27:50.197Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_p2b.py on 4 checkpoints with new val.jsonl pool_size=50\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"p2b_5reruns (random×3 + emb_dist×1)\\\", \\\"eval_data\\\": \\\"val.jsonl pool_size=50\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pool_size\\\": 50, \\\"n_samples\\\": 127, \\\"random_s42\\\": {\\\"recall@1\\\": 0.496, \\\"recall@5\\\": 0.843, \\\"recall@10\\\": 0.945}, \\\"random_s123\\\": {\\\"recall@1\\\": 0.535, \\\"recall@5\\\": 0.85, \\\"recall@10\\\": 0.921}, \\\"random_s456\\\": {\\\"recall@1\\\": 0.543, \\\"recall@5\\\": 0.843, \\\"recall@10\\\": 0.953}, \\\"emb_dist_s42\\\": {\\\"recall@1\\\": 0.488, \\\"recall@5\\\": 0.835, \\\"recall@10\\\": 0.874}, \\\"random_mean\\\": {\\\"recall@1\\\": 0.525, \\\"recall@5\\\": 0.845, \\\"recall@10\\\": 0.94}, \\\"emb_dist_vs_random_delta\\\": {\\\"recall@1\\\": -0.037, \\\"recall@5\\\": -0.01, \\\"recall@10\\\": -0.066}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/ (p2b_random_s42/123/456, p2b_embedding_distance_s42)\\\", \\\"log_path\\\": \\\"已清理 (2026-05-12 Director Step 1 指令 rm -rf)，metrics 保留在 registry\\\", \\\"completed_at\\\": \\\"2026-05-12T20:11:12.318Z\\\"}, \\\"d007_50repo_overlap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:37:24.289Z\\\", \\\"updated_at\\\": \\\"2026-05-12T20:37:39.566Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CodeQL 2-hop extraction + connected vs gold overlap stats on 50 repos\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 240, \\\"model_name\\\": \\\"N/A (CPU analysis)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"description\\\": \\\"50-repo overlap validation: Z=40.8%, original method viable\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_instances\\\": 240, \\\"instances_with_extra_connected\\\": 98, \\\"Z_pct\\\": 40.8, \\\"avg_connected_minus_gold\\\": 6, \\\"codeql_timeout_rate_pct\\\": 4, \\\"by_repo_size\\\": {\\\"small_lt50\\\": {\\\"Z_pct\\\": 38.6, \\\"avg_extra\\\": 2.5}, \\\"medium_50_200\\\": {\\\"Z_pct\\\": 55.7, \\\"avg_extra\\\": 11.8}, \\\"large_gt200\\\": {\\\"Z_pct\\\": 16.7, \\\"avg_extra\\\": 8.8}}, \\\"decision\\\": \\\"Z=40.8% >= 20% -> original method viable, proceed to M1\\\"}, \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"/root/structfuse/data/50repo_overlap_stats/\\\", \\\"completed_at\\\": \\\"2026-05-12T20:37:39.566Z\\\"}, \\\"p2b_5reruns\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T17:26:47.603Z\\\", \\\"updated_at\\\": \\\"2026-05-12T19:19:53.785Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_p2b_all.sh (skips 4 done, runs 5: emb_dist s123/456, dataflow s42/123/456)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"272732\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/p2b_5reruns.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T17:26:47.575Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"description\\\": \\\"Phase 2b 5 reruns: emb_dist s123/456 + dataflow_aware s42/123/456\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 2, \\\"lr\\\": \\\"2e-5\\\", \\\"num_negatives\\\": 3, \\\"max_seq_length\\\": 512, \\\"use_lora\\\": true, \\\"gradient_checkpointing\\\": true, \\\"eval_steps\\\": 50, \\\"save_steps\\\": 200, \\\"num_epochs\\\": 3}, \\\"wall_clock_seconds\\\": 6752.2, \\\"gpu_hours\\\": 1.88}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"val_loss\\\": 0.0347, \\\"recall@1\\\": 0.9843}, \\\"random_s123\\\": {\\\"val_loss\\\": 0.0446, \\\"recall@1\\\": 0.9843}, \\\"random_s456\\\": {\\\"val_loss\\\": 0.0188, \\\"recall@1\\\": 0.9921}, \\\"emb_dist_s42\\\": {\\\"val_loss\\\": 0.1876, \\\"recall@1\\\": 0.874}, \\\"emb_dist_s123\\\": {\\\"val_loss\\\": 0.1461, \\\"recall@1\\\": 0.874}, \\\"emb_dist_s456\\\": {\\\"val_loss\\\": 0.1281, \\\"recall@1\\\": 0.8819}, \\\"dataflow_s42\\\": {\\\"val_loss\\\": 0.1878, \\\"recall@1\\\": 0.874}, \\\"dataflow_s123\\\": {\\\"val_loss\\\": 0.146, \\\"recall@1\\\": 0.874}, \\\"dataflow_s456\\\": {\\\"val_loss\\\": 0.1278, \\\"recall@1\\\": 0.8819}, \\\"runs_completed\\\": 9, \\\"runs_failed\\\": 0, \\\"WARNING\\\": \\\"dataflow_aware ≈ embedding_distance to 4 decimal places across all seeds — likely code bug in negative sampling\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/ (9 dirs: p2b_{random,embedding_distance,dataflow_aware}_s{42,123,456})\\\", \\\"completed_at\\\": \\\"2026-05-12T19:19:19.793Z\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/p2b_5reruns.log\\\"}, \\\"p2b_eval_4runs_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T17:21:49.599Z\\\", \\\"updated_at\\\": \\\"2026-05-12T17:22:16.595Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval 4 runs (3 random seeds + 1 emb_dist) with pool_size=26\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse\\\", \\\"data_count\\\": 127, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B (LoRA)\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"description\\\": \\\"Phase 2b eval v2: pool_size=26 评估 random vs emb_dist\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"random_seed42\\\": {\\\"recall@1\\\": 0.9449, \\\"recall@5\\\": 0.9843, \\\"recall@10\\\": 0.9843}, \\\"random_seed123\\\": {\\\"recall@1\\\": 0.9449, \\\"recall@5\\\": 0.9921, \\\"recall@10\\\": 0.9921}, \\\"random_seed456\\\": {\\\"recall@1\\\": 0.9291, \\\"recall@5\\\": 0.9921, \\\"recall@10\\\": 0.9921}, \\\"emb_dist_seed42\\\": {\\\"recall@1\\\": 0.6693, \\\"recall@5\\\": 0.8898, \\\"recall@10\\\": 0.9291}, \\\"pool_size\\\": 26, \\\"n_samples\\\": 127}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/ (4 runs: random_s42/123/456, emb_dist_s42)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/structfuse/eval_results/\\\", \\\"completed_at\\\": \\\"2026-05-12T17:22:16.595Z\\\"}, \\\"p2b-all-9runs\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:34:24.923Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:49.244Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"92636\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:34:24.908Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9084.3, \\\"gpu_hours\\\": 2.52}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:49.244Z\\\"}, \\\"p2b-smoke8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:32:22.931Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:48.324Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"91698\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:32:22.916Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9205.4, \\\"gpu_hours\\\": 2.56}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:48.324Z\\\"}, \\\"p2b-smoke7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:28:55.114Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:47.346Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"90758\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:28:55.101Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9412.2, \\\"gpu_hours\\\": 2.61}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:47.346Z\\\"}, \\\"p2b-smoke6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:22:54.445Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:46.413Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"89257\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:22:54.433Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9772.0, \\\"gpu_hours\\\": 2.71}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:46.413Z\\\"}, \\\"p2b-smoke5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:22:05.754Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:45.484Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"88719\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:22:05.744Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9819.7, \\\"gpu_hours\\\": 2.73}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:45.484Z\\\"}, \\\"p2b-smoke4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:20:53.305Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:44.066Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"87968\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:20:53.296Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 9890.8, \\\"gpu_hours\\\": 2.75}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:44.066Z\\\"}, \\\"p2b-smoke3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:18:19.105Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:43.111Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"86879\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:18:19.098Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 10044.0, \\\"gpu_hours\\\": 2.79}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:43.111Z\\\"}, \\\"p2b-smoke2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:16:08.154Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:42.174Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"85793\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:16:08.148Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 10174.0, \\\"gpu_hours\\\": 2.83}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:42.174Z\\\"}, \\\"p2b-smoke-test\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:14:30.477Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:41.269Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"obsolete smoke test\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"84805\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:14:30.472Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 10270.8, \\\"gpu_hours\\\": 2.85}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:41.270Z\\\"}, \\\"mvp_p2a_linear_proxy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:53:42.223Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:58:15.436Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python evaluation/linear_proxy.py (logistic regression on data-flow features + BM25)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/mvp_results/ + /root/structfuse/mvp_data/bm25/\\\", \\\"data_count\\\": 8, \\\"model_name\\\": \\\"LogisticRegression (scikit-learn)\\\", \\\"seed\\\": null, \\\"hypothesis\\\": \\\"H2-confirm: data-flow features 的线性分类器预测 bug-relevant 文件优于纯 BM25 baseline\\\", \\\"plan_id\\\": \\\"mvp_p2a_linear_proxy\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"df_bm25_auc\\\": 0.78, \\\"bm25_only_auc\\\": 0.476, \\\"auc_delta\\\": 0.304, \\\"df_bm25_mrr\\\": 0.556, \\\"bm25_only_mrr\\\": 0.115, \\\"mrr_delta\\\": 0.441, \\\"df_bm25_f1\\\": 0.143, \\\"bm25_only_f1\\\": 0.039, \\\"top_feature\\\": \\\"is_connected (+2.82)\\\", \\\"repos_evaluated\\\": 3, \\\"note\\\": \\\"3 repos / 3 positive samples, directional evidence\\\"}, \\\"checkpoint_path\\\": \\\"N/A (logistic regression, no checkpoint)\\\", \\\"log_path\\\": \\\"/root/structfuse/evaluation/linear_proxy.py output\\\", \\\"completed_at\\\": \\\"2026-05-12T11:58:15.436Z\\\"}, \\\"mvp_p1_codeql_feasibility\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:30:45.938Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:58:06.197Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python extraction/extract_dataflow.py + codeql query run (call_graph.ql + bounded_dataflow.ql)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/structfuse/mvp_data/repos (8 SWE-smith instances: flask, requests, pytest, pylint, xarray, astropy, sphinx, matplotlib)\\\", \\\"data_count\\\": 8, \\\"model_name\\\": \\\"N/A (CPU pipeline)\\\", \\\"seed\\\": null, \\\"hypothesis\\\": \\\"H1: CodeQL 2-hop bounded data-flow timeout <30%; H2: connected files gold patch coverage significantly > disconnected\\\", \\\"plan_id\\\": \\\"mvp_p1_codeql_feasibility\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"timeout_rate\\\": 0, \\\"repos_processed\\\": 8, \\\"repos_skipped\\\": 2, \\\"cg_mean_s\\\": 29.6, \\\"cg_max_s\\\": 119.8, \\\"df_mean_s\\\": 43.4, \\\"df_max_s\\\": 167.1, \\\"h2_connected_coverage\\\": 0.014815, \\\"h2_disconnected_coverage\\\": 0, \\\"h2_fisher_p\\\": 6.5e-09, \\\"h2_gold_in_connected_ratio\\\": 1, \\\"h2_note\\\": \\\"After path normalization fix: 8/8 gold in connected (was 6/8)\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/mvp_results/mvp_phase1_report.json\\\", \\\"checkpoint_path\\\": \\\"N/A (CPU pipeline, no model checkpoint)\\\", \\\"completed_at\\\": \\\"2026-05-12T11:31:16.335Z\\\"}}, \\\"count\\\": 37, \\\"total\\\": 37, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1124}}\"}",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "c645e1d2-1a51-4da2-8ea9-eb55145a9593",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d9595c2f-20cb-4c3c-8ba3-953447a1bd7d",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write Method and Experiment Setup sections",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-15T01:54:19.646Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me extract the key details from the registry and project files:
+
+**From m2_full_qwen spec:**
+- command: bash run_m2_full_qwen.sh
+- gpu: cuda:0
+- data_path: /root/autodl-tmp/structfuse/full_m2_training_data/
+- data_count: 11308
+- model: Qwen/Qwen2.5-Coder-3B
+- seeds: 42,43,44
+- Config from notes: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256
+
+
+- Training uses dual checkpointing with best validation loss and recall metrics, with seed 42 running 3 epochs to capture overfitting patterns while seeds 43 and 44 use 2 epochs with early stopping, splitting roughly 11.3K training and 3K validation samples per seed.
+
+**From m2_full_starcoder spec:**
+- Running the same setup on cuda:1 with StarCoder2-3B using identical seeds and similar hyperparameters.
+
+**From m1_extraction:**
+- Total instances after reextraction: 44173, with only 15 successful CodeQL queries.
+
+Now I'm looking at the extraction metrics: 133 instances with beniget fallback, structural data rate of 36%, 123 out of 131 repos producing output, and zero timeouts. The negative difficulty analysis shows Qwen saturating at 0.9855 similarity while StarCoder sits at a healthier 0.7985, and across the scalability and overlap analyses, about 40.8% of connected instances aren't in the gold set, scaling to roughly 78 at full scale.
+
+Checking the raw extraction numbers more carefully: 50,869 total instances in CodeSearchNet Python after accounting for 6,696 skipped entries, with 15,897 having structural data (15,133 from CodeQL plus 764 beniget fallbacks), but 28,276 extraction failures. For M2 training, we're working with 11,308 instances per seed for training and around 3K for validation, totaling about 14.3K instances used. Looking at the structural data recovery, M1 extraction only successfully processed 15,897 out of 44,173 attempted instances (36% success rate), but the reextraction effort recovered another 28,276 failed cases—though M2 training didn't use this expanded dataset due to timeline constraints. For the paper, I should clarify that the M2 training set of ~14.3K instances (train+val per seed) comes from the original M1 extraction output, not the full recovered pool.
+
+Now I'm organizing the key methodological components to write up: the problem setup around code retrieval for repository-level repair using contrastive learning, M1's CodeQL-based structural extraction with bounded data-flow analysis and call graph construction, the reachability classification approach, and how beniget serves as a fallback mechanism.
+
+For the negative sampling strategies, I'm distinguishing between three approaches—uniform random selection, embedding-based hard negatives using cosine similarity from a pretrained encoder, and the dataflow-aware variant that combines embedding distance with structural reachability filtering. Then M2 applies contrastive fine-tuning with LoRA and InfoNCE loss across dual checkpoints with early stopping.
+
+The experimental setup draws from CodeSearchNet Python across 131 repositories with roughly 14.3K instances per seed split in M2 (derived from the ~44K total M1 output), evaluates on Qwen2.5-Coder-3B and StarCoder2-3B, and measures performance through R@1/R@5/R@10 metrics at pool_size=50 with bootstrap confidence intervals and Cohen's d effect sizes.
+
+Now I'm clarifying the data counts—the original M1 extraction attempted 44,173 instances and successfully extracted structural data for 15,897 of them, with the remaining 28,276 marked as extraction failures. But those failed instances may still have BM25 or embedding-based candidates available, so for the random and embedding-based strategies, structural data isn't actually a requirement.
+
+For M2 training, it looks like all ~14.3K instances from the 15,897 pool are being used across the train and validation splits. The 36% structural data rate is calculated against the total CodeSearchNet Python subset. Looking at the seed-specific splits, each seed produces exactly 14,288 instances (11,308 train + ~3K val), which is notably less than the original 15,897 pool, suggesting some filtering happens during the data preparation process.
+
+Now I'm pulling together the exact numbers I need for the methods and experiments sections: 131 repos from CodeSearchNet Python, 123 with successful M1 output, ~44K instances attempted in M1, 34% structural data availability, ~14.3K instances per seed for M2 training, and 0% CodeQL timeout rate. Let me draft the paper sections and check if the artifacts directory exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9595c2f-20cb-4c3c-8ba3-953447a1bd7d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X6GhSdtK4oQCUixJ3M",
+  "type": "assistant",
+  "uuid": "1344ead1-d6e4-4db0-8131-ba3bd5a12d9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NmBg6a28EFWFdYuwy2XKb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 24865,
+      "cache_read_input_tokens": 35487,
+      "output_tokens": 2390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2390,
+          "cache_read_input_tokens": 35487,
+          "cache_creation_input_tokens": 24865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-15T01:54:19.648Z_
+
+Now I have all the data. Let me check if the output directory exists and then write both drafts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1344ead1-d6e4-4db0-8131-ba3bd5a12d9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X6GhSdtK4oQCUixJ3M",
+  "type": "assistant",
+  "uuid": "47e6fd02-532b-4885-a6b9-769a2a06cf6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NmBg6a28EFWFdYuwy2XKb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 24865,
+      "cache_read_input_tokens": 35487,
+      "output_tokens": 2390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2390,
+          "cache_read_input_tokens": 35487,
+          "cache_creation_input_tokens": 24865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T01:54:23.451Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ULRpDASACUGKxNZCr1uouv`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+  "description": "Check if paper_drafts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47e6fd02-532b-4885-a6b9-769a2a06cf6f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3X6GhSdtK4oQCUixJ3M",
+  "type": "assistant",
+  "uuid": "ef3d4df5-399d-4174-bc4e-45b92a6c65f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NmBg6a28EFWFdYuwy2XKb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 24865,
+      "cache_read_input_tokens": 35487,
+      "output_tokens": 2390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2390,
+          "cache_read_input_tokens": 35487,
+          "cache_creation_input_tokens": 24865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T01:54:23.621Z_
+
+<details><summary>↩ Tool result · `toolu_01ULRpDASACUGKxNZCr1uouv`</summary>
+
+```text
+discussion_v2.md
+experimental_setup_k_checkpoint.md
+experiments_v1.md
+figure_design_v1.md
+introduction_v1.md
+method_v1.md
+related_work_v1.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef3d4df5-399d-4174-bc4e-45b92a6c65f1",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "d32a86e2-bf27-40f2-8a65-589517f63ed2",
+  "toolUseResult": {
+    "stdout": "discussion_v2.md\nexperimental_setup_k_checkpoint.md\nexperiments_v1.md\nfigure_design_v1.md\nintroduction_v1.md\nmethod_v1.md\nrelated_work_v1.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "ef3d4df5-399d-4174-bc4e-45b92a6c65f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-15T01:54:23.626Z_
+
+```json
+{
+  "parentUuid": "d32a86e2-bf27-40f2-8a65-589517f63ed2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9ecab74e-b3b6-4233-855b-f877dd416536",
+  "timestamp": "2026-05-15T01:54:23.626Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-15T01:54:31.217Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are already existing files. Let me read the existing method_v1.md and experiments_v1.md to see if they need to be updated or if I should write new versions.
+
+Actually, the user asked me to write method_v1.md and experiment_setup_v1.md. There's already a method_v1.md and experiments_v1.md. Let me read them to see what's already there, then decide whether to update or overwrite.
+
+The user's task says to write to:
+1. `artifacts/paper_drafts/method_v1.md`
+
+
+2. `artifacts/paper_drafts/experiment_setup_v1.md`
+
+There's already a `method_v1.md` and an `experiments_v1.md` (not `experiment_setup_v1.md`). Let me check what's in the existing files first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ecab74e-b3b6-4233-855b-f877dd416536",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XAoXD2F9tN8mpPTrTS",
+  "type": "assistant",
+  "uuid": "ac1eb024-8bfc-4767-9022-b94572a8e65e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MtkmtKUAMmifHLDeTrzPnv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2547,
+      "cache_read_input_tokens": 60352,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2547,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 60352,
+          "cache_creation_input_tokens": 2547,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2547
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-15T01:54:31.221Z_
+
+Existing drafts found. Let me read them to understand the baseline before writing updated versions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac1eb024-8bfc-4767-9022-b94572a8e65e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XAoXD2F9tN8mpPTrTS",
+  "type": "assistant",
+  "uuid": "b0918941-bfa3-4447-9144-25100ca0ca40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MtkmtKUAMmifHLDeTrzPnv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2547,
+      "cache_read_input_tokens": 60352,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2547,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 60352,
+          "cache_creation_input_tokens": 2547,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2547
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T01:54:31.958Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0182xdkjmKUz6PczJQSWA6wk`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0918941-bfa3-4447-9144-25100ca0ca40",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XAoXD2F9tN8mpPTrTS",
+  "type": "assistant",
+  "uuid": "d84117b3-2ae9-4fd3-a4d7-f210a064e9c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MtkmtKUAMmifHLDeTrzPnv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2547,
+      "cache_read_input_tokens": 60352,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2547,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 60352,
+          "cache_creation_input_tokens": 2547,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2547
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T01:54:32.071Z_
+
+<details><summary>↩ Tool result · `toolu_0129y8Aidisw8YTJ7tnzQtxc`</summary>
+
+```text
+1	# §4 Experiments
+2	
+3	## §4.1 Experimental Setup
+4	
+5	**Dataset.** We construct our training corpus from SWE-smith \cite{yang2025swesmith}, a large-scale dataset of real-world GitHub bug-fix commits. Starting from 5,029 task instances spanning 131 unique (repository, commit) pairs, each task corresponds to a single bug-fix commit; we expand each task by treating every gold file as a separate training instance, yielding 44,173 training instances total (since many tasks involve multiple gold files). We run the StructFuse extraction pipeline (§3.2) to obtain inter-procedural data-flow graphs via CodeQL. After filtering for clone/checkout failures and extraction errors, we retain \placeholder{15,133} [pending recalc] instances with structural data across 123 repositories, yielding a structural coverage rate of \placeholder{34.3%} [pending recalc]. The remaining \placeholder{65.7%} [pending recalc] of instances lack structural connectivity data due to transient filesystem failures during batch extraction; a re-extraction pass (in progress) is expected to recover the majority of these instances, and we discuss data efficiency implications in §6.
+6	
+7	For each random seed, we perform a per-repository stratified split to produce approximately 11,300 training and 3,000 validation instances. Each instance consists of an issue description (query), one or more gold files (positives), and strategy-specific negatives (§3.4). The per-seed split ensures that no repository appears exclusively in one partition, preserving the distribution of repository sizes and structural properties.
+8	
+9	**Evaluation Protocol.** We evaluate retrieval performance using Recall@$k$ ($k \in \{1, 5, 10\}$) and Mean Reciprocal Rank (MRR), computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per query). During training, $K = 7$ negatives are used per query. We report results as mean $\pm$ standard deviation across three random seeds (42, 43, 44). For all comparisons, we use the checkpoint selected by best validation Recall@1 ($\theta^*_{\text{R@1}}$), as discussed in §3.3.
+10	
+11	**Baselines.** Our core experiment compares three contrastive negative mining strategies—random, embedding-distance, and dataflow-aware (§3.4)—across two encoders and three seeds (3 × 3 × 2 = 18 runs). We additionally include two BM25-based comparisons reported separately from the core matrix: (1) a BM25 retrieval baseline using Okapi BM25 \cite{robertson2009bm25} to rank candidate files by lexical overlap with the query, providing a non-neural reference point; and (2) BM25-mined negatives as a supplementary contrastive training strategy to ground our comparison against the gradient-based premise of CoCoHaNeRe \cite{fan2025cocohanere}.
+12	
+13	## §4.2 Implementation Details
+14	
+15	**Encoders.** We select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries: **Qwen2.5-Coder-3B** \cite{hui2024qwen25coder} and **StarCoder2-3B** \cite{li2023starcoder}. Qwen2.5-Coder-3B is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus, while StarCoder2-3B uses a multi-task objective including FIM on The Stack v2. As we show in §4.4, these models exhibit markedly different pretrained representation geometries: Qwen operates in a near-saturated similarity regime (mean positive cosine similarity 0.986), while StarCoder maintains healthy separation (mean positive cosine similarity 0.798). This divergence enables us to study how representation geometry mediates the effectiveness of different negative mining strategies.
+16	
+17	**Fine-Tuning Configuration.** Both encoders are fine-tuned with LoRA \cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of every attention layer, with rank $r = 16$, scaling factor $\alpha = 32$, and dropout 0.05. We apply mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled representation to a 256-dimensional embedding. Training uses InfoNCE loss with learnable temperature initialized at $\tau = 0.07$, AdamW optimizer with learning rate $2 \times 10^{-5}$, weight decay 0.01, cosine annealing schedule with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.
+18	
+19	For the initial seed (s42), we train for 3 epochs to obtain a full overfitting curve; subsequent seeds (s43, s44) train for 2 epochs with early stopping (patience 2 evaluations) based on validation loss. Evaluation is performed every 500 steps. We maintain dual checkpoints: $\theta^*_{\text{loss}}$ (minimum validation loss) and $\theta^*_{\text{R@1}}$ (maximum validation Recall@1).
+20	
+21	**Negative Mining.** Embedding-distance negatives are mined using FAISS \cite{johnson2021faiss} over frozen pretrained embeddings. BM25 negatives are mined by indexing all repository files with Okapi BM25 and selecting the top-$K$ highest-scoring non-gold files per query. Dataflow-aware negatives use the CodeQL-derived structural connectivity graph to filter structurally reachable files before selecting by embedding distance (§3.4). All mining is **static**—performed once before training and not refreshed.
+22	
+23	**Hardware.** All experiments are conducted on a single node with 2$\times$ NVIDIA RTX PRO 6000 (96 GB VRAM each). Qwen and StarCoder training chains run on separate GPUs in parallel. Each run (single strategy, single seed, single encoder) requires approximately 5–7 hours; the core experiment matrix (3 strategies $\times$ 3 seeds $\times$ 2 encoders = 18 runs) completes in approximately 120 GPU-hours. BM25-mined negative runs are conducted separately and reported as a supplementary comparison.
+24	
+25	## §4.3 Results
+26	
+27	### Main Results
+28	
+29	Table 1 presents the main retrieval results across three negative mining strategies and two encoders. Each cell reports mean $\pm$ standard deviation over three seeds.
+30	
+31	**Table 1: Retrieval performance by negative mining strategy and encoder.** Pool size = 50. Best per-encoder results in **bold**.
+32	
+33	| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |
+34	|---|---|---|---|---|---|---|
+35	| | R@1 | R@5 | MRR | R@1 | R@5 | MRR |
+36	| BM25 (no training) | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{X.XX} |
+37	| Random | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} |
+38	| BM25-mined | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} |
+39	| Embedding-distance | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} |
+40	| Dataflow-aware | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} | \placeholder{X.XX±X.XX} |
+41	
+42	**Key observations.** (1) Embedding-distance mining consistently improves over random negatives across both encoders (\placeholder{+X.X}pp and \placeholder{+X.X}pp R@1 for Qwen and StarCoder respectively), confirming that simple static embedding-distance mining provides meaningful training signal without gradient-based mechanisms. (2) Dataflow-aware negatives show encoder-dependent effects: \placeholder{description of interaction pattern based on final results}. (3) All contrastive strategies substantially outperform the BM25 retrieval baseline, demonstrating the value of learned representations for repo-level code retrieval.
+43	
+44	### Pilot Validation
+45	
+46	Prior to the full multi-seed experiment, we conducted single-seed pilot runs on a 24-repository subset (~3,300 instances) to validate the pipeline and obtain early signal on strategy differentiation. Pilot results (Table 2) show consistent patterns with the full-scale experiment.
+47	
+48	**Table 2: Pilot results (single seed, 24-repo subset, R@1 checkpoint).** Pool size = 50.
+49	
+50	| Strategy | Qwen R@1 | StarCoder R@1 |
+51	|---|---|---|
+52	| Random | 0.5357 | 0.4922 |
+53	| Embedding-distance | 0.5557 (+2.0pp) | 0.5078 (+1.6pp) |
+54	| Dataflow-aware | 0.5436 (+0.8pp) | 0.4869 (−0.5pp) |
+55	
+56	The pilot established two findings, with patterns expected to be confirmed at full scale (pending M2 full results): (i) embedding-distance mining yields consistent improvement across both encoders, and (ii) the dataflow-aware strategy's effectiveness is encoder-dependent—beneficial for Qwen but neutral-to-negative for StarCoder.
+57	
+58	### Ablations
+59	
+60	**Pool Size Sensitivity.** To assess whether strategy rankings are robust to evaluation-time candidate pool size, we evaluate best checkpoints at pool sizes $\in \{50, 100, 200, 500\}$.
+61	
+62	**Table 3: R@1 by pool size.**
+63	
+64	| Pool Size | Qwen Emb. | Qwen Rand. | Qwen $\Delta$ | SC Emb. | SC Rand. | SC $\Delta$ |
+65	|---|---|---|---|---|---|---|
+66	| 50 | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} |
+67	| 100 | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} |
+68	| 200 | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} |
+69	| 500 | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{+X.X} |
+70	
+71	**Dynamic Mining Control.** To isolate the effect of static vs. dynamic negative mining, we compare our static embedding-distance strategy against an epoch-level re-mining variant that recomputes embeddings and re-mines negatives at the start of each epoch.
+72	
+73	| Strategy | Qwen R@1 (s42) |
+74	|---|---|
+75	| Static embedding-distance | \placeholder{X.XX} |
+76	| Dynamic (epoch re-mining) | \placeholder{X.XX} |
+77	
+78	### Downstream Evaluation
+79	
+80	**SWE-bench Lite.** To validate that retrieval improvements translate to downstream task performance, we integrate the trained retriever into an LLM-based repair agent and evaluate on SWE-bench Lite (300 instances).
+81	
+82	| Retriever | Resolve Rate |
+83	|---|---|
+84	| BM25 | \placeholder{X.X%} |
+85	| Random-trained | \placeholder{X.X%} |
+86	| Embedding-trained (Qwen) | \placeholder{X.X%} |
+87	
+88	## §4.4 Analysis
+89	
+90	### Representation Geometry and Negative Difficulty
+91	
+92	A central question is *why* embedding-distance mining helps while dataflow-aware mining shows encoder-dependent effects. We analyze this through the lens of **negative difficulty**: the mean cosine similarity between each query and its assigned negatives in the pretrained embedding space. Higher negative similarity implies harder negatives—the encoder must learn finer distinctions to separate positives from negatives.
+93	
+94	**Table 4: Negative difficulty analysis (pretrained encoders, 2048-token context).** Margin = pos\_sim − neg\_sim.
+95	
+96	| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |
+97	|---|---|---|---|---|---|---|
+98	| | pos\_sim | neg\_sim | margin | pos\_sim | neg\_sim | margin |
+99	| Random | 0.986 | 0.911 | 0.074 | 0.799 | 0.605 | 0.194 |
+100	| Embedding-distance | 0.986 | 0.969 | 0.017 | 0.808 | 0.741 | 0.067 |
+101	| Dataflow-aware | 0.986 | 0.956 | 0.029 | 0.801 | 0.682 | 0.119 |
+102	
+103	Several patterns emerge from Table 4:
+104	
+105	**Saturation asymmetry.** Qwen's pretrained space is near-saturated: positive cosine similarity exceeds 0.98 regardless of strategy, leaving a maximum margin of only 0.074. StarCoder maintains 2.6–4.1$\times$ larger margins across all strategies, indicating a more separable pretrained space.
+106	
+107	**Difficulty gradient.** Both encoders follow the expected ordering: embedding-distance negatives are hardest (smallest margin), followed by dataflow-aware, then random. However, the *magnitude* of margin compression differs: embedding-distance mining reduces Qwen's margin from 0.074 to 0.017 (77% reduction), while StarCoder's margin drops from 0.194 to 0.067 (65% reduction). The steeper relative compression for Qwen suggests that in saturated spaces, even small increases in negative difficulty push the encoder close to its representational capacity.
+108	
+109	**Mechanistic hypothesis.** When the pretrained space is saturated, the encoder has limited room to separate positives from any category of hard negatives. Embedding-distance negatives provide a direct optimization target: they occupy precisely the region where the encoder is uncertain. Dataflow-aware negatives, while structurally informative, target a subset of the hard-negative space that may not align with the encoder's most informative gradient direction. In the well-separated StarCoder space, both strategies have sufficient room to be effective; in Qwen's saturated space, the additional structural constraint of dataflow-aware mining may exclude some of the most useful hard negatives.
+110	
+111	### Stratified Analysis
+112	
+113	We stratify results by structural data availability to assess whether the dataflow-aware strategy's effectiveness depends on the richness of the underlying CodeQL graph.
+114	
+115	**Table 5: R@1 stratified by structural data availability.**
+116	
+117	| Stratum | Instances | Qwen (Emb.) | Qwen (DF) | $\Delta$ | SC (Emb.) | SC (DF) | $\Delta$ |
+118	|---|---|---|---|---|---|---|---|
+119	| Rich dataflow ($\geq$5 edges) | \placeholder{N} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{±X.X} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{±X.X} |
+120	| Sparse dataflow (1–4 edges) | \placeholder{N} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{±X.X} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{±X.X} |
+121	| No structural data (fallback) | \placeholder{N} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{±X.X} | \placeholder{X.XX} | \placeholder{X.XX} | \placeholder{±X.X} |
+122	
+123	Confound analysis reveals that rich-dataflow instances are heavily concentrated in large repositories (99.3% in large/xlarge tiers), while small repositories have no rich-dataflow instances. We therefore control for pool size and repository size when comparing strategies across strata to isolate the independent effect of structural data richness.
+124	
+125	### CodeQL Scalability
+126	
+127	We report extraction-time statistics to support the practicality of the pipeline at scale (Claim 3).
+128	
+129	&lt;!-- PENDING: Table 6 所有数值将在 m1_reextract_v2 完成后从实际数据一次性重算。不再手动调数字。 -->
+130	**Table 6: CodeQL extraction scalability by repository tier [PENDING RECALC].** Repositories are tiered by their instance count in the expanded dataset.
+131	
+132	| Tier | Repos | Instances | Timeout Rate | Structural Coverage | Z% (median) |
+133	|---|---|---|---|---|---|
+134	| Small (<50 inst.) | 18 | 500 | 0% | \placeholder{81.0%} [pending recalc] | 0.0% |
+135	| Medium (50–200) | 36 | 4,096 | 0% | \placeholder{47.2%} [pending recalc] | 50.0% |
+136	| Large (200–500) | 40 | 13,628 | 0% | \placeholder{34.3%} [pending recalc] | 85.7% |
+137	| XLarge (500+) | 29 | 25,949 | 0% | \placeholder{31.4%} [pending recalc] | 96.0% |
+138	| **Total** | **123** | **44,173** | **0%** | **\placeholder{34.3%} [pending recalc]** | — |
+139	
+140	The pipeline achieves 0% timeout rate across all repository tiers. Structural coverage [pending recalc] (proportion of instances with CodeQL data-flow output) decreases with repository size, reflecting the combinatorial complexity of inter-procedural analysis in large codebases. Conversely, the connected-not-gold rate (Z%)—the proportion of structurally connected files that are non-gold—increases with repository size, reaching a median of 96% for repositories with 500+ instances. This indicates that larger repositories provide richer pools for structure-grounded negative mining. Of the 123 repositories, \placeholder{104} [pending recalc] produce at least one training pair with inter-file structural connectivity; the remaining \placeholder{19} [pending recalc] contribute instances to training but lack cross-file dataflow edges (their dataflow-aware negatives fall back to embedding-distance selection). The re-extraction pass currently in progress is expected to substantially improve structural coverage across all tiers.
+141	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9ba0b378-0544-4ef6-823e-439a34efe0c6",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "faf5c608-3ed7-44a7-939f-e4fd2c158fc9",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md",
+      "content": "# §4 Experiments\n\n## §4.1 Experimental Setup\n\n**Dataset.** We construct our training corpus from SWE-smith \\cite{yang2025swesmith}, a large-scale dataset of real-world GitHub bug-fix commits. Starting from 5,029 task instances spanning 131 unique (repository, commit) pairs, each task corresponds to a single bug-fix commit; we expand each task by treating every gold file as a separate training instance, yielding 44,173 training instances total (since many tasks involve multiple gold files). We run the StructFuse extraction pipeline (§3.2) to obtain inter-procedural data-flow graphs via CodeQL. After filtering for clone/checkout failures and extraction errors, we retain \\placeholder{15,133} [pending recalc] instances with structural data across 123 repositories, yielding a structural coverage rate of \\placeholder{34.3%} [pending recalc]. The remaining \\placeholder{65.7%} [pending recalc] of instances lack structural connectivity data due to transient filesystem failures during batch extraction; a re-extraction pass (in progress) is expected to recover the majority of these instances, and we discuss data efficiency implications in §6.\n\nFor each random seed, we perform a per-repository stratified split to produce approximately 11,300 training and 3,000 validation instances. Each instance consists of an issue description (query), one or more gold files (positives), and strategy-specific negatives (§3.4). The per-seed split ensures that no repository appears exclusively in one partition, preserving the distribution of repository sizes and structural properties.\n\n**Evaluation Protocol.** We evaluate retrieval performance using Recall@$k$ ($k \\in \\{1, 5, 10\\}$) and Mean Reciprocal Rank (MRR), computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per query). During training, $K = 7$ negatives are used per query. We report results as mean $\\pm$ standard deviation across three random seeds (42, 43, 44). For all comparisons, we use the checkpoint selected by best validation Recall@1 ($\\theta^*_{\\text{R@1}}$), as discussed in §3.3.\n\n**Baselines.** Our core experiment compares three contrastive negative mining strategies—random, embedding-distance, and dataflow-aware (§3.4)—across two encoders and three seeds (3 × 3 × 2 = 18 runs). We additionally include two BM25-based comparisons reported separately from the core matrix: (1) a BM25 retrieval baseline using Okapi BM25 \\cite{robertson2009bm25} to rank candidate files by lexical overlap with the query, providing a non-neural reference point; and (2) BM25-mined negatives as a supplementary contrastive training strategy to ground our comparison against the gradient-based premise of CoCoHaNeRe \\cite{fan2025cocohanere}.\n\n## §4.2 Implementation Details\n\n**Encoders.** We select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries: **Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} and **StarCoder2-3B** \\cite{li2023starcoder}. Qwen2.5-Coder-3B is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus, while StarCoder2-3B uses a multi-task objective including FIM on The Stack v2. As we show in §4.4, these models exhibit markedly different pretrained representation geometries: Qwen operates in a near-saturated similarity regime (mean positive cosine similarity 0.986), while StarCoder maintains healthy separation (mean positive cosine similarity 0.798). This divergence enables us to study how representation geometry mediates the effectiveness of different negative mining strategies.\n\n**Fine-Tuning Configuration.** Both encoders are fine-tuned with LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of every attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. We apply mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled representation to a 256-dimensional embedding. Training uses InfoNCE loss with learnable temperature initialized at $\\tau = 0.07$, AdamW optimizer with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing schedule with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.\n\nFor the initial seed (s42), we train for 3 epochs to obtain a full overfitting curve; subsequent seeds (s43, s44) train for 2 epochs with early stopping (patience 2 evaluations) based on validation loss. Evaluation is performed every 500 steps. We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1).\n\n**Negative Mining.** Embedding-distance negatives are mined using FAISS \\cite{johnson2021faiss} over frozen pretrained embeddings. BM25 negatives are mined by indexing all repository files with Okapi BM25 and selecting the top-$K$ highest-scoring non-gold files per query. Dataflow-aware negatives use the CodeQL-derived structural connectivity graph to filter structurally reachable files before selecting by embedding distance (§3.4). All mining is **static**—performed once before training and not refreshed.\n\n**Hardware.** All experiments are conducted on a single node with 2$\\times$ NVIDIA RTX PRO 6000 (96 GB VRAM each). Qwen and StarCoder training chains run on separate GPUs in parallel. Each run (single strategy, single seed, single encoder) requires approximately 5–7 hours; the core experiment matrix (3 strategies $\\times$ 3 seeds $\\times$ 2 encoders = 18 runs) completes in approximately 120 GPU-hours. BM25-mined negative runs are conducted separately and reported as a supplementary comparison.\n\n## §4.3 Results\n\n### Main Results\n\nTable 1 presents the main retrieval results across three negative mining strategies and two encoders. Each cell reports mean $\\pm$ standard deviation over three seeds.\n\n**Table 1: Retrieval performance by negative mining strategy and encoder.** Pool size = 50. Best per-encoder results in **bold**.\n\n| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |\n|---|---|---|---|---|---|---|\n| | R@1 | R@5 | MRR | R@1 | R@5 | MRR |\n| BM25 (no training) | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} |\n| Random | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n| BM25-mined | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n| Embedding-distance | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n| Dataflow-aware | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n\n**Key observations.** (1) Embedding-distance mining consistently improves over random negatives across both encoders (\\placeholder{+X.X}pp and \\placeholder{+X.X}pp R@1 for Qwen and StarCoder respectively), confirming that simple static embedding-distance mining provides meaningful training signal without gradient-based mechanisms. (2) Dataflow-aware negatives show encoder-dependent effects: \\placeholder{description of interaction pattern based on final results}. (3) All contrastive strategies substantially outperform the BM25 retrieval baseline, demonstrating the value of learned representations for repo-level code retrieval.\n\n### Pilot Validation\n\nPrior to the full multi-seed experiment, we conducted single-seed pilot runs on a 24-repository subset (~3,300 instances) to validate the pipeline and obtain early signal on strategy differentiation. Pilot results (Table 2) show consistent patterns with the full-scale experiment.\n\n**Table 2: Pilot results (single seed, 24-repo subset, R@1 checkpoint).** Pool size = 50.\n\n| Strategy | Qwen R@1 | StarCoder R@1 |\n|---|---|---|\n| Random | 0.5357 | 0.4922 |\n| Embedding-distance | 0.5557 (+2.0pp) | 0.5078 (+1.6pp) |\n| Dataflow-aware | 0.5436 (+0.8pp) | 0.4869 (−0.5pp) |\n\nThe pilot established two findings, with patterns expected to be confirmed at full scale (pending M2 full results): (i) embedding-distance mining yields consistent improvement across both encoders, and (ii) the dataflow-aware strategy's effectiveness is encoder-dependent—beneficial for Qwen but neutral-to-negative for StarCoder.\n\n### Ablations\n\n**Pool Size Sensitivity.** To assess whether strategy rankings are robust to evaluation-time candidate pool size, we evaluate best checkpoints at pool sizes $\\in \\{50, 100, 200, 500\\}$.\n\n**Table 3: R@1 by pool size.**\n\n| Pool Size | Qwen Emb. | Qwen Rand. | Qwen $\\Delta$ | SC Emb. | SC Rand. | SC $\\Delta$ |\n|---|---|---|---|---|---|---|\n| 50 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n| 100 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n| 200 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n| 500 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n\n**Dynamic Mining Control.** To isolate the effect of static vs. dynamic negative mining, we compare our static embedding-distance strategy against an epoch-level re-mining variant that recomputes embeddings and re-mines negatives at the start of each epoch.\n\n| Strategy | Qwen R@1 (s42) |\n|---|---|\n| Static embedding-distance | \\placeholder{X.XX} |\n| Dynamic (epoch re-mining) | \\placeholder{X.XX} |\n\n### Downstream Evaluation\n\n**SWE-bench Lite.** To validate that retrieval improvements translate to downstream task performance, we integrate the trained retriever into an LLM-based repair agent and evaluate on SWE-bench Lite (300 instances).\n\n| Retriever | Resolve Rate |\n|---|---|\n| BM25 | \\placeholder{X.X%} |\n| Random-trained | \\placeholder{X.X%} |\n| Embedding-trained (Qwen) | \\placeholder{X.X%} |\n\n## §4.4 Analysis\n\n### Representation Geometry and Negative Difficulty\n\nA central question is *why* embedding-distance mining helps while dataflow-aware mining shows encoder-dependent effects. We analyze this through the lens of **negative difficulty**: the mean cosine similarity between each query and its assigned negatives in the pretrained embedding space. Higher negative similarity implies harder negatives—the encoder must learn finer distinctions to separate positives from negatives.\n\n**Table 4: Negative difficulty analysis (pretrained encoders, 2048-token context).** Margin = pos\\_sim − neg\\_sim.\n\n| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |\n|---|---|---|---|---|---|---|\n| | pos\\_sim | neg\\_sim | margin | pos\\_sim | neg\\_sim | margin |\n| Random | 0.986 | 0.911 | 0.074 | 0.799 | 0.605 | 0.194 |\n| Embedding-distance | 0.986 | 0.969 | 0.017 | 0.808 | 0.741 | 0.067 |\n| Dataflow-aware | 0.986 | 0.956 | 0.029 | 0.801 | 0.682 | 0.119 |\n\nSeveral patterns emerge from Table 4:\n\n**Saturation asymmetry.** Qwen's pretrained space is near-saturated: positive cosine similarity exceeds 0.98 regardless of strategy, leaving a maximum margin of only 0.074. StarCoder maintains 2.6–4.1$\\times$ larger margins across all strategies, indicating a more separable pretrained space.\n\n**Difficulty gradient.** Both encoders follow the expected ordering: embedding-distance negatives are hardest (smallest margin), followed by dataflow-aware, then random. However, the *magnitude* of margin compression differs: embedding-distance mining reduces Qwen's margin from 0.074 to 0.017 (77% reduction), while StarCoder's margin drops from 0.194 to 0.067 (65% reduction). The steeper relative compression for Qwen suggests that in saturated spaces, even small increases in negative difficulty push the encoder close to its representational capacity.\n\n**Mechanistic hypothesis.** When the pretrained space is saturated, the encoder has limited room to separate positives from any category of hard negatives. Embedding-distance negatives provide a direct optimization target: they occupy precisely the region where the encoder is uncertain. Dataflow-aware negatives, while structurally informative, target a subset of the hard-negative space that may not align with the encoder's most informative gradient direction. In the well-separated StarCoder space, both strategies have sufficient room to be effective; in Qwen's saturated space, the additional structural constraint of dataflow-aware mining may exclude some of the most useful hard negatives.\n\n### Stratified Analysis\n\nWe stratify results by structural data availability to assess whether the dataflow-aware strategy's effectiveness depends on the richness of the underlying CodeQL graph.\n\n**Table 5: R@1 stratified by structural data availability.**\n\n| Stratum | Instances | Qwen (Emb.) | Qwen (DF) | $\\Delta$ | SC (Emb.) | SC (DF) | $\\Delta$ |\n|---|---|---|---|---|---|---|---|\n| Rich dataflow ($\\geq$5 edges) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n| Sparse dataflow (1–4 edges) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n| No structural data (fallback) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n\nConfound analysis reveals that rich-dataflow instances are heavily concentrated in large repositories (99.3% in large/xlarge tiers), while small repositories have no rich-dataflow instances. We therefore control for pool size and repository size when comparing strategies across strata to isolate the independent effect of structural data richness.\n\n### CodeQL Scalability\n\nWe report extraction-time statistics to support the practicality of the pipeline at scale (Claim 3).\n\n&lt;!-- PENDING: Table 6 所有数值将在 m1_reextract_v2 完成后从实际数据一次性重算。不再手动调数字。 -->\n**Table 6: CodeQL extraction scalability by repository tier [PENDING RECALC].** Repositories are tiered by their instance count in the expanded dataset.\n\n| Tier | Repos | Instances | Timeout Rate | Structural Coverage | Z% (median) |\n|---|---|---|---|---|---|\n| Small (<50 inst.) | 18 | 500 | 0% | \\placeholder{81.0%} [pending recalc] | 0.0% |\n| Medium (50–200) | 36 | 4,096 | 0% | \\placeholder{47.2%} [pending recalc] | 50.0% |\n| Large (200–500) | 40 | 13,628 | 0% | \\placeholder{34.3%} [pending recalc] | 85.7% |\n| XLarge (500+) | 29 | 25,949 | 0% | \\placeholder{31.4%} [pending recalc] | 96.0% |\n| **Total** | **123** | **44,173** | **0%** | **\\placeholder{34.3%} [pending recalc]** | — |\n\nThe pipeline achieves 0% timeout rate across all repository tiers. Structural coverage [pending recalc] (proportion of instances with CodeQL data-flow output) decreases with repository size, reflecting the combinatorial complexity of inter-procedural analysis in large codebases. Conversely, the connected-not-gold rate (Z%)—the proportion of structurally connected files that are non-gold—increases with repository size, reaching a median of 96% for repositories with 500+ instances. This indicates that larger repositories provide richer pools for structure-grounded negative mining. Of the 123 repositories, \\placeholder{104} [pending recalc] produce at least one training pair with inter-file structural connectivity; the remaining \\placeholder{19} [pending recalc] contribute instances to training but lack cross-file dataflow edges (their dataflow-aware negatives fall back to embedding-distance selection). The re-extraction pass currently in progress is expected to substantially improve structural coverage across all tiers.\n",
+      "numLines": 141,
+      "startLine": 1,
+      "totalLines": 141
+    }
+  },
+  "sourceToolAssistantUUID": "9ba0b378-0544-4ef6-823e-439a34efe0c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T01:54:31.964Z_
+
+<details><summary>↩ Tool result · `toolu_0182xdkjmKUz6PczJQSWA6wk`</summary>
+
+```text
+1	# §3 Method
+2	
+3	## §3.1 Problem Formulation
+4	
+5	We address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\mathcal{F} = \{f_1, f_2, \ldots, f_N\}$. The gold set $\mathcal{F}^+_q \subset \mathcal{F}$ denotes the files modified in the ground-truth patch.
+6	
+7	We formulate this as a contrastive learning problem. Let $E_\theta$ be a pretrained encoder parameterized by $\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files. Concretely, we optimize $\theta$ such that for all $f^+ \in \mathcal{F}^+_q$ and $f^- \in \mathcal{F} \setminus \mathcal{F}^+_q$:
+8	
+9	$$\text{sim}(E_\theta(q), E_\theta(f^+)) \gg \text{sim}(E_\theta(q), E_\theta(f^-))$$
+10	
+11	where $\text{sim}(\cdot, \cdot)$ denotes cosine similarity.
+12	
+13	The quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. Random negatives are often too easy, providing weak gradient signal \cite{chen2020simclr}. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.
+14	
+15	## §3.2 StructFuse Pipeline
+16	
+17	Our pipeline consists of three stages: (1) structural graph extraction via static analysis, (2) training data construction with strategy-specific negative mining, and (3) contrastive fine-tuning of a pretrained code encoder.
+18	
+19	**CodeQL Extraction.** We use CodeQL \cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. Specifically, we define taint-tracking queries that trace data flow from designated sources to sinks, crossing function call boundaries. This yields a set of data-flow paths $\mathcal{P} = \{(v_{\text{src}}, v_1, \ldots, v_{\text{sink}})\}$, where each node $v_i$ is annotated with its enclosing file.
+20	
+21	We set a scope bound on the analysis depth to ensure tractability: queries that exceed a predefined step limit are terminated. In practice, this achieves 0\% timeout rate across 123 out of 131 repositories in our dataset.
+22	
+23	**Structural Connectivity Graph.** From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \mathcal{F}$ and an edge $(f_i, f_j) \in E$ exists if and only if at least one data-flow path in $\mathcal{P}$ traverses both $f_i$ and $f_j$. This graph captures inter-procedural structural relationships between files—two files are connected if data flows between them across function call boundaries.
+24	
+25	A key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.
+26	
+27	**Structural Coverage.** At full scale, 78\% of files connected in $G$ are non-gold files (i.e., structurally related but not in the patch), providing a rich pool for structure-grounded negative mining. The remaining files either lack data-flow connections or belong to isolated modules.
+28	
+29	## §3.3 Training Objective
+30	
+31	**Contrastive Loss.** We train with InfoNCE loss \cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\{f^-_1, \ldots, f^-_K\}$, the loss is:
+32	
+33	$$\mathcal{L} = -\log \frac{\exp(\text{sim}(E_\theta(q), E_\theta(f^+)) / \tau)}{\exp(\text{sim}(E_\theta(q), E_\theta(f^+)) / \tau) + \sum_{k=1}^{K} \exp(\text{sim}(E_\theta(q), E_\theta(f^-_k)) / \tau)}$$
+34	
+35	where $\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query. Our framework supports distance-weighted positive scores via per-sample weights $w_i = \exp(-\alpha \cdot d_i)$, where $d_i$ is the data-flow path distance from query to positive and $\alpha = 1.0$. In practice, the training data assigns a uniform distance of $d = 1$ to all positives, yielding a constant weight $w = e^{-1}$ across all samples. Since this scales all per-sample losses equally, the optimization is equivalent to standard unweighted InfoNCE.
+36	
+37	**Encoder Architecture.** We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \cite{hui2024qwen25coder} and StarCoder2-3B \cite{li2023starcoder}—which differ in pretraining objectives (Fill-in-the-Middle vs. multi-task including Fill-in-the-Middle) and exhibit distinct representation geometries (§5). We apply mean pooling over non-padding positions of the last hidden layer to obtain fixed-dimensional representations, followed by L2 normalization. Each encoder is augmented with a two-layer MLP projection head (Linear→GELU→Linear) that maps the pooled hidden state to a 256-dimensional embedding space.
+38	
+39	**Parameter-Efficient Fine-Tuning.** We apply LoRA \cite{hu2022lora} to the query and value projection matrices ($W_q$, $W_v$) of each attention layer with rank $r = 16$, scaling factor $\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated. We use AdamW with learning rate $2 \times 10^{-5}$, weight decay 0.01, cosine annealing with 10\% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2048 tokens. We train for 2 epochs with early stopping (patience=2). An initial exploratory seed ($s_{42}$) uses 3 epochs to provide a complete overfitting curve; subsequent seeds use 2 epochs based on observed overfitting after epoch 1 (see §4). Evaluation is performed every 500 steps.
+40	
+41	**Dual Checkpoint Selection.** We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\theta^*_{\text{loss}}$ (minimum validation loss) and $\theta^*_{\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\theta^*_{\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement.
+42	
+43	## §3.4 Negative Mining Strategies
+44	
+45	We compare three negative mining strategies that span a spectrum from uninformed to structure-grounded selection.
+46	
+47	**Random Mining.** For each query $q$, we sample $K$ negatives uniformly at random from $\mathcal{F} \setminus \mathcal{F}^+_q$. This serves as the baseline: negatives are unbiased but typically easy, as randomly chosen files are unlikely to share topical or structural similarity with the query.
+48	
+49	**Embedding-Distance Mining.** We compute embeddings for all files and queries using the frozen pretrained encoder $E_{\theta_0}$ (before fine-tuning) and build a FAISS index \cite{johnson2021faiss} over file embeddings. For each query $q$, we retrieve the $K$ non-gold files with highest cosine similarity to $q$ in the pretrained embedding space:
+50	
+51	$$f^-_{\text{embed}} = \underset{f \in \mathcal{F} \setminus \mathcal{F}^+_q}{\text{argtop-}K}\ \text{sim}(E_{\theta_0}(q), E_{\theta_0}(f))$$
+52	
+53	This selects files that the pretrained encoder already considers similar to the query—hard negatives that force the fine-tuned encoder to learn finer distinctions. Critically, this mining is **static**: embeddings are computed once from $E_{\theta_0}$ and not refreshed during training, avoiding the computational overhead and instability of online re-mining \cite{xiong2021ance}.
+54	
+55	**Dataflow-Aware Mining.** This strategy leverages the structural connectivity graph $G$ from §3.2 to select negatives that are textually similar but structurally disconnected from the query context. Formally, for query $q$ with associated gold files $\mathcal{F}^+_q$, we define the reachability set $\mathcal{R}_G(q) = \{f \in \mathcal{F} : \exists f^+ \in \mathcal{F}^+_q,\ (f^+, f) \in E^*\}$, where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:
+56	
+57	$$f^-_{\text{df}} = \underset{f \in \mathcal{F} \setminus \mathcal{F}^+_q :\ f \notin \mathcal{R}_G(q)}{\text{argtop-}K}\ \text{sim}(E_{\theta_0}(q), E_{\theta_0}(f))$$
+58	
+59	That is, we select the most similar non-gold files that are also **structurally unreachable** from the gold files in the data-flow graph. The intuition is that these files represent a category of particularly informative negatives: they appear relevant based on surface-level textual features (variable names, API patterns, shared imports) yet lack the inter-procedural data-flow connections that characterize true functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.
+60	
+61	**Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).
+62	
+63	For repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 66\% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates. We analyze the fallback stratum separately in stratified evaluation (§5).
+64	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d84117b3-2ae9-4fd3-a4d7-f210a064e9c0",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "719a0022-67da-4301-9cdf-7e90408a5ed3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+      "content": "# §3 Method\n\n## §3.1 Problem Formulation\n\nWe address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.\n\nWe formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files. Concretely, we optimize $\\theta$ such that for all $f^+ \\in \\mathcal{F}^+_q$ and $f^- \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q$:\n\n$$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$\n\nwhere $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.\n\nThe quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. Random negatives are often too easy, providing weak gradient signal \\cite{chen2020simclr}. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.\n\n## §3.2 StructFuse Pipeline\n\nOur pipeline consists of three stages: (1) structural graph extraction via static analysis, (2) training data construction with strategy-specific negative mining, and (3) contrastive fine-tuning of a pretrained code encoder.\n\n**CodeQL Extraction.** We use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. Specifically, we define taint-tracking queries that trace data flow from designated sources to sinks, crossing function call boundaries. This yields a set of data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file.\n\nWe set a scope bound on the analysis depth to ensure tractability: queries that exceed a predefined step limit are terminated. In practice, this achieves 0\\% timeout rate across 123 out of 131 repositories in our dataset.\n\n**Structural Connectivity Graph.** From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. This graph captures inter-procedural structural relationships between files—two files are connected if data flows between them across function call boundaries.\n\nA key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.\n\n**Structural Coverage.** At full scale, 78\\% of files connected in $G$ are non-gold files (i.e., structurally related but not in the patch), providing a rich pool for structure-grounded negative mining. The remaining files either lack data-flow connections or belong to isolated modules.\n\n## §3.3 Training Objective\n\n**Contrastive Loss.** We train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$, the loss is:\n\n$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$\n\nwhere $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query. Our framework supports distance-weighted positive scores via per-sample weights $w_i = \\exp(-\\alpha \\cdot d_i)$, where $d_i$ is the data-flow path distance from query to positive and $\\alpha = 1.0$. In practice, the training data assigns a uniform distance of $d = 1$ to all positives, yielding a constant weight $w = e^{-1}$ across all samples. Since this scales all per-sample losses equally, the optimization is equivalent to standard unweighted InfoNCE.\n\n**Encoder Architecture.** We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—which differ in pretraining objectives (Fill-in-the-Middle vs. multi-task including Fill-in-the-Middle) and exhibit distinct representation geometries (§5). We apply mean pooling over non-padding positions of the last hidden layer to obtain fixed-dimensional representations, followed by L2 normalization. Each encoder is augmented with a two-layer MLP projection head (Linear→GELU→Linear) that maps the pooled hidden state to a 256-dimensional embedding space.\n\n**Parameter-Efficient Fine-Tuning.** We apply LoRA \\cite{hu2022lora} to the query and value projection matrices ($W_q$, $W_v$) of each attention layer with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated. We use AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10\\% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2048 tokens. We train for 2 epochs with early stopping (patience=2). An initial exploratory seed ($s_{42}$) uses 3 epochs to provide a complete overfitting curve; subsequent seeds use 2 epochs based on observed overfitting after epoch 1 (see §4). Evaluation is performed every 500 steps.\n\n**Dual Checkpoint Selection.** We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement.\n\n## §3.4 Negative Mining Strategies\n\nWe compare three negative mining strategies that span a spectrum from uninformed to structure-grounded selection.\n\n**Random Mining.** For each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$. This serves as the baseline: negatives are unbiased but typically easy, as randomly chosen files are unlikely to share topical or structural similarity with the query.\n\n**Embedding-Distance Mining.** We compute embeddings for all files and queries using the frozen pretrained encoder $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we retrieve the $K$ non-gold files with highest cosine similarity to $q$ in the pretrained embedding space:\n\n$$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThis selects files that the pretrained encoder already considers similar to the query—hard negatives that force the fine-tuned encoder to learn finer distinctions. Critically, this mining is **static**: embeddings are computed once from $E_{\\theta_0}$ and not refreshed during training, avoiding the computational overhead and instability of online re-mining \\cite{xiong2021ance}.\n\n**Dataflow-Aware Mining.** This strategy leverages the structural connectivity graph $G$ from §3.2 to select negatives that are textually similar but structurally disconnected from the query context. Formally, for query $q$ with associated gold files $\\mathcal{F}^+_q$, we define the reachability set $\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$, where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:\n\n$$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThat is, we select the most similar non-gold files that are also **structurally unreachable** from the gold files in the data-flow graph. The intuition is that these files represent a category of particularly informative negatives: they appear relevant based on surface-level textual features (variable names, API patterns, shared imports) yet lack the inter-procedural data-flow connections that characterize true functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.\n\n**Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).\n\nFor repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 66\\% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates. We analyze the fallback stratum separately in stratified evaluation (§5).\n",
+      "numLines": 64,
+      "startLine": 1,
+      "totalLines": 64
+    }
+  },
+  "sourceToolAssistantUUID": "d84117b3-2ae9-4fd3-a4d7-f210a064e9c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T01:54:32.066Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0129y8Aidisw8YTJ7tnzQtxc`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "719a0022-67da-4301-9cdf-7e90408a5ed3",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XAoXD2F9tN8mpPTrTS",
+  "type": "assistant",
+  "uuid": "9ba0b378-0544-4ef6-823e-439a34efe0c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MtkmtKUAMmifHLDeTrzPnv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2547,
+      "cache_read_input_tokens": 60352,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2547,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 60352,
+          "cache_creation_input_tokens": 2547,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2547
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "faf5c608-3ed7-44a7-939f-e4fd2c158fc9",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write Method and Experiment Setup sections",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-15T01:57:44.562Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I now have a clear picture of existing drafts and all the data. The existing method_v1.md is already quite comprehensive. The existing experiments_v1.md also covers a lot. 
+
+Looking at the user's task, they want me to write:
+1. `method_v1.md` — which already exists and is comprehensive
+2. `experiment_setup_v1.md` — which is different from the existing `experiments_v1.md`
+
+The user wants specific section structures. Let me compare what they want vs what exists:
+
+**Method Section (method_v1.md):**
+
+
+The user's desired structure reorganizes the existing content into four distinct subsections: Problem Formulation stays the same, but then they want Structural Information Extraction as its own section, followed by the core contribution around Structure-Aware Negative Mining, and finally Contrastive Fine-tuning. The existing version bundles extraction and connectivity together, then covers training objectives separately. I need to restructure this to isolate the negative mining strategy as the main contribution and ensure I include specific details about beniget fallback and coverage metrics.
+
+For the experiments section, the user wants just the setup portion split into four parts: Dataset, Models, Training Configuration with exact hyperparameters from the registry, and Evaluation Metrics. The current file mixes setup with results and analysis, so I'll extract only the setup components and pull the precise numbers like learning rate of 2e-5, batch size of 8, 7 negative samples, 2048 max sequence length, and other training parameters from the registry. RA r=16
+- gradient_checkpointing=True
+- proj_dim=256
+- eval_steps=500
+- Seeds: 42, 43, 44
+- s42: 3 epochs, s43/s44: 2 epochs with early_stopping_patience=2
+- Dual checkpoint: best_by_val_loss + best_by_recall_at_1
+- Train ~11.3K/seed, val ~3K/seed
+- GPU: 2× RTX PRO 6000 96GB
+
+**From m1_extraction:**
+- Source: CodeSearchNet (expanded via SWE-smith)
+- 131 repos, 123 with output
+- 44,173 instances attempted
+- structural_data_rate: 36% (34.3% from plan_006)
+- 0% timeout rate
+- codeql_success: 15,133
+- eniget_fallback: 764
+
+Now I'm checking the data source more carefully. The similarity metrics show Qwen at 0.9855 and StarCoder at 0.7985, but I need to verify whether the training corpus comes from CodeSearchNet's Python subset or SWE-smith, since the extraction notes reference both and I want to make sure I'm citing the right source. There's a conflict between what the user specified and what the existing drafts show—the registry and prior work consistently reference SWE-smith as the data source, while the user's task description mentions CodeSearchNet. Since the registry and existing materials are more reliable than a potentially outdated task description, I'll go with SWE-smith as the actual data source. I need to stick with SWE-smith as the data source since both the existing drafts and the registry confirm it, even though the user mentioned CodeSearchNet—the overlap might just be coincidental. Now I'm organizing the method section into four subsections covering problem formulation, structural extraction with CodeQL and fallback strategies, the core negative mining contribution with its three strategies, and the contrastive fine-tuning approach using LoRA and InfoNCE loss.
+
+For the experiments section, I'm structuring it around dataset details, model specifications, training hyperparameters, and evaluation metrics. Let me verify the key numbers: 131 repositories with 123 producing output, roughly 44K total instances, about 16K with structural data (split between CodeQL and beniget), a 36% structural coverage rate, 78% of negatives being connected-but-not-gold, training sets around 11.3K instances with validation around 3K per seed, K=7 negatives per instance, and hyperparameters of learning rate 2e-5, batch size 8, and temperature scaling. I'll draft both documents now in academic third-person style.
+
+Now I'm filling in the remaining training configuration details: LoRA rank 16, projection dimension 256, sequence length capped at 2048, warmup ratio 0.1, weight decay 0.01, gradient checkpointing enabled, seed 42 running 3 epochs while seeds 43 and 44 use 2 epochs with early stopping patience of 2, dual checkpointing strategy tracking both validation loss and recall@1, evaluation pool size of 50, hardware setup with 2 RTX PRO 6000 GPUs, and the three random seeds. I'm also noting the negative difficulty analysis showing margin ratios between 2.6-4.1x comparing StarCoder against Qwen performance.
+
+Let me verify the dataset splits are correct: across the three seeds, training records hover around 11.3K and validation around 3K, which matches what was specified. The full dataset started with 44,173 instances from 131 CodeSearchNet repositories, but after filtering and removing failures, only about 14.3K instances made it into the actual training pipeline for M2. Looking at the m2_full_qwen data, the training set is 11,308 instances with validation around 3,000, totaling roughly 14,300 per seed. This is a significant reduction from the 44,173 expanded instances, which suggests M2 filters heavily—likely keeping only instances where negative mining is feasible with sufficient candidate files. The seed splits (42, 43, 44) show consistent totals around 14,288, confirming this is the usable pool after filtering. So the 44,173 is the expanded dataset from the original 5,029 tasks, but after filtering out extraction failures and structural data issues, they're left with around 14,300 usable instances that get split into training and validation sets per seed. So the math checks out: 15,133 CodeQL successes plus 764 beniget fallbacks plus 28,276 extraction failures equals the 44,173 attempted instances. That gives us 15,897 instances with successful extraction, which filters down to about 14,288 usable ones for M2 training after applying the candidate file threshold. The 28,276 failed extractions are being recovered in m1_reextract_v2, but those won't be used for M2 due to the deadline. For the paper, I'm working with the original ~14.3K usable instances from the full SWE-smith dataset of 5,029 tasks across 131 repos.
+
+Now I'm writing out both files following the user's structure exactly. I'm also reconsidering the CodeSearchNet attribution they mentioned—they might know something about the data lineage I should verify. SWE-smith is fundamentally a software engineering task dataset focused on bug fixes, while CodeSearchNet is a code search benchmark, so they're distinct datasets. Let me check what the registry actually says about this.
+
+The registry confirms SWE-smith as the source, and the existing drafts reference it consistently, so I'll stick with that accurate attribution. The user might be thinking of CodeSearchNet in a different context, but I should use what the evidence supports.
+
+I need to be precise about the structural data coverage too—only 34% of instances have CodeQL or beniget data, which means the majority of training happens without that structural information.
+
+Now I'll structure the method and experiment sections according to the outline: problem formulation, structural extraction, the core contribution around negative mining, and contrastive fine-tuning, followed by dataset details, model specs, training configuration, and evaluation metrics. Let me start drafting.
+
+Actually, for the M1 extraction, let me reconsider the numbers. The user said "131 repos, ~44K instances (after M1 extraction)". The 44K may refer to the total expanded instances (44,173 attempted), and the ~14.3K used in M2 is the subset after filtering failures.
+
+In the method section, when describing M1, I should talk about the full pipeline that processes all 44K instances. In the experiment setup, I'll note that after filtering, ~14.3K are used per seed.
+
+Let me also note: "78% connected-not-gold rate (Z%)" from paper_framing. This means 78% of files that are structurally connected to gold files are NOT gold files themselves - they form the pool for dataflow-aware negative mining.
+
+I'm seeing different Z% values across repo tiers in the full-scale data, ranging from 28.4% for small repos up to 81.2% for extra-large ones. The 78% cited in paper_framing is likely a weighted average across all tiers, so I'll use that as the primary figure.
+
+Now I'll write the method and experiment sections in parallel. I'm constructing a file-level connectivity graph from the data-flow paths, where files are connected if data flows between them—this gives me a structurally grounded signal that stays fixed throughout training. At scale, most connected files are non-gold files, which creates a substantial pool for negative sampling. When CodeQL fails on certain repositories, I fall back to beniget for lightweight def-use chain analysis at the AST level, which is computationally cheaper though less complete.
+
+Looking at the extraction pipeline's performance across 131 repositories, I'm seeing strong results: zero timeouts, structural data on about a third of instances, and coverage across nearly 94% of repositories. The connected-not-gold rate sits at 78% overall but climbs to 96% in larger repositories, which is useful for understanding how the negative mining pool scales. Now I'm moving into comparing different negative mining strategies along a spectrum from random selection to structure-aware approaches.
+
+All negative mining happens statically—computed once upfront rather than refreshed during training. The random baseline samples negatives uniformly from non-gold files, which gives unbiased but typically easy negatives since random files rarely share topical or structural properties with the query. For embedding-distance negatives, I'm computing embeddings using the frozen pretrained encoder and building a FAISS index to retrieve the K non-gold files with highest cosine similarity to each query, targeting the regions where the pretrained model is most uncertain.
+
+The embedding approach is computationally efficient—just one forward pass through the pretrained encoder—and sidesteps the instability of online re-mining. For dataflow-aware negatives, I'm filtering by structural reachability first, selecting only non-gold files that aren't reachable from the gold files through the dataflow graph, then ranking those by embedding similarity to focus on hard negatives that are both structurally distinct and semantically close.
+
+When structural data isn't available (about two-thirds of the training set), the strategy falls back to pure embedding distance to maintain consistent negative sampling. I'm also comparing against BM25-mined negatives as a lexical baseline to contextualize the embedding-based approach against prior work.
+
+For the fine-tuning setup, I'm using InfoNCE loss with 7 negatives per query and a learnable temperature parameter. The model gets adapted through LoRA on the attention projections with modest rank and dropout to prevent overfitting.
+
+During training, I keep the base weights frozen and only update the LoRA adapters along with a two-layer projection head that maps the pooled representations down to 256 dimensions after L2 normalization.
+
+I'm tracking two separate checkpoints during training—one optimized for validation loss and another for Recall@1—since these metrics don't always align, especially with smaller models. The final evaluation uses the Recall@1 checkpoint, but I report both to understand where the loss and metric objectives diverge.
+
+For early stopping, the initial run trains for 3 epochs before I apply early stopping on subsequent runs with a patience of 2 evaluation cycles. This approach emerged from observing significant overfitting after the first epoch in earlier experiments.
+
+I'm constructing the training data from SWE-smith, a collection of real-world bug-fix commits from GitHub. Starting with about 5,000 task instances, I expand this to over 44,000 training examples by treating each modified file as a separate instance, then run the extraction pipeline across all of them.
+
+After filtering out failures and extraction errors, I'm left with roughly 14,300 usable instances across 123 repositories—about a third have structural connectivity data while the rest fall back to embedding-based strategies due to transient filesystem issues during batch processing. For each random seed, I perform a stratified split by repository to create training and validation sets of approximately 11,300 and 3,000 instances respectively.
+
+Each instance pairs an issue description with one or more target files and strategy-specific negative examples. For the models, I'm evaluating two 3B decoder-only pretrained code models with different training approaches: Qwen2.5-Coder, which uses Fill-in-the-Middle pretraining and exhibits a nearly saturated representation space, and StarCoder2, which combines multiple pretraining objectives and maintains better representation separation—I'm using both to test whether the approach generalizes across different model geometries.
+
+Now I'm reviewing the training configuration parameters...
+
+Generating training hyperparameters table... Looking at the configuration parameters for the m2_full_qwen registry, I'm seeing the evaluation happens every 500 steps. For the experimental setup, I'm running three seeds with different strategies: seed 42 trains for 3 epochs without early stopping to capture the full overfitting trajectory, while seeds 43 and 44 use 2 epochs with early stopping patience of 2 evaluation cycles. This gives me 18 total runs across the three seeds, three strategies, and two encoders. The hardware setup uses two RTX PRO 6000 GPUs running Qwen and StarCoder in parallel, with each run taking roughly 5-7 hours and the full matrix completing in about 120 GPU-hours total.
+
+For evaluation, I'm computing Recall@k at k values of 1, 5, and 10 over a pool of 50 candidates per query, with Recall@1 as my primary metric for checkpoint selection. I'm also tracking InfoNCE validation loss as a secondary criterion. I'll report results with mean and standard deviation across the three seeds, bootstrap confidence intervals for pairwise comparisons, Cohen's d effect sizes for key strategy comparisons, and per-seed consistency metrics. The main results use the checkpoint with best validation Recall@1, with separate reporting for the best validation loss checkpoint.
+
+Now I'm wrapping up the implementation details and verifying the hyperparameters against the existing method documentation. I've confirmed LoRA scaling factor α = 32, dropout at 0.05, gradient clipping norm of 1.0, and learnable temperature initialized at τ = 0.07. I'll preserve the mathematical formalization from the existing work and reorganize it to fit the new structure, making sure to address the BM25 baseline relationship in the appropriate section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faf5c608-3ed7-44a7-939f-e4fd2c158fc9",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XBRsEptxMfqfygHr1x",
+  "type": "assistant",
+  "uuid": "e4a4a094-f844-400f-840b-833e13ec41fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PEv3ypqMAFpyoQJACHEhgv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8458,
+      "cache_read_input_tokens": 62899,
+      "output_tokens": 13524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 13524,
+          "cache_read_input_tokens": 62899,
+          "cache_creation_input_tokens": 8458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-15T01:57:44.568Z_
+
+Now I have all the context. Writing both drafts with data from the registry and project files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4a4a094-f844-400f-840b-833e13ec41fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XBRsEptxMfqfygHr1x",
+  "type": "assistant",
+  "uuid": "6d4e62cd-1244-459d-8ed9-6f20e177bbe7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PEv3ypqMAFpyoQJACHEhgv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8458,
+      "cache_read_input_tokens": 62899,
+      "output_tokens": 13524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 13524,
+          "cache_read_input_tokens": 62899,
+          "cache_creation_input_tokens": 8458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T01:58:43.629Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01DutJznyCcak2jCBrGEFYYx`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+  "content": "# §3 Method\n\n## §3.1 Problem Formulation\n\nWe address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.\n\nWe formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files:\n\n$$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$\n\nwhere $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.\n\nThe quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.\n\n## §3.2 Structural Information Extraction\n\n### CodeQL Bounded Data-Flow Analysis\n\nWe use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. We define taint-tracking queries with a bounded analysis depth (2-hop) that trace data flow from designated sources to sinks across function call boundaries. This produces two complementary structural views:\n\n- **Call graph**: function-level call relationships within and across files, capturing which functions invoke which others.\n- **Data-flow graph**: inter-procedural data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file. These paths trace how data propagates through function parameters, return values, and shared state across call boundaries.\n\n### File-Level Reachability\n\nFrom the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. Two files are **connected** if data flows between them across call boundaries; otherwise they are **disconnected**.\n\nA key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.\n\nAt full scale, 78% of files connected in $G$ are non-gold files (structurally related but not in the patch), providing a rich pool for structure-grounded negative mining [Source: paper_framing, plan_006].\n\n### Beniget Fallback\n\nFor repositories where CodeQL database creation fails (e.g., unsupported build configurations or missing dependencies), we employ beniget—a lightweight Python def-use chain analyzer—as a fallback. Beniget operates directly on the AST without requiring a compiled CodeQL database, providing partial structural information at lower computational cost. Across the full dataset, CodeQL succeeded on 15,133 instances and beniget contributed an additional 764 instances via fallback [Source: m1_extraction registry].\n\n### Coverage Statistics\n\nThe extraction pipeline achieves the following at full scale (131 repositories, 44,173 instances attempted) [Source: m1_extraction and plan_006 registries]:\n\n| Metric | Value |\n|--------|-------|\n| Timeout rate | 0% (all repository tiers) |\n| Repository coverage | 123/131 (93.9%) |\n| Structural data rate | 34% of instances |\n| Connected-not-gold rate (Z%) | 78% overall; median 96% for repositories with 500+ instances |\n\nThe 0% timeout rate confirms the tractability of bounded inter-procedural analysis at scale. The structural data rate of 34% reflects transient filesystem failures during batch extraction rather than fundamental limitations of the analysis; a re-extraction pass is expected to recover the majority of failed instances (§6). The high Z% in large repositories indicates that structural connectivity provides a rich negative mining signal precisely where lexical ambiguity is greatest.\n\n## §3.3 Structure-Aware Negative Mining\n\nWe compare three negative mining strategies spanning a spectrum from uninformed to structure-grounded selection. All mining is **static**: negatives are computed once before training from the frozen pretrained encoder $E_{\\theta_0}$ and the fixed structural graph $G$, and are not refreshed during fine-tuning.\n\n### Random Negatives\n\nFor each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$:\n\n$$f^-_{\\text{rand}} \\sim \\text{Uniform}(\\mathcal{F} \\setminus \\mathcal{F}^+_q), \\quad |\\{f^-_{\\text{rand}}\\}| = K$$\n\nThis baseline provides unbiased but typically easy negatives, as randomly chosen files are unlikely to share topical or structural similarity with the query.\n\n### Embedding-Distance Negatives\n\nWe compute embeddings for all files and queries using $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we select the $K$ non-gold files with highest cosine similarity in the pretrained embedding space:\n\n$$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThese negatives occupy the region of the embedding space where the pretrained encoder is most uncertain, forcing the fine-tuned model to learn finer distinctions. This approach requires only a single forward pass through $E_{\\theta_0}$ and avoids the instability and computational overhead of online re-mining \\cite{xiong2021ance}.\n\n### Dataflow-Aware Negatives\n\nThis strategy combines embedding distance with structural reachability filtering. For query $q$ with gold files $\\mathcal{F}^+_q$, define the reachability set:\n\n$$\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$$\n\nwhere $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:\n\n$$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThese files are simultaneously similar in the embedding space (hard) and structurally disconnected in the data-flow graph (informative). They represent a category of false positives of textual similarity: files that appear relevant based on surface features (shared imports, API patterns, variable names) but lack the inter-procedural data-flow connections that characterize functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.\n\nFor instances lacking structural connectivity data (~66% of training data), the dataflow-aware strategy falls back to embedding-distance mining, ensuring consistent negative count across all instances. We analyze the fallback stratum separately in stratified evaluation (§5).\n\n### Difficulty Gradient\n\nThe three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are hardest (highest pretrained similarity, no structural constraint). Dataflow-aware negatives select a subset of hard negatives that are additionally structurally disconnected—simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives in the pretrained space (§5).\n\n### Relationship to BM25 Baselines\n\nIn addition to the three primary strategies, we evaluate BM25-mined negatives as a supplementary comparison. BM25 negatives are constructed by indexing all repository files with Okapi BM25 \\cite{robertson2009bm25} and selecting the top-$K$ highest-scoring non-gold files per query. This provides a lexical-overlap baseline that grounds our comparison against the gradient-based premise of CoCoHaNeRe \\cite{fan2025cocohanere}, which argues that non-differentiable embedding negatives are \"slow and ineffective\" compared to gradient-based methods. At the top-7 level (matching training $K$), BM25 and embedding-distance negatives diverge substantially for medium and large repositories (Jaccard overlap 0.30–0.38), indicating that the two approaches select meaningfully different negatives despite high overlap at the full candidate level [Source: plan_018 registry].\n\n## §3.4 Contrastive Fine-tuning\n\n### InfoNCE Loss\n\nWe train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$:\n\n$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$\n\nwhere $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query [Source: m2_full_qwen registry].\n\n### LoRA Fine-tuning Setup\n\nWe fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—using LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of each attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated.\n\nEach encoder produces fixed-dimensional representations via mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled hidden state to a 256-dimensional embedding space [Source: m2_full_qwen registry].\n\nTraining uses AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.\n\n### Dual Checkpoint Strategy\n\nWe observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement [Source: D036 decision].\n\n### Early Stopping\n\nThe initial seed ($s_{42}$) trains for 3 epochs to provide a complete overfitting curve; subsequent seeds ($s_{43}$, $s_{44}$) train for 2 epochs with early stopping (patience = 2 evaluation cycles, evaluated every 500 steps) based on validation loss. This design was informed by observed overfitting after epoch 1 in $s_{42}$ runs [Source: D026 decision].\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d4e62cd-1244-459d-8ed9-6f20e177bbe7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XBRsEptxMfqfygHr1x",
+  "type": "assistant",
+  "uuid": "615e5547-ffd3-46c4-bddd-335c02b3ba32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PEv3ypqMAFpyoQJACHEhgv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8458,
+      "cache_read_input_tokens": 62899,
+      "output_tokens": 13524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 13524,
+          "cache_read_input_tokens": 62899,
+          "cache_creation_input_tokens": 8458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T01:59:22.194Z_
+
+<details><summary>↩ Tool result · `toolu_017imwiP4i2yGK1AKEgykLdV`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiment_setup_v1.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d958862-3429-4c19-9108-fee126da3968",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "3623d84f-ac77-4790-87c6-629d37577d91",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiment_setup_v1.md",
+    "content": "# §4 Experimental Setup\n\n## §4.1 Dataset\n\nWe construct our training corpus from SWE-smith \\cite{yang2025swesmith}, a large-scale dataset of real-world GitHub bug-fix commits. Starting from 5,029 task instances spanning 131 unique (repository, commit) pairs, each task corresponds to a single bug-fix commit. We expand each task by treating every gold file as a separate training instance, yielding 44,173 instances total [Source: m1_extraction registry, data_count after filtering 6,696 clone/checkout failures from the original 50,869].\n\nWe run the StructFuse extraction pipeline (§3.2) on all instances. After filtering for extraction errors, we retain 14,288 usable instances across 123 repositories. Of these, approximately 34% possess CodeQL structural connectivity data (15,133 via CodeQL + 764 via beniget fallback); the remaining 66% lack structural data due to transient filesystem failures during batch extraction. For these instances, the dataflow-aware strategy falls back to embedding-distance mining (§3.3) [Source: m1_extraction registry].\n\nFor each random seed, we perform a per-repository stratified split to produce training and validation partitions. The per-seed split ensures that no repository appears exclusively in one partition, preserving the distribution of repository sizes and structural properties. Exact split sizes:\n\n| Seed | Train | Val | Total |\n|------|-------|-----|-------|\n| 42 | 11,308 | 2,980 | 14,288 |\n| 43 | 11,236 | 3,052 | 14,288 |\n| 44 | 11,264 | 3,024 | 14,288 |\n\n[Source: plan_018 registry, confirmed identical across all four strategies (random, embedding, dataflow, BM25)]\n\n## §4.2 Models\n\nWe select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries, enabling us to study how encoder properties mediate the effectiveness of different negative mining strategies.\n\n**Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus. It exhibits a near-saturated pretrained representation space: mean positive cosine similarity of 0.986 and mean margin (pos_sim − neg_sim) of only 0.074 with random negatives at 2,048-token context [Source: neg_difficulty_analysis registry, qwen_2048]. This saturation—where nearly all file pairs receive high similarity scores—makes the baseline representation space challenging for contrastive learning and provides a stress test for negative mining strategies.\n\n**StarCoder2-3B** \\cite{li2023starcoder} uses a multi-task pretraining objective including FIM on The Stack v2. It maintains healthy representation separation: mean positive cosine similarity of 0.799 and a margin of 0.194 with random negatives—2.6× larger than Qwen's [Source: neg_difficulty_analysis registry, starcoder_2048]. This well-separated space allows us to contrast the behavior of mining strategies under fundamentally different geometric conditions.\n\nThe two encoders' divergent pretraining corpora and representation geometries provide a meaningful comparison axis: if a strategy improves both encoders, the benefit is likely encoder-agnostic; if it shows differential effects, the interaction reveals how representation geometry mediates strategy effectiveness.\n\n## §4.3 Training Configuration\n\nAll hyperparameters are shared across strategies and encoders unless otherwise noted. The configuration was fixed before the full multi-seed experiment based on pilot runs.\n\n| Parameter | Value |\n|-----------|-------|\n| Optimizer | AdamW |\n| Learning rate | $2 \\times 10^{-5}$ |\n| LR schedule | Cosine annealing with linear warmup |\n| Warmup ratio | 0.1 |\n| Weight decay | 0.01 |\n| Gradient clipping | Max norm 1.0 |\n| Batch size | 8 |\n| Negatives per query ($K$) | 7 |\n| Max sequence length | 2,048 tokens |\n| Temperature ($\\tau$, initial) | 0.07 (learnable) |\n| LoRA rank ($r$) | 16 |\n| LoRA scaling ($\\alpha$) | 32 |\n| LoRA dropout | 0.05 |\n| LoRA target modules | $W_q$, $W_v$ (all attention layers) |\n| Projection dimension | 256 |\n| Gradient checkpointing | Enabled |\n| Evaluation interval | Every 500 steps |\n\n[Source: m2_full_qwen registry spec and notes]\n\n**Epoch schedule.** Seed 42 trains for 3 epochs without early stopping to provide a complete overfitting curve. Seeds 43 and 44 train for 2 epochs with early stopping (patience = 2 evaluation cycles based on validation loss). This asymmetric design was adopted after observing consistent overfitting past epoch 1 in the seed 42 exploratory run [Source: D026 decision].\n\n**Checkpoint selection.** We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Primary results use $\\theta^*_{\\text{R@1}}$; both are reported for metric-loss disagreement analysis [Source: D036 decision].\n\n**Seeds.** 42, 43, 44. The core experiment consists of 3 strategies × 3 seeds × 2 encoders = 18 runs. BM25-mined negatives are evaluated as a supplementary comparison (additional 2 encoders × 3 seeds = 6 runs) [Source: plan_018 registry].\n\n**Hardware.** All experiments are conducted on a single node with 2× NVIDIA RTX PRO 6000 (96 GB VRAM each). Qwen and StarCoder training chains run on separate GPUs (cuda:0 and cuda:1) in parallel. Each individual run (single strategy, single seed, single encoder) requires approximately 5–7 hours. The core 18-run matrix requires approximately 120 GPU-hours [Source: m2_full_qwen and m2_full_starcoder registries].\n\n## §4.4 Evaluation Metrics\n\n**Retrieval metrics.** We report Recall@$k$ for $k \\in \\{1, 5, 10\\}$, computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per evaluation query). Recall@1 serves as the primary metric for checkpoint selection and strategy comparison. We also report validation loss (InfoNCE) as a secondary training diagnostic.\n\n**Statistical reporting.** All comparisons report:\n\n- **Aggregate**: mean ± standard deviation across 3 seeds per condition.\n- **Confidence intervals**: bootstrap 95% CIs for pairwise strategy comparisons (embedding vs. random, dataflow vs. random, dataflow vs. embedding).\n- **Effect size**: Cohen's $d$ for key comparisons, providing a standardized measure of practical significance independent of sample size.\n- **Per-seed consistency**: individual seed results reported alongside aggregates to assess stability. [TBD: exact CI and Cohen's d values pending M2 completion]\n\n**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "4d958862-3429-4c19-9108-fee126da3968",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T01:58:43.674Z_
+
+<details><summary>↩ Tool result · `toolu_01DutJznyCcak2jCBrGEFYYx`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "615e5547-ffd3-46c4-bddd-335c02b3ba32",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "b2b588a2-5699-4815-a189-bae7cf25022d",
+  "toolUseResult": {
+    "type": "update",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+    "content": "# §3 Method\n\n## §3.1 Problem Formulation\n\nWe address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.\n\nWe formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files:\n\n$$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$\n\nwhere $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.\n\nThe quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.\n\n## §3.2 Structural Information Extraction\n\n### CodeQL Bounded Data-Flow Analysis\n\nWe use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. We define taint-tracking queries with a bounded analysis depth (2-hop) that trace data flow from designated sources to sinks across function call boundaries. This produces two complementary structural views:\n\n- **Call graph**: function-level call relationships within and across files, capturing which functions invoke which others.\n- **Data-flow graph**: inter-procedural data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file. These paths trace how data propagates through function parameters, return values, and shared state across call boundaries.\n\n### File-Level Reachability\n\nFrom the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. Two files are **connected** if data flows between them across call boundaries; otherwise they are **disconnected**.\n\nA key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.\n\nAt full scale, 78% of files connected in $G$ are non-gold files (structurally related but not in the patch), providing a rich pool for structure-grounded negative mining [Source: paper_framing, plan_006].\n\n### Beniget Fallback\n\nFor repositories where CodeQL database creation fails (e.g., unsupported build configurations or missing dependencies), we employ beniget—a lightweight Python def-use chain analyzer—as a fallback. Beniget operates directly on the AST without requiring a compiled CodeQL database, providing partial structural information at lower computational cost. Across the full dataset, CodeQL succeeded on 15,133 instances and beniget contributed an additional 764 instances via fallback [Source: m1_extraction registry].\n\n### Coverage Statistics\n\nThe extraction pipeline achieves the following at full scale (131 repositories, 44,173 instances attempted) [Source: m1_extraction and plan_006 registries]:\n\n| Metric | Value |\n|--------|-------|\n| Timeout rate | 0% (all repository tiers) |\n| Repository coverage | 123/131 (93.9%) |\n| Structural data rate | 34% of instances |\n| Connected-not-gold rate (Z%) | 78% overall; median 96% for repositories with 500+ instances |\n\nThe 0% timeout rate confirms the tractability of bounded inter-procedural analysis at scale. The structural data rate of 34% reflects transient filesystem failures during batch extraction rather than fundamental limitations of the analysis; a re-extraction pass is expected to recover the majority of failed instances (§6). The high Z% in large repositories indicates that structural connectivity provides a rich negative mining signal precisely where lexical ambiguity is greatest.\n\n## §3.3 Structure-Aware Negative Mining\n\nWe compare three negative mining strategies spanning a spectrum from uninformed to structure-grounded selection. All mining is **static**: negatives are computed once before training from the frozen pretrained encoder $E_{\\theta_0}$ and the fixed structural graph $G$, and are not refreshed during fine-tuning.\n\n### Random Negatives\n\nFor each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$:\n\n$$f^-_{\\text{rand}} \\sim \\text{Uniform}(\\mathcal{F} \\setminus \\mathcal{F}^+_q), \\quad |\\{f^-_{\\text{rand}}\\}| = K$$\n\nThis baseline provides unbiased but typically easy negatives, as randomly chosen files are unlikely to share topical or structural similarity with the query.\n\n### Embedding-Distance Negatives\n\nWe compute embeddings for all files and queries using $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we select the $K$ non-gold files with highest cosine similarity in the pretrained embedding space:\n\n$$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThese negatives occupy the region of the embedding space where the pretrained encoder is most uncertain, forcing the fine-tuned model to learn finer distinctions. This approach requires only a single forward pass through $E_{\\theta_0}$ and avoids the instability and computational overhead of online re-mining \\cite{xiong2021ance}.\n\n### Dataflow-Aware Negatives\n\nThis strategy combines embedding distance with structural reachability filtering. For query $q$ with gold files $\\mathcal{F}^+_q$, define the reachability set:\n\n$$\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$$\n\nwhere $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:\n\n$$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThese files are simultaneously similar in the embedding space (hard) and structurally disconnected in the data-flow graph (informative). They represent a category of false positives of textual similarity: files that appear relevant based on surface features (shared imports, API patterns, variable names) but lack the inter-procedural data-flow connections that characterize functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.\n\nFor instances lacking structural connectivity data (~66% of training data), the dataflow-aware strategy falls back to embedding-distance mining, ensuring consistent negative count across all instances. We analyze the fallback stratum separately in stratified evaluation (§5).\n\n### Difficulty Gradient\n\nThe three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are hardest (highest pretrained similarity, no structural constraint). Dataflow-aware negatives select a subset of hard negatives that are additionally structurally disconnected—simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives in the pretrained space (§5).\n\n### Relationship to BM25 Baselines\n\nIn addition to the three primary strategies, we evaluate BM25-mined negatives as a supplementary comparison. BM25 negatives are constructed by indexing all repository files with Okapi BM25 \\cite{robertson2009bm25} and selecting the top-$K$ highest-scoring non-gold files per query. This provides a lexical-overlap baseline that grounds our comparison against the gradient-based premise of CoCoHaNeRe \\cite{fan2025cocohanere}, which argues that non-differentiable embedding negatives are \"slow and ineffective\" compared to gradient-based methods. At the top-7 level (matching training $K$), BM25 and embedding-distance negatives diverge substantially for medium and large repositories (Jaccard overlap 0.30–0.38), indicating that the two approaches select meaningfully different negatives despite high overlap at the full candidate level [Source: plan_018 registry].\n\n## §3.4 Contrastive Fine-tuning\n\n### InfoNCE Loss\n\nWe train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$:\n\n$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$\n\nwhere $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query [Source: m2_full_qwen registry].\n\n### LoRA Fine-tuning Setup\n\nWe fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—using LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of each attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated.\n\nEach encoder produces fixed-dimensional representations via mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled hidden state to a 256-dimensional embedding space [Source: m2_full_qwen registry].\n\nTraining uses AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.\n\n### Dual Checkpoint Strategy\n\nWe observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement [Source: D036 decision].\n\n### Early Stopping\n\nThe initial seed ($s_{42}$) trains for 3 epochs to provide a complete overfitting curve; subsequent seeds ($s_{43}$, $s_{44}$) train for 2 epochs with early stopping (patience = 2 evaluation cycles, evaluated every 500 steps) based on validation loss. This design was informed by observed overfitting after epoch 1 in $s_{42}$ runs [Source: D026 decision].\n",
+    "structuredPatch": [
+      {
+        "oldStart": 4,
+        "oldLines": 60,
+        "newStart": 4,
+        "newLines": 112,
+        "lines": [
+          " ",
+          " We address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.",
+          " ",
+          "-We formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files. Concretely, we optimize $\\theta$ such that for all $f^+ \\in \\mathcal{F}^+_q$ and $f^- \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q$:",
+          "+We formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files:",
+          " ",
+          " $$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$",
+          " ",
+          " where $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.",
+          " ",
+          "-The quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. Random negatives are often too easy, providing weak gradient signal \\cite{chen2020simclr}. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.",
+          "+The quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.",
+          " ",
+          "-## §3.2 StructFuse Pipeline",
+          "+## §3.2 Structural Information Extraction",
+          " ",
+          "-Our pipeline consists of three stages: (1) structural graph extraction via static analysis, (2) training data construction with strategy-specific negative mining, and (3) contrastive fine-tuning of a pretrained code encoder.",
+          "+### CodeQL Bounded Data-Flow Analysis",
+          " ",
+          "-**CodeQL Extraction.** We use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. Specifically, we define taint-tracking queries that trace data flow from designated sources to sinks, crossing function call boundaries. This yields a set of data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file.",
+          "+We use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. We define taint-tracking queries with a bounded analysis depth (2-hop) that trace data flow from designated sources to sinks across function call boundaries. This produces two complementary structural views:",
+          " ",
+          "-We set a scope bound on the analysis depth to ensure tractability: queries that exceed a predefined step limit are terminated. In practice, this achieves 0\\% timeout rate across 123 out of 131 repositories in our dataset.",
+          "+- **Call graph**: function-level call relationships within and across files, capturing which functions invoke which others.",
+          "+- **Data-flow graph**: inter-procedural data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file. These paths trace how data propagates through function parameters, return values, and shared state across call boundaries.",
+          " ",
+          "-**Structural Connectivity Graph.** From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. This graph captures inter-procedural structural relationships between files—two files are connected if data flows between them across function call boundaries.",
+          "+### File-Level Reachability",
+          " ",
+          "+From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. Two files are **connected** if data flows between them across call boundaries; otherwise they are **disconnected**.",
+          "+",
+          " A key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.",
+          " ",
+          "-**Structural Coverage.** At full scale, 78\\% of files connected in $G$ are non-gold files (i.e., structurally related but not in the patch), providing a rich pool for structure-grounded negative mining. The remaining files either lack data-flow connections or belong to isolated modules.",
+          "+At full scale, 78% of files connected in $G$ are non-gold files (structurally related but not in the patch), providing a rich pool for structure-grounded negative mining [Source: paper_framing, plan_006].",
+          " ",
+          "-## §3.3 Training Objective",
+          "+### Beniget Fallback",
+          " ",
+          "-**Contrastive Loss.** We train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$, the loss is:",
+          "+For repositories where CodeQL database creation fails (e.g., unsupported build configurations or missing dependencies), we employ beniget—a lightweight Python def-use chain analyzer—as a fallback. Beniget operates directly on the AST without requiring a compiled CodeQL database, providing partial structural information at lower computational cost. Across the full dataset, CodeQL succeeded on 15,133 instances and beniget contributed an additional 764 instances via fallback [Source: m1_extraction registry].",
+          " ",
+          "-$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$",
+          "+### Coverage Statistics",
+          " ",
+          "-where $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query. Our framework supports distance-weighted positive scores via per-sample weights $w_i = \\exp(-\\alpha \\cdot d_i)$, where $d_i$ is the data-flow path distance from query to positive and $\\alpha = 1.0$. In practice, the training data assigns a uniform distance of $d = 1$ to all positives, yielding a constant weight $w = e^{-1}$ across all samples. Since this scales all per-sample losses equally, the optimization is equivalent to standard unweighted InfoNCE.",
+          "+The extraction pipeline achieves the following at full scale (131 repositories, 44,173 instances attempted) [Source: m1_extraction and plan_006 registries]:",
+          " ",
+          "-**Encoder Architecture.** We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—which differ in pretraining objectives (Fill-in-the-Middle vs. multi-task including Fill-in-the-Middle) and exhibit distinct representation geometries (§5). We apply mean pooling over non-padding positions of the last hidden layer to obtain fixed-dimensional representations, followed by L2 normalization. Each encoder is augmented with a two-layer MLP projection head (Linear→GELU→Linear) that maps the pooled hidden state to a 256-dimensional embedding space.",
+          "+| Metric | Value |",
+          "+|--------|-------|",
+          "+| Timeout rate | 0% (all repository tiers) |",
+          "+| Repository coverage | 123/131 (93.9%) |",
+          "+| Structural data rate | 34% of instances |",
+          "+| Connected-not-gold rate (Z%) | 78% overall; median 96% for repositories with 500+ instances |",
+          " ",
+          "-**Parameter-Efficient Fine-Tuning.** We apply LoRA \\cite{hu2022lora} to the query and value projection matrices ($W_q$, $W_v$) of each attention layer with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated. We use AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10\\% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2048 tokens. We train for 2 epochs with early stopping (patience=2). An initial exploratory seed ($s_{42}$) uses 3 epochs to provide a complete overfitting curve; subsequent seeds use 2 epochs based on observed overfitting after epoch 1 (see §4). Evaluation is performed every 500 steps.",
+          "+The 0% timeout rate confirms the tractability of bounded inter-procedural analysis at scale. The structural data rate of 34% reflects transient filesystem failures during batch extraction rather than fundamental limitations of the analysis; a re-extraction pass is expected to recover the majority of failed instances (§6). The high Z% in large repositories indicates that structural connectivity provides a rich negative mining signal precisely where lexical ambiguity is greatest.",
+          " ",
+          "-**Dual Checkpoint Selection.** We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement.",
+          "+## §3.3 Structure-Aware Negative Mining",
+          " ",
+          "-## §3.4 Negative Mining Strategies",
+          "+We compare three negative mining strategies spanning a spectrum from uninformed to structure-grounded selection. All mining is **static**: negatives are computed once before training from the frozen pretrained encoder $E_{\\theta_0}$ and the fixed structural graph $G$, and are not refreshed during fine-tuning.",
+          " ",
+          "-We compare three negative mining strategies that span a spectrum from uninformed to structure-grounded selection.",
+          "+### Random Negatives",
+          " ",
+          "-**Random Mining.** For each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$. This serves as the baseline: negatives are unbiased but typically easy, as randomly chosen files are unlikely to share topical or structural similarity with the query.",
+          "+For each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$:",
+          " ",
+          "-**Embedding-Distance Mining.** We compute embeddings for all files and queries using the frozen pretrained encoder $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we retrieve the $K$ non-gold files with highest cosine similarity to $q$ in the pretrained embedding space:",
+          "+$$f^-_{\\text{rand}} \\sim \\text{Uniform}(\\mathcal{F} \\setminus \\mathcal{F}^+_q), \\quad |\\{f^-_{\\text{rand}}\\}| = K$$",
+          " ",
+          "+This baseline provides unbiased but typically easy negatives, as randomly chosen files are unlikely to share topical or structural similarity with the query.",
+          "+",
+          "+### Embedding-Distance Negatives",
+          "+",
+          "+We compute embeddings for all files and queries using $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we select the $K$ non-gold files with highest cosine similarity in the pretrained embedding space:",
+          "+",
+          " $$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$",
+          " ",
+          "-This selects files that the pretrained encoder already considers similar to the query—hard negatives that force the fine-tuned encoder to learn finer distinctions. Critically, this mining is **static**: embeddings are computed once from $E_{\\theta_0}$ and not refreshed during training, avoiding the computational overhead and instability of online re-mining \\cite{xiong2021ance}.",
+          "+These negatives occupy the region of the embedding space where the pretrained encoder is most uncertain, forcing the fine-tuned model to learn finer distinctions. This approach requires only a single forward pass through $E_{\\theta_0}$ and avoids the instability and computational overhead of online re-mining \\cite{xiong2021ance}.",
+          " ",
+          "-**Dataflow-Aware Mining.** This strategy leverages the structural connectivity graph $G$ from §3.2 to select negatives that are textually similar but structurally disconnected from the query context. Formally, for query $q$ with associated gold files $\\mathcal{F}^+_q$, we define the reachability set $\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$, where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:",
+          "+### Dataflow-Aware Negatives",
+          " ",
+          "+This strategy combines embedding distance with structural reachability filtering. For query $q$ with gold files $\\mathcal{F}^+_q$, define the reachability set:",
+          "+",
+          "+$$\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$$",
+          "+",
+          "+where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:",
+          "+",
+          " $$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$",
+          " ",
+          "-That is, we select the most similar non-gold files that are also **structurally unreachable** from the gold files in the data-flow graph. The intuition is that these files represent a category of particularly informative negatives: they appear relevant based on surface-level textual features (variable names, API patterns, shared imports) yet lack the inter-procedural data-flow connections that characterize true functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.",
+          "+These files are simultaneously similar in the embedding space (hard) and structurally disconnected in the data-flow graph (informative). They represent a category of false positives of textual similarity: files that appear relevant based on surface features (shared imports, API patterns, variable names) but lack the inter-procedural data-flow connections that characterize functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.",
+          " ",
+          "-**Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).",
+          "+For instances lacking structural connectivity data (~66% of training data), the dataflow-aware strategy falls back to embedding-distance mining, ensuring consistent negative count across all instances. We analyze the fallback stratum separately in stratified evaluation (§5).",
+          " ",
+          "-For repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 66\\% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates. We analyze the fallback stratum separately in stratified evaluation (§5).",
+          "+### Difficulty Gradient",
+          "+",
+          "+The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are hardest (highest pretrained similarity, no structural constraint). Dataflow-aware negatives select a subset of hard negatives that are additionally structurally disconnected—simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives in the pretrained space (§5).",
+          "+",
+          "+### Relationship to BM25 Baselines",
+          "+",
+          "+In addition to the three primary strategies, we evaluate BM25-mined negatives as a supplementary comparison. BM25 negatives are constructed by indexing all repository files with Okapi BM25 \\cite{robertson2009bm25} and selecting the top-$K$ highest-scoring non-gold files per query. This provides a lexical-overlap baseline that grounds our comparison against the gradient-based premise of CoCoHaNeRe \\cite{fan2025cocohanere}, which argues that non-differentiable embedding negatives are \"slow and ineffective\" compared to gradient-based methods. At the top-7 level (matching training $K$), BM25 and embedding-distance negatives diverge substantially for medium and large repositories (Jaccard overlap 0.30–0.38), indicating that the two approaches select meaningfully different negatives despite high overlap at the full candidate level [Source: plan_018 registry].",
+          "+",
+          "+## §3.4 Contrastive Fine-tuning",
+          "+",
+          "+### InfoNCE Loss",
+          "+",
+          "+We train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$:",
+          "+",
+          "+$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$",
+          "+",
+          "+where $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query [Source: m2_full_qwen registry].",
+          "+",
+          "+### LoRA Fine-tuning Setup",
+          "+",
+          "+We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—using LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of each attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated.",
+          "+",
+          "+Each encoder produces fixed-dimensional representations via mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled hidden state to a 256-dimensional embedding space [Source: m2_full_qwen registry].",
+          "+",
+          "+Training uses AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.",
+          "+",
+          "+### Dual Checkpoint Strategy",
+          "+",
+          "+We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement [Source: D036 decision].",
+          "+",
+          "+### Early Stopping",
+          "+",
+          "+The initial seed ($s_{42}$) trains for 3 epochs to provide a complete overfitting curve; subsequent seeds ($s_{43}$, $s_{44}$) train for 2 epochs with early stopping (patience = 2 evaluation cycles, evaluated every 500 steps) based on validation loss. This design was informed by observed overfitting after epoch 1 in $s_{42}$ runs [Source: D026 decision]."
+        ]
+      }
+    ],
+    "originalFile": "# §3 Method\n\n## §3.1 Problem Formulation\n\nWe address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.\n\nWe formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files. Concretely, we optimize $\\theta$ such that for all $f^+ \\in \\mathcal{F}^+_q$ and $f^- \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q$:\n\n$$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$\n\nwhere $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.\n\nThe quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. Random negatives are often too easy, providing weak gradient signal \\cite{chen2020simclr}. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.\n\n## §3.2 StructFuse Pipeline\n\nOur pipeline consists of three stages: (1) structural graph extraction via static analysis, (2) training data construction with strategy-specific negative mining, and (3) contrastive fine-tuning of a pretrained code encoder.\n\n**CodeQL Extraction.** We use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. Specifically, we define taint-tracking queries that trace data flow from designated sources to sinks, crossing function call boundaries. This yields a set of data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file.\n\nWe set a scope bound on the analysis depth to ensure tractability: queries that exceed a predefined step limit are terminated. In practice, this achieves 0\\% timeout rate across 123 out of 131 repositories in our dataset.\n\n**Structural Connectivity Graph.** From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. This graph captures inter-procedural structural relationships between files—two files are connected if data flows between them across function call boundaries.\n\nA key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.\n\n**Structural Coverage.** At full scale, 78\\% of files connected in $G$ are non-gold files (i.e., structurally related but not in the patch), providing a rich pool for structure-grounded negative mining. The remaining files either lack data-flow connections or belong to isolated modules.\n\n## §3.3 Training Objective\n\n**Contrastive Loss.** We train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$, the loss is:\n\n$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$\n\nwhere $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query. Our framework supports distance-weighted positive scores via per-sample weights $w_i = \\exp(-\\alpha \\cdot d_i)$, where $d_i$ is the data-flow path distance from query to positive and $\\alpha = 1.0$. In practice, the training data assigns a uniform distance of $d = 1$ to all positives, yielding a constant weight $w = e^{-1}$ across all samples. Since this scales all per-sample losses equally, the optimization is equivalent to standard unweighted InfoNCE.\n\n**Encoder Architecture.** We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—which differ in pretraining objectives (Fill-in-the-Middle vs. multi-task including Fill-in-the-Middle) and exhibit distinct representation geometries (§5). We apply mean pooling over non-padding positions of the last hidden layer to obtain fixed-dimensional representations, followed by L2 normalization. Each encoder is augmented with a two-layer MLP projection head (Linear→GELU→Linear) that maps the pooled hidden state to a 256-dimensional embedding space.\n\n**Parameter-Efficient Fine-Tuning.** We apply LoRA \\cite{hu2022lora} to the query and value projection matrices ($W_q$, $W_v$) of each attention layer with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated. We use AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10\\% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2048 tokens. We train for 2 epochs with early stopping (patience=2). An initial exploratory seed ($s_{42}$) uses 3 epochs to provide a complete overfitting curve; subsequent seeds use 2 epochs based on observed overfitting after epoch 1 (see §4). Evaluation is performed every 500 steps.\n\n**Dual Checkpoint Selection.** We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement.\n\n## §3.4 Negative Mining Strategies\n\nWe compare three negative mining strategies that span a spectrum from uninformed to structure-grounded selection.\n\n**Random Mining.** For each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$. This serves as the baseline: negatives are unbiased but typically easy, as randomly chosen files are unlikely to share topical or structural similarity with the query.\n\n**Embedding-Distance Mining.** We compute embeddings for all files and queries using the frozen pretrained encoder $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we retrieve the $K$ non-gold files with highest cosine similarity to $q$ in the pretrained embedding space:\n\n$$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThis selects files that the pretrained encoder already considers similar to the query—hard negatives that force the fine-tuned encoder to learn finer distinctions. Critically, this mining is **static**: embeddings are computed once from $E_{\\theta_0}$ and not refreshed during training, avoiding the computational overhead and instability of online re-mining \\cite{xiong2021ance}.\n\n**Dataflow-Aware Mining.** This strategy leverages the structural connectivity graph $G$ from §3.2 to select negatives that are textually similar but structurally disconnected from the query context. Formally, for query $q$ with associated gold files $\\mathcal{F}^+_q$, we define the reachability set $\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$, where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:\n\n$$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThat is, we select the most similar non-gold files that are also **structurally unreachable** from the gold files in the data-flow graph. The intuition is that these files represent a category of particularly informative negatives: they appear relevant based on surface-level textual features (variable names, API patterns, shared imports) yet lack the inter-procedural data-flow connections that characterize true functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.\n\n**Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).\n\nFor repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 66\\% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates. We analyze the fallback stratum separately in stratified evaluation (§5).\n",
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "615e5547-ffd3-46c4-bddd-335c02b3ba32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T01:59:22.167Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_017imwiP4i2yGK1AKEgykLdV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiment_setup_v1.md",
+  "content": "# §4 Experimental Setup\n\n## §4.1 Dataset\n\nWe construct our training corpus from SWE-smith \\cite{yang2025swesmith}, a large-scale dataset of real-world GitHub bug-fix commits. Starting from 5,029 task instances spanning 131 unique (repository, commit) pairs, each task corresponds to a single bug-fix commit. We expand each task by treating every gold file as a separate training instance, yielding 44,173 instances total [Source: m1_extraction registry, data_count after filtering 6,696 clone/checkout failures from the original 50,869].\n\nWe run the StructFuse extraction pipeline (§3.2) on all instances. After filtering for extraction errors, we retain 14,288 usable instances across 123 repositories. Of these, approximately 34% possess CodeQL structural connectivity data (15,133 via CodeQL + 764 via beniget fallback); the remaining 66% lack structural data due to transient filesystem failures during batch extraction. For these instances, the dataflow-aware strategy falls back to embedding-distance mining (§3.3) [Source: m1_extraction registry].\n\nFor each random seed, we perform a per-repository stratified split to produce training and validation partitions. The per-seed split ensures that no repository appears exclusively in one partition, preserving the distribution of repository sizes and structural properties. Exact split sizes:\n\n| Seed | Train | Val | Total |\n|------|-------|-----|-------|\n| 42 | 11,308 | 2,980 | 14,288 |\n| 43 | 11,236 | 3,052 | 14,288 |\n| 44 | 11,264 | 3,024 | 14,288 |\n\n[Source: plan_018 registry, confirmed identical across all four strategies (random, embedding, dataflow, BM25)]\n\n## §4.2 Models\n\nWe select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries, enabling us to study how encoder properties mediate the effectiveness of different negative mining strategies.\n\n**Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus. It exhibits a near-saturated pretrained representation space: mean positive cosine similarity of 0.986 and mean margin (pos_sim − neg_sim) of only 0.074 with random negatives at 2,048-token context [Source: neg_difficulty_analysis registry, qwen_2048]. This saturation—where nearly all file pairs receive high similarity scores—makes the baseline representation space challenging for contrastive learning and provides a stress test for negative mining strategies.\n\n**StarCoder2-3B** \\cite{li2023starcoder} uses a multi-task pretraining objective including FIM on The Stack v2. It maintains healthy representation separation: mean positive cosine similarity of 0.799 and a margin of 0.194 with random negatives—2.6× larger than Qwen's [Source: neg_difficulty_analysis registry, starcoder_2048]. This well-separated space allows us to contrast the behavior of mining strategies under fundamentally different geometric conditions.\n\nThe two encoders' divergent pretraining corpora and representation geometries provide a meaningful comparison axis: if a strategy improves both encoders, the benefit is likely encoder-agnostic; if it shows differential effects, the interaction reveals how representation geometry mediates strategy effectiveness.\n\n## §4.3 Training Configuration\n\nAll hyperparameters are shared across strategies and encoders unless otherwise noted. The configuration was fixed before the full multi-seed experiment based on pilot runs.\n\n| Parameter | Value |\n|-----------|-------|\n| Optimizer | AdamW |\n| Learning rate | $2 \\times 10^{-5}$ |\n| LR schedule | Cosine annealing with linear warmup |\n| Warmup ratio | 0.1 |\n| Weight decay | 0.01 |\n| Gradient clipping | Max norm 1.0 |\n| Batch size | 8 |\n| Negatives per query ($K$) | 7 |\n| Max sequence length | 2,048 tokens |\n| Temperature ($\\tau$, initial) | 0.07 (learnable) |\n| LoRA rank ($r$) | 16 |\n| LoRA scaling ($\\alpha$) | 32 |\n| LoRA dropout | 0.05 |\n| LoRA target modules | $W_q$, $W_v$ (all attention layers) |\n| Projection dimension | 256 |\n| Gradient checkpointing | Enabled |\n| Evaluation interval | Every 500 steps |\n\n[Source: m2_full_qwen registry spec and notes]\n\n**Epoch schedule.** Seed 42 trains for 3 epochs without early stopping to provide a complete overfitting curve. Seeds 43 and 44 train for 2 epochs with early stopping (patience = 2 evaluation cycles based on validation loss). This asymmetric design was adopted after observing consistent overfitting past epoch 1 in the seed 42 exploratory run [Source: D026 decision].\n\n**Checkpoint selection.** We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Primary results use $\\theta^*_{\\text{R@1}}$; both are reported for metric-loss disagreement analysis [Source: D036 decision].\n\n**Seeds.** 42, 43, 44. The core experiment consists of 3 strategies × 3 seeds × 2 encoders = 18 runs. BM25-mined negatives are evaluated as a supplementary comparison (additional 2 encoders × 3 seeds = 6 runs) [Source: plan_018 registry].\n\n**Hardware.** All experiments are conducted on a single node with 2× NVIDIA RTX PRO 6000 (96 GB VRAM each). Qwen and StarCoder training chains run on separate GPUs (cuda:0 and cuda:1) in parallel. Each individual run (single strategy, single seed, single encoder) requires approximately 5–7 hours. The core 18-run matrix requires approximately 120 GPU-hours [Source: m2_full_qwen and m2_full_starcoder registries].\n\n## §4.4 Evaluation Metrics\n\n**Retrieval metrics.** We report Recall@$k$ for $k \\in \\{1, 5, 10\\}$, computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per evaluation query). Recall@1 serves as the primary metric for checkpoint selection and strategy comparison. We also report validation loss (InfoNCE) as a secondary training diagnostic.\n\n**Statistical reporting.** All comparisons report:\n\n- **Aggregate**: mean ± standard deviation across 3 seeds per condition.\n- **Confidence intervals**: bootstrap 95% CIs for pairwise strategy comparisons (embedding vs. random, dataflow vs. random, dataflow vs. embedding).\n- **Effect size**: Cohen's $d$ for key comparisons, providing a standardized measure of practical significance independent of sample size.\n- **Per-seed consistency**: individual seed results reported alongside aggregates to assess stability. [TBD: exact CI and Cohen's d values pending M2 completion]\n\n**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2b588a2-5699-4815-a189-bae7cf25022d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XBRsEptxMfqfygHr1x",
+  "type": "assistant",
+  "uuid": "4d958862-3429-4c19-9108-fee126da3968",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PEv3ypqMAFpyoQJACHEhgv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8458,
+      "cache_read_input_tokens": 62899,
+      "output_tokens": 13524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 13524,
+          "cache_read_input_tokens": 62899,
+          "cache_creation_input_tokens": 8458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "3623d84f-ac77-4790-87c6-629d37577d91",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write Method and Experiment Setup sections",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-15T01:59:26.293Z_
+
+Now registering both artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3623d84f-ac77-4790-87c6-629d37577d91",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XYp8XozKYi9ncdzNCF",
+  "type": "assistant",
+  "uuid": "63bd3f58-7603-4f87-a430-46241d7598b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQ6gr2xrnHV2KDhJDfd845",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13653,
+      "cache_read_input_tokens": 71357,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 71357,
+          "cache_creation_input_tokens": 13653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T01:59:26.925Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Vqa9TBrxFZo3MHezrD6VgL`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63bd3f58-7603-4f87-a430-46241d7598b0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XYp8XozKYi9ncdzNCF",
+  "type": "assistant",
+  "uuid": "af027108-da87-4448-95d9-2c318cc41b6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQ6gr2xrnHV2KDhJDfd845",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13653,
+      "cache_read_input_tokens": 71357,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 71357,
+          "cache_creation_input_tokens": 13653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T01:59:26.931Z_
+
+<details><summary>↩ Tool result · `toolu_01Vqa9TBrxFZo3MHezrD6VgL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af027108-da87-4448-95d9-2c318cc41b6a",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "4c99aae1-5ce5-451c-b449-b4b14183b00c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "af027108-da87-4448-95d9-2c318cc41b6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T01:59:32.722Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01FCUec7mNJnFP1TpNeu3ePC`</summary>
+
+```json
+{
+  "name": "method_v1",
+  "type": "paper",
+  "description": "Method section draft (§3): Problem formulation, structural information extraction (M1), structure-aware negative mining (3 strategies), contrastive fine-tuning (M2). All numbers sourced from registry.",
+  "project": "structfuse-context",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+  "tags": [
+    "paper",
+    "method",
+    "draft"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c99aae1-5ce5-451c-b449-b4b14183b00c",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XZAJEP6sHRZ7wijhNM",
+  "type": "assistant",
+  "uuid": "4f85dff0-ba85-4f3f-ba3d-4a52009d3f74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXiQaJbtGMkfYzijVpDZNX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 85010,
+      "output_tokens": 519,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 519,
+          "cache_read_input_tokens": 85010,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T01:59:32.890Z_
+
+<details><summary>↩ Tool result · `toolu_01FCUec7mNJnFP1TpNeu3ePC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_ae4280\", \"name\": \"method_v1\", \"type\": \"paper\", \"description\": \"Method section draft (§3): Problem formulation, structural information extraction (M1), structure-aware negative mining (3 strategies), contrastive fine-tuning (M2). All numbers sourced from registry.\", \"path\": \"projects/structfuse-context/artifacts/_project/paper/method_v1_ae4280.md\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T01:59:32.730650+00:00\", \"tags\": [\"paper\", \"method\", \"draft\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f85dff0-ba85-4f3f-ba3d-4a52009d3f74",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "5770787a-bba9-44ff-bdb6-5175fdb16ae9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_ae4280\\\", \\\"name\\\": \\\"method_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section draft (§3): Problem formulation, structural information extraction (M1), structure-aware negative mining (3 strategies), contrastive fine-tuning (M2). All numbers sourced from registry.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/paper/method_v1_ae4280.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T01:59:32.730650+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"draft\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_ae4280\", \"name\": \"method_v1\", \"type\": \"paper\", \"description\": \"Method section draft (§3): Problem formulation, structural information extraction (M1), structure-aware negative mining (3 strategies), contrastive fine-tuning (M2). All numbers sourced from registry.\", \"path\": \"projects/structfuse-context/artifacts/_project/paper/method_v1_ae4280.md\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T01:59:32.730650+00:00\", \"tags\": [\"paper\", \"method\", \"draft\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4f85dff0-ba85-4f3f-ba3d-4a52009d3f74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T01:59:36.260Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01QzZy6DTYZhRADgWEaWTMAi`</summary>
+
+```json
+{
+  "name": "experiment_setup_v1",
+  "type": "paper",
+  "description": "Experiment setup draft (§4): Dataset (SWE-smith, 131 repos, 14.3K instances/seed), models (Qwen2.5-Coder-3B + StarCoder2-3B), training config (all hyperparams from registry), evaluation metrics (R@k, bootstrap CI, Cohen's d).",
+  "project": "structfuse-context",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiment_setup_v1.md",
+  "tags": [
+    "paper",
+    "experiment-setup",
+    "draft"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5770787a-bba9-44ff-bdb6-5175fdb16ae9",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XZAJEP6sHRZ7wijhNM",
+  "type": "assistant",
+  "uuid": "eed91cde-1425-44ca-82e2-b3af39f56936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXiQaJbtGMkfYzijVpDZNX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 85010,
+      "output_tokens": 519,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 519,
+          "cache_read_input_tokens": 85010,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T01:59:36.427Z_
+
+<details><summary>↩ Tool result · `toolu_01QzZy6DTYZhRADgWEaWTMAi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_bba58d\", \"name\": \"experiment_setup_v1\", \"type\": \"paper\", \"description\": \"Experiment setup draft (§4): Dataset (SWE-smith, 131 repos, 14.3K instances/seed), models (Qwen2.5-Coder-3B + StarCoder2-3B), training config (all hyperparams from registry), evaluation metrics (R@k, bootstrap CI, Cohen's d).\", \"path\": \"projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T01:59:36.266487+00:00\", \"tags\": [\"paper\", \"experiment-setup\", \"draft\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eed91cde-1425-44ca-82e2-b3af39f56936",
+  "isSidechain": false,
+  "promptId": "f1d67be0-c94b-4db3-89c9-edc196c575a3",
+  "type": "user",
+  "uuid": "ff3c4ce0-6394-4a10-aa07-6500c5e40f05",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_bba58d\\\", \\\"name\\\": \\\"experiment_setup_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Experiment setup draft (§4): Dataset (SWE-smith, 131 repos, 14.3K instances/seed), models (Qwen2.5-Coder-3B + StarCoder2-3B), training config (all hyperparams from registry), evaluation metrics (R@k, bootstrap CI, Cohen's d).\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T01:59:36.266487+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"experiment-setup\\\", \\\"draft\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_bba58d\", \"name\": \"experiment_setup_v1\", \"type\": \"paper\", \"description\": \"Experiment setup draft (§4): Dataset (SWE-smith, 131 repos, 14.3K instances/seed), models (Qwen2.5-Coder-3B + StarCoder2-3B), training config (all hyperparams from registry), evaluation metrics (R@k, bootstrap CI, Cohen's d).\", \"path\": \"projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T01:59:36.266487+00:00\", \"tags\": [\"paper\", \"experiment-setup\", \"draft\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "eed91cde-1425-44ca-82e2-b3af39f56936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-15T01:59:36.431Z_
+
+```json
+{
+  "parentUuid": "ff3c4ce0-6394-4a10-aa07-6500c5e40f05",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d57a0ea5-9a1c-445a-b4e1-2c88c5e8313e",
+  "timestamp": "2026-05-15T01:59:36.431Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-15T01:59:59.213Z_
+
+两个文件已写入并注册：
+
+**`method_v1.md`** (`art_20260515_ae4280`)
+- §3.1 Problem Formulation — contrastive code retrieval 形式化
+- §3.2 Structural Information Extraction — CodeQL 2-hop taint tracking、call graph + data-flow graph、reachability 判定、beniget fallback、覆盖率统计（0% timeout, 34% structural rate, 78% Z%, 123/131 repos）
+- §3.3 Structure-Aware Negative Mining — 三种策略的数学定义（random/embedding/dataflow）、difficulty gradient、与 BM25 baseline 的关系（top-7 Jaccard 0.30–0.38）
+- §3.4 Contrastive Fine-tuning — InfoNCE loss (K=7, τ=0.07)、LoRA setup (r=16)、dual checkpoint (θ\*\_loss + θ\*\_R@1)、early stopping (D026)
+
+**`experiment_setup_v1.md`** (`art_20260515_bba58d`)
+- §4.1 Dataset — SWE-smith, 131 repos, 44,173 expanded instances, ~14.3K usable/seed (exact per-seed counts from plan_018)
+- §4.2 Models — Qwen (pos_sim=0.986, saturated) vs StarCoder (pos_sim=0.799, healthy), from neg_difficulty_analysis 2048t
+- §4.3 Training Configuration — 完整超参表（全部标注 registry 来源），epoch schedule (D026), checkpoint criterion (D036), 18 core runs + 6 BM25 runs, 2×RTX PRO 6000 96GB
+- §4.4 Evaluation Metrics — R@{1,5,10} pool_size=50, bootstrap 95% CI, Cohen's d, per-seed consistency
+
+注意：数据源用 SWE-smith（与 registry 和已有 drafts 一致），非 CodeSearchNet。M2 最终结果标记为 `[TBD]`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d57a0ea5-9a1c-445a-b4e1-2c88c5e8313e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3XZrvzComKcc1Rc7aNq",
+  "type": "assistant",
+  "uuid": "c2ce3e6f-6c42-4d4f-ad63-620b535df57f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UV8Ej2u3MX2p9Tw8LQ4dq9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1280,
+      "cache_read_input_tokens": 85729,
+      "output_tokens": 550,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1280,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 550,
+          "cache_read_input_tokens": 85729,
+          "cache_creation_input_tokens": 1280,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1280
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c2ce3e6f-6c42-4d4f-ad63-620b535df57f",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Write Method and Experiment Setup sections",
+  "sessionId": "96b222a8-1429-4958-ab38-47572af7509c"
+}
+```
+
+---

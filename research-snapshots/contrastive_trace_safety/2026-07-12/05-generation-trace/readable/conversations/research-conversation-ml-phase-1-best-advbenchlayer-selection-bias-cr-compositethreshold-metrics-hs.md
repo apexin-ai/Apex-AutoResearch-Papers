@@ -1,0 +1,5433 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义： 含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-3/3d66c63b-15da-4009-ae0c-c9250a6c1577.jsonl`
+- **Structured JSON:** [`7fdbf7bd14bf4e0deb0d.json`](../../sessions/7f/7fdbf7bd14bf4e0deb0d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-22T08:57:23.358Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-22T08:57:23.358Z",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：\n\n含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质'\n核心假设：['layer selection bias是模型表征的几何性质，与标注方案（CP vs binary jailbreak/safe）无关', 'R1-8B AdvBench traces的hidden states保留与原数据集相同的层级信号分布', 'binary labels（无CP）足以重现crossing_rate在浅层虚高的现象', 'AdvBench trace长度和分布不破坏probe训练稳定性']\n关键指标范围：{'cr_composite_layer_depth_pct': [0, 16], 'threshold_layer_depth_pct': [32, 64], 'layer_gap_abs': [8, 16], 'layer_gap_depth_pct': [32, 64], 'hs_bal_acc_at_threshold_layer': [0.72, 0.82], 'hs_text_precision_delta_pp': [10, 25], 'hb_pass_rate': [0.67, 1.0], 'crossing_rate_shallow_vs_deep_ratio': [1.5, 3.0], 'dream_score_delta': [0.15, 0.25]}\n叙事方向：Layer selection bias replicates on independent dataset (AdvBench) with fundamentally different labeling (binary jailbreak/safe vs step-level safety state). CR-composite仍选浅层、threshold metrics仍选深层，gap≥8层。C1 claims无需调整：bias是模型几何性质，不依赖CP annotation。Main text加一句cross-dataset validation + appendix完整table。Reviewer concern 'bias是你数据集的artifact'被直接堵死。论文从'单数据集empirical study'向'可复现方法论贡献'迈进，Findings→Borderline Conference更有底气。\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: contrastive_trace_safety\nvenue: emnlp-2026\nfocus: Evaluate whether adding AdvBench layer selection bias replication moves the paper from Findings (3.0) toward Borderline Conference (3.5). Previous Dream scored 3.0 across all tiers. Key question: does cross-dataset C1 validation meaningfully strengthen the paper?\n\n## paper_framing.md\n\n# Paper Framing — contrastive_trace_safety\n\n## Target Venue\n- Primary: EMNLP 2026 Main (LLM Security Track)\n- Deadline: ARR submission May 25, 2026\n\n## Core Claims (D031: layer selection as primary contribution, 4 models)\n\n**Contribution structure (D031)**:\n- **Primary (methodological)**: Layer selection metric sensitivity — biased metrics reverse conclusions\n- **Secondary (empirical)**: HS advantage at correct layers, qualified by scale; temporal improvement universal\n- **Tertiary (negative results)**: 6 alternative methods fail, establishing what doesn't work\n\n1. **Temporal context universally improves probe accuracy across both modalities** (D014 + D023 nuanced) — Temporal context is the most robust improvement across all 4 models and both modalities. Text probes benefit consistently from larger windows across all models. HS probes benefit in 3/4 models; OT-7B HS peaks at W=3 and declines at larger W (confirmed on both layer 0 and layer 16).\n\n   **HS temporal gains** (W=1→best, 3 original models): accuracy +3pp (77.8%→81.0%), precision +13pp (69.3%→82.2%), FPR halved (9.65%→4.83%).\n   **OT-7B HS temporal** (layer 16): bal_acc peaks at W=3 (68.8%), declines to 65.9% at W=25 (-2.9pp). BUT precision and FPR continue improving (prec 42.8%→49.4%, FPR 12.0%→7.5%). Temporal saturation is bal_acc-specific; larger W trades bal_acc for better precision/FPR. Confirmed on both layer 0 and layer 16 — genuine OT-7B characteristic.\n   **Text temporal gains** (all 4 models, W=1→best): universally +3-12pp bal_acc, +8-23pp precision, FPR reduced.\n\n   **IMPORTANT: coverage direction depends on detection criterion K.** K=1 (single crossing): coverage DECREASES with W. K=5 (consecutive crossings): coverage may INCREASE with W. Claim 1 is about accuracy/precision improvement, NOT coverage.\n\n   The core insight: \"Temporal context universally improves text probes across all 4 models. For HS probes, 3/4 models benefit from larger temporal windows, while OT-7B shows early saturation (W=3 peak).\"\n\n2. **HS probes outperform text probes at correctly selected layers, with strong evidence at 7-8B and model-specific patterns at 32B** (D031: qualified from D030 \"universal\") —\n\n   **KEY FINDING (D029)**: The apparent \"scale-dependent\" HS advantage (significant at 7-8B, absent at 32B) was an artifact of the layer selection metric `bal_acc × crossing_rate`, which systematically selects shallow layers for 32B models. At correctly selected deep layers, HS outperforms text on all 4 models, but the NATURE of the advantage differs by scale.\n\n   **Layer selection metric bias (D028, refined D036)**: `bal_acc × crossing_rate` selects shallow layers because shallow layers have higher crossing rates (more trigger-happy probes). 3/4 non-biased threshold-dependent metrics (precision, pre_cp_fpr, composite) converge on deep layers; pure bal_acc (threshold-free) selects middle layers (L30/L47). Deployment-relevant metric consensus selects L60/L63 for 32B models.\n\n   **7-8B models: HS significantly outperforms text (2/2 models) — UNCHANGED**\n\n   **R1-8B (Llama-8B, R1-distilled, n=43):**\n   - Precision: 69.7% vs 47.2% (+22.4pp, p<0.001, **Holm-Bonferroni ✅**)\n   - Accuracy: 81.3% vs 72.9% (+8.2pp, p=0.005, **Holm-Bonferroni ✅**)\n   - Pre-CP FPR: 14.8% vs 22.2% (-7.4pp, p=0.044, **Holm-Bonferroni ✅** — rank 12/12, threshold=0.0500)\n\n   **OT-7B (Qwen-7B, STILL-trained, n=47, layer 16, matched W=3) — D026 M001 corrected:**\n   - Bal Acc: 68.8% vs 58.1% (+10.7pp, p<0.001, **Holm-Bonferroni ✅**)\n   - Precision: 46.6% vs 24.7% (+21.9pp, p<0.001, **Holm-Bonferroni ✅**)\n   - Pre-CP FPR: 10.0% vs 27.1% (-17.1pp, p<0.001, **Holm-Bonferroni ✅**)\n   - **3/3 metrics significant — OT-7B cleanest single-model evidence**\n\n   **32B models: HS outperforms text at CORRECTED LAYERS but with model-specific caveats (D029+D031)**\n\n   **QwQ-32B (Qwen-32B, native, n=19-20, Layer 60 corrected from L2):**\n   - Bal Acc: +11-22pp across all 15 window sizes, all p<0.005 (bootstrap, null-centered)\n   - 15/15 W values show significant HS advantage\n   - **CRITICAL CAVEAT (D031)**: HS lead time NEGATIVE (-1.2 to 1.9 steps vs text 3.7-12.3). HS is \"more accurate but detects later.\" Position baseline bal_acc=0.746 > HS=0.740. In safety deployment, detecting 8-12 steps earlier may outweigh higher accuracy.\n   - W=3: bal_acc +15.4pp, precision +23.6pp, FPR -9.8pp — **3/3 Holm-Bonferroni ✅**\n\n   **R1-32B (Qwen-32B, R1-distilled, n=20, Layer 63 corrected from L10):**\n   - W=1: bal_acc +18.7pp (0.826 vs 0.639), p=0.000; precision +15.4pp (0.603 vs 0.448), p=0.000; FPR -14.6pp (0.235 vs 0.380), p=0.007 — **3/3 Bonferroni ✅**\n   - W=3: bal_acc +11.2pp p=0.020, precision p=0.032, FPR p=0.077 — **0/3 Bonferroni** (v2 null-centered)\n   - W=5-15: all NS\n   - **CRITICAL CAVEAT (D031)**: Only W=1 passes Bonferroni, coverage=25% (5/20 traces). Evidence statistically narrow.\n   - **POSITIVE**: Lead time +11.7-13.3 steps (excellent early warning). HS >> Position (+14.2pp).\n   - **NOTE**: L10 vs L63 at W=10: L10=0.795 vs L63=0.754 — L10 slightly better. \"Scheme B选错层\" narrative weaker for R1-32B.\n   - ✅ P-VALUE UNIFIED: null-centered two-sided, consistent with QwQ.\n\n   **32B cross-model divergence (D031 key finding for Discussion):**\n   | Dimension | R1-32B L63 | QwQ L60 |\n   |-----------|-----------|---------|\n   | Bonferroni | W=1 only (3/3) | All 15 W (3/3) |\n   | Lead time | +11.7 to +13.3 (excellent) | -1.2 to +1.9 (poor) |\n   | HS vs Position | HS >> Pos (+14.2pp) | HS < Pos (-0.6pp) |\n   | Coverage (W=1) | 25% | 74% |\n   Paper MUST discuss this divergence per-model, not unify into single narrative.\n\n   **OLD 32B results at BIASED layers (L2/L10) — RETRACTED as metric artifact:**\n   - R1-32B L10: precision +9.4pp (p=0.064), accuracy +6.2pp (p=0.13)\n   - QwQ-32B L2: precision +5.8pp (p=0.35), accuracy +0.9pp (p=0.83)\n   - These non-significant results were caused by the biased `bal_acc × crossing_rate` metric selecting layers where HS signal is weak.\n\n   **Holm-Bonferroni COMPLETE (D032): 12/12 ALL PASS**\n   Previously 5/12 (biased layers). With corrected layers: **12/12** step-down pass (α=0.05).\n\n   | Rank | Model | Metric | p-value | Threshold | Pass |\n   |------|-------|--------|---------|-----------|------|\n   | 1 | R1-8B | precision | <0.001 | 0.0042 | ✅ |\n   | 2 | OT-7B | bal_acc | <0.001 | 0.0045 | ✅ |\n   | 3 | OT-7B | precision | <0.001 | 0.0050 | ✅ |\n   | 4 | OT-7B | FPR | <0.001 | 0.0056 | ✅ |\n   | 5 | QwQ | bal_acc | <0.001 | 0.0063 | ✅ |\n   | 6 | QwQ | precision | <0.001 | 0.0071 | ✅ |\n   | 7 | R1-32B | bal_acc | <0.001 | 0.0083 | ✅ |\n   | 8 | R1-32B | precision | <0.001 | 0.0100 | ✅ |\n   | 9 | QwQ | FPR | 0.004 | 0.0125 | ✅ |\n   | 10 | R1-8B | bal_acc | 0.005 | 0.0167 | ✅ |\n   | 11 | R1-32B | FPR | 0.007 | 0.0250 | ✅ |\n   | 12 | R1-8B | FPR | 0.044 | 0.0500 | ✅ |\n\n   **Caveats**: Different W per model (R1-8B W=15, OT-7B/QwQ W=3, R1-32B W=1). Tests measure \"HS > text at each model's best setting,\" not \"at uniform W.\" R1-32B W=1 has 25% coverage. Paper must state these conditions.\n\n   **FPR dual reporting**: Step-level (r1-8b: HS 8.8%, text 20.5%) vs trace-level (HS 14.8%, text 22.2%). Both reported.\n\n   **FPR reversal RESOLVED (D026)**: OT-7B HS FPR@L16 (10.0%) < Text FPR at ANY window (16.1%). HS dominates on FPR at 7-8B.\n\n   **Effect size consistency**: Precision advantage across all 4 models at corrected layers: R1-8B +22.4pp, OT-7B +21.2pp, QwQ +23.6pp, R1-32B +15.4pp. Remarkably consistent +15-24pp range.\n\n   Paper recommended claim (D032): \"At correctly selected layers, HS probes significantly outperform text probes on all 4 models (12/12 Holm-Bonferroni, precision +15-24pp). The layer selection metric `bal_acc × crossing_rate` systematically biases toward shallow layers, entirely masking this advantage at 32B scale. Practical implications differ by model: 7-8B models show strong HS advantage with comparable timing; R1-32B shows excellent lead time (+13 steps) but narrow coverage at the significant window; QwQ shows robust statistical significance but HS detects later than text.\"\n\n3. **HS and text monitoring exhibit different detection timing profiles** (narrowed from old Claim 3, now 4/4 models with GRU) — On r1-8b: HS temporal LR detects AT the commitment point (lead ~0) while text detects ~10 steps earlier. GRU achieves modest positive lead (+4.5+-3.0, worst seed +0.9). BOCPD/CUSUM fail to improve over simple thresholds. The oracle's +31-step advantage shows hidden states encode current safety state but poorly predict future trajectory. On 32B models: timing profiles vary (QwQ GRU lead +15.9, R1-32B +8.8) but FPR differences are non-significant. OT-7B GRU (layer 16, multi-layer L13-19, 3 seeds): bal_acc 74.6+-1.3%, coverage 64.5+-7.0%, lead +33.6+-4.8, FPR 27.4+-6.1%. GRU trades higher FPR for longer lead (consistent with R1-8B pattern). NOTE: OT-7B absolute lead times are inflated by long traces (~80 sentences vs ~30). Paper should normalize or explicitly caveat trace length differences when comparing across models.\n\n   NOTE: 32B timing profiles should be RE-EVALUATED at corrected layers (L60/L63) — current GRU results used old biased layers.\n\n## Methodological Contribution: Layer Selection Sensitivity (D028, elevated from RETRACTED Claim 4)\n\nThe layer selection metric `bal_acc × crossing_rate` systematically biases toward shallow layers because shallow layers have higher crossing rates (more frequently crossing the detection threshold). This bias is especially problematic for 32B models, where it selects layers at 3-16% depth instead of deep layers selected by threshold-dependent metrics.\n\n**Ablation evidence (4 models × 5 metrics) — UPDATED D036**:\n- `bal_acc × crossing_rate`: selects L2 (QwQ), L10 (R1-32B) — shallow, biased\n- Pure `bal_acc`: selects **middle layers** for 32B — L30 (QwQ, 47%), L47 (R1-32B, 73%); deep for 7-8B (agrees with other metrics). Threshold-free metric, behaves like AUROC.\n- `precision`: selects deep layers for all models (L60/L63 for 32B)\n- `pre_cp_fpr`: selects deep layers for all models\n- `composite` (additive): selects deep layers for all models\n- **Pattern**: Threshold-FREE metrics (bal_acc, AUROC) → middle layers; threshold-DEPENDENT metrics (precision, FPR, composite) → deep layers. Crossing_rate-contaminated metrics → shallow layers.\n\n**LOO-CV stability (D036)**: Under LOO-CV, the dominant layer is selected in 65-68% of folds regardless of metric. QwQ L30 selected 13/19 folds (bal_acc), R1-32B L47 selected 13/20 folds (bal_acc). Selection is robust to val set composition.\n\n**Corrected layer definition (D036)**: \"Corrected layers\" = consensus of threshold-dependent metrics (precision, inverse FPR, additive composite) — 3 of 4 non-biased metrics, not all 4. Pure bal_acc selects middle layers (L30/L47) with higher step-level accuracy (0.75/0.83 vs 0.71/0.76 at deep layers), but deployment-relevant metrics (precision, FPR) favor deep layers where all 4 models achieve HB-significant HS advantage.\n\n**Impact**: Incorrect layer selection entirely masked the HS advantage at 32B scale, leading to the false conclusion that HS advantage is scale-dependent. Even among unbiased metrics, metric choice affects optimal layer depth — threshold-free vs threshold-dependent is a second dimension of researcher degrees of freedom beyond the crossing_rate bias.\n\n**Anti-circular-reasoning defense (D031, refined D036)**: The claim that deep layers are \"correct\" for deployment rests on: (1) `crossing_rate` has a MECHANISTIC bias — shallow layers have compressed representations (1.4-2.7× smaller cosine distances) generating noise-driven crossings; (2) threshold-dependent metrics (precision, FPR) directly measure deployment-relevant properties; (3) at deep layers, all 4 models show significant HS advantage (HB corrected); (4) LOO-CV confirms selection stability. The paper presents layer selection as a \"researcher degree of freedom\" with systematic audit via sensitivity analysis.\n\n**Paper treatment**: Dedicated subsection in Method + Table showing metric × model → selected layer + downstream HS-text comparison. Frame as sensitivity analysis, not \"correct vs incorrect.\"\n\n## Story Spine\n\n- **Problem**: Reasoning models exhibit \"self-jailbreak\" — safety reasoning and harmful execution interleave throughout extended CoT, culminating in a \"commitment point\" where safety reasoning permanently ceases. Existing hidden-state detectors (TrajGuard, SafeSwitch, SIREN) target adversarial INPUT attacks on instruction-tuned models; they have never been evaluated on reasoning-model self-jailbreak where the threat is the model's OWN reasoning process.\n\n- **Existing approaches & gaps**: Hidden-state detectors achieve 95% defense on standard LLMs (TrajGuard) but operate at token-level. Reasoning-model safety analysis (Self-Jailbreaking, HarmThoughts) characterizes the phenomenon without providing deployable detectors. Text-level CoT monitors (SafeRemind, SafeThink) are vulnerable to pathological CoT. No prior work systematically compares detection modalities for reasoning-model self-jailbreak.\n\n- **Our framing**: We provide the first systematic evaluation of detection methods for reasoning-model safety commitment across **4 models, 2 architectures (Llama + Qwen), 2 training methods (R1-distilled + STILL), and 2 scales (7-8B + 32B)**, comparing hidden-state probes, text-based probes, sequence models (GRU), change-point detection (BOCPD/CUSUM), unsupervised methods (Mahalanobis, RepE direction, CCS), and nonlinear probes (MLP). We discover that: (a) temporal context is the most robust improvement, benefiting both modalities universally; (b) HS probes universally outperform text at correctly selected layers, with a critical sensitivity to layer selection methodology; (c) existing methods designed for other settings (TrajGuard, BOCPD, CCS, RepE) fail on reasoning model commitment; (d) linear probes are sufficient (MLP adds no value); (e) safety representations are model-specific (cross-transfer fails entirely), validated by control task (selectivity 7.5-18.5pp).\n\n- **Headline result (D032)**: \"Hidden-state probes significantly outperform text probes for safety commitment detection on all 4 models (12/12 Holm-Bonferroni, precision +15-24pp), but this advantage is entirely invisible under biased layer selection metrics. The composite metric `bal_acc × crossing_rate` systematically selects shallow layers at 32B scale, masking the HS signal and producing false negatives. This methodological finding, together with model-specific practical trade-offs at 32B (early detection vs broad coverage) and the comprehensive failure of 6 alternative methods, establishes that supervised temporal probing with principled layer selection is the most effective and robust approach for monitoring reasoning-model safety commitment.\"\n\n## Key Evidence Summary\n\n### R1-8B (Llama-8B, R1-distilled, n=43 test, class_weight=balanced, 60/20/20 split — CANONICAL)\n\nBest layer: 14 (45% depth). Full sweep layers 0-24 confirmed: layer 12 marginally better (+0.4pp bal_acc), no practical difference.\n\n| Method | Coverage | Lead Time | Pre-CP FPR | Safe FPR |\n|--------|----------|-----------|------------|----------|\n| HS Static LR L14 | — | -2.0 | **9.7%** | — |\n| HS Temporal W=5 | — | +0.6 | **10.2%** | — |\n| HS Temporal W=15 | — | **-0.1** | **8.8%** | — |\n| Text Temporal W=15 | — | +10.3* | 20.5% | — |\n| GRU Multi-7L (3-seed) | 72.9+-4.0% | +4.5+-3.0 | 16.5+-4.1% | — |\n\n*Text lead time inflated by high pre-CP FPR (trigger-happy detection)\nNOTE: HS LR lead time collapsed to ~0 with balanced weights — HS detects AT commitment, not before. Only GRU achieves positive lead (+4.5, worst seed +0.9).\n\n### OT-7B (Qwen-7B, STILL-trained, n=47 test, 228 total traces) — D026 CORRECTED to layer 16\n\nBest layer: **16 (57% depth)**. M001 corrected: layer 0 was selected by bal_acc x crossing_rate bug; layer 16 selected by bal_acc.\n\n| Method | Bal Acc | Precision | Coverage | Pre-CP FPR | Lead |\n|--------|---------|-----------|----------|-----------|------|\n| HS Temporal W=3 L16 (best) | **68.8%** | **46.6%** | 53.2% | **10.0%** | — |\n| Text Temporal W=25 (best) | 61.4% | 32.9% | 66.0% | 16.1% | 45.5 |\n| Text Temporal W=3 (matched) | 57.9% | 25.4% | — | 27.1% | — |\n\nBootstrap (layer 16, matched W=3, 1000 resamples):\n   bal_acc +10.7pp, 95% CI [4.9, 16.3], p<0.001 ✅\n   precision +21.9pp, 95% CI [14.0, 29.6], p<0.001 ✅\n   FPR -17.1pp, 95% CI [-22.2, -12.2], p<0.001 ✅ — **3/3 Holm-Bonferroni**\nSelectivity: 18.3pp (real=0.688, random=0.505) — highest across all models\n\n### 32B Cross-Architecture — D029 CORRECTED LAYERS\n\n**QwQ-32B (Qwen-32B, native, n=19-20, Layer 60 — corrected from L2)**\n- HS vs Text bootstrap (null-centered, 1000 resamples):\n  - Bal Acc: +11-22pp across W=1-15, ALL 15/15 significant (p<0.005)\n  - W=3 (matched): bal_acc +15.4pp (p<0.001 ✅), precision +23.6pp (p<0.001 ✅), FPR -9.8pp (p=0.004 ✅) — **3/3 Holm-Bonferroni**\n- Caveats: HS lead time poor (-1.2 to 1.9 steps vs text 3.7-12.3), position baseline competitive\n- Layer selection: `bal_acc × crossing_rate` selected L2 (3.1%); threshold-dependent metrics consensus selects L60 (94%); pure `bal_acc` selects L30 (47%, bal_acc=0.7513 vs L60=0.7101) (D036)\n\n**R1-32B (Qwen-32B, R1-distilled, n=20, Layer 63 — corrected from L10)**\n- W=1: bal_acc +18.7pp, p<0.001 ✅\n- W≥5: NS (dimensionality: 51200 × W features for n=20)\n- W=1: 3/3 Holm-Bonferroni ✅; W=3: 0/3 Bonferroni (null-centered v2); W≥5: NS\n- Layer selection: `bal_acc × crossing_rate` selected L10 (15.6%); threshold-dependent metrics consensus selects L63 (98%); pure `bal_acc` selects L47 (73%, bal_acc=0.8290 vs L63=0.7585) (D036)\n\n**OLD biased-layer results (RETRACTED as metric artifact):**\n| Model | Biased Layer | Corrected Layer | Biased p-value | Corrected p-value |\n|-------|-------------|----------------|----------------|-------------------|\n| R1-32B | L10 (16%) | L63 (98%) | 0.064-0.13 (NS) | <0.001 (W=1) ✅ |\n| QwQ-32B | L2 (3%) | L60 (94%) | 0.35-0.83 (NS) | <0.005 (all W) ✅ |\n\n### 4-Model Holm-Bonferroni Summary (D032 — COMPLETE: 12/12 ✅)\n\n| Model | Arch | Training | Scale | Layer | W | bal_acc | precision | FPR | Selectivity |\n|-------|------|----------|-------|-------|---|--------|-----------|-----|-------------|\n| R1-8B | Llama | R1-distilled | 8B | L14 (45%) | 15 | +8.2pp ✅ | +22.4pp ✅ | -7.4pp ✅ | 12.5pp |\n| OT-7B | Qwen | STILL | 7B | L16 (57%) | 3 | +10.7pp ✅ | +21.9pp ✅ | -17.1pp ✅ | 18.3pp |\n| QwQ-32B | Qwen | native | 32B | L60 (94%) | 3 | +15.4pp ✅ | +23.6pp ✅ | -9.8pp ✅ | 15.3pp |\n| R1-32B | Qwen | R1-distilled | 32B | L63 (98%) | 1 | +18.7pp ✅ | +15.4pp ✅ | -14.6pp ✅ | 7.5pp |\n\n**12/12 all pass Holm-Bonferroni step-down (α=0.05)**. Previously 5/12 with biased layers.\nPrecision advantage remarkably consistent: +15.4 to +23.6pp across all 4 models.\nCaveats: Different W per model; R1-32B W=1 coverage=25%; QwQ lead time negative.\n\n### Position Mediation Analysis (D038 → D039 → D042 complete)\n\n**Finding**: Position (relative step t/T) is a significant component of probe performance. 3/4 models retain HS advantage after residualization; R1-32B is the exception.\n\n| Model | W | Resid HS BA | Resid Text BA | HS-Text Gap | Gap p | HB |\n|-------|---|------------|--------------|-------------|-------|-----|\n| OT-7B | 3 | 0.609 | 0.540 | **+6.9pp** | <0.001 | ✅ |\n| R1-8B | 15 | 0.669 | 0.605 | **+6.4pp** | <0.001 | ✅ |\n| R1-8B | 3 | 0.571 | 0.534 | **+3.7pp** | <0.001 | ✅ |\n| QwQ-32B | 3 | 0.619 | 0.582 | **+3.7pp** | 0.011 | ✅ |\n| R1-32B | 1 | 0.552 | 0.532 | +1.9pp | 0.914 | ❌ |\n\nPosition-only BA: OT-7B/R1-8B/QwQ ≈ 0.706; R1-32B = 0.686.\n\n**D042 final picture**: HS advantage has two separable components — position-mediated and non-positional. 3/4 models retain significant non-positional HS advantage (HB pass); R1-32B's advantage is almost entirely position-mediated (drop 20.4pp, residualized gap NS). This is consistent with R1-32B's other caveats (W=1 only significant, 25% coverage).\n\n**Key implications for paper**:\n1. Position is a significant component (12-20pp drop) — universal\n2. 3/4 models retain non-positional HS advantage (residualized BA gap +3.7 to +6.9pp, HB pass)\n3. R1-32B is the exception: HS advantage position-mediated, residualized gap NS\n4. Temporal windowing preserves non-positional signal (R1-8B: 24pp drop@W=3 → 16pp@W=15)\n5. Paper framing: \"HS advantage persists after position removal in 3/4 models; R1-32B advantage is position-mediated\"\n\n### 5-Seed Robustness (D041)\n\n| Model | HB Pass Rate | Mean ΔPrec ± std | Mean ΔBA ± std |\n|-------|-------------|------------------|----------------|\n| OT-7B | **5/5** | +20.9 ± 1.3pp | +11.3 ± 1.5pp |\n| R1-32B | **5/5** | +13.7 ± 2.0pp | +11.8 ± 2.4pp |\n| QwQ-32B | **5/5** | +19.9 ± 2.5pp | +11.4 ± 3.2pp |\n| R1-8B | **3/5** | +14.6 ± 4.5pp | +9.4 ± 2.4pp |\n\nR1-8B failures are FPR-specific (seed 123 FPR p=0.262, seed 456 FPR p=0.952). Precision is directionally consistent across all 20 seed-model combinations (always positive). ΔPrec never reverses.\n\n**D041 insight**: Robustness splits by MODEL not SCALE. R1-32B (5/5, ΔPrec std=2.0pp) is more stable than R1-8B (3/5, ΔPrec std=4.5pp). \"7-8B robust / 32B sample-limited\" is factually wrong. R1-32B's absolute precision std (12.8pp) vs paired delta std (2.0pp) — paper must distinguish these.\n\n**Per-model evidence tier (D042)**:\n- **OT-7B**: Cleanest — 5/5 HB, largest residualized gap (+6.9pp), highest selectivity (18.3pp)\n- **QwQ-32B**: Robust — 5/5 HB, residualized gap holds (+3.7pp), but position baseline competitive\n- **R1-8B**: Precision-robust — residualized holds (+3.7-6.4pp), but FPR unstable (3/5 HB)\n- **R1-32B**: Statistically stable (5/5 HB, ΔPrec std=2.0pp) but advantage position-mediated (residualized NS)\n\n**Residualized precision**: Not tested (scope limited to BA per Reviewer recommendation).\n\n### BA-Layer Robustness: Metric Circularity Refuted (D044)\n\nR13 W1 concern: corrected selection uses threshold-dependent metrics (precision, FPR), evaluation also uses precision/FPR — potential circularity. Test: compute HS vs text on BA-selected layers (threshold-free criterion).\n\n| Model | BA-Opt Layer | ΔPrec | ΔBA | ΔFPR | ΔAUROC | All 4 HB? |\n|-------|-------------|-------|-----|------|--------|-----------|\n| R1-8B | L12 | +17.8pp | +7.8pp | -12.9pp | +9.3pp | ✅ |\n| OT-7B | L9 | +25.4pp | +11.7pp | -19.3pp | +14.8pp | ✅ |\n| QwQ-32B | L30 | +18.0pp | +14.8pp | -8.0pp | +17.3pp | ✅ |\n| R1-32B | L47 | +13.7pp | +14.9pp | -23.1pp | +21.1pp | ✅ |\n\n**4/4 models × 4 metrics = 16/16 HB pass.** HS advantage is a genuine modality property, not a layer selection artifact.\n\nKey insight: R1-32B on BA-layer L47 shows ΔPrec +13.7pp and ΔAUROC +21.1pp — stronger than corrected L63 in threshold-free metrics. OT-7B on BA-layer L9 has ΔPrec +25.4pp > corrected L16 (+21.9pp). HS advantage is robust to layer selection criterion.\n\nCaveat: QwQ FPR adj_p=0.041 (marginal, CI close to zero). Other 15/16 tests p≤0.006.\n\n### Post-hoc Power Analysis (D044)\n\n| Model | n (test) | MDE (80% power, α=0.05) |\n|-------|----------|------------------------|\n| OT-7B | 47-69 | 6.7-8.1pp |\n| R1-8B | 43-63 | 7.4-9.0pp |\n| QwQ-32B | 29 | 9.5pp |\n| R1-32B | 20-30 | 8.6-11.2pp |\n\nAll significant effects (15-24pp) are well above MDE → adequately powered. R1-32B residualized gap (+1.9pp) is far below MDE (11.2pp) → NS is power limitation, not evidence of absence.\n\n### Negative Results (expanded with R3 supplementary experiments)\n- **BOCPD/CUSUM (4/4 models)**: R1-8B BOCPD 93% detection but lead +3.5 < threshold +4.9; OT-7B/R1-32B/QwQ all 0% detection across all λ. CUSUM worse than threshold on all models.\n- **Mahalanobis (4/4 models confirmed negative)**: R1-8B (+0.07), OT-7B (+0.031), R1-32B (+0.148), QwQ (+0.204) — all separation ≈ 0. Signal in minor PCA components, not principal directions.\n- **RepE direction probing (4/4 models, corrected layers confirmed)**: Direction-based supervised method (needs CP labels). Results highly layer-dependent and model-specific:\n  - R1-32B L63 (corrected): bal_acc=0.559 (near-random), FPR=49.9% — **direction vector fails at deep layer** where supervised LR excels (0.826). Train-test gap 13.3pp shows poor generalization.\n  - QwQ L60 (corrected): bal_acc=0.756, precision=0.512, FPR=0.309 — **improves** from L2 (0.666), narrows gap with supervised LR W=1 (0.740 bal_acc), but still inferior in precision/FPR.\n  - R1-8B L14: bal_acc=0.749, OT-7B L16: bal_acc=0.642\n  - **Key insight**: Supervised LR is necessary — mean-difference direction cannot decode safety commitment at deep layers for R1-32B (discriminative training finds signal that simple direction averaging misses). Layer selection sensitivity applies to RepE too, but in model-specific ways (R1-32B: shallow better for RepE; QwQ: deep better for both).\n- **MLP nonlinear probe (4/4 models)**: 3/4 models worse than LR. Linear probes sufficient; nonlinearity adds no value.\n- **CCS-adapted (Burns et al. 2023, 4/4 models)**: WEAKLY SUPERVISED (needs CP labels for pair construction, not truly unsupervised). R1-8B bal_acc=0.777 (between supervised LR 0.817 and RepE 0.749). R1-32B FPR=0.410 (near-chance). OT-7B precision=0.319 (near-chance, high lead=20.5 is artifact of high FPR). Uses scheme B layers (biased). Paper must: (a) label as \"weakly supervised\" not \"unsupervised\"; (b) disclose pair construction differs from Burns et al.; (c) note scheme B layer limitation.\n- **Cross-model transfer (exp-003)**: All directions fail entirely (best: 58.3% acc, 40.7% crossing).\n\n## Venue Fit Risks\n\n- **EMNLP LLM Security track fit**: Strong — defense/detection evaluation for reasoning model jailbreak.\n- **Method simplicity risk**: Mitigate: frame as empirical study. Contribution is systematic evaluation + layer selection sensitivity discovery + comprehensive negative results.\n- **Statistical power**: With corrected layers, **12/12** tests pass Holm-Bonferroni across ALL 4 models (up from 5/12 with biased layers).\n- **HS advantage universal**: UPGRADED from \"scale-dependent\" — layer selection is the true moderator, not scale. Cleaner story.\n- **Trace vs step FPR**: Both reported with explanation.\n- **High safe FPR risk**: All methods 39-62% safe FPR. Frame as diagnostic tool limitation.\n- **32B caveats**: HS advantage exists but is more sensitive to window size (R1-32B W=1 only) and affected by dimensionality (51200-d at large W with n=20). Lead times shorter than 7-8B. These are honest limitations, not disqualifiers.\n\n## Anticipated Reviewer Concerns\n\n1. \"Method novelty?\" → Empirical study + systematic method comparison + layer selection sensitivity as methodological contribution + comprehensive negative results (6 methods fail).\n2. \"Only one model family?\" → **RESOLVED**: 4 models, 2 architectures (Llama + Qwen), 2 training methods, 2 scales. ALL showing significant HS advantage at corrected layers.\n3. \"GRU unstable?\" → 3-seed reporting with worst-seed bounds. R1-32B GRU at L10 was unstable; needs re-evaluation at L63.\n4. \"Too few traces?\" → Cross-model validation + control task selectivity 7.5-18.5pp.\n5. \"Fine-grained taxonomy?\" → Out of scope for current study.\n6. \"HS doesn't beat text?\" → **QUALIFIED REBUTTAL (D031)**: HS outperforms text at correct layers with STRONG evidence at 7-8B (precision +22pp, Holm-Bonf) and QUALIFIED evidence at 32B (R1-32B: significant W=1 but narrow; QwQ: significant all W but late detection). 32B non-significance at OLD layers was artifact. Layer selection sensitivity analysis shows this is a methodological issue, not absence of signal.\n7. \"Commitment point circular?\" → Cross-model consistency + control task selectivity argues against artifact.\n8. \"Missing related work?\" → Expansion to 30+ citations.\n9. \"No FPR analysis?\" → RESOLVED: both trace-level and step-level FPR reported.\n10. \"High safe FPR?\" → Limitation acknowledged.\n11. \"Control task / position confound?\" → RESOLVED (C2, D011): selectivity 7.5-18.5pp, HS FPR < position-only FPR.\n12. \"Multiple testing correction?\" → **RESOLVED**: 12/12 Holm-Bonferroni step-down (α=0.05) across all 4 models (up from 5/12 with biased layers).\n13. \"Trace vs step FPR?\" → Both reported with explanation.\n14. \"Layer selection is just hyperparameter tuning?\" → No — we show a systematic bias in a commonly used composite metric. The ablation across 5 metrics × 4 models is a reproducible methodological finding, not a one-off parameter choice.\n15. \"Why not just use the best layer for each model?\" → We do. The point is that the METRIC for selecting \"best\" matters. Biased metrics produce systematically wrong selections, masking real effects.\n16. \"32B results are marginal / only W=1 significant for R1-32B?\" → Dimensionality constraint (51200 × W > n=20 at W≥5). QwQ L60 significant at ALL W values. R1-32B L63 significant at W=1. Both confirm HS advantage exists; practical deployment would use W=1-3 for 32B models.\n\n## Title Candidates (D031)\n- \"Layer Selection Matters: How Metric Choice Determines Hidden-State Probe Effectiveness for Safety Monitoring\"\n- \"Temporal Probing for Safety Commitment Detection in Reasoning Models: A Comprehensive Evaluation\"\n- \"What Detects Safety Commitment in Reasoning Models? A Systematic Comparison of Probe-Based Methods\"\n- \"Hidden-State vs Text Monitoring for Reasoning Model Safety: Layer Selection as the Missing Variable\"\n\n\n## experiment_plan (with registry status)\n\n- id: exp-001\n  claim: 1\n  description: Cross-architecture hidden-state extraction + layer sweep + static probe\n    evaluation on r1-32b and QwQ-32B. Includes mandatory layer sweep (all layers)\n    to find best layer for 64-layer models before probe evaluation. Validates Claim\n    1 generalizes beyond r1-8b.\n  priority: P0\n  gpu_budget_hours: 10\n  deps: []\n  models:\n  - DeepSeek-R1-Distill-Qwen-32B\n  - QwQ-32B\n  notes: 32B models have 64 layers, 5120-d hidden. r1-8b best layer was 14/32 (44%\n    depth) → expect best around layer 28-32 for 64-layer models. Extract ALL layers\n    for sweep, then select best for subsequent experiments. Must do layer sweep BEFORE\n    reporting static probe results — using wrong layer would produce false negative.\n  status: planned\n- id: exp-002\n  claim: 2\n  description: 'Cross-architecture temporal window evaluation: temporal LR W=15 on\n    r1-32b and QwQ-32B. Validate +30pp coverage improvement holds cross-architecture.'\n  priority: P0\n  gpu_budget_hours: 4\n  deps:\n  - exp-001\n  models:\n  - DeepSeek-R1-Distill-Qwen-32B\n  - QwQ-32B\n  status: planned\n- id: exp-003\n  claim:\n  - 1\n  - 2\n  description: 'Cross-model transfer: train probe on r1-8b (Llama), test on r1-32b/QwQ\n    (Qwen2.5). Train on Qwen, test on Llama. Measures zero-shot cross-architecture\n    generalization.'\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - exp-001\n  notes: Key for cross-architecture story. Projection head needed (4096→5120 or vice\n    versa).\n  status: planned\n- id: exp-004\n  claim: 3\n  description: 'Lead time analysis across models: confirm negative lead time finding\n    on 32B models. Report lead time distribution per model.'\n  priority: P0\n  gpu_budget_hours: 1\n  deps:\n  - exp-001\n  - exp-002\n  status: planned\n- id: exp-005\n  claim:\n  - 1\n  - 2\n  - 3\n  description: 'TrajGuard-style Mahalanobis baseline: implement and evaluate on all\n    3 models. Expected to fail (signal in minor PCs, Fisher drops 17→1 in PCA-3D).'\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - exp-001\n  notes: Critical baseline for 'existing detectors fail' claim. Use safe traces to\n    estimate covariance, compute MD per step.\n  status: planned\n- id: exp-006\n  claim:\n  - 1\n  - 2\n  description: 'Bootstrap confidence intervals + threshold-independent metrics: 1000\n    bootstrap resamples on all key metrics (coverage, lead time, accuracy). ALSO report\n    AUROC, precision-recall curves, detection delay CDF, cross-validation per-fold\n    variance, and FPR on safe traces (final_judgment=0.5).'\n  priority: P0\n  gpu_budget_hours: 1\n  deps:\n  - exp-001\n  - exp-002\n  - exp-003\n  - exp-004\n  - exp-005\n  status: planned\n- id: exp-007\n  claim: 2\n  description: 'Window size ablation: W=1,3,5,10,15,20,25 on all 3 models. Find optimal\n    W and show diminishing returns curve.'\n  priority: P1\n  gpu_budget_hours: 2\n  deps:\n  - exp-001\n  status: planned\n- id: exp-008\n  claim: 2\n  description: 'Layer selection ablation: all layers (not just 14) for temporal probe\n    on 32B models. Confirm middle-layer finding generalizes.'\n  priority: P1\n  gpu_budget_hours: 3\n  deps:\n  - exp-001\n  status: planned\n- id: exp-009\n  claim: 2\n  description: '16-label taxonomy supervision: use fine-grained labels (Type 1/2/3/4)\n    instead of binary commitment for richer training signal. May improve both coverage\n    and timing.'\n  priority: P1\n  gpu_budget_hours: 2\n  deps:\n  - exp-001\n  notes: Addresses reviewer concern about underusing available supervision.\n  status: planned\n- id: exp-010\n  claim: 3\n  description: 'Oracle decomposition: why can oracle but not probes achieve positive\n    lead time? Analyze what label patterns encode that hidden states don''t.'\n  priority: P1\n  gpu_budget_hours: 1\n  deps:\n  - exp-004\n  notes: For Discussion section. May reveal what architectural changes could close\n    the gap.\n  status: planned\n- id: exp-011\n  claim: 2\n  description: 'OpenThinker-7B (Qwen2.5-7B base): 4th model for 2×2 architecture×scale\n    matrix. Controls for scale confound.'\n  priority: P2\n  gpu_budget_hours: 4\n  deps:\n  - exp-002\n  notes: From Human Review Note point 5. Adds Qwen2.5-7B to complement Llama-8B for\n    scale-matched comparison.\n  status: planned\n- id: exp-012\n  claim:\n  - 1\n  - 2\n  description: 'GRU/Attention probe as upper bound: verify GRU finding holds on 32B\n    models with more data. If still no improvement over LR, strengthens ''simplicity\n    is optimal'' story.'\n  priority: P2\n  gpu_budget_hours: 4\n  deps:\n  - exp-001\n  - exp-002\n  status: planned\n- id: exp-013\n  claim:\n  - 1\n  - 2\n  description: 'Text-based baseline: sentence-BERT embeddings (all-MiniLM-L6-v2) +\n    same temporal window LR (W=15) on CoT text. Compare coverage/lead time to hidden-state\n    probes. CRITICAL for proving hidden-state monitoring adds unique value over cheap\n    text monitoring. If text achieves comparable performance, paper motivation needs\n    restructuring.'\n  priority: P0\n  gpu_budget_hours: 0.5\n  deps: []\n  notes: No GPU needed for embedding extraction (small model, CPU-feasible). Run on\n    all 4 models. This is the single most important missing baseline per Dream review\n    (flagged by all 3 tiers, both reviewers).\n  status: planned\n- id: exp-014\n  claim: 3\n  description: 'Bayesian Online Change-Point Detection (BOCPD) on per-step probe scores:\n    apply Adams & MacKay 2007 to the sequence of probe confidence scores. Could achieve\n    positive lead time by detecting distributional shift before textual commitment.\n    Also test CUSUM as simpler alternative.'\n  priority: P0\n  gpu_budget_hours: 0.5\n  deps:\n  - exp-001\n  notes: Addresses both 'no method novelty' and 'no positive lead time' criticisms\n    simultaneously. If BOCPD achieves reliable lead time where GRU doesn't, this becomes\n    a genuine methods contribution. If it also fails, strengthens the 'fundamental\n    limitation' narrative.\n  status: planned\n- id: exp-015\n  claim:\n  - 1\n  - 2\n  description: 'False positive analysis: run all probes (static, temporal, GRU, BOCPD)\n    on safe traces (final_judgment=0.5). Report FPR, precision-recall curves at various\n    thresholds. Essential for deployment utility claims.'\n  priority: P0\n  gpu_budget_hours: 0.5\n  deps:\n  - exp-001\n  - exp-002\n  notes: Dream flagged missing FPR as critical gap across median and worst tiers.\n    Without this, 'coverage' metric is uninterpretable — a probe that fires everywhere\n    gets 100% coverage.\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: diag_d1_layer_sweep\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    best_layer_idx: 2\n    best_model_layer: 14\n    best_acc: 0.8114\n    best_f1: 0.6455\n    best_crossing_rate: 0.186\n    best_lead_mean: 8.38\n    best_lead_median: 6\n    default_layer20_acc: 0.7831\n    num_traces: 209\n    split: 125/41/43\n- exp_id: diag_d4_oracle_upper_bound\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    K5_detection_rate: 100\n    K5_early_detection_rate: 76.7\n    K5_mean_lead_time: 31\n    K5_median_lead_time: 29\n    K1_early_detection_rate: 83.7\n    K8_early_detection_rate: 65.1\n    pre_cp_mean_longest_streak: 14.6\n    test_traces: 43\n- exp_id: diag_d2_pca_viz\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    fisher_orig_L12: 17.462\n    fisher_orig_L14: 17.875\n    fisher_orig_L20: 18.614\n    fisher_orig_L24: 18.106\n    fisher_pca_L12: 0.953\n    fisher_pca_L14: 0.928\n    fisher_pca_L20: 0.92\n    fisher_pca_L24: 1.111\n    var_explained_3pc: 0.166\n    test_steps: 1835\n- exp_id: diag_d3_regularized_probes\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    static_lr_acc: 0.8172\n    static_lr_crossing_rate: 0.4651\n    static_lr_lead_mean: -2\n    temporal_lr_w5_acc: 0.8274\n    temporal_lr_w5_crossing_rate: 0.6512\n    temporal_lr_w5_lead_mean: -1.18\n    temporal_lr_w10_acc: 0.8364\n    temporal_lr_w10_crossing_rate: 0.6512\n    temporal_lr_w10_lead_mean: -0.61\n    temporal_lr_w15_acc: 0.8478\n    temporal_lr_w15_crossing_rate: 0.7674\n    temporal_lr_w15_lead_mean: -1.09\n    best_temporal_delta_over_static: 1.39\n    pass_criterion_met: false\n- exp_id: diag_gru_probe\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    test_acc: 0.8305\n    test_acc_std: 0.1856\n    crossing_rate: 0.6744\n    lead_mean: -0.207\n    lead_median: -1\n    lead_std: 13\n    positive_lead_rate: 0.345\n    n_positive_lead: 10\n    n_detected: 29\n    early_stop_epoch: 14\n    model_params: 1622913\n- exp_id: exp_gru256_multilayer\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    gru_single_l14:\n      acc: 0.8386\n      crossing_rate: 0.721\n      lead_mean: 3.5\n      lead_median: 0\n      pos_lead: 13/31\n    gru_multi_7l:\n      acc: 0.8094\n      crossing_rate: 0.767\n      lead_mean: 4.7\n      lead_median: 0\n      pos_lead: 13/33\n    lr_single_l14:\n      acc: 0.8172\n      crossing_rate: 0.465\n      lead_mean: -2\n      lead_median: -2\n      pos_lead: 6/20\n    lr_multi_7l:\n      acc: 0.806\n      crossing_rate: 0.395\n      lead_mean: 1.1\n      lead_median: 0\n      pos_lead: 6/17\n    delta_gru_vs_lr: 3.7\n- exp_id: exp_005_trajguard_mahalanobis\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    best_k5_crossing_rate: 0.302\n    best_k5_lead_mean: 16.4\n    best_k5_config: pca_64_p75\n    best_k3_crossing_rate: 0.605\n    best_k3_lead_mean: 20.4\n    delta_max_rate: 0.023\n    safe_md_mean: 6.66\n    jb_pre_md_mean: 6.73\n    jb_post_md_mean: 6.64\n- exp_id: exp_006_bootstrap_ci\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    static_lr_acc: 0.768 [0.702,0.827]\n    static_lr_crossing: 60.4% [44.2,74.4]\n    static_lr_lead: +2.9 [-2.8,+9.5]\n    temporal_lr_acc: 0.731 [0.654,0.804]\n    temporal_lr_crossing: 60.6% [46.5,74.4]\n    temporal_lr_lead: +5.0 [-0.8,+11.9]\n    gru_single_acc: 0.790 [0.734,0.848]\n    gru_single_crossing: 51.4% [37.2,67.4]\n    gru_single_lead: -2.0 [-8.6,+4.9]\n    gru_multi_acc: 0.799 [0.742,0.854]\n    gru_multi_crossing: 51.4% [37.2,67.4]\n    gru_multi_lead: -0.4 [-6.4,+6.1]\n    paired_temporal_vs_static_lead_p: 0.19\n    paired_gru_vs_static_lead_p: 0.94\n    paired_gru_vs_temporal_lead_p: 0.99\n- exp_id: exp_013_text_baseline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    text_static_coverage: 0.605\n    text_static_lead: 4.3\n    text_static_acc: 0.661\n    text_static_auroc: 0.7384\n    text_temporal_w15_coverage: 0.651\n    text_temporal_w15_lead: 11.5\n    text_temporal_w15_acc: 0.678\n    text_temporal_w15_auroc: 0.759\n    hs_acc_advantage: 15-18pp\n- exp_id: exp_015_fpr_analysis\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    text_static_safe_fpr: 0.502\n    text_static_precp_fpr: 0.356\n    text_static_precision: 0.448\n    text_static_coverage: 0.605\n    text_static_lead: 4.3\n    text_static_acc: 0.661\n    text_temporal_safe_fpr: 0.385\n    text_temporal_precp_fpr: 0.272\n    text_temporal_precision: 0.487\n    text_temporal_coverage: 0.651\n    text_temporal_lead: 11.5\n    text_temporal_acc: 0.678\n    hs_static_safe_fpr: 0.39\n    hs_static_precp_fpr: 0.162\n    hs_static_precision: 0.622\n    hs_static_coverage: 0.605\n    hs_static_lead: 3\n    hs_static_acc: 0.768\n    hs_temporal_safe_fpr: 0.392\n    hs_temporal_precp_fpr: 0.16\n    hs_temporal_precision: 0.583\n    hs_temporal_coverage: 0.651\n    hs_temporal_lead: 4.9\n    hs_temporal_acc: 0.726\n    gru_safe_fpr: 0.521\n    gru_precp_fpr: 0.188\n    gru_precision: 0.648\n    gru_coverage: 0.744\n    gru_lead: 5.25\n    gru_acc: 0.816\n- exp_id: exp_014_bocpd_poc\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    bocpd_lambda10:\n      detection_rate: 0.93\n      mean_lead: 3.45\n      median_lead: 0\n      early_count: 16\n      late_count: 19\n    bocpd_lambda100:\n      detection_rate: 0.674\n      mean_lead: 1.03\n      median_lead: 0\n    cusum_best_t03h3:\n      detection_rate: 0.651\n      mean_lead: 0.89\n      median_lead: -4\n    fcp_baseline:\n      detection_rate: 0.651\n      mean_lead: 4.89\n      median_lead: 0\n    head_to_head_bocpd_vs_fcp:\n      bocpd_wins: 16\n      fcp_wins: 6\n      ties: 5\n    verdict: BOCPD higher detection (93% vs 65%) but lower mean lead (3.45 vs 4.89).\n      CUSUM universally worse. Neither method achieves earlier detection than simple\n      threshold crossing on average.\n- exp_id: exp_001a_r1_32b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    m001_corrected: true\n    best_layer_old: 2\n    best_layer_corrected: 10\n    layer_selection_metric: balanced_accuracy × crossing_rate (scheme B)\n    layer10_bal_acc: 0.718\n    layer10_crossing_rate: 0.6\n    gru_single_bal_acc_mean: 0.675\n    gru_single_crossing_mean: 0.3\n    gru_single_lead_mean: 9.1\n    gru_single_precp_fpr_mean: 0.135\n    gru_multi_bal_acc_mean: 0.655\n    gru_multi_crossing_mean: 0.23\n    gru_multi_lead_mean: 8.8\n    gru_multi_precp_fpr_mean: 0.114\n    temporal_lr_best_window: 10\n    temporal_lr_w10_bal_acc: 0.737\n    temporal_lr_w10_crossing: 0.5\n    temporal_lr_w10_lead: 9\n    temporal_lr_w10_precp_fpr: 0.189\n    bootstrap_hs_precp_fpr: 0.26\n    bootstrap_text_precp_fpr: 0.246\n    bootstrap_diff: 0.014\n    bootstrap_p_value: 0.999\n    bootstrap_ci95:\n    - -0.103\n    - 0.127\n    bootstrap_conclusion: no_significant_difference\n    paired_bootstrap_corrected:\n      hs_bal_acc: 0.794\n      text_bal_acc: 0.711\n      acc_delta: 0.084\n      acc_p_value_two_sided: 0.08\n      hs_precision: 0.61\n      text_precision: 0.516\n      prec_delta: 0.094\n      prec_p_value_two_sided: 0.05\n      hs_precp_fpr: 0.242\n      text_precp_fpr: 0.326\n      fpr_delta: -0.084\n      fpr_p_value_two_sided: 0.114\n      bonferroni_alpha: 0.017\n      bonferroni_pass: false\n      test_type: two-sided\n      solver: liblinear\n      canonical_file: artifacts/r1_32b_paired_bootstrap/results.json\n      note: directional but ns after Bonferroni. n=20 test traces insufficient power.\n        Old m001 FPR=0.246 used lbfgs solver (non-canonical).\n- exp_id: exp_001b_qwq_32b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    m001_corrected: true\n    best_layer_old: 1\n    best_layer_corrected: 2\n    layer_selection_metric: balanced_accuracy × crossing_rate (scheme B)\n    layer2_bal_acc: 0.73\n    layer2_crossing_rate: 0.47\n    gru_single_bal_acc_mean: 0.694\n    gru_single_crossing_mean: 0.75\n    gru_single_lead_mean: 19.3\n    gru_single_precp_fpr_mean: 0.303\n    gru_multi_bal_acc_mean: 0.724\n    gru_multi_crossing_mean: 0.84\n    gru_multi_lead_mean: 15.9\n    gru_multi_precp_fpr_mean: 0.289\n    temporal_lr_best_window: 5\n    temporal_lr_w5_bal_acc: 0.761\n    temporal_lr_w5_crossing: 0.42\n    temporal_lr_w5_lead: 23.5\n    temporal_lr_w5_precp_fpr: 0.18\n    bootstrap_phase5_invalid: true\n    bootstrap_phase5_bug: M002 - text_baseline_predictions() in exp_001b_bootstrap.py\n      used midpoint heuristic, not sentence embeddings\n    corrected_hs_vs_text:\n      hs_bal_acc: 0.679\n      text_bal_acc: 0.671\n      acc_delta: 0.009\n      acc_p_value_two_sided: 0.828\n      hs_precision: 0.583\n      text_precision: 0.525\n      prec_delta: 0.057\n      prec_p_value_two_sided: 0.346\n      hs_precp_fpr: 0.208\n      text_precp_fpr: 0.178\n      fpr_delta: 0.03\n      fpr_p_value_two_sided: 0.43\n      bonferroni_alpha: 0.017\n      bonferroni_pass: false\n      test_type: two-sided\n      solver: liblinear\n      note: No significant HS vs text difference on QwQ-32B. HS FPR slightly worse\n        than text.\n    bootstrap_conclusion: no_significant_difference\n- exp_id: exp_003_cross_transfer\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    baselines:\n      r1_8b_acc: 0.8234\n      r1_32b_acc: 0.6516\n      qwq_32b_acc: 0.7171\n    best_transfer_acc:\n      r1_8b_to_r1_32b: 0.522\n      r1_8b_to_qwq: 0.5948\n      r1_32b_to_qwq: 0.5499\n      qwq_to_r1_32b: 0.6726\n      r1_32b_to_r1_8b: 0.5828\n    transfer_method: PCA projection\n    conclusion_detail: Simple PCA projection insufficient for zero-shot cross-model\n      transfer. Signal is model-specific in geometric encoding.\n- exp_id: exp_c2_control_task\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r1_8b_selectivity: 0.1245\n    r1_32b_selectivity: 0.075\n    r1_32b_selectivity_note: layer 10 (corrected best layer). Old layer 2 = 0.168\n    r1_32b_layer10_real_acc: 0.583\n    r1_32b_layer10_random_mean: 0.508\n    r1_32b_layer10_random_std: 0.051\n    qwq_32b_selectivity: 0.153\n    qwq_32b_selectivity_note: layer 2 (corrected from layer 1 = 0.189)\n    r1_8b_hs_pre_fpr: 0.0809\n    r1_8b_position_pre_fpr: 0.1581\n    r1_8b_cp_position_mean: 0.705\n    qwq_32b_layer2_real_acc: 0.678\n    qwq_32b_layer2_random_mean: 0.526\n    qwq_32b_layer2_random_std: 0.076\n    qwq_32b_layer2_position_acc: 0.706\n    qwq_32b_layer2_hs_pre_fpr: 0.2903\n    qwq_32b_layer2_position_pre_fpr: 0.25\n    qwq_32b_layer2_issue: position_baseline (70.6%) > HS probe (67.8%)\n- exp_id: exp_007_window_ablation\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    r1_8b:\n      W1:\n        bal_acc: 0.7783\n        precision: 0.6926\n        coverage: 0.7209\n        precp_fpr_trace: 0.1037\n        precp_fpr_step: 0.0965\n        lead_mean: 13.84\n      W3:\n        bal_acc: 0.7902\n        precision: 0.7228\n        coverage: 0.6977\n        precp_fpr_trace: 0.0988\n        precp_fpr_step: 0.085\n        lead_mean: 12.07\n      W5:\n        bal_acc: 0.781\n        precision: 0.7258\n        coverage: 0.6512\n        precp_fpr_trace: 0.0913\n        precp_fpr_step: 0.0809\n        lead_mean: 8.25\n      W10:\n        bal_acc: 0.7925\n        precision: 0.7431\n        coverage: 0.5581\n        precp_fpr_trace: 0.0865\n        precp_fpr_step: 0.0761\n        lead_mean: 10.04\n      W15:\n        bal_acc: 0.8017\n        precision: 0.7767\n        coverage: 0.5116\n        precp_fpr_trace: 0.0701\n        precp_fpr_step: 0.0639\n        lead_mean: 7.23\n      W20:\n        bal_acc: 0.8072\n        precision: 0.7862\n        coverage: 0.5349\n        precp_fpr_trace: 0.0661\n        precp_fpr_step: 0.0612\n        lead_mean: 7.43\n      W25:\n        bal_acc: 0.8095\n        precision: 0.8216\n        coverage: 0.4884\n        precp_fpr_trace: 0.0545\n        precp_fpr_step: 0.0483\n        lead_mean: 8.14\n      best_bal_acc_W: 25\n    r1_32b:\n      W1:\n        bal_acc: 0.7182\n        precision: 0.549\n        coverage: 0.8\n        precp_fpr_trace: 0.2764\n        precp_fpr_step: 0.3203\n        lead_mean: 12.88\n      W3:\n        bal_acc: 0.7252\n        precision: 0.56\n        coverage: 0.8\n        precp_fpr_trace: 0.2576\n        precp_fpr_step: 0.3064\n        lead_mean: 11.38\n      W5:\n        bal_acc: 0.7309\n        precision: 0.575\n        coverage: 0.75\n        precp_fpr_trace: 0.2393\n        precp_fpr_step: 0.2841\n        lead_mean: 11.07\n      W10:\n        bal_acc: 0.7371\n        precision: 0.6093\n        coverage: 0.7\n        precp_fpr_trace: 0.1891\n        precp_fpr_step: 0.234\n        lead_mean: 10.79\n      W15:\n        bal_acc: 0.7207\n        precision: 0.5907\n        coverage: 0.7\n        precp_fpr_trace: 0.2089\n        precp_fpr_step: 0.2451\n        lead_mean: 10.86\n      W20:\n        bal_acc: 0.6961\n        precision: 0.5628\n        coverage: 0.65\n        precp_fpr_trace: 0.2193\n        precp_fpr_step: 0.2618\n        lead_mean: 9.62\n      W25:\n        bal_acc: 0.7028\n        precision: 0.5662\n        coverage: 0.7\n        precp_fpr_trace: 0.2282\n        precp_fpr_step: 0.2646\n        lead_mean: 10.71\n      best_bal_acc_W: 10\n    qwq_32b:\n      W1:\n        bal_acc: 0.7298\n        precision: 0.5435\n        coverage: 0.7895\n        precp_fpr_trace: 0.185\n        precp_fpr_step: 0.2276\n        lead_mean: 19.73\n      W3:\n        bal_acc: 0.7452\n        precision: 0.5647\n        coverage: 0.7368\n        precp_fpr_trace: 0.175\n        precp_fpr_step: 0.2141\n        lead_mean: 20.64\n      W5:\n        bal_acc: 0.761\n        precision: 0.5733\n        coverage: 0.7368\n        precp_fpr_trace: 0.1795\n        precp_fpr_step: 0.2168\n        lead_mean: 20.07\n      W10:\n        bal_acc: 0.7469\n        precision: 0.5714\n        coverage: 0.7368\n        precp_fpr_trace: 0.1707\n        precp_fpr_step: 0.2073\n        lead_mean: 18.43\n      W15:\n        bal_acc: 0.7412\n        precision: 0.5816\n        coverage: 0.6842\n        precp_fpr_trace: 0.1605\n        precp_fpr_step: 0.1911\n        lead_mean: 15.77\n      W20:\n        bal_acc: 0.7542\n        precision: 0.6024\n        coverage: 0.6316\n        precp_fpr_trace: 0.1567\n        precp_fpr_step: 0.1789\n        lead_mean: 15.75\n      W25:\n        bal_acc: 0.7624\n        precision: 0.6177\n        coverage: 0.5789\n        precp_fpr_trace: 0.1476\n        precp_fpr_step: 0.1694\n        lead_mean: 14.91\n      best_bal_acc_W: 25\n    finding: Coverage monotonically DECREASES with W across all 3 models. Temporal\n      context creates precision-sensitivity tradeoff (higher W → higher precision,\n      lower coverage, lower FPR). R1-8B dominates (lowest FPR, highest precision).\n      QwQ-32B FPR significantly lower than R1-32B with larger lead_mean.\n- exp_id: exp_ot7b_full_pipeline\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    n_traces: 228\n    best_layer: 16\n    best_layer_depth_pct: 57.1\n    best_layer_score: 0.6876\n    best_hs_window: 3\n    best_hs_bal_acc: 0.688\n    best_hs_precision: 0.466\n    best_hs_pre_cp_fpr: 0.1\n    best_hs_coverage: 0.5319\n    best_hs_lead: 21.6\n    best_text_window: 25\n    best_text_bal_acc: 0.6141\n    best_text_precision: 0.3291\n    best_text_pre_cp_fpr: 0.1605\n    bootstrap_bal_acc_delta: 0.1067\n    bootstrap_bal_acc_ci95: '[0.049, 0.163]'\n    bootstrap_bal_acc_p: 0.001\n    bootstrap_bal_acc_bonf: true\n    bootstrap_precision_delta: 0.2189\n    bootstrap_precision_ci95: '[0.140, 0.296]'\n    bootstrap_precision_p: 0.001\n    bootstrap_precision_bonf: true\n    bootstrap_fpr_delta: -0.1705\n    bootstrap_fpr_ci95: '[-0.222, -0.122]'\n    bootstrap_fpr_p: 0.001\n    bootstrap_fpr_bonf: true\n    holm_bonferroni: 3/3\n    selectivity_pp: 18.3\n    selectivity_real_acc: 0.688\n    selectivity_random_mean: 0.505\n    layer0_bal_acc: 0.672\n    layer0_precision: 0.357\n    layer0_pre_cp_fpr: 0.188\n    layer16_vs_layer0: '+9.0pp bal_acc, +20.8pp precision, -8.7pp FPR. Precision Bonf:\n      L0 p=0.056 FAIL -> L16 p<0.001 PASS'\n    layer_verification: 'Layer 16 verified superior to Layer 0: 3/3 Bonferroni (was\n      2/3 on L0)'\n    r1_8b_layer_supplement: 'Full sweep layers 0-24 confirmed: best=L12 (0.7871) ~\n      L14 (0.7830), no early-layer dominance.'\n    gru_single_l16_bal_acc: 0.7246\n    gru_single_l16_coverage: 0.667\n    gru_single_l16_lead: 35.25\n    gru_single_l16_precp_fpr: 0.2904\n    gru_multi_l13_19_bal_acc: 0.7464\n    gru_multi_l13_19_coverage: 0.645\n    gru_multi_l13_19_lead: 33.61\n    gru_multi_l13_19_precp_fpr: 0.2741\n- exp_id: exp_pathb_annotation_validation\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    tfidf_lr_f1: 0.5899\n    tfidf_lr_cp_agreement: 0.561\n    minilm_lr_f1: 0.5149\n    minilm_lr_cp_agreement: 0.534\n    threshold_f1: 0.9\n    threshold_cp: 0.85\n    failure_reason: Safety recall extremely low (41-46%). Simple classifiers cannot\n      distinguish subtle safety-aware expressions in CoT from regular reasoning. CP\n      MAE=5-6 sentences.\n    recommendation: Need LLM API annotation or fine-tuned DeBERTa 16-class classifier\n- exp_id: exp_r3_repe_direction\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r1_8b:\n      layer: 2\n      bal_acc: 0.7491\n      precision: 0.516\n      pre_cp_fpr: 0.2264\n      coverage: 0.3953\n      lead_mean: 9.7\n    r1_32b_corrected:\n      layer: 63\n      bal_acc: 0.5588\n      precision: 0.3891\n      pre_cp_fpr: 0.4986\n      coverage: 0.6\n      lead_mean: 12\n    r1_32b_old:\n      layer: 10\n      bal_acc: 0.6707\n      precision: 0.5538\n      pre_cp_fpr: 0.2423\n      coverage: 0.45\n      lead_mean: 6.3\n    qwq_32b_corrected:\n      layer: 60\n      bal_acc: 0.7562\n      precision: 0.5118\n      pre_cp_fpr: 0.3089\n      coverage: 0.7368\n      lead_mean: 11.9\n    qwq_32b_old:\n      layer: 2\n      bal_acc: 0.6661\n      precision: 0.4193\n      pre_cp_fpr: 0.3997\n      coverage: 0.7368\n      lead_mean: 13.4\n    ot_7b:\n      layer: 16\n      bal_acc: 0.718\n      precision: 0.3733\n      pre_cp_fpr: 0.2573\n      coverage: 0.5319\n      lead_mean: 26.1\n    vs_lr_r1_8b:\n      lr_bal_acc: 0.817\n      lr_precision: 0.693\n      lr_fpr: 0.097\n      repe_weaker_acc: true\n      repe_weaker_precision: true\n    finding: 'Corrected layers: R1-32B L63 RepE degrades severely (bal_acc 0.67→0.56,\n      FPR 0.24→0.50); QwQ L60 improves (bal_acc 0.67→0.76). Both still below supervised\n      LR. Unsupervised RepE direction insufficient at any layer.'\n- exp_id: exp_r3_bocpd_ot7b_w15\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    W: 15\n    fcp_null_rate: 0.53\n    note: W=15 mismatched with OT-7B best window W=3, causing 53% traces with null\n      FCP. Results unreliable due to parameter mismatch.\n    parent_best_W: 3\n- exp_id: exp_r3_mlp_probe\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    source: v1_per_model_json (K=5)\n    warning: 'over-parameterization: v2 had K=1 detection bug (coverage=1.0). v1 data\n      used here.'\n    caveat: OT-7B uses centered window; other models use causal window\n    r1_8b:\n      W1:\n        bal_acc: 0.806\n        precision: 0.646\n        fpr: 0.137\n        coverage: 0.767\n        lead: 14.27\n      W3:\n        bal_acc: 0.81\n        precision: 0.706\n        fpr: 0.1\n        coverage: 0.721\n        lead: 9.71\n      W5:\n        bal_acc: 0.843\n        precision: 0.595\n        fpr: 0.201\n        coverage: 0.884\n        lead: 12.89\n      W10:\n        bal_acc: 0.846\n        precision: 0.592\n        fpr: 0.206\n        coverage: 0.884\n        lead: 13.29\n      lr_W3: 0.79\n      lr_W5: 0.781\n      lr_W10: 0.793\n    r1_32b:\n      W3:\n        bal_acc: 0.713\n        precision: 0.585\n        fpr: 0.245\n        coverage: 0.8\n        lead: 9.12\n      W10:\n        bal_acc: 0.688\n        precision: 0.524\n        fpr: 0.332\n        coverage: 0.75\n        lead: 10.33\n      lr_W3: 0.725\n      lr_W10: 0.737\n    qwq_32b:\n      W5:\n        bal_acc: 0.604\n        precision: 0.339\n        fpr: 0.692\n        coverage: 0.842\n        lead: 33.19\n      W10:\n        bal_acc: 0.698\n        precision: 0.432\n        fpr: 0.428\n        coverage: 0.842\n        lead: 22.94\n      lr_W5: 0.761\n      lr_W10: 0.747\n    ot_7b:\n      W1:\n        bal_acc: 0.73\n        precision: 0.456\n        fpr: 0.165\n        coverage: 0.766\n        lead: 32.19\n      W3:\n        bal_acc: 0.747\n        precision: 0.343\n        fpr: 0.362\n        coverage: 0.872\n        lead: 41.22\n      lr_W3: 0.688\n    finding: 'MLP inconsistent vs LR: r1_8b +5pp at W5/10, ot_7b +6pp at W3, but r1_32b\n      -2 to -5pp, qwq_32b -5 to -16pp. Small datasets (r1_32b=100, qwq=95) likely\n      cause MLP overfitting. Signal linearly separable for most models.'\n- exp_id: exp_r3_bocpd_ot7b_w3\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    W: 3\n    layer: 16\n    n_test: 47\n    bocpd_all_lambda:\n      detection_rate: 0\n      note: W=3 probe scores too spiky (0→1 in 1-2 steps), Gaussian model fails\n    fcp_t05_k2:\n      detection_rate: 0.894\n      mean_lead: 11.83\n      median_lead: 10.5\n    fcp_t05_k3:\n      detection_rate: 0.745\n      mean_lead: 8.71\n      median_lead: 7\n    fcp_t03_k3:\n      detection_rate: 0.787\n      mean_lead: 11.92\n      median_lead: 10\n    fcp_t05_k5:\n      detection_rate: 0.468\n      mean_lead: 5.09\n      median_lead: 4.5\n    cusum_t02_h2:\n      detection_rate: 0.745\n      mean_lead: 7.46\n      median_lead: 6\n    cusum_t03_h2:\n      detection_rate: 0.702\n      mean_lead: 6.03\n      median_lead: 5\n    vs_r1_8b:\n      r1_bocpd_l10_det: 0.93\n      ot7b_bocpd_det: 0\n      r1_fcp_det: 0.651\n      ot7b_fcp_k2_det: 0.894\n      r1_fcp_lead: 4.89\n      ot7b_fcp_k2_lead: 11.83\n    finding: 'BOCPD 0% on OT-7B (all lambdas) vs 93% on R1-8B. Commitment dynamics\n      model-specific: R1-8B gradual (BOCPD works), OT-7B abrupt (simple threshold\n      optimal). Negative result confirmed cross-model for R3-W2.'\n- exp_id: exp_r3_mahalanobis_ot7b\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    layer: 16\n    pca_dims_tested:\n    - 16\n    - 32\n    - 64\n    - 128\n    - 256\n    md_separation:\n      pca16: -0.048\n      pca32: 0.012\n      pca64: 0.031\n      pca128: 0.004\n      pca256: -0.093\n    safe_md_mean_pca64: 7.68\n    post_md_mean_pca64: 7.71\n    pca64_k3_false_alarm_vs_tp:\n      p50:\n        fa_rate: 0.872\n        tp_rate: 0.385\n      p75:\n        fa_rate: 0.574\n        tp_rate: 0.231\n      p90:\n        fa_rate: 0.17\n        tp_rate: 0.154\n      p95:\n        fa_rate: 0.043\n        tp_rate: 0\n    vs_r1_8b:\n      r1_safe_md: 6.66\n      r1_post_md: 6.73\n      r1_separation: 0.07\n      ot7b_safe_md: 7.68\n      ot7b_post_md: 7.71\n      ot7b_separation: 0.03\n      failure_mode: 'identical: signal in minor PCA components, not principal directions'\n    finding: 'Mahalanobis zero discriminative power on OT-7B (separation ≈ 0 across\n      all PCA dims). False alarm rate >= true positive rate at every threshold. Failure\n      mode identical to R1-8B. R3-W2 fully addressed: 3/3 methods (BOCPD/CUSUM/Mahalanobis)\n      fail consistently across both models.'\n- exp_id: exp_r3_ccs_probe\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    r1_8b:\n      bal_acc: 0.777\n      precision: 0.565\n      fpr: 0.191\n      coverage: 0.674\n      lead: 0.7\n    qwq_32b:\n      bal_acc: 0.731\n      precision: 0.555\n      fpr: 0.214\n      coverage: 0.684\n      lead: 2\n    r1_32b:\n      bal_acc: 0.703\n      precision: 0.507\n      fpr: 0.41\n      coverage: 0.9\n      lead: 5.2\n    ot_7b:\n      bal_acc: 0.692\n      precision: 0.319\n      fpr: 0.344\n      coverage: 0.809\n      lead: 20.5\n    vs_supervised_lr_r1_8b:\n      lr_bal_acc: 0.817\n      lr_precision: 0.693\n      lr_fpr: 0.097\n      ccs_weaker: true\n    vs_repe_r1_8b:\n      repe_bal_acc: 0.749\n      ccs_better: true\n    finding: CCS is best unsupervised method (beats RepE) but still significantly\n      below supervised LR. All models needed polarity flip. FPR 0.19-0.41 across all\n      models confirms unsupervised gap.\n- exp_id: exp_r3_r1_32b_l63_bootstrap\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    method: null-centered two-sided bootstrap\n    W1:\n      bal_acc_delta: 0.187\n      bal_acc_p: 0\n      precision_delta: 0.154\n      precision_p: 0\n      fpr_delta: -0.146\n      fpr_p: 0.007\n      bonferroni_pass: 3/3\n    W3:\n      bal_acc_delta: 0.112\n      bal_acc_p: 0.02\n      precision_delta: 0.13\n      precision_p: 0.032\n      fpr_delta: -0.114\n      fpr_p: 0.077\n      bonferroni_pass: 0/3\n    W5:\n      bal_acc_delta: 0.097\n      bal_acc_p: 0.046\n      bonferroni_pass: 0/3\n    W10:\n      bal_acc_p: 0.384\n      bonferroni_pass: 0/3\n    W15:\n      bal_acc_p: 0.075\n      bonferroni_pass: 0/3\n    finding: W=1 significant 3/3 Bonferroni (alpha=0.0167). W3+ all fail after Bonferroni.\n      Confirms HS advantage exists at L63 but only robust at minimal temporal context.\n- exp_id: exp_r3_qwq_l60_bootstrap\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    method: null-centered two-sided bootstrap (bugfixed)\n    bug_fixed: missing np.mean(bd) centering caused p~0.5\n    W1:\n      bal_acc_ci: '[0.15,0.29]'\n      bal_acc_p: 0\n      precision_ci: '[0.21,0.39]'\n      precision_p: 0\n      fpr_ci: '[-0.23,-0.12]'\n      fpr_p: 0\n    W3:\n      bal_acc_p: 0\n      precision_p: 0\n      fpr_p: 0.004\n      precision_delta: 0.236\n      fpr_delta: -0.098\n    W5:\n      bal_acc_p: 0\n      precision_p: 0\n      fpr_p: 0.011\n    W10:\n      bal_acc_p: 0\n      precision_p: 0.016\n      fpr_p: 0.009\n    W15:\n      bal_acc_p: 0.004\n      precision_p: 0.003\n      fpr_p: 0.007\n    bonferroni_summary: 15/15 pass (alpha=0.0167)\n    finding: All 15 tests significant after bugfix. QwQ L60 shows robust HS advantage\n      across all windows, consistent with OT-7B. scale-dependent claim falsified.\n- exp_id: exp_r3_layer_ablation\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    models_tested: 4\n    metrics_tested: 5\n    bias_discovered: bal_acc x crossing_rate systematically selects shallow layers\n    qwq_32b:\n      biased_layer: 2\n      corrected_layer: 60\n      bal_acc_gain: +1.75pp\n      precision_gain: +11.5pp\n      fpr_reduction: -8.3pp\n    r1_32b:\n      biased_layer: 10\n      corrected_layer: 63\n      bal_acc_gain: +3.7pp\n      precision_gain: +4.1pp\n      fpr_reduction: -4.3pp\n    r1_8b:\n      biased_layer: 0\n      best_layer: 12\n      consistency: L12-L16 cluster, current L14 near-optimal\n    ot_7b:\n      biased_layer: 0\n      best_layer: 9\n      current_layer: 16\n      note: 4 metrics select 4 different layers\n    cross_metric_consistency:\n      r1_8b: CONSISTENT\n      r1_32b: VARIED (all point deep)\n      qwq_32b: VARIED (all point deep)\n      ot_7b: VARIED\n    finding: crossing_rate biases layer selection to shallow layers. Pure bal_acc/precision\n      select mid-to-deep layers (40-95% depth). R1-32B and QwQ affected most severely.\n- exp_id: exp_r3_mahalanobis_r1_32b_qwq\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    r1_32b:\n      layer: 63\n      safe_md: 6.73\n      post_md: 6.88\n      separation: 0.15\n      best_pca: 64\n    qwq_32b:\n      layer: 60\n      safe_md: 3.22\n      post_md: 3.42\n      separation: 0.2\n      best_pca: 16\n    cross_model_summary:\n      r1_8b_sep: 0.07\n      ot_7b_sep: 0.03\n      r1_32b_sep: 0.15\n      qwq_32b_sep: 0.2\n      max_separation: 0.2\n      all_fail: true\n    finding: 4/4 models Mahalanobis fails. Max separation 0.20 (QwQ), false alarm\n      rate >= true positive at every threshold. Signal in minor PCA components, not\n      principal directions.\n- exp_id: exp_r3_bocpd_r1_32b_qwq\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    r1_32b:\n      layer: 10\n      W: 10\n      bocpd_det: 0\n      cusum_det: 0.85\n      cusum_lead: 2.59\n      fcp_det: 0.95\n      fcp_lead: 5.68\n    qwq_32b:\n      layer: 2\n      W: 5\n      bocpd_det: 0\n      cusum_det: 0.737\n      cusum_lead: 9.86\n      fcp_det: 0.789\n      fcp_lead: 9.4\n    cross_model_bocpd:\n      r1_8b: 0.93\n      r1_32b: 0\n      ot_7b: 0\n      qwq_32b: 0\n      only_r1_8b_works: true\n    finding: BOCPD 0% on 3/4 models (only R1-8B exception at 93%). CUSUM universally\n      inferior to simple FCP threshold. Advanced change-point methods fail for safety\n      commitment detection.\n- exp_id: exp_r3_coverage_bias\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r1_8b:\n      total: 268\n      included: 209\n      excluded: 59\n      exclusion_rate: 0.22\n    r1_32b:\n      total: 100\n      excluded: 0\n      exclusion_rate: 0\n    qwq_32b:\n      total: 95\n      excluded: 0\n      exclusion_rate: 0\n    exclusion_reason: All 59 excluded traces are jailbreak with no safety reasoning\n      phase (no commitment point annotatable)\n    length_test:\n      excluded_mean: 38\n      included_mean: 46.3\n      mann_whitney_p: 0.0001\n      excluded_shorter: true\n    finding: 22% exclusion in R1-8B is task-definitional (no CP to annotate), not\n      sampling bias. R1-32B/QwQ 0% exclusion. Coverage metric valid within annotatable\n      population.\n- exp_id: exp_r3_selectivity_ci_raw\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    feature_type: raw 5120-d (no PCA)\n    real_acc: 0.584\n    random_mean: 0.508\n    selectivity_pp: 7.6\n    bootstrap_mean_pp: 8.4\n    bootstrap_std_pp: 6.7\n    ci_95: '[-3.9, 22.7]pp'\n    p_value: 0.107\n    significant: false\n    vs_pca128:\n      pca128_selectivity: 15.9\n      pca128_p: 0\n      pca128_ci: '[9.7, 21.9]pp'\n    finding: Raw 5120-d selectivity 7.6pp not significant (p=0.107, CI includes 0).\n      Under-determined n&lt;p without PCA. PCA-128 gives 15.9pp (p<0.001) — dimensionality\n      reduction needed for reliable selectivity.\n- exp_id: exp_r3_gru_per_seed\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    seeds:\n    - 42\n    - 123\n    - 456\n    - 789\n    - 1024\n    split: 70/30\n    bal_acc:\n      mean: 0.772\n      std: 0.038\n      min: 0.729\n      max: 0.833\n    crossing_rate:\n      mean: 0.711\n      std: 0.121\n    lead_mean:\n      mean: 8.2\n      std: 2.9\n    fpr:\n      mean: 0.229\n      std: 0.075\n    vs_single_seed:\n      single_seed_bal_acc: 0.839\n      multi_seed_mean: 0.772\n      delta: -0.067\n      note: Single seed (0.839) is optimistic; multi-seed mean (0.772) more representative\n    finding: GRU robust across 5 seeds (std=3.8pp < 5pp threshold). Single-seed result\n      overestimates by ~6.7pp. Lead time high variance (std=2.9) indicates sensitivity\n      to data split.\n- exp_id: exp_r3_selectivity_corrected\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    qwq_32b_l60:\n      real_acc: 0.667\n      random_mean: 0.523\n      random_std: 0.051\n      selectivity_pp: 14.4\n      position_baseline_acc: 0.705\n      layer: 60\n    r1_32b_l63:\n      real_acc: 0.746\n      random_mean: 0.549\n      random_std: 0.06\n      selectivity_pp: 19.7\n      position_baseline_acc: 0.624\n      layer: 63\n    comparison:\n      qwq_old_l2: 15.3\n      qwq_new_l60: 14.4\n      r1_32b_old_l10: 7.5\n      r1_32b_new_l63: 19.7\n    both_pass_5pp: true\n    finding: Both corrected layers pass 5pp threshold. R1-32B selectivity dramatically\n      improves from 7.5pp (L10) to 19.7pp (L63). QwQ stable (15.3→14.4pp). Deep layers\n      encode stronger safety signal beyond positional confounds.\n- exp_id: exp_r3_bootstrap_10k\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    n_resamples: 10000\n    holm_bonferroni: 12/12 pass\n    tests:\n      r1_8b_bal_acc:\n        delta: 0.1796\n        p: 0\n        rank: 1\n      r1_8b_precision:\n        delta: 0.2786\n        p: 0\n        rank: 2\n      r1_8b_fpr:\n        delta: -0.1255\n        p: 0\n        rank: 3\n      ot_7b_precision:\n        delta: 0.2189\n        p: 0\n        rank: 4\n      ot_7b_fpr:\n        delta: -0.1705\n        p: 0\n        rank: 5\n      r1_32b_bal_acc:\n        delta: 0.1871\n        p: 0\n        rank: 6\n      r1_32b_precision:\n        delta: 0.1544\n        p: 0\n        rank: 7\n      qwq_32b_bal_acc:\n        delta: 0.1478\n        p: 0\n        rank: 8\n      qwq_32b_precision:\n        delta: 0.2349\n        p: 0\n        rank: 9\n      ot_7b_bal_acc:\n        delta: 0.1067\n        p: 0.0003\n        rank: 10\n      qwq_32b_fpr:\n        delta: -0.0952\n        p: 0.0061\n        rank: 11\n      r1_32b_fpr:\n        delta: -0.1457\n        p: 0.0096\n        rank: 12\n    marginal_tests:\n      r1_32b_fpr:\n        p: 0.0096\n        threshold: 0.05\n      qwq_32b_fpr:\n        p: 0.0061\n        threshold: 0.025\n    r1_8b_fpr_clarification: R1-8B FPR at W=3 is p<0.0001 (rank 3), not marginal.\n      The 0.044 was from old W=15 config.\n    finding: 'All 12/12 Holm-Bonferroni pass with 10000 resamples. R1-8B FPR not marginal\n      at corrected W=3. Actual marginal tests: R1-32B FPR (p=0.0096) and QwQ FPR (p=0.0061),\n      both passing comfortably.'\n- exp_id: exp_r5_auroc_layer_sweep\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    r1_8b:\n      auroc_best_layer: 13\n      auroc_best: 0.806\n      paper_layer: 14\n      auroc_at_paper: 0.803\n      match: near-match (adjacent, delta=0.003)\n    ot_7b:\n      auroc_best_layer: 1\n      auroc_best: 0.777\n      paper_layer: 16\n      auroc_at_paper: 0.746\n      match: no (flat landscape 0.70-0.78)\n    qwq_32b:\n      auroc_best_layer: 32\n      auroc_best: 0.839\n      paper_layer: 60\n      auroc_at_paper: 0.756\n      match: no (AUROC prefers mid-depth ~50%)\n    r1_32b:\n      auroc_best_layer: 31\n      auroc_best: 0.897\n      paper_layer: 63\n      auroc_at_paper: 0.767\n      match: no (AUROC prefers mid-depth ~50%)\n    finding: 'AUROC does NOT converge to the same deep layers. For 32B models, AUROC\n      selects mid-depth layers (~50%) vs paper''s very deep layers (>90%). R1-8B near-match\n      only. Note: worker applied PCA-256 on 32B models to handle dimensionality, which\n      may affect results.'\n- exp_id: exp_r5_pca384_control\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    holm_bonferroni: 10/12 reject\n    tests:\n      r1_8b_bal_acc:\n        pca384: 0.7001\n        text: 0.6875\n        delta: 0.0126\n        p: 0.731\n        reject: false\n      r1_8b_precision:\n        pca384: 0.8162\n        text: 0.5852\n        delta: 0.231\n        p: 0\n        reject: true\n      r1_8b_fpr:\n        pca384: 0.0668\n        text: 0.1614\n        delta: -0.0947\n        p: 0.003\n        reject: true\n      ot_7b_bal_acc:\n        pca384: 0.7558\n        text: 0.643\n        delta: 0.1128\n        p: 0\n        reject: true\n      ot_7b_precision:\n        pca384: 0.5225\n        text: 0.3545\n        delta: 0.1681\n        p: 0\n        reject: true\n      ot_7b_fpr:\n        pca384: 0.1207\n        text: 0.2477\n        delta: -0.127\n        p: 0\n        reject: true\n      qwq_bal_acc:\n        pca384: 0.8116\n        text: 0.6504\n        delta: 0.1612\n        p: 0\n        reject: true\n      qwq_precision:\n        pca384: 0.608\n        text: 0.4213\n        delta: 0.1867\n        p: 0\n        reject: true\n      qwq_fpr:\n        pca384: 0.173\n        text: 0.2871\n        delta: -0.1141\n        p: 0.038\n        reject: false\n      r1_32b_bal_acc:\n        pca384: 0.7471\n        text: 0.6461\n        delta: 0.1011\n        p: 0.011\n        reject: true\n      r1_32b_precision:\n        pca384: 0.6343\n        text: 0.4503\n        delta: 0.184\n        p: 0.002\n        reject: true\n      r1_32b_fpr:\n        pca384: 0.2256\n        text: 0.3809\n        delta: -0.1553\n        p: 0.006\n        reject: true\n    pca_explained_variance:\n      r1_8b: 0.793\n      ot_7b: 0.828\n      qwq_32b: 0.881\n      r1_32b: 0.924\n    finding: 'Modality advantage persists at matched 384d dimensionality. 10/12 Holm-Bonferroni\n      reject. Precision gains +16.8 to +23.1pp across all 4 models. Two non-rejections:\n      R1-8B bal_acc (small delta 1.3pp) and QwQ FPR (raw p=0.038, adj threshold too\n      strict).'\n- exp_id: exp_safe_trace_fpr_multimodel\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    ot7b_hs_static_fpr: 0.111\n    ot7b_text_static_fpr: 0.302\n    ot7b_hs_temp_fpr: 0.175\n    ot7b_text_temp_fpr: 0.46\n    qwq_hs_static_fpr: 0.5\n    qwq_text_static_fpr: 0.325\n    qwq_hs_temp_fpr: 0.45\n    qwq_text_temp_fpr: 0.425\n    r1_32b_hs_static_fpr: 0.239\n    r1_32b_text_static_fpr: 0.31\n    r1_32b_hs_temp_fpr: 0.239\n    r1_32b_text_temp_fpr: 0.31\n- exp_id: exp_qwq_safe_fpr_correct_lr\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    hs_cv_acc: 0.935\n    hs_step_fpr: 0.279\n    hs_trace_fpr_k5: 0.475\n    text_cv_acc: 0.667\n    text_step_fpr: 0.394\n    text_trace_fpr_k5: 0.5\n- exp_id: exp_bge_large_text_comparison\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r1_8b_hs_prec: 0.497\n    r1_8b_bge_prec: 0.436\n    r1_8b_diff: 0.058\n    r1_8b_p: 0.185\n    r1_8b_hb: false\n    ot_7b_hs_prec: 0.446\n    ot_7b_bge_prec: 0.263\n    ot_7b_diff: 0.181\n    ot_7b_p: 0\n    ot_7b_hb: true\n    r1_32b_hs_prec: 0.588\n    r1_32b_bge_prec: 0.475\n    r1_32b_diff: 0.117\n    r1_32b_p: 0.027\n    r1_32b_hb: false\n    qwq_32b_hs_prec: 0.545\n    qwq_32b_bge_prec: 0.454\n    qwq_32b_diff: 0.094\n    qwq_32b_p: 0.132\n    qwq_32b_hb: false\n    hb_pass_count: 1/4\n- exp_id: nested_cv_7_8b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r1_8b_mean_delta_prec: 0.174\n    r1_8b_std_delta_prec: 0.026\n    r1_8b_hs_better_folds: 5/5\n    ot_7b_mean_delta_prec: 0.164\n    ot_7b_std_delta_prec: 0.033\n    ot_7b_hs_better_folds: 5/5\n    total_hs_better: 10/10\n- exp_id: random_cp_qwq32b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    real_cp_cr_composite_layer: 4\n    real_cp_precision_layer: 63\n    real_cp_gap: 59\n    random_cp_cr_shallow_freq: 0.8\n    random_cp_precision_deep_freq: 0.2\n    metric_disagreement_replicates: false\n- exp_id: split_half_ot7b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    half1_cr_composite_layer: 0\n    half2_cr_composite_layer: 0\n    half1_precision_layer: 20\n    half2_precision_layer: 26\n    half1_delta_prec: 0.262\n    half2_delta_prec: 0.154\n    cr_composite_both_shallow: true\n    threshold_both_deep: true\n    delta_precision_same_direction: true\n    delta_ba_same_direction: true\n    all_checkpoints_pass: true\n- exp_id: sf3_quadratic_residual\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r1_8b_linear_gap: 0.104\n    r1_8b_linear_p: 0.0001\n    r1_8b_linear_hb: true\n    r1_8b_quad_gap: 0.103\n    r1_8b_quad_p: 0.0001\n    r1_8b_quad_hb: true\n    ot_7b_linear_gap: 0.114\n    ot_7b_linear_p: 0.0001\n    ot_7b_linear_hb: true\n    ot_7b_quad_gap: 0.098\n    ot_7b_quad_p: 0.0003\n    ot_7b_quad_hb: true\n    r1_32b_linear_gap: -0.014\n    r1_32b_linear_p: 0.598\n    r1_32b_linear_hb: false\n    r1_32b_quad_gap: 0\n    r1_32b_quad_p: 0.499\n    r1_32b_quad_hb: false\n    qwq_32b_l60_w3_linear_gap: 0.074\n    qwq_32b_l60_w3_linear_p: 0.0017\n    qwq_32b_l60_w3_linear_hb: true\n    qwq_32b_l60_w3_quad_gap: -0.01\n    qwq_32b_l60_w3_quad_p: 0.6384\n    qwq_32b_l60_w3_quad_hb: false\n    note: QwQ corrected from layer_idx=63 to L60, W=3\n- exp_id: n6_multi_metric_ensemble\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r1_8b_ensemble_prec: 0.565\n    r1_8b_best_single_prec: 0.604\n    r1_8b_text_prec: 0.372\n    r1_8b_ens_vs_text_gap: 0.193\n    ot_7b_ensemble_prec: 0.506\n    ot_7b_best_single_prec: 0.473\n    ot_7b_text_prec: 0.236\n    ot_7b_ens_vs_text_gap: 0.27\n    qwq_32b_ensemble_prec: 0.578\n    qwq_32b_best_single_prec: 0.578\n    qwq_32b_text_prec: 0.374\n    qwq_32b_ens_vs_text_gap: 0.203\n    r1_32b_ensemble_prec: 0.581\n    r1_32b_best_single_prec: 0.583\n    r1_32b_text_prec: 0.476\n    r1_32b_ens_vs_text_gap: 0.105\n    all_ens_vs_text_significant: true\n    ens_vs_text_p_max: 0.002\n    ens_never_worse_than_best_single: true\n    ot_7b_ens_beats_best_single: 0.033\n- exp_id: r1_8b_full_layer_sweep\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    best_layers:\n      bal_acc:\n        W1: L12\n        W3: L12\n        W5: L12\n        W15: L11\n      precision:\n        W1: L16\n        W3: L12\n        W5: L12\n        W15: L9\n      fpr:\n        W1: L16\n        W3: L9\n        W5: L9\n        W15: L8\n      crossing_rate:\n        W1: L0\n        W3: L0\n        W5: L0\n        W15: L0\n      composite:\n        W1: L16\n        W3: L12\n        W5: L12\n        W15: L9\n    max_layer_gap_same_model: 16\n    hs_vs_text_gap: 0.15-0.17 stable across all layers\n    shallow_bias_W15_only: true\n    traces: 209\n    seed: 42\n- exp_id: advbench_r1_8b_full\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: pca_artifact_verification\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    pca100d_best_precision: 0.633\n    nopca_best_precision: 0.732\n    pca100d_best_fpr: 0.145\n    nopca_best_fpr: 0.072\n    pca100d_best_composite: 0.43\n    nopca_best_composite: 0.803\n    pca100d_cr_best_layer: L0\n    nopca_best_layer_range: L9-L16\n    n_traces: 209\n- exp_id: advbench_llm_cp_annotation\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: advbench_llm_cp_full\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: qwen3_cp_dryrun\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: qwen3_cp_dryrun2\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: qwen3_cp_full\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: gpt4omini-cp-annotation\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: advbench_phase4_layer_sweep\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: random_cp_r1_8b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    crossing_rate_random_mean_layer: 10.7\n    crossing_rate_random_shallow_pct: 0\n    precision_random_mean_layer: 0\n    precision_random_shallow_pct: 100\n    metric_disagreement_replicates: false\n    real_cp_cr_composite_layer: 0\n    real_cp_precision_layer: 23\n    real_cp_gap: 23\n    elapsed_s: 105.4\n- exp_id: ensemble_cv_7_8b\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n\n\n## what_if (hypothetical experiments — additive)\n\n- name: advbench_layer_bias_replication\n  claim: C1 (layer selection bias)\n  description: 'Replicate layer selection bias on AdvBench using jailbreak/safe binary\n    labels (no CP needed). Train probes on R1-8B AdvBench traces, run 5-metric layer\n    selection analysis. Expected: CR-composite selects shallow layers, threshold-based\n    selects deep layers, confirming bias is model-geometric not dataset-specific.\n    Results in appendix table + main text one-sentence reference.'\n  estimated_gpu_hours: 6.0\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: best\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n\n重要：tables 中使用 YAML flow sequence 时，所有字符串必须加双引号（如 `columns: [\"Judge\", \"Biased?\"]`），否则 `?` `:` 等字符会导致解析失败。\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-22T08:57:23.361Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-22T08:57:23.361Z",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 3 · 2026-05-22T08:57:23.381Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：
+
+含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质'
+核心假设：['layer selection bias是模型表征的几何性质，与标注方案（CP vs binary jailbreak/safe）无关', 'R1-8B AdvBench traces的hidden states保留与原数据集相同的层级信号分布', 'binary labels（无CP）足以重现crossing_rate在浅层虚高的现象', 'AdvBench trace长度和分布不破坏probe训练稳定性']
+关键指标范围：{'cr_composite_layer_depth_pct': [0, 16], 'threshold_layer_depth_pct': [32, 64], 'layer_gap_abs': [8, 16], 'layer_gap_depth_pct': [32, 64], 'hs_bal_acc_at_threshold_layer': [0.72, 0.82], 'hs_text_precision_delta_pp': [10, 25], 'hb_pass_rate': [0.67, 1.0], 'crossing_rate_shallow_vs_deep_ratio': [1.5, 3.0], 'dream_score_delta': [0.15, 0.25]}
+叙事方向：Layer selection bias replicates on independent dataset (AdvBench) with fundamentally different labeling (binary jailbreak/safe vs step-level safety state). CR-composite仍选浅层、threshold metrics仍选深层，gap≥8层。C1 claims无需调整：bias是模型几何性质，不依赖CP annotation。Main text加一句cross-dataset validation + appendix完整table。Reviewer concern 'bias是你数据集的artifact'被直接堵死。论文从'单数据集empirical study'向'可复现方法论贡献'迈进，Findings→Borderline Conference更有底气。
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: contrastive_trace_safety
+venue: emnlp-2026
+focus: Evaluate whether adding AdvBench layer selection bias replication moves the paper from Findings (3.0) toward Borderline Conference (3.5). Previous Dream scored 3.0 across all tiers. Key question: does cross-dataset C1 validation meaningfully strengthen the paper?
+
+## paper_framing.md
+
+# Paper Framing — contrastive_trace_safety
+
+## Target Venue
+- Primary: EMNLP 2026 Main (LLM Security Track)
+- Deadline: ARR submission May 25, 2026
+
+## Core Claims (D031: layer selection as primary contribution, 4 models)
+
+**Contribution structure (D031)**:
+- **Primary (methodological)**: Layer selection metric sensitivity — biased metrics reverse conclusions
+- **Secondary (empirical)**: HS advantage at correct layers, qualified by scale; temporal improvement universal
+- **Tertiary (negative results)**: 6 alternative methods fail, establishing what doesn't work
+
+1. **Temporal context universally improves probe accuracy across both modalities** (D014 + D023 nuanced) — Temporal context is the most robust improvement across all 4 models and both modalities. Text probes benefit consistently from larger windows across all models. HS probes benefit in 3/4 models; OT-7B HS peaks at W=3 and declines at larger W (confirmed on both layer 0 and layer 16).
+
+   **HS temporal gains** (W=1→best, 3 original models): accuracy +3pp (77.8%→81.0%), precision +13pp (69.3%→82.2%), FPR halved (9.65%→4.83%).
+   **OT-7B HS temporal** (layer 16): bal_acc peaks at W=3 (68.8%), declines to 65.9% at W=25 (-2.9pp). BUT precision and FPR continue improving (prec 42.8%→49.4%, FPR 12.0%→7.5%). Temporal saturation is bal_acc-specific; larger W trades bal_acc for better precision/FPR. Confirmed on both layer 0 and layer 16 — genuine OT-7B characteristic.
+   **Text temporal gains** (all 4 models, W=1→best): universally +3-12pp bal_acc, +8-23pp precision, FPR reduced.
+
+   **IMPORTANT: coverage direction depends on detection criterion K.** K=1 (single crossing): coverage DECREASES with W. K=5 (consecutive crossings): coverage may INCREASE with W. Claim 1 is about accuracy/precision improvement, NOT coverage.
+
+   The core insight: "Temporal context universally improves text probes across all 4 models. For HS probes, 3/4 models benefit from larger temporal windows, while OT-7B shows early saturation (W=3 peak)."
+
+2. **HS probes outperform text probes at correctly selected layers, with strong evidence at 7-8B and model-specific patterns at 32B** (D031: qualified from D030 "universal") —
+
+   **KEY FINDING (D029)**: The apparent "scale-dependent" HS advantage (significant at 7-8B, absent at 32B) was an artifact of the layer selection metric `bal_acc × crossing_rate`, which systematically selects shallow layers for 32B models. At correctly selected deep layers, HS outperforms text on all 4 models, but the NATURE of the advantage differs by scale.
+
+   **Layer selection metric bias (D028, refined D036)**: `bal_acc × crossing_rate` selects shallow layers because shallow layers have higher crossing rates (more trigger-happy probes). 3/4 non-biased threshold-dependent metrics (precision, pre_cp_fpr, composite) converge on deep layers; pure bal_acc (threshold-free) selects middle layers (L30/L47). Deployment-relevant metric consensus selects L60/L63 for 32B models.
+
+   **7-8B models: HS significantly outperforms text (2/2 models) — UNCHANGED**
+
+   **R1-8B (Llama-8B, R1-distilled, n=43):**
+   - Precision: 69.7% vs 47.2% (+22.4pp, p<0.001, **Holm-Bonferroni ✅**)
+   - Accuracy: 81.3% vs 72.9% (+8.2pp, p=0.005, **Holm-Bonferroni ✅**)
+   - Pre-CP FPR: 14.8% vs 22.2% (-7.4pp, p=0.044, **Holm-Bonferroni ✅** — rank 12/12, threshold=0.0500)
+
+   **OT-7B (Qwen-7B, STILL-trained, n=47, layer 16, matched W=3) — D026 M001 corrected:**
+   - Bal Acc: 68.8% vs 58.1% (+10.7pp, p<0.001, **Holm-Bonferroni ✅**)
+   - Precision: 46.6% vs 24.7% (+21.9pp, p<0.001, **Holm-Bonferroni ✅**)
+   - Pre-CP FPR: 10.0% vs 27.1% (-17.1pp, p<0.001, **Holm-Bonferroni ✅**)
+   - **3/3 metrics significant — OT-7B cleanest single-model evidence**
+
+   **32B models: HS outperforms text at CORRECTED LAYERS but with model-specific caveats (D029+D031)**
+
+   **QwQ-32B (Qwen-32B, native, n=19-20, Layer 60 corrected from L2):**
+   - Bal Acc: +11-22pp across all 15 window sizes, all p<0.005 (bootstrap, null-centered)
+   - 15/15 W values show significant HS advantage
+   - **CRITICAL CAVEAT (D031)**: HS lead time NEGATIVE (-1.2 to 1.9 steps vs text 3.7-12.3). HS is "more accurate but detects later." Position baseline bal_acc=0.746 > HS=0.740. In safety deployment, detecting 8-12 steps earlier may outweigh higher accuracy.
+   - W=3: bal_acc +15.4pp, precision +23.6pp, FPR -9.8pp — **3/3 Holm-Bonferroni ✅**
+
+   **R1-32B (Qwen-32B, R1-distilled, n=20, Layer 63 corrected from L10):**
+   - W=1: bal_acc +18.7pp (0.826 vs 0.639), p=0.000; precision +15.4pp (0.603 vs 0.448), p=0.000; FPR -14.6pp (0.235 vs 0.380), p=0.007 — **3/3 Bonferroni ✅**
+   - W=3: bal_acc +11.2pp p=0.020, precision p=0.032, FPR p=0.077 — **0/3 Bonferroni** (v2 null-centered)
+   - W=5-15: all NS
+   - **CRITICAL CAVEAT (D031)**: Only W=1 passes Bonferroni, coverage=25% (5/20 traces). Evidence statistically narrow.
+   - **POSITIVE**: Lead time +11.7-13.3 steps (excellent early warning). HS >> Position (+14.2pp).
+   - **NOTE**: L10 vs L63 at W=10: L10=0.795 vs L63=0.754 — L10 slightly better. "Scheme B选错层" narrative weaker for R1-32B.
+   - ✅ P-VALUE UNIFIED: null-centered two-sided, consistent with QwQ.
+
+   **32B cross-model divergence (D031 key finding for Discussion):**
+   | Dimension | R1-32B L63 | QwQ L60 |
+   |-----------|-----------|---------|
+   | Bonferroni | W=1 only (3/3) | All 15 W (3/3) |
+   | Lead time | +11.7 to +13.3 (excellent) | -1.2 to +1.9 (poor) |
+   | HS vs Position | HS >> Pos (+14.2pp) | HS < Pos (-0.6pp) |
+   | Coverage (W=1) | 25% | 74% |
+   Paper MUST discuss this divergence per-model, not unify into single narrative.
+
+   **OLD 32B results at BIASED layers (L2/L10) — RETRACTED as metric artifact:**
+   - R1-32B L10: precision +9.4pp (p=0.064), accuracy +6.2pp (p=0.13)
+   - QwQ-32B L2: precision +5.8pp (p=0.35), accuracy +0.9pp (p=0.83)
+   - These non-significant results were caused by the biased `bal_acc × crossing_rate` metric selecting layers where HS signal is weak.
+
+   **Holm-Bonferroni COMPLETE (D032): 12/12 ALL PASS**
+   Previously 5/12 (biased layers). With corrected layers: **12/12** step-down pass (α=0.05).
+
+   | Rank | Model | Metric | p-value | Threshold | Pass |
+   |------|-------|--------|---------|-----------|------|
+   | 1 | R1-8B | precision | <0.001 | 0.0042 | ✅ |
+   | 2 | OT-7B | bal_acc | <0.001 | 0.0045 | ✅ |
+   | 3 | OT-7B | precision | <0.001 | 0.0050 | ✅ |
+   | 4 | OT-7B | FPR | <0.001 | 0.0056 | ✅ |
+   | 5 | QwQ | bal_acc | <0.001 | 0.0063 | ✅ |
+   | 6 | QwQ | precision | <0.001 | 0.0071 | ✅ |
+   | 7 | R1-32B | bal_acc | <0.001 | 0.0083 | ✅ |
+   | 8 | R1-32B | precision | <0.001 | 0.0100 | ✅ |
+   | 9 | QwQ | FPR | 0.004 | 0.0125 | ✅ |
+   | 10 | R1-8B | bal_acc | 0.005 | 0.0167 | ✅ |
+   | 11 | R1-32B | FPR | 0.007 | 0.0250 | ✅ |
+   | 12 | R1-8B | FPR | 0.044 | 0.0500 | ✅ |
+
+   **Caveats**: Different W per model (R1-8B W=15, OT-7B/QwQ W=3, R1-32B W=1). Tests measure "HS > text at each model's best setting," not "at uniform W." R1-32B W=1 has 25% coverage. Paper must state these conditions.
+
+   **FPR dual reporting**: Step-level (r1-8b: HS 8.8%, text 20.5%) vs trace-level (HS 14.8%, text 22.2%). Both reported.
+
+   **FPR reversal RESOLVED (D026)**: OT-7B HS FPR@L16 (10.0%) < Text FPR at ANY window (16.1%). HS dominates on FPR at 7-8B.
+
+   **Effect size consistency**: Precision advantage across all 4 models at corrected layers: R1-8B +22.4pp, OT-7B +21.2pp, QwQ +23.6pp, R1-32B +15.4pp. Remarkably consistent +15-24pp range.
+
+   Paper recommended claim (D032): "At correctly selected layers, HS probes significantly outperform text probes on all 4 models (12/12 Holm-Bonferroni, precision +15-24pp). The layer selection metric `bal_acc × crossing_rate` systematically biases toward shallow layers, entirely masking this advantage at 32B scale. Practical implications differ by model: 7-8B models show strong HS advantage with comparable timing; R1-32B shows excellent lead time (+13 steps) but narrow coverage at the significant window; QwQ shows robust statistical significance but HS detects later than text."
+
+3. **HS and text monitoring exhibit different detection timing profiles** (narrowed from old Claim 3, now 4/4 models with GRU) — On r1-8b: HS temporal LR detects AT the commitment point (lead ~0) while text detects ~10 steps earlier. GRU achieves modest positive lead (+4.5+-3.0, worst seed +0.9). BOCPD/CUSUM fail to improve over simple thresholds. The oracle's +31-step advantage shows hidden states encode current safety state but poorly predict future trajectory. On 32B models: timing profiles vary (QwQ GRU lead +15.9, R1-32B +8.8) but FPR differences are non-significant. OT-7B GRU (layer 16, multi-layer L13-19, 3 seeds): bal_acc 74.6+-1.3%, coverage 64.5+-7.0%, lead +33.6+-4.8, FPR 27.4+-6.1%. GRU trades higher FPR for longer lead (consistent with R1-8B pattern). NOTE: OT-7B absolute lead times are inflated by long traces (~80 sentences vs ~30). Paper should normalize or explicitly caveat trace length differences when comparing across models.
+
+   NOTE: 32B timing profiles should be RE-EVALUATED at corrected layers (L60/L63) — current GRU results used old biased layers.
+
+## Methodological Contribution: Layer Selection Sensitivity (D028, elevated from RETRACTED Claim 4)
+
+The layer selection metric `bal_acc × crossing_rate` systematically biases toward shallow layers because shallow layers have higher crossing rates (more frequently crossing the detection threshold). This bias is especially problematic for 32B models, where it selects layers at 3-16% depth instead of deep layers selected by threshold-dependent metrics.
+
+**Ablation evidence (4 models × 5 metrics) — UPDATED D036**:
+- `bal_acc × crossing_rate`: selects L2 (QwQ), L10 (R1-32B) — shallow, biased
+- Pure `bal_acc`: selects **middle layers** for 32B — L30 (QwQ, 47%), L47 (R1-32B, 73%); deep for 7-8B (agrees with other metrics). Threshold-free metric, behaves like AUROC.
+- `precision`: selects deep layers for all models (L60/L63 for 32B)
+- `pre_cp_fpr`: selects deep layers for all models
+- `composite` (additive): selects deep layers for all models
+- **Pattern**: Threshold-FREE metrics (bal_acc, AUROC) → middle layers; threshold-DEPENDENT metrics (precision, FPR, composite) → deep layers. Crossing_rate-contaminated metrics → shallow layers.
+
+**LOO-CV stability (D036)**: Under LOO-CV, the dominant layer is selected in 65-68% of folds regardless of metric. QwQ L30 selected 13/19 folds (bal_acc), R1-32B L47 selected 13/20 folds (bal_acc). Selection is robust to val set composition.
+
+**Corrected layer definition (D036)**: "Corrected layers" = consensus of threshold-dependent metrics (precision, inverse FPR, additive composite) — 3 of 4 non-biased metrics, not all 4. Pure bal_acc selects middle layers (L30/L47) with higher step-level accuracy (0.75/0.83 vs 0.71/0.76 at deep layers), but deployment-relevant metrics (precision, FPR) favor deep layers where all 4 models achieve HB-significant HS advantage.
+
+**Impact**: Incorrect layer selection entirely masked the HS advantage at 32B scale, leading to the false conclusion that HS advantage is scale-dependent. Even among unbiased metrics, metric choice affects optimal layer depth — threshold-free vs threshold-dependent is a second dimension of researcher degrees of freedom beyond the crossing_rate bias.
+
+**Anti-circular-reasoning defense (D031, refined D036)**: The claim that deep layers are "correct" for deployment rests on: (1) `crossing_rate` has a MECHANISTIC bias — shallow layers have compressed representations (1.4-2.7× smaller cosine distances) generating noise-driven crossings; (2) threshold-dependent metrics (precision, FPR) directly measure deployment-relevant properties; (3) at deep layers, all 4 models show significant HS advantage (HB corrected); (4) LOO-CV confirms selection stability. The paper presents layer selection as a "researcher degree of freedom" with systematic audit via sensitivity analysis.
+
+**Paper treatment**: Dedicated subsection in Method + Table showing metric × model → selected layer + downstream HS-text comparison. Frame as sensitivity analysis, not "correct vs incorrect."
+
+## Story Spine
+
+- **Problem**: Reasoning models exhibit "self-jailbreak" — safety reasoning and harmful execution interleave throughout extended CoT, culminating in a "commitment point" where safety reasoning permanently ceases. Existing hidden-state detectors (TrajGuard, SafeSwitch, SIREN) target adversarial INPUT attacks on instruction-tuned models; they have never been evaluated on reasoning-model self-jailbreak where the threat is the model's OWN reasoning process.
+
+- **Existing approaches & gaps**: Hidden-state detectors achieve 95% defense on standard LLMs (TrajGuard) but operate at token-level. Reasoning-model safety analysis (Self-Jailbreaking, HarmThoughts) characterizes the phenomenon without providing deployable detectors. Text-level CoT monitors (SafeRemind, SafeThink) are vulnerable to pathological CoT. No prior work systematically compares detection modalities for reasoning-model self-jailbreak.
+
+- **Our framing**: We provide the first systematic evaluation of detection methods for reasoning-model safety commitment across **4 models, 2 architectures (Llama + Qwen), 2 training methods (R1-distilled + STILL), and 2 scales (7-8B + 32B)**, comparing hidden-state probes, text-based probes, sequence models (GRU), change-point detection (BOCPD/CUSUM), unsupervised methods (Mahalanobis, RepE direction, CCS), and nonlinear probes (MLP). We discover that: (a) temporal context is the most robust improvement, benefiting both modalities universally; (b) HS probes universally outperform text at correctly selected layers, with a critical sensitivity to layer selection methodology; (c) existing methods designed for other settings (TrajGuard, BOCPD, CCS, RepE) fail on reasoning model commitment; (d) linear probes are sufficient (MLP adds no value); (e) safety representations are model-specific (cross-transfer fails entirely), validated by control task (selectivity 7.5-18.5pp).
+
+- **Headline result (D032)**: "Hidden-state probes significantly outperform text probes for safety commitment detection on all 4 models (12/12 Holm-Bonferroni, precision +15-24pp), but this advantage is entirely invisible under biased layer selection metrics. The composite metric `bal_acc × crossing_rate` systematically selects shallow layers at 32B scale, masking the HS signal and producing false negatives. This methodological finding, together with model-specific practical trade-offs at 32B (early detection vs broad coverage) and the comprehensive failure of 6 alternative methods, establishes that supervised temporal probing with principled layer selection is the most effective and robust approach for monitoring reasoning-model safety commitment."
+
+## Key Evidence Summary
+
+### R1-8B (Llama-8B, R1-distilled, n=43 test, class_weight=balanced, 60/20/20 split — CANONICAL)
+
+Best layer: 14 (45% depth). Full sweep layers 0-24 confirmed: layer 12 marginally better (+0.4pp bal_acc), no practical difference.
+
+| Method | Coverage | Lead Time | Pre-CP FPR | Safe FPR |
+|--------|----------|-----------|------------|----------|
+| HS Static LR L14 | — | -2.0 | **9.7%** | — |
+| HS Temporal W=5 | — | +0.6 | **10.2%** | — |
+| HS Temporal W=15 | — | **-0.1** | **8.8%** | — |
+| Text Temporal W=15 | — | +10.3* | 20.5% | — |
+| GRU Multi-7L (3-seed) | 72.9+-4.0% | +4.5+-3.0 | 16.5+-4.1% | — |
+
+*Text lead time inflated by high pre-CP FPR (trigger-happy detection)
+NOTE: HS LR lead time collapsed to ~0 with balanced weights — HS detects AT commitment, not before. Only GRU achieves positive lead (+4.5, worst seed +0.9).
+
+### OT-7B (Qwen-7B, STILL-trained, n=47 test, 228 total traces) — D026 CORRECTED to layer 16
+
+Best layer: **16 (57% depth)**. M001 corrected: layer 0 was selected by bal_acc x crossing_rate bug; layer 16 selected by bal_acc.
+
+| Method | Bal Acc | Precision | Coverage | Pre-CP FPR | Lead |
+|--------|---------|-----------|----------|-----------|------|
+| HS Temporal W=3 L16 (best) | **68.8%** | **46.6%** | 53.2% | **10.0%** | — |
+| Text Temporal W=25 (best) | 61.4% | 32.9% | 66.0% | 16.1% | 45.5 |
+| Text Temporal W=3 (matched) | 57.9% | 25.4% | — | 27.1% | — |
+
+Bootstrap (layer 16, matched W=3, 1000 resamples):
+   bal_acc +10.7pp, 95% CI [4.9, 16.3], p<0.001 ✅
+   precision +21.9pp, 95% CI [14.0, 29.6], p<0.001 ✅
+   FPR -17.1pp, 95% CI [-22.2, -12.2], p<0.001 ✅ — **3/3 Holm-Bonferroni**
+Selectivity: 18.3pp (real=0.688, random=0.505) — highest across all models
+
+### 32B Cross-Architecture — D029 CORRECTED LAYERS
+
+**QwQ-32B (Qwen-32B, native, n=19-20, Layer 60 — corrected from L2)**
+- HS vs Text bootstrap (null-centered, 1000 resamples):
+  - Bal Acc: +11-22pp across W=1-15, ALL 15/15 significant (p<0.005)
+  - W=3 (matched): bal_acc +15.4pp (p<0.001 ✅), precision +23.6pp (p<0.001 ✅), FPR -9.8pp (p=0.004 ✅) — **3/3 Holm-Bonferroni**
+- Caveats: HS lead time poor (-1.2 to 1.9 steps vs text 3.7-12.3), position baseline competitive
+- Layer selection: `bal_acc × crossing_rate` selected L2 (3.1%); threshold-dependent metrics consensus selects L60 (94%); pure `bal_acc` selects L30 (47%, bal_acc=0.7513 vs L60=0.7101) (D036)
+
+**R1-32B (Qwen-32B, R1-distilled, n=20, Layer 63 — corrected from L10)**
+- W=1: bal_acc +18.7pp, p<0.001 ✅
+- W≥5: NS (dimensionality: 51200 × W features for n=20)
+- W=1: 3/3 Holm-Bonferroni ✅; W=3: 0/3 Bonferroni (null-centered v2); W≥5: NS
+- Layer selection: `bal_acc × crossing_rate` selected L10 (15.6%); threshold-dependent metrics consensus selects L63 (98%); pure `bal_acc` selects L47 (73%, bal_acc=0.8290 vs L63=0.7585) (D036)
+
+**OLD biased-layer results (RETRACTED as metric artifact):**
+| Model | Biased Layer | Corrected Layer | Biased p-value | Corrected p-value |
+|-------|-------------|----------------|----------------|-------------------|
+| R1-32B | L10 (16%) | L63 (98%) | 0.064-0.13 (NS) | <0.001 (W=1) ✅ |
+| QwQ-32B | L2 (3%) | L60 (94%) | 0.35-0.83 (NS) | <0.005 (all W) ✅ |
+
+### 4-Model Holm-Bonferroni Summary (D032 — COMPLETE: 12/12 ✅)
+
+| Model | Arch | Training | Scale | Layer | W | bal_acc | precision | FPR | Selectivity |
+|-------|------|----------|-------|-------|---|--------|-----------|-----|-------------|
+| R1-8B | Llama | R1-distilled | 8B | L14 (45%) | 15 | +8.2pp ✅ | +22.4pp ✅ | -7.4pp ✅ | 12.5pp |
+| OT-7B | Qwen | STILL | 7B | L16 (57%) | 3 | +10.7pp ✅ | +21.9pp ✅ | -17.1pp ✅ | 18.3pp |
+| QwQ-32B | Qwen | native | 32B | L60 (94%) | 3 | +15.4pp ✅ | +23.6pp ✅ | -9.8pp ✅ | 15.3pp |
+| R1-32B | Qwen | R1-distilled | 32B | L63 (98%) | 1 | +18.7pp ✅ | +15.4pp ✅ | -14.6pp ✅ | 7.5pp |
+
+**12/12 all pass Holm-Bonferroni step-down (α=0.05)**. Previously 5/12 with biased layers.
+Precision advantage remarkably consistent: +15.4 to +23.6pp across all 4 models.
+Caveats: Different W per model; R1-32B W=1 coverage=25%; QwQ lead time negative.
+
+### Position Mediation Analysis (D038 → D039 → D042 complete)
+
+**Finding**: Position (relative step t/T) is a significant component of probe performance. 3/4 models retain HS advantage after residualization; R1-32B is the exception.
+
+| Model | W | Resid HS BA | Resid Text BA | HS-Text Gap | Gap p | HB |
+|-------|---|------------|--------------|-------------|-------|-----|
+| OT-7B | 3 | 0.609 | 0.540 | **+6.9pp** | <0.001 | ✅ |
+| R1-8B | 15 | 0.669 | 0.605 | **+6.4pp** | <0.001 | ✅ |
+| R1-8B | 3 | 0.571 | 0.534 | **+3.7pp** | <0.001 | ✅ |
+| QwQ-32B | 3 | 0.619 | 0.582 | **+3.7pp** | 0.011 | ✅ |
+| R1-32B | 1 | 0.552 | 0.532 | +1.9pp | 0.914 | ❌ |
+
+Position-only BA: OT-7B/R1-8B/QwQ ≈ 0.706; R1-32B = 0.686.
+
+**D042 final picture**: HS advantage has two separable components — position-mediated and non-positional. 3/4 models retain significant non-positional HS advantage (HB pass); R1-32B's advantage is almost entirely position-mediated (drop 20.4pp, residualized gap NS). This is consistent with R1-32B's other caveats (W=1 only significant, 25% coverage).
+
+**Key implications for paper**:
+1. Position is a significant component (12-20pp drop) — universal
+2. 3/4 models retain non-positional HS advantage (residualized BA gap +3.7 to +6.9pp, HB pass)
+3. R1-32B is the exception: HS advantage position-mediated, residualized gap NS
+4. Temporal windowing preserves non-positional signal (R1-8B: 24pp drop@W=3 → 16pp@W=15)
+5. Paper framing: "HS advantage persists after position removal in 3/4 models; R1-32B advantage is position-mediated"
+
+### 5-Seed Robustness (D041)
+
+| Model | HB Pass Rate | Mean ΔPrec ± std | Mean ΔBA ± std |
+|-------|-------------|------------------|----------------|
+| OT-7B | **5/5** | +20.9 ± 1.3pp | +11.3 ± 1.5pp |
+| R1-32B | **5/5** | +13.7 ± 2.0pp | +11.8 ± 2.4pp |
+| QwQ-32B | **5/5** | +19.9 ± 2.5pp | +11.4 ± 3.2pp |
+| R1-8B | **3/5** | +14.6 ± 4.5pp | +9.4 ± 2.4pp |
+
+R1-8B failures are FPR-specific (seed 123 FPR p=0.262, seed 456 FPR p=0.952). Precision is directionally consistent across all 20 seed-model combinations (always positive). ΔPrec never reverses.
+
+**D041 insight**: Robustness splits by MODEL not SCALE. R1-32B (5/5, ΔPrec std=2.0pp) is more stable than R1-8B (3/5, ΔPrec std=4.5pp). "7-8B robust / 32B sample-limited" is factually wrong. R1-32B's absolute precision std (12.8pp) vs paired delta std (2.0pp) — paper must distinguish these.
+
+**Per-model evidence tier (D042)**:
+- **OT-7B**: Cleanest — 5/5 HB, largest residualized gap (+6.9pp), highest selectivity (18.3pp)
+- **QwQ-32B**: Robust — 5/5 HB, residualized gap holds (+3.7pp), but position baseline competitive
+- **R1-8B**: Precision-robust — residualized holds (+3.7-6.4pp), but FPR unstable (3/5 HB)
+- **R1-32B**: Statistically stable (5/5 HB, ΔPrec std=2.0pp) but advantage position-mediated (residualized NS)
+
+**Residualized precision**: Not tested (scope limited to BA per Reviewer recommendation).
+
+### BA-Layer Robustness: Metric Circularity Refuted (D044)
+
+R13 W1 concern: corrected selection uses threshold-dependent metrics (precision, FPR), evaluation also uses precision/FPR — potential circularity. Test: compute HS vs text on BA-selected layers (threshold-free criterion).
+
+| Model | BA-Opt Layer | ΔPrec | ΔBA | ΔFPR | ΔAUROC | All 4 HB? |
+|-------|-------------|-------|-----|------|--------|-----------|
+| R1-8B | L12 | +17.8pp | +7.8pp | -12.9pp | +9.3pp | ✅ |
+| OT-7B | L9 | +25.4pp | +11.7pp | -19.3pp | +14.8pp | ✅ |
+| QwQ-32B | L30 | +18.0pp | +14.8pp | -8.0pp | +17.3pp | ✅ |
+| R1-32B | L47 | +13.7pp | +14.9pp | -23.1pp | +21.1pp | ✅ |
+
+**4/4 models × 4 metrics = 16/16 HB pass.** HS advantage is a genuine modality property, not a layer selection artifact.
+
+Key insight: R1-32B on BA-layer L47 shows ΔPrec +13.7pp and ΔAUROC +21.1pp — stronger than corrected L63 in threshold-free metrics. OT-7B on BA-layer L9 has ΔPrec +25.4pp > corrected L16 (+21.9pp). HS advantage is robust to layer selection criterion.
+
+Caveat: QwQ FPR adj_p=0.041 (marginal, CI close to zero). Other 15/16 tests p≤0.006.
+
+### Post-hoc Power Analysis (D044)
+
+| Model | n (test) | MDE (80% power, α=0.05) |
+|-------|----------|------------------------|
+| OT-7B | 47-69 | 6.7-8.1pp |
+| R1-8B | 43-63 | 7.4-9.0pp |
+| QwQ-32B | 29 | 9.5pp |
+| R1-32B | 20-30 | 8.6-11.2pp |
+
+All significant effects (15-24pp) are well above MDE → adequately powered. R1-32B residualized gap (+1.9pp) is far below MDE (11.2pp) → NS is power limitation, not evidence of absence.
+
+### Negative Results (expanded with R3 supplementary experiments)
+- **BOCPD/CUSUM (4/4 models)**: R1-8B BOCPD 93% detection but lead +3.5 < threshold +4.9; OT-7B/R1-32B/QwQ all 0% detection across all λ. CUSUM worse than threshold on all models.
+- **Mahalanobis (4/4 models confirmed negative)**: R1-8B (+0.07), OT-7B (+0.031), R1-32B (+0.148), QwQ (+0.204) — all separation ≈ 0. Signal in minor PCA components, not principal directions.
+- **RepE direction probing (4/4 models, corrected layers confirmed)**: Direction-based supervised method (needs CP labels). Results highly layer-dependent and model-specific:
+  - R1-32B L63 (corrected): bal_acc=0.559 (near-random), FPR=49.9% — **direction vector fails at deep layer** where supervised LR excels (0.826). Train-test gap 13.3pp shows poor generalization.
+  - QwQ L60 (corrected): bal_acc=0.756, precision=0.512, FPR=0.309 — **improves** from L2 (0.666), narrows gap with supervised LR W=1 (0.740 bal_acc), but still inferior in precision/FPR.
+  - R1-8B L14: bal_acc=0.749, OT-7B L16: bal_acc=0.642
+  - **Key insight**: Supervised LR is necessary — mean-difference direction cannot decode safety commitment at deep layers for R1-32B (discriminative training finds signal that simple direction averaging misses). Layer selection sensitivity applies to RepE too, but in model-specific ways (R1-32B: shallow better for RepE; QwQ: deep better for both).
+- **MLP nonlinear probe (4/4 models)**: 3/4 models worse than LR. Linear probes sufficient; nonlinearity adds no value.
+- **CCS-adapted (Burns et al. 2023, 4/4 models)**: WEAKLY SUPERVISED (needs CP labels for pair construction, not truly unsupervised). R1-8B bal_acc=0.777 (between supervised LR 0.817 and RepE 0.749). R1-32B FPR=0.410 (near-chance). OT-7B precision=0.319 (near-chance, high lead=20.5 is artifact of high FPR). Uses scheme B layers (biased). Paper must: (a) label as "weakly supervised" not "unsupervised"; (b) disclose pair construction differs from Burns et al.; (c) note scheme B layer limitation.
+- **Cross-model transfer (exp-003)**: All directions fail entirely (best: 58.3% acc, 40.7% crossing).
+
+## Venue Fit Risks
+
+- **EMNLP LLM Security track fit**: Strong — defense/detection evaluation for reasoning model jailbreak.
+- **Method simplicity risk**: Mitigate: frame as empirical study. Contribution is systematic evaluation + layer selection sensitivity discovery + comprehensive negative results.
+- **Statistical power**: With corrected layers, **12/12** tests pass Holm-Bonferroni across ALL 4 models (up from 5/12 with biased layers).
+- **HS advantage universal**: UPGRADED from "scale-dependent" — layer selection is the true moderator, not scale. Cleaner story.
+- **Trace vs step FPR**: Both reported with explanation.
+- **High safe FPR risk**: All methods 39-62% safe FPR. Frame as diagnostic tool limitation.
+- **32B caveats**: HS advantage exists but is more sensitive to window size (R1-32B W=1 only) and affected by dimensionality (51200-d at large W with n=20). Lead times shorter than 7-8B. These are honest limitations, not disqualifiers.
+
+## Anticipated Reviewer Concerns
+
+1. "Method novelty?" → Empirical study + systematic method comparison + layer selection sensitivity as methodological contribution + comprehensive negative results (6 methods fail).
+2. "Only one model family?" → **RESOLVED**: 4 models, 2 architectures (Llama + Qwen), 2 training methods, 2 scales. ALL showing significant HS advantage at corrected layers.
+3. "GRU unstable?" → 3-seed reporting with worst-seed bounds. R1-32B GRU at L10 was unstable; needs re-evaluation at L63.
+4. "Too few traces?" → Cross-model validation + control task selectivity 7.5-18.5pp.
+5. "Fine-grained taxonomy?" → Out of scope for current study.
+6. "HS doesn't beat text?" → **QUALIFIED REBUTTAL (D031)**: HS outperforms text at correct layers with STRONG evidence at 7-8B (precision +22pp, Holm-Bonf) and QUALIFIED evidence at 32B (R1-32B: significant W=1 but narrow; QwQ: significant all W but late detection). 32B non-significance at OLD layers was artifact. Layer selection sensitivity analysis shows this is a methodological issue, not absence of signal.
+7. "Commitment point circular?" → Cross-model consistency + control task selectivity argues against artifact.
+8. "Missing related work?" → Expansion to 30+ citations.
+9. "No FPR analysis?" → RESOLVED: both trace-level and step-level FPR reported.
+10. "High safe FPR?" → Limitation acknowledged.
+11. "Control task / position confound?" → RESOLVED (C2, D011): selectivity 7.5-18.5pp, HS FPR < position-only FPR.
+12. "Multiple testing correction?" → **RESOLVED**: 12/12 Holm-Bonferroni step-down (α=0.05) across all 4 models (up from 5/12 with biased layers).
+13. "Trace vs step FPR?" → Both reported with explanation.
+14. "Layer selection is just hyperparameter tuning?" → No — we show a systematic bias in a commonly used composite metric. The ablation across 5 metrics × 4 models is a reproducible methodological finding, not a one-off parameter choice.
+15. "Why not just use the best layer for each model?" → We do. The point is that the METRIC for selecting "best" matters. Biased metrics produce systematically wrong selections, masking real effects.
+16. "32B results are marginal / only W=1 significant for R1-32B?" → Dimensionality constraint (51200 × W > n=20 at W≥5). QwQ L60 significant at ALL W values. R1-32B L63 significant at W=1. Both confirm HS advantage exists; practical deployment would use W=1-3 for 32B models.
+
+## Title Candidates (D031)
+- "Layer Selection Matters: How Metric Choice Determines Hidden-State Probe Effectiveness for Safety Monitoring"
+- "Temporal Probing for Safety Commitment Detection in Reasoning Models: A Comprehensive Evaluation"
+- "What Detects Safety Commitment in Reasoning Models? A Systematic Comparison of Probe-Based Methods"
+- "Hidden-State vs Text Monitoring for Reasoning Model Safety: Layer Selection as the Missing Variable"
+
+
+## experiment_plan (with registry status)
+
+- id: exp-001
+  claim: 1
+  description: Cross-architecture hidden-state extraction + layer sweep + static probe
+    evaluation on r1-32b and QwQ-32B. Includes mandatory layer sweep (all layers)
+    to find best layer for 64-layer models before probe evaluation. Validates Claim
+    1 generalizes beyond r1-8b.
+  priority: P0
+  gpu_budget_hours: 10
+  deps: []
+  models:
+  - DeepSeek-R1-Distill-Qwen-32B
+  - QwQ-32B
+  notes: 32B models have 64 layers, 5120-d hidden. r1-8b best layer was 14/32 (44%
+    depth) → expect best around layer 28-32 for 64-layer models. Extract ALL layers
+    for sweep, then select best for subsequent experiments. Must do layer sweep BEFORE
+    reporting static probe results — using wrong layer would produce false negative.
+  status: planned
+- id: exp-002
+  claim: 2
+  description: 'Cross-architecture temporal window evaluation: temporal LR W=15 on
+    r1-32b and QwQ-32B. Validate +30pp coverage improvement holds cross-architecture.'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - exp-001
+  models:
+  - DeepSeek-R1-Distill-Qwen-32B
+  - QwQ-32B
+  status: planned
+- id: exp-003
+  claim:
+  - 1
+  - 2
+  description: 'Cross-model transfer: train probe on r1-8b (Llama), test on r1-32b/QwQ
+    (Qwen2.5). Train on Qwen, test on Llama. Measures zero-shot cross-architecture
+    generalization.'
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  notes: Key for cross-architecture story. Projection head needed (4096→5120 or vice
+    versa).
+  status: planned
+- id: exp-004
+  claim: 3
+  description: 'Lead time analysis across models: confirm negative lead time finding
+    on 32B models. Report lead time distribution per model.'
+  priority: P0
+  gpu_budget_hours: 1
+  deps:
+  - exp-001
+  - exp-002
+  status: planned
+- id: exp-005
+  claim:
+  - 1
+  - 2
+  - 3
+  description: 'TrajGuard-style Mahalanobis baseline: implement and evaluate on all
+    3 models. Expected to fail (signal in minor PCs, Fisher drops 17→1 in PCA-3D).'
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  notes: Critical baseline for 'existing detectors fail' claim. Use safe traces to
+    estimate covariance, compute MD per step.
+  status: planned
+- id: exp-006
+  claim:
+  - 1
+  - 2
+  description: 'Bootstrap confidence intervals + threshold-independent metrics: 1000
+    bootstrap resamples on all key metrics (coverage, lead time, accuracy). ALSO report
+    AUROC, precision-recall curves, detection delay CDF, cross-validation per-fold
+    variance, and FPR on safe traces (final_judgment=0.5).'
+  priority: P0
+  gpu_budget_hours: 1
+  deps:
+  - exp-001
+  - exp-002
+  - exp-003
+  - exp-004
+  - exp-005
+  status: planned
+- id: exp-007
+  claim: 2
+  description: 'Window size ablation: W=1,3,5,10,15,20,25 on all 3 models. Find optimal
+    W and show diminishing returns curve.'
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  status: planned
+- id: exp-008
+  claim: 2
+  description: 'Layer selection ablation: all layers (not just 14) for temporal probe
+    on 32B models. Confirm middle-layer finding generalizes.'
+  priority: P1
+  gpu_budget_hours: 3
+  deps:
+  - exp-001
+  status: planned
+- id: exp-009
+  claim: 2
+  description: '16-label taxonomy supervision: use fine-grained labels (Type 1/2/3/4)
+    instead of binary commitment for richer training signal. May improve both coverage
+    and timing.'
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  notes: Addresses reviewer concern about underusing available supervision.
+  status: planned
+- id: exp-010
+  claim: 3
+  description: 'Oracle decomposition: why can oracle but not probes achieve positive
+    lead time? Analyze what label patterns encode that hidden states don''t.'
+  priority: P1
+  gpu_budget_hours: 1
+  deps:
+  - exp-004
+  notes: For Discussion section. May reveal what architectural changes could close
+    the gap.
+  status: planned
+- id: exp-011
+  claim: 2
+  description: 'OpenThinker-7B (Qwen2.5-7B base): 4th model for 2×2 architecture×scale
+    matrix. Controls for scale confound.'
+  priority: P2
+  gpu_budget_hours: 4
+  deps:
+  - exp-002
+  notes: From Human Review Note point 5. Adds Qwen2.5-7B to complement Llama-8B for
+    scale-matched comparison.
+  status: planned
+- id: exp-012
+  claim:
+  - 1
+  - 2
+  description: 'GRU/Attention probe as upper bound: verify GRU finding holds on 32B
+    models with more data. If still no improvement over LR, strengthens ''simplicity
+    is optimal'' story.'
+  priority: P2
+  gpu_budget_hours: 4
+  deps:
+  - exp-001
+  - exp-002
+  status: planned
+- id: exp-013
+  claim:
+  - 1
+  - 2
+  description: 'Text-based baseline: sentence-BERT embeddings (all-MiniLM-L6-v2) +
+    same temporal window LR (W=15) on CoT text. Compare coverage/lead time to hidden-state
+    probes. CRITICAL for proving hidden-state monitoring adds unique value over cheap
+    text monitoring. If text achieves comparable performance, paper motivation needs
+    restructuring.'
+  priority: P0
+  gpu_budget_hours: 0.5
+  deps: []
+  notes: No GPU needed for embedding extraction (small model, CPU-feasible). Run on
+    all 4 models. This is the single most important missing baseline per Dream review
+    (flagged by all 3 tiers, both reviewers).
+  status: planned
+- id: exp-014
+  claim: 3
+  description: 'Bayesian Online Change-Point Detection (BOCPD) on per-step probe scores:
+    apply Adams & MacKay 2007 to the sequence of probe confidence scores. Could achieve
+    positive lead time by detecting distributional shift before textual commitment.
+    Also test CUSUM as simpler alternative.'
+  priority: P0
+  gpu_budget_hours: 0.5
+  deps:
+  - exp-001
+  notes: Addresses both 'no method novelty' and 'no positive lead time' criticisms
+    simultaneously. If BOCPD achieves reliable lead time where GRU doesn't, this becomes
+    a genuine methods contribution. If it also fails, strengthens the 'fundamental
+    limitation' narrative.
+  status: planned
+- id: exp-015
+  claim:
+  - 1
+  - 2
+  description: 'False positive analysis: run all probes (static, temporal, GRU, BOCPD)
+    on safe traces (final_judgment=0.5). Report FPR, precision-recall curves at various
+    thresholds. Essential for deployment utility claims.'
+  priority: P0
+  gpu_budget_hours: 0.5
+  deps:
+  - exp-001
+  - exp-002
+  notes: Dream flagged missing FPR as critical gap across median and worst tiers.
+    Without this, 'coverage' metric is uninterpretable — a probe that fires everywhere
+    gets 100% coverage.
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: diag_d1_layer_sweep
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    best_layer_idx: 2
+    best_model_layer: 14
+    best_acc: 0.8114
+    best_f1: 0.6455
+    best_crossing_rate: 0.186
+    best_lead_mean: 8.38
+    best_lead_median: 6
+    default_layer20_acc: 0.7831
+    num_traces: 209
+    split: 125/41/43
+- exp_id: diag_d4_oracle_upper_bound
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    K5_detection_rate: 100
+    K5_early_detection_rate: 76.7
+    K5_mean_lead_time: 31
+    K5_median_lead_time: 29
+    K1_early_detection_rate: 83.7
+    K8_early_detection_rate: 65.1
+    pre_cp_mean_longest_streak: 14.6
+    test_traces: 43
+- exp_id: diag_d2_pca_viz
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    fisher_orig_L12: 17.462
+    fisher_orig_L14: 17.875
+    fisher_orig_L20: 18.614
+    fisher_orig_L24: 18.106
+    fisher_pca_L12: 0.953
+    fisher_pca_L14: 0.928
+    fisher_pca_L20: 0.92
+    fisher_pca_L24: 1.111
+    var_explained_3pc: 0.166
+    test_steps: 1835
+- exp_id: diag_d3_regularized_probes
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    static_lr_acc: 0.8172
+    static_lr_crossing_rate: 0.4651
+    static_lr_lead_mean: -2
+    temporal_lr_w5_acc: 0.8274
+    temporal_lr_w5_crossing_rate: 0.6512
+    temporal_lr_w5_lead_mean: -1.18
+    temporal_lr_w10_acc: 0.8364
+    temporal_lr_w10_crossing_rate: 0.6512
+    temporal_lr_w10_lead_mean: -0.61
+    temporal_lr_w15_acc: 0.8478
+    temporal_lr_w15_crossing_rate: 0.7674
+    temporal_lr_w15_lead_mean: -1.09
+    best_temporal_delta_over_static: 1.39
+    pass_criterion_met: false
+- exp_id: diag_gru_probe
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    test_acc: 0.8305
+    test_acc_std: 0.1856
+    crossing_rate: 0.6744
+    lead_mean: -0.207
+    lead_median: -1
+    lead_std: 13
+    positive_lead_rate: 0.345
+    n_positive_lead: 10
+    n_detected: 29
+    early_stop_epoch: 14
+    model_params: 1622913
+- exp_id: exp_gru256_multilayer
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    gru_single_l14:
+      acc: 0.8386
+      crossing_rate: 0.721
+      lead_mean: 3.5
+      lead_median: 0
+      pos_lead: 13/31
+    gru_multi_7l:
+      acc: 0.8094
+      crossing_rate: 0.767
+      lead_mean: 4.7
+      lead_median: 0
+      pos_lead: 13/33
+    lr_single_l14:
+      acc: 0.8172
+      crossing_rate: 0.465
+      lead_mean: -2
+      lead_median: -2
+      pos_lead: 6/20
+    lr_multi_7l:
+      acc: 0.806
+      crossing_rate: 0.395
+      lead_mean: 1.1
+      lead_median: 0
+      pos_lead: 6/17
+    delta_gru_vs_lr: 3.7
+- exp_id: exp_005_trajguard_mahalanobis
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    best_k5_crossing_rate: 0.302
+    best_k5_lead_mean: 16.4
+    best_k5_config: pca_64_p75
+    best_k3_crossing_rate: 0.605
+    best_k3_lead_mean: 20.4
+    delta_max_rate: 0.023
+    safe_md_mean: 6.66
+    jb_pre_md_mean: 6.73
+    jb_post_md_mean: 6.64
+- exp_id: exp_006_bootstrap_ci
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    static_lr_acc: 0.768 [0.702,0.827]
+    static_lr_crossing: 60.4% [44.2,74.4]
+    static_lr_lead: +2.9 [-2.8,+9.5]
+    temporal_lr_acc: 0.731 [0.654,0.804]
+    temporal_lr_crossing: 60.6% [46.5,74.4]
+    temporal_lr_lead: +5.0 [-0.8,+11.9]
+    gru_single_acc: 0.790 [0.734,0.848]
+    gru_single_crossing: 51.4% [37.2,67.4]
+    gru_single_lead: -2.0 [-8.6,+4.9]
+    gru_multi_acc: 0.799 [0.742,0.854]
+    gru_multi_crossing: 51.4% [37.2,67.4]
+    gru_multi_lead: -0.4 [-6.4,+6.1]
+    paired_temporal_vs_static_lead_p: 0.19
+    paired_gru_vs_static_lead_p: 0.94
+    paired_gru_vs_temporal_lead_p: 0.99
+- exp_id: exp_013_text_baseline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    text_static_coverage: 0.605
+    text_static_lead: 4.3
+    text_static_acc: 0.661
+    text_static_auroc: 0.7384
+    text_temporal_w15_coverage: 0.651
+    text_temporal_w15_lead: 11.5
+    text_temporal_w15_acc: 0.678
+    text_temporal_w15_auroc: 0.759
+    hs_acc_advantage: 15-18pp
+- exp_id: exp_015_fpr_analysis
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    text_static_safe_fpr: 0.502
+    text_static_precp_fpr: 0.356
+    text_static_precision: 0.448
+    text_static_coverage: 0.605
+    text_static_lead: 4.3
+    text_static_acc: 0.661
+    text_temporal_safe_fpr: 0.385
+    text_temporal_precp_fpr: 0.272
+    text_temporal_precision: 0.487
+    text_temporal_coverage: 0.651
+    text_temporal_lead: 11.5
+    text_temporal_acc: 0.678
+    hs_static_safe_fpr: 0.39
+    hs_static_precp_fpr: 0.162
+    hs_static_precision: 0.622
+    hs_static_coverage: 0.605
+    hs_static_lead: 3
+    hs_static_acc: 0.768
+    hs_temporal_safe_fpr: 0.392
+    hs_temporal_precp_fpr: 0.16
+    hs_temporal_precision: 0.583
+    hs_temporal_coverage: 0.651
+    hs_temporal_lead: 4.9
+    hs_temporal_acc: 0.726
+    gru_safe_fpr: 0.521
+    gru_precp_fpr: 0.188
+    gru_precision: 0.648
+    gru_coverage: 0.744
+    gru_lead: 5.25
+    gru_acc: 0.816
+- exp_id: exp_014_bocpd_poc
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    bocpd_lambda10:
+      detection_rate: 0.93
+      mean_lead: 3.45
+      median_lead: 0
+      early_count: 16
+      late_count: 19
+    bocpd_lambda100:
+      detection_rate: 0.674
+      mean_lead: 1.03
+      median_lead: 0
+    cusum_best_t03h3:
+      detection_rate: 0.651
+      mean_lead: 0.89
+      median_lead: -4
+    fcp_baseline:
+      detection_rate: 0.651
+      mean_lead: 4.89
+      median_lead: 0
+    head_to_head_bocpd_vs_fcp:
+      bocpd_wins: 16
+      fcp_wins: 6
+      ties: 5
+    verdict: BOCPD higher detection (93% vs 65%) but lower mean lead (3.45 vs 4.89).
+      CUSUM universally worse. Neither method achieves earlier detection than simple
+      threshold crossing on average.
+- exp_id: exp_001a_r1_32b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    m001_corrected: true
+    best_layer_old: 2
+    best_layer_corrected: 10
+    layer_selection_metric: balanced_accuracy × crossing_rate (scheme B)
+    layer10_bal_acc: 0.718
+    layer10_crossing_rate: 0.6
+    gru_single_bal_acc_mean: 0.675
+    gru_single_crossing_mean: 0.3
+    gru_single_lead_mean: 9.1
+    gru_single_precp_fpr_mean: 0.135
+    gru_multi_bal_acc_mean: 0.655
+    gru_multi_crossing_mean: 0.23
+    gru_multi_lead_mean: 8.8
+    gru_multi_precp_fpr_mean: 0.114
+    temporal_lr_best_window: 10
+    temporal_lr_w10_bal_acc: 0.737
+    temporal_lr_w10_crossing: 0.5
+    temporal_lr_w10_lead: 9
+    temporal_lr_w10_precp_fpr: 0.189
+    bootstrap_hs_precp_fpr: 0.26
+    bootstrap_text_precp_fpr: 0.246
+    bootstrap_diff: 0.014
+    bootstrap_p_value: 0.999
+    bootstrap_ci95:
+    - -0.103
+    - 0.127
+    bootstrap_conclusion: no_significant_difference
+    paired_bootstrap_corrected:
+      hs_bal_acc: 0.794
+      text_bal_acc: 0.711
+      acc_delta: 0.084
+      acc_p_value_two_sided: 0.08
+      hs_precision: 0.61
+      text_precision: 0.516
+      prec_delta: 0.094
+      prec_p_value_two_sided: 0.05
+      hs_precp_fpr: 0.242
+      text_precp_fpr: 0.326
+      fpr_delta: -0.084
+      fpr_p_value_two_sided: 0.114
+      bonferroni_alpha: 0.017
+      bonferroni_pass: false
+      test_type: two-sided
+      solver: liblinear
+      canonical_file: artifacts/r1_32b_paired_bootstrap/results.json
+      note: directional but ns after Bonferroni. n=20 test traces insufficient power.
+        Old m001 FPR=0.246 used lbfgs solver (non-canonical).
+- exp_id: exp_001b_qwq_32b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    m001_corrected: true
+    best_layer_old: 1
+    best_layer_corrected: 2
+    layer_selection_metric: balanced_accuracy × crossing_rate (scheme B)
+    layer2_bal_acc: 0.73
+    layer2_crossing_rate: 0.47
+    gru_single_bal_acc_mean: 0.694
+    gru_single_crossing_mean: 0.75
+    gru_single_lead_mean: 19.3
+    gru_single_precp_fpr_mean: 0.303
+    gru_multi_bal_acc_mean: 0.724
+    gru_multi_crossing_mean: 0.84
+    gru_multi_lead_mean: 15.9
+    gru_multi_precp_fpr_mean: 0.289
+    temporal_lr_best_window: 5
+    temporal_lr_w5_bal_acc: 0.761
+    temporal_lr_w5_crossing: 0.42
+    temporal_lr_w5_lead: 23.5
+    temporal_lr_w5_precp_fpr: 0.18
+    bootstrap_phase5_invalid: true
+    bootstrap_phase5_bug: M002 - text_baseline_predictions() in exp_001b_bootstrap.py
+      used midpoint heuristic, not sentence embeddings
+    corrected_hs_vs_text:
+      hs_bal_acc: 0.679
+      text_bal_acc: 0.671
+      acc_delta: 0.009
+      acc_p_value_two_sided: 0.828
+      hs_precision: 0.583
+      text_precision: 0.525
+      prec_delta: 0.057
+      prec_p_value_two_sided: 0.346
+      hs_precp_fpr: 0.208
+      text_precp_fpr: 0.178
+      fpr_delta: 0.03
+      fpr_p_value_two_sided: 0.43
+      bonferroni_alpha: 0.017
+      bonferroni_pass: false
+      test_type: two-sided
+      solver: liblinear
+      note: No significant HS vs text difference on QwQ-32B. HS FPR slightly worse
+        than text.
+    bootstrap_conclusion: no_significant_difference
+- exp_id: exp_003_cross_transfer
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    baselines:
+      r1_8b_acc: 0.8234
+      r1_32b_acc: 0.6516
+      qwq_32b_acc: 0.7171
+    best_transfer_acc:
+      r1_8b_to_r1_32b: 0.522
+      r1_8b_to_qwq: 0.5948
+      r1_32b_to_qwq: 0.5499
+      qwq_to_r1_32b: 0.6726
+      r1_32b_to_r1_8b: 0.5828
+    transfer_method: PCA projection
+    conclusion_detail: Simple PCA projection insufficient for zero-shot cross-model
+      transfer. Signal is model-specific in geometric encoding.
+- exp_id: exp_c2_control_task
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r1_8b_selectivity: 0.1245
+    r1_32b_selectivity: 0.075
+    r1_32b_selectivity_note: layer 10 (corrected best layer). Old layer 2 = 0.168
+    r1_32b_layer10_real_acc: 0.583
+    r1_32b_layer10_random_mean: 0.508
+    r1_32b_layer10_random_std: 0.051
+    qwq_32b_selectivity: 0.153
+    qwq_32b_selectivity_note: layer 2 (corrected from layer 1 = 0.189)
+    r1_8b_hs_pre_fpr: 0.0809
+    r1_8b_position_pre_fpr: 0.1581
+    r1_8b_cp_position_mean: 0.705
+    qwq_32b_layer2_real_acc: 0.678
+    qwq_32b_layer2_random_mean: 0.526
+    qwq_32b_layer2_random_std: 0.076
+    qwq_32b_layer2_position_acc: 0.706
+    qwq_32b_layer2_hs_pre_fpr: 0.2903
+    qwq_32b_layer2_position_pre_fpr: 0.25
+    qwq_32b_layer2_issue: position_baseline (70.6%) > HS probe (67.8%)
+- exp_id: exp_007_window_ablation
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    r1_8b:
+      W1:
+        bal_acc: 0.7783
+        precision: 0.6926
+        coverage: 0.7209
+        precp_fpr_trace: 0.1037
+        precp_fpr_step: 0.0965
+        lead_mean: 13.84
+      W3:
+        bal_acc: 0.7902
+        precision: 0.7228
+        coverage: 0.6977
+        precp_fpr_trace: 0.0988
+        precp_fpr_step: 0.085
+        lead_mean: 12.07
+      W5:
+        bal_acc: 0.781
+        precision: 0.7258
+        coverage: 0.6512
+        precp_fpr_trace: 0.0913
+        precp_fpr_step: 0.0809
+        lead_mean: 8.25
+      W10:
+        bal_acc: 0.7925
+        precision: 0.7431
+        coverage: 0.5581
+        precp_fpr_trace: 0.0865
+        precp_fpr_step: 0.0761
+        lead_mean: 10.04
+      W15:
+        bal_acc: 0.8017
+        precision: 0.7767
+        coverage: 0.5116
+        precp_fpr_trace: 0.0701
+        precp_fpr_step: 0.0639
+        lead_mean: 7.23
+      W20:
+        bal_acc: 0.8072
+        precision: 0.7862
+        coverage: 0.5349
+        precp_fpr_trace: 0.0661
+        precp_fpr_step: 0.0612
+        lead_mean: 7.43
+      W25:
+        bal_acc: 0.8095
+        precision: 0.8216
+        coverage: 0.4884
+        precp_fpr_trace: 0.0545
+        precp_fpr_step: 0.0483
+        lead_mean: 8.14
+      best_bal_acc_W: 25
+    r1_32b:
+      W1:
+        bal_acc: 0.7182
+        precision: 0.549
+        coverage: 0.8
+        precp_fpr_trace: 0.2764
+        precp_fpr_step: 0.3203
+        lead_mean: 12.88
+      W3:
+        bal_acc: 0.7252
+        precision: 0.56
+        coverage: 0.8
+        precp_fpr_trace: 0.2576
+        precp_fpr_step: 0.3064
+        lead_mean: 11.38
+      W5:
+        bal_acc: 0.7309
+        precision: 0.575
+        coverage: 0.75
+        precp_fpr_trace: 0.2393
+        precp_fpr_step: 0.2841
+        lead_mean: 11.07
+      W10:
+        bal_acc: 0.7371
+        precision: 0.6093
+        coverage: 0.7
+        precp_fpr_trace: 0.1891
+        precp_fpr_step: 0.234
+        lead_mean: 10.79
+      W15:
+        bal_acc: 0.7207
+        precision: 0.5907
+        coverage: 0.7
+        precp_fpr_trace: 0.2089
+        precp_fpr_step: 0.2451
+        lead_mean: 10.86
+      W20:
+        bal_acc: 0.6961
+        precision: 0.5628
+        coverage: 0.65
+        precp_fpr_trace: 0.2193
+        precp_fpr_step: 0.2618
+        lead_mean: 9.62
+      W25:
+        bal_acc: 0.7028
+        precision: 0.5662
+        coverage: 0.7
+        precp_fpr_trace: 0.2282
+        precp_fpr_step: 0.2646
+        lead_mean: 10.71
+      best_bal_acc_W: 10
+    qwq_32b:
+      W1:
+        bal_acc: 0.7298
+        precision: 0.5435
+        coverage: 0.7895
+        precp_fpr_trace: 0.185
+        precp_fpr_step: 0.2276
+        lead_mean: 19.73
+      W3:
+        bal_acc: 0.7452
+        precision: 0.5647
+        coverage: 0.7368
+        precp_fpr_trace: 0.175
+        precp_fpr_step: 0.2141
+        lead_mean: 20.64
+      W5:
+        bal_acc: 0.761
+        precision: 0.5733
+        coverage: 0.7368
+        precp_fpr_trace: 0.1795
+        precp_fpr_step: 0.2168
+        lead_mean: 20.07
+      W10:
+        bal_acc: 0.7469
+        precision: 0.5714
+        coverage: 0.7368
+        precp_fpr_trace: 0.1707
+        precp_fpr_step: 0.2073
+        lead_mean: 18.43
+      W15:
+        bal_acc: 0.7412
+        precision: 0.5816
+        coverage: 0.6842
+        precp_fpr_trace: 0.1605
+        precp_fpr_step: 0.1911
+        lead_mean: 15.77
+      W20:
+        bal_acc: 0.7542
+        precision: 0.6024
+        coverage: 0.6316
+        precp_fpr_trace: 0.1567
+        precp_fpr_step: 0.1789
+        lead_mean: 15.75
+      W25:
+        bal_acc: 0.7624
+        precision: 0.6177
+        coverage: 0.5789
+        precp_fpr_trace: 0.1476
+        precp_fpr_step: 0.1694
+        lead_mean: 14.91
+      best_bal_acc_W: 25
+    finding: Coverage monotonically DECREASES with W across all 3 models. Temporal
+      context creates precision-sensitivity tradeoff (higher W → higher precision,
+      lower coverage, lower FPR). R1-8B dominates (lowest FPR, highest precision).
+      QwQ-32B FPR significantly lower than R1-32B with larger lead_mean.
+- exp_id: exp_ot7b_full_pipeline
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    n_traces: 228
+    best_layer: 16
+    best_layer_depth_pct: 57.1
+    best_layer_score: 0.6876
+    best_hs_window: 3
+    best_hs_bal_acc: 0.688
+    best_hs_precision: 0.466
+    best_hs_pre_cp_fpr: 0.1
+    best_hs_coverage: 0.5319
+    best_hs_lead: 21.6
+    best_text_window: 25
+    best_text_bal_acc: 0.6141
+    best_text_precision: 0.3291
+    best_text_pre_cp_fpr: 0.1605
+    bootstrap_bal_acc_delta: 0.1067
+    bootstrap_bal_acc_ci95: '[0.049, 0.163]'
+    bootstrap_bal_acc_p: 0.001
+    bootstrap_bal_acc_bonf: true
+    bootstrap_precision_delta: 0.2189
+    bootstrap_precision_ci95: '[0.140, 0.296]'
+    bootstrap_precision_p: 0.001
+    bootstrap_precision_bonf: true
+    bootstrap_fpr_delta: -0.1705
+    bootstrap_fpr_ci95: '[-0.222, -0.122]'
+    bootstrap_fpr_p: 0.001
+    bootstrap_fpr_bonf: true
+    holm_bonferroni: 3/3
+    selectivity_pp: 18.3
+    selectivity_real_acc: 0.688
+    selectivity_random_mean: 0.505
+    layer0_bal_acc: 0.672
+    layer0_precision: 0.357
+    layer0_pre_cp_fpr: 0.188
+    layer16_vs_layer0: '+9.0pp bal_acc, +20.8pp precision, -8.7pp FPR. Precision Bonf:
+      L0 p=0.056 FAIL -> L16 p<0.001 PASS'
+    layer_verification: 'Layer 16 verified superior to Layer 0: 3/3 Bonferroni (was
+      2/3 on L0)'
+    r1_8b_layer_supplement: 'Full sweep layers 0-24 confirmed: best=L12 (0.7871) ~
+      L14 (0.7830), no early-layer dominance.'
+    gru_single_l16_bal_acc: 0.7246
+    gru_single_l16_coverage: 0.667
+    gru_single_l16_lead: 35.25
+    gru_single_l16_precp_fpr: 0.2904
+    gru_multi_l13_19_bal_acc: 0.7464
+    gru_multi_l13_19_coverage: 0.645
+    gru_multi_l13_19_lead: 33.61
+    gru_multi_l13_19_precp_fpr: 0.2741
+- exp_id: exp_pathb_annotation_validation
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    tfidf_lr_f1: 0.5899
+    tfidf_lr_cp_agreement: 0.561
+    minilm_lr_f1: 0.5149
+    minilm_lr_cp_agreement: 0.534
+    threshold_f1: 0.9
+    threshold_cp: 0.85
+    failure_reason: Safety recall extremely low (41-46%). Simple classifiers cannot
+      distinguish subtle safety-aware expressions in CoT from regular reasoning. CP
+      MAE=5-6 sentences.
+    recommendation: Need LLM API annotation or fine-tuned DeBERTa 16-class classifier
+- exp_id: exp_r3_repe_direction
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r1_8b:
+      layer: 2
+      bal_acc: 0.7491
+      precision: 0.516
+      pre_cp_fpr: 0.2264
+      coverage: 0.3953
+      lead_mean: 9.7
+    r1_32b_corrected:
+      layer: 63
+      bal_acc: 0.5588
+      precision: 0.3891
+      pre_cp_fpr: 0.4986
+      coverage: 0.6
+      lead_mean: 12
+    r1_32b_old:
+      layer: 10
+      bal_acc: 0.6707
+      precision: 0.5538
+      pre_cp_fpr: 0.2423
+      coverage: 0.45
+      lead_mean: 6.3
+    qwq_32b_corrected:
+      layer: 60
+      bal_acc: 0.7562
+      precision: 0.5118
+      pre_cp_fpr: 0.3089
+      coverage: 0.7368
+      lead_mean: 11.9
+    qwq_32b_old:
+      layer: 2
+      bal_acc: 0.6661
+      precision: 0.4193
+      pre_cp_fpr: 0.3997
+      coverage: 0.7368
+      lead_mean: 13.4
+    ot_7b:
+      layer: 16
+      bal_acc: 0.718
+      precision: 0.3733
+      pre_cp_fpr: 0.2573
+      coverage: 0.5319
+      lead_mean: 26.1
+    vs_lr_r1_8b:
+      lr_bal_acc: 0.817
+      lr_precision: 0.693
+      lr_fpr: 0.097
+      repe_weaker_acc: true
+      repe_weaker_precision: true
+    finding: 'Corrected layers: R1-32B L63 RepE degrades severely (bal_acc 0.67→0.56,
+      FPR 0.24→0.50); QwQ L60 improves (bal_acc 0.67→0.76). Both still below supervised
+      LR. Unsupervised RepE direction insufficient at any layer.'
+- exp_id: exp_r3_bocpd_ot7b_w15
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    W: 15
+    fcp_null_rate: 0.53
+    note: W=15 mismatched with OT-7B best window W=3, causing 53% traces with null
+      FCP. Results unreliable due to parameter mismatch.
+    parent_best_W: 3
+- exp_id: exp_r3_mlp_probe
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    source: v1_per_model_json (K=5)
+    warning: 'over-parameterization: v2 had K=1 detection bug (coverage=1.0). v1 data
+      used here.'
+    caveat: OT-7B uses centered window; other models use causal window
+    r1_8b:
+      W1:
+        bal_acc: 0.806
+        precision: 0.646
+        fpr: 0.137
+        coverage: 0.767
+        lead: 14.27
+      W3:
+        bal_acc: 0.81
+        precision: 0.706
+        fpr: 0.1
+        coverage: 0.721
+        lead: 9.71
+      W5:
+        bal_acc: 0.843
+        precision: 0.595
+        fpr: 0.201
+        coverage: 0.884
+        lead: 12.89
+      W10:
+        bal_acc: 0.846
+        precision: 0.592
+        fpr: 0.206
+        coverage: 0.884
+        lead: 13.29
+      lr_W3: 0.79
+      lr_W5: 0.781
+      lr_W10: 0.793
+    r1_32b:
+      W3:
+        bal_acc: 0.713
+        precision: 0.585
+        fpr: 0.245
+        coverage: 0.8
+        lead: 9.12
+      W10:
+        bal_acc: 0.688
+        precision: 0.524
+        fpr: 0.332
+        coverage: 0.75
+        lead: 10.33
+      lr_W3: 0.725
+      lr_W10: 0.737
+    qwq_32b:
+      W5:
+        bal_acc: 0.604
+        precision: 0.339
+        fpr: 0.692
+        coverage: 0.842
+        lead: 33.19
+      W10:
+        bal_acc: 0.698
+        precision: 0.432
+        fpr: 0.428
+        coverage: 0.842
+        lead: 22.94
+      lr_W5: 0.761
+      lr_W10: 0.747
+    ot_7b:
+      W1:
+        bal_acc: 0.73
+        precision: 0.456
+        fpr: 0.165
+        coverage: 0.766
+        lead: 32.19
+      W3:
+        bal_acc: 0.747
+        precision: 0.343
+        fpr: 0.362
+        coverage: 0.872
+        lead: 41.22
+      lr_W3: 0.688
+    finding: 'MLP inconsistent vs LR: r1_8b +5pp at W5/10, ot_7b +6pp at W3, but r1_32b
+      -2 to -5pp, qwq_32b -5 to -16pp. Small datasets (r1_32b=100, qwq=95) likely
+      cause MLP overfitting. Signal linearly separable for most models.'
+- exp_id: exp_r3_bocpd_ot7b_w3
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    W: 3
+    layer: 16
+    n_test: 47
+    bocpd_all_lambda:
+      detection_rate: 0
+      note: W=3 probe scores too spiky (0→1 in 1-2 steps), Gaussian model fails
+    fcp_t05_k2:
+      detection_rate: 0.894
+      mean_lead: 11.83
+      median_lead: 10.5
+    fcp_t05_k3:
+      detection_rate: 0.745
+      mean_lead: 8.71
+      median_lead: 7
+    fcp_t03_k3:
+      detection_rate: 0.787
+      mean_lead: 11.92
+      median_lead: 10
+    fcp_t05_k5:
+      detection_rate: 0.468
+      mean_lead: 5.09
+      median_lead: 4.5
+    cusum_t02_h2:
+      detection_rate: 0.745
+      mean_lead: 7.46
+      median_lead: 6
+    cusum_t03_h2:
+      detection_rate: 0.702
+      mean_lead: 6.03
+      median_lead: 5
+    vs_r1_8b:
+      r1_bocpd_l10_det: 0.93
+      ot7b_bocpd_det: 0
+      r1_fcp_det: 0.651
+      ot7b_fcp_k2_det: 0.894
+      r1_fcp_lead: 4.89
+      ot7b_fcp_k2_lead: 11.83
+    finding: 'BOCPD 0% on OT-7B (all lambdas) vs 93% on R1-8B. Commitment dynamics
+      model-specific: R1-8B gradual (BOCPD works), OT-7B abrupt (simple threshold
+      optimal). Negative result confirmed cross-model for R3-W2.'
+- exp_id: exp_r3_mahalanobis_ot7b
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    layer: 16
+    pca_dims_tested:
+    - 16
+    - 32
+    - 64
+    - 128
+    - 256
+    md_separation:
+      pca16: -0.048
+      pca32: 0.012
+      pca64: 0.031
+      pca128: 0.004
+      pca256: -0.093
+    safe_md_mean_pca64: 7.68
+    post_md_mean_pca64: 7.71
+    pca64_k3_false_alarm_vs_tp:
+      p50:
+        fa_rate: 0.872
+        tp_rate: 0.385
+      p75:
+        fa_rate: 0.574
+        tp_rate: 0.231
+      p90:
+        fa_rate: 0.17
+        tp_rate: 0.154
+      p95:
+        fa_rate: 0.043
+        tp_rate: 0
+    vs_r1_8b:
+      r1_safe_md: 6.66
+      r1_post_md: 6.73
+      r1_separation: 0.07
+      ot7b_safe_md: 7.68
+      ot7b_post_md: 7.71
+      ot7b_separation: 0.03
+      failure_mode: 'identical: signal in minor PCA components, not principal directions'
+    finding: 'Mahalanobis zero discriminative power on OT-7B (separation ≈ 0 across
+      all PCA dims). False alarm rate >= true positive rate at every threshold. Failure
+      mode identical to R1-8B. R3-W2 fully addressed: 3/3 methods (BOCPD/CUSUM/Mahalanobis)
+      fail consistently across both models.'
+- exp_id: exp_r3_ccs_probe
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    r1_8b:
+      bal_acc: 0.777
+      precision: 0.565
+      fpr: 0.191
+      coverage: 0.674
+      lead: 0.7
+    qwq_32b:
+      bal_acc: 0.731
+      precision: 0.555
+      fpr: 0.214
+      coverage: 0.684
+      lead: 2
+    r1_32b:
+      bal_acc: 0.703
+      precision: 0.507
+      fpr: 0.41
+      coverage: 0.9
+      lead: 5.2
+    ot_7b:
+      bal_acc: 0.692
+      precision: 0.319
+      fpr: 0.344
+      coverage: 0.809
+      lead: 20.5
+    vs_supervised_lr_r1_8b:
+      lr_bal_acc: 0.817
+      lr_precision: 0.693
+      lr_fpr: 0.097
+      ccs_weaker: true
+    vs_repe_r1_8b:
+      repe_bal_acc: 0.749
+      ccs_better: true
+    finding: CCS is best unsupervised method (beats RepE) but still significantly
+      below supervised LR. All models needed polarity flip. FPR 0.19-0.41 across all
+      models confirms unsupervised gap.
+- exp_id: exp_r3_r1_32b_l63_bootstrap
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    method: null-centered two-sided bootstrap
+    W1:
+      bal_acc_delta: 0.187
+      bal_acc_p: 0
+      precision_delta: 0.154
+      precision_p: 0
+      fpr_delta: -0.146
+      fpr_p: 0.007
+      bonferroni_pass: 3/3
+    W3:
+      bal_acc_delta: 0.112
+      bal_acc_p: 0.02
+      precision_delta: 0.13
+      precision_p: 0.032
+      fpr_delta: -0.114
+      fpr_p: 0.077
+      bonferroni_pass: 0/3
+    W5:
+      bal_acc_delta: 0.097
+      bal_acc_p: 0.046
+      bonferroni_pass: 0/3
+    W10:
+      bal_acc_p: 0.384
+      bonferroni_pass: 0/3
+    W15:
+      bal_acc_p: 0.075
+      bonferroni_pass: 0/3
+    finding: W=1 significant 3/3 Bonferroni (alpha=0.0167). W3+ all fail after Bonferroni.
+      Confirms HS advantage exists at L63 but only robust at minimal temporal context.
+- exp_id: exp_r3_qwq_l60_bootstrap
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    method: null-centered two-sided bootstrap (bugfixed)
+    bug_fixed: missing np.mean(bd) centering caused p~0.5
+    W1:
+      bal_acc_ci: '[0.15,0.29]'
+      bal_acc_p: 0
+      precision_ci: '[0.21,0.39]'
+      precision_p: 0
+      fpr_ci: '[-0.23,-0.12]'
+      fpr_p: 0
+    W3:
+      bal_acc_p: 0
+      precision_p: 0
+      fpr_p: 0.004
+      precision_delta: 0.236
+      fpr_delta: -0.098
+    W5:
+      bal_acc_p: 0
+      precision_p: 0
+      fpr_p: 0.011
+    W10:
+      bal_acc_p: 0
+      precision_p: 0.016
+      fpr_p: 0.009
+    W15:
+      bal_acc_p: 0.004
+      precision_p: 0.003
+      fpr_p: 0.007
+    bonferroni_summary: 15/15 pass (alpha=0.0167)
+    finding: All 15 tests significant after bugfix. QwQ L60 shows robust HS advantage
+      across all windows, consistent with OT-7B. scale-dependent claim falsified.
+- exp_id: exp_r3_layer_ablation
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    models_tested: 4
+    metrics_tested: 5
+    bias_discovered: bal_acc x crossing_rate systematically selects shallow layers
+    qwq_32b:
+      biased_layer: 2
+      corrected_layer: 60
+      bal_acc_gain: +1.75pp
+      precision_gain: +11.5pp
+      fpr_reduction: -8.3pp
+    r1_32b:
+      biased_layer: 10
+      corrected_layer: 63
+      bal_acc_gain: +3.7pp
+      precision_gain: +4.1pp
+      fpr_reduction: -4.3pp
+    r1_8b:
+      biased_layer: 0
+      best_layer: 12
+      consistency: L12-L16 cluster, current L14 near-optimal
+    ot_7b:
+      biased_layer: 0
+      best_layer: 9
+      current_layer: 16
+      note: 4 metrics select 4 different layers
+    cross_metric_consistency:
+      r1_8b: CONSISTENT
+      r1_32b: VARIED (all point deep)
+      qwq_32b: VARIED (all point deep)
+      ot_7b: VARIED
+    finding: crossing_rate biases layer selection to shallow layers. Pure bal_acc/precision
+      select mid-to-deep layers (40-95% depth). R1-32B and QwQ affected most severely.
+- exp_id: exp_r3_mahalanobis_r1_32b_qwq
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    r1_32b:
+      layer: 63
+      safe_md: 6.73
+      post_md: 6.88
+      separation: 0.15
+      best_pca: 64
+    qwq_32b:
+      layer: 60
+      safe_md: 3.22
+      post_md: 3.42
+      separation: 0.2
+      best_pca: 16
+    cross_model_summary:
+      r1_8b_sep: 0.07
+      ot_7b_sep: 0.03
+      r1_32b_sep: 0.15
+      qwq_32b_sep: 0.2
+      max_separation: 0.2
+      all_fail: true
+    finding: 4/4 models Mahalanobis fails. Max separation 0.20 (QwQ), false alarm
+      rate >= true positive at every threshold. Signal in minor PCA components, not
+      principal directions.
+- exp_id: exp_r3_bocpd_r1_32b_qwq
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    r1_32b:
+      layer: 10
+      W: 10
+      bocpd_det: 0
+      cusum_det: 0.85
+      cusum_lead: 2.59
+      fcp_det: 0.95
+      fcp_lead: 5.68
+    qwq_32b:
+      layer: 2
+      W: 5
+      bocpd_det: 0
+      cusum_det: 0.737
+      cusum_lead: 9.86
+      fcp_det: 0.789
+      fcp_lead: 9.4
+    cross_model_bocpd:
+      r1_8b: 0.93
+      r1_32b: 0
+      ot_7b: 0
+      qwq_32b: 0
+      only_r1_8b_works: true
+    finding: BOCPD 0% on 3/4 models (only R1-8B exception at 93%). CUSUM universally
+      inferior to simple FCP threshold. Advanced change-point methods fail for safety
+      commitment detection.
+- exp_id: exp_r3_coverage_bias
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r1_8b:
+      total: 268
+      included: 209
+      excluded: 59
+      exclusion_rate: 0.22
+    r1_32b:
+      total: 100
+      excluded: 0
+      exclusion_rate: 0
+    qwq_32b:
+      total: 95
+      excluded: 0
+      exclusion_rate: 0
+    exclusion_reason: All 59 excluded traces are jailbreak with no safety reasoning
+      phase (no commitment point annotatable)
+    length_test:
+      excluded_mean: 38
+      included_mean: 46.3
+      mann_whitney_p: 0.0001
+      excluded_shorter: true
+    finding: 22% exclusion in R1-8B is task-definitional (no CP to annotate), not
+      sampling bias. R1-32B/QwQ 0% exclusion. Coverage metric valid within annotatable
+      population.
+- exp_id: exp_r3_selectivity_ci_raw
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    feature_type: raw 5120-d (no PCA)
+    real_acc: 0.584
+    random_mean: 0.508
+    selectivity_pp: 7.6
+    bootstrap_mean_pp: 8.4
+    bootstrap_std_pp: 6.7
+    ci_95: '[-3.9, 22.7]pp'
+    p_value: 0.107
+    significant: false
+    vs_pca128:
+      pca128_selectivity: 15.9
+      pca128_p: 0
+      pca128_ci: '[9.7, 21.9]pp'
+    finding: Raw 5120-d selectivity 7.6pp not significant (p=0.107, CI includes 0).
+      Under-determined n&lt;p without PCA. PCA-128 gives 15.9pp (p<0.001) — dimensionality
+      reduction needed for reliable selectivity.
+- exp_id: exp_r3_gru_per_seed
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    seeds:
+    - 42
+    - 123
+    - 456
+    - 789
+    - 1024
+    split: 70/30
+    bal_acc:
+      mean: 0.772
+      std: 0.038
+      min: 0.729
+      max: 0.833
+    crossing_rate:
+      mean: 0.711
+      std: 0.121
+    lead_mean:
+      mean: 8.2
+      std: 2.9
+    fpr:
+      mean: 0.229
+      std: 0.075
+    vs_single_seed:
+      single_seed_bal_acc: 0.839
+      multi_seed_mean: 0.772
+      delta: -0.067
+      note: Single seed (0.839) is optimistic; multi-seed mean (0.772) more representative
+    finding: GRU robust across 5 seeds (std=3.8pp < 5pp threshold). Single-seed result
+      overestimates by ~6.7pp. Lead time high variance (std=2.9) indicates sensitivity
+      to data split.
+- exp_id: exp_r3_selectivity_corrected
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    qwq_32b_l60:
+      real_acc: 0.667
+      random_mean: 0.523
+      random_std: 0.051
+      selectivity_pp: 14.4
+      position_baseline_acc: 0.705
+      layer: 60
+    r1_32b_l63:
+      real_acc: 0.746
+      random_mean: 0.549
+      random_std: 0.06
+      selectivity_pp: 19.7
+      position_baseline_acc: 0.624
+      layer: 63
+    comparison:
+      qwq_old_l2: 15.3
+      qwq_new_l60: 14.4
+      r1_32b_old_l10: 7.5
+      r1_32b_new_l63: 19.7
+    both_pass_5pp: true
+    finding: Both corrected layers pass 5pp threshold. R1-32B selectivity dramatically
+      improves from 7.5pp (L10) to 19.7pp (L63). QwQ stable (15.3→14.4pp). Deep layers
+      encode stronger safety signal beyond positional confounds.
+- exp_id: exp_r3_bootstrap_10k
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    n_resamples: 10000
+    holm_bonferroni: 12/12 pass
+    tests:
+      r1_8b_bal_acc:
+        delta: 0.1796
+        p: 0
+        rank: 1
+      r1_8b_precision:
+        delta: 0.2786
+        p: 0
+        rank: 2
+      r1_8b_fpr:
+        delta: -0.1255
+        p: 0
+        rank: 3
+      ot_7b_precision:
+        delta: 0.2189
+        p: 0
+        rank: 4
+      ot_7b_fpr:
+        delta: -0.1705
+        p: 0
+        rank: 5
+      r1_32b_bal_acc:
+        delta: 0.1871
+        p: 0
+        rank: 6
+      r1_32b_precision:
+        delta: 0.1544
+        p: 0
+        rank: 7
+      qwq_32b_bal_acc:
+        delta: 0.1478
+        p: 0
+        rank: 8
+      qwq_32b_precision:
+        delta: 0.2349
+        p: 0
+        rank: 9
+      ot_7b_bal_acc:
+        delta: 0.1067
+        p: 0.0003
+        rank: 10
+      qwq_32b_fpr:
+        delta: -0.0952
+        p: 0.0061
+        rank: 11
+      r1_32b_fpr:
+        delta: -0.1457
+        p: 0.0096
+        rank: 12
+    marginal_tests:
+      r1_32b_fpr:
+        p: 0.0096
+        threshold: 0.05
+      qwq_32b_fpr:
+        p: 0.0061
+        threshold: 0.025
+    r1_8b_fpr_clarification: R1-8B FPR at W=3 is p<0.0001 (rank 3), not marginal.
+      The 0.044 was from old W=15 config.
+    finding: 'All 12/12 Holm-Bonferroni pass with 10000 resamples. R1-8B FPR not marginal
+      at corrected W=3. Actual marginal tests: R1-32B FPR (p=0.0096) and QwQ FPR (p=0.0061),
+      both passing comfortably.'
+- exp_id: exp_r5_auroc_layer_sweep
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    r1_8b:
+      auroc_best_layer: 13
+      auroc_best: 0.806
+      paper_layer: 14
+      auroc_at_paper: 0.803
+      match: near-match (adjacent, delta=0.003)
+    ot_7b:
+      auroc_best_layer: 1
+      auroc_best: 0.777
+      paper_layer: 16
+      auroc_at_paper: 0.746
+      match: no (flat landscape 0.70-0.78)
+    qwq_32b:
+      auroc_best_layer: 32
+      auroc_best: 0.839
+      paper_layer: 60
+      auroc_at_paper: 0.756
+      match: no (AUROC prefers mid-depth ~50%)
+    r1_32b:
+      auroc_best_layer: 31
+      auroc_best: 0.897
+      paper_layer: 63
+      auroc_at_paper: 0.767
+      match: no (AUROC prefers mid-depth ~50%)
+    finding: 'AUROC does NOT converge to the same deep layers. For 32B models, AUROC
+      selects mid-depth layers (~50%) vs paper''s very deep layers (>90%). R1-8B near-match
+      only. Note: worker applied PCA-256 on 32B models to handle dimensionality, which
+      may affect results.'
+- exp_id: exp_r5_pca384_control
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    holm_bonferroni: 10/12 reject
+    tests:
+      r1_8b_bal_acc:
+        pca384: 0.7001
+        text: 0.6875
+        delta: 0.0126
+        p: 0.731
+        reject: false
+      r1_8b_precision:
+        pca384: 0.8162
+        text: 0.5852
+        delta: 0.231
+        p: 0
+        reject: true
+      r1_8b_fpr:
+        pca384: 0.0668
+        text: 0.1614
+        delta: -0.0947
+        p: 0.003
+        reject: true
+      ot_7b_bal_acc:
+        pca384: 0.7558
+        text: 0.643
+        delta: 0.1128
+        p: 0
+        reject: true
+      ot_7b_precision:
+        pca384: 0.5225
+        text: 0.3545
+        delta: 0.1681
+        p: 0
+        reject: true
+      ot_7b_fpr:
+        pca384: 0.1207
+        text: 0.2477
+        delta: -0.127
+        p: 0
+        reject: true
+      qwq_bal_acc:
+        pca384: 0.8116
+        text: 0.6504
+        delta: 0.1612
+        p: 0
+        reject: true
+      qwq_precision:
+        pca384: 0.608
+        text: 0.4213
+        delta: 0.1867
+        p: 0
+        reject: true
+      qwq_fpr:
+        pca384: 0.173
+        text: 0.2871
+        delta: -0.1141
+        p: 0.038
+        reject: false
+      r1_32b_bal_acc:
+        pca384: 0.7471
+        text: 0.6461
+        delta: 0.1011
+        p: 0.011
+        reject: true
+      r1_32b_precision:
+        pca384: 0.6343
+        text: 0.4503
+        delta: 0.184
+        p: 0.002
+        reject: true
+      r1_32b_fpr:
+        pca384: 0.2256
+        text: 0.3809
+        delta: -0.1553
+        p: 0.006
+        reject: true
+    pca_explained_variance:
+      r1_8b: 0.793
+      ot_7b: 0.828
+      qwq_32b: 0.881
+      r1_32b: 0.924
+    finding: 'Modality advantage persists at matched 384d dimensionality. 10/12 Holm-Bonferroni
+      reject. Precision gains +16.8 to +23.1pp across all 4 models. Two non-rejections:
+      R1-8B bal_acc (small delta 1.3pp) and QwQ FPR (raw p=0.038, adj threshold too
+      strict).'
+- exp_id: exp_safe_trace_fpr_multimodel
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    ot7b_hs_static_fpr: 0.111
+    ot7b_text_static_fpr: 0.302
+    ot7b_hs_temp_fpr: 0.175
+    ot7b_text_temp_fpr: 0.46
+    qwq_hs_static_fpr: 0.5
+    qwq_text_static_fpr: 0.325
+    qwq_hs_temp_fpr: 0.45
+    qwq_text_temp_fpr: 0.425
+    r1_32b_hs_static_fpr: 0.239
+    r1_32b_text_static_fpr: 0.31
+    r1_32b_hs_temp_fpr: 0.239
+    r1_32b_text_temp_fpr: 0.31
+- exp_id: exp_qwq_safe_fpr_correct_lr
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    hs_cv_acc: 0.935
+    hs_step_fpr: 0.279
+    hs_trace_fpr_k5: 0.475
+    text_cv_acc: 0.667
+    text_step_fpr: 0.394
+    text_trace_fpr_k5: 0.5
+- exp_id: exp_bge_large_text_comparison
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r1_8b_hs_prec: 0.497
+    r1_8b_bge_prec: 0.436
+    r1_8b_diff: 0.058
+    r1_8b_p: 0.185
+    r1_8b_hb: false
+    ot_7b_hs_prec: 0.446
+    ot_7b_bge_prec: 0.263
+    ot_7b_diff: 0.181
+    ot_7b_p: 0
+    ot_7b_hb: true
+    r1_32b_hs_prec: 0.588
+    r1_32b_bge_prec: 0.475
+    r1_32b_diff: 0.117
+    r1_32b_p: 0.027
+    r1_32b_hb: false
+    qwq_32b_hs_prec: 0.545
+    qwq_32b_bge_prec: 0.454
+    qwq_32b_diff: 0.094
+    qwq_32b_p: 0.132
+    qwq_32b_hb: false
+    hb_pass_count: 1/4
+- exp_id: nested_cv_7_8b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r1_8b_mean_delta_prec: 0.174
+    r1_8b_std_delta_prec: 0.026
+    r1_8b_hs_better_folds: 5/5
+    ot_7b_mean_delta_prec: 0.164
+    ot_7b_std_delta_prec: 0.033
+    ot_7b_hs_better_folds: 5/5
+    total_hs_better: 10/10
+- exp_id: random_cp_qwq32b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    real_cp_cr_composite_layer: 4
+    real_cp_precision_layer: 63
+    real_cp_gap: 59
+    random_cp_cr_shallow_freq: 0.8
+    random_cp_precision_deep_freq: 0.2
+    metric_disagreement_replicates: false
+- exp_id: split_half_ot7b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    half1_cr_composite_layer: 0
+    half2_cr_composite_layer: 0
+    half1_precision_layer: 20
+    half2_precision_layer: 26
+    half1_delta_prec: 0.262
+    half2_delta_prec: 0.154
+    cr_composite_both_shallow: true
+    threshold_both_deep: true
+    delta_precision_same_direction: true
+    delta_ba_same_direction: true
+    all_checkpoints_pass: true
+- exp_id: sf3_quadratic_residual
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r1_8b_linear_gap: 0.104
+    r1_8b_linear_p: 0.0001
+    r1_8b_linear_hb: true
+    r1_8b_quad_gap: 0.103
+    r1_8b_quad_p: 0.0001
+    r1_8b_quad_hb: true
+    ot_7b_linear_gap: 0.114
+    ot_7b_linear_p: 0.0001
+    ot_7b_linear_hb: true
+    ot_7b_quad_gap: 0.098
+    ot_7b_quad_p: 0.0003
+    ot_7b_quad_hb: true
+    r1_32b_linear_gap: -0.014
+    r1_32b_linear_p: 0.598
+    r1_32b_linear_hb: false
+    r1_32b_quad_gap: 0
+    r1_32b_quad_p: 0.499
+    r1_32b_quad_hb: false
+    qwq_32b_l60_w3_linear_gap: 0.074
+    qwq_32b_l60_w3_linear_p: 0.0017
+    qwq_32b_l60_w3_linear_hb: true
+    qwq_32b_l60_w3_quad_gap: -0.01
+    qwq_32b_l60_w3_quad_p: 0.6384
+    qwq_32b_l60_w3_quad_hb: false
+    note: QwQ corrected from layer_idx=63 to L60, W=3
+- exp_id: n6_multi_metric_ensemble
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r1_8b_ensemble_prec: 0.565
+    r1_8b_best_single_prec: 0.604
+    r1_8b_text_prec: 0.372
+    r1_8b_ens_vs_text_gap: 0.193
+    ot_7b_ensemble_prec: 0.506
+    ot_7b_best_single_prec: 0.473
+    ot_7b_text_prec: 0.236
+    ot_7b_ens_vs_text_gap: 0.27
+    qwq_32b_ensemble_prec: 0.578
+    qwq_32b_best_single_prec: 0.578
+    qwq_32b_text_prec: 0.374
+    qwq_32b_ens_vs_text_gap: 0.203
+    r1_32b_ensemble_prec: 0.581
+    r1_32b_best_single_prec: 0.583
+    r1_32b_text_prec: 0.476
+    r1_32b_ens_vs_text_gap: 0.105
+    all_ens_vs_text_significant: true
+    ens_vs_text_p_max: 0.002
+    ens_never_worse_than_best_single: true
+    ot_7b_ens_beats_best_single: 0.033
+- exp_id: r1_8b_full_layer_sweep
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    best_layers:
+      bal_acc:
+        W1: L12
+        W3: L12
+        W5: L12
+        W15: L11
+      precision:
+        W1: L16
+        W3: L12
+        W5: L12
+        W15: L9
+      fpr:
+        W1: L16
+        W3: L9
+        W5: L9
+        W15: L8
+      crossing_rate:
+        W1: L0
+        W3: L0
+        W5: L0
+        W15: L0
+      composite:
+        W1: L16
+        W3: L12
+        W5: L12
+        W15: L9
+    max_layer_gap_same_model: 16
+    hs_vs_text_gap: 0.15-0.17 stable across all layers
+    shallow_bias_W15_only: true
+    traces: 209
+    seed: 42
+- exp_id: advbench_r1_8b_full
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: pca_artifact_verification
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    pca100d_best_precision: 0.633
+    nopca_best_precision: 0.732
+    pca100d_best_fpr: 0.145
+    nopca_best_fpr: 0.072
+    pca100d_best_composite: 0.43
+    nopca_best_composite: 0.803
+    pca100d_cr_best_layer: L0
+    nopca_best_layer_range: L9-L16
+    n_traces: 209
+- exp_id: advbench_llm_cp_annotation
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: advbench_llm_cp_full
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: qwen3_cp_dryrun
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: qwen3_cp_dryrun2
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: qwen3_cp_full
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: gpt4omini-cp-annotation
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: advbench_phase4_layer_sweep
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: random_cp_r1_8b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    crossing_rate_random_mean_layer: 10.7
+    crossing_rate_random_shallow_pct: 0
+    precision_random_mean_layer: 0
+    precision_random_shallow_pct: 100
+    metric_disagreement_replicates: false
+    real_cp_cr_composite_layer: 0
+    real_cp_precision_layer: 23
+    real_cp_gap: 23
+    elapsed_s: 105.4
+- exp_id: ensemble_cv_7_8b
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+
+
+## what_if (hypothetical experiments — additive)
+
+- name: advbench_layer_bias_replication
+  claim: C1 (layer selection bias)
+  description: 'Replicate layer selection bias on AdvBench using jailbreak/safe binary
+    labels (no CP needed). Train probes on R1-8B AdvBench traces, run 5-metric layer
+    selection analysis. Expected: CR-composite selects shallow layers, threshold-based
+    selects deep layers, confirming bias is model-geometric not dataset-specific.
+    Results in appendix table + main text one-sentence reference.'
+  estimated_gpu_hours: 6.0
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: best
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+重要：tables 中使用 YAML flow sequence 时，所有字符串必须加双引号（如 `columns: ["Judge", "Biased?"]`），否则 `?` `:` 等字符会导致解析失败。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b2fb1c64-67bf-4a44-a63d-ee32f01d332f",
+  "type": "user",
+  "uuid": "cec2f2fd-297b-46f2-82e8-2b34731fb38a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-22T08:57:23.379Z_
+
+```json
+{
+  "parentUuid": "cec2f2fd-297b-46f2-82e8-2b34731fb38a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a5ef4a0d-9804-4b7c-a120-27325fa80ae4",
+  "timestamp": "2026-05-22T08:57:23.379Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-22T08:57:23.379Z_
+
+```json
+{
+  "parentUuid": "a5ef4a0d-9804-4b7c-a120-27325fa80ae4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d4cb0e66-33c7-4d94-8d11-9d1764041844",
+  "timestamp": "2026-05-22T08:57:23.379Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质' 核心假设：['layer selection bias是模型表征的几何性…",
+  "leafUuid": "d4cb0e66-33c7-4d94-8d11-9d1764041844",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "AdvBench layer selection bias replication",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-22T09:00:56.115Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate detailed predicted results for each "planned" experiment in the experiment_plan, under the "best" tier scenario. Let me analyze the experiment plan and the best tier definition carefully.
+
+The best tier means:
+- AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层
+- HS在深层显著优于text
+- 跨数据集验证成立
+- C1从'单数据集发现'升级为'模型几何性质'
+
+Key metrics ranges for best:
+- cr_composite_layer_depth_pct: [0, 16]
+
+
+- threshold_layer_depth_pct: [32, 64]
+- layer_gap_abs: [8, 16]
+- layer_gap_depth_pct: [32, 64]
+- hs_bal_acc_at_threshold_layer: [0.72, 0.82]
+- hs_text_precision_delta_pp: [10, 25]
+- hb_pass_rate: [0.67, 1.0]
+- crossing_rate_shallow_vs_deep_ratio: [1.5, 3.0]
+- dream_score_delta: [0.15, 0.35]
+
+Now I'm mapping out the experimental plan across thirteen different approaches, starting with cross-architecture hidden-state extraction and layer sweeps on the larger models, then moving into temporal window evaluation, cross-model transfer, and lead time analysis. I'll also be testing baseline methods like Mahalanobis distance, confidence intervals, and various ablations on window size and layer selection, plus exploring supervision with a 16-label taxonomy and oracle decomposition before testing on smaller models and different probe architectures.
+
+Looking at the registry though, I notice many of these experiments are already marked as done, but the user wants predictions for all of them under the best-case scenario—this is essentially a what-if exercise where I'm generating imagined results for the full experimental suite. I need to clarify what the user is actually asking for. They want me to generate predicted results for each planned experiment in the experiment_plan, treating them as if they were executed at the "best" tier level that was defined in Phase 1. Even though many of these experiments already have results in the registry, the task here is to imagine what the best-case outcomes would look like for all of them, with detailed rationales for each prediction.
+
+Generating YAML output with predictions for all experiments... I need to work through each of the 15 planned experiments and predict their outcomes under the best-tier scenario. For the ones already in the registry, I'll align my predictions with what actually happened. The key insight is that the AdvBench what_if experiment sits on top of this foundation—it's the additional test that defines what "best" means. Let me map out the predictions for each, keeping in mind which have real results to anchor to and which are purely speculative. confirmed
+
+**exp-014**: BOCPD
+- Done, negative
+- Best tier: still fails
+
+**exp-015**: FPR analysis
+- Done
+- Best tier: HS lower FPR
+
+Plus the what_if: advbench_layer_bias_replication
+
+Now I'm pulling together the comprehensive YAML with detailed metrics, tables, and figures. The core narrative centers on AdvBench replication success, layer selection bias as a geometric property, and how CR-composite favors shallow layers while threshold-based methods go deep. HS consistently outperforms text at deeper layers with a gap of at least 8 layers, and cross-dataset validation confirms the C1 pattern. I'll organize this around the key metric showing cr_composite_layer_depth_pct ranging from 0 to 16, mapping to layers 0-4 across the R1-8 runs.
+
+Now I'm specifying the metric ranges for the best tier: threshold methods select layers 10-20 for 32-layer models and 20-41 for 64-layer models, with layer gaps between 8 and 16, HS balanced accuracy at threshold layers between 0.72 and 0.82, precision deltas of 10-25 percentage points, and crossing rates showing 1.5 to 3.0 ratio between shallow and deep performance. Writing YAML predictions... Writing YAML config... for each experiment under the best tier:
+
+**exp-001 (layer sweep 32B)**:
+- R1-32B: best layer at L63 (98% depth) for threshold metrics
+- QwQ-32B: best layer at L60 (94% depth) for threshold metrics
+- CR-composite selects L10 (R1-32B) and L2 (QwQ)
+- This aligns with actual registry results
+
+**exp-002 (temporal 32B)**:
+- R1-32B: temporal W=1 best (3/3 HB)
+- QwQ-32B: temporal improves across all W
+- Coverage improvement less dramatic than original 30pp claim
+
+**exp-003 (cross-transfer)**:
+- All transfers fail (best ~58% vs 72-82% within-model)
+- Confirms model-specificity
+
+**exp-004 (lead time)**:
+- R1-8B shows minimal HS signal with text inflated by false positives, while R1-32B gains 11-13 steps on HS; QwQ performs poorly with minimal lead, and OT-7B's 33-step GRU advantage appears inflated by trace length
+
+**exp-005 (Mahalanobis)**:
+- Separation near zero across all models, with signal concentrated in minor PCA components
+
+**exp-006 (bootstrap)**:
+- All 12 models pass the HB test with corrected layer assignments
+
+**exp-007 (window ablation)**:
+- Coverage decreases as window size increases while precision and FPR both improve with larger windows
+
+**exp-008 (layer ablation)**:
+- Crossing rate drives shallow layer selection, pure balanced accuracy favors middle layers, and precision/FPR metrics shape composite behavior across deep layers
+
+**exp-009 (16-label taxonomy)**:
+- Fine-grained labels yield modest 2-3 percentage point gains but don't fundamentally transform performance
+
+**exp-010 (oracle decomposition)**:
+- Oracle's 31-step advantage stems from encoding future trajectory rather than current state, with position and timing information accounting for part of this gap
+
+**exp-011 (OT-7B)**:
+- Achieves 3/3 HB passes at layer 16 with the highest selectivity at 18.3 percentage points, confirming the 7B pattern holds on Qwen architecture
+
+**exp-012 (GRU 32B)**:
+- GRU shows modest gains over logistic regression, though R1-32B becomes unstable at the corrected layer 63 while QwQ maintains a 15.9 percentage point GRU lead
+
+**exp-013 (text baseline)**:
+- Text probes reach approximately 15 percentage points but fall 18 points below HS accuracy, with inflated lead times driven by higher false positive rates
+
+**exp-014 (BOCPD)**:
+- Only R1-8B achieves 93% detection while the other three models show 0% detection, and CUSUM performs universally worse across the board
+
+**exp-015 (FPR)**:
+- HS maintains lower pre-changepoint false positive rates than text across all models, though safe FPR remains high at 39-62% for all methods
+
+**advbench_layer_bias_replication**:
+- CR-composite selects layer 2 at 6% depth while threshold metrics select layer 14 at 45% depth, creating a 12-layer gap; HS achieves 0.76 balanced accuracy at layer 14 with an 18 percentage point precision advantage over text, and all 3 HB metrics pass
+- The crossing rate ratio between shallow and deep layers is 2.2
+
+Now I'm verifying the layer selections for R1-8B across the original data and AdvBench. On the original dataset, CR-composite picks layer 0 while pure balanced accuracy selects layer 12 and precision selects layer 16, but for AdvBench I'd expect CR-composite to land in the shallow range around layers 1-3 while threshold metrics cluster in the deeper range around layers 12-16, maintaining roughly a 10-layer gap between them.
+
+Checking the math: with 32 total layers, layer 2 sits at about 6.5% depth and layer 14 at 45% depth, giving a gap of roughly 12 layers or 38.7% depth—this aligns with the expected ranges. For the HS performance on AdvBench, binary jailbreak/safe labels are coarser than the original CP labels, so I'd expect slightly lower balanced accuracy around 0.74-0.78 compared to 0.81 on the original data, though the underlying pattern should still hold.
+
+Writing the YAML configuration... Writing the comprehensive output... Writing the YAML output...
+
+I need to clarify how the AdvBench experiment handles its binary trace-level labels—since there's no step-level commitment point annotation, I'm training probes on per-step hidden states but using the overall trace outcome (jailbreak or safe) as the label for all steps, then computing crossing rates and other metrics from the resulting probability sequences across the trace. Now I'm thinking through how the metrics work with these binary labels—balanced accuracy, precision, crossing rate, and false positive rate all remain meaningful when classifying whether steps belong to jailbreak or safe traces. I'm confident enough in the setup to move forward with writing the YAML configuration. But there's a wrinkle with the experiment registry: the user wants all experiments treated as "to be predicted" with best-tier predictions, even the ones already completed, so the predictions should reflect what would happen under ideal conditions and ideally align with or improve on the actual results.
+
+Re-reading the request, I think the user wants me to generate best-case predicted results for all 15 experiments in the plan, creating a complete simulation of the optimal scenario across the board. But generating detailed predictions for 16 experiments with full metrics, rationale, tables, and analysis would balloon into thousands of lines of YAML, which seems impractical. I need to find a way to be efficient here while still delivering what's being asked for.
+
+Looking at the experiment_plan status fields, they're all marked as "planned" even though the registry shows many completed experiments. This suggests the plan was created before the experiments ran and hasn't been updated. For the best-tier what_if scenario, I should use the actual results where they exist, since the AdvBench addition doesn't retroactively change what already happened. For the remaining planned experiments, I'll provide essential metrics and rationale without tables for every single one—just the most critical experiments get detailed breakdowns. I'm going through the experiment registry to identify which ones are actually complete versus which need predictions—exp-009 and exp-010 aren't in the registry at all, while most others have documented results, though a few like exp-004 and exp-012 only have partial data available.
+
+Now I'm understanding what the user wants: generate a complete "best tier" prediction document where each of the 15 planned experiments plus the what_if scenario shows results under optimal conditions, with metrics that are internally consistent and realistic for the paper's strongest possible outcome.
+
+The key insight is that "best tier" hinges on AdvBench replication—for the original experiments, it means the strongest plausible version of their results, and for the what_if, it means full replication of the bias pattern. I'm going to structure this as a comprehensive YAML document with predicted metrics for each experiment. The original 15 experiments establish the baseline—I need to predict results that align with the actual registry data and support the paper's core claims. For the AdvBench experiment, the real value comes from best-tier results that demonstrate the layer selection bias pattern across models, validate the threshold metrics distinction between shallow and deep layers, and show HS significantly outperforming text baselines. This would push the dream_score from 3.0 toward 3.15-3.25, moving the paper closer to borderline conference acceptance. The AdvBench results are the linchpin—they either confirm the geometric properties discovered in the original experiments or they don't, so I need to specify what the metrics would look like for R1-8B and other models on those traces. R1-8B (Llama-8B, R1-distilled)
+- Data: AdvBench prompts → generate R1-8B reasoning traces
+- Labels: binary (jailbreak/safe) based on harmful output detection
+- Expected n: ~100-150 traces (AdvBench has 520 behaviors, but R1-8B won't jailbreak on all)
+- Train/test split: 60/20/20
+
+Layer selection (5 metrics × 32 layers):
+1. bal_acc × crossing_rate: L2 (6.5% depth) — shallow, biased
+2. pure bal_acc: L11 (35.5% depth) — middle
+3. precision: L15 (48.4% depth) — deep-ish
+4. inverse FPR (1-FPR): L14 (45.2% depth) — deep
+5. composite (precision + (1-FPR) + bal_acc): L14 (45.2% depth) — deep
+
+Layer gap: L2 → L14 = 12 layers (38.7% depth)
+
+At the threshold layer (L14), hidden states show strong performance with 76% balanced accuracy and 68% precision, while text-based detection lags at 65% and 50% respectively—a gap of 11 and 18 percentage points. The false positive rate is notably lower for hidden states (15%) compared to text (28%), a 13-point improvement. Bootstrap validation confirms the hidden state approach passes on precision and balanced accuracy, with FPR showing borderline results given the smaller sample size.
+
+The crossing rate drops from 0.42 at L2 to 0.19 at L14, a 2.21× reduction that falls within the expected range. Everything validates, so I'm ready to write the YAML output with comprehensive tables and figure descriptions.
+
+For the AdvBench experiment, R1-8B will refuse most of the 520 harmful behaviors due to safety training, but some slip through as jailbreaks—roughly 60-70% refusals and 30-40% jailbreaks. The traces will be shorter than the original dataset (around 25-35 sentences versus 46), which means less temporal structure for the probes to learn from, though the layer-level patterns should still emerge.
+
+The key realization is that crossing rate bias operates on geometric principles rather than temporal dynamics, so even with shorter traces, the pattern should replicate clearly under the best tier setup. Now I'm structuring the YAML output with all 15 experiments organized by plan ID, being careful with the syntax.
+
+Writing YAML output... - Strings with special chars must be quoted
+- Flow sequences need quoted strings: ["a", "b"]
+- Multi-line strings use | or >
+- Nested structures need proper indentation
+
+Now I'm tracking what constitutes success for each experiment—the clearest results that validate the core narrative. Most experiments show either strong statistical support (like exp-006 with 12/12 HB passes), clean mechanistic insights (exp-010's oracle analysis), or confirmatory failures that strengthen the model-specificity argument (exp-003, exp-005, exp-014). The pattern holds across model variants and probe types, with text consistently underperforming and linear models proving sufficient, culminating in the advbench replication that brings all metrics into target range. I need to provide detailed predicted metrics for each experiment in the plan, with rationales for each prediction. For experiments already completed, the "best" outcome is the actual result we achieved. For planned experiments, I'm aiming for the most optimistic but realistic scenario that would strengthen the paper's contributions.
+
+The AdvBench replication is the critical new experiment—if it succeeds, it directly validates that bias isn't just an artifact of our dataset, which addresses a major methodological concern. This would push the dream score from 3.0 toward 3.15-3.25, moving us closer to conference acceptance by demonstrating reproducibility and cross-dataset robustness. The narrative should emphasize how this transforms the work from an empirical study into a validated methodology.
+
+Now I'm checking that my metrics align with the AdvBench constraints—making sure the layer selections respect the depth requirements, that the gaps between shallow and deep layers are sufficient, and that the performance thresholds fall within realistic ranges for this model and dataset. Looking at the AdvBench probe results in detail, the shallow layer shows decent balanced accuracy but struggles with precision and has a high crossing rate that suggests it's too trigger-happy, while the deep layer improves significantly on precision and stabilizes the crossing rate—exactly the bias correction pattern I'd expect. The text-based probe at the deep layer trails behind the handwriting probe on precision, which aligns with the earlier delta observation.
+
+Now examining the statistical significance of this gap: the 11-18 percentage point differences across balanced accuracy, precision, and false positive rate all hold up under bootstrap testing with n=30 traces, with p-values well below 0.05 and confidence intervals that don't cross zero even after Bonferroni correction for multiple comparisons. This sample size and effect magnitude should produce reliable results, so the handwriting advantage over text at the deep layer appears genuine.
+
+Comparing against the AdvBench dataset shows slightly degraded performance due to coarser labels and shorter traces, but the same pattern emerges—the corrected layer consistently outperforms the composite layer. That consistency across datasets is what matters most here.
+
+Writing YAML configuration...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4cb0e66-33c7-4d94-8d11-9d1764041844",
+  "isSidechain": false,
+  "requestId": "req_011CbHL64n7mbQEef2cd1jxq",
+  "type": "assistant",
+  "uuid": "edaee20b-af02-4312-bb75-3ed630d2a36b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QskVrvaSqaXS5JvoiFHzTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 37108,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 10885,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 37108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 10885,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 37108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 37108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-22T09:00:56.118Z_
+
+Let me review the experiment plan and registry to construct internally-consistent best-tier predictions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edaee20b-af02-4312-bb75-3ed630d2a36b",
+  "isSidechain": false,
+  "requestId": "req_011CbHL64n7mbQEef2cd1jxq",
+  "type": "assistant",
+  "uuid": "256f2576-cdd4-4370-a2ba-9e6fde47b6c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QskVrvaSqaXS5JvoiFHzTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 37108,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 10885,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 37108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 10885,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 37108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 37108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T09:00:56.469Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01PS6uiJrVbTMCyzRKy6NJkF`</summary>
+
+```json
+{
+  "pattern": "**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "256f2576-cdd4-4370-a2ba-9e6fde47b6c6",
+  "isSidechain": false,
+  "requestId": "req_011CbHL64n7mbQEef2cd1jxq",
+  "type": "assistant",
+  "uuid": "0878d6fb-cea2-4e3f-9c56-7a59c52e1814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QskVrvaSqaXS5JvoiFHzTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 37108,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 10885,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 37108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 10885,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 37108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 37108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T09:00:56.519Z_
+
+<details><summary>↩ Tool result · `toolu_01PS6uiJrVbTMCyzRKy6NJkF`</summary>
+
+```text
+.claude/sessions/no_project_3780bb6c/CLAUDE.md
+.claude/sessions/no_project_3780bb6c/AGENTS.md
+.claude/sessions/idea_reviewer_7aba9979/CLAUDE.md
+.claude/sessions/idea_reviewer_7aba9979/AGENTS.md
+projects/structfuse-context/artifacts/mvp_p1_codeql_feasibility/report/mvp_phase1_report.md
+projects/structfuse-context/artifacts/mvp_p2b_contrastive_training/report/failure_diagnosis.md
+projects/structfuse-context/task_context/history/director/loop_1.md
+projects/structfuse-context/task_context/history/agent/loop_1.md
+projects/structfuse-context/task_context/history/agent/loop_1_1778635668.md
+projects/structfuse-context/task_context/history/reviewer/loop_2.md
+projects/structfuse-context/artifacts/_project/report/50repo_overlap_report.md
+projects/structfuse-context/docs/IDEA_BRIEF.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/best/review_report.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/median/review_report.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/worst/review_report.md
+projects/structfuse-context/docs/handoff_20260513.md
+projects/structfuse-context/task_context/history/reviewer/loop_3.md
+projects/structfuse-context/task_context/history/agent/loop_2.md
+projects/structfuse-context/task_context/history/agent/loop_2_1778708899.md
+projects/structfuse-context/artifacts/disk_cleanup_report_20260513.md
+projects/structfuse-context/artifacts/_project/report/scalability_summary.md
+projects/structfuse-context/artifacts/plan_006/scalability_summary.md
+projects/structfuse-context/artifacts/m1_progress_0513.md
+projects/structfuse-context/artifacts/bjb1_status_check.md
+projects/structfuse-context/artifacts/_project/report/pilot_results_summary.md
+projects/structfuse-context/artifacts/_project/report/pilot_results_summary_64aa24.md
+projects/structfuse-context/task_context/history/reviewer/loop_1.md
+projects/structfuse-context/.claude/sessions/agent_cb55d4ab/CLAUDE.md
+projects/structfuse-context/.claude/sessions/agent_cb55d4ab/AGENTS.md
+projects/structfuse-context/task_context/history/director/loop_2.md
+projects/structfuse-context/task_context/history/reviewer/loop_4.md
+projects/structfuse-context/task_context/history/agent/loop_3.md
+projects/structfuse-context/artifacts/rename_safety_report.md
+projects/structfuse-context/artifacts/plan003_swebench_eval_plan.md
+projects/structfuse-context/task_context/history/director/loop_3.md
+projects/structfuse-context/task_context/history/reviewer/loop_5.md
+projects/structfuse-context/artifacts/plan003_eval_readiness.md
+projects/structfuse-context/task_context/history/director/loop_4.md
+projects/structfuse-context/task_context/history/reviewer/loop_6.md
+projects/structfuse-context/task_context/history/agent/loop_4.md
+projects/structfuse-context/artifacts/training_status_snapshot.md
+projects/structfuse-context/artifacts/swebench_eval_readiness.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/best/paper_framing.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/median/paper_framing.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/worst/paper_framing.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/best/review_report.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/median/review_report.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/worst/review_report.md
+projects/structfuse-context/artifacts/analysis/plan017_literature_comparison.md
+projects/structfuse-context/artifacts/m2_full_qwen_analysis.md
+projects/structfuse-context/artifacts/m2_full_qwen/report/m2_full_qwen_analysis.md
+projects/structfuse-context/task_context/history/agent/loop_5.md
+projects/structfuse-context/task_context/history/agent/loop_5_1778781850.md
+projects/structfuse-context/task_context/history/reviewer/loop_7.md
+projects/structfuse-context/artifacts/m2_qwen_status_check.md
+projects/structfuse-context/artifacts/m2_full_starcoder/report/m2_starcoder_status_check.md
+projects/structfuse-context/artifacts/m2_starcoder_status_check.md
+projects/structfuse-context/artifacts/status_check_loop6.md
+projects/structfuse-context/task_context/history/director/loop_5.md
+projects/structfuse-context/artifacts/_project/report/plan_015_dynamic_mining_design.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/best/paper_framing.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/median/paper_framing.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/worst/paper_framing.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/best/review_report.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/median/review_report.md
+projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/worst/review_report.md
+projects/structfuse-context/artifacts/_project/paper/experimental_setup_k_checkpoint.md
+projects/structfuse-context/task_context/history/agent/loop_6.md
+projects/structfuse-context/artifacts/status_check_20260514.md
+projects/structfuse-context/artifacts/paper_drafts/experimental_setup_k_checkpoint.md
+projects/structfuse-context/artifacts/plan003_swebench_dryrun_report.md
+projects/structfuse-context/task_context/history/reviewer/loop_8.md
+projects/structfuse-context/task_context/history/director/loop_6.md
+projects/structfuse-context/artifacts/plan005_stratified_analysis_report.md
+projects/structfuse-context/artifacts/plan_005_stratified/report/v1_v2_changelog.md
+projects/structfuse-context/artifacts/v1_v2_changelog.md
+projects/structfuse-context/task_context/history/agent/loop_6_1778793131.md
+projects/structfuse-context/artifacts/m1_reextract_v2_status.md
+projects/structfuse-context/task_context/history/agent/loop_7.md
+projects/structfuse-context/task_context/history/agent/loop_6_1778807209.md
+projects/structfuse-context/artifacts/_project/report/related_work_expansion_report.md
+projects/structfuse-context/artifacts/literature/related_work_expansion_report.md
+projects/structfuse-context/artifacts/plan_003/report/swebench_dryrun_report.md
+projects/structfuse-context/artifacts/plan_003/swebench_dryrun_report.md
+projects/structfuse-context/artifacts/_project/paper/related_work_v1_dc54a3.md
+projects/structfuse-context/artifacts/_project/paper/introduction_v1.md
+projects/structfuse-context/artifacts/_project/paper/figure_design_v1.md
+projects/structfuse-context/artifacts/paper_drafts/figure_design_v1.md
+projects/structfuse-context/artifacts/_project/paper/experiments_v1_054f8d.md
+projects/structfuse-context/artifacts/_project/paper/method_v1_3cf111.md
+projects/structfuse-context/artifacts/_project/paper/method_v1_ce3556.md
+projects/structfuse-context/artifacts/_project/paper/experiments_v1_eccca0.md
+projects/structfuse-context/artifacts/_project/paper/experiments_v1_bcd130.md
+projects/structfuse-context/artifacts/_project/paper/experiments_v1_d4b180.md
+projects/structfuse-context/task_context/history/director/loop_7.md
+projects/structfuse-context/task_context/history/agent/loop_8.md
+projects/structfuse-context/task_context/history/agent/loop_7_1778818340.md
+projects/structfuse-context/artifacts/_project/paper/method_v1_ae4280.md
+projects/structfuse-context/artifacts/paper_drafts/claim2_wording_review.md
+projects/structfuse-context/artifacts/paper_drafts/bm25_code_review.md
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0878d6fb-cea2-4e3f-9c56-7a59c52e1814",
+  "isSidechain": false,
+  "promptId": "b2fb1c64-67bf-4a44-a63d-ee32f01d332f",
+  "type": "user",
+  "uuid": "1a34bfa0-3982-4e5a-8fb9-a657151f23c5",
+  "toolUseResult": {
+    "filenames": [
+      ".claude/sessions/no_project_3780bb6c/CLAUDE.md",
+      ".claude/sessions/no_project_3780bb6c/AGENTS.md",
+      ".claude/sessions/idea_reviewer_7aba9979/CLAUDE.md",
+      ".claude/sessions/idea_reviewer_7aba9979/AGENTS.md",
+      "projects/structfuse-context/artifacts/mvp_p1_codeql_feasibility/report/mvp_phase1_report.md",
+      "projects/structfuse-context/artifacts/mvp_p2b_contrastive_training/report/failure_diagnosis.md",
+      "projects/structfuse-context/task_context/history/director/loop_1.md",
+      "projects/structfuse-context/task_context/history/agent/loop_1.md",
+      "projects/structfuse-context/task_context/history/agent/loop_1_1778635668.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_2.md",
+      "projects/structfuse-context/artifacts/_project/report/50repo_overlap_report.md",
+      "projects/structfuse-context/docs/IDEA_BRIEF.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/best/review_report.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/median/review_report.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/worst/review_report.md",
+      "projects/structfuse-context/docs/handoff_20260513.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_3.md",
+      "projects/structfuse-context/task_context/history/agent/loop_2.md",
+      "projects/structfuse-context/task_context/history/agent/loop_2_1778708899.md",
+      "projects/structfuse-context/artifacts/disk_cleanup_report_20260513.md",
+      "projects/structfuse-context/artifacts/_project/report/scalability_summary.md",
+      "projects/structfuse-context/artifacts/plan_006/scalability_summary.md",
+      "projects/structfuse-context/artifacts/m1_progress_0513.md",
+      "projects/structfuse-context/artifacts/bjb1_status_check.md",
+      "projects/structfuse-context/artifacts/_project/report/pilot_results_summary.md",
+      "projects/structfuse-context/artifacts/_project/report/pilot_results_summary_64aa24.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_1.md",
+      "projects/structfuse-context/.claude/sessions/agent_cb55d4ab/CLAUDE.md",
+      "projects/structfuse-context/.claude/sessions/agent_cb55d4ab/AGENTS.md",
+      "projects/structfuse-context/task_context/history/director/loop_2.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_4.md",
+      "projects/structfuse-context/task_context/history/agent/loop_3.md",
+      "projects/structfuse-context/artifacts/rename_safety_report.md",
+      "projects/structfuse-context/artifacts/plan003_swebench_eval_plan.md",
+      "projects/structfuse-context/task_context/history/director/loop_3.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_5.md",
+      "projects/structfuse-context/artifacts/plan003_eval_readiness.md",
+      "projects/structfuse-context/task_context/history/director/loop_4.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_6.md",
+      "projects/structfuse-context/task_context/history/agent/loop_4.md",
+      "projects/structfuse-context/artifacts/training_status_snapshot.md",
+      "projects/structfuse-context/artifacts/swebench_eval_readiness.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/best/paper_framing.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/median/paper_framing.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/worst/paper_framing.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/best/review_report.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/median/review_report.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T075732/worst/review_report.md",
+      "projects/structfuse-context/artifacts/analysis/plan017_literature_comparison.md",
+      "projects/structfuse-context/artifacts/m2_full_qwen_analysis.md",
+      "projects/structfuse-context/artifacts/m2_full_qwen/report/m2_full_qwen_analysis.md",
+      "projects/structfuse-context/task_context/history/agent/loop_5.md",
+      "projects/structfuse-context/task_context/history/agent/loop_5_1778781850.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_7.md",
+      "projects/structfuse-context/artifacts/m2_qwen_status_check.md",
+      "projects/structfuse-context/artifacts/m2_full_starcoder/report/m2_starcoder_status_check.md",
+      "projects/structfuse-context/artifacts/m2_starcoder_status_check.md",
+      "projects/structfuse-context/artifacts/status_check_loop6.md",
+      "projects/structfuse-context/task_context/history/director/loop_5.md",
+      "projects/structfuse-context/artifacts/_project/report/plan_015_dynamic_mining_design.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/best/paper_framing.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/median/paper_framing.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/worst/paper_framing.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/best/review_report.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/median/review_report.md",
+      "projects/structfuse-context/artifacts/dream_reports/dream_20260514T162530/worst/review_report.md",
+      "projects/structfuse-context/artifacts/_project/paper/experimental_setup_k_checkpoint.md",
+      "projects/structfuse-context/task_context/history/agent/loop_6.md",
+      "projects/structfuse-context/artifacts/status_check_20260514.md",
+      "projects/structfuse-context/artifacts/paper_drafts/experimental_setup_k_checkpoint.md",
+      "projects/structfuse-context/artifacts/plan003_swebench_dryrun_report.md",
+      "projects/structfuse-context/task_context/history/reviewer/loop_8.md",
+      "projects/structfuse-context/task_context/history/director/loop_6.md",
+      "projects/structfuse-context/artifacts/plan005_stratified_analysis_report.md",
+      "projects/structfuse-context/artifacts/plan_005_stratified/report/v1_v2_changelog.md",
+      "projects/structfuse-context/artifacts/v1_v2_changelog.md",
+      "projects/structfuse-context/task_context/history/agent/loop_6_1778793131.md",
+      "projects/structfuse-context/artifacts/m1_reextract_v2_status.md",
+      "projects/structfuse-context/task_context/history/agent/loop_7.md",
+      "projects/structfuse-context/task_context/history/agent/loop_6_1778807209.md",
+      "projects/structfuse-context/artifacts/_project/report/related_work_expansion_report.md",
+      "projects/structfuse-context/artifacts/literature/related_work_expansion_report.md",
+      "projects/structfuse-context/artifacts/plan_003/report/swebench_dryrun_report.md",
+      "projects/structfuse-context/artifacts/plan_003/swebench_dryrun_report.md",
+      "projects/structfuse-context/artifacts/_project/paper/related_work_v1_dc54a3.md",
+      "projects/structfuse-context/artifacts/_project/paper/introduction_v1.md",
+      "projects/structfuse-context/artifacts/_project/paper/figure_design_v1.md",
+      "projects/structfuse-context/artifacts/paper_drafts/figure_design_v1.md",
+      "projects/structfuse-context/artifacts/_project/paper/experiments_v1_054f8d.md",
+      "projects/structfuse-context/artifacts/_project/paper/method_v1_3cf111.md",
+      "projects/structfuse-context/artifacts/_project/paper/method_v1_ce3556.md",
+      "projects/structfuse-context/artifacts/_project/paper/experiments_v1_eccca0.md",
+      "projects/structfuse-context/artifacts/_project/paper/experiments_v1_bcd130.md",
+      "projects/structfuse-context/artifacts/_project/paper/experiments_v1_d4b180.md",
+      "projects/structfuse-context/task_context/history/director/loop_7.md",
+      "projects/structfuse-context/task_context/history/agent/loop_8.md",
+      "projects/structfuse-context/task_context/history/agent/loop_7_1778818340.md",
+      "projects/structfuse-context/artifacts/_project/paper/method_v1_ae4280.md",
+      "projects/structfuse-context/artifacts/paper_drafts/claim2_wording_review.md",
+      "projects/structfuse-context/artifacts/paper_drafts/bm25_code_review.md"
+    ],
+    "durationMs": 38,
+    "numFiles": 100,
+    "truncated": true
+  },
+  "sourceToolAssistantUUID": "0878d6fb-cea2-4e3f-9c56-7a59c52e1814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质' 核心假设：['layer selection bias是模型表征的几何性…",
+  "leafUuid": "1a34bfa0-3982-4e5a-8fb9-a657151f23c5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "AdvBench layer selection bias replication",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T09:00:59.427Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01ARdgzqSf9VXLmgnVV3nYye`</summary>
+
+```json
+{
+  "pattern": "**/experiment_plan*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a34bfa0-3982-4e5a-8fb9-a657151f23c5",
+  "isSidechain": false,
+  "requestId": "req_011CbHLMnKrJXYZXXGrZmZCZ",
+  "type": "assistant",
+  "uuid": "f9325e6f-3440-4e9e-b662-533acd6eaf2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMFeDijUnbBMCyfup29dZH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13334,
+      "cache_read_input_tokens": 48949,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13334,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 48949,
+          "cache_creation_input_tokens": 13334,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13334
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T09:00:59.468Z_
+
+<details><summary>↩ Tool result · `toolu_01ARdgzqSf9VXLmgnVV3nYye`</summary>
+
+```text
+projects/structfuse-context/experiment_plan.lock
+projects/structfuse-context/experiment_plan.yaml
+projects/contrastive_trace_safety/experiment_plan.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9325e6f-3440-4e9e-b662-533acd6eaf2f",
+  "isSidechain": false,
+  "promptId": "b2fb1c64-67bf-4a44-a63d-ee32f01d332f",
+  "type": "user",
+  "uuid": "ba1ee0bb-1453-4c0f-9654-3e41b4f114f5",
+  "toolUseResult": {
+    "filenames": [
+      "projects/structfuse-context/experiment_plan.lock",
+      "projects/structfuse-context/experiment_plan.yaml",
+      "projects/contrastive_trace_safety/experiment_plan.yaml"
+    ],
+    "durationMs": 38,
+    "numFiles": 3,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "f9325e6f-3440-4e9e-b662-533acd6eaf2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T09:01:02.193Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NEoj84pLThLYCDpjXC9i2Y`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba1ee0bb-1453-4c0f-9654-3e41b4f114f5",
+  "isSidechain": false,
+  "requestId": "req_011CbHLMzUr8N3kST474fLgD",
+  "type": "assistant",
+  "uuid": "92957516-e6bd-4bf9-b59e-9e757dcaa69e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fuBhQ1UJXZDbwLmxMXfM4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 147,
+      "cache_read_input_tokens": 62283,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 62283,
+          "cache_creation_input_tokens": 147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T09:01:02.201Z_
+
+<details><summary>↩ Tool result · `toolu_01NEoj84pLThLYCDpjXC9i2Y`</summary>
+
+```text
+1	experiments:
+2	  # === P0: Must-run for paper submission ===
+3	
+4	  - id: exp-001
+5	    claim: 1
+6	    description: "Cross-architecture hidden-state extraction + layer sweep + static probe evaluation on r1-32b and QwQ-32B. Includes mandatory layer sweep (all layers) to find best layer for 64-layer models before probe evaluation. Validates Claim 1 generalizes beyond r1-8b."
+7	    priority: P0
+8	    gpu_budget_hours: 10
+9	    deps: []
+10	    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]
+11	    notes: "32B models have 64 layers, 5120-d hidden. r1-8b best layer was 14/32 (44% depth) → expect best around layer 28-32 for 64-layer models. Extract ALL layers for sweep, then select best for subsequent experiments. Must do layer sweep BEFORE reporting static probe results — using wrong layer would produce false negative."
+12	
+13	  - id: exp-002
+14	    claim: 2
+15	    description: "Cross-architecture temporal window evaluation: temporal LR W=15 on r1-32b and QwQ-32B. Validate +30pp coverage improvement holds cross-architecture."
+16	    priority: P0
+17	    gpu_budget_hours: 4
+18	    deps: [exp-001]
+19	    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]
+20	
+21	  - id: exp-003
+22	    claim: [1, 2]
+23	    description: "Cross-model transfer: train probe on r1-8b (Llama), test on r1-32b/QwQ (Qwen2.5). Train on Qwen, test on Llama. Measures zero-shot cross-architecture generalization."
+24	    priority: P0
+25	    gpu_budget_hours: 2
+26	    deps: [exp-001]
+27	    notes: "Key for cross-architecture story. Projection head needed (4096→5120 or vice versa)."
+28	
+29	  - id: exp-004
+30	    claim: 3
+31	    description: "Lead time analysis across models: confirm negative lead time finding on 32B models. Report lead time distribution per model."
+32	    priority: P0
+33	    gpu_budget_hours: 1
+34	    deps: [exp-001, exp-002]
+35	
+36	  - id: exp-005
+37	    claim: [1, 2, 3]
+38	    description: "TrajGuard-style Mahalanobis baseline: implement and evaluate on all 3 models. Expected to fail (signal in minor PCs, Fisher drops 17→1 in PCA-3D)."
+39	    priority: P0
+40	    gpu_budget_hours: 2
+41	    deps: [exp-001]
+42	    notes: "Critical baseline for 'existing detectors fail' claim. Use safe traces to estimate covariance, compute MD per step."
+43	
+44	  - id: exp-006
+45	    claim: [1, 2]
+46	    description: "Bootstrap confidence intervals + threshold-independent metrics: 1000 bootstrap resamples on all key metrics (coverage, lead time, accuracy). ALSO report AUROC, precision-recall curves, detection delay CDF, cross-validation per-fold variance, and FPR on safe traces (final_judgment=0.5)."
+47	    priority: P0
+48	    gpu_budget_hours: 1
+49	    deps: [exp-001, exp-002, exp-003, exp-004, exp-005]
+50	
+51	  # === P1: Important but deferrable ===
+52	
+53	  - id: exp-007
+54	    claim: 2
+55	    description: "Window size ablation: W=1,3,5,10,15,20,25 on all 3 models. Find optimal W and show diminishing returns curve."
+56	    priority: P1
+57	    gpu_budget_hours: 2
+58	    deps: [exp-001]
+59	
+60	  - id: exp-008
+61	    claim: 2
+62	    description: "Layer selection ablation: all layers (not just 14) for temporal probe on 32B models. Confirm middle-layer finding generalizes."
+63	    priority: P1
+64	    gpu_budget_hours: 3
+65	    deps: [exp-001]
+66	
+67	  - id: exp-009
+68	    claim: 2
+69	    description: "16-label taxonomy supervision: use fine-grained labels (Type 1/2/3/4) instead of binary commitment for richer training signal. May improve both coverage and timing."
+70	    priority: P1
+71	    gpu_budget_hours: 2
+72	    deps: [exp-001]
+73	    notes: "Addresses reviewer concern about underusing available supervision."
+74	
+75	  - id: exp-010
+76	    claim: 3
+77	    description: "Oracle decomposition: why can oracle but not probes achieve positive lead time? Analyze what label patterns encode that hidden states don't."
+78	    priority: P1
+79	    gpu_budget_hours: 1
+80	    deps: [exp-004]
+81	    notes: "For Discussion section. May reveal what architectural changes could close the gap."
+82	
+83	  # === P2: Nice-to-have ===
+84	
+85	  - id: exp-011
+86	    claim: 2
+87	    description: "OpenThinker-7B (Qwen2.5-7B base): 4th model for 2×2 architecture×scale matrix. Controls for scale confound."
+88	    priority: P2
+89	    gpu_budget_hours: 4
+90	    deps: [exp-002]
+91	    notes: "From Human Review Note point 5. Adds Qwen2.5-7B to complement Llama-8B for scale-matched comparison."
+92	
+93	  - id: exp-012
+94	    claim: [1, 2]
+95	    description: "GRU/Attention probe as upper bound: verify GRU finding holds on 32B models with more data. If still no improvement over LR, strengthens 'simplicity is optimal' story."
+96	    priority: P2
+97	    gpu_budget_hours: 4
+98	    deps: [exp-001, exp-002]
+99	
+100	  - id: exp-013
+101	    claim: [1, 2]
+102	    description: "Text-based baseline: sentence-BERT embeddings (all-MiniLM-L6-v2) + same temporal window LR (W=15) on CoT text. Compare coverage/lead time to hidden-state probes. CRITICAL for proving hidden-state monitoring adds unique value over cheap text monitoring. If text achieves comparable performance, paper motivation needs restructuring."
+103	    priority: P0
+104	    gpu_budget_hours: 0.5
+105	    deps: []
+106	    notes: "No GPU needed for embedding extraction (small model, CPU-feasible). Run on all 4 models. This is the single most important missing baseline per Dream review (flagged by all 3 tiers, both reviewers)."
+107	
+108	  - id: exp-014
+109	    claim: 3
+110	    description: "Bayesian Online Change-Point Detection (BOCPD) on per-step probe scores: apply Adams & MacKay 2007 to the sequence of probe confidence scores. Could achieve positive lead time by detecting distributional shift before textual commitment. Also test CUSUM as simpler alternative."
+111	    priority: P0
+112	    gpu_budget_hours: 0.5
+113	    deps: [exp-001]
+114	    notes: "Addresses both 'no method novelty' and 'no positive lead time' criticisms simultaneously. If BOCPD achieves reliable lead time where GRU doesn't, this becomes a genuine methods contribution. If it also fails, strengthens the 'fundamental limitation' narrative."
+115	
+116	  - id: exp-015
+117	    claim: [1, 2]
+118	    description: "False positive analysis: run all probes (static, temporal, GRU, BOCPD) on safe traces (final_judgment=0.5). Report FPR, precision-recall curves at various thresholds. Essential for deployment utility claims."
+119	    priority: P0
+120	    gpu_budget_hours: 0.5
+121	    deps: [exp-001, exp-002]
+122	    notes: "Dream flagged missing FPR as critical gap across median and worst tiers. Without this, 'coverage' metric is uninterpretable — a probe that fires everywhere gets 100% coverage."
+123	
+124	gpu_budget_total: "~37 A100-hours (P0: 19.5h, P1: 8h, P2: 8h, new P0: +1.5h)"
+125	timeline: "P0 experiments: May 17-19 (3 days). P1: May 19-21. Paper writing: May 21-25. Text baseline (exp-013) can start immediately (no GPU). BOCPD (exp-014) after first probe scores available."
+126	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92957516-e6bd-4bf9-b59e-9e757dcaa69e",
+  "isSidechain": false,
+  "promptId": "b2fb1c64-67bf-4a44-a63d-ee32f01d332f",
+  "type": "user",
+  "uuid": "0e32d7cd-d7af-4c41-a2d2-0732371c5d04",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/experiment_plan.yaml",
+      "content": "experiments:\n  # === P0: Must-run for paper submission ===\n\n  - id: exp-001\n    claim: 1\n    description: \"Cross-architecture hidden-state extraction + layer sweep + static probe evaluation on r1-32b and QwQ-32B. Includes mandatory layer sweep (all layers) to find best layer for 64-layer models before probe evaluation. Validates Claim 1 generalizes beyond r1-8b.\"\n    priority: P0\n    gpu_budget_hours: 10\n    deps: []\n    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]\n    notes: \"32B models have 64 layers, 5120-d hidden. r1-8b best layer was 14/32 (44% depth) → expect best around layer 28-32 for 64-layer models. Extract ALL layers for sweep, then select best for subsequent experiments. Must do layer sweep BEFORE reporting static probe results — using wrong layer would produce false negative.\"\n\n  - id: exp-002\n    claim: 2\n    description: \"Cross-architecture temporal window evaluation: temporal LR W=15 on r1-32b and QwQ-32B. Validate +30pp coverage improvement holds cross-architecture.\"\n    priority: P0\n    gpu_budget_hours: 4\n    deps: [exp-001]\n    models: [DeepSeek-R1-Distill-Qwen-32B, QwQ-32B]\n\n  - id: exp-003\n    claim: [1, 2]\n    description: \"Cross-model transfer: train probe on r1-8b (Llama), test on r1-32b/QwQ (Qwen2.5). Train on Qwen, test on Llama. Measures zero-shot cross-architecture generalization.\"\n    priority: P0\n    gpu_budget_hours: 2\n    deps: [exp-001]\n    notes: \"Key for cross-architecture story. Projection head needed (4096→5120 or vice versa).\"\n\n  - id: exp-004\n    claim: 3\n    description: \"Lead time analysis across models: confirm negative lead time finding on 32B models. Report lead time distribution per model.\"\n    priority: P0\n    gpu_budget_hours: 1\n    deps: [exp-001, exp-002]\n\n  - id: exp-005\n    claim: [1, 2, 3]\n    description: \"TrajGuard-style Mahalanobis baseline: implement and evaluate on all 3 models. Expected to fail (signal in minor PCs, Fisher drops 17→1 in PCA-3D).\"\n    priority: P0\n    gpu_budget_hours: 2\n    deps: [exp-001]\n    notes: \"Critical baseline for 'existing detectors fail' claim. Use safe traces to estimate covariance, compute MD per step.\"\n\n  - id: exp-006\n    claim: [1, 2]\n    description: \"Bootstrap confidence intervals + threshold-independent metrics: 1000 bootstrap resamples on all key metrics (coverage, lead time, accuracy). ALSO report AUROC, precision-recall curves, detection delay CDF, cross-validation per-fold variance, and FPR on safe traces (final_judgment=0.5).\"\n    priority: P0\n    gpu_budget_hours: 1\n    deps: [exp-001, exp-002, exp-003, exp-004, exp-005]\n\n  # === P1: Important but deferrable ===\n\n  - id: exp-007\n    claim: 2\n    description: \"Window size ablation: W=1,3,5,10,15,20,25 on all 3 models. Find optimal W and show diminishing returns curve.\"\n    priority: P1\n    gpu_budget_hours: 2\n    deps: [exp-001]\n\n  - id: exp-008\n    claim: 2\n    description: \"Layer selection ablation: all layers (not just 14) for temporal probe on 32B models. Confirm middle-layer finding generalizes.\"\n    priority: P1\n    gpu_budget_hours: 3\n    deps: [exp-001]\n\n  - id: exp-009\n    claim: 2\n    description: \"16-label taxonomy supervision: use fine-grained labels (Type 1/2/3/4) instead of binary commitment for richer training signal. May improve both coverage and timing.\"\n    priority: P1\n    gpu_budget_hours: 2\n    deps: [exp-001]\n    notes: \"Addresses reviewer concern about underusing available supervision.\"\n\n  - id: exp-010\n    claim: 3\n    description: \"Oracle decomposition: why can oracle but not probes achieve positive lead time? Analyze what label patterns encode that hidden states don't.\"\n    priority: P1\n    gpu_budget_hours: 1\n    deps: [exp-004]\n    notes: \"For Discussion section. May reveal what architectural changes could close the gap.\"\n\n  # === P2: Nice-to-have ===\n\n  - id: exp-011\n    claim: 2\n    description: \"OpenThinker-7B (Qwen2.5-7B base): 4th model for 2×2 architecture×scale matrix. Controls for scale confound.\"\n    priority: P2\n    gpu_budget_hours: 4\n    deps: [exp-002]\n    notes: \"From Human Review Note point 5. Adds Qwen2.5-7B to complement Llama-8B for scale-matched comparison.\"\n\n  - id: exp-012\n    claim: [1, 2]\n    description: \"GRU/Attention probe as upper bound: verify GRU finding holds on 32B models with more data. If still no improvement over LR, strengthens 'simplicity is optimal' story.\"\n    priority: P2\n    gpu_budget_hours: 4\n    deps: [exp-001, exp-002]\n\n  - id: exp-013\n    claim: [1, 2]\n    description: \"Text-based baseline: sentence-BERT embeddings (all-MiniLM-L6-v2) + same temporal window LR (W=15) on CoT text. Compare coverage/lead time to hidden-state probes. CRITICAL for proving hidden-state monitoring adds unique value over cheap text monitoring. If text achieves comparable performance, paper motivation needs restructuring.\"\n    priority: P0\n    gpu_budget_hours: 0.5\n    deps: []\n    notes: \"No GPU needed for embedding extraction (small model, CPU-feasible). Run on all 4 models. This is the single most important missing baseline per Dream review (flagged by all 3 tiers, both reviewers).\"\n\n  - id: exp-014\n    claim: 3\n    description: \"Bayesian Online Change-Point Detection (BOCPD) on per-step probe scores: apply Adams & MacKay 2007 to the sequence of probe confidence scores. Could achieve positive lead time by detecting distributional shift before textual commitment. Also test CUSUM as simpler alternative.\"\n    priority: P0\n    gpu_budget_hours: 0.5\n    deps: [exp-001]\n    notes: \"Addresses both 'no method novelty' and 'no positive lead time' criticisms simultaneously. If BOCPD achieves reliable lead time where GRU doesn't, this becomes a genuine methods contribution. If it also fails, strengthens the 'fundamental limitation' narrative.\"\n\n  - id: exp-015\n    claim: [1, 2]\n    description: \"False positive analysis: run all probes (static, temporal, GRU, BOCPD) on safe traces (final_judgment=0.5). Report FPR, precision-recall curves at various thresholds. Essential for deployment utility claims.\"\n    priority: P0\n    gpu_budget_hours: 0.5\n    deps: [exp-001, exp-002]\n    notes: \"Dream flagged missing FPR as critical gap across median and worst tiers. Without this, 'coverage' metric is uninterpretable — a probe that fires everywhere gets 100% coverage.\"\n\ngpu_budget_total: \"~37 A100-hours (P0: 19.5h, P1: 8h, P2: 8h, new P0: +1.5h)\"\ntimeline: \"P0 experiments: May 17-19 (3 days). P1: May 19-21. Paper writing: May 21-25. Text baseline (exp-013) can start immediately (no GPU). BOCPD (exp-014) after first probe scores available.\"\n",
+      "numLines": 126,
+      "startLine": 1,
+      "totalLines": 126
+    }
+  },
+  "sourceToolAssistantUUID": "92957516-e6bd-4bf9-b59e-9e757dcaa69e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18 · 2026-05-22T09:01:02.274Z_
+
+````json
+{
+  "parentUuid": "0e32d7cd-d7af-4c41-a2d2-0732371c5d04",
+  "isSidechain": false,
+  "attachment": {
+    "type": "nested_memory",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/CLAUDE.md",
+    "content": {
+      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/CLAUDE.md",
+      "type": "Project",
+      "content": "## 当前项目\n当前绑定项目：**contrastive_trace_safety**\n\n## 按需查阅\n- 项目配置：`load_project_config(\"contrastive_trace_safety\")` 或 `load_project_config(\"contrastive_trace_safety\", section=\"execution\")`\n- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n- 路线图：`read_roadmap()` 读取研究方向和短期任务\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/`（写文件后用 `register_artifact` 注册）\n\n## 用户自定义规则（必须遵守）\n### 审稿规则\n\n- **[EMNLP 2026]** “EMNLP 2026 通过 ARR 统一审稿，Main/Findings 不分开投稿（不是两个Track），Long/Short 也走同一审稿系统，Overall Assessment的评分标准如下：5 = Consider for Award（约前2.5%），4.5 = Borderline Award，4 = Conference（可被主会议接收），3.5 = Borderline Conference，3 = Findings（可被Findings接收），2.5 = Borderline Findings，2 = Resubmit next cycle（需大幅修改，可在下一周期完成），1.5 = Resubmit after next cycle（需大幅修改，无法在下一周期完成），1 = Do not resubmit（需完全重做或与*ACL无关）”\n- **[EMNLP 2026]** EMNLP 2026 restricts long paper submissions to a strict 8-page limit for main text, with unlimited space for references. Mandatory limitations and optional ethical considerations do not count towards this page limit, provided they do not contain excessive additional content.\n\n### 写作规则\n\n- **[EMNLP 2026]** Limitations 章节只需要写一小段，覆盖 3 个点左右就可以了，不需要写得很长\n- **[EMNLP 2026]** ARR Responsible NLP Checklist在OpenReview的submission form里面（由用户手动填写），而不是在论文pdf里面\n- **[项目]** 图例不得遮挡数据曲线，优先使用 bbox_to_anchor将图例放置在图外，或放在图内无数据的空白区域\n\n> 以上规则由用户配置，优先级等同于硬约束。违反会被 Reviewer 标记。\n\n## Worker 操作规范\n\n### ssh-env-setup\n\n# 远程服务器环境搭建规范\n\n## 核心原则\n\n**先探测，再安装。** 不要假设服务器上什么都没有——很多包已经装好了。安装前必须走 discovery 流程。\n\n**镜像快速路径**：连接服务器后，先用 `detect_image` 检测是否为预置镜像。如果是已知镜像且版本匹配，跳过基础环境搭建（Phase 1-4），直接安装项目特有依赖。未检测到镜像时走传统流程。\n\n**aml-train 镜像使用 conda 环境**（不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。pip/python 在 `/root/miniconda3/bin/` 下。**不要假设 .venv 存在，不要创建 venv。**\n\n## Phase 1: 环境探测（用 ssh_read_only）\n\n连接到服务器后，第一步永远是收集信息，不要直接装东西：\n\n```bash\n# 1. Python 环境\nwhich python3 && python3 --version\npip3 --version 2>/dev/null || echo \"NO_PIP\"\n\n# 2. CUDA 环境\nnvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader 2>/dev/null || echo \"NO_GPU\"\nnvcc --version 2>/dev/null | grep \"release\" || echo \"NO_NVCC\"\n\n# 3. 包管理器\nls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\"\nls -d .venv venv env 2>/dev/null || echo \"NO_VENV\"\npip3 list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|flash\" || echo \"NO_ML_PKGS\"\n\n# 4. PEP 668 检查\npython3 -c \"import sysconfig; print(sysconfig.get_path('stdlib'))\" 2>/dev/null\nls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\"\n```\n\n根据探测结果决定安装策略，不要猜。\n\n## Phase 2: 环境策略选择\n\n根据 Phase 1 结果选择**一个**策略，不要混用：\n\n| 探测结果 | 策略 | 说明 |\n|----------|------|------|\n| 项目目录有 `.venv/` | 用它：`source .venv/bin/activate` | 最优先 |\n| 有 conda 且有写权限 | `conda activate base` 或创建专属 env | 次优先 |\n| PEP668_MANAGED + 无 venv | 创建 venv：`python3 -m venv .venv && source .venv/bin/activate` | 不要用 --break-system-packages |\n| PEP668_OK（无保护） | 直接 `pip install`（旧系统） | 仍建议 venv |\n\n**决不混用 conda install + pip install 到同一环境。** 选了 pip 就全用 pip。\n\n## Phase 3: PyTorch 安装\n\n### CUDA 版本映射（2025-2026 常用）\n\n先从 `nvcc --version` 或 `nvidia-smi` 获取 CUDA 版本，然后匹配：\n\n| CUDA 版本 | PyTorch pip index URL | 推荐 torch 版本 |\n|-----------|----------------------|-----------------|\n| 11.8 | `https://download.pytorch.org/whl/cu118` | ≥ 2.0 |\n| 12.1 | `https://download.pytorch.org/whl/cu121` | ≥ 2.1 |\n| 12.4 | `https://download.pytorch.org/whl/cu124` | ≥ 2.4 |\n| 12.6 | `https://download.pytorch.org/whl/cu126` | ≥ 2.6 |\n\n**不要猜版本号。** 如果不确定可用版本：\n```bash\npip index versions torch --index-url https://download.pytorch.org/whl/cu121 2>/dev/null | head -3\n```\n\n安装命令：\n```bash\npip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu{CUDA_SHORT}\n```\n\n### 大包超时处理\n\nPyTorch wheel 约 500MB-2GB，默认 SSH 超时可能不够。策略：\n\n```bash\n# 方法 1: nohup + 轮询（推荐）\nnohup pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 > /tmp/pip_install.log 2>&1 &\necho $!  # 记录 PID\n\n# 后续用 ssh_read_only 轮询\ncat /tmp/pip_install.log | tail -5\nps -p &lt;PID> -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"\n```\n\n```bash\n# 方法 2: 加大 pip 超时\npip install --timeout 300 torch ...\n```\n\n## Phase 4: 验证（必须执行）\n\n安装后必须验证，不要假设成功：\n\n```bash\npython3 -c \"\nimport torch\nprint(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}, gpus={torch.cuda.device_count()}')\nif torch.cuda.is_available():\n    for i in range(torch.cuda.device_count()):\n        print(f'  GPU {i}: {torch.cuda.get_device_name(i)} ({torch.cuda.get_device_properties(i).total_mem // 1024**3}GB)')\n\"\n```\n\n验证失败的常见原因：\n- `torch.cuda.is_available()` 返回 False → CUDA 版本和 torch 不匹配，重装正确版本\n- `ImportError: libcudnn` → 缺 cuDNN，装 `nvidia-cudnn-cu1x`\n- GPU 数量不对 → 检查 `CUDA_VISIBLE_DEVICES` 环境变量\n\n## Phase 5: 项目依赖\n\n基础环境就绪后，安装项目依赖：\n\n```bash\n# 优先用 requirements.txt / pyproject.toml\npip install -r requirements.txt  # 或 pip install -e .\n\n# 常用 ML 依赖补装\npip install transformers datasets einops accelerate wandb\n```\n\nflash-attention 特殊处理（编译型包）：\n```bash\n# 需要匹配的 CUDA toolkit，编译耗时 5-15 分钟\npip install flash-attn --no-build-isolation\n# 如果编译失败，试预编译版本\npip install flash-attn --no-build-isolation 2>/dev/null || pip install flash-attn-wheels\n```\n\n## ssh_read_only vs ssh_execute 使用规则\n\n| 操作 | 用哪个工具 |\n|------|-----------|\n| 检查环境（python --version, nvidia-smi, pip list） | `ssh_read_only` |\n| 读文件内容、查日志 | `ssh_read_only` |\n| 安装包（pip install, conda install） | `ssh_execute` |\n| 创建/修改文件、启动进程 | `ssh_execute` |\n| 运行实验脚本 | `ssh_execute` |\n\n**原则：能用 read_only 就用 read_only，只有要改变服务器状态时才用 execute。**\n\n## AutoDL 专项注意事项\n\nAutoDL 实例有一系列特殊约束，5 个项目反复踩坑，必须遵守：\n\n### 磁盘\n- **根分区只有 ~30GB，严禁存大文件。** 模型、数据集、HF cache 全部放数据盘 `/root/autodl-tmp/`\n- 设置 `HF_HOME=/root/autodl-tmp/.hf_cache`，否则 HF 默认缓存到根分区导致磁盘满\n- 下载模型时用 `--local-dir /root/autodl-tmp/models/&lt;name>`，不要用默认路径\n\n### 网络\n- pip install / git clone 前必须 `source /etc/network_turbo` 启用代理加速，否则 pypi.nvidia.com 504 超时、GitHub TLS 断连\n- HF 下载设 `HF_HUB_DISABLE_XET=1`，xet_get 在 AutoDL 上返回 401\n- **SSL 证书**：`network_turbo` 的代理使用自签名证书，Python 默认 SSL 验证会失败。必须设置 `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt` 和 `SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`，否则 HF 下载、datasets 加载等全部报 SSL 错误\n- **大模型下载优先用 ModelScope**：AutoDL 代理下载 HuggingFace 大文件极慢（~200KB/s），改用 ModelScope 国内 CDN 速度快很多。`pip install modelscope && python -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2.5-7B-Instruct', cache_dir='/root/autodl-tmp/.hf_cache')\"`\n\n### SSH\n- **AutoDL 实例重启后 SSH 端口会变。** 连接失败时不要反复重试，应提示用户去控制台查新端口并更新 `~/.ssh/config`\n\n## 经验沉淀\n\n- [2026-04-05] Worker 首次连接服务器时，先用一条 ssh_read_only 组合命令完成全部探测，减少 SSH 往返次数\n- [2026-04-05] 遇到 PEP 668 时创建 venv 而非 --break-system-packages，避免污染系统 Python\n- [2026-04-05] PyTorch 大包安装用 nohup 后台执行 + 轮询方式，避免 SSH 超时导致安装中断\n- [2026-04-05] conda 环境和 pip 不要混用——如果项目用 pip，就全部用 pip\n- [2026-04-09] sync_code 前确保本地 commit 已 push 到 remote，否则服务器 git pull 拉不到最新代码\n- [2026-04-09] venv 创建后用 `which python` 验证路径指向正确的 venv python，不要假设系统 PATH 正确\n\n## 更多 Skills（按需加载）\n\n执行相关任务前，先 Read 对应 skill 获取环境配置和最佳实践。\n\n- **paper-writing-norms** — 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`\n- **check-training-status** — 当用户问训练进度/实验状态/查状态时使用。用专用工具查看训练状态，禁止 ssh_execute。  →  `/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md`\n- **rebuttal** — 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。  →  `/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md`\n- **review-reviewer-session-start** — Review Reviewer session 启动初始化——检查论文格式、编译状态、材料清单。Review Reviewer 角色 session 启动时自动使用。  →  `/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md`\n- **reference-audit** — 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。  →  `/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md`\n- **accelerate-distributed** — HuggingFace Accelerate 分布式训练指南——4行代码实现多GPU/DeepSpeed/FSDP/混合精度。多GPU训练时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md`\n- **draw-paper-figure** — 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG  →  `/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md`\n- **experiment-analysis** — 实验结果分析框架——统计显著性检验、消融分析、baseline 对比、可视化建议。分析实验结果或撰写论文 Results 部分时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md`\n- **hf-hub** — HuggingFace Hub CLI (hf) — 下载/上传模型和数据集、管理缓存、搜索论文和模型。涉及 HuggingFace 资源操作时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md`\n- **latex-paper** — ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n- **lm-eval-harness** — lm-evaluation-harness 模型评估指南——MMLU/GSM8K/HumanEval 等 60+ 学术基准测试。评估模型质量、对比实验时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md`\n- **ml-experiment-guide** — 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md`\n- **paper-banana** — 用 PaperBanana 生成学术图表——概念图（架构/流程/framework）首选，探索性统计图也可。LLM 写 matplotlib 代码 + VLM Critic 闭环迭代。需要 GOOGLE_API_KEY。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md`\n- **paper-image-extractor** — 从论文 PDF 或 arXiv 源码包提取图表——优先 arXiv 原始图片，回退 PDF 解析。用户说\"提取图\"/\"抽图\"/\"extract figures\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md`\n- **peft-lora** — PEFT/LoRA/QLoRA 参数高效微调指南——LoRA 配置选择、QLoRA 量化训练、Adapter 管理与合并。微调大模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md`\n- **research-news** — 每日论文推荐——搜索 arXiv 最新论文，按相关性/新颖性/影响力评分，生成推荐列表。Director 说\"有什么新论文\"/\"最近进展\"/\"research news\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md`\n- **trl-training** — TRL (Transformer Reinforcement Learning) 训练指南——SFT/DPO/GRPO/KTO 配置与最佳实践。训练或对齐语言模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md`\n- **wandb-guide** — W&B 查询最佳实践——如何高效使用 fetch_wandb_metrics / compare_wandb_runs / get_best_wandb_run 分析实验结果。分析实验指标时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md`\n- **contrastive-trace-safety-research** — LLM safety mechanistic interpretability 领域实验设计共识、方法论趋势与研究空白——10 篇论文蒸馏  →  `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/skills/projects/contrastive_trace_safety/distilled-research.skill.md`\n- **contrastive-trace-safety-writing** — LLM safety interpretability 论文叙事结构、图表设计共识与可模仿策略——8 篇深读蒸馏  →  `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/skills/projects/contrastive_trace_safety/distilled-writing.skill.md`\n",
+      "contentDiffersFromDisk": false
+    },
+    "displayPath": "projects/contrastive_trace_safety/.claude/CLAUDE.md"
+  },
+  "type": "attachment",
+  "uuid": "c8a90284-4cd8-4fdb-80f1-502575302a85",
+  "timestamp": "2026-05-22T09:01:02.274Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质' 核心假设：['layer selection bias是模型表征的几何性…",
+  "leafUuid": "c8a90284-4cd8-4fdb-80f1-502575302a85",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "AdvBench layer selection bias replication",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T09:01:05.503Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01E1NNsHfXEwVPoccCGKDdEN`</summary>
+
+```json
+{
+  "pattern": "**/what_if*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8a90284-4cd8-4fdb-80f1-502575302a85",
+  "isSidechain": false,
+  "requestId": "req_011CbHLNCTg4TpT9ATh7Xs5S",
+  "type": "assistant",
+  "uuid": "e6ed86e1-59a7-486e-a3c8-7cd3f1b83f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LW9riFS4iTP6d6ZXCAqNWb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8224,
+      "cache_read_input_tokens": 62430,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8224,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 62430,
+          "cache_creation_input_tokens": 8224,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8224
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T09:01:05.543Z_
+
+<details><summary>↩ Tool result · `toolu_01E1NNsHfXEwVPoccCGKDdEN`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6ed86e1-59a7-486e-a3c8-7cd3f1b83f20",
+  "isSidechain": false,
+  "promptId": "b2fb1c64-67bf-4a44-a63d-ee32f01d332f",
+  "type": "user",
+  "uuid": "bb04cf3b-9819-49fa-85d2-7d75fee69a50",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 34,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "e6ed86e1-59a7-486e-a3c8-7cd3f1b83f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T09:01:08.986Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01U9CrHpR3F7fGr4U8fKQXKe`</summary>
+
+```json
+{
+  "pattern": "advbench",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb04cf3b-9819-49fa-85d2-7d75fee69a50",
+  "isSidechain": false,
+  "requestId": "req_011CbHLNSUHZXeYR3BLfaY6e",
+  "type": "assistant",
+  "uuid": "5cbab940-e10e-488b-8d0e-ee1edf5d5543",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015bXBSgQbrutdWc4qucUr1Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 117,
+      "cache_read_input_tokens": 70654,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 70654,
+          "cache_creation_input_tokens": 117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T09:01:09.067Z_
+
+<details><summary>↩ Tool result · `toolu_01U9CrHpR3F7fGr4U8fKQXKe`</summary>
+
+```text
+Found 143 files
+projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260522T085530/logs/phase2_best_attempt0.log
+projects/contrastive_trace_safety/logs/chats/feishu_group_oc_2af5cf9f542b9e0dc11648403c217173_director.jsonl
+projects/contrastive_trace_safety/dream_registry.yaml
+projects/contrastive_trace_safety/dream_registry.yaml.bak
+projects/contrastive_trace_safety/logs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_reviewer.jsonl
+projects/contrastive_trace_safety/ROADMAP.md
+projects/contrastive_trace_safety/logs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded.jsonl
+projects/contrastive_trace_safety/docs/paper/main.aux
+projects/contrastive_trace_safety/docs/paper/main.bbl
+projects/contrastive_trace_safety/registry.yaml
+projects/contrastive_trace_safety/report.md
+projects/contrastive_trace_safety/logs/chats/cron_hook_ensemble_cv_7_8b.jsonl
+projects/contrastive_trace_safety/logs/chats/worker_code_ensemble_cv_7_8b_20260521T231310.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_code_ensemble_cv_7_8b_20260521T231310.log
+projects/contrastive_trace_safety/decisions.yaml
+projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/review_worst.log
+projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/review_median.log
+projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/review_best.log
+projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/phase2_worst_attempt0.log
+projects/contrastive_trace_safety/docs/paper/sections/appendix.tex
+projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_reviewer_20260521T202540_462562.jsonl
+projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep.py
+projects/contrastive_trace_safety/docs/paper/references.bib
+projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_20260521T192527_250460.jsonl
+projects/contrastive_trace_safety/logs/chats/feishu_group_oc_4a087be8d8cfffc128323993d357d229_director.jsonl
+projects/contrastive_trace_safety/logs/chats/feishu_group_oc_4a087be8d8cfffc128323993d357d229_reviewer_2.jsonl
+projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_2af5cf9f542b9e0dc11648403c217173_director_20260521T185439_684299.jsonl
+projects/contrastive_trace_safety/docs/paper/sections/limitations.tex
+projects/contrastive_trace_safety/logs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_paper_agent.jsonl
+projects/contrastive_trace_safety/artifacts/manifest.yaml
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_DONE_20260521T091319.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_DONE_20260521T091318.json
+projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_DONE_20260521T091314.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_RUNNING_20260521T091309.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_RUNNING_20260521T091308.json
+projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_RUNNING_20260521T091303.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_ALLOCATED_20260521T091245.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_ALLOCATED_20260521T091244.json
+projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_ALLOCATED_20260521T091240.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_QUEUED_20260521T091235.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_QUEUED_20260521T091234.json
+projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_QUEUED_20260521T091230.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_PENDING_20260521T091225.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_PENDING_20260521T091224.json
+projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_PENDING_20260521T091218.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_PREPARING_20260521T091147.json
+projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_PREPARING_20260521T091147.json
+projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_PREPARING_20260521T091142.json
+projects/contrastive_trace_safety/logs/workers/worker_exp_r1_8b_random_cp_control_20260521T064711.log
+projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_reviewer_20260521T012227_982219.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_code_retrieve_heatmap_data_20260520T165655_result.json
+projects/contrastive_trace_safety/logs/chats/worker_code_retrieve_heatmap_data_20260520T165655.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_code_retrieve_heatmap_data_20260520T165655.log
+projects/contrastive_trace_safety/logs/workers/worker_code_fix_appendix_table_overlap_20260520T161525.log
+projects/contrastive_trace_safety/logs/workers/worker_code_toc_and_term_fix_20260520T160441.log
+projects/contrastive_trace_safety/logs/workers/worker_code_citation_toc_label_fix_20260520T160322.log
+projects/contrastive_trace_safety/logs/workers/worker_research_final_proofreading_20260520T155448.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_check_pca_verification_20260520T092424.log
+projects/contrastive_trace_safety/artifacts/_project/data/qwen3_cp_annotations_pointer.txt
+projects/contrastive_trace_safety/logs/workers/worker_ops_gpt4omini_final_and_cleanup_20260520T065640.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_check_gpt4omini_iaa_progress_20260520T065503.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_cancel_phase4_and_cleanup_20260520T065317_result.json
+projects/contrastive_trace_safety/logs/workers/worker_ops_cancel_phase4_and_cleanup_20260520T065317.log
+projects/contrastive_trace_safety/scripts/annotate_cp_llm_gpt4omini.py
+projects/contrastive_trace_safety/scripts/annotate_cp_llm_qwen3.py
+projects/contrastive_trace_safety/scripts/annotate_cp_llm.py
+projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase4_layer_sweep_20260520T063330_result.json
+projects/contrastive_trace_safety/logs/chats/worker_exp_advbench_phase4_layer_sweep_20260520T063330.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase4_layer_sweep_20260520T063330.log
+projects/contrastive_trace_safety/logs/chats/worker_exp_advbench_gpt4omini_iaa_20260520T063352.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_gpt4omini_iaa_20260520T063352.log
+projects/contrastive_trace_safety/scripts/advbench_phase4_layer_sweep.py
+projects/contrastive_trace_safety/logs/workers/worker_ops_qwen3_check_immediate_20260520T063145.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_fix_cp_stats_bug_20260520T062012.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_check_qwen3_status_now_20260520T062822.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_await_qwen3_final_20260520T062619.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_await_qwen3_and_prepare_phase4_20260520T062418.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_monitor_gpt4omini_completion_20260520T061917_result.json
+projects/contrastive_trace_safety/logs/workers/worker_ops_monitor_gpt4omini_completion_20260520T061917.log
+projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_qwen3_annotation_20260520T055924_result.json
+projects/contrastive_trace_safety/logs/chats/worker_exp_advbench_phase3_qwen3_annotation_20260520T055924.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_qwen3_annotation_20260520T055924.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_monitor_advbench_cp_annotation_20260520T055735.log
+projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_cp_annotation_20260520T054047_result.json
+projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_cp_annotation_20260520T054047.log
+projects/contrastive_trace_safety/logs/chats/worker_research_crossing_rate_literature_20260520T045810.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_research_crossing_rate_literature_20260520T045810.log
+projects/contrastive_trace_safety/logs/chats/worker_ops_arr_submission_package_20260520T043855.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_ops_arr_submission_package_20260520T043855.log
+projects/contrastive_trace_safety/artifacts/submission_package/code/README.md
+projects/contrastive_trace_safety/artifacts/submission_package/code/reproduce/reproduce_table3.sh
+projects/contrastive_trace_safety/artifacts/submission_package/code/src/advbench/extract_hidden_states.py
+projects/contrastive_trace_safety/artifacts/submission_package/code/src/advbench/extract_text_embeddings.py
+projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_hs_exploratory.py
+projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_preliminary_sweep_no_pca.py
+projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/heuristic_cp.py
+projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_preliminary_sweep.py
+projects/contrastive_trace_safety/logs/chats/worker_exp_pca_artifact_verification_20260520T043922.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_exp_pca_artifact_verification_20260520T043922.log
+projects/contrastive_trace_safety/logs/workers/worker_ops_kill_bootstrap_process_20260520T032603_result.json
+projects/contrastive_trace_safety/logs/chats/worker_ops_kill_bootstrap_process_20260520T032603.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_ops_kill_bootstrap_process_20260520T032603.log
+projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_sweep_no_pca_v2_20260520T030343.log
+projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_DONE_20260520T030221.json
+projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_RUNNING_20260520T030221.json
+projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_sweep_no_pca_20260520T025810.log
+projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep_no_pca.py
+projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_heuristic_cp_sweep_20260520T022513.log
+projects/contrastive_trace_safety/artifacts/_project/data/advbench_preliminary_layer_sweep.txt
+projects/contrastive_trace_safety/artifacts/_project/data/advbench_pseudo_cp_annotations.txt
+projects/contrastive_trace_safety/scripts/heuristic_cp.py
+projects/contrastive_trace_safety/logs/workers/worker_code_fix_hs_exploratory_prediction_20260520T015119_result.json
+projects/contrastive_trace_safety/logs/workers/worker_code_fix_hs_exploratory_prediction_20260520T015119.log
+projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_hs_exploratory_20260520T013808_result.json
+projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_hs_exploratory_20260520T013808.log
+projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_text_clustering_20260520T013745_result.json
+projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_text_clustering_20260520T013745.log
+projects/contrastive_trace_safety/scripts/advbench_hs_exploratory.py
+projects/contrastive_trace_safety/artifacts/advbench_preliminary/text_clustering_results.json
+projects/contrastive_trace_safety/docs/paper/_drafts/advbench_contingency_templates.tex
+projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_hs_extraction_20260519T235952_result.json
+projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_hs_extraction_20260519T235952.log
+projects/contrastive_trace_safety/artifacts/_project/data/text_embeddings_advbench.txt
+projects/contrastive_trace_safety/artifacts/_project/data/hidden_states_advbench.txt
+projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_RUNNING_20260519T235932.json
+projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_QUEUED_20260519T235924.json
+projects/contrastive_trace_safety/logs/workers/worker_research_r1_8b_model_variant_check_20260519T221613.log
+projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_trace_generation_20260519T220938.log
+projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_PENDING_20260519T220947.json
+projects/contrastive_trace_safety/logs/workers/worker_analysis_harmthoughts_r1_8b_full_layer_20260519T194656.log
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_pipeline_fix_20260519T194632_result.json
+projects/contrastive_trace_safety/logs/chats/worker_code_advbench_pipeline_fix_20260519T194632.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_pipeline_fix_20260519T194632.log
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_hs_extraction_20260519T193710_result.json
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_hs_extraction_20260519T193710.log
+projects/contrastive_trace_safety/src/advbench/extract_hidden_states.py
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_loader_20260519T193651_result.json
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_loader_20260519T193651.log
+projects/contrastive_trace_safety/src/advbench/extract_text_embeddings.py
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_prep_20260519T193636_result.json
+projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_prep_20260519T193636.log
+projects/contrastive_trace_safety/logs/chats/worker_research_citation_verification_20260517T005549.jsonl
+projects/contrastive_trace_safety/logs/workers/worker_research_citation_verification_20260517T005549.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5cbab940-e10e-488b-8d0e-ee1edf5d5543",
+  "isSidechain": false,
+  "promptId": "b2fb1c64-67bf-4a44-a63d-ee32f01d332f",
+  "type": "user",
+  "uuid": "aa68e1ab-6852-465b-b1c1-1741b0846d8c",
+  "toolUseResult": {
+    "mode": "files_with_matches",
+    "filenames": [
+      "projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260522T085530/logs/phase2_best_attempt0.log",
+      "projects/contrastive_trace_safety/logs/chats/feishu_group_oc_2af5cf9f542b9e0dc11648403c217173_director.jsonl",
+      "projects/contrastive_trace_safety/dream_registry.yaml",
+      "projects/contrastive_trace_safety/dream_registry.yaml.bak",
+      "projects/contrastive_trace_safety/logs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_reviewer.jsonl",
+      "projects/contrastive_trace_safety/ROADMAP.md",
+      "projects/contrastive_trace_safety/logs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded.jsonl",
+      "projects/contrastive_trace_safety/docs/paper/main.aux",
+      "projects/contrastive_trace_safety/docs/paper/main.bbl",
+      "projects/contrastive_trace_safety/registry.yaml",
+      "projects/contrastive_trace_safety/report.md",
+      "projects/contrastive_trace_safety/logs/chats/cron_hook_ensemble_cv_7_8b.jsonl",
+      "projects/contrastive_trace_safety/logs/chats/worker_code_ensemble_cv_7_8b_20260521T231310.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_ensemble_cv_7_8b_20260521T231310.log",
+      "projects/contrastive_trace_safety/decisions.yaml",
+      "projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/review_worst.log",
+      "projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/review_median.log",
+      "projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/review_best.log",
+      "projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260521T212242/logs/phase2_worst_attempt0.log",
+      "projects/contrastive_trace_safety/docs/paper/sections/appendix.tex",
+      "projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_reviewer_20260521T202540_462562.jsonl",
+      "projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep.py",
+      "projects/contrastive_trace_safety/docs/paper/references.bib",
+      "projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_20260521T192527_250460.jsonl",
+      "projects/contrastive_trace_safety/logs/chats/feishu_group_oc_4a087be8d8cfffc128323993d357d229_director.jsonl",
+      "projects/contrastive_trace_safety/logs/chats/feishu_group_oc_4a087be8d8cfffc128323993d357d229_reviewer_2.jsonl",
+      "projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_2af5cf9f542b9e0dc11648403c217173_director_20260521T185439_684299.jsonl",
+      "projects/contrastive_trace_safety/docs/paper/sections/limitations.tex",
+      "projects/contrastive_trace_safety/logs/chats/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_paper_agent.jsonl",
+      "projects/contrastive_trace_safety/artifacts/manifest.yaml",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_DONE_20260521T091319.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_DONE_20260521T091318.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_DONE_20260521T091314.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_RUNNING_20260521T091309.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_RUNNING_20260521T091308.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_RUNNING_20260521T091303.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_ALLOCATED_20260521T091245.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_ALLOCATED_20260521T091244.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_ALLOCATED_20260521T091240.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_QUEUED_20260521T091235.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_QUEUED_20260521T091234.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_QUEUED_20260521T091230.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_PENDING_20260521T091225.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_PENDING_20260521T091224.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_PENDING_20260521T091218.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_annotation_PREPARING_20260521T091147.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_llm_cp_full_PREPARING_20260521T091147.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_phase4_layer_sweep_PREPARING_20260521T091142.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_r1_8b_random_cp_control_20260521T064711.log",
+      "projects/contrastive_trace_safety/logs/chats/archive/feishu_group_oc_60d666c5df9f6fd550342b33963e2ded_reviewer_20260521T012227_982219.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_retrieve_heatmap_data_20260520T165655_result.json",
+      "projects/contrastive_trace_safety/logs/chats/worker_code_retrieve_heatmap_data_20260520T165655.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_retrieve_heatmap_data_20260520T165655.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_fix_appendix_table_overlap_20260520T161525.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_toc_and_term_fix_20260520T160441.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_citation_toc_label_fix_20260520T160322.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_research_final_proofreading_20260520T155448.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_check_pca_verification_20260520T092424.log",
+      "projects/contrastive_trace_safety/artifacts/_project/data/qwen3_cp_annotations_pointer.txt",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_gpt4omini_final_and_cleanup_20260520T065640.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_check_gpt4omini_iaa_progress_20260520T065503.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_cancel_phase4_and_cleanup_20260520T065317_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_cancel_phase4_and_cleanup_20260520T065317.log",
+      "projects/contrastive_trace_safety/scripts/annotate_cp_llm_gpt4omini.py",
+      "projects/contrastive_trace_safety/scripts/annotate_cp_llm_qwen3.py",
+      "projects/contrastive_trace_safety/scripts/annotate_cp_llm.py",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase4_layer_sweep_20260520T063330_result.json",
+      "projects/contrastive_trace_safety/logs/chats/worker_exp_advbench_phase4_layer_sweep_20260520T063330.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase4_layer_sweep_20260520T063330.log",
+      "projects/contrastive_trace_safety/logs/chats/worker_exp_advbench_gpt4omini_iaa_20260520T063352.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_gpt4omini_iaa_20260520T063352.log",
+      "projects/contrastive_trace_safety/scripts/advbench_phase4_layer_sweep.py",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_qwen3_check_immediate_20260520T063145.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_fix_cp_stats_bug_20260520T062012.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_check_qwen3_status_now_20260520T062822.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_await_qwen3_final_20260520T062619.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_await_qwen3_and_prepare_phase4_20260520T062418.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_monitor_gpt4omini_completion_20260520T061917_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_monitor_gpt4omini_completion_20260520T061917.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_qwen3_annotation_20260520T055924_result.json",
+      "projects/contrastive_trace_safety/logs/chats/worker_exp_advbench_phase3_qwen3_annotation_20260520T055924.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_qwen3_annotation_20260520T055924.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_monitor_advbench_cp_annotation_20260520T055735.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_cp_annotation_20260520T054047_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_advbench_phase3_cp_annotation_20260520T054047.log",
+      "projects/contrastive_trace_safety/logs/chats/worker_research_crossing_rate_literature_20260520T045810.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_research_crossing_rate_literature_20260520T045810.log",
+      "projects/contrastive_trace_safety/logs/chats/worker_ops_arr_submission_package_20260520T043855.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_arr_submission_package_20260520T043855.log",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/README.md",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/reproduce/reproduce_table3.sh",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/src/advbench/extract_hidden_states.py",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/src/advbench/extract_text_embeddings.py",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_hs_exploratory.py",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_preliminary_sweep_no_pca.py",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/heuristic_cp.py",
+      "projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_preliminary_sweep.py",
+      "projects/contrastive_trace_safety/logs/chats/worker_exp_pca_artifact_verification_20260520T043922.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_exp_pca_artifact_verification_20260520T043922.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_kill_bootstrap_process_20260520T032603_result.json",
+      "projects/contrastive_trace_safety/logs/chats/worker_ops_kill_bootstrap_process_20260520T032603.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_ops_kill_bootstrap_process_20260520T032603.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_sweep_no_pca_v2_20260520T030343.log",
+      "projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_DONE_20260520T030221.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_RUNNING_20260520T030221.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_sweep_no_pca_20260520T025810.log",
+      "projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep_no_pca.py",
+      "projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_heuristic_cp_sweep_20260520T022513.log",
+      "projects/contrastive_trace_safety/artifacts/_project/data/advbench_preliminary_layer_sweep.txt",
+      "projects/contrastive_trace_safety/artifacts/_project/data/advbench_pseudo_cp_annotations.txt",
+      "projects/contrastive_trace_safety/scripts/heuristic_cp.py",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_fix_hs_exploratory_prediction_20260520T015119_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_fix_hs_exploratory_prediction_20260520T015119.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_hs_exploratory_20260520T013808_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_hs_exploratory_20260520T013808.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_text_clustering_20260520T013745_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_analysis_advbench_text_clustering_20260520T013745.log",
+      "projects/contrastive_trace_safety/scripts/advbench_hs_exploratory.py",
+      "projects/contrastive_trace_safety/artifacts/advbench_preliminary/text_clustering_results.json",
+      "projects/contrastive_trace_safety/docs/paper/_drafts/advbench_contingency_templates.tex",
+      "projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_hs_extraction_20260519T235952_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_hs_extraction_20260519T235952.log",
+      "projects/contrastive_trace_safety/artifacts/_project/data/text_embeddings_advbench.txt",
+      "projects/contrastive_trace_safety/artifacts/_project/data/hidden_states_advbench.txt",
+      "projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_RUNNING_20260519T235932.json",
+      "projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_QUEUED_20260519T235924.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_research_r1_8b_model_variant_check_20260519T221613.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_gpu_advbench_trace_generation_20260519T220938.log",
+      "projects/contrastive_trace_safety/checkpoints/advbench_r1_8b_full_PENDING_20260519T220947.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_analysis_harmthoughts_r1_8b_full_layer_20260519T194656.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_pipeline_fix_20260519T194632_result.json",
+      "projects/contrastive_trace_safety/logs/chats/worker_code_advbench_pipeline_fix_20260519T194632.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_pipeline_fix_20260519T194632.log",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_hs_extraction_20260519T193710_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_hs_extraction_20260519T193710.log",
+      "projects/contrastive_trace_safety/src/advbench/extract_hidden_states.py",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_loader_20260519T193651_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_loader_20260519T193651.log",
+      "projects/contrastive_trace_safety/src/advbench/extract_text_embeddings.py",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_prep_20260519T193636_result.json",
+      "projects/contrastive_trace_safety/logs/workers/worker_code_advbench_data_prep_20260519T193636.log",
+      "projects/contrastive_trace_safety/logs/chats/worker_research_citation_verification_20260517T005549.jsonl",
+      "projects/contrastive_trace_safety/logs/workers/worker_research_citation_verification_20260517T005549.log"
+    ],
+    "numFiles": 143
+  },
+  "sourceToolAssistantUUID": "5cbab940-e10e-488b-8d0e-ee1edf5d5543",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T09:01:17.337Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01FegzYmYCkWtkvr81xGfDL3`</summary>
+
+```json
+{
+  "description": "Read AdvBench registry entries",
+  "subagent_type": "Explore",
+  "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/, I need to understand what happened with the AdvBench experiments. Read these files and report their contents:\n1. The registry.yaml entries for advbench_r1_8b_full, advbench_llm_cp_annotation, advbench_llm_cp_full, advbench_phase4_layer_sweep\n2. Any results files in artifacts/ related to advbench\n3. The file artifacts/advbench_preliminary/text_clustering_results.json\n4. The file artifacts/_project/data/advbench_preliminary_layer_sweep.txt\n5. The file artifacts/_project/data/advbench_pseudo_cp_annotations.txt\n\nReport the key findings - why did previous AdvBench attempts fail or get killed? What data exists already?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa68e1ab-6852-465b-b1c1-1741b0846d8c",
+  "isSidechain": false,
+  "requestId": "req_011CbHLNhXu7XVcjDXHen8qp",
+  "type": "assistant",
+  "uuid": "736176e9-023f-4f09-98b6-9db9611be9cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQVz9cPtgiPX1ksWM68Du1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5071,
+      "cache_read_input_tokens": 70771,
+      "output_tokens": 306,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5071,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 306,
+          "cache_read_input_tokens": 70771,
+          "cache_creation_input_tokens": 5071,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5071
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质' 核心假设：['layer selection bias是模型表征的几何性…",
+  "leafUuid": "736176e9-023f-4f09-98b6-9db9611be9cb",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "AdvBench layer selection bias replication",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T09:02:13.296Z_
+
+<details><summary>↩ Tool result · `toolu_01FegzYmYCkWtkvr81xGfDL3`</summary>
+
+```text
+Perfect! Now I have all the information I need. Let me compile the comprehensive findings:
+
+## Summary of AdvBench Experiments - Key Findings
+
+Based on my analysis of the registry.yaml, memory.md, and related files, here's what happened with the AdvBench experiments:
+
+### **Registry.yaml Entries**
+
+1. **advbench_r1_8b_full** (created 2026-05-19, updated 2026-05-20)
+   - Status: DONE, but **FAILED**
+   - Conclusion: "failed" (with "startup recovery: RUNNING with no cron and no server/pid info")
+   - Model: DeepSeek-R1-Distill-Llama-8B on RTX PRO 6000 x2
+   - Dataset: 520 traces from AdvBench harmful_behaviors.csv
+   - Phase 1 Status: DONE (traces generated), but process monitoring failed
+   - Hypothesis: Cross-dataset replication of layer selection bias pattern from HarmThoughts
+
+2. **advbench_llm_cp_annotation** (created 2026-05-20, updated 2026-05-21)
+   - Status: DONE, **KILLED before run**
+   - Conclusion: "killed"
+   - GPU Hours: 27.35 hours wall clock time (98467 seconds)
+   - Data: N/A (never ran)
+   - Submitted via submit_training_job backend
+
+3. **advbench_llm_cp_full** (created 2026-05-20, updated 2026-05-21)
+   - Status: DONE, **KILLED before run**
+   - Conclusion: "killed"
+   - GPU Hours: 27.3 hours wall clock time (98275 seconds)
+   - Data: N/A (never ran)
+   - Similar to advbench_llm_cp_annotation
+
+4. **advbench_phase4_layer_sweep** (created 2026-05-20, updated 2026-05-21)
+   - Status: DONE, **KILLED before run**
+   - Conclusion: "killed"
+   - GPU Hours: 26.6 hours wall clock time (95742 seconds)
+   - Data: N/A (never ran)
+   - This was a full layer sweep experiment that never started
+
+### **Why AdvBench Experiments Failed/Got Killed**
+
+According to memory.md (Decision D055, dated 2026-05-20):
+
+**The AdvBench Phase 4 layer sweep was CANCELLED due to fundamental data distribution issues:**
+
+- **Phase 3 CP Annotation Results showed:**
+  - R1-8B: 388 total traces annotated
+  - Only 52 jailbreaks (13.4%) from R1-8B output
+  - **Critical finding: 47/52 jailbreaks had CP=0** (90% of jailbreaks)
+  - This means R1-8B skips safety deliberation entirely when facing adversarial prompts and directly produces compliant responses
+
+- **Why this killed Phase 4:**
+  - Layer sweep analysis requires pre/post-CP step distributions for each trace
+  - With 90% CP=0, there's insufficient variance in safety deliberation steps
+  - Without meaningful deliberation patterns, layer selection analysis cannot proceed
+  - The probing task becomes impossible at the trace level
+
+- **Additional context:**
+  - gpt-4o-mini was used as IAA baseline and showed ~2x higher jailbreak rate (25.5%, 99/388)
+  - Inter-annotator agreement on is_jailbreak: κ=0.6063 (moderate)
+  - CP position had high subjectivity (exact match only 37%, within 5 steps 47%)
+
+### **Existing AdvBench Data**
+
+Despite the Phase 4 cancellation, some preliminary results exist:
+
+1. **advbench_preliminary/text_clustering_results.json** ✓
+   - 520 AdvBench traces analyzed
+   - HDBSCAN clustering (5 clusters + 309 noise points)
+   - Jailbreak yield: 86.54% (450/520)
+   - ABC classification of response types:
+     - A (refusal): 70 (13.5%)
+     - B (compliance): 387 (74.4%)
+     - C (educational): 63 (12.1%)
+   - Silhouette score: 0.251 (weak clustering)
+
+2. **advbench_preliminary/tsne_clustering.png** ✓
+   - Visualization of cluster patterns
+
+3. **Hidden states and text embeddings extracted:**
+   - `/artifacts/_project/data/hidden_states_advbench.txt` 
+   - `/artifacts/_project/data/text_embeddings_advbench.txt`
+   - Both point to remote: `autodl-rtx6000:/root/autodl-tmp/contrastive_trace_safety/`
+
+4. **Pseudo CP annotations (preliminary):**
+   - `/artifacts/_project/data/advbench_pseudo_cp_annotations.txt` 
+   - Remote: `autodl-rtx6000:/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_preliminary/pseudo_cp_annotations.json`
+   - `/artifacts/_project/data/advbench_preliminary_layer_sweep.txt`
+   - Remote: `autodl-rtx6000:/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_preliminary/pseudo_cp_layer_sweep/sweep_results.json`
+
+5. **HarmThoughts R1-8B results (still completed):**
+   - `/artifacts/r1_8b_full_layer_sweep_results.json` - HarmThoughts layer sweep completed successfully (209 traces)
+   - Shows metric-dependent layer selection across windows W1-W15
+
+### **Key Takeaway**
+
+The AdvBench experiments were cancelled not due to technical failure, but due to **discovering that R1-8B model behavior differs fundamentally between HarmThoughts (reasoning-based safety) and AdvBench (adversarial jailbreaks)**: the model skips safety deliberation on AdvBench prompts, making cross-dataset replication impossible. This is documented in decision log D055 and memory.md, representing a research insight rather than a bug.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "736176e9-023f-4f09-98b6-9db9611be9cb",
+  "isSidechain": false,
+  "promptId": "b2fb1c64-67bf-4a44-a63d-ee32f01d332f",
+  "type": "user",
+  "uuid": "dd8eeb82-da1a-48bb-a01b-0781ccac5f23",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/, I need to understand what happened with the AdvBench experiments. Read these files and report their contents:\n1. The registry.yaml entries for advbench_r1_8b_full, advbench_llm_cp_annotation, advbench_llm_cp_full, advbench_phase4_layer_sweep\n2. Any results files in artifacts/ related to advbench\n3. The file artifacts/advbench_preliminary/text_clustering_results.json\n4. The file artifacts/_project/data/advbench_preliminary_layer_sweep.txt\n5. The file artifacts/_project/data/advbench_pseudo_cp_annotations.txt\n\nReport the key findings - why did previous AdvBench attempts fail or get killed? What data exists already?",
+    "agentId": "a9ff8191ae4141982",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have all the information I need. Let me compile the comprehensive findings:\n\n## Summary of AdvBench Experiments - Key Findings\n\nBased on my analysis of the registry.yaml, memory.md, and related files, here's what happened with the AdvBench experiments:\n\n### **Registry.yaml Entries**\n\n1. **advbench_r1_8b_full** (created 2026-05-19, updated 2026-05-20)\n   - Status: DONE, but **FAILED**\n   - Conclusion: \"failed\" (with \"startup recovery: RUNNING with no cron and no server/pid info\")\n   - Model: DeepSeek-R1-Distill-Llama-8B on RTX PRO 6000 x2\n   - Dataset: 520 traces from AdvBench harmful_behaviors.csv\n   - Phase 1 Status: DONE (traces generated), but process monitoring failed\n   - Hypothesis: Cross-dataset replication of layer selection bias pattern from HarmThoughts\n\n2. **advbench_llm_cp_annotation** (created 2026-05-20, updated 2026-05-21)\n   - Status: DONE, **KILLED before run**\n   - Conclusion: \"killed\"\n   - GPU Hours: 27.35 hours wall clock time (98467 seconds)\n   - Data: N/A (never ran)\n   - Submitted via submit_training_job backend\n\n3. **advbench_llm_cp_full** (created 2026-05-20, updated 2026-05-21)\n   - Status: DONE, **KILLED before run**\n   - Conclusion: \"killed\"\n   - GPU Hours: 27.3 hours wall clock time (98275 seconds)\n   - Data: N/A (never ran)\n   - Similar to advbench_llm_cp_annotation\n\n4. **advbench_phase4_layer_sweep** (created 2026-05-20, updated 2026-05-21)\n   - Status: DONE, **KILLED before run**\n   - Conclusion: \"killed\"\n   - GPU Hours: 26.6 hours wall clock time (95742 seconds)\n   - Data: N/A (never ran)\n   - This was a full layer sweep experiment that never started\n\n### **Why AdvBench Experiments Failed/Got Killed**\n\nAccording to memory.md (Decision D055, dated 2026-05-20):\n\n**The AdvBench Phase 4 layer sweep was CANCELLED due to fundamental data distribution issues:**\n\n- **Phase 3 CP Annotation Results showed:**\n  - R1-8B: 388 total traces annotated\n  - Only 52 jailbreaks (13.4%) from R1-8B output\n  - **Critical finding: 47/52 jailbreaks had CP=0** (90% of jailbreaks)\n  - This means R1-8B skips safety deliberation entirely when facing adversarial prompts and directly produces compliant responses\n\n- **Why this killed Phase 4:**\n  - Layer sweep analysis requires pre/post-CP step distributions for each trace\n  - With 90% CP=0, there's insufficient variance in safety deliberation steps\n  - Without meaningful deliberation patterns, layer selection analysis cannot proceed\n  - The probing task becomes impossible at the trace level\n\n- **Additional context:**\n  - gpt-4o-mini was used as IAA baseline and showed ~2x higher jailbreak rate (25.5%, 99/388)\n  - Inter-annotator agreement on is_jailbreak: κ=0.6063 (moderate)\n  - CP position had high subjectivity (exact match only 37%, within 5 steps 47%)\n\n### **Existing AdvBench Data**\n\nDespite the Phase 4 cancellation, some preliminary results exist:\n\n1. **advbench_preliminary/text_clustering_results.json** ✓\n   - 520 AdvBench traces analyzed\n   - HDBSCAN clustering (5 clusters + 309 noise points)\n   - Jailbreak yield: 86.54% (450/520)\n   - ABC classification of response types:\n     - A (refusal): 70 (13.5%)\n     - B (compliance): 387 (74.4%)\n     - C (educational): 63 (12.1%)\n   - Silhouette score: 0.251 (weak clustering)\n\n2. **advbench_preliminary/tsne_clustering.png** ✓\n   - Visualization of cluster patterns\n\n3. **Hidden states and text embeddings extracted:**\n   - `/artifacts/_project/data/hidden_states_advbench.txt` \n   - `/artifacts/_project/data/text_embeddings_advbench.txt`\n   - Both point to remote: `autodl-rtx6000:/root/autodl-tmp/contrastive_trace_safety/`\n\n4. **Pseudo CP annotations (preliminary):**\n   - `/artifacts/_project/data/advbench_pseudo_cp_annotations.txt` \n   - Remote: `autodl-rtx6000:/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_preliminary/pseudo_cp_annotations.json`\n   - `/artifacts/_project/data/advbench_preliminary_layer_sweep.txt`\n   - Remote: `autodl-rtx6000:/root/autodl-tmp/contrastive_trace_safety/artifacts/advbench_preliminary/pseudo_cp_layer_sweep/sweep_results.json`\n\n5. **HarmThoughts R1-8B results (still completed):**\n   - `/artifacts/r1_8b_full_layer_sweep_results.json` - HarmThoughts layer sweep completed successfully (209 traces)\n   - Shows metric-dependent layer selection across windows W1-W15\n\n### **Key Takeaway**\n\nThe AdvBench experiments were cancelled not due to technical failure, but due to **discovering that R1-8B model behavior differs fundamentally between HarmThoughts (reasoning-based safety) and AdvBench (adversarial jailbreaks)**: the model skips safety deliberation on AdvBench prompts, making cross-dataset replication impossible. This is documented in decision log D055 and memory.md, representing a research insight rather than a bug."
+      }
+    ],
+    "totalDurationMs": 55955,
+    "totalTokens": 45200,
+    "totalToolUseCount": 26,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 363,
+      "cache_read_input_tokens": 43319,
+      "output_tokens": 1512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 363
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 1512,
+          "cache_read_input_tokens": 43319,
+          "cache_creation_input_tokens": 363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 363,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 10,
+      "searchCount": 0,
+      "bashCount": 16,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "736176e9-023f-4f09-98b6-9db9611be9cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-22T09:04:58.194Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important context. The previous AdvBench attempts failed because:
+1. R1-8B on AdvBench has 90% CP=0 (skips safety deliberation)
+2. Only 13.4% jailbreak rate from R1-8B (vs 86.54% from the text clustering which uses a different classification)
+3. The fundamental distribution mismatch makes CP-based analysis impossible
+
+But wait - the what_if experiment (advbench_layer_bias_replication) explicitly uses BINARY labels (jailbreak/safe), NOT CP annotations. This is the key difference. 
+
+With binary labels, I don't need CP at all—just label entire traces as jailbreak or safe. The text clustering results show 520 traces with 86.54% jailbreak yield (450/520), broken down as A (refusal): 70, B (compliance): 387, C (educational): 63. But the CP annotation only found 52 jailbreaks (13.4%), which suggests the text clustering is using a fundamentally different definition of what constitutes a jailbreak.
+
+Looking at this more carefully, the text clustering classifies 74.4% as compliance (B category), yet CP annotation found only 52 jailbreaks out of 388. The gap likely comes down to how strictly each method defines jailbreak—the clustering treats any non-refusal as jailbreak, while CP annotation requires explicit harmful content, and the educational category (12.1%) sits in a gray area between them. For the what_if experiment with binary labels, the real question is whether I'll have enough jailbreak traces to make the analysis meaningful.
+
+Using the strict definition gives me only ~52 jailbreak traces from 520 total, which is sparse for training probes. But if I adopt the permissive definition where compliance counts as jailbreak, I get ~387 traces—plenty of data, though with significant class imbalance. The what_if description suggests using binary jailbreak/safe labels without needing CP annotation, so I should assume the permissive definition and work with the ~70 safe traces against ~387-450 jailbreak traces.
+
+There's a discrepancy between the 388 annotated traces mentioned in the failure info versus the 520 total traces and 450 jailbreak yield from text clustering—possibly because CP annotation was only done on a subset, or R1-8B might actually be quite safe on AdvBench.
+
+Looking at the actual numbers more carefully: the clustering shows 13.5% refusals (70/520) while the CP annotation shows 13.4% jailbreaks (52/388). These percentages are inverted—one's measuring refusals and the other jailbreaks—which is confusing the picture.
+
+I think the clustering analyzed a different model's outputs or the raw AdvBench data separately from R1-8B. The annotation specifically targeted R1-8B outputs, which show a very low jailbreak rate of about 13.4%. So for the "best" tier, I'm working with roughly 52 jailbreak traces and 336 safe traces—the opposite class imbalance from the original HarmThoughts dataset. I'll use balanced class weights and train per-step probes where each step in a jailbreak trace gets labeled accordingly.
+
+The hidden state geometry should still reveal layer selection patterns even with fewer jailbreak traces. Though there's some ambiguity about whether the text clustering numbers (520 traces, 450 jailbreaks) represent the actual R1-8B outputs or if the CP annotator's stricter definition explains the discrepancy with the 52 jailbreaks from 388 total, I'll just go with whatever produces the best results and assume binary labels are well-defined with around 100 traces.
+
+For the best tier, I'm looking at subsampling to roughly 70 safe and 70 jailbreak traces for balance, which gives me about 140 total—splitting that into 84 training, 28 validation, and 28 test samples. The test set is small enough that bootstrap confidence intervals will be wider, but should still show significance for meaningful effect sizes. Now I'm ready to write out the complete YAML with these constraints in mind.
+
+What matters most is whether the core pattern holds: CR-composite selecting shallow layers, threshold metrics picking deep ones, and a consistent gap of 8+ layers between them. On R1-8B's 32 layers, I'd expect CR-composite to land around L1-L3 on AdvBench while threshold metrics cluster around L12-L16—that's roughly a 10-14 layer separation. This replicates because shallow layers compress representations tightly, which amplifies noise-driven threshold effects.
+
+Now I need to finalize the YAML with these numbers rather than continuing to second-guess myself. For the AdvBench dataset specifics, I'm noticing a discrepancy between the text clustering results (86.54% jailbreak yield) and the LLM annotation labels, so I should clarify which labeling scheme to use for the numbers.
+
+For the "best" tier configuration, the most straightforward approach is to define the binary label as whether the model produces harmful content, using the text clustering definition which gives roughly 450 jailbreak traces and 70 safe ones—a 6:1 imbalance that's workable with balanced class weights.
+
+The probe setup extracts per-step features from hidden states across layers with a binary trace-level label and balanced weighting, then uses the 5-metric layer selection approach. At shallow layers, the hidden state features lack discriminative power and the crossing rate inflates the CR-composite score, potentially selecting L1-L2, while at deeper layers the features become more informative and crossing rates stabilize, which should favor the deeper selections.
+
+At L14, the hidden state probe achieves 0.76 balanced accuracy with 0.68 precision and 0.15 FPR, compared to text's 0.65 balanced accuracy, 0.50 precision, and 0.28 FPR—an 11 percentage point gain in balanced accuracy and 18 point gain in precision. These results make sense because the binary trace labels are coarser than the original step-level labels, so absolute performance dips slightly from 0.81 to 0.76, but the modality gap remains consistent with the original 8-22 percentage point precision differences observed across models, putting the 18 point improvement well within expected range.
+
+The crossing rate ratio between L2 and L14 is 2.25, reflecting how shallow layer representations are more compressed geometrically, making their decision boundaries easier to cross with noise, while deeper layers remain stable—this pattern holds independent of the label scheme. Comparing the original and AdvBench results, the composite layer shifts from L0 to L2, the threshold layer stays at L14, and the gap between them narrows from 14 to 12 layers, with the hidden state balanced accuracy dropping from 0.81 to 0.76 while the precision advantage over text remains around 18-22 percentage points.
+
+Now I'm reviewing the experiment registry to identify which experiments are already complete and which still need full predictions, starting with the first eight entries.
+
+Writing YAML config... 2-4pp bal_acc over binary CP labels - the main benefit is better timing resolution to catch transition states, though the marginal gains don't strongly support the paper's core claims.
+
+For exp-010, the oracle decomposition reveals that under the best tier, the oracle's +31 step lead comes from having access to future labels while probes can only work with current and past hidden states. The key finding is that safety commitment gets encoded in the current state (where probes detect it), but the future trajectory isn't reliably represented there. Position accounts for roughly 12-20pp of probe performance, yet even after removing positional information, most models retain non-positional signal. The oracle's advantage ultimately stems from three factors: access to future information, perfect temporal alignment, and no generalization burden.
+
+For the YAML output, I need to ensure every prediction includes a result_rationale explaining why these specific values emerge under the best tier framework - connecting back to the AdvBench replication and geometric property narrative.
+
+Looking at exp-009 with the 16-label taxonomy, I'm distinguishing between initial safety awareness, safety deliberation, decision transitions, and post-commitment execution phases. Under the best tier, R1-8B shows balanced accuracy improving from 0.81 to 0.83 with the fine-grained labels, while coverage jumps from 0.77 to 0.81, reflecting how the richer label structure better captures the intermediate states where the model's reasoning becomes interpretable. The GRU partially closes the gap with temporal modeling but still falls about 25 steps short of the oracle, suggesting a fundamental limit to what probes can achieve. For the paper, I need to include five key tables: the AdvBench layer selection metrics alongside the original comparison, the exp-001 layer sweep summary, the exp-006 results showing all 12 HB cases, the exp-007 window ablation, and the exp-008 metric-by-model layer selection. Now I'm structuring the YAML configuration...
+
+Writing YAML config... lines. That's fine for a comprehensive prediction document.
+
+Let me structure each experiment entry to be ~30-60 lines:
+- name: 1 line
+- plan_id: 1 line
+- description: 2-3 lines
+- expected_results: 10-20 lines (nested metrics)
+- result_rationale: 5-10 lines
+- tables: 0-20 lines (only for key experiments)
+- figures_description: 1-5 lines
+- analysis: 3-5 lines
+
+That's roughly 25-70 lines per experiment. With 16 experiments, total is 400-1120 lines. I'll aim for the middle ground.
+
+Let me start writing now.
+
+Wait - one more key insight for the AdvBench experiment. The previous attempt failed because CP=0 for 90% of jailbreaks (model skips safety deliberation). But with BINARY labels instead, I don't need CP at all. I can just label jailbreak traces as 1 and safe traces as 0, letting the probe learn to distinguish whether a hidden state comes from a model that will ultimately jailbreak versus refuse. This is a different task than CP detection, but it still tests whether shallow layers have higher crossing rates due to their compressed representations, which is what the geometric bias predicts. The trace-level binary labeling essentially turns this into outcome prediction from per-step hidden states. to a trajectory-level classifier. At each step, the probe predicts whether this trace will end in jailbreak or refusal.
+
+For early steps (common to both jailbreak and safe traces), the probe has less signal → lower accuracy. For later steps (where jailbreak traces diverge), the probe has more signal → higher accuracy. This creates a natural temporal gradient.
+
+For the layer selection:
+- At shallow layers, the temporal gradient is noisy → lots of threshold crossings → high CR
+- At deep layers, the temporal gradient is smoother → fewer crossings → low CR
+- CR-composite (bal_acc × CR) rewards high CR → selects shallow
+- Precision rewards correct crossings → selects deep
+
+This is exactly the same mechanism as the original finding, just with different labels. The "best" tier predicts this replicates.
+
+For the HS vs text comparison at the deep layer:
+- HS probes at L14 capture the model's internal processing state, while text probes only see surface-level sentence embeddings from the chain-of-thought. The model appears to "know" it's heading toward jailbreak at deeper layers before that decision manifests in the text itself, giving HS a clear advantage. This pattern holds on AdvBench too.
+
+Now I'm looking at the trace data: text clustering identifies 450 jailbreak and 70 safe traces, while the CP annotation marks 52 jailbreak and 336 safe out of 388 total. I'm realizing the text clustering might be analyzing the AdvBench prompts and outputs themselves rather than R1-8B's specific behavior on those inputs. With a 60/20/20 split, I'd only have around 11 jailbreak traces in the test set, which gives me very limited statistical power and wide confidence intervals. That's a real constraint for the "best" tier. But the what_if description doesn't explicitly require using only R1-8B's annotations—I could potentially use the text clustering method instead, which found 450 jailbreaks out of 520 traces, giving me much more signal to work with.
+
+If I adopt a more permissive definition of jailbreak (anything that's not a refusal), I'd get roughly 450 jailbreak and 70 safe traces, which flips the imbalance problem. For the "best" tier, I think the intent is to use a simple binary classifier—maybe a safety classifier or LLM judge—to label whether R1-8B's outputs are harmful, which would give me something closer to 400-450 labeled jailbreak traces with better class balance.
+
+For the actual dataset split, I'll use all 520 traces with balanced class weights during training, apply a 60/20/20 split for 312 train, 104 val, and 104 test samples, and accept that the test set will still have some imbalance—roughly 90 jailbreak to 14 safe. Rather than overthinking this, I'll just go with reasonable numbers that make sense for the "best" tier: around 450 jailbreak and 70 safe traces with the 60/20/20 split.
+
+Now I'm reconsidering the actual annotated subset—388 traces with only 52 strict jailbreak cases and 336 safe ones. That's a pretty severe imbalance, and with traces averaging 25-35 sentences, I'd only get about 1560 jailbreak steps for training the probes, which feels thin. ~336 × 30 = 10080 safe steps. With balanced weights, this is workable.
+
+For the test set (20%):
+- ~10 jailbreak traces, ~67 safe traces
+- ~300 jailbreak steps, ~2010 safe steps
+
+Step-level bal_acc is computed on these steps. With balanced class weights, the probe's threshold is set to handle the imbalance.
+
+For the "best" tier:
+- bal_acc: 0.74 (slightly lower than original 0.81 due to coarser labels and fewer jailbreak examples)
+- Precision: 0.62 (lower than original due to fewer jailbreak training examples)
+- FPR: 0.18 (slightly higher)
+
+But the KEY result is the PATTERN: CR-composite selects shallow, threshold selects deep.
+
+I'm going to stop overthinking this and just move forward. For the "best" tier, I'll use a robust binary labeling scheme that provides reasonable data without needing exact matches to the failed experiments—it's a thought experiment about what would happen if the experiment succeeds. I'll work with either a balanced subset of around 150 traces or all 520 with balanced weights, which gives me enough data to analyze layer selection meaningfully. For the prediction document, I'll note the data source and assumptions alongside the metrics, then finally write out the results for each of the 15 experiment plan entries with best-tier metrics based on registry data. the advbench what_if: provide detailed best-tier predictions with all the key metrics
+
+The result_rationale for each will explain WHY these results occur under the best tier.
+
+Let me write efficiently now. Start with the YAML header, then go through each experiment.
+
+For the advbench experiment specifically, I'll assume:
+- n = 150 traces (75 jailbreak, 75 safe, balanced)
+- 60/20/20 split: 90 train, 30 val, 30 test
+- 32 layers for R1-8B
+- 5 metrics for layer selection
+
+Results:
+- CR-composite (bal_acc × CR): L2 (6%)
+- Pure bal_acc: L11 (35%)
+- Precision: L15 (48%)
+- Inverse FPR: L14 (45%)
+- Composite: L14 (45%)
+
+Gap: 12 layers (39%)
+
+Now looking at the performance differences between hidden states and text representations at L14: hidden states achieve much stronger balanced accuracy and precision with substantially lower false positive rates, while text representations lag across all three metrics. The CR values show a 2.3x improvement at L14 compared to L2. Running bootstrap resampling on the test set confirms these differences are statistically significant across all three metrics, passing the Holm-Bonferroni correction.
+
+The dream score improves by 0.20 points, and all the key parameters fall within the best-tier ranges established by the paper, including the layer depth percentages, gaps, and performance thresholds.
+
+Now I'm moving on to write the YAML configuration, being careful to use quoted strings for table values to avoid any issues with YAML flow sequences. I'm also planning out the key figures for the experiments—layer depth heatmaps for advbench, metric-by-model selection heatmaps for exp-008, and performance curves for exp-007.
+
+Writing YAML config...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd8eeb82-da1a-48bb-a01b-0781ccac5f23",
+  "isSidechain": false,
+  "requestId": "req_011CbHLTSA53iDtvoyCgPRXk",
+  "type": "assistant",
+  "uuid": "4342b5a1-d8f4-490c-b467-4beb4ac49a47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RSj2JxAFrt9yyeK1YArEbQ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1826,
+      "cache_read_input_tokens": 75842,
+      "output_tokens": 21083,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 21083,
+          "cache_read_input_tokens": 75842,
+          "cache_creation_input_tokens": 1826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-22T09:09:23.691Z_
+
+Now I have the full picture: previous AdvBench attempts failed because R1-8B had 90% CP=0 (skips safety deliberation on adversarial prompts). The what_if experiment bypasses this by using binary jailbreak/safe labels — no CP needed.
+
+Let me construct the complete best-tier prediction document.
+
+```yaml
+tier: best
+narrative_guidance: >
+  AdvBench binary-label replication完整复现layer selection bias模式。
+  核心论证链：(1) R1-8B在AdvBench上用jailbreak/safe二元标注（无CP）训练探针；
+  (2) CR-composite仍系统性选浅层（L2, 6%深度），threshold metrics仍选深层（L14, 45%深度），gap=12层；
+  (3) HS在深层显著优于text（precision +18pp, 3/3 HB pass）；
+  (4) 浅层crossing rate是深层的2.3倍，与原数据集模式一致。
+  这直接堵死reviewer concern "bias是你数据集/标注方案的artifact"——
+  不同数据集（AdvBench vs HarmThoughts）、不同标注粒度（binary vs step-level CP）、
+  不同任务定义（trace outcome vs safety state transition）下，bias pattern完全复现。
+  C1从"单数据集发现"升级为"模型表征的几何性质"。
+  论文主文加一句cross-dataset validation + appendix完整table。
+  Dream score预估从3.0升至3.15-3.25（delta +0.20），
+  Findings→Borderline Conference的叙事可信度显著增强。
+
+imagined_experiments:
+  # ============================================================
+  # exp-001: Cross-architecture layer sweep (32B)
+  # ============================================================
+  - name: "Cross-architecture HS extraction + layer sweep"
+    plan_id: "exp-001"
+    description: >
+      R1-32B和QwQ-32B全层扫描（64层），确定最佳层并评估static probe。
+      已在registry完成（exp_001a_r1_32b, exp_001b_qwq_32b），
+      后经D028/D036修正发现scheme B层选偏差。
+    expected_results:
+      r1_32b:
+        biased_layer: 10
+        biased_layer_depth_pct: 15.6
+        corrected_layer: 63
+        corrected_layer_depth_pct: 98.4
+        layer10_bal_acc: 0.718
+        layer63_bal_acc: 0.826
+        layer63_precision: 0.603
+        layer63_fpr: 0.235
+        n_test: 20
+      qwq_32b:
+        biased_layer: 2
+        biased_layer_depth_pct: 3.1
+        corrected_layer: 60
+        corrected_layer_depth_pct: 93.8
+        layer2_bal_acc: 0.730
+        layer60_bal_acc: 0.740
+        layer60_precision: 0.578
+        layer60_fpr: 0.208
+        n_test: 19
+    result_rationale: >
+      bal_acc × crossing_rate系统性选浅层，因浅层表征压缩（cosine distance 1.4-2.7x更小），
+      噪声驱动的threshold crossing频率更高。CR污染的composite score在浅层虚高。
+      纠正后用threshold-dependent metrics（precision/FPR/composite）一致指向深层（>90%深度），
+      HS优势在32B规模上从NS（biased层）变为显著（corrected层）。
+      这不是32B "没有HS信号"，而是biased metric把信号屏蔽了。
+    tables:
+      - title: "Layer Selection: Biased vs Corrected"
+        columns: ["Model", "Biased Layer", "Depth%", "Corrected Layer", "Depth%", "bal_acc Gain", "prec Gain"]
+        rows:
+          - ["R1-32B", "L10", "15.6%", "L63", "98.4%", "+10.8pp", "+8.7pp"]
+          - ["QwQ-32B", "L2", "3.1%", "L60", "93.8%", "+1.0pp", "-"]
+    figures_description:
+      - "Layer-depth heatmap: bal_acc × crossing_rate score vs pure precision across all 64 layers for both 32B models. Shows anti-correlated pattern at shallow vs deep layers."
+    analysis: >
+      32B层选偏差是论文methodological contribution的核心证据。
+      Biased层的NS结果曾被误读为"HS优势是scale-dependent"，
+      纠正后4/4模型均显著。
+
+  # ============================================================
+  # exp-002: Temporal window (32B)
+  # ============================================================
+  - name: "Cross-architecture temporal window evaluation"
+    plan_id: "exp-002"
+    description: >
+      R1-32B和QwQ-32B上temporal LR多窗口评估。
+      已在registry完成，结合D029纠正层结果。
+    expected_results:
+      r1_32b_l63:
+        W1_bal_acc: 0.826
+        W1_precision: 0.603
+        W1_fpr: 0.235
+        W1_bonferroni: "3/3"
+        W3_bal_acc: 0.754
+        W3_bonferroni: "0/3"
+        W5_plus: "all NS"
+        dimensionality_issue: "51200 × W features >> n=20"
+      qwq_32b_l60:
+        W1_bal_acc: 0.740
+        W3_bal_acc: 0.756
+        W5_bal_acc: 0.761
+        W10_bal_acc: 0.747
+        W15_bal_acc: 0.741
+        all_W_significant: true
+        bonferroni_summary: "15/15 pass"
+    result_rationale: >
+      R1-32B只W=1显著（3/3 HB），W≥3退化源于维度灾难：
+      5120d × W > n=20样本。模型无法在如此高维空间中学到稳定分界面。
+      QwQ-32B全窗口显著，因其test n=19-20但HS-text gap更大（+15.4pp precision@W=3），
+      效应量足以克服small-n限制。
+      temporal improvement在32B上不如7-8B明显，但HS优势本身是robust的。
+    tables: []
+    figures_description:
+      - "bal_acc vs W curves for R1-32B L63 and QwQ-32B L60, with 95% bootstrap CI bands. R1-32B shows sharp drop after W=1; QwQ-32B stays flat."
+    analysis: >
+      32B temporal结果分化：QwQ全窗口robust，R1-32B仅W=1。
+      这是sample size × dimensionality交互的结果，不是模型差异。
+      论文必须per-model报告，不能统一叙事。
+
+  # ============================================================
+  # exp-003: Cross-model transfer
+  # ============================================================
+  - name: "Cross-model transfer"
+    plan_id: "exp-003"
+    description: >
+      跨架构zero-shot transfer（Llama→Qwen, Qwen→Llama）。
+      已在registry完成，结论为negative。
+    expected_results:
+      r1_8b_to_r1_32b: 0.522
+      r1_8b_to_qwq: 0.595
+      r1_32b_to_qwq: 0.550
+      qwq_to_r1_32b: 0.673
+      r1_32b_to_r1_8b: 0.583
+      best_transfer_acc: 0.673
+      within_model_baselines: {r1_8b: 0.823, r1_32b: 0.652, qwq: 0.717}
+      method: "PCA projection (4096→5120 or reverse)"
+    result_rationale: >
+      Safety commitment的几何编码是model-specific的。不同架构（Llama vs Qwen2.5）、
+      不同训练方法（R1-distilled vs native）产生不同的safety表征空间。
+      PCA投影无法对齐这些空间——即使维度匹配，方向语义不对应。
+      最好的transfer（qwq→r1_32b, 0.673）也远低于within-model baseline（0.717）。
+      这是clean negative result：strengthens "safety representations are model-specific" narrative。
+    tables: []
+    figures_description: []
+    analysis: >
+      Cross-transfer完全失败验证了每个模型需要独立训练探针。
+      这不是limitation——它confirms safety编码的model-specificity，
+      与5-seed robustness（within-model stable）形成对比。
+
+  # ============================================================
+  # exp-004: Lead time analysis
+  # ============================================================
+  - name: "Lead time analysis across models"
+    plan_id: "exp-004"
+    description: >
+      全4模型lead time profile。已在各实验中完成。
+    expected_results:
+      r1_8b:
+        hs_lr_lead: -0.1
+        text_lr_lead: 10.3
+        gru_lead_mean: 4.5
+        gru_lead_std: 3.0
+        gru_worst_seed: 0.9
+        text_lead_inflated: true
+        text_precp_fpr: 0.205
+      ot_7b:
+        hs_lr_lead: 21.6
+        text_lr_lead: 45.5
+        gru_multi_lead: 33.6
+        note: "lead times inflated by long traces (~80 sentences)"
+      qwq_32b:
+        hs_lead_range: [-1.2, 1.9]
+        text_lead_range: [3.7, 12.3]
+        gru_lead: 15.9
+        position_baseline_competitive: true
+      r1_32b:
+        hs_lead_w1: 11.7
+        text_lead: "-"
+        gru_lead: 8.8
+        coverage_w1: 0.25
+    result_rationale: >
+      HS LR在R1-8B上lead≈0意味着hidden state编码"当前safety状态"而非"未来轨迹"。
+      Text lead高（+10.3）是FPR虚高的假象——trigger-happy检测器看起来"提前"但假阳性率也高。
+      GRU通过序列建模获得modest正向lead（+4.5），但远低于oracle（+31）。
+      32B模型lead time profile分化严重：R1-32B优秀（+11.7）但coverage仅25%，
+      QwQ poor（-1.2 to +1.9）但15/15窗口统计显著。
+      OT-7B lead times被长trace（~80句 vs R1-8B ~30句）膨胀，论文需normalize或caveat。
+    tables:
+      - title: "Lead Time Profile Summary (4 Models)"
+        columns: ["Model", "HS LR Lead", "Text LR Lead", "GRU Lead", "Key Caveat"]
+        rows:
+          - ["R1-8B", "~0", "+10.3*", "+4.5±3.0", "Text lead inflated by FPR"]
+          - ["OT-7B", "+21.6", "+45.5", "+33.6", "Long traces inflate absolute values"]
+          - ["QwQ-32B", "-1.2~+1.9", "+3.7~+12.3", "+15.9", "HS detects later than text"]
+          - ["R1-32B", "+11.7", "-", "+8.8", "Coverage only 25% at W=1"]
+    figures_description:
+      - "Per-model lead time distribution (box plots) with detection method on x-axis. Shows model-specific timing profiles."
+    analysis: >
+      Lead time是per-model story。没有universal pattern。
+      R1-8B的HS-at-commitment + GRU-modest-lead是最clean的，
+      32B各有caveats。论文Discussion必须分模型讨论。
+
+  # ============================================================
+  # exp-005: TrajGuard Mahalanobis baseline
+  # ============================================================
+  - name: "TrajGuard-style Mahalanobis baseline"
+    plan_id: "exp-005"
+    description: >
+      4/4模型Mahalanobis distance评估。全部negative。
+    expected_results:
+      r1_8b_separation: 0.07
+      ot_7b_separation: 0.03
+      r1_32b_separation: 0.15
+      qwq_32b_separation: 0.20
+      max_separation: 0.20
+      all_fail: true
+      failure_mode: "signal in minor PCA components, not principal directions"
+      best_config: "pca_64_p75"
+      fa_rate_ge_tp_rate: true
+    result_rationale: >
+      Mahalanobis distance假设类别差异在主成分方向上——但safety commitment信号
+      嵌入在minor PCA components中（Fisher ratio从17→1在PCA-3D中）。
+      主方向编码的是token-level/position变异，不是safety语义。
+      4/4模型separation≈0（max 0.20），false alarm率在每个threshold上≥TP率。
+      TrajGuard的成功依赖于adversarial input在表征空间中的gross separation，
+      reasoning model self-jailbreak不产生这种separation。
+    tables: []
+    figures_description: []
+    analysis: >
+      Clean negative result。TrajGuard方法论不适用于reasoning model commitment detection。
+      Strengthens "existing detectors fail" narrative。
+
+  # ============================================================
+  # exp-006: Bootstrap CIs + threshold-independent metrics
+  # ============================================================
+  - name: "Bootstrap confidence intervals"
+    plan_id: "exp-006"
+    description: >
+      4模型×3指标=12项Holm-Bonferroni检验。10000 resamples。全部通过。
+    expected_results:
+      holm_bonferroni: "12/12 pass"
+      resamples: 10000
+      most_significant:
+        r1_8b_precision: {delta: 0.279, p: 0.0000}
+        ot_7b_precision: {delta: 0.219, p: 0.0000}
+        qwq_precision: {delta: 0.235, p: 0.0000}
+      marginal_tests:
+        r1_32b_fpr: {p: 0.0096, threshold: 0.05}
+        qwq_fpr: {p: 0.0061, threshold: 0.025}
+      precision_range: "+15.4pp to +27.9pp across 4 models"
+    result_rationale: >
+      Corrected layers解锁了全部12/12显著性（vs biased layers的5/12）。
+      核心原因：biased层（L2/L10）的HS信号弱，效应量小，n=20-47无法检出；
+      corrected层（L14/L16/L60/L63）效应量大（precision +15-28pp），
+      即使n=20也有足够power（MDE 9-11pp << 实际效应15-28pp）。
+      10000 resamples vs 1000无实质差异，但消除了p-value Monte Carlo noise。
+    tables:
+      - title: "Holm-Bonferroni Step-Down (12/12)"
+        columns: ["Rank", "Model", "Metric", "Delta", "p-value", "HB Threshold", "Pass"]
+        rows:
+          - ["1", "R1-8B", "precision", "+27.9pp", "<0.001", "0.0042", "Y"]
+          - ["2", "OT-7B", "bal_acc", "+10.7pp", "<0.001", "0.0045", "Y"]
+          - ["3", "OT-7B", "precision", "+21.9pp", "<0.001", "0.0050", "Y"]
+          - ["4", "OT-7B", "FPR", "-17.1pp", "<0.001", "0.0056", "Y"]
+          - ["5", "QwQ", "bal_acc", "+14.8pp", "<0.001", "0.0063", "Y"]
+          - ["6", "QwQ", "precision", "+23.5pp", "<0.001", "0.0071", "Y"]
+          - ["7", "R1-32B", "bal_acc", "+18.7pp", "<0.001", "0.0083", "Y"]
+          - ["8", "R1-32B", "precision", "+15.4pp", "<0.001", "0.0100", "Y"]
+          - ["9", "QwQ", "FPR", "-9.5pp", "0.006", "0.0125", "Y"]
+          - ["10", "R1-8B", "bal_acc", "+8.2pp", "0.005", "0.0167", "Y"]
+          - ["11", "R1-32B", "FPR", "-14.6pp", "0.010", "0.0250", "Y"]
+          - ["12", "R1-8B", "FPR", "-7.4pp", "0.044", "0.0500", "Y"]
+    figures_description:
+      - "Forest plot: 12 paired HS-text deltas with 95% CIs, ordered by effect size. All CIs exclude zero."
+    analysis: >
+      12/12 HB pass是论文统计backbone。
+      precision一致性惊人（+15-28pp across 4 models）。
+      FPR是最marginal的指标（rank 9-12），但全部通过。
+
+  # ============================================================
+  # exp-007: Window size ablation
+  # ============================================================
+  - name: "Window size ablation"
+    plan_id: "exp-007"
+    description: >
+      W=1,3,5,10,15,20,25 on R1-8B/R1-32B/QwQ-32B。
+      OT-7B后续补充。
+    expected_results:
+      universal_pattern:
+        coverage_decreases_with_W: true
+        precision_increases_with_W: true
+        fpr_decreases_with_W: true
+        bal_acc_increases_with_W: true
+      r1_8b:
+        best_bal_acc_W: 25
+        best_precision_W: 25
+        W1_coverage: 0.721
+        W25_coverage: 0.488
+        W1_precision: 0.693
+        W25_precision: 0.822
+      r1_32b:
+        best_bal_acc_W: 10
+        W10_bal_acc: 0.737
+        peak_then_decline: true
+      qwq_32b:
+        best_bal_acc_W: 25
+        W1_lead: 19.7
+        W25_lead: 14.9
+    result_rationale: >
+      Temporal context增大W创造precision-sensitivity tradeoff：
+      更大窗口→更多temporal pattern信息→更稳定预测→更高precision、更低FPR，
+      但也要求更多连续step才能fire→coverage下降。
+      这是temporal smoothing的固有特性。
+      R1-32B在W=10后退化因维度灾难（5120×W > n=20）。
+      R1-8B和QwQ单调改善因4096×W在n=43/19中的比例更合理（虽然QwQ也受限）。
+      Coverage单调下降是K=5 detection criterion的结果——
+      需要连续5步crossing，窗口越大probe越保守。
+    tables: []
+    figures_description:
+      - "3-panel: precision vs W, coverage vs W, FPR vs W for 3 models. Shows universal tradeoff pattern with model-specific slopes."
+    analysis: >
+      Precision-coverage tradeoff是temporal probing的fundamental characteristic。
+      论文frame为deployment choice：high-precision/low-coverage vs high-coverage/low-precision。
+
+  # ============================================================
+  # exp-008: Layer selection ablation
+  # ============================================================
+  - name: "Layer selection ablation (5 metrics × 4 models)"
+    plan_id: "exp-008"
+    description: >
+      全层temporal probe + 5种metric层选比较。已完成，核心发现。
+    expected_results:
+      pattern:
+        cr_contaminated: "shallow layers (0-16% depth)"
+        threshold_free_bal_acc: "middle layers (35-73% depth)"
+        threshold_dependent: "deep layers (45-98% depth)"
+      r1_8b:
+        cr_composite_layer: 0
+        bal_acc_layer: 12
+        precision_layer: 16
+        composite_layer: 12
+      ot_7b:
+        cr_composite_layer: 0
+        bal_acc_layer: 9
+        precision_layer: 20
+      qwq_32b:
+        cr_composite_layer: 2
+        bal_acc_layer: 30
+        precision_layer: 60
+      r1_32b:
+        cr_composite_layer: 10
+        bal_acc_layer: 47
+        precision_layer: 63
+      loo_cv_stability:
+        qwq_l30_folds: "13/19"
+        r1_32b_l47_folds: "13/20"
+    result_rationale: >
+      3层pattern（shallow/middle/deep）由metric属性决定：
+      (1) CR-contaminated选shallow因crossing_rate与cosine distance反相关——
+      浅层表征压缩，探针在决策边界附近振荡，crossing频率高；
+      (2) Threshold-free（bal_acc/AUROC）选middle因不依赖具体threshold，
+      middle层同时有decent accuracy和moderate stability；
+      (3) Threshold-dependent（precision/FPR）选deep因深层predictions稳定，
+      false alarm少，precision最高。
+      这是模型表征几何的必然结果——与数据集无关。
+      LOO-CV stability（65-68% dominant fold rate）确认层选不依赖validation set构成。
+    tables:
+      - title: "Metric × Model → Selected Layer (Depth%)"
+        columns: ["Metric", "R1-8B", "OT-7B", "QwQ-32B", "R1-32B", "Category"]
+        rows:
+          - ["bal_acc × CR", "L0 (0%)", "L0 (0%)", "L2 (3%)", "L10 (16%)", "Shallow (biased)"]
+          - ["Pure bal_acc", "L12 (39%)", "L9 (32%)", "L30 (47%)", "L47 (73%)", "Middle"]
+          - ["Precision", "L16 (52%)", "L20 (71%)", "L60 (94%)", "L63 (98%)", "Deep"]
+          - ["Inv. FPR", "L16 (52%)", "L14 (50%)", "L60 (94%)", "L63 (98%)", "Deep"]
+          - ["Composite", "L12 (39%)", "L14 (50%)", "L60 (94%)", "L63 (98%)", "Deep"]
+    figures_description:
+      - "Heatmap: 5 metrics × 4 models, cell value = selected layer depth%. Shows clear shallow/middle/deep banding by metric category."
+    analysis: >
+      这张table是论文methodological contribution的核心图表。
+      它同时解释了：(1) 为什么之前32B NS是artifact；
+      (2) 为什么不同metric给出不同结论；
+      (3) 为什么researcher degrees of freedom在层选上是real risk。
+
+  # ============================================================
+  # exp-009: 16-label taxonomy supervision
+  # ============================================================
+  - name: "16-label taxonomy supervision"
+    plan_id: "exp-009"
+    description: >
+      使用Type 1-4细粒度标签训练探针，对比binary CP标签。未执行。
+    expected_results:
+      r1_8b:
+        binary_bal_acc: 0.810
+        taxonomy_bal_acc: 0.832
+        delta: "+2.2pp"
+        taxonomy_transition_detection: "Type 2→3 boundary cleaner"
+        coverage_improvement: "+3pp"
+      ot_7b:
+        binary_bal_acc: 0.688
+        taxonomy_bal_acc: 0.705
+        delta: "+1.7pp"
+      marginal_utility: "small"
+      annotation_cost_multiplier: "4x"
+      recommendation: "Discussion mention, not core contribution"
+    result_rationale: >
+      Fine-grained labels提供更丰富的训练信号——Type 2→3转变比binary CP更gradual，
+      探针可以学到"safety deliberation正在减弱"的中间状态。
+      但改善modest（+1.7-2.2pp）因为：(1) linear probe的capacity有限，
+      即使给更细标签也无法编码复杂的taxonomy结构；
+      (2) binary CP已经捕获了最关键的transition；
+      (3) 细粒度标签的inter-annotator agreement更低，引入label noise。
+      Best tier下改善存在但marginal，confirms binary labels is sufficient。
+    tables: []
+    figures_description: []
+    analysis: >
+      Result支持paper的"linear probe + binary label is sufficient"论述。
+      写在Discussion里作为"尝试过更细标签但边际收益小"。
+
+  # ============================================================
+  # exp-010: Oracle decomposition
+  # ============================================================
+  - name: "Oracle decomposition"
+    plan_id: "exp-010"
+    description: >
+      分解oracle +31步优势的来源。基于diag_d4_oracle_upper_bound数据。
+    expected_results:
+      oracle_lead: "+31 steps"
+      decomposition:
+        position_component: "~15pp of oracle bal_acc"
+        label_sequence_pattern: "~10pp (run-length encoding, streak detection)"
+        future_state_access: "~6pp (true 'seeing the future')"
+      probe_gap_explanation:
+        hs_lr_encodes: "current safety state"
+        hs_lr_cannot_encode: "future trajectory / whether commitment will happen"
+        gru_partial_close: "+4.5 steps via temporal dynamics modeling"
+        gru_still_below_oracle: "~25 steps gap"
+      architectural_implications:
+        larger_W_helps_slightly: true
+        sequence_model_helps_modestly: true
+        fundamental_limit: "hidden states don't encode future intent"
+    result_rationale: >
+      Oracle用future label（每步的ground-truth pre/post CP状态），
+      因此天然有perfect lead time。分解reveal三个组件：
+      (1) Position信息（t/T）贡献最大——commitment point位置有strong position prior；
+      (2) Label sequence pattern（e.g. 连续safe→突然unsafe的run-length结构）提供额外信号；
+      (3) 剩余~6pp是纯粹的"未来信息"——oracle看到的而probe无法获得的。
+      GRU通过temporal dynamics建模部分弥补gap（捕获(2)中的序列pattern），
+      但(3)是fundamental limit。
+      Hidden states编码模型当前处理内容，不编码"模型是否将要commit"——
+      这是transformer架构的autoregressive nature决定的。
+    tables: []
+    figures_description:
+      - "Stacked bar: oracle advantage decomposed into position / sequence-pattern / future-access components."
+    analysis: >
+      Explains WHY probes detect at-commitment rather than before.
+      Discussion section material. Suggests that for earlier detection,
+      need to predict future states (a different task) rather than classify current state.
+
+  # ============================================================
+  # exp-011: OpenThinker-7B (4th model)
+  # ============================================================
+  - name: "OpenThinker-7B full pipeline"
+    plan_id: "exp-011"
+    description: >
+      Qwen2.5-7B base, STILL-trained。完成2×2 architecture×scale matrix。
+      已在registry完成（exp_ot7b_full_pipeline）。
+    expected_results:
+      n_traces: 228
+      best_layer: 16
+      best_layer_depth_pct: 57.1
+      hs_best_W: 3
+      hs_bal_acc: 0.688
+      hs_precision: 0.466
+      hs_fpr: 0.100
+      text_bal_acc_best: 0.614
+      text_precision_best: 0.329
+      bootstrap_holm_bonferroni: "3/3"
+      selectivity_pp: 18.3
+      gru_multi_bal_acc: 0.746
+      gru_multi_lead: 33.6
+    result_rationale: >
+      OT-7B是cleanest evidence model：3/3 HB pass、最高selectivity（18.3pp）、
+      最大residualized gap（+6.9pp after position removal）。
+      Qwen-7B + STILL training产生明确的safety表征。
+      HS W=3在OT-7B上optimal（与R1-8B的W=15形成对比），
+      因OT-7B trace更长（~80 sentences），W=3已提供sufficient temporal context。
+      Layer 16（57% depth）是middle-deep——
+      Qwen-7B有28层，57%深度consistent with 7-8B pattern（R1-8B是45%）。
+    tables: []
+    figures_description: []
+    analysis: >
+      OT-7B补全了2×2 matrix的Qwen-7B cell。
+      其clean evidence strengthens cross-architecture story。
+
+  # ============================================================
+  # exp-012: GRU/Attention probe upper bound
+  # ============================================================
+  - name: "GRU/Attention probe upper bound"
+    plan_id: "exp-012"
+    description: >
+      验证GRU在32B和OT-7B上的表现。多个registry条目。
+    expected_results:
+      r1_8b:
+        gru_multi_7l:
+          bal_acc: 0.809
+          crossing_rate: 0.767
+          lead_mean: 4.7
+          precp_fpr: 0.165
+        lr_temporal_w15:
+          bal_acc: 0.848
+          note: "LR > GRU on bal_acc"
+      ot_7b:
+        gru_multi_l13_19:
+          bal_acc: 0.746
+          coverage: 0.645
+          lead: 33.6
+          precp_fpr: 0.274
+        lr_temporal_w3:
+          bal_acc: 0.688
+          note: "GRU +5.8pp over LR"
+      qwq_32b:
+        gru_single_bal_acc: 0.694
+        gru_multi_bal_acc: 0.724
+        lr_w5_bal_acc: 0.761
+        note: "LR > GRU on QwQ"
+      r1_32b:
+        gru_single_bal_acc: 0.675
+        lr_w10_bal_acc: 0.737
+        note: "LR > GRU on R1-32B"
+    result_rationale: >
+      GRU vs LR pattern model-specific：OT-7B GRU优于LR（+5.8pp），
+      其余3模型LR优于或持平GRU。
+      原因：OT-7B traces长（~80句），序列pattern丰富，GRU能捕获；
+      32B模型样本少（n=100/95），GRU过拟合；
+      R1-8B traces短（~30句），temporal LR W=15已足够。
+      Overall conclusion：linear probes sufficient for 3/4 models。
+      GRU仅在long-trace模型上有优势，且伴随更高FPR。
+      "Simplicity is optimal" narrative holds。
+    tables: []
+    figures_description: []
+    analysis: >
+      Confirms linear probe sufficiency。
+      GRU不是universal improvement——model/data specific。
+
+  # ============================================================
+  # exp-013: Text-based baseline
+  # ============================================================
+  - name: "Text-based baseline (sentence-BERT)"
+    plan_id: "exp-013"
+    description: >
+      MiniLM-L6-v2 text embeddings + temporal LR。
+      Critical baseline for proving HS adds value over cheap text monitoring.
+    expected_results:
+      r1_8b:
+        text_static_acc: 0.661
+        text_temporal_w15_acc: 0.678
+        hs_static_acc: 0.768
+        hs_temporal_w15_acc: 0.848
+        hs_advantage_pp: "15-18pp"
+      ot_7b:
+        text_best_bal_acc: 0.614
+        hs_best_bal_acc: 0.688
+        delta: "+7.4pp"
+      all_4_models:
+        hs_always_superior: true
+        precision_gap: "+15-24pp"
+        hb_12_of_12: true
+    result_rationale: >
+      Text embeddings（384d MiniLM）捕获surface-level语义——
+      safety相关词汇和句式变化。但text probes受限于：
+      (1) 表层信号：模型可能内部已决定jailbreak但text上还在safety reasoning；
+      (2) 维度：384d vs 4096/5120d HS，信息容量低；
+      (3) 粒度：sentence-level embeddings vs token-averaged HS。
+      HS probes访问模型内部processing state，能检测到text不可见的early signals。
+      Precision差距最大（+15-24pp）因HS的false positive率显著更低——
+      text probe经常把normal reasoning误判为unsafe。
+    tables: []
+    figures_description: []
+    analysis: >
+      HS vs text差距confirmed。论文motivation成立：
+      hidden-state monitoring提供text不可替代的unique value。
+
+  # ============================================================
+  # exp-014: BOCPD/CUSUM
+  # ============================================================
+  - name: "BOCPD/CUSUM change-point detection"
+    plan_id: "exp-014"
+    description: >
+      4/4模型BOCPD + CUSUM评估。全negative。
+    expected_results:
+      bocpd_detection_rate:
+        r1_8b: 0.93
+        ot_7b: 0.0
+        r1_32b: 0.0
+        qwq_32b: 0.0
+      cusum_universally_worse: true
+      r1_8b_bocpd_vs_fcp:
+        bocpd_lead: 3.45
+        fcp_lead: 4.89
+        bocpd_higher_detection_but_lower_lead: true
+      failure_reason: "commitment dynamics model-specific; BOCPD assumes gradual shift, 3/4 models show abrupt transitions"
+    result_rationale: >
+      BOCPD假设时间序列中存在渐进distributional shift。
+      R1-8B的commitment是gradual的（probe score缓慢下降），故BOCPD能检测（93%）。
+      但其余3模型的commitment是abrupt的（1-2步内probe score跳变），
+      Gaussian BOCPD模型无法在如此短窗口内accumulate evidence。
+      CUSUM更简单（累积偏差），但也依赖持续偏差——同样不适用于abrupt transitions。
+      Simple first-crossing-point（FCP）threshold反而更适合abrupt pattern。
+      这是clean negative result：advanced change-point methods不适用。
+    tables: []
+    figures_description: []
+    analysis: >
+      BOCPD/CUSUM failure strengthens "fundamental limitation" narrative。
+      Methods designed for gradual distributional shift don't work
+      when commitment is a sharp phase transition.
+
+  # ============================================================
+  # exp-015: False positive analysis
+  # ============================================================
+  - name: "False positive analysis"
+    plan_id: "exp-015"
+    description: >
+      所有方法在safe traces上的FPR + precision-recall curves。
+    expected_results:
+      r1_8b:
+        hs_static_safe_fpr: 0.39
+        hs_static_precp_fpr: 0.162
+        text_static_safe_fpr: 0.502
+        text_static_precp_fpr: 0.356
+        hs_lower_fpr: true
+      ot_7b:
+        hs_static_fpr: 0.111
+        text_static_fpr: 0.302
+      qwq_32b:
+        hs_static_fpr: 0.500
+        text_static_fpr: 0.325
+        note: "QwQ HS FPR > text — exception"
+      r1_32b:
+        hs_static_fpr: 0.239
+        text_static_fpr: 0.310
+      high_safe_fpr_universal: "all methods 39-62% on safe traces"
+    result_rationale: >
+      Safe trace FPR高（39-62%）因safe traces中也存在safety-relevant reasoning
+      （模型考虑但最终拒绝），这些reasoning段落的hidden state与jailbreak traces的
+      early safety reasoning段落相似。探针无法完美区分"正在考虑safety"和"将要violate safety"。
+      HS整体FPR低于text（3/4模型），因HS编码更细粒度的processing state。
+      QwQ是exception——HS FPR略高于text——与QwQ模型的safety reasoning风格有关
+      （QwQ的safe traces中safety reasoning更extensive，HS probe更容易误判）。
+      Pre-CP FPR显著低于safe FPR，因jailbreak traces的pre-CP段落有更明确的context。
+    tables: []
+    figures_description:
+      - "Precision-recall curves per model, HS vs text, with operating points marked."
+    analysis: >
+      High safe FPR是honest limitation，论文必须acknowledge。
+      但HS的lower FPR（3/4模型）和lower pre-CP FPR supports core claims。
+
+  # ============================================================
+  # advbench_layer_bias_replication (CORE what_if experiment)
+  # ============================================================
+  - name: "AdvBench layer bias replication (binary labels)"
+    plan_id: "what_if_advbench"
+    description: >
+      在AdvBench数据上用jailbreak/safe binary labels（无CP）训练R1-8B探针，
+      跑5-metric层选分析，验证layer selection bias是模型几何性质。
+      此前尝试因R1-8B在AdvBench上90% CP=0而失败——
+      本实验绕开CP，直接用trace-level binary labels。
+      520 traces available（~450 jailbreak, ~70 safe by text classifier）。
+    expected_results:
+      data:
+        n_traces_total: 520
+        n_jailbreak: 437
+        n_safe: 83
+        label_method: "LLM judge binary (harmful output / refusal)"
+        class_weight: "balanced"
+        split: "60/20/20 stratified"
+        n_train: 312
+        n_val: 104
+        n_test: 104
+        test_jailbreak: 87
+        test_safe: 17
+        mean_trace_length_sentences: 28
+      layer_selection_5_metrics:
+        cr_composite:
+          selected_layer: 2
+          depth_pct: 6.5
+          score: 0.412
+          crossing_rate_at_layer: 0.44
+        pure_bal_acc:
+          selected_layer: 11
+          depth_pct: 35.5
+          score: 0.731
+        precision:
+          selected_layer: 15
+          depth_pct: 48.4
+          score: 0.682
+        inverse_fpr:
+          selected_layer: 14
+          depth_pct: 45.2
+          best_fpr: 0.155
+        composite:
+          selected_layer: 14
+          depth_pct: 45.2
+          score: 0.748
+      layer_gap:
+        cr_to_threshold_abs: 12
+        cr_to_threshold_depth_pct: 38.7
+      crossing_rate_comparison:
+        L2_crossing_rate: 0.44
+        L14_crossing_rate: 0.19
+        ratio: 2.32
+      hs_at_threshold_layer_L14:
+        bal_acc: 0.762
+        precision: 0.677
+        fpr: 0.155
+        coverage: 0.586
+        lead_mean: 8.3
+      text_at_threshold_layer_L14:
+        bal_acc: 0.661
+        precision: 0.494
+        fpr: 0.283
+        coverage: 0.529
+        lead_mean: 5.7
+      hs_text_delta:
+        bal_acc_pp: 10.1
+        precision_pp: 18.3
+        fpr_pp: -12.8
+      bootstrap_1000:
+        bal_acc:
+          delta: 0.101
+          ci_95: "[0.035, 0.168]"
+          p: 0.005
+        precision:
+          delta: 0.183
+          ci_95: "[0.082, 0.284]"
+          p: 0.002
+        fpr:
+          delta: -0.128
+          ci_95: "[-0.215, -0.041]"
+          p: 0.008
+        holm_bonferroni: "3/3 pass (alpha=0.0167)"
+      hs_at_biased_layer_L2:
+        bal_acc: 0.718
+        precision: 0.492
+        fpr: 0.275
+        crossing_rate: 0.44
+      original_vs_advbench_comparison:
+        original_cr_composite_layer: "L0 (0%)"
+        advbench_cr_composite_layer: "L2 (6.5%)"
+        original_threshold_layer: "L14 (45%)"
+        advbench_threshold_layer: "L14 (45%)"
+        original_gap: 14
+        advbench_gap: 12
+        original_hs_bal_acc: 0.810
+        advbench_hs_bal_acc: 0.762
+        original_precision_delta: "+22.4pp"
+        advbench_precision_delta: "+18.3pp"
+        original_cr_ratio: 2.5
+        advbench_cr_ratio: 2.32
+        pattern_match: "complete"
+      cosine_distance_verification:
+        L2_mean_cosine_dist: 0.038
+        L14_mean_cosine_dist: 0.091
+        ratio: 2.39
+        confirms_geometric: true
+      dream_score_delta: 0.20
+    result_rationale: >
+      Layer selection bias在AdvBench上完整复现，尽管标注方案根本不同
+      （binary jailbreak/safe vs step-level CP transition）。
+
+      CR-composite选L2（6.5%），threshold metrics选L14（45%），gap=12层。
+      这与原数据集pattern一致（L0 vs L14, gap=14）。
+
+      机制解释：浅层（L0-L3）表征空间被压缩——cosine distance仅0.038，
+      远小于深层L14的0.091（ratio 2.39x）。压缩导致probe decision boundary
+      更容易被noise扰动→threshold crossing频率高→CR-composite虚高。
+      这是模型几何性质（Llama-8B的layer-wise representation structure），
+      不依赖标注方案或数据分布。
+
+      Binary labels比CP labels更coarse（每步label=trace outcome，非safety state），
+      因此绝对性能略低（bal_acc 0.762 vs 0.810，precision 0.677 vs 0.693）。
+      但HS-text gap保持（precision +18.3pp vs original +22.4pp），
+      因gap反映的是modality difference（HS vs text的信息量差异），
+      不依赖label粒度。
+
+      Bootstrap 3/3 HB pass despite smaller per-class n，
+      因效应量足够大（precision +18.3pp >> MDE ~9pp at n=104）。
+
+      Crossing rate ratio 2.32与原数据集2.5高度一致，
+      进一步确认这是geometric property而非data artifact。
+    tables:
+      - title: "AdvBench 5-Metric Layer Selection (R1-8B, 32 layers)"
+        columns: ["Metric", "Selected Layer", "Depth%", "Category"]
+        rows:
+          - ["bal_acc x CR", "L2", "6.5%", "Shallow (biased)"]
+          - ["Pure bal_acc", "L11", "35.5%", "Middle"]
+          - ["Precision", "L15", "48.4%", "Deep"]
+          - ["Inverse FPR", "L14", "45.2%", "Deep"]
+          - ["Composite", "L14", "45.2%", "Deep"]
+      - title: "Original (HarmThoughts) vs AdvBench Pattern Comparison"
+        columns: ["Metric", "Original (CP labels)", "AdvBench (binary)", "Match"]
+        rows:
+          - ["CR-composite layer", "L0 (0%)", "L2 (6.5%)", "Both shallow"]
+          - ["Threshold layer", "L14 (45%)", "L14 (45%)", "Identical"]
+          - ["Layer gap", "14 layers", "12 layers", "Both >=8"]
+          - ["HS bal_acc (deep)", "0.810", "0.762", "Both in [0.72,0.82]"]
+          - ["HS-text prec delta", "+22.4pp", "+18.3pp", "Both in [10,25]"]
+          - ["CR ratio (shallow/deep)", "2.50", "2.32", "Both in [1.5,3.0]"]
+          - ["HB pass rate", "3/3", "3/3", "Both >=0.67"]
+      - title: "HS vs Text at Threshold Layer L14 (AdvBench)"
+        columns: ["Modality", "bal_acc", "Precision", "FPR", "Coverage"]
+        rows:
+          - ["HS (L14)", "0.762", "0.677", "0.155", "0.586"]
+          - ["Text (L14)", "0.661", "0.494", "0.283", "0.529"]
+          - ["Delta", "+10.1pp", "+18.3pp", "-12.8pp", "+5.7pp"]
+          - ["Bootstrap p", "0.005", "0.002", "0.008", "-"]
+          - ["HB pass", "Y", "Y", "Y", "-"]
+      - title: "Cosine Distance by Layer Depth (AdvBench)"
+        columns: ["Layer", "Depth%", "Mean Cosine Dist", "Crossing Rate", "Interpretation"]
+        rows:
+          - ["L2", "6.5%", "0.038", "0.44", "Compressed → noisy crossings"]
+          - ["L8", "25.8%", "0.062", "0.31", "Intermediate"]
+          - ["L14", "45.2%", "0.091", "0.19", "Expanded → stable predictions"]
+          - ["L20", "64.5%", "0.105", "0.16", "Deep → most stable"]
+    figures_description:
+      - "Left: Layer depth vs crossing rate curve (AdvBench), overlaid with original dataset curve. Both show monotonically decreasing CR with depth, near-identical shape."
+      - "Right: 5-metric layer selection comparison, original vs AdvBench. Side-by-side bar chart showing CR-composite selects shallow in both datasets, threshold metrics select deep in both."
+      - "Appendix: Full 32-layer heatmap (metric × layer) for AdvBench, analogous to original dataset Figure X."
+    analysis: >
+      AdvBench replication是best tier的核心产出。
+      All 8 key metrics落在target range内。Pattern match = complete。
+
+      论文影响：
+      (1) Main text加一句：'Layer selection bias replicates on AdvBench
+      with fundamentally different labeling (binary jailbreak/safe vs
+      step-level safety state), confirming it as a geometric property
+      of the model representation rather than a dataset-specific artifact.'
+      (2) Appendix加完整table（上面Table 1-4）。
+      (3) C1 claim升级：不再需要'single dataset caveat'。
+      (4) Reviewer concern 'bias是你数据集的artifact' 被直接堵死。
+
+      Dream score从3.0升至~3.2：
+      - Methodological contribution strengthened (3.0 → 3.3)
+      - Empirical validation broadened (single → cross-dataset)
+      - Rebuttal surface reduced (one fewer major weakness)
+      - 但不足以达到3.5 Conference因为：novelty仍是empirical study，
+        不是new method；32B caveats仍存在。
+```
+
+所有8项key metrics均在best tier target range内：
+
+| Key Metric | Target Range | Predicted Value | In Range |
+|---|---|---|---|
+| cr_composite_layer_depth_pct | [0, 16] | 6.5 | Y |
+| threshold_layer_depth_pct | [32, 64] | 45.2 | Y |
+| layer_gap_abs | [8, 16] | 12 | Y |
+| layer_gap_depth_pct | [32, 64] | 38.7 | Y |
+| hs_bal_acc_at_threshold_layer | [0.72, 0.82] | 0.762 | Y |
+| hs_text_precision_delta_pp | [10, 25] | 18.3 | Y |
+| hb_pass_rate | [0.67, 1.0] | 1.0 (3/3) | Y |
+| crossing_rate_shallow_vs_deep_ratio | [1.5, 3.0] | 2.32 | Y |
+
+核心rationale：bias pattern复现因为它是Llama-8B表征几何的固有属性——浅层cosine distance压缩（0.038 vs 深层0.091）导致crossing rate虚高，这与标注方案（CP vs binary）和数据来源（HarmThoughts vs AdvBench）完全无关。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4342b5a1-d8f4-490c-b467-4beb4ac49a47",
+  "isSidechain": false,
+  "requestId": "req_011CbHLTSA53iDtvoyCgPRXk",
+  "type": "assistant",
+  "uuid": "1ab6da73-bf35-4b3b-9177-131ff80bd785",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RSj2JxAFrt9yyeK1YArEbQ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1826,
+      "cache_read_input_tokens": 75842,
+      "output_tokens": 21083,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 21083,
+          "cache_read_input_tokens": 75842,
+          "cache_creation_input_tokens": 1826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质' 核心假设：['layer selection bias是模型表征的几何性…",
+  "leafUuid": "1ab6da73-bf35-4b3b-9177-131ff80bd785",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "AdvBench layer selection bias replication",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：AdvBench完整复现layer selection bias模式：CR-composite选浅层、threshold metrics选深层，且HS在深层显著优于text。跨数据集验证成立，C1从'单数据集发现'升级为'模型几何性质' 核心假设：['layer selection bias是模型表征的几何性…",
+  "leafUuid": "1ab6da73-bf35-4b3b-9177-131ff80bd785",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "AdvBench layer selection bias replication",
+  "sessionId": "3d66c63b-15da-4009-ae0c-c9250a6c1577"
+}
+```
+
+---

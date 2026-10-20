@@ -1,0 +1,3414 @@
+# Research conversation: I need to find: 1. The current best open-source LLMs as of May 2026 suitable for code generation/repair tasks. Search: -
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 1
+- **Tool calls:** 23
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a14c3891009279262.jsonl`
+- **Structured JSON:** [`68fbc58e2517296786e9.json`](../../sessions/68/68fbc58e2517296786e9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+53 recorded events
+
+### User
+
+_source line 1 · 2026-05-11T20:46:50.663Z_
+
+I need to find:
+
+1. The current best open-source LLMs as of May 2026 suitable for code generation/repair tasks. Search:
+   - WebSearch "best open source LLM code 2026"
+   - WebSearch "best open source code model 2026 SOTA"
+   - WebSearch "Qwen3 DeepSeek code model 2026"
+   - WebSearch "open source LLM leaderboard 2026"
+
+2. Existing implementations of process reward models for code. Search:
+   - WebSearch "github process reward model code generation"
+   - WebSearch "github CodePRM implementation"
+   - WebSearch "github PRM training code reasoning"
+
+3. Available datasets for program repair:
+   - WebSearch "huggingface datasets SWE-bench"
+   - WebSearch "Defects4J dataset program repair"
+   - WebSearch "program repair benchmark dataset 2025 2026"
+
+4. Hardware/cost references for similar experiments:
+   - WebSearch "process reward model training cost GPU hours"
+   - WebSearch "CodePRM training compute requirements"
+   - WebSearch "PRM training A100 GPU hours"
+
+Report all findings with specifics: model names, parameter counts, benchmark scores, dataset sizes, and any cost data you find.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "39350b59-1205-4eda-bb39-99f672cf6373",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T20:46:50.667Z_
+
+```json
+{
+  "parentUuid": "39350b59-1205-4eda-bb39-99f672cf6373",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3294b8d5-e2a5-405f-9c7e-6cbfb17e0553",
+  "timestamp": "2026-05-11T20:46:50.667Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-11T20:46:53.428Z_
+
+
+
+I'll conduct all these web searches in parallel to gather comprehensive information. Let me start by loading the WebSearch tool.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3294b8d5-e2a5-405f-9c7e-6cbfb17e0553",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSHopuEVYQuFYsnxH4a",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5b16adab-9ef3-4621-a675-d462f8d584dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112eNU95zf48TLhASbcvfHe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 842,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-11T20:46:53.596Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TPzoa89GjemQjzzEFsUVih`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b16adab-9ef3-4621-a675-d462f8d584dc",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSHopuEVYQuFYsnxH4a",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1a63dab3-9c08-44ba-9c95-9afc7faade0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112eNU95zf48TLhASbcvfHe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 842
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 842,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-11T20:46:53.601Z_
+
+<details><summary>↩ Tool result · `toolu_01TPzoa89GjemQjzzEFsUVih`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a63dab3-9c08-44ba-9c95-9afc7faade0e",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "01bf7deb-bdbe-429a-899c-deefa1b46222",
+  "sourceToolAssistantUUID": "1a63dab3-9c08-44ba-9c95-9afc7faade0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-11T20:46:56.005Z_
+
+
+
+Now let me launch all the web searches in parallel across the four categories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01bf7deb-bdbe-429a-899c-deefa1b46222",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJ2bc6551Z1Fg5dQ4x",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fce1b6cc-7831-4988-a477-8dc6555d6b8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kc5TgSqw6Htz926qQCBRh7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1418,
+      "cache_read_input_tokens": 9065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1418,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-11T20:46:56.436Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KmkpMYiy6fNAq5q3UmdRRJ`</summary>
+
+```json
+{
+  "query": "best open source LLM code generation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fce1b6cc-7831-4988-a477-8dc6555d6b8f",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJ2bc6551Z1Fg5dQ4x",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "849d7512-f23c-4a12-b807-a3b2fd781f2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kc5TgSqw6Htz926qQCBRh7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1418,
+      "cache_read_input_tokens": 9065,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1418
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 9065,
+          "cache_creation_input_tokens": 1418,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1418,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-11T20:47:04.992Z_
+
+<details><summary>↩ Tool result · `toolu_01KmkpMYiy6fNAq5q3UmdRRJ`</summary>
+
+```text
+Web search results for query: "best open source LLM code generation 2026"
+
+Links: [{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"},{"title":"Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy","url":"https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio","url":"https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"},{"title":"The Best Open Source LLMs for Coding in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-coding"},{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"},{"title":"Open-Source LLMs Compared 2026 – 25+ Models… – Till Freitag","url":"https://till-freitag.com/en/blog/open-source-llm-comparison"},{"title":"Best Open Source LLM Leaderboard 2026 | Open Source Model Rankings and Tier List | Onyx AI","url":"https://onyx.app/open-llm-leaderboard"},{"title":"Ultimate Guide - Best Open Source LLM for Software Development in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-software-development"},{"title":"Top 5 Local LLM Tools and Models in 2026 - DEV Community","url":"https://dev.to/lightningdev123/top-5-local-llm-tools-and-models-in-2026-1ch5"}]
+
+Based on the search results, here are the best open source LLMs for code generation in 2026:
+
+## Top Models for Code Generation
+
+**For Overall Coding Performance:**
+
+Kimi K2.6 is the strongest coding-oriented open source model. Kimi K2.5 delivers 76.8% on SWE-bench Verified, 99% on HumanEval, and 85% on LiveCodeBench, with the 99% HumanEval score being the highest among any open source model.
+
+GLM-4.7 Thinking is the top open-weight coding model in 2026, free to self-host.
+
+**For Agentic Coding Tasks:**
+
+Qwen 3.6 Plus is the strongest overall performer for demanding agentic coding tasks, with the longest context window in the class (1M tokens), reliable tool use, and benchmark scores that put it close to closed-source frontier models.
+
+GLM-5.1 is the latest flagship open-source LLM from Zhipu AI, designed for agentic engineering and complex, long-horizon software development tasks, building on the foundation of GLM-5 in reasoning, coding, and agentic workflows.
+
+**For Self-Hosting on Consumer Hardware:**
+
+Qwen 2.5 Coder 32B is recommended if you have 24GB of VRAM and will handle the vast majority of code completion, generation, debugging, and refactoring tasks.
+
+## Key Takeaway
+
+The best open source models are closing in on proprietary leaders across benchmarks like LiveBench, and some even outperform them on specific tasks like code generation and completion.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "849d7512-f23c-4a12-b807-a3b2fd781f2b",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "422cd3cb-43af-4684-9e52-1e67683d35a7",
+  "sourceToolAssistantUUID": "849d7512-f23c-4a12-b807-a3b2fd781f2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-11T20:47:08.042Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ks1yP7guL4T2gUASRyY74E`</summary>
+
+```json
+{
+  "query": "best open source code model 2026 SOTA benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "422cd3cb-43af-4684-9e52-1e67683d35a7",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b329cba8-a790-4d85-9d29-fa5daa999911",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T20:47:08.455Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019ykrkLtQRPZAESveqYd6Jc`</summary>
+
+```json
+{
+  "query": "Qwen3 DeepSeek code model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b329cba8-a790-4d85-9d29-fa5daa999911",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0599031f-a686-4111-81af-d31238fb20ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-11T20:47:08.955Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TfyFNWkZrjcxyHUbfhwkEd`</summary>
+
+```json
+{
+  "query": "open source LLM leaderboard 2026 code"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0599031f-a686-4111-81af-d31238fb20ef",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9376eff3-2cf9-46c1-b89b-6d30d2f78052",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-11T20:47:09.489Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012QgBAtf3njLeNdH81bZVm4`</summary>
+
+```json
+{
+  "query": "github process reward model code generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9376eff3-2cf9-46c1-b89b-6d30d2f78052",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "69b4d855-868b-4fb5-8bc5-d2ce4fc2f26f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-11T20:47:09.510Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YY3W1pUbHJeqo4kirXnG2Y`</summary>
+
+```json
+{
+  "query": "github CodePRM implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69b4d855-868b-4fb5-8bc5-d2ce4fc2f26f",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f574bdc2-ebdc-491c-b62b-27695c145ca5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-11T20:47:09.899Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R167UjY8jGEWvhrVsSsrZm`</summary>
+
+```json
+{
+  "query": "github PRM training code reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f574bdc2-ebdc-491c-b62b-27695c145ca5",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1662d369-9b9c-4cb0-ab5f-704d0588310b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-11T20:47:10.397Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HL7pG3cVozUDWmQAhSUDrj`</summary>
+
+```json
+{
+  "query": "huggingface datasets SWE-bench"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1662d369-9b9c-4cb0-ab5f-704d0588310b",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b508161a-0c09-4141-8dd5-9de930fee2e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-11T20:47:10.405Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016N7qtnjB5yKV9t95bamX6c`</summary>
+
+```json
+{
+  "query": "Defects4J dataset program repair benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b508161a-0c09-4141-8dd5-9de930fee2e5",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3f3fc887-b5f8-4cc7-a3cb-4959d31f0df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-11T20:47:10.830Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016V7FGyujHHvy6PQXXKZHDk`</summary>
+
+```json
+{
+  "query": "program repair benchmark dataset 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f3fc887-b5f8-4cc7-a3cb-4959d31f0df2",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d14f5b35-0af9-4f9d-95b5-f703d7da00d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-11T20:47:11.336Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S82RgMe92KjNU7kr75rDZn`</summary>
+
+```json
+{
+  "query": "process reward model training cost GPU hours"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d14f5b35-0af9-4f9d-95b5-f703d7da00d3",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e86f77b9-de40-4414-8011-95e7ac235ff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-11T20:47:11.355Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018wk9QXaiXEy2dDujU2B3vR`</summary>
+
+```json
+{
+  "query": "CodePRM training compute requirements"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e86f77b9-de40-4414-8011-95e7ac235ff2",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2a96d41e-da06-4e8d-8ab1-f8677c328592",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-11T20:47:11.569Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015cmRfLDgodXCCX9xmr8E2c`</summary>
+
+```json
+{
+  "query": "PRM training A100 GPU hours cost"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a96d41e-da06-4e8d-8ab1-f8677c328592",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSJs5e54NfKXauNjnrk",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2bb460cc-5948-45ac-8e9f-00dc79432658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LSqJa5jyqr6wonoPbGTmfK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1038,
+      "cache_read_input_tokens": 10483,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1038
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 10483,
+          "cache_creation_input_tokens": 1038,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1038,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-11T20:47:15.274Z_
+
+<details><summary>↩ Tool result · `toolu_01YY3W1pUbHJeqo4kirXnG2Y`</summary>
+
+```text
+Web search results for query: "github CodePRM implementation"
+
+Links: [{"title":"GitHub - rustic-ai/codeprism: An experimental, 100% AI-generated, high-performance code intelligence server providing AI assistants with a graph-based understanding of codebases. · GitHub","url":"https://github.com/rustic-ai/codeprism"},{"title":"prm · GitHub Topics","url":"https://github.com/topics/prm"},{"title":"robotics-toolbox-matlab/PRM.m at master · petercorke/robotics-toolbox-matlab","url":"https://github.com/petercorke/robotics-toolbox-matlab/blob/master/PRM.m"},{"title":"GitHub - dnbert/prm: PRM Allows you to quickly build package repositories, inspired by Jordan Sissels' FPM · GitHub","url":"https://github.com/dnbert/prm"},{"title":"GitHub | OpenCode","url":"https://opencode.ai/docs/github/"},{"title":"GitHub - devanys/PRM-PathPlanning: Probabilistic Roadmap (PRM) path planning algorithm in Python to navigate a 2D space with obstacles. The process involves generating random nodes within a defined space, connecting these nodes based on a k-nearest neighbors approach · GitHub","url":"https://github.com/devanys/PRM-PathPlanning"},{"title":"GitHub - automazeio/ccpm: Project management skill system for Agents that uses GitHub Issues and Git worktrees for parallel agent execution. · GitHub","url":"https://github.com/automazeio/ccpm"},{"title":"GitHub - anthropics/claude-code-action · GitHub","url":"https://github.com/anthropics/claude-code-action"},{"title":"code-implementation · GitHub Topics · GitHub","url":"https://github.com/topics/code-implementation"},{"title":"GitHub - git/git: Git Source Code Mirror - This is a publish-only repository but pull requests can be turned into patches to the mailing list via GitGitGadget (https://gitgitgadget.github.io/). Please follow Documentation/SubmittingPatches procedure for any of your improvements. · GitHub","url":"https://github.com/git/git"}]
+
+Based on the search results, I found information about **CodePrism** rather than "CodePRM". Here's what I found:
+
+## CodePrism - GitHub Implementation
+
+CodePrism is a production-ready, high-performance code intelligence server implementing the Model Context Protocol (MCP) that provides AI assistants with structured understanding of codebases through graph-based analysis.
+
+**Key characteristics:**
+
+- The project is 100% AI-Generated with every line of code, documentation, test, and configuration written by AI agents
+- It includes 20 production-ready tools with full MCP compliance, multi-language support for JavaScript/TypeScript and Python, and semantic APIs
+- The server starts without a specific repository, and once connected via MCP, it will prompt you to specify the repository path and then automatically initialize and index it
+
+The project is available at: **https://github.com/rustic-ai/codeprism**
+
+If you were actually looking for a different project called "CodePRM," the search results didn't specifically identify that implementation. Could you provide more details about what CodePRM is, or would you like me to search with different terms?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f574bdc2-ebdc-491c-b62b-27695c145ca5",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "65160c17-6131-462f-9046-f94fbf0970a1",
+  "sourceToolAssistantUUID": "f574bdc2-ebdc-491c-b62b-27695c145ca5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-11T20:47:15.648Z_
+
+<details><summary>↩ Tool result · `toolu_019ykrkLtQRPZAESveqYd6Jc`</summary>
+
+```text
+Web search results for query: "Qwen3 DeepSeek code model 2026"
+
+Links: [{"title":"DeepSeek V4 vs Qwen3.6 in 2026: Context, Pricing, and Which Open Model Fits Your Stack","url":"https://nerova.ai/news/deepseek-v4-vs-qwen3-6-2026"},{"title":"LLM Coding Benchmark (May 2026): DeepSeek v4, Kimi v2.6, Grok 4.3, GPT 5.5 – AkitaOnRails.com","url":"https://akitaonrails.com/en/2026/04/24/llm-benchmarks-parte-3-deepseek-kimi-mimo/"},{"title":"DeepSeek V4 and Qwen 3.5: Open-Source AI Is Rewriting the Rules in 2026","url":"https://particula.tech/blog/deepseek-v4-qwen-open-source-ai-disruption"},{"title":"DeepSeek vs Qwen (2026): Which Open Model Wins?","url":"https://deepseekai.guide/comparisons/deepseek-vs-qwen/"},{"title":"DeepSeek V4 vs Qwen 3.5: Coding, Benchmarks & Performance Test (2026) — CloudVyn Blog","url":"https://www.cloudvyn.com/blog/deepseek-v4-vs-qwen-3-5"},{"title":"The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio","url":"https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"},{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"},{"title":"Qwen3-Coder-Next, DeepSeek-V3.2, and GLM-4.7 — Which Open-Weight Model Wins for Coding Agents - SoftwareSeni","url":"https://www.softwareseni.com/qwen3-coder-next-deepseek-v3-2-and-glm-4-7-which-open-weight-model-wins-for-coding-agents/"},{"title":"Qwen 3 vs DeepSeek V3: Best Chinese LLM for Code Generation | Second Talent","url":"https://www.secondtalent.com/resources/qwen-3-vs-deepseek-v3-best-chinese-llm-for-code-generation/"},{"title":"Qwen 3 vs. Deepseek R1: Complete comparison - DEV Community","url":"https://dev.to/composiodev/qwen-3-vs-deep-seek-r1-evaluation-notes-1bi1"}]
+
+I found comprehensive information about Qwen3 and DeepSeek code models in 2026. Here's what the search reveals:
+
+## Key DeepSeek and Qwen3 Code Models in 2026
+
+**DeepSeek V4:**
+DeepSeek V4 launched in early March 2026 as the most ambitious open-weight model ever released. DeepSeek released DeepSeek-V4 Preview on April 24, 2026. DeepSeek V4 brings 1M-token multimodal inference at ~$0.14/M input tokens—roughly 1/20th the cost of GPT-5.
+
+**Qwen3.6:**
+Qwen3.6-27B launched on April 24, 2026 as a dense 27B multimodal model aimed at flagship-level coding performance in a more straightforward deployment form. Qwen3.6 represents a more practical family of deployable coding models, including an efficient 35B mixture-of-experts option and a dense 27B model that is much easier for more teams to reason about operationally.
+
+## Performance Comparison
+
+DeepSeek V4 and Qwen3.6 are now in the same decision set for a lot of builders, but they do not solve the same problem in the same way. As of May 1, 2026, DeepSeek V4 represents the high-end open-weight push toward very long context, agent integrations, and low-cost API access at frontier scale. Qwen3.6 represents a more practical family of deployable coding models.
+
+Both models represent significant open-source advances in AI coding capabilities, with complementary strengths depending on your specific use case.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0599031f-a686-4111-81af-d31238fb20ef",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "7a156998-4a0a-4153-aa9e-179cc235f046",
+  "sourceToolAssistantUUID": "0599031f-a686-4111-81af-d31238fb20ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-11T20:47:16.023Z_
+
+<details><summary>↩ Tool result · `toolu_01Ks1yP7guL4T2gUASRyY74E`</summary>
+
+```text
+Web search results for query: "best open source code model 2026 SOTA benchmark"
+
+Links: [{"title":"AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/code-generation"},{"title":"Best Open Source LLM Leaderboard 2026 | Open Source Model Rankings and Tier List | Onyx AI","url":"https://onyx.app/open-llm-leaderboard"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"Codesota — the open, callable registry of SOTA","url":"https://www.codesota.com/"},{"title":"AI Coding Model Leaderboard 2026: Live Rankings & Benchmarks | Kilo","url":"https://kilo.ai/leaderboard"},{"title":"Speech AI Leaderboard 2026: Best STT, ASR and TTS Models | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/speech"},{"title":"Top Open-Source LLMs 2026: The Best Models & Comparison","url":"https://kairntech.com/blog/articles/top-open-source-llm-models-in-2026/"},{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"}]
+
+Based on the search results, here's what's currently state-of-the-art for open source code models in 2026:
+
+## Top Open-Source Code Models
+
+GLM-4.7 Thinking is the top open-weight coding model in 2026, free to self-host. DeepSeek V3.2 is the best value via API at $0.35/M tokens — matching proprietary models at 1/10th the cost.
+
+Other leading open-source models for coding include:
+
+- Kimi-K2.6 sets a new open-source bar on complex, end-to-end coding, with benchmark results competitive with top closed-source models like GPT-5.4 and Claude Opus 4.6. It generalizes well across languages, including niche ones like Zig, and can sustain long autonomous coding sessions across frontend, backend, DevOps, and performance tuning.
+
+- Gemma 4 31B delivers top-tier results among open-weight models of similar size, with strong performance on reasoning-heavy benchmarks (e.g., AIME, GPQA) and coding tasks (e.g., LiveCodeBench, Codeforces).
+
+## Benchmark Context
+
+LiveCodeBench uses fresh competitive-programming problems posted after the model's training cutoff, which defeats memorisation. The score is less flattering but more honest. The strongest model on the board is Gemini 3 Pro at 2439 on the Elo-rated LiveCodeBench successor.
+
+You can track these models on dedicated leaderboards like CodeSOTA and Kilo, which provide real-time benchmark comparisons across HumanEval, LiveCodeBench, and SWE-bench Verified evaluations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b329cba8-a790-4d85-9d29-fa5daa999911",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "204f7005-bc91-4f9d-8221-9a379ae58736",
+  "sourceToolAssistantUUID": "b329cba8-a790-4d85-9d29-fa5daa999911",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-11T20:47:16.113Z_
+
+<details><summary>↩ Tool result · `toolu_01HL7pG3cVozUDWmQAhSUDrj`</summary>
+
+```text
+Web search results for query: "huggingface datasets SWE-bench"
+
+Links: [{"title":"princeton-nlp/SWE-bench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/princeton-nlp/SWE-bench"},{"title":"SWE-bench/SWE-bench_Verified · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified"},{"title":"princeton-nlp/SWE-bench_Verified · Datasets at Hugging Face","url":"https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified"},{"title":"ScaleAI/SWE-bench_Pro · Datasets at Hugging Face","url":"https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"},{"title":"SWE-bench/SWE-bench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-bench"},{"title":"princeton-nlp/SWE-bench_Lite · Datasets at Hugging Face","url":"https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite"},{"title":"princeton-nlp/SWE-bench_bm25_27K · Datasets at Hugging Face","url":"https://huggingface.co/datasets/princeton-nlp/SWE-bench_bm25_27K"},{"title":"ByteDance-Seed/Multi-SWE-bench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/ByteDance-Seed/Multi-SWE-bench"},{"title":"SWE-bench (SWE-bench)","url":"https://huggingface.co/SWE-bench"},{"title":"SWE-bench/SWE-smith · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-smith"}]
+
+Based on the search results, here's what I found about SWE-bench on Hugging Face:
+
+## Overview
+
+SWE-bench is a benchmark for evaluating Language Models and AI Systems on their ability resolve real world GitHub Issues.
+
+## Main Dataset Variants
+
+**SWE-bench (Original):** The dataset collects 2,294 Issue-Pull Request pairs from 12 popular Python repositories.
+
+**SWE-bench Verified:** The dataset collects 500 test Issue-Pull Request pairs from popular Python repositories.
+
+**SWE-bench Lite:** The dataset collects 300 test Issue-Pull Request pairs from 11 popular Python.
+
+**SWE-smith:** The SWE-smith Dataset is a training dataset of 50137 task instances from 128 GitHub repositories, collected using the SWE-smith toolkit. It is the largest dataset to date for training software engineering agents.
+
+## Evaluation Methodology
+
+Evaluation is performed by unit test verification using post-PR behavior as the reference solution.
+
+## Extended Benchmarks
+
+There are also specialized variants like Multi-SWE-bench, which spans 7 languages (Java, TypeScript, JavaScript, Go, Rust, C, and C++) with 1,632 high-quality instances, and SWE-Bench Pro, a challenging, enterprise-level dataset for testing agent ability on long-horizon software engineering tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b508161a-0c09-4141-8dd5-9de930fee2e5",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "3025db60-272f-4bba-b87f-115e07e20f6e",
+  "sourceToolAssistantUUID": "b508161a-0c09-4141-8dd5-9de930fee2e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-11T20:47:16.427Z_
+
+<details><summary>↩ Tool result · `toolu_018wk9QXaiXEy2dDujU2B3vR`</summary>
+
+```text
+Web search results for query: "CodePRM training compute requirements"
+
+Links: [{"title":"CodePRM: Execution Feedback-enhanced Process Reward Model for Code Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.428/"},{"title":"Execution Feedback-enhanced Process Reward Model for ...","url":"https://aclanthology.org/2025.findings-acl.428.pdf"},{"title":"SecCodePRM: A Process Reward Model for Code Security","url":"https://arxiv.org/pdf/2602.10418"},{"title":"GitHub - codefuse-ai/Awesome-Code-LLM: [TMLR] A curated list of language modeling researches for code (and other software engineering activities), plus related datasets. · GitHub","url":"https://github.com/codefuse-ai/Awesome-Code-LLM"},{"title":"Computer Requirements - Code:You | Free Tech Training","url":"https://code-you.org/students/resources/computer-requirements/"},{"title":"Basic Computer Proficiency Requirements - Code:You | Free Tech Training","url":"https://code-you.org/students/resources/basic-computer-proficiency-requirements/"},{"title":"Learn to Code — For Free — Coding Courses for Busy People","url":"https://www.freecodecamp.org/"},{"title":"GitHub - EngineeringSoftware/CoditT5: CoditT5: Pretraining for Source Code and Natural Language Editing · GitHub","url":"https://github.com/EngineeringSoftware/CoditT5"},{"title":"Computer Science for Students | Learn, Explore, and Create with Code.org","url":"https://code.org/en-US/students"},{"title":"Compute requirements for finetuning pipeline with CodeLlama - Microsoft Q&A","url":"https://learn.microsoft.com/en-us/answers/questions/1439592/compute-requirements-for-finetuning-pipeline-with"}]
+
+Based on the search results, I found information about CodePRM, but the available sources don't contain specific details about its training compute requirements. 
+
+CodePRM is an approach that leverages code execution feedback to build a code Process Reward Model, where researchers collect a large dataset of thought traces labeled with code pass rates and train a PRM to score individual thought steps using both the reasoning process and code execution feedback.
+
+However, the search results do not include specific information about the computational resources (such as GPU type, memory requirements, number of GPUs, or training time) needed to train CodePRM. To find this information, you would likely need to:
+
+1. Check the full research paper directly (the ACL 2025 publication appears to be available at the ACL Anthology)
+2. Look for any supplementary materials or technical appendices from the authors
+3. Check if the authors have released any code or documentation on GitHub that details hardware requirements
+
+If you'd like, I can search for more specific information about CodePRM's computational requirements or related documentation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a96d41e-da06-4e8d-8ab1-f8677c328592",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "e219e392-2a46-4de6-bed3-bde0c8449941",
+  "sourceToolAssistantUUID": "2a96d41e-da06-4e8d-8ab1-f8677c328592",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-11T20:47:16.811Z_
+
+<details><summary>↩ Tool result · `toolu_01TfyFNWkZrjcxyHUbfhwkEd`</summary>
+
+```text
+Web search results for query: "open source LLM leaderboard 2026 code"
+
+Links: [{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site","url":"https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"},{"title":"Best Open Source LLM Leaderboard 2026 | Open Source Model Rankings and Tier List | Onyx AI","url":"https://onyx.app/open-llm-leaderboard"},{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"},{"title":"Best LLM for Coding - Vellum","url":"https://www.vellum.ai/best-llm-for-coding"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"open-llm-leaderboard (Open LLM Leaderboard)","url":"https://huggingface.co/open-llm-leaderboard"},{"title":"The best LLM for coding in 2026: Seven models you must know","url":"https://www.xavor.com/blog/best-llm-for-coding/"}]
+
+I found several open source LLM leaderboards for 2026 focused on code performance. Here's what I found:
+
+## Key Leaderboard Platforms
+
+Multiple leaderboards track open-weight models like Llama, Qwen, GLM, DeepSeek, Mistral, and Kimi by coding-arena score, GPQA Diamond, throughput, latency, and per-token pricing.
+
+Vellum's leaderboard compares open-source and open-weight LLM benchmarks for Llama, DeepSeek, Qwen, Kimi and more with updated rankings across reasoning, coding, math, and multilingual tasks.
+
+## Top Coding Models
+
+For coding specifically, GLM-4.7 has the best HumanEval score of 94.2, signaling exceptional code generation ability.
+
+For open source alternatives, GLM-4.7 Thinking and DeepSeek V3.2 offer comparable performance at a fraction of the cost, making them excellent choices for both API use and self-hosting.
+
+MiniMax M2.5 earns S-tier placement with the highest SWE-bench Verified score of 80.2 of any model on the leaderboard for real-world software engineering tasks, evaluating whether a model can resolve actual GitHub issues.
+
+Several well-known benchmark suites are used across these leaderboards, including MMLU, MMLU-Pro, HumanEval, SWE-bench Verified, LiveCodeBench, AIME 2025, GPQA Diamond, MATH-500, Chatbot Arena, and IFEval.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9376eff3-2cf9-46c1-b89b-6d30d2f78052",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "3a19c38b-cde7-48ec-9501-e7cdc2105d51",
+  "sourceToolAssistantUUID": "9376eff3-2cf9-46c1-b89b-6d30d2f78052",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-11T20:47:17.362Z_
+
+<details><summary>↩ Tool result · `toolu_015cmRfLDgodXCCX9xmr8E2c`</summary>
+
+```text
+Web search results for query: "PRM training A100 GPU hours cost"
+
+Links: [{"title":"How much does an NVIDIA A100 GPU cost? | Blog — Northflank","url":"https://northflank.com/blog/nvidia-a100-gpu-cost"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud ...","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"NVIDIA A100 GPU Price Guide (2025) - Cloud Rental & Purchase Costs | AI FAQ | Jarvis Labs","url":"https://jarvislabs.ai/ai-faqs/nvidia-a100-gpu-price"},{"title":"For anyone curious, it took 2048 A100 GPUs to train LLaMa, each GPU costs roughl... | Hacker News","url":"https://news.ycombinator.com/item?id=35008694"},{"title":"A100 Cloud Pricing: Compare 38+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-a100"},{"title":"NVIDIA A100 Pricing (May 2026): Cheapest On-demand GPU Instances","url":"https://www.thundercompute.com/blog/nvidia-a100-pricing"},{"title":"NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing ...","url":"https://jarvislabs.ai/blog/h100-price"},{"title":"NVIDIA A100: Price, Specs & AI Infrastructure Guide","url":"https://www.clarifai.com/blog/nvidia-a100"},{"title":"A100 GPU Cloud Availability and Pricing","url":"https://gpus.llm-utils.org/a100-gpu-cloud-availability-and-pricing/"},{"title":"Rent NVIDIA A100 80GB GPU | On-Demand Pricing & Specs","url":"https://www.hyperstack.cloud/a100"}]
+
+Based on the search results, here's what I found regarding A100 GPU costs:
+
+## Current A100 GPU Pricing
+
+Cloud rental for A100 GPUs ranges from $1.49 to $3.43 per GPU hour as of March 2026. However, pricing varies significantly across providers:
+
+- A100 pricing currently ranges from $0.13/hr to $5.04/hr per GPU, depending on the provider, instance type, and billing model.
+- Jarvislabs offers on-demand A100 80GB access at $1.49/hr with per-minute billing — no commitments, no minimum rental period.
+- The hourly cost of NVIDIA A100 GPU on-demand is $1.35/hr on Hyperstack.
+
+## Cost Trends
+
+On-demand pricing has decreased by about 17% since May 2025, dropping from $2.39 to $1.98/hr per GPU.
+
+## Monthly Costs
+
+At 720 hours per month, one A100 can cost between $94.36 to $3,628.80 per month, depending on the provider.
+
+The significant variation in pricing depends on factors like the provider chosen, whether you use on-demand or spot instances, region, and whether you're getting just the GPU or a full instance with CPU and memory included.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2bb460cc-5948-45ac-8e9f-00dc79432658",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "2265c32b-4d2f-456f-881a-54246d9ecd2e",
+  "sourceToolAssistantUUID": "2bb460cc-5948-45ac-8e9f-00dc79432658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-11T20:47:17.453Z_
+
+<details><summary>↩ Tool result · `toolu_01R167UjY8jGEWvhrVsSsrZm`</summary>
+
+```text
+Web search results for query: "github PRM training code reasoning"
+
+Links: [{"title":"R-PRM: Reasoning-Driven Process Reward Modeling","url":"https://github.com/NJUNLP/R-PRM"},{"title":"Reward Models | OpenR Documents","url":"https://openreasoner.github.io/docs/usage/prm.html"},{"title":"GitHub - sdiehl/prm: Library for training process reward models","url":"https://github.com/sdiehl/prm"},{"title":"GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub","url":"https://github.com/psunlpgroup/FoVer"},{"title":"FoVer: Efficient PRM Training Data Synthesis via Formal Verification","url":"https://fover-prm.github.io/"},{"title":"Med-PRM: Medical Reasoning Models with Stepwise, Guideline-verified Process Rewards","url":"https://med-prm.github.io/"},{"title":"GitHub - benjaminzwhite/reasoning-models: Experiments with reasoning models, training techniques, papers · GitHub","url":"https://github.com/benjaminzwhite/reasoning-models"},{"title":"GitHub - sanowl/OmegaPRM: this is an implementation for the paper Improve Mathematical Reasoning in Language Models by Automated Process Supervision from google deepmind · GitHub","url":"https://github.com/sanowl/OmegaPRM"},{"title":"GitHub - ModalMinds/MM-PRM: MM-PRM: Enhancing Multimodal Mathematical Reasoning with Scalable Step-Level Supervision · GitHub","url":"https://github.com/ModalMinds/MM-PRM"},{"title":"GitHub - PRIME-RL/PRIME: Scalable RL solution for advanced reasoning of language models · GitHub","url":"https://github.com/PRIME-RL/PRIME"}]
+
+Based on the search results, here are several key GitHub repositories for PRM (Process Reward Model) training code focused on reasoning:
+
+## Major PRM Training Code Repositories
+
+**1. R-PRM: Reasoning-Driven Process Reward Modeling**
+R-PRM is a novel approach that enhances LLMs' ability to evaluate mathematical reasoning step-by-step. The framework uses Supervised Fine-Tuning where a model is trained to generate both reasoning critiques and binary decisions.
+
+**2. OpenR - PRM Training**
+In Process-Supervision Reward Models (PRMs), the goal is to determine whether the sequence of solution process is currently on the right track, and OpenR trains PRMs through supervised fine-tuning on an LLM.
+
+**3. sdiehl/prm - PRM Library**
+This project implements process reward modeling, a technique for training language models to evaluate step-by-step reasoning processes, with the core idea being to train a reward model that can score each intermediate step of a solution.
+
+**4. FoVer - Formal Verification for PRM Training Data**
+FoVer is a framework that synthesizes PRM training data from formal reasoning tasks, enabling PRM training data synthesis via formal verification.
+
+**5. PRIME - Process Reinforcement through Implicit Rewards**
+PRIME is an open-source solution for online RL with process rewards that stems from implicit process reward modeling, where implicit PRM is trained as an outcome reward model without the need for any process label.
+
+**6. MM-PRM - Multimodal Process Reward Models**
+MM-PRM leverages a Monte Carlo Tree Search (MCTS)-based pipeline to generate over 700k step-level annotations without human labeling.
+
+These repositories provide various approaches to training PRM models for improving LLM reasoning capabilities through step-level supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1662d369-9b9c-4cb0-ab5f-704d0588310b",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "99821886-9682-4b89-a00f-703b9f293d86",
+  "sourceToolAssistantUUID": "1662d369-9b9c-4cb0-ab5f-704d0588310b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-11T20:47:18.203Z_
+
+<details><summary>↩ Tool result · `toolu_012QgBAtf3njLeNdH81bZVm4`</summary>
+
+```text
+Web search results for query: "github process reward model code generation"
+
+Links: [{"title":"process-reward-model · GitHub Topics · GitHub","url":"https://github.com/topics/process-reward-model"},{"title":"GitHub - RLHFlow/RLHF-Reward-Modeling: Recipes to train reward model for RLHF. · GitHub","url":"https://github.com/RLHFlow/RLHF-Reward-Modeling"},{"title":"CodePRM: Execution Feedback-enhanced Process Reward Model for Code Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.428/"},{"title":"GitHub - JLZhong23/awesome-reward-models · GitHub","url":"https://github.com/JLZhong23/awesome-reward-models"},{"title":"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub","url":"https://github.com/RyanLiu112/Awesome-Process-Reward-Models"},{"title":"GitHub - reddy-lab-code-research/PPOCoder: Code for the TMLR 2023 paper \"PPOCoder: Execution-based Code Generation using Deep Reinforcement Learning\" · GitHub","url":"https://github.com/reddy-lab-code-research/PPOCoder"},{"title":"R-PRM: Reasoning-Driven Process Reward Modeling","url":"https://github.com/NJUNLP/R-PRM"},{"title":"GitHub - Dahoas/reward-modeling","url":"https://github.com/Dahoas/reward-modeling"},{"title":"Fine-Grained RLHF","url":"https://finegrainedrlhf.github.io/"},{"title":"GitHub - bobxwu/learning-from-rewards-llm-papers: A comrephensive collection of learning from rewards in the post-training and test-time scaling of LLMs, with a focus on both reward models and learning strategies across training, inference, and post-inference stages. · GitHub","url":"https://github.com/bobxwu/learning-from-rewards-llm-papers"}]
+
+I've found comprehensive information about process reward models for code generation on GitHub. Here's what the search revealed:
+
+## Key Repositories and Projects
+
+There is a comprehensive collection of process reward models available on GitHub, including official codebases like GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning.
+
+### Notable Code Generation Projects
+
+**CodePRM** - CodePRM is a novel approach that leverages code execution feedback to build a code PRM, collecting a large dataset of thought traces where each thought step is labeled with their derived code' pass rates, accompanied by code snippets and execution feedback. It features a Generate-Verify-Refine (GVR) pipeline where the CodePRM serves as a process verifier to dynamically identify and correct errors in the thought process during code search.
+
+**R-PRM (Reasoning-Driven Process Reward Modeling)** - R-PRM evaluates the reasoning process and provides guidance to policy models, and is a novel approach that enhances LLMs' ability to evaluate mathematical reasoning step-by-step.
+
+**PPOCoder** - PPOCoder combines pretrained PL models with Proximal Policy Optimization (PPO) deep reinforcement learning and employs execution feedback as an external source of knowledge into the model optimization.
+
+### Comprehensive Collections
+
+There are comprehensive listings of PRM projects for code generation, including VersaPRM for multi-domain process reward modeling, o1-Coder for replicating o1 for coding, and various other approaches with available code and models.
+
+The math-rm code trains process-supervised reward (PRM) and outcome-supervised reward (ORM) using next-token prediction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69b4d855-868b-4fb5-8bc5-d2ce4fc2f26f",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "cf816aa9-fffd-4a8a-ba57-9a61f8a14d5e",
+  "sourceToolAssistantUUID": "69b4d855-868b-4fb5-8bc5-d2ce4fc2f26f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-11T20:47:18.333Z_
+
+<details><summary>↩ Tool result · `toolu_016V7FGyujHHvy6PQXXKZHDk`</summary>
+
+```text
+Web search results for query: "program repair benchmark dataset 2025 2026"
+
+Links: [{"title":"Reproducible Automated Program Repair Is Hard – Experiences With the Defects4J Dataset","url":"https://arxiv.org/html/2604.26674"},{"title":"From Benchmark Data To Applicable Program Repair: An Experience Report","url":"https://www.arxiv.org/pdf/2508.16071"},{"title":"[2604.26674] Reproducible Automated Program Repair Is Hard -- Experiences With the Defects4J Dataset","url":"https://arxiv.org/abs/2604.26674"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf?id=gXK3Y6WNVv"},{"title":"Synthetic Repo-level Bug Dataset for Training Automated Program Repair Models (ICSE 2026 - Research Track) - ICSE 2026","url":"https://conf.researchr.org/details/icse-2026/icse-2026-research-track/45/Synthetic-Repo-level-Bug-Dataset-for-Training-Automated-Program-Repair-Models"},{"title":"Automatic Program Repair Using Large Language Models in Model-Based Development","url":"https://www.scitepress.org/Papers/2026/144911/144911.pdf"},{"title":"Benchmarking Educational Program Repair Charles Koutcheme Aalto University","url":"https://gaied.org/neurips2023/files/5/5_paper.pdf"},{"title":"ReAPR: Automatic program repair via retrieval-augmented large language models | Software Quality Journal | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11219-025-09728-1"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"QuixBugs: A Multi-Lingual Program Repair Benchmark Set ...","url":"https://jkoppel.github.io/QuixBugs/quixbugs.pdf"}]
+
+Based on the search results, here's what I found about program repair benchmark datasets from 2025-2026:
+
+## Key Program Repair Benchmark Datasets
+
+**Defects4J** remains the most widely used benchmark. According to a survey of defect datasets, it is the most used benchmark for APR evaluations (Zhu et al., 2025), making it a quasi-standard evaluation benchmark for APR tools targeting Java programs. In its 2.0 version, it consists of 835 defects from 17 different open-source projects.
+
+**Defects4C** is a newer benchmark specifically for C/C++. To address identified challenges, researchers introduced a new high-quality C/C++ fault benchmark, referred to as Defects4C, which consists of two major components: bug-relevant commits (Defects4C_bgcommit), and high-quality buggy functions that are further divided into general bug functions (Defects4C_bug) and vulnerability functions (Defects4C_vul).
+
+**SWE-Synth** is a recent synthetic dataset. Using a synthetic data pipeline, researchers created SWE-Synth, a large and contextually rich dataset of bug-fix pairs that are natural, scalable, automated verifiable, and contain intermediate repair steps. Training LLMs on this synthetic dataset yields context-aware repair strategies that achieve repair accuracy equivalent to those trained on manually curated datasets from Github like SWE-Gym while delivering superior scalability with effortless bug synthesis, as demonstrated on popular benchmarks (SWE-Bench and BugsInPy).
+
+Other active benchmarks include GitBug-Java and various education-focused datasets for program repair research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d14f5b35-0af9-4f9d-95b5-f703d7da00d3",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "b7fd5b63-0f36-408d-a955-84d066fa2a12",
+  "sourceToolAssistantUUID": "d14f5b35-0af9-4f9d-95b5-f703d7da00d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-11T20:47:18.880Z_
+
+<details><summary>↩ Tool result · `toolu_016N7qtnjB5yKV9t95bamX6c`</summary>
+
+```text
+Web search results for query: "Defects4J dataset program repair benchmark"
+
+Links: [{"title":"Defects4J V1.2 Benchmark","url":"https://www.emergentmind.com/topics/defects4j-v1-2"},{"title":"Reproducible Automated Program Repair Is Hard – Experiences With the Defects4J Dataset","url":"https://arxiv.org/html/2604.26674"},{"title":"Defects4J: a database of existing faults to enable controlled testing studies for Java programs | Proceedings of the 2014 International Symposium on Software Testing and Analysis","url":"https://dl.acm.org/doi/10.1145/2610384.2628055"},{"title":"[2604.26674] Reproducible Automated Program Repair Is Hard -- Experiences With the Defects4J Dataset","url":"https://arxiv.org/abs/2604.26674"},{"title":"Back to the Future! Studying Data Cleanness in Defects4J and its Impact on Fault Localization","url":"https://arxiv.org/html/2310.19139v3"},{"title":"Defects4J as a Challenge Case for the Search-Based ...","url":"https://greg4cr.github.io/pdf/20d4j.pdf"},{"title":"GitHub - rjust/defects4j: A Database of Real Faults and an Experimental Infrastructure to Enable Controlled Experiments in Software Engineering Research · GitHub","url":"https://github.com/rjust/defects4j"},{"title":"GitHub - Spirals-Team/defects4j-repair: Open-science repo for our experimental results of automatic software repair on the Defects4J benchmark of Java bugs · GitHub","url":"https://github.com/Spirals-Team/defects4j-repair"},{"title":"Where were the repair ingredients for Defects4j bugs?","url":"https://www.darkrsw.net/papers/EMSE2021.pdf"},{"title":"A manual inspection of Defects4J bugs and its implications ...","url":"https://xiongyingfei.github.io/papers/SCIS19Empirical.pdf"}]
+
+Based on the search results, here's comprehensive information about the Defects4J dataset:
+
+## Overview
+
+Defects4J is a collection of reproducible bugs and a supporting infrastructure with the goal of advancing software engineering research. According to a survey of defect datasets, it is the most used benchmark for APR evaluations, making it a quasi-standard evaluation benchmark for APR tools targeting Java programs.
+
+## Dataset Contents
+
+It consists of 835 defects from 17 open-source Java projects; a hand-curated collection of defects, test suites that clearly indicate the defect, and human patches where any unrelated changes are removed. Key dataset statistics include per-project aggregates for lines of code, number of bugs, and overall test case counts (for example, Commons Math provides 106 bugs spanning ~85K lines and 3,602 tests).
+
+## Key Features
+
+Defects4J features a framework to easily access faulty and fixed program versions and corresponding test suites. This framework also provides a high-level interface to common tasks in software testing research, making it easy to conduct and reproduce empirical studies.
+
+The bugs are minimized with the Defects4J maintainers manually pruning out irrelevant changes in the commit, and a triggering test exists that failed before the fix and passes after the fix.
+
+## Research Applications
+
+It has become a de facto benchmark for the systematic evaluation and comparison of automated program repair (APR), fault localization, and empirical software engineering research methodologies. The dataset unifies programs, test cases, and patches in a canonical structure, thereby enabling reproducibility and controlled experimentation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f3fc887-b5f8-4cc7-a3cb-4959d31f0df2",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "f35dbaf1-84ab-4f59-8393-d3df7671632f",
+  "sourceToolAssistantUUID": "3f3fc887-b5f8-4cc7-a3cb-4959d31f0df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-11T20:47:18.928Z_
+
+<details><summary>↩ Tool result · `toolu_01S82RgMe92KjNU7kr75rDZn`</summary>
+
+```text
+Web search results for query: "process reward model training cost GPU hours"
+
+Links: [{"title":"What is the cost of training large language models?","url":"https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"},{"title":"Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT RE- WARDS","url":"https://arxiv.org/pdf/2502.01456"},{"title":"LLM Training Cost: What $100M+ Really Buys in 2026","url":"https://aisuperior.com/llm-training-cost/"},{"title":"The Complete Guide to GPU Requirements for LLM Fine-Tuning | Runpod Blog","url":"https://www.runpod.io/blog/llm-fine-tuning-gpu-guide"},{"title":"AI Training vs Inference: The Cost Difference in 2026","url":"https://www.aitooldiscovery.com/ai-infra/ai-training-vs-inference-explained"},{"title":"The rising costs of training frontier AI models","url":"https://arxiv.org/html/2405.21015v1"},{"title":"How Much Does LLM Training Cost? | Galileo","url":"https://galileo.ai/blog/llm-model-training-cost"},{"title":"Process Reward Models - Stephen Diehl","url":"https://www.stephendiehl.com/posts/process_reward/"},{"title":"Pricing AI Training vs Inference: Different Models for Different Phases","url":"https://www.getmonetizely.com/articles/pricing-ai-training-vs-inference-different-models-for-different-phases"},{"title":"How much does it cost to train frontier AI models? | Epoch AI","url":"https://epoch.ai/blog/how-much-does-it-cost-to-train-frontier-ai-models"}]
+
+Based on the search results, here's what I found about process reward model training costs in GPU hours:
+
+## Process Reward Model Training Costs
+
+PRIME (a process reinforcement method) consumed 446.7 A800 GPU hours for a specific experiment, demonstrating the computational requirements for training process reward models.
+
+In comparison, DeepScaleR consumed 3800 A100 GPU hours in total, with the first stage roughly requiring approximately 600 GPU hours, and PRIME is 25% faster than DeepScaleR.
+
+## General Training Cost Context
+
+More broadly, RLHF involves training additional models (reward models) and running reinforcement learning algorithms that themselves require lots of computations on GPUs and custom data generated by human annotators, which is expensive.
+
+Explicit reward modeling brings extra cost, as training reward models requires extensive annotation and broad data coverage to ensure a good balance between adaptability to the policy distribution and generalization to distribution shifts, with the explicit training stage introducing a very costly data collection and additional training overhead, especially for PRMs.
+
+The actual GPU hour requirements vary significantly based on the specific approach, model size, and implementation details used in the training process.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e86f77b9-de40-4414-8011-95e7ac235ff2",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "afebb336-e15b-44e4-b4ac-41256df0ff1f",
+  "sourceToolAssistantUUID": "e86f77b9-de40-4414-8011-95e7ac235ff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-11T20:47:22.734Z_
+
+Now let me get a few more targeted searches to fill in gaps on specific model parameters, CodePRM paper details, and PRIME compute specifics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afebb336-e15b-44e4-b4ac-41256df0ff1f",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSKtdw4VDDTjGUspJo5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6d64f85c-c32d-4b09-9973-d50856271292",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwpWQR2M58UzSXfKtP5BZV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1559,
+      "cache_creation_input_tokens": 13079,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-11T20:47:23.183Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U934n1DHJbQuyck8EBkZtM`</summary>
+
+```json
+{
+  "query": "CodePRM paper ACL 2025 training details dataset size base model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d64f85c-c32d-4b09-9973-d50856271292",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSKtdw4VDDTjGUspJo5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bc28fd12-1984-410a-b8eb-ad3d69e2c2f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwpWQR2M58UzSXfKtP5BZV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1559,
+      "cache_creation_input_tokens": 13079,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-11T20:47:23.724Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AdYfwHyDJFqwVrLDLPaFwe`</summary>
+
+```json
+{
+  "query": "PRIME process reinforcement implicit rewards training GPU hours details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc28fd12-1984-410a-b8eb-ad3d69e2c2f4",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSKtdw4VDDTjGUspJo5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7b2720d0-c418-4ad2-8994-26b7789d0846",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwpWQR2M58UzSXfKtP5BZV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1559,
+      "cache_creation_input_tokens": 13079,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-11T20:47:24.595Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PfFTnXTLZvxTjwAHcumGhq`</summary>
+
+```json
+{
+  "query": "DeepSeek V4 parameter count architecture MoE 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b2720d0-c418-4ad2-8994-26b7789d0846",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSKtdw4VDDTjGUspJo5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8d32cc45-375e-45e8-92aa-18866c80662b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwpWQR2M58UzSXfKtP5BZV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1559,
+      "cache_creation_input_tokens": 13079,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-11T20:47:25.610Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K56qgUcvmz43DtsPikBFKJ`</summary>
+
+```json
+{
+  "query": "Qwen3 Coder parameter count SWE-bench LiveCodeBench score 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d32cc45-375e-45e8-92aa-18866c80662b",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSKtdw4VDDTjGUspJo5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bb165ff8-6e23-4538-925e-989682cf7940",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwpWQR2M58UzSXfKtP5BZV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1559,
+      "cache_creation_input_tokens": 13079,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-11T20:47:26.126Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BAoyomPuATZkNF8BPd1Kew`</summary>
+
+```json
+{
+  "query": "GLM-4.7 Thinking parameter count benchmark scores code"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb165ff8-6e23-4538-925e-989682cf7940",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSKtdw4VDDTjGUspJo5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d55c6bc5-a5d6-49ac-a94d-24cee62b5760",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwpWQR2M58UzSXfKtP5BZV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1559,
+      "cache_creation_input_tokens": 13079,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-11T20:47:26.605Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FhtRDFqKGNhXzkXBv9vpP7`</summary>
+
+```json
+{
+  "query": "SWE-smith 50000 training dataset program repair fine-tuning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d55c6bc5-a5d6-49ac-a94d-24cee62b5760",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSKtdw4VDDTjGUspJo5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "498f3825-95f3-4fb1-9c47-60e4468531f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwpWQR2M58UzSXfKtP5BZV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1559,
+      "cache_creation_input_tokens": 13079,
+      "cache_read_input_tokens": 8223,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 13079
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1559,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 8223,
+          "cache_creation_input_tokens": 13079,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 13079,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-11T20:47:27.973Z_
+
+<details><summary>↩ Tool result · `toolu_01U934n1DHJbQuyck8EBkZtM`</summary>
+
+```text
+Web search results for query: "CodePRM paper ACL 2025 training details dataset size base model"
+
+Links: [{"title":"CodePRM: Execution Feedback-enhanced Process Reward Model for Code Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.428/"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"ACL.2025 - Long Papers | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ACL.2025?group=Long+Papers"},{"title":"GitHub - cs329yangzhong/ReflectASP: Dataset and Codebase for ACL 2025 accepted paper","url":"https://github.com/cs329yangzhong/ReflectASP"},{"title":"KODCODE : A Diverse, Challenging, and Verifiable ...","url":"https://aclanthology.org/2025.findings-acl.365.pdf"},{"title":"ACL.2025 - Short Papers | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ACL.2025?group=Short+Papers"},{"title":"Twenty-two papers by CSE researchers at ACL 2025","url":"https://cse.engin.umich.edu/stories/twenty-two-papers-by-cse-researchers-at-acl-2025"},{"title":"Paper Digest: ACL 2025 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2025/07/acl-2025-papers-highlights/"},{"title":"NLPCC 2025 Tutorials","url":"http://tcci.ccf.org.cn/conference/2025/tutorials.php"},{"title":"An Expanded Massive Multilingual Dataset for High-Performance Language Technologies (HPLT) - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.854/"}]
+
+Based on the search results, I found information about the CodePRM paper from ACL 2025. During training, the PRM takes both the reasoning process and code execution feedback as input to score individual thought steps, enabling it to leverage code execution results to distinguish between high-quality and low-quality thought steps.
+
+However, the search results don't contain the specific technical details you're looking for regarding dataset size and base model information. The ACL Anthology page for the paper is available at https://aclanthology.org/2025.findings-acl.428/, but the search results only show the abstract and metadata, not the full paper content with training details.
+
+To find the specific dataset size and base model specifications, you would need to access the full paper PDF directly from that ACL Anthology page or look for a preprint version on arXiv. The search results indicate this is a Findings paper by Li et al., but the detailed technical specifications aren't included in the available excerpts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc28fd12-1984-410a-b8eb-ad3d69e2c2f4",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "0bd6ed55-fb34-4da6-8a43-ad8df5110693",
+  "sourceToolAssistantUUID": "bc28fd12-1984-410a-b8eb-ad3d69e2c2f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-11T20:47:30.600Z_
+
+<details><summary>↩ Tool result · `toolu_01K56qgUcvmz43DtsPikBFKJ`</summary>
+
+```text
+Web search results for query: "Qwen3 Coder parameter count SWE-bench LiveCodeBench score 2026"
+
+Links: [{"title":"Qwen3-Coder-Next: Pushing Small Hybrid Models","url":"https://qwen.ai/blog?id=qwen3-coder-next"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"Qwen3-Coder-Next: Local Coding AI, 70% SWE-Bench (2026) | Local AI Master","url":"https://localaimaster.com/models/qwen-3-coder-next"},{"title":"Qwen3-Coder-Next Technical Report","url":"https://arxiv.org/html/2603.00729v1"},{"title":"Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community","url":"https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"},{"title":"2026-03-03 Qwen3-Coder-Next Technical Report Qwen Team","url":"https://arxiv.org/pdf/2603.00729"},{"title":"SWE-bench & LiveCodeBench Leaderboard (March 2026) — AI Coding Benchmarks | BenchLM.ai","url":"https://benchlm.ai/coding"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"Qwen3-Coder-Next Technical Report","url":"https://www.researchgate.net/publication/401469721_Qwen3-Coder-Next_Technical_Report"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"}]
+
+Based on the search results, here's the information about Qwen3-Coder-Next:
+
+## Parameter Count
+
+Qwen3-Coder-Next is a Mixture-of-Experts architecture with 80 billion total parameters and 3 billion active per forward pass.
+
+## SWE-Bench Score
+
+It scores 70.6% on SWE-Bench Verified. Additionally, Qwen3-Coder-Next achieves over 70% on SWE-Bench Verified using the SWE-Agent scaffold.
+
+## LiveCodeBench Score
+
+On LiveCodeBench, Qwen3-Coder-Next scores 68.4%.
+
+## Performance Context
+
+Qwen3-Coder-Next (3B active) achieves SWE-Bench-Pro performance comparable to models with 10×–20× more active parameters. This demonstrates significant efficiency in its model architecture design.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb165ff8-6e23-4538-925e-989682cf7940",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "1725dd3a-d5f9-460f-a7b5-e7a1f71361a4",
+  "sourceToolAssistantUUID": "bb165ff8-6e23-4538-925e-989682cf7940",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-11T20:47:30.922Z_
+
+<details><summary>↩ Tool result · `toolu_01PfFTnXTLZvxTjwAHcumGhq`</summary>
+
+```text
+Web search results for query: "DeepSeek V4 parameter count architecture MoE 2026"
+
+Links: [{"title":"DeepSeek V4 (2026): 1T Parameters, 81% SWE-bench, $0.30/MTok — Full Specs | NxCode","url":"https://www.nxcode.io/resources/news/deepseek-v4-release-specs-benchmarks-2026"},{"title":"DeepSeek V4 (1.6T MoE, Multimodal) | Guides | Clore.ai","url":"https://docs.clore.ai/guides/language-models/deepseek-v4"},{"title":"DeepSeek V4: The Open-Source Model That Rivals Closed Frontier Models | MindStudio","url":"https://www.mindstudio.ai/blog/deepseek-v4-open-source-frontier-model-review"},{"title":"deepseek-ai/DeepSeek-V4-Pro · Hugging Face","url":"https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"},{"title":"The Complete Guide to DeepSeek Models: V3, R1, V4 and Beyond","url":"https://www.bentoml.com/blog/the-complete-guide-to-deepseek-models-from-v3-to-r1-and-beyond"},{"title":"What Is DeepSeek-V4 MoE? Inside the 1-Trillion Parameter Open-Source LLM | by Isabella King | Medium","url":"https://medium.com/@robertoapao319/what-is-deepseek-v4-moe-inside-the-1-trillion-parameter-open-source-llm-62f8a7f92b82"},{"title":"DeepSeek V4 Review. DeepSeek released V4 as a public… | by Barnacle Goose | Apr, 2026 | Medium","url":"https://medium.com/@leucopsis/deepseek-v4-review-a23ce940151c"},{"title":"DeepSeek V4 Parameters: 1.6T Total, 49B Active Explained","url":"https://framia.pro/page/en-US/news/deepseek-v4-parameters"},{"title":"DeepSeek V4 Decoded: Trillion-Parameter MoE, Hybrid Attention, and the Open-Source Agentic Revolution | by Jiten Oswal | Apr, 2026 | Medium","url":"https://medium.com/@jiten.p.oswal/deepseek-v4-decoded-trillion-parameter-moe-hybrid-attention-and-the-open-source-agentic-a99f5ac9142a"},{"title":"DeepSeek V4 Targets April Launch With Trillion-Parameter MoE","url":"https://chinabizinsider.com/deepseek-v4-targets-late-april-launch-betting-on-trillion-parameter-efficiency/"}]
+
+Based on the search results, here's what I found about DeepSeek V4:
+
+## Parameter Count
+
+DeepSeek-V4 comes in two variants: DeepSeek-V4-Pro with 1.6T parameters (49B activated) and DeepSeek-V4-Flash with 284B parameters (13B activated), both supporting a context length of one million tokens.
+
+## Architecture: Mixture-of-Experts (MoE)
+
+DeepSeek V4 continues the Mixture-of-Experts (MoE) architecture that made V3 so efficient, but scales it dramatically. The MoE design allows for efficient scaling: roughly 32 billion parameters (about 3% of the total) are used for any given token. The rest sit idle for that token, but can be recruited for other tokens that need different "experts."
+
+## Key Architectural Innovations
+
+DeepSeek-V4 incorporates a hybrid attention mechanism combining Compressed Sparse Attention (CSA) and Heavily Compressed Attention (HCA) to dramatically improve long-context efficiency. In the 1M-token context setting, DeepSeek-V4-Pro requires only 27% of single-token inference FLOPs and 10% of KV cache compared with DeepSeek-V3.2.
+
+DeepSeek V4 dropped on April 22, 2026 with full open weights under MIT license.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d32cc45-375e-45e8-92aa-18866c80662b",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "372ca543-70db-431f-b122-29e2bb6d9a67",
+  "sourceToolAssistantUUID": "8d32cc45-375e-45e8-92aa-18866c80662b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-11T20:47:32.801Z_
+
+<details><summary>↩ Tool result · `toolu_01AdYfwHyDJFqwVrLDLPaFwe`</summary>
+
+```text
+Web search results for query: "PRIME process reinforcement implicit rewards training GPU hours details"
+
+Links: [{"title":"Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/pdf/2502.01456"},{"title":"[2502.01456] Process Reinforcement through Implicit Rewards","url":"https://arxiv.org/abs/2502.01456"},{"title":"GitHub - PRIME-RL/PRIME: Scalable RL solution for advanced reasoning of language models · GitHub","url":"https://github.com/PRIME-RL/PRIME"},{"title":"Process Reinforcement through Implicit Rewards","url":"https://huggingface.co/blog/ganqu/prime"},{"title":"Paper page - Process Reinforcement through Implicit Rewards","url":"https://huggingface.co/papers/2502.01456"},{"title":"Preprint PROCESS REINFORCEMENT THROUGH IMPLICIT REWARDS","url":"https://arxiv.org/pdf/2502.01456v1"},{"title":"Process Reinforcement through Implicit Rewards | OpenReview","url":"https://openreview.net/forum?id=CmyqMn3HeJ"},{"title":"GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub","url":"https://github.com/verl-project/verl"},{"title":"PRIME-RL-PRIME enhances the reasoning abilities of language models through implicit reward-driven online reinforcement learning.","url":"https://www.aibase.com/tool/35502"},{"title":"Marktechpost AI Dev News ⚡ on X: \"PRIME ((Process Reinforcement through Implicit Rewards): An Open-Source Solution for Online Reinforcement Learning with Process Rewards to Advance Reasoning Abilities of Language Models Beyond Imitation or Distillation The system employs implicit process reward modeling (PRM), https://t.co/kUczwpnFvq\" / X","url":"https://x.com/Marktechpost/status/1875734139535790394?lang=en"}]
+
+Based on the search results, here's comprehensive information about PRIME (Process Reinforcement through Implicit Rewards):
+
+## Overview
+
+PRIME enables online PRM updates using only policy rollouts and outcome labels through implicit process rewards. PRIME combines well with various advantage functions and forgoes the dedicated reward model training phrase that existing approaches require, substantially reducing the development overhead.
+
+## Key Details
+
+**Process Rewards and Training:**
+Unlike common PRMs that produce only step-level rewards, the Implicit PRM provides more fine-grained token-level rewards at no additional cost, addressing the ambiguity in identifying steps in LLM responses while not introducing extra overhead.
+
+**Training Efficiency:**
+PRIME only takes 40% of the training steps to achieve the same training rewards as RLOO, meaning PRIME would still be 2× more efficient than RLOO when estimated by training time. PRIME accelerates RL training to 2.5 times faster compared to sparse reward approaches.
+
+**GPU/Computational Requirements:**
+The single controller design of veRL requires no extra GPU memory since all other components (policy model, rollout engine) would be offloaded to CPU during PRM update.
+
+## Performance Results
+
+Starting from Qwen2.5-Math-7B-Base, PRIME achieves a 15.1% average improvement across several key reasoning benchmarks over the SFT model. The trained model Eurus-2-7B-PRIME achieves 26.7% pass@1 on math problems, surpassing GPT-4o and Qwen2.5-Math-7B-Instruct, achieving this with only 1/10 data of Qwen Math (230K SFT + 150K RL).
+
+## Implementation Details
+
+PRIME uses a constant 5e-7 learning rate with AdamW optimizer for policy model and 1e-6 learning rate for PRM, with both policy and PRM using a mini batchsize of 256 and micro batchsize of 8, with the rollout stage collecting 256 prompts and sampling 4 responses for each prompt.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b2720d0-c418-4ad2-8994-26b7789d0846",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "b00592d4-7f4b-4703-a62d-6f9e6e331f1c",
+  "sourceToolAssistantUUID": "7b2720d0-c418-4ad2-8994-26b7789d0846",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-11T20:47:33.321Z_
+
+<details><summary>↩ Tool result · `toolu_01BAoyomPuATZkNF8BPd1Kew`</summary>
+
+```text
+Web search results for query: "GLM-4.7 Thinking parameter count benchmark scores code"
+
+Links: [{"title":"zai-org/GLM-4.7 · Hugging Face","url":"https://huggingface.co/zai-org/GLM-4.7"},{"title":"GLM-4.7: 73.8% SWE-Bench Coding King & 200K Context","url":"https://automatio.ai/models/glm-4-7"},{"title":"GLM-4.7 - Overview - Z.AI DEVELOPER DOCUMENT","url":"https://docs.z.ai/guides/llm/glm-4.7"},{"title":"glm-4.7","url":"https://ollama.com/library/glm-4.7"},{"title":"GLM-4.7 Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/glm-4.7"},{"title":"A Technical Analysis of GLM-4.7. Zhipu AI released GLM-4.7 on December… | by Barnacle Goose | Medium","url":"https://medium.com/@leucopsis/a-technical-analysis-of-glm-4-7-db7fcc54210a"},{"title":"GLM-4.7: Frontier intelligence at record speed","url":"https://www.cerebras.ai/blog/glm-4-7"},{"title":"GLM-4.7: Pricing, Benchmarks, and Full Model Analysis","url":"https://llm-stats.com/blog/research/glm-4.7-launch"},{"title":"GLM-4.7 vs GPT-5.1 & Gemini 3 Pro: Coding Benchmarks 2025","url":"https://vertu.com/lifestyle/glm-4-7-released-a-deep-dive-into-z-ais-new-coding-reasoning-powerhouse"},{"title":"GLM-4.7 - Model Info, Parameters, Benchmarks - SiliconFlow\"","url":"https://www.siliconflow.com/models/glm-4-7"}]
+
+Based on the search results, here's a comprehensive overview of GLM-4.7's key specifications and benchmark scores:
+
+## Parameter Count
+
+GLM-4.7 utilizes a Mixture-of-Experts (MoE) architecture with 358 billion total parameters, though it has 355B total parameters and 32B activated parameters. The model supports a 200,000-token context window with a maximum output capacity of 128,000 tokens.
+
+## Key Benchmark Scores
+
+**Coding Performance:**
+- 73.8% on SWE-bench, with a 5.8% improvement over GLM-4.6
+- 66.7% on SWE-bench Multilingual, with a 12.9% improvement
+- 41% on Terminal Bench 2.0, with a 16.5% improvement
+- 84.9% on LiveCodeBench-v6
+
+**Reasoning & Math:**
+- 42.8% on the HLE (Humanity's Last Exam) benchmark, a 12.4% improvement over GLM-4.6
+- 95.7% accuracy on AIME 2025
+- 97% on GSM8k
+- 96% on MATH benchmark
+
+**Tool Use:**
+- 84.7 points on the τ²-Bench interactive tool invocation benchmark
+
+## Thinking/Reasoning Features
+
+GLM-4.7 supports thinking before acting, with significant improvements on complex tasks in mainstream agent frameworks such as Claude Code, Kilo Code, Cline, and Roo Code.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d55c6bc5-a5d6-49ac-a94d-24cee62b5760",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "9b79e3e3-3f51-4dbe-8283-10fedc5f63c6",
+  "sourceToolAssistantUUID": "d55c6bc5-a5d6-49ac-a94d-24cee62b5760",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-11T20:47:33.760Z_
+
+<details><summary>↩ Tool result · `toolu_01FhtRDFqKGNhXzkXBv9vpP7`</summary>
+
+```text
+Web search results for query: "SWE-smith 50000 training dataset program repair fine-tuning"
+
+Links: [{"title":"GitHub - SWE-bench/SWE-smith: [NeurIPS 2025 D&B Spotlight] Scaling Data for SWE-agents · GitHub","url":"https://github.com/SWE-bench/SWE-smith"},{"title":"SWE-smith: Scaling Data for Software Engineering Agents | OpenReview","url":"https://openreview.net/forum?id=63iVrXc8cC"},{"title":"SWE-smith: Scaling Data for Software Engineering Agents","url":"https://arxiv.org/pdf/2504.21798"},{"title":"[2504.21798] SWE-smith: Scaling Data for Software Engineering Agents","url":"https://arxiv.org/abs/2504.21798"},{"title":"SWE-bench/SWE-smith · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-smith"},{"title":"SWE-smith","url":"https://swesmith.com/"},{"title":"SWE-smith: Scaling Data for Software Engineering Agents | alphaXiv","url":"https://www.alphaxiv.org/overview/2504.21798v1"},{"title":"SWE-smith: Automated SE Data Pipeline","url":"https://www.emergentmind.com/topics/swe-smith"},{"title":"DeepSWE: Training a Fully Open-sourced, State-of-the-Art Coding Agent by Scaling RL","url":"https://www.together.ai/blog/deepswe"},{"title":"SWE-Synth: Synthesizing Verifiable Bug-Fix Data to Enable Large Language Models in Resolving Real-World Bugs","url":"https://arxiv.org/html/2504.14757v1"}]
+
+Based on the search results, here's what I found about SWE-smith, the 50,000 training dataset, program repair, and fine-tuning:
+
+## Overview
+
+SWE-smith is a novel pipeline for generating software engineering training data at scale that, given any Python codebase, constructs a corresponding execution environment and automatically synthesizes hundreds to thousands of task instances that break existing tests in the codebase.
+
+## The 50,000 Instance Dataset
+
+Using SWE-smith, researchers created a dataset of 50k instances sourced from 128 GitHub repositories, an order of magnitude larger than all previous works. The SWE-smith Dataset is a training dataset of 50,137 task instances from 128 GitHub repositories, and is the largest dataset to date for training software engineering agents.
+
+## Program Repair and Fine-tuning
+
+Using the SWE-smith task instances, researchers generated 5,016 expert trajectories with Claude 3.7 Sonnet and fine-tuned Qwen 2.5 Coder Instruct 32B. The results were impressive: they trained SWE-agent-LM-32B, achieving 40.2% Pass@1 resolve rate on the SWE-bench Verified benchmark, state of the art among open source models.
+
+## Data Generation Approach
+
+SWE-smith introduces a fully automated process that, given any Python codebase, synthesizes hundreds to thousands of realistic bugs guaranteed to break at least one unit test, and generates corresponding issue descriptions.
+
+The dataset and associated code are open-sourced, with resources available at swesmith.com and on Hugging Face.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "498f3825-95f3-4fb1-9c47-60e4468531f2",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "2ed3f19b-513b-44ba-ae0e-a10a5b57d850",
+  "sourceToolAssistantUUID": "498f3825-95f3-4fb1-9c47-60e4468531f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-11T20:47:37.309Z_
+
+Let me get a few final data points on Kimi K2.6 parameters, SecCodePRM, and the PRIME GPU hours figure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ed3f19b-513b-44ba-ae0e-a10a5b57d850",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSLz58hyDJjEoVtZkN9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "26c5f187-2ff9-4eff-9a71-feaa59ce1102",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JEuhrz639DsaR3Ap4y6ns8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7340,
+      "cache_read_input_tokens": 21302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7340,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-11T20:47:37.790Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ce4d17aYkRiKP8CcPgjjpH`</summary>
+
+```json
+{
+  "query": "Kimi K2.6 parameter count architecture benchmark SWE-bench 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26c5f187-2ff9-4eff-9a71-feaa59ce1102",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSLz58hyDJjEoVtZkN9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bd37ba91-ca4d-4800-aeef-68f99343fe54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JEuhrz639DsaR3Ap4y6ns8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7340,
+      "cache_read_input_tokens": 21302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7340,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-11T20:47:38.316Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pr6zEeCEnvUiQbPmVQSySm`</summary>
+
+```json
+{
+  "query": "SecCodePRM process reward model code security training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd37ba91-ca4d-4800-aeef-68f99343fe54",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSLz58hyDJjEoVtZkN9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "40294207-c228-48b3-9362-a7b1d5fcacfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JEuhrz639DsaR3Ap4y6ns8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7340,
+      "cache_read_input_tokens": 21302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7340,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-11T20:47:38.878Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y8WXSfpSiS6beHmrsjBjUP`</summary>
+
+```json
+{
+  "query": "PRIME 446 A800 GPU hours Eurus training compute cost"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40294207-c228-48b3-9362-a7b1d5fcacfc",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSLz58hyDJjEoVtZkN9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "46f7cd93-f19d-4c72-bf65-a5138255d680",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JEuhrz639DsaR3Ap4y6ns8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7340,
+      "cache_read_input_tokens": 21302,
+      "output_tokens": 198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7340
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 198,
+          "cache_read_input_tokens": 21302,
+          "cache_creation_input_tokens": 7340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7340,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-11T20:47:45.100Z_
+
+<details><summary>↩ Tool result · `toolu_01Pr6zEeCEnvUiQbPmVQSySm`</summary>
+
+```text
+Web search results for query: "SecCodePRM process reward model code security training"
+
+Links: [{"title":"[2602.10418] SecCodePRM: A Process Reward Model for Code Security","url":"https://arxiv.org/abs/2602.10418"},{"title":"[2602.10418v1] SecCodePRM: A Process Reward Model for Code Security","url":"https://arxiv.org/abs/2602.10418v1"},{"title":"SecCodePRM: A Process Reward Model for Code Security","url":"https://arxiv.org/html/2602.10418"},{"title":"GitHub - viviable/seccodeprm · GitHub","url":"https://github.com/viviable/seccodeprm"},{"title":"AI Software Governance & Secure Coding Training | Secure Code Warrior","url":"https://www.securecodewarrior.com/"},{"title":"SecPI: Secure Code Generation with Reasoning Models via Security Reasoning Internalization","url":"https://arxiv.org/html/2604.03587"},{"title":"Learning to Generate Secure Code via Token-Level Rewards","url":"https://arxiv.org/html/2602.23407"},{"title":"Secure Code Generation via Online Reinforcement Learning","url":"https://www.arxiv.org/pdf/2602.07422"},{"title":"How to Train Developers in Secure Code","url":"https://www.securityjourney.com/post/how-to-train-developers-in-secure-code"},{"title":"[2601.01184] SecureCodeRL: Security-Aware Reinforcement Learning for Code Generation with Partial-Credit Rewards","url":"https://arxiv.org/abs/2601.01184"}]
+
+Based on the search results, here's what I found about SecCodePRM:
+
+## Overview
+
+SecCodePRM is a security-oriented process reward model that assigns a context-aware, step-level security score along a code trajectory.
+
+## Training Approach
+
+To train the model, step-level supervision labels are derived from static analyzers and expert annotations. This approach allows the model to focus on fine-grained regions associated with vulnerabilities rather than relying on coarse program-level supervision.
+
+## Key Applications
+
+SecCodePRM has three applications: full-code vulnerability detection (VD), partial-code VD, and secure code generation (CG). For VD, SecCodePRM uses risk-sensitive aggregation that emphasizes high-risk steps; for CG, SecCodePRM supports inference-time scaling by ranking candidate continuations and favoring higher cumulative reward.
+
+## Performance
+
+SecCodePRM outperforms prior approaches in all three settings, while preserving code functional correctness, suggesting improved security without a safety-utility tradeoff. SecCodePRM (7B) achieves state-of-the-art results, outperforming models nearly 17 times its size.
+
+## Implementation
+
+SecCodePRM is a codebase for training and evaluating PRMs (Process/Preference/Policy Reward Models) in secure coding scenarios. The repository on GitHub includes organized workflows for data processing, training, and evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40294207-c228-48b3-9362-a7b1d5fcacfc",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "82f43a8c-0ca6-483a-b73d-28d826cfbc4a",
+  "sourceToolAssistantUUID": "40294207-c228-48b3-9362-a7b1d5fcacfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-11T20:47:45.122Z_
+
+<details><summary>↩ Tool result · `toolu_01Ce4d17aYkRiKP8CcPgjjpH`</summary>
+
+```text
+Web search results for query: "Kimi K2.6 parameter count architecture benchmark SWE-bench 2026"
+
+Links: [{"title":"moonshotai/Kimi-K2.6 · Hugging Face","url":"https://huggingface.co/moonshotai/Kimi-K2.6"},{"title":"Kimi K2.6 Tech Blog: Advancing Open-Source Coding","url":"https://www.kimi.com/blog/kimi-k2-6"},{"title":"Kimi K2.6 Complete Guide (2026): Benchmarks, Pricing, Agent Swarms, vs Opus 4.7 and GPT-5.5","url":"https://codersera.com/blog/kimi-k2-6-complete-guide-2026/"},{"title":"Kimi K2.6 Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/kimi-k2.6"},{"title":"Kimi K2.6 Has Arrived: An Open-Weight Powerhouse for Agentic Work","url":"https://blog.kilo.ai/p/kimi-k26-has-arrived-an-open-weight"},{"title":"Kimi K2.6 & Kimi Code Review: Saving 88% Coding Costs? | by Ewan Mak | Apr, 2026 | Medium","url":"https://medium.com/@tentenco/kimi-k2-6-kimi-code-review-saving-88-coding-costs-b7e8c5eaf5f1"},{"title":"Kimi K2.6: What This Open-Weight Model Actually Means","url":"https://kili-technology.com/blog/data-story-kimi-k2-6"},{"title":"Kimi K2.6 on GMI Cloud: Architecture, Benchmarks & API Access","url":"https://www.gmicloud.ai/en/blog/kimi-k2-6-architecture-benchmarks-and-what-it-means-for-production-ai"},{"title":"Kimi K2.6 Developer Guide: Benchmarks, API & Agent Swarm | Lushbinary","url":"https://lushbinary.com/blog/kimi-k2-6-developer-guide-benchmarks-api-agent-swarm/"},{"title":"Kimi K2.6 vs GPT-5.4 vs Claude Opus: Who Wins? (2026)","url":"https://www.buildfastwithai.com/blogs/kimi-k2-6-vs-gpt-claude-benchmarks"}]
+
+Based on the web search results, here's comprehensive information about Kimi K2.6:
+
+## Parameter Count & Architecture
+
+Kimi K2.6 has a 1T total / 32B active MoE with 384 experts, MLA attention, 256K context, and native multimodal (text + image + video input). The model has 61 layers, a 7,168-dimension hidden state, and 384 experts (8 routed + 1 shared per token).
+
+## SWE-Bench 2026 Performance
+
+Kimi K2.6 demonstrates strong performance on SWE-bench benchmarks:
+
+- SWE-bench Verified climbs from 76.8% (K2.5) to 80.2% (K2.6); SWE-bench Multilingual from 73.0% to 76.7%
+- It scored an impressive 80.2% on SWE-Bench Verified and 58.6% on SWE-Bench Pro
+- 58.6% on SWE-bench Pro — tied with GPT-5.5, ahead of Gemini 3.1 Pro (54.2%) and Claude Opus 4.6 (53.4%). Claude Opus 4.7 still leads at 64.3%, but K2.6 narrows the gap to single digits while costing roughly 5–6x less per token
+
+## Release & General Information
+
+Kimi K2.6 was released on April 20, 2026 by MoonshotAI. It ships under a modified MIT license, with native INT4 weights, a 256K context, and a 1T-parameter / 32B-active MoE architecture.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd37ba91-ca4d-4800-aeef-68f99343fe54",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "b0543595-3cc1-49cf-835b-0ad5bb41a4de",
+  "sourceToolAssistantUUID": "bd37ba91-ca4d-4800-aeef-68f99343fe54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-11T20:47:46.666Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8WXSfpSiS6beHmrsjBjUP`</summary>
+
+```text
+Web search results for query: "PRIME 446 A800 GPU hours Eurus training compute cost"
+
+Links: [{"title":"GPU pricing | Google Cloud","url":"https://cloud.google.com/compute/gpus-pricing"},{"title":"A800 Cloud Pricing: Compare 2+ Providers (2026)","url":"https://getdeploying.com/gpus/nvidia-a800"},{"title":"Decentralized Training in the Inference-Time-Compute Paradigm","url":"https://www.primeintellect.ai/blog/intellect-math"},{"title":"Rates | HPC Center","url":"https://www.hpc.caltech.edu/rates"},{"title":"GPU Price Comparison [2025]","url":"https://getdeploying.com/reference/cloud-gpu"},{"title":"Understanding GPU Compute Time for Training and Fine-Tuning Large Language Models | by VectorWorks Academy | Medium","url":"https://medium.com/@VectorWorksAcademy/understanding-gpu-compute-time-for-training-and-fine-tuning-large-language-models-4b46952caa6b"},{"title":"High Estimated Training Time for 4K Video on A800 GPU · Issue #4 · NVlabs/LongSplat","url":"https://github.com/NVlabs/LongSplat/issues/4"},{"title":"Cheapest GPU Cloud: Compare Prices Across 59+ Providers","url":"https://getdeploying.com/guides/cheapest-gpu-cloud"},{"title":"For anyone curious, it took 2048 A100 GPUs to train LLaMa, each GPU costs roughl... | Hacker News","url":"https://news.ycombinator.com/item?id=35008694"},{"title":"AWS GPU Pricing Explained: Costs & Optimization Guide | TRG Datacenters","url":"https://www.trgdatacenters.com/resource/aws-gpu-pricing/"}]
+
+Based on the search results, I found some relevant information about PRIME, Eurus training, and A800 GPU pricing:
+
+**Key Findings:**
+
+1. **PRIME-RL and Eurus Training**: An earlier checkpoint of INTELLECT-MATH was able to match the performance of Eurus-2-7B-PRIME with 10x less GPU hours (47 RL steps for INTELLECT-MATH vs. 592 for Eurus-2-PRIME).
+
+2. **A800 GPU Pricing**: A800 pricing currently ranges from $0.80/hr to $1.06/hr per GPU, depending on the provider, instance type, and billing model.
+
+3. **Monthly Compute Costs**: At 720 hours per month, one A800 can cost between $576.00 to $763.20 per month, depending on the provider.
+
+While the search results provide information about A800 pricing and some references to PRIME-RL and Eurus training costs, they don't contain specific details about the exact GPU hours or total compute cost for training "PRIME 446" specifically. If you need more detailed information about specific PRIME 446 training metrics, you may want to check the original research papers or technical documentation from Tsinghua University/UIUC on PRIME-RL and Eurus.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46f7cd93-f19d-4c72-bf65-a5138255d680",
+  "isSidechain": true,
+  "promptId": "7d4899df-d813-4039-9657-525dc554c3d9",
+  "agentId": "a14c3891009279262",
+  "type": "user",
+  "uuid": "1f6f9272-b89a-45ec-beec-eebbe9c41d2d",
+  "sourceToolAssistantUUID": "46f7cd93-f19d-4c72-bf65-a5138255d680",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-11T20:49:07.730Z_
+
+Here is the comprehensive report across all four areas.
+
+---
+
+## 1. Best Open-Source LLMs for Code Generation/Repair (as of May 2026)
+
+### Tier 1: Frontier Open-Weight Models
+
+| Model | Architecture | Total Params | Active Params | SWE-bench Verified | LiveCodeBench | HumanEval | Context |
+|---|---|---|---|---|---|---|---|
+| **Kimi K2.6** (MoonshotAI, Apr 2026) | MoE, 384 experts, MLA attention | 1T | 32B | **80.2%** | -- | 99% | 256K |
+| **DeepSeek V4 Pro** (Apr 2026) | MoE, hybrid CSA+HCA attention | 1.6T | 49B | ~81% | -- | -- | 1M |
+| **DeepSeek V4 Flash** | MoE | 284B | 13B | -- | -- | -- | 1M |
+| **GLM-4.7 Thinking** (Zhipu AI) | MoE | 358B | 32B | 73.8% | 84.9% (v6) | 94.2% | 200K |
+| **Qwen 3.6 Plus** (Alibaba) | Dense/MoE family | -- | 27B (dense) | -- | -- | -- | 1M |
+
+### Tier 2: Efficient / Self-Hostable Models
+
+| Model | Total Params | Active Params | SWE-bench Verified | Notes |
+|---|---|---|---|---|
+| **Qwen3-Coder-Next** | 80B (MoE) | 3B | 70.6% | Remarkable efficiency: matches models with 10-20x more active params |
+| **Qwen 2.5 Coder 32B** | 32B (dense) | 32B | -- | Best for 24GB VRAM consumer GPUs |
+| **Gemma 4 31B** (Google) | 31B | 31B | -- | Strong on AIME, GPQA, LiveCodeBench |
+
+### Key Benchmark Context
+- **MiniMax M2.5** holds highest SWE-bench Verified at **80.2** (tied with Kimi K2.6)
+- DeepSeek V4 API cost: ~$0.14/M input tokens (~1/20th GPT-5 cost)
+- Kimi K2.6 costs ~5-6x less per token than Claude Opus 4.7 while closing the gap to single digits on SWE-bench Pro
+
+---
+
+## 2. Process Reward Model (PRM) Implementations for Code
+
+### Directly Code-Focused PRMs
+
+**CodePRM** (ACL 2025 Findings)
+- Paper: Li et al., "Execution Feedback-enhanced Process Reward Model for Code Generation"
+- Approach: Collects thought traces where each step is labeled with code pass rates; uses both reasoning process and execution feedback
+- Pipeline: Generate-Verify-Refine (GVR) where CodePRM dynamically identifies/corrects errors during code search
+- Available at: [ACL Anthology](https://aclanthology.org/2025.findings-acl.428/)
+
+**SecCodePRM** (Feb 2026)
+- Security-oriented PRM assigning step-level security scores along code trajectories
+- Trained with labels from static analyzers and expert annotations
+- 7B model outperforms models 17x its size on vulnerability detection
+- Three applications: vulnerability detection (full/partial code), secure code generation
+- GitHub: [github.com/viviable/seccodeprm](https://github.com/viviable/seccodeprm)
+
+**PPOCoder** (TMLR 2023)
+- Combines pretrained code models with PPO reinforcement learning
+- Uses execution feedback as external knowledge
+- GitHub: [github.com/reddy-lab-code-research/PPOCoder](https://github.com/reddy-lab-code-research/PPOCoder)
+
+### General PRM Frameworks (Applicable to Code)
+
+**PRIME** (Process Reinforcement through Implicit Rewards)
+- Eliminates dedicated reward model training phase; uses implicit process rewards from policy rollouts + outcome labels
+- Token-level rewards at no additional cost
+- 2.5x faster RL training vs. sparse reward approaches; reaches same reward as RLOO in 40% of training steps
+- Starting from Qwen2.5-Math-7B-Base, achieves 26.7% pass@1 on AIME, surpassing GPT-4o
+- Total training: **~447 A800 GPU hours** for the full experiment
+- GitHub: [github.com/PRIME-RL/PRIME](https://github.com/PRIME-RL/PRIME)
+
+**R-PRM** (Reasoning-Driven PRM, NJU NLP)
+- SFT-based: trains model to generate reasoning critiques + binary step decisions
+- GitHub: [github.com/NJUNLP/R-PRM](https://github.com/NJUNLP/R-PRM)
+
+**FoVer** (ACL 2026 Findings)
+- Synthesizes PRM training data via formal verification
+- GitHub: [github.com/psunlpgroup/FoVer](https://github.com/psunlpgroup/FoVer)
+
+**sdiehl/prm** -- Standalone library for training process reward models
+- GitHub: [github.com/sdiehl/prm](https://github.com/sdiehl/prm)
+
+**OpenR** -- Trains PRMs through supervised fine-tuning on an LLM
+- Docs: [openreasoner.github.io/docs/usage/prm.html](https://openreasoner.github.io/docs/usage/prm.html)
+
+**Curated lists**: [github.com/RyanLiu112/Awesome-Process-Reward-Models](https://github.com/RyanLiu112/Awesome-Process-Reward-Models), [github.com/JLZhong23/awesome-reward-models](https://github.com/JLZhong23/awesome-reward-models)
+
+---
+
+## 3. Available Datasets for Program Repair
+
+### SWE-bench Family (Python-centric)
+
+| Dataset | Size | Languages | Source | Notes |
+|---|---|---|---|---|
+| **SWE-bench** (original) | 2,294 instances | Python | 12 repos | Evaluation benchmark |
+| **SWE-bench Verified** | 500 instances | Python | Curated subset | Human-validated; standard eval |
+| **SWE-bench Lite** | 300 instances | Python | 11 repos | Lightweight eval |
+| **SWE-smith** | **50,137 instances** | Python | 128 repos | **Largest training dataset**; NeurIPS 2025 D&B Spotlight |
+| **Multi-SWE-bench** (ByteDance) | 1,632 instances | 7 languages (Java, TS, JS, Go, Rust, C, C++) | -- | Multi-language eval |
+| **SWE-bench Pro** (Scale AI) | -- | Python | -- | Enterprise-level, long-horizon tasks |
+
+### SWE-smith Training Details
+- 50,137 task instances from 128 GitHub repos; automatically synthesized bugs that break existing tests
+- Used Claude 3.7 Sonnet to generate 5,016 expert trajectories
+- Fine-tuned **Qwen 2.5 Coder Instruct 32B** to create SWE-agent-LM-32B (40.2% on SWE-bench Verified, SOTA among open-source at that time)
+
+### SWE-Synth
+- Synthetic bug-fix pair dataset; training on it matches performance of manually curated GitHub datasets (SWE-Gym)
+- Includes intermediate repair steps; verified by unit tests
+
+### Defects4J (Java)
+
+| Version | Bugs | Projects | Notes |
+|---|---|---|---|
+| **Defects4J 2.0** | 835 defects | 17 Java projects | Most-used APR benchmark (Zhu et al., 2025 survey) |
+| Example project: Commons Math | 106 bugs | ~85K LOC, 3,602 tests | -- |
+
+- Hand-curated, minimized patches with triggering tests
+- De facto standard for Java APR research
+- GitHub: [github.com/rjust/defects4j](https://github.com/rjust/defects4j)
+
+### Defects4C (C/C++)
+- Components: Defects4C_bgcommit (bug-relevant commits), Defects4C_bug (general bugs), Defects4C_vul (vulnerabilities)
+
+### Other Benchmarks
+- **QuixBugs**: Multi-lingual (Python + Java), 40 classic algorithm bugs
+- **BugsInPy**: Python bugs from real projects
+- **GitBug-Java**: Java bugs from GitHub
+
+---
+
+## 4. Hardware / Cost References
+
+### PRIME (the best-documented PRM training run)
+- **~447 A800 GPU hours** for the full Eurus-2-7B-PRIME experiment (SFT + RL)
+- For context: DeepScaleR consumed **3,800 A100 GPU hours** total; PRIME is ~25% faster than DeepScaleR
+- PRIME's INTELLECT-MATH variant matched Eurus-2-PRIME performance with **10x fewer GPU hours** (47 vs 592 RL steps)
+- Uses veRL framework; no extra GPU memory for PRM since other components offload to CPU during PRM update
+
+### Current GPU Pricing (May 2026)
+
+| GPU | On-Demand Range | Typical Rate |
+|---|---|---|
+| **A100 80GB** | $0.13 - $5.04/hr | ~$1.35-$1.98/hr |
+| **A800** | $0.80 - $1.06/hr | ~$0.90/hr |
+
+A100 pricing dropped ~17% year-over-year (from $2.39 to $1.98/hr average since May 2025).
+
+### Estimated Training Costs for a Code PRM
+
+Using the PRIME reference point (~450 A800 GPU hours for a 7B PRM):
+- At $0.90/hr A800: **~$400** for the full training run
+- At $1.50/hr A100: **~$675** for equivalent compute
+- For a larger base model (32B), expect roughly 4-6x the compute: **~1,800-2,700 A100 GPU hours** (~$2,700-$5,400)
+- SWE-smith fine-tuning (generating 5K trajectories + fine-tuning 32B model) would add substantially more, likely in the **5,000-10,000 A100 GPU hour** range
+
+### General Context
+- Explicit PRM training adds overhead vs implicit approaches (PRIME) because it requires dedicated data collection, annotation, and a separate training stage
+- PRIME's implicit approach eliminates the dedicated reward model training phase entirely, cutting development overhead significantly
+- CodePRM's GVR pipeline requires execution-based evaluation of code at each step, adding wall-clock time but not necessarily GPU hours
+
+---
+
+Sources:
+- [The Best Open-Source LLMs in 2026 - BentoML](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)
+- [Best Open Source Self-Hosted LLMs for Coding - Pinggy](https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/)
+- [Best Open-Source LLMs for Agentic Coding 2026 - MindStudio](https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026)
+- [CodeSOTA Leaderboard](https://www.codesota.com/code-generation)
+- [Vellum Open LLM Leaderboard](https://www.vellum.ai/open-llm-leaderboard)
+- [DeepSeek V4 Specs - NxCode](https://www.nxcode.io/resources/news/deepseek-v4-release-specs-benchmarks-2026)
+- [DeepSeek V4 1.6T MoE - Clore.ai](https://docs.clore.ai/guides/language-models/deepseek-v4)
+- [Kimi K2.6 - Hugging Face](https://huggingface.co/moonshotai/Kimi-K2.6)
+- [Kimi K2.6 Tech Blog](https://www.kimi.com/blog/kimi-k2-6)
+- [GLM-4.7 - Hugging Face](https://huggingface.co/zai-org/GLM-4.7)
+- [GLM-4.7 Benchmarks - Automatio](https://automatio.ai/models/glm-4-7)
+- [Qwen3-Coder-Next Blog](https://qwen.ai/blog?id=qwen3-coder-next)
+- [Qwen3-Coder-Next Technical Report](https://arxiv.org/html/2603.00729v1)
+- [DeepSeek V4 vs Qwen3.6 - Nerova](https://nerova.ai/news/deepseek-v4-vs-qwen3-6-2026)
+- [CodePRM - ACL Anthology](https://aclanthology.org/2025.findings-acl.428/)
+- [SecCodePRM - arXiv](https://arxiv.org/abs/2602.10418)
+- [SecCodePRM - GitHub](https://github.com/viviable/seccodeprm)
+- [PRIME - arXiv](https://arxiv.org/abs/2502.01456)
+- [PRIME - GitHub](https://github.com/PRIME-RL/PRIME)
+- [R-PRM - GitHub](https://github.com/NJUNLP/R-PRM)
+- [FoVer - GitHub](https://github.com/psunlpgroup/FoVer)
+- [sdiehl/prm - GitHub](https://github.com/sdiehl/prm)
+- [Awesome Process Reward Models - GitHub](https://github.com/RyanLiu112/Awesome-Process-Reward-Models)
+- [SWE-bench - Hugging Face](https://huggingface.co/datasets/princeton-nlp/SWE-bench)
+- [SWE-bench Verified - Hugging Face](https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified)
+- [SWE-smith - GitHub](https://github.com/SWE-bench/SWE-smith)
+- [SWE-smith - Hugging Face](https://huggingface.co/datasets/SWE-bench/SWE-smith)
+- [Multi-SWE-bench - Hugging Face](https://huggingface.co/datasets/ByteDance-Seed/Multi-SWE-bench)
+- [Defects4J - GitHub](https://github.com/rjust/defects4j)
+- [NVIDIA A100 Pricing - Jarvis Labs](https://jarvislabs.ai/blog/a100-price)
+- [A100 Cloud Pricing Comparison](https://getdeploying.com/gpus/nvidia-a100)
+- [A800 Cloud Pricing Comparison](https://getdeploying.com/gpus/nvidia-a800)
+- [LLM Training Cost - AI Superior](https://aisuperior.com/llm-training-cost/)
+- [Process Reward Models - Stephen Diehl](https://www.stephendiehl.com/posts/process_reward/)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f6f9272-b89a-45ec-beec-eebbe9c41d2d",
+  "isSidechain": true,
+  "agentId": "a14c3891009279262",
+  "requestId": "req_011CawSMwNwSMy6WewVEziWu",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "819c8b59-1522-4075-821a-2c575ef4a2a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6ca06268-f6ff-42b3-a47e-2fef9d03d4d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqYLruiNCseZYoccTRDUhY",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2895,
+      "cache_read_input_tokens": 28642,
+      "output_tokens": 3974,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2895
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3974,
+          "cache_read_input_tokens": 28642,
+          "cache_creation_input_tokens": 2895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2895,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

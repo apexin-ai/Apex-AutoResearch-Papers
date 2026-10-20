@@ -1,0 +1,4715 @@
+# Research conversation: <project_context> # 项目: contrastive_trace_safety ## 运行环境 - 服务器名: autodl-rtx6000 - SSH 账户: root（调用 ssh_execute / submit_t
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 87
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-1/25459a29-fa2f-44f4-b6c0-29d7fc210100.jsonl`
+- **Structured JSON:** [`82fc1683f96c5508012d.json`](../../sessions/82/82fc1683f96c5508012d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T06:14:25.679Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T06:14:25.679Z",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "content": "&lt;project_context>\n# 项目: contrastive_trace_safety\n\n## 运行环境\n- 服务器名: autodl-rtx6000\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-rtx6000  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/contrastive_trace_safety\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：OpenThinker-7B 全量 Pipeline 执行（Path A 核心实验）\n\n### 目标\n在 autodl-rtx6000 cuda:0 上执行 OpenThinker-7B (open-thoughts/OpenThinker-7B, Qwen2.5-7B, 28 layers, hidden_dim=3584) 的完整 commitment detection pipeline。端到端约 30-50 分钟。\n\n### 实验 ID: `exp_ot7b_full_pipeline`\n\n---\n\n### Pipeline 步骤\n\n#### Step 0: 环境确认\n- Python: `/root/miniconda3/bin/python3.12`\n- GPU: cuda:0\n- 项目路径: `/root/autodl-tmp/contrastive_trace_safety/`\n- 设置 `export HF_ENDPOINT=https://hf-mirror.com`\n- 设置 `export CUDA_VISIBLE_DEVICES=0`\n\n#### Step 1: 加载数据 + 定义 Commitment Point\n```python\nfrom datasets import load_dataset\nimport os\nos.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'\n\nds = load_dataset(\"ishitakakkar-10/HarmThoughts\")\n# 筛选 ot-7b 的 jailbreak traces\not7b = ds['train'].filter(lambda x: x['model_name'] == 'ot-7b' and x['final_judgment'] == 1.0)\n```\n\n**CP 定义（硬规则）**: CP = 最后一个 safety label 出现的 step + 1。\n- 先看现有代码的 safety label 定义（检查 `src/data_loader.py` 或相关文件中的 SAFETY_LABELS）\n- 如果找不到，使用: SAFETY_LABELS = {'RA', 'AL', 'CC', 'ED', 'IA', 'CR', 'PS', 'RS', 'IR'}（所有非有害/非中性的标签）\n- **不要用 \"首个 DKE\" 作为 CP**，必须用 \"最后 safety label + 1\"\n\n#### Step 2: 下载模型\n```python\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nmodel_name = \"open-thoughts/OpenThinker-7B\"  # 确认 HuggingFace 上的准确 repo name\n# 如果找不到，尝试 \"mithrilai/OpenThinker-7B\" 或 WebSearch 确认\ntokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)\nmodel = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.bfloat16, device_map=\"cuda:0\", trust_remote_code=True)\n```\n\n#### Step 3: Hidden State 提取\n参考现有脚本 `src/experiments/exp_001a_extract_r1_32b.py` 的逻辑：\n- 对每条 trace 的每个 sentence：tokenize，forward pass，提取所有 28 层的 last-token hidden state\n- 保存格式与现有一致: `hidden_states` tensor [num_sentences, 28, 3584]\n- 输出目录: `artifacts/hidden_states_ot7b/`\n- 每条 trace 一个 .pt 文件，包含: hidden_states, trace_id, num_sentences, commitment_point, step_labels, query\n\n#### Step 4: Layer Sweep\n- 对所有 28 层，用 LogisticRegression(solver='liblinear', class_weight='balanced') 做 static probe\n- Split: 60/20/20 (train/val/test)，seed=42\n- 选层指标: balanced_accuracy × crossing_rate（与其他模型一致）\n- 报告: 每层的 bal_acc, crossing_rate, lead_mean, pre_cp_fpr\n\n#### Step 5: 主 Probe Pipeline（在最优层上）\n- **Temporal LR probes**: W=1,3,5,10,15,20,25，solver='liblinear', class_weight='balanced'\n- **Text probes**: 用 all-MiniLM-L6-v2 对同样的 sentences 做 embedding，然后相同 W 做 LR probe\n- 指标: bal_acc, precision, coverage, pre_cp_fpr (trace-level + step-level), lead_mean\n- **Selectivity control task**: \n  - 10 次 random label permutation，计算 random_acc mean ± std\n  - selectivity = real_acc - random_mean (要求 >5pp)\n\n#### Step 6: Paired Bootstrap\n- 1000 resamples, two-sided permutation test\n- 在最佳 W 下对比 HS vs Text: balanced_accuracy, precision, pre_cp_fpr\n- solver='liblinear'\n- 报告 p-values + 95% CI for each metric delta\n- Bonferroni threshold: 0.017 (3 comparisons)\n\n#### Step 7: 保存结果\n- 所有结果保存到 `artifacts/exp_ot7b_full_pipeline/results.json`\n- 格式与 exp_001a/exp_001b 一致\n- 同时保存 per-W metrics table\n\n---\n\n### 输出格式（最终报告）\n\n```\n# OpenThinker-7B Results\n\n## Data\n- Total traces: X (jailbreak+CP)\n- Train/Val/Test split: X/X/X\n- Mean trace length: X sentences\n\n## Best Layer\n- Layer: X (depth: X%)\n- bal_acc: X, crossing_rate: X\n\n## Temporal Probes (best W)\n| W | bal_acc | precision | coverage | pre_cp_fpr | lead_mean |\n|---|---------|-----------|----------|------------|-----------|\n...\n\n## HS vs Text Bootstrap (W=best)\n| Metric | HS | Text | Delta | p-value | Bonferroni |\n|--------|-----|------|-------|---------|------------|\n| bal_acc | ... | ... | ... | ... | ... |\n| precision | ... | ... | ... | ... | ... |\n| pre_cp_fpr | ... | ... | ... | ... | ... |\n\n## Selectivity Control\n- real_acc: X\n- random_mean ± std: X ± X\n- selectivity: X pp\n```\n\n写完整结果到 `artifacts/exp_ot7b_full_pipeline/results.json` 和 `artifacts/exp_ot7b_full_pipeline/report.md`。\n\n然后用 `update_registry` 更新 exp_ot7b_full_pipeline 状态和 metrics。\n\n---\n\n### 重要注意事项\n1. **CP 用 \"last safety label + 1\"**，不是 \"first DKE\"。先看现有代码确认 SAFETY_LABELS 定义\n2. **solver 必须是 'liblinear'**（项目统一标准）\n3. **bootstrap 必须 two-sided**\n4. 如果模型 HF repo 名有误，WebSearch 确认正确的 repo\n5. 参考现有代码结构：`src/experiments/exp_001a_extract_r1_32b.py`, `src/data_loader.py`\n6. hidden_states 提取时注意 OT-7B 的 traces 更长（avg 80 sentences），可能需要 batch 处理避免 OOM\n7. 提取完成后立即验证: 随机抽 3 个 .pt 文件检查 shape 和 CP 位置合理性\n\n### 环境\n- 服务器: autodl-rtx6000\n- Python: /root/miniconda3/bin/python3.12\n- GPU: cuda:0 (CUDA_VISIBLE_DEVICES=0)\n- HF_ENDPOINT=https://hf-mirror.com\n- 项目路径: /root/autodl-tmp/contrastive_trace_safety/\n- sklearn solver: liblinear\n- torch dtype: bfloat16"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T06:14:25.683Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T06:14:25.683Z",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+## Round 1
+
+85 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T06:14:25.717Z_
+
+&lt;project_context>
+# 项目: contrastive_trace_safety
+
+## 运行环境
+- 服务器名: autodl-rtx6000
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh autodl-rtx6000  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/contrastive_trace_safety
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：OpenThinker-7B 全量 Pipeline 执行（Path A 核心实验）
+
+### 目标
+在 autodl-rtx6000 cuda:0 上执行 OpenThinker-7B (open-thoughts/OpenThinker-7B, Qwen2.5-7B, 28 layers, hidden_dim=3584) 的完整 commitment detection pipeline。端到端约 30-50 分钟。
+
+### 实验 ID: `exp_ot7b_full_pipeline`
+
+---
+
+### Pipeline 步骤
+
+#### Step 0: 环境确认
+- Python: `/root/miniconda3/bin/python3.12`
+- GPU: cuda:0
+- 项目路径: `/root/autodl-tmp/contrastive_trace_safety/`
+- 设置 `export HF_ENDPOINT=https://hf-mirror.com`
+- 设置 `export CUDA_VISIBLE_DEVICES=0`
+
+#### Step 1: 加载数据 + 定义 Commitment Point
+```python
+from datasets import load_dataset
+import os
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+
+ds = load_dataset("ishitakakkar-10/HarmThoughts")
+# 筛选 ot-7b 的 jailbreak traces
+ot7b = ds['train'].filter(lambda x: x['model_name'] == 'ot-7b' and x['final_judgment'] == 1.0)
+```
+
+**CP 定义（硬规则）**: CP = 最后一个 safety label 出现的 step + 1。
+- 先看现有代码的 safety label 定义（检查 `src/data_loader.py` 或相关文件中的 SAFETY_LABELS）
+- 如果找不到，使用: SAFETY_LABELS = {'RA', 'AL', 'CC', 'ED', 'IA', 'CR', 'PS', 'RS', 'IR'}（所有非有害/非中性的标签）
+- **不要用 "首个 DKE" 作为 CP**，必须用 "最后 safety label + 1"
+
+#### Step 2: 下载模型
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+model_name = "open-thoughts/OpenThinker-7B"  # 确认 HuggingFace 上的准确 repo name
+# 如果找不到，尝试 "mithrilai/OpenThinker-7B" 或 WebSearch 确认
+tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True)
+```
+
+#### Step 3: Hidden State 提取
+参考现有脚本 `src/experiments/exp_001a_extract_r1_32b.py` 的逻辑：
+- 对每条 trace 的每个 sentence：tokenize，forward pass，提取所有 28 层的 last-token hidden state
+- 保存格式与现有一致: `hidden_states` tensor [num_sentences, 28, 3584]
+- 输出目录: `artifacts/hidden_states_ot7b/`
+- 每条 trace 一个 .pt 文件，包含: hidden_states, trace_id, num_sentences, commitment_point, step_labels, query
+
+#### Step 4: Layer Sweep
+- 对所有 28 层，用 LogisticRegression(solver='liblinear', class_weight='balanced') 做 static probe
+- Split: 60/20/20 (train/val/test)，seed=42
+- 选层指标: balanced_accuracy × crossing_rate（与其他模型一致）
+- 报告: 每层的 bal_acc, crossing_rate, lead_mean, pre_cp_fpr
+
+#### Step 5: 主 Probe Pipeline（在最优层上）
+- **Temporal LR probes**: W=1,3,5,10,15,20,25，solver='liblinear', class_weight='balanced'
+- **Text probes**: 用 all-MiniLM-L6-v2 对同样的 sentences 做 embedding，然后相同 W 做 LR probe
+- 指标: bal_acc, precision, coverage, pre_cp_fpr (trace-level + step-level), lead_mean
+- **Selectivity control task**: 
+  - 10 次 random label permutation，计算 random_acc mean ± std
+  - selectivity = real_acc - random_mean (要求 >5pp)
+
+#### Step 6: Paired Bootstrap
+- 1000 resamples, two-sided permutation test
+- 在最佳 W 下对比 HS vs Text: balanced_accuracy, precision, pre_cp_fpr
+- solver='liblinear'
+- 报告 p-values + 95% CI for each metric delta
+- Bonferroni threshold: 0.017 (3 comparisons)
+
+#### Step 7: 保存结果
+- 所有结果保存到 `artifacts/exp_ot7b_full_pipeline/results.json`
+- 格式与 exp_001a/exp_001b 一致
+- 同时保存 per-W metrics table
+
+---
+
+### 输出格式（最终报告）
+
+```
+# OpenThinker-7B Results
+
+## Data
+- Total traces: X (jailbreak+CP)
+- Train/Val/Test split: X/X/X
+- Mean trace length: X sentences
+
+## Best Layer
+- Layer: X (depth: X%)
+- bal_acc: X, crossing_rate: X
+
+## Temporal Probes (best W)
+| W | bal_acc | precision | coverage | pre_cp_fpr | lead_mean |
+|---|---------|-----------|----------|------------|-----------|
+...
+
+## HS vs Text Bootstrap (W=best)
+| Metric | HS | Text | Delta | p-value | Bonferroni |
+|--------|-----|------|-------|---------|------------|
+| bal_acc | ... | ... | ... | ... | ... |
+| precision | ... | ... | ... | ... | ... |
+| pre_cp_fpr | ... | ... | ... | ... | ... |
+
+## Selectivity Control
+- real_acc: X
+- random_mean ± std: X ± X
+- selectivity: X pp
+```
+
+写完整结果到 `artifacts/exp_ot7b_full_pipeline/results.json` 和 `artifacts/exp_ot7b_full_pipeline/report.md`。
+
+然后用 `update_registry` 更新 exp_ot7b_full_pipeline 状态和 metrics。
+
+---
+
+### 重要注意事项
+1. **CP 用 "last safety label + 1"**，不是 "first DKE"。先看现有代码确认 SAFETY_LABELS 定义
+2. **solver 必须是 'liblinear'**（项目统一标准）
+3. **bootstrap 必须 two-sided**
+4. 如果模型 HF repo 名有误，WebSearch 确认正确的 repo
+5. 参考现有代码结构：`src/experiments/exp_001a_extract_r1_32b.py`, `src/data_loader.py`
+6. hidden_states 提取时注意 OT-7B 的 traces 更长（avg 80 sentences），可能需要 batch 处理避免 OOM
+7. 提取完成后立即验证: 随机抽 3 个 .pt 文件检查 shape 和 CP 位置合理性
+
+### 环境
+- 服务器: autodl-rtx6000
+- Python: /root/miniconda3/bin/python3.12
+- GPU: cuda:0 (CUDA_VISIBLE_DEVICES=0)
+- HF_ENDPOINT=https://hf-mirror.com
+- 项目路径: /root/autodl-tmp/contrastive_trace_safety/
+- sklearn solver: liblinear
+- torch dtype: bfloat16
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "f3c3f23b-9594-4a21-a5f2-5e8365697705",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T06:14:25.716Z_
+
+```json
+{
+  "parentUuid": "f3c3f23b-9594-4a21-a5f2-5e8365697705",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6ce3257d-c0f9-48fc-abc1-762537532f0f",
+  "timestamp": "2026-05-17T06:14:25.716Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T06:14:25.716Z_
+
+```json
+{
+  "parentUuid": "6ce3257d-c0f9-48fc-abc1-762537532f0f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "3860633d-06a8-434d-b917-a7bbb1ef6e84",
+  "timestamp": "2026-05-17T06:14:25.716Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-17T06:14:25.716Z_
+
+```json
+{
+  "parentUuid": "3860633d-06a8-434d-b917-a7bbb1ef6e84",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9d9770ae-efde-48ae-873c-df054dc92b56",
+  "timestamp": "2026-05-17T06:14:25.716Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-17T06:14:25.716Z_
+
+```json
+{
+  "parentUuid": "9d9770ae-efde-48ae-873c-df054dc92b56",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "de408cbf-afff-41f3-8476-75ad8e1a3252",
+  "timestamp": "2026-05-17T06:14:25.716Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-17T06:14:31.115Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the existing codebase structure, then execute the full pipeline on the remote server. I'll first check the existing code to understand the patterns used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de408cbf-afff-41f3-8476-75ad8e1a3252",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ecjRCotvsybmEVHAcq",
+  "type": "assistant",
+  "uuid": "fe1260a0-ab9b-4ed0-a634-8fc94fef9ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfaTq84w9zERZK2qN1Vbwy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14648,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 14648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-17T06:14:31.374Z_
+
+I'll execute the OpenThinker-7B full pipeline. Let me start by examining the existing code structure and then run the experiment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe1260a0-ab9b-4ed0-a634-8fc94fef9ef8",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ecjRCotvsybmEVHAcq",
+  "type": "assistant",
+  "uuid": "06ad8cde-dd01-4f12-8c0f-cf03c65fffb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfaTq84w9zERZK2qN1Vbwy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14648,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 14648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T06:14:34.075Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WEaQvN3P3Z1kWX1Mzo5a2F`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06ad8cde-dd01-4f12-8c0f-cf03c65fffb2",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ecjRCotvsybmEVHAcq",
+  "type": "assistant",
+  "uuid": "8795cb9b-605a-4c36-be05-fe35cb865b9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfaTq84w9zERZK2qN1Vbwy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14648,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 14648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T06:14:34.091Z_
+
+<details><summary>↩ Tool result · `toolu_01WEaQvN3P3Z1kWX1Mzo5a2F`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8795cb9b-605a-4c36-be05-fe35cb865b9a",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "9d19659f-aade-4c72-879e-30c2f093b1d1",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "8795cb9b-605a-4c36-be05-fe35cb865b9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-17T06:14:41.416Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the existing code structure to understand the patterns used, particularly the data loader and the existing experiment scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d19659f-aade-4c72-879e-30c2f093b1d1",
+  "isSidechain": false,
+  "requestId": "req_011Cb7edMLwUktJTZ6eEyaU6",
+  "type": "assistant",
+  "uuid": "42ae4af7-cd2e-4436-8262-26b0f923a1db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ATEu2X24cyYNcz3CjAgB3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 26095,
+      "output_tokens": 269,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 269,
+          "cache_read_input_tokens": 26095,
+          "cache_creation_input_tokens": 2190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T06:14:42.538Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MSNaaxqeyqP5yJv9vgTxm8`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42ae4af7-cd2e-4436-8262-26b0f923a1db",
+  "isSidechain": false,
+  "requestId": "req_011Cb7edMLwUktJTZ6eEyaU6",
+  "type": "assistant",
+  "uuid": "4aa87707-27c5-4633-af0a-06f92c1f389b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ATEu2X24cyYNcz3CjAgB3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 26095,
+      "output_tokens": 269,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 269,
+          "cache_read_input_tokens": 26095,
+          "cache_creation_input_tokens": 2190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T06:14:42.728Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YYJVM4tu2wr4E5ZTKJiQPU`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/src/experiments/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4aa87707-27c5-4633-af0a-06f92c1f389b",
+  "isSidechain": false,
+  "requestId": "req_011Cb7edMLwUktJTZ6eEyaU6",
+  "type": "assistant",
+  "uuid": "5f6553d0-e1c2-49bd-834d-855e030df51f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ATEu2X24cyYNcz3CjAgB3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 26095,
+      "output_tokens": 269,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 269,
+          "cache_read_input_tokens": 26095,
+          "cache_creation_input_tokens": 2190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T06:14:43.558Z_
+
+<details><summary>↩ Tool result · `toolu_01MSNaaxqeyqP5yJv9vgTxm8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbaselines\\nconfig.py\\ncrta\\ndata_loader.py\\ndiagnostics\\neval\\nexperiments\\nextract_hidden_states.py\\nrun_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4aa87707-27c5-4633-af0a-06f92c1f389b",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "435fde22-a6fa-46f2-9f28-b9be1a1b7f86",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nbaselines\\\\nconfig.py\\\\ncrta\\\\ndata_loader.py\\\\ndiagnostics\\\\neval\\\\nexperiments\\\\nextract_hidden_states.py\\\\nrun_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbaselines\\nconfig.py\\ncrta\\ndata_loader.py\\ndiagnostics\\neval\\nexperiments\\nextract_hidden_states.py\\nrun_pipeline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4aa87707-27c5-4633-af0a-06f92c1f389b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "435fde22-a6fa-46f2-9f28-b9be1a1b7f86",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T06:14:43.984Z_
+
+<details><summary>↩ Tool result · `toolu_01YYJVM4tu2wr4E5ZTKJiQPU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbocpd_poc.py\\nbootstrap_ci.py\\nexp_001a_bootstrap_hs_vs_text.py\\nexp_001a_extract_r1_32b.py\\nexp_001a_probing.py\\nexp_001b_bootstrap.py\\nexp_001b_extract_qwq.py\\nexp_001b_probing.py\\nexp_003_cross_transfer.py\\nexp_007_window_ablation.py\\nexp_c2_control_task.py\\nexp_pathC_two_stage_sim.py\\nfpr_analysis.py\\ngru_multilayer_ablation.py\\ngru_per_seed_eval.py\\nm001_layer_fix.py\\nr1_8b_bootstrap_hs_text.py\\nrun_selectivity_qwq_l2.py\\ntext_baseline.py\\ntext_window_ablation_r1_8b.py\\ntrajguard_mahalanobis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f6553d0-e1c2-49bd-834d-855e030df51f",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "304b16c2-372e-4b5e-8ac2-72ce381c4e1b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nbocpd_poc.py\\\\nbootstrap_ci.py\\\\nexp_001a_bootstrap_hs_vs_text.py\\\\nexp_001a_extract_r1_32b.py\\\\nexp_001a_probing.py\\\\nexp_001b_bootstrap.py\\\\nexp_001b_extract_qwq.py\\\\nexp_001b_probing.py\\\\nexp_003_cross_transfer.py\\\\nexp_007_window_ablation.py\\\\nexp_c2_control_task.py\\\\nexp_pathC_two_stage_sim.py\\\\nfpr_analysis.py\\\\ngru_multilayer_ablation.py\\\\ngru_per_seed_eval.py\\\\nm001_layer_fix.py\\\\nr1_8b_bootstrap_hs_text.py\\\\nrun_selectivity_qwq_l2.py\\\\ntext_baseline.py\\\\ntext_window_ablation_r1_8b.py\\\\ntrajguard_mahalanobis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbocpd_poc.py\\nbootstrap_ci.py\\nexp_001a_bootstrap_hs_vs_text.py\\nexp_001a_extract_r1_32b.py\\nexp_001a_probing.py\\nexp_001b_bootstrap.py\\nexp_001b_extract_qwq.py\\nexp_001b_probing.py\\nexp_003_cross_transfer.py\\nexp_007_window_ablation.py\\nexp_c2_control_task.py\\nexp_pathC_two_stage_sim.py\\nfpr_analysis.py\\ngru_multilayer_ablation.py\\ngru_per_seed_eval.py\\nm001_layer_fix.py\\nr1_8b_bootstrap_hs_text.py\\nrun_selectivity_qwq_l2.py\\ntext_baseline.py\\ntext_window_ablation_r1_8b.py\\ntrajguard_mahalanobis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5f6553d0-e1c2-49bd-834d-855e030df51f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T06:14:49.056Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VL6CkbY1mw1x1hLJ6BjsjN`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/data_loader.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "304b16c2-372e-4b5e-8ac2-72ce381c4e1b",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ee5UEgwxuxm22aN2kJ",
+  "type": "assistant",
+  "uuid": "15851145-5739-451c-9484-1a10306973ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1vgZydJX2RQBvUTHf6oM7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 803,
+      "cache_read_input_tokens": 28285,
+      "output_tokens": 251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 251,
+          "cache_read_input_tokens": 28285,
+          "cache_creation_input_tokens": 803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T06:14:49.421Z_
+
+<details><summary>↩ Tool result · `toolu_01VL6CkbY1mw1x1hLJ6BjsjN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Load HarmThoughts dataset and extract commitment points.\\n\\nInput: HuggingFace dataset \\\"ishitakakkar-10/HarmThoughts\\\"\\nOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\\n\\\"\\\"\\\"\\n\\nfrom collections import defaultdict\\nfrom typing import List, Optional, Dict, Any\\nimport numpy as np\\nfrom datasets import load_dataset\\n\\nfrom .config import (\\n    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\\n    TRAIN_RATIO, VAL_RATIO, SEED\\n)\\n\\n\\ndef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\\n    \\\"\\\"\\\"Load HarmThoughts from HF and group by trace_id.\\\"\\\"\\\"\\n    ds = load_dataset(HF_DATASET, split=\\\"train\\\")\\n\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name:\\n            continue\\n        # trace_id is the part before the last dash in sentence_id\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1  # convert to 0-indexed\\n\\n        traces[trace_id].append({\\n            \\\"sentence_id\\\": sid,\\n            \\\"step_idx\\\": step_idx,\\n            \\\"sentence\\\": row[\\\"sentence\\\"],\\n            \\\"label\\\": row[\\\"llm_annotation\\\"],\\n            \\\"query\\\": row[\\\"query\\\"],\\n            \\\"final_judgment\\\": row[\\\"final_judgment\\\"],\\n        })\\n\\n    # Sort each trace by step_idx\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[\\\"step_idx\\\"])\\n\\n    return dict(traces)\\n\\n\\ndef extract_commitment_point(labels: List[str]) -> Optional[int]:\\n    \\\"\\\"\\\"Find the commitment point in a sequence of labels.\\n\\n    Returns the index after the last safety label, or None if:\\n    - No safety labels exist in the trace\\n    - The last safety label is at the final position (no post-commitment segment)\\n    \\\"\\\"\\\"\\n    last_safety_idx = None\\n    for i, label in enumerate(labels):\\n        if label in SAFETY_LABELS:\\n            last_safety_idx = i\\n\\n    if last_safety_idx is None:\\n        return None\\n    if last_safety_idx == len(labels) - 1:\\n        return None\\n\\n    return last_safety_idx + 1\\n\\n\\ndef create_step_labels(commitment_point: int, num_steps: int) -> List[int]:\\n    \\\"\\\"\\\"Generate binary labels: 0 = pre-commitment, 1 = post-commitment.\\\"\\\"\\\"\\n    return [0 if i < commitment_point else 1 for i in range(num_steps)]\\n\\n\\ndef prepare_dataset(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict[str, Any]]]:\\n    \\\"\\\"\\\"Load data, compute commitment points, categorize traces.\\n\\n    Returns dict with keys:\\n    - jailbreak_with_commitment: traces for training/evaluation\\n    - jailbreak_no_commitment: excluded jailbreak traces\\n    - safe: safe traces for FP evaluation\\n    \\\"\\\"\\\"\\n    raw_traces = load_harmthoughts(model_name)\\n\\n    jailbreak_with_commitment = []\\n    jailbreak_no_commitment = []\\n    safe_traces = []\\n\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        query = steps[0][\\\"query\\\"]\\n        num_steps = len(steps)\\n\\n        trace_dict = {\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"labels\\\": labels,\\n            \\\"query\\\": query,\\n            \\\"is_jailbreak\\\": is_jailbreak,\\n            \\\"num_steps\\\": num_steps,\\n        }\\n\\n        if not is_jailbreak:\\n            trace_dict[\\\"commitment_point\\\"] = None\\n            trace_dict[\\\"step_labels\\\"] = None\\n            safe_traces.append(trace_dict)\\n            continue\\n\\n        cp = extract_commitment_point(labels)\\n        trace_dict[\\\"commitment_point\\\"] = cp\\n\\n        if cp is not None:\\n            trace_dict[\\\"step_labels\\\"] = create_step_labels(cp, num_steps)\\n            jailbreak_with_commitment.append(trace_dict)\\n        else:\\n            trace_dict[\\\"step_labels\\\"] = None\\n            jailbreak_no_commitment.append(trace_dict)\\n\\n    return {\\n        \\\"jailbreak_with_commitment\\\": jailbreak_with_commitment,\\n        \\\"jailbreak_no_commitment\\\": jailbreak_no_commitment,\\n        \\\"safe\\\": safe_traces,\\n    }\\n\\n\\ndef split_data(traces: List[Dict], train_ratio: float = TRAIN_RATIO,\\n               val_ratio: float = VAL_RATIO, seed: int = SEED):\\n    \\\"\\\"\\\"Split traces into train/val/test at trace level.\\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n\\n    n_train = int(len(traces) * train_ratio)\\n    n_val = int(len(traces) * val_ratio)\\n\\n    train_idx = indices[:n_train]\\n    val_idx = indices[n_train:n_train + n_val]\\n    test_idx = indices[n_train + n_val:]\\n\\n    train = [traces[i] for i in train_idx]\\n    val = [traces[i] for i in val_idx]\\n    test = [traces[i] for i in test_idx]\\n\\n    return train, val, test\\n\\n\\ndef get_commitment_point_stats(traces: List[Dict]) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Compute statistics about commitment point distribution.\\\"\\\"\\\"\\n    cps = [t[\\\"commitment_point\\\"] for t in traces if t[\\\"commitment_point\\\"] is not None]\\n    num_steps_list = [t[\\\"num_steps\\\"] for t in traces if t[\\\"commitment_point\\\"] is not None]\\n\\n    if not cps:\\n        return {\\\"count\\\": 0}\\n\\n    cps = np.array(cps)\\n    num_steps = np.array(num_steps_list)\\n    relative_positions = cps / num_steps\\n\\n    return {\\n        \\\"count\\\": len(cps),\\n        \\\"mean\\\": float(np.mean(cps)),\\n        \\\"median\\\": float(np.median(cps)),\\n        \\\"std\\\": float(np.std(cps)),\\n        \\\"min\\\": int(np.min(cps)),\\n        \\\"max\\\": int(np.max(cps)),\\n        \\\"relative_position_mean\\\": float(np.mean(relative_positions)),\\n        \\\"relative_position_median\\\": float(np.median(relative_positions)),\\n        \\\"relative_position_std\\\": float(np.std(relative_positions)),\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15851145-5739-451c-9484-1a10306973ea",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "07c01b4e-dd3f-4c39-ae09-57b40b5426f1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Load HarmThoughts dataset and extract commitment points.\\\\n\\\\nInput: HuggingFace dataset \\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\"\\\\nOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom collections import defaultdict\\\\nfrom typing import List, Optional, Dict, Any\\\\nimport numpy as np\\\\nfrom datasets import load_dataset\\\\n\\\\nfrom .config import (\\\\n    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\\\\n    TRAIN_RATIO, VAL_RATIO, SEED\\\\n)\\\\n\\\\n\\\\ndef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load HarmThoughts from HF and group by trace_id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ds = load_dataset(HF_DATASET, split=\\\\\\\"train\\\\\\\")\\\\n\\\\n    traces = defaultdict(list)\\\\n    for row in ds:\\\\n        if row[\\\\\\\"model_name\\\\\\\"] != model_name:\\\\n            continue\\\\n        # trace_id is the part before the last dash in sentence_id\\\\n        sid = row[\\\\\\\"sentence_id\\\\\\\"]\\\\n        parts = sid.rsplit(\\\\\\\"-\\\\\\\", 1)\\\\n        trace_id = parts[0]\\\\n        step_idx = int(parts[1]) - 1  # convert to 0-indexed\\\\n\\\\n        traces[trace_id].append({\\\\n            \\\\\\\"sentence_id\\\\\\\": sid,\\\\n            \\\\\\\"step_idx\\\\\\\": step_idx,\\\\n            \\\\\\\"sentence\\\\\\\": row[\\\\\\\"sentence\\\\\\\"],\\\\n            \\\\\\\"label\\\\\\\": row[\\\\\\\"llm_annotation\\\\\\\"],\\\\n            \\\\\\\"query\\\\\\\": row[\\\\\\\"query\\\\\\\"],\\\\n            \\\\\\\"final_judgment\\\\\\\": row[\\\\\\\"final_judgment\\\\\\\"],\\\\n        })\\\\n\\\\n    # Sort each trace by step_idx\\\\n    for tid in traces:\\\\n        traces[tid].sort(key=lambda x: x[\\\\\\\"step_idx\\\\\\\"])\\\\n\\\\n    return dict(traces)\\\\n\\\\n\\\\ndef extract_commitment_point(labels: List[str]) -> Optional[int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the commitment point in a sequence of labels.\\\\n\\\\n    Returns the index after the last safety label, or None if:\\\\n    - No safety labels exist in the trace\\\\n    - The last safety label is at the final position (no post-commitment segment)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    last_safety_idx = None\\\\n    for i, label in enumerate(labels):\\\\n        if label in SAFETY_LABELS:\\\\n            last_safety_idx = i\\\\n\\\\n    if last_safety_idx is None:\\\\n        return None\\\\n    if last_safety_idx == len(labels) - 1:\\\\n        return None\\\\n\\\\n    return last_safety_idx + 1\\\\n\\\\n\\\\ndef create_step_labels(commitment_point: int, num_steps: int) -> List[int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate binary labels: 0 = pre-commitment, 1 = post-commitment.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return [0 if i < commitment_point else 1 for i in range(num_steps)]\\\\n\\\\n\\\\ndef prepare_dataset(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict[str, Any]]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load data, compute commitment points, categorize traces.\\\\n\\\\n    Returns dict with keys:\\\\n    - jailbreak_with_commitment: traces for training/evaluation\\\\n    - jailbreak_no_commitment: excluded jailbreak traces\\\\n    - safe: safe traces for FP evaluation\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    raw_traces = load_harmthoughts(model_name)\\\\n\\\\n    jailbreak_with_commitment = []\\\\n    jailbreak_no_commitment = []\\\\n    safe_traces = []\\\\n\\\\n    for trace_id, steps in raw_traces.items():\\\\n        is_jailbreak = steps[0][\\\\\\\"final_judgment\\\\\\\"] == 1.0\\\\n        labels = [s[\\\\\\\"label\\\\\\\"] for s in steps]\\\\n        sentences = [s[\\\\\\\"sentence\\\\\\\"] for s in steps]\\\\n        query = steps[0][\\\\\\\"query\\\\\\\"]\\\\n        num_steps = len(steps)\\\\n\\\\n        trace_dict = {\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"sentences\\\\\\\": sentences,\\\\n            \\\\\\\"labels\\\\\\\": labels,\\\\n            \\\\\\\"query\\\\\\\": query,\\\\n            \\\\\\\"is_jailbreak\\\\\\\": is_jailbreak,\\\\n            \\\\\\\"num_steps\\\\\\\": num_steps,\\\\n        }\\\\n\\\\n        if not is_jailbreak:\\\\n            trace_dict[\\\\\\\"commitment_point\\\\\\\"] = None\\\\n            trace_dict[\\\\\\\"step_labels\\\\\\\"] = None\\\\n            safe_traces.append(trace_dict)\\\\n            continue\\\\n\\\\n        cp = extract_commitment_point(labels)\\\\n        trace_dict[\\\\\\\"commitment_point\\\\\\\"] = cp\\\\n\\\\n        if cp is not None:\\\\n            trace_dict[\\\\\\\"step_labels\\\\\\\"] = create_step_labels(cp, num_steps)\\\\n            jailbreak_with_commitment.append(trace_dict)\\\\n        else:\\\\n            trace_dict[\\\\\\\"step_labels\\\\\\\"] = None\\\\n            jailbreak_no_commitment.append(trace_dict)\\\\n\\\\n    return {\\\\n        \\\\\\\"jailbreak_with_commitment\\\\\\\": jailbreak_with_commitment,\\\\n        \\\\\\\"jailbreak_no_commitment\\\\\\\": jailbreak_no_commitment,\\\\n        \\\\\\\"safe\\\\\\\": safe_traces,\\\\n    }\\\\n\\\\n\\\\ndef split_data(traces: List[Dict], train_ratio: float = TRAIN_RATIO,\\\\n               val_ratio: float = VAL_RATIO, seed: int = SEED):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split traces into train/val/test at trace level.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n\\\\n    n_train = int(len(traces) * train_ratio)\\\\n    n_val = int(len(traces) * val_ratio)\\\\n\\\\n    train_idx = indices[:n_train]\\\\n    val_idx = indices[n_train:n_train + n_val]\\\\n    test_idx = indices[n_train + n_val:]\\\\n\\\\n    train = [traces[i] for i in train_idx]\\\\n    val = [traces[i] for i in val_idx]\\\\n    test = [traces[i] for i in test_idx]\\\\n\\\\n    return train, val, test\\\\n\\\\n\\\\ndef get_commitment_point_stats(traces: List[Dict]) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute statistics about commitment point distribution.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cps = [t[\\\\\\\"commitment_point\\\\\\\"] for t in traces if t[\\\\\\\"commitment_point\\\\\\\"] is not None]\\\\n    num_steps_list = [t[\\\\\\\"num_steps\\\\\\\"] for t in traces if t[\\\\\\\"commitment_point\\\\\\\"] is not None]\\\\n\\\\n    if not cps:\\\\n        return {\\\\\\\"count\\\\\\\": 0}\\\\n\\\\n    cps = np.array(cps)\\\\n    num_steps = np.array(num_steps_list)\\\\n    relative_positions = cps / num_steps\\\\n\\\\n    return {\\\\n        \\\\\\\"count\\\\\\\": len(cps),\\\\n        \\\\\\\"mean\\\\\\\": float(np.mean(cps)),\\\\n        \\\\\\\"median\\\\\\\": float(np.median(cps)),\\\\n        \\\\\\\"std\\\\\\\": float(np.std(cps)),\\\\n        \\\\\\\"min\\\\\\\": int(np.min(cps)),\\\\n        \\\\\\\"max\\\\\\\": int(np.max(cps)),\\\\n        \\\\\\\"relative_position_mean\\\\\\\": float(np.mean(relative_positions)),\\\\n        \\\\\\\"relative_position_median\\\\\\\": float(np.median(relative_positions)),\\\\n        \\\\\\\"relative_position_std\\\\\\\": float(np.std(relative_positions)),\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Load HarmThoughts dataset and extract commitment points.\\n\\nInput: HuggingFace dataset \\\"ishitakakkar-10/HarmThoughts\\\"\\nOutput: List of trace dicts with sentences, labels, commitment_point, split assignments\\n\\\"\\\"\\\"\\n\\nfrom collections import defaultdict\\nfrom typing import List, Optional, Dict, Any\\nimport numpy as np\\nfrom datasets import load_dataset\\n\\nfrom .config import (\\n    HF_DATASET, TARGET_MODEL, SAFETY_LABELS,\\n    TRAIN_RATIO, VAL_RATIO, SEED\\n)\\n\\n\\ndef load_harmthoughts(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict]]:\\n    \\\"\\\"\\\"Load HarmThoughts from HF and group by trace_id.\\\"\\\"\\\"\\n    ds = load_dataset(HF_DATASET, split=\\\"train\\\")\\n\\n    traces = defaultdict(list)\\n    for row in ds:\\n        if row[\\\"model_name\\\"] != model_name:\\n            continue\\n        # trace_id is the part before the last dash in sentence_id\\n        sid = row[\\\"sentence_id\\\"]\\n        parts = sid.rsplit(\\\"-\\\", 1)\\n        trace_id = parts[0]\\n        step_idx = int(parts[1]) - 1  # convert to 0-indexed\\n\\n        traces[trace_id].append({\\n            \\\"sentence_id\\\": sid,\\n            \\\"step_idx\\\": step_idx,\\n            \\\"sentence\\\": row[\\\"sentence\\\"],\\n            \\\"label\\\": row[\\\"llm_annotation\\\"],\\n            \\\"query\\\": row[\\\"query\\\"],\\n            \\\"final_judgment\\\": row[\\\"final_judgment\\\"],\\n        })\\n\\n    # Sort each trace by step_idx\\n    for tid in traces:\\n        traces[tid].sort(key=lambda x: x[\\\"step_idx\\\"])\\n\\n    return dict(traces)\\n\\n\\ndef extract_commitment_point(labels: List[str]) -> Optional[int]:\\n    \\\"\\\"\\\"Find the commitment point in a sequence of labels.\\n\\n    Returns the index after the last safety label, or None if:\\n    - No safety labels exist in the trace\\n    - The last safety label is at the final position (no post-commitment segment)\\n    \\\"\\\"\\\"\\n    last_safety_idx = None\\n    for i, label in enumerate(labels):\\n        if label in SAFETY_LABELS:\\n            last_safety_idx = i\\n\\n    if last_safety_idx is None:\\n        return None\\n    if last_safety_idx == len(labels) - 1:\\n        return None\\n\\n    return last_safety_idx + 1\\n\\n\\ndef create_step_labels(commitment_point: int, num_steps: int) -> List[int]:\\n    \\\"\\\"\\\"Generate binary labels: 0 = pre-commitment, 1 = post-commitment.\\\"\\\"\\\"\\n    return [0 if i < commitment_point else 1 for i in range(num_steps)]\\n\\n\\ndef prepare_dataset(model_name: str = TARGET_MODEL) -> Dict[str, List[Dict[str, Any]]]:\\n    \\\"\\\"\\\"Load data, compute commitment points, categorize traces.\\n\\n    Returns dict with keys:\\n    - jailbreak_with_commitment: traces for training/evaluation\\n    - jailbreak_no_commitment: excluded jailbreak traces\\n    - safe: safe traces for FP evaluation\\n    \\\"\\\"\\\"\\n    raw_traces = load_harmthoughts(model_name)\\n\\n    jailbreak_with_commitment = []\\n    jailbreak_no_commitment = []\\n    safe_traces = []\\n\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        query = steps[0][\\\"query\\\"]\\n        num_steps = len(steps)\\n\\n        trace_dict = {\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"labels\\\": labels,\\n            \\\"query\\\": query,\\n            \\\"is_jailbreak\\\": is_jailbreak,\\n            \\\"num_steps\\\": num_steps,\\n        }\\n\\n        if not is_jailbreak:\\n            trace_dict[\\\"commitment_point\\\"] = None\\n            trace_dict[\\\"step_labels\\\"] = None\\n            safe_traces.append(trace_dict)\\n            continue\\n\\n        cp = extract_commitment_point(labels)\\n        trace_dict[\\\"commitment_point\\\"] = cp\\n\\n        if cp is not None:\\n            trace_dict[\\\"step_labels\\\"] = create_step_labels(cp, num_steps)\\n            jailbreak_with_commitment.append(trace_dict)\\n        else:\\n            trace_dict[\\\"step_labels\\\"] = None\\n            jailbreak_no_commitment.append(trace_dict)\\n\\n    return {\\n        \\\"jailbreak_with_commitment\\\": jailbreak_with_commitment,\\n        \\\"jailbreak_no_commitment\\\": jailbreak_no_commitment,\\n        \\\"safe\\\": safe_traces,\\n    }\\n\\n\\ndef split_data(traces: List[Dict], train_ratio: float = TRAIN_RATIO,\\n               val_ratio: float = VAL_RATIO, seed: int = SEED):\\n    \\\"\\\"\\\"Split traces into train/val/test at trace level.\\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n\\n    n_train = int(len(traces) * train_ratio)\\n    n_val = int(len(traces) * val_ratio)\\n\\n    train_idx = indices[:n_train]\\n    val_idx = indices[n_train:n_train + n_val]\\n    test_idx = indices[n_train + n_val:]\\n\\n    train = [traces[i] for i in train_idx]\\n    val = [traces[i] for i in val_idx]\\n    test = [traces[i] for i in test_idx]\\n\\n    return train, val, test\\n\\n\\ndef get_commitment_point_stats(traces: List[Dict]) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Compute statistics about commitment point distribution.\\\"\\\"\\\"\\n    cps = [t[\\\"commitment_point\\\"] for t in traces if t[\\\"commitment_point\\\"] is not None]\\n    num_steps_list = [t[\\\"num_steps\\\"] for t in traces if t[\\\"commitment_point\\\"] is not None]\\n\\n    if not cps:\\n        return {\\\"count\\\": 0}\\n\\n    cps = np.array(cps)\\n    num_steps = np.array(num_steps_list)\\n    relative_positions = cps / num_steps\\n\\n    return {\\n        \\\"count\\\": len(cps),\\n        \\\"mean\\\": float(np.mean(cps)),\\n        \\\"median\\\": float(np.median(cps)),\\n        \\\"std\\\": float(np.std(cps)),\\n        \\\"min\\\": int(np.min(cps)),\\n        \\\"max\\\": int(np.max(cps)),\\n        \\\"relative_position_mean\\\": float(np.mean(relative_positions)),\\n        \\\"relative_position_median\\\": float(np.median(relative_positions)),\\n        \\\"relative_position_std\\\": float(np.std(relative_positions)),\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "15851145-5739-451c-9484-1a10306973ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T06:14:49.667Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0128GqHzdZ743VwVb9JEiRvq`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -100 /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_extract_r1_32b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07c01b4e-dd3f-4c39-ae09-57b40b5426f1",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ee5UEgwxuxm22aN2kJ",
+  "type": "assistant",
+  "uuid": "2f759f9e-024d-42ae-a387-318e155b97aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1vgZydJX2RQBvUTHf6oM7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 803,
+      "cache_read_input_tokens": 28285,
+      "output_tokens": 251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 251,
+          "cache_read_input_tokens": 28285,
+          "cache_creation_input_tokens": 803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T06:14:50.034Z_
+
+<details><summary>↩ Tool result · `toolu_0128GqHzdZ743VwVb9JEiRvq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1: Extract hidden states from DeepSeek-R1-Distill-Qwen-32B for all 64 layers.\\\"\\\"\\\"\\n\\nimport os, sys, json, time\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport torch\\nfrom pathlib import Path\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom tqdm import tqdm\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B\\\"\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nNUM_LAYERS = 64\\nHIDDEN_DIM = 5120\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LENGTH = 8192\\n\\n\\ndef load_model():\\n    print(\\\"Loading R1-32B tokenizer...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(\\\"Loading R1-32B model (fp16)...\\\")\\n    t0 = time.time()\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.float16,\\n        device_map=DEVICE,\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n    print(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n    return model, tokenizer\\n\\n\\ndef find_sentence_boundaries(tokenizer, sentences):\\n    full_text = \\\" \\\".join(sentences)\\n    encoding = tokenizer(\\n        full_text,\\n        return_offsets_mapping=True,\\n        return_tensors=\\\"pt\\\",\\n        truncation=True,\\n        max_length=MAX_LENGTH,\\n    )\\n    offsets = encoding[\\\"offset_mapping\\\"][0]\\n\\n    boundaries = []\\n    char_pos = 0\\n    for sent in sentences:\\n        char_end = char_pos + len(sent)\\n        last_token_idx = 0\\n        for tok_idx, (start, end) in enumerate(offsets):\\n            if start < char_end:\\n                last_token_idx = tok_idx\\n        boundaries.append(last_token_idx)\\n        char_pos = char_end + 1\\n    return boundaries\\n\\n\\ndef extract_trace(model, tokenizer, sentences):\\n    boundary_positions = find_sentence_boundaries(tokenizer, sentences)\\n    full_text = \\\" \\\".join(sentences)\\n    inputs = tokenizer(\\n        full_text,\\n        return_tensors=\\\"pt\\\",\\n        truncation=True,\\n        max_length=MAX_LENGTH,\\n    ).to(DEVICE)\\n\\n    num_tokens = inputs[\\\"input_ids\\\"].shape[1]\\n    boundary_positions = [min(p, num_tokens - 1) for p in boundary_positions]\\n\\n    with torch.no_grad():\\n        outputs = model(**inputs, output_hidden_states=True)\\n\\n    hidden_states = outputs.hidden_states\\n\\n    num_sentences = len(sentences)\\n    result = torch.zeros(num_sentences, NUM_LAYERS, HIDDEN_DIM, dtype=torch.float16)\\n\\n    for sent_idx, pos in enumerate(boundary_positions):\\n        for layer_idx in range(NUM_LAYERS):\\n            hs = hidden_states[layer_idx + 1][0, pos, :]\\n            result[sent_idx, layer_idx, :] = hs.cpu()\\n\\n    del outputs, hidden_states\\n    torch.cuda.empty_cache()\\n\\n    return result, num_tokens\\n\\n\\ndef load_r1_32b_traces():\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n    traces = []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f759f9e-024d-42ae-a387-318e155b97aa",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "148fb5a8-6641-4dbe-9cb3-d465ba089a6e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 1: Extract hidden states from DeepSeek-R1-Distill-Qwen-32B for all 64 layers.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json, time\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\nfrom tqdm import tqdm\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\\\nfrom src.config import SAFETY_LABELS\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B\\\\\\\"\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\\\\\")\\\\nNUM_LAYERS = 64\\\\nHIDDEN_DIM = 5120\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nMAX_LENGTH = 8192\\\\n\\\\n\\\\ndef load_model():\\\\n    print(\\\\\\\"Loading R1-32B tokenizer...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    print(\\\\\\\"Loading R1-32B model (fp16)...\\\\\\\")\\\\n    t0 = time.time()\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        MODEL_PATH,\\\\n        torch_dtype=torch.float16,\\\\n        device_map=DEVICE,\\\\n        trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n    print(f\\\\\\\"Model loaded in {time.time()-t0:.1f}s\\\\\\\")\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef find_sentence_boundaries(tokenizer, sentences):\\\\n    full_text = \\\\\\\" \\\\\\\".join(sentences)\\\\n    encoding = tokenizer(\\\\n        full_text,\\\\n        return_offsets_mapping=True,\\\\n        return_tensors=\\\\\\\"pt\\\\\\\",\\\\n        truncation=True,\\\\n        max_length=MAX_LENGTH,\\\\n    )\\\\n    offsets = encoding[\\\\\\\"offset_mapping\\\\\\\"][0]\\\\n\\\\n    boundaries = []\\\\n    char_pos = 0\\\\n    for sent in sentences:\\\\n        char_end = char_pos + len(sent)\\\\n        last_token_idx = 0\\\\n        for tok_idx, (start, end) in enumerate(offsets):\\\\n            if start < char_end:\\\\n                last_token_idx = tok_idx\\\\n        boundaries.append(last_token_idx)\\\\n        char_pos = char_end + 1\\\\n    return boundaries\\\\n\\\\n\\\\ndef extract_trace(model, tokenizer, sentences):\\\\n    boundary_positions = find_sentence_boundaries(tokenizer, sentences)\\\\n    full_text = \\\\\\\" \\\\\\\".join(sentences)\\\\n    inputs = tokenizer(\\\\n        full_text,\\\\n        return_tensors=\\\\\\\"pt\\\\\\\",\\\\n        truncation=True,\\\\n        max_length=MAX_LENGTH,\\\\n    ).to(DEVICE)\\\\n\\\\n    num_tokens = inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]\\\\n    boundary_positions = [min(p, num_tokens - 1) for p in boundary_positions]\\\\n\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs, output_hidden_states=True)\\\\n\\\\n    hidden_states = outputs.hidden_states\\\\n\\\\n    num_sentences = len(sentences)\\\\n    result = torch.zeros(num_sentences, NUM_LAYERS, HIDDEN_DIM, dtype=torch.float16)\\\\n\\\\n    for sent_idx, pos in enumerate(boundary_positions):\\\\n        for layer_idx in range(NUM_LAYERS):\\\\n            hs = hidden_states[layer_idx + 1][0, pos, :]\\\\n            result[sent_idx, layer_idx, :] = hs.cpu()\\\\n\\\\n    del outputs, hidden_states\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    return result, num_tokens\\\\n\\\\n\\\\ndef load_r1_32b_traces():\\\\n    raw_traces = load_harmthoughts(\\\\\\\"r1-32b\\\\\\\")\\\\n    traces = []\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1: Extract hidden states from DeepSeek-R1-Distill-Qwen-32B for all 64 layers.\\\"\\\"\\\"\\n\\nimport os, sys, json, time\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport torch\\nfrom pathlib import Path\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom tqdm import tqdm\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B\\\"\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nNUM_LAYERS = 64\\nHIDDEN_DIM = 5120\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LENGTH = 8192\\n\\n\\ndef load_model():\\n    print(\\\"Loading R1-32B tokenizer...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(\\\"Loading R1-32B model (fp16)...\\\")\\n    t0 = time.time()\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH,\\n        torch_dtype=torch.float16,\\n        device_map=DEVICE,\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n    print(f\\\"Model loaded in {time.time()-t0:.1f}s\\\")\\n    return model, tokenizer\\n\\n\\ndef find_sentence_boundaries(tokenizer, sentences):\\n    full_text = \\\" \\\".join(sentences)\\n    encoding = tokenizer(\\n        full_text,\\n        return_offsets_mapping=True,\\n        return_tensors=\\\"pt\\\",\\n        truncation=True,\\n        max_length=MAX_LENGTH,\\n    )\\n    offsets = encoding[\\\"offset_mapping\\\"][0]\\n\\n    boundaries = []\\n    char_pos = 0\\n    for sent in sentences:\\n        char_end = char_pos + len(sent)\\n        last_token_idx = 0\\n        for tok_idx, (start, end) in enumerate(offsets):\\n            if start < char_end:\\n                last_token_idx = tok_idx\\n        boundaries.append(last_token_idx)\\n        char_pos = char_end + 1\\n    return boundaries\\n\\n\\ndef extract_trace(model, tokenizer, sentences):\\n    boundary_positions = find_sentence_boundaries(tokenizer, sentences)\\n    full_text = \\\" \\\".join(sentences)\\n    inputs = tokenizer(\\n        full_text,\\n        return_tensors=\\\"pt\\\",\\n        truncation=True,\\n        max_length=MAX_LENGTH,\\n    ).to(DEVICE)\\n\\n    num_tokens = inputs[\\\"input_ids\\\"].shape[1]\\n    boundary_positions = [min(p, num_tokens - 1) for p in boundary_positions]\\n\\n    with torch.no_grad():\\n        outputs = model(**inputs, output_hidden_states=True)\\n\\n    hidden_states = outputs.hidden_states\\n\\n    num_sentences = len(sentences)\\n    result = torch.zeros(num_sentences, NUM_LAYERS, HIDDEN_DIM, dtype=torch.float16)\\n\\n    for sent_idx, pos in enumerate(boundary_positions):\\n        for layer_idx in range(NUM_LAYERS):\\n            hs = hidden_states[layer_idx + 1][0, pos, :]\\n            result[sent_idx, layer_idx, :] = hs.cpu()\\n\\n    del outputs, hidden_states\\n    torch.cuda.empty_cache()\\n\\n    return result, num_tokens\\n\\n\\ndef load_r1_32b_traces():\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n    traces = []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2f759f9e-024d-42ae-a387-318e155b97aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "148fb5a8-6641-4dbe-9cb3-d465ba089a6e",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T06:14:54.063Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VDCHYGsDL1oacNXgcwZxec`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/config.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "148fb5a8-6641-4dbe-9cb3-d465ba089a6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7eeXMizukdzixAkHeH3",
+  "type": "assistant",
+  "uuid": "32e901eb-95cb-4b70-acb1-f2e864a9dddb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Yx829wHG92ADa2g7oT7W1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3814,
+      "cache_read_input_tokens": 29088,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 29088,
+          "cache_creation_input_tokens": 3814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T06:14:54.432Z_
+
+<details><summary>↩ Tool result · `toolu_01VDCHYGsDL1oacNXgcwZxec`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Central configuration for contrastive_trace_safety project.\\\"\\\"\\\"\\n\\nimport os\\nfrom pathlib import Path\\n\\n# Paths\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS_DIR = PROJECT_ROOT / \\\"artifacts\\\"\\nHIDDEN_STATES_DIR = ARTIFACTS_DIR / \\\"hidden_states\\\"\\nPROBES_DIR = ARTIFACTS_DIR / \\\"probes\\\"\\n\\n# Model\\nMODEL_NAME = \\\"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\n\\n# Dataset\\nHF_DATASET = \\\"ishitakakkar-10/HarmThoughts\\\"\\nTARGET_MODEL = \\\"r1-8b\\\"\\n\\n# Hidden state extraction\\nLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\\nNUM_LAYERS = len(LAYERS)\\nHIDDEN_DIM = 4096\\nEXTRACT_BATCH_SIZE = 4\\nDEVICE = \\\"cuda:0\\\"\\n\\n# Probes\\nWINDOW_SIZE = 5\\nTEMPORAL_HIDDEN_DIM = 512\\nLEARNING_RATE = 1e-3\\nTRAIN_EPOCHS = 20\\nPROBE_BATCH_SIZE = 64\\nDEFAULT_LAYER = 20  # for static probe\\n\\n# Data split\\nTRAIN_RATIO = 0.6\\nVAL_RATIO = 0.2\\nSEED = 42\\n\\n# Evaluation\\nDETECTION_THRESHOLD = 0.9\\nDETECTION_WINDOW = 5\\n\\n# Safety labels that define commitment point\\nSAFETY_LABELS = {\\\"RA\\\", \\\"AL\\\", \\\"CC\\\", \\\"ED\\\", \\\"IA\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32e901eb-95cb-4b70-acb1-f2e864a9dddb",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "9c2ba8a3-39ed-4af6-8177-6ad3c4a1c13a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Central configuration for contrastive_trace_safety project.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\n# Paths\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nARTIFACTS_DIR = PROJECT_ROOT / \\\\\\\"artifacts\\\\\\\"\\\\nHIDDEN_STATES_DIR = ARTIFACTS_DIR / \\\\\\\"hidden_states\\\\\\\"\\\\nPROBES_DIR = ARTIFACTS_DIR / \\\\\\\"probes\\\\\\\"\\\\n\\\\n# Model\\\\nMODEL_NAME = \\\\\\\"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\\\\\"\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\\\\\"\\\\n\\\\n# Dataset\\\\nHF_DATASET = \\\\\\\"ishitakakkar-10/HarmThoughts\\\\\\\"\\\\nTARGET_MODEL = \\\\\\\"r1-8b\\\\\\\"\\\\n\\\\n# Hidden state extraction\\\\nLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\\\\nNUM_LAYERS = len(LAYERS)\\\\nHIDDEN_DIM = 4096\\\\nEXTRACT_BATCH_SIZE = 4\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n# Probes\\\\nWINDOW_SIZE = 5\\\\nTEMPORAL_HIDDEN_DIM = 512\\\\nLEARNING_RATE = 1e-3\\\\nTRAIN_EPOCHS = 20\\\\nPROBE_BATCH_SIZE = 64\\\\nDEFAULT_LAYER = 20  # for static probe\\\\n\\\\n# Data split\\\\nTRAIN_RATIO = 0.6\\\\nVAL_RATIO = 0.2\\\\nSEED = 42\\\\n\\\\n# Evaluation\\\\nDETECTION_THRESHOLD = 0.9\\\\nDETECTION_WINDOW = 5\\\\n\\\\n# Safety labels that define commitment point\\\\nSAFETY_LABELS = {\\\\\\\"RA\\\\\\\", \\\\\\\"AL\\\\\\\", \\\\\\\"CC\\\\\\\", \\\\\\\"ED\\\\\\\", \\\\\\\"IA\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Central configuration for contrastive_trace_safety project.\\\"\\\"\\\"\\n\\nimport os\\nfrom pathlib import Path\\n\\n# Paths\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nARTIFACTS_DIR = PROJECT_ROOT / \\\"artifacts\\\"\\nHIDDEN_STATES_DIR = ARTIFACTS_DIR / \\\"hidden_states\\\"\\nPROBES_DIR = ARTIFACTS_DIR / \\\"probes\\\"\\n\\n# Model\\nMODEL_NAME = \\\"deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B\\\"\\n\\n# Dataset\\nHF_DATASET = \\\"ishitakakkar-10/HarmThoughts\\\"\\nTARGET_MODEL = \\\"r1-8b\\\"\\n\\n# Hidden state extraction\\nLAYERS = list(range(12, 25))  # layers 12-24, 13 layers total\\nNUM_LAYERS = len(LAYERS)\\nHIDDEN_DIM = 4096\\nEXTRACT_BATCH_SIZE = 4\\nDEVICE = \\\"cuda:0\\\"\\n\\n# Probes\\nWINDOW_SIZE = 5\\nTEMPORAL_HIDDEN_DIM = 512\\nLEARNING_RATE = 1e-3\\nTRAIN_EPOCHS = 20\\nPROBE_BATCH_SIZE = 64\\nDEFAULT_LAYER = 20  # for static probe\\n\\n# Data split\\nTRAIN_RATIO = 0.6\\nVAL_RATIO = 0.2\\nSEED = 42\\n\\n# Evaluation\\nDETECTION_THRESHOLD = 0.9\\nDETECTION_WINDOW = 5\\n\\n# Safety labels that define commitment point\\nSAFETY_LABELS = {\\\"RA\\\", \\\"AL\\\", \\\"CC\\\", \\\"ED\\\", \\\"IA\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "32e901eb-95cb-4b70-acb1-f2e864a9dddb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T06:14:54.446Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012UB8W2pp9fJiDKpmX7DckG`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "tail -100 /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_extract_r1_32b.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c2ba8a3-39ed-4af6-8177-6ad3c4a1c13a",
+  "isSidechain": false,
+  "requestId": "req_011Cb7eeXMizukdzixAkHeH3",
+  "type": "assistant",
+  "uuid": "a1470f5f-d4e3-4eba-b6d8-c2bd1adb4423",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Yx829wHG92ADa2g7oT7W1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3814,
+      "cache_read_input_tokens": 29088,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 29088,
+          "cache_creation_input_tokens": 3814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T06:14:54.864Z_
+
+<details><summary>↩ Tool result · `toolu_012UB8W2pp9fJiDKpmX7DckG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    return result, num_tokens\\n\\n\\ndef load_r1_32b_traces():\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"labels\\\": labels,\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n            \\\"query\\\": steps[0][\\\"query\\\"],\\n        })\\n    return traces\\n\\n\\ndef main():\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n    print(\\\"Loading R1-32B traces from HarmThoughts...\\\")\\n    traces = load_r1_32b_traces()\\n    print(f\\\"Found {len(traces)} jailbreak traces with commitment points\\\")\\n\\n    existing = {f.stem for f in OUTPUT_DIR.glob(\\\"*.pt\\\")}\\n    remaining = [t for t in traces if t[\\\"trace_id\\\"] not in existing]\\n    print(f\\\"Already extracted: {len(existing)}, remaining: {len(remaining)}\\\")\\n\\n    if not remaining:\\n        print(\\\"All traces already extracted.\\\")\\n        return\\n\\n    model, tokenizer = load_model()\\n\\n    total_steps = 0\\n    total_tokens = 0\\n    errors = []\\n\\n    for i, trace in enumerate(tqdm(remaining, desc=\\\"Extracting\\\")):\\n        trace_id = trace[\\\"trace_id\\\"]\\n        sentences = trace[\\\"sentences\\\"]\\n\\n        try:\\n            hidden_states, num_tokens = extract_trace(model, tokenizer, sentences)\\n            total_steps += len(sentences)\\n            total_tokens += num_tokens\\n\\n            save_dict = {\\n                \\\"hidden_states\\\": hidden_states,\\n                \\\"trace_id\\\": trace_id,\\n                \\\"num_sentences\\\": len(sentences),\\n                \\\"commitment_point\\\": trace[\\\"commitment_point\\\"],\\n                \\\"step_labels\\\": trace[\\\"step_labels\\\"],\\n                \\\"query\\\": trace[\\\"query\\\"],\\n            }\\n            torch.save(save_dict, OUTPUT_DIR / f\\\"{trace_id}.pt\\\")\\n\\n        except Exception as e:\\n            errors.append({\\\"trace_id\\\": trace_id, \\\"error\\\": str(e)})\\n            print(f\\\"\\\\nError on {trace_id}: {e}\\\")\\n            torch.cuda.empty_cache()\\n\\n        if (i + 1) % 10 == 0:\\n            mem = torch.cuda.memory_allocated() / 1e9\\n            print(f\\\"\\\\n  [{i+1}/{len(remaining)}] GPU mem: {mem:.1f}GB, steps so far: {total_steps}\\\")\\n\\n    print(f\\\"\\\\nDone! Extracted {len(remaining) - len(errors)} traces\\\")\\n    print(f\\\"Total steps: {total_steps}, total tokens processed: {total_tokens}\\\")\\n    if errors:\\n        print(f\\\"Errors ({len(errors)}):\\\")\\n        for e in errors:\\n            print(f\\\"  {e['trace_id']}: {e['error']}\\\")\\n\\n    summary = {\\n        \\\"model\\\": \\\"DeepSeek-R1-Distill-Qwen-32B\\\",\\n        \\\"num_traces\\\": len(traces),\\n        \\\"num_extracted\\\": len(remaining) - len(errors),\\n        \\\"total_steps\\\": total_steps,\\n        \\\"total_tokens\\\": total_tokens,\\n        \\\"num_layers\\\": NUM_LAYERS,\\n        \\\"hidden_dim\\\": HIDDEN_DIM,\\n        \\\"errors\\\": errors,\\n    }\\n    with open(OUTPUT_DIR / \\\"extraction_summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"Summary saved to {OUTPUT_DIR / 'extraction_summary.json'}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1470f5f-d4e3-4eba-b6d8-c2bd1adb4423",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "b1f6c88e-ca12-49c3-9229-e27e1714072f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    return result, num_tokens\\\\n\\\\n\\\\ndef load_r1_32b_traces():\\\\n    raw_traces = load_harmthoughts(\\\\\\\"r1-32b\\\\\\\")\\\\n    traces = []\\\\n    for trace_id, steps in raw_traces.items():\\\\n        is_jailbreak = steps[0][\\\\\\\"final_judgment\\\\\\\"] == 1.0\\\\n        if not is_jailbreak:\\\\n            continue\\\\n        labels = [s[\\\\\\\"label\\\\\\\"] for s in steps]\\\\n        cp = extract_commitment_point(labels)\\\\n        if cp is None:\\\\n            continue\\\\n        sentences = [s[\\\\\\\"sentence\\\\\\\"] for s in steps]\\\\n        step_labels = create_step_labels(cp, len(sentences))\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"sentences\\\\\\\": sentences,\\\\n            \\\\\\\"labels\\\\\\\": labels,\\\\n            \\\\\\\"commitment_point\\\\\\\": cp,\\\\n            \\\\\\\"step_labels\\\\\\\": step_labels,\\\\n            \\\\\\\"query\\\\\\\": steps[0][\\\\\\\"query\\\\\\\"],\\\\n        })\\\\n    return traces\\\\n\\\\n\\\\ndef main():\\\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    print(\\\\\\\"Loading R1-32B traces from HarmThoughts...\\\\\\\")\\\\n    traces = load_r1_32b_traces()\\\\n    print(f\\\\\\\"Found {len(traces)} jailbreak traces with commitment points\\\\\\\")\\\\n\\\\n    existing = {f.stem for f in OUTPUT_DIR.glob(\\\\\\\"*.pt\\\\\\\")}\\\\n    remaining = [t for t in traces if t[\\\\\\\"trace_id\\\\\\\"] not in existing]\\\\n    print(f\\\\\\\"Already extracted: {len(existing)}, remaining: {len(remaining)}\\\\\\\")\\\\n\\\\n    if not remaining:\\\\n        print(\\\\\\\"All traces already extracted.\\\\\\\")\\\\n        return\\\\n\\\\n    model, tokenizer = load_model()\\\\n\\\\n    total_steps = 0\\\\n    total_tokens = 0\\\\n    errors = []\\\\n\\\\n    for i, trace in enumerate(tqdm(remaining, desc=\\\\\\\"Extracting\\\\\\\")):\\\\n        trace_id = trace[\\\\\\\"trace_id\\\\\\\"]\\\\n        sentences = trace[\\\\\\\"sentences\\\\\\\"]\\\\n\\\\n        try:\\\\n            hidden_states, num_tokens = extract_trace(model, tokenizer, sentences)\\\\n            total_steps += len(sentences)\\\\n            total_tokens += num_tokens\\\\n\\\\n            save_dict = {\\\\n                \\\\\\\"hidden_states\\\\\\\": hidden_states,\\\\n                \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n                \\\\\\\"num_sentences\\\\\\\": len(sentences),\\\\n                \\\\\\\"commitment_point\\\\\\\": trace[\\\\\\\"commitment_point\\\\\\\"],\\\\n                \\\\\\\"step_labels\\\\\\\": trace[\\\\\\\"step_labels\\\\\\\"],\\\\n                \\\\\\\"query\\\\\\\": trace[\\\\\\\"query\\\\\\\"],\\\\n            }\\\\n            torch.save(save_dict, OUTPUT_DIR / f\\\\\\\"{trace_id}.pt\\\\\\\")\\\\n\\\\n        except Exception as e:\\\\n            errors.append({\\\\\\\"trace_id\\\\\\\": trace_id, \\\\\\\"error\\\\\\\": str(e)})\\\\n            print(f\\\\\\\"\\\\\\\\nError on {trace_id}: {e}\\\\\\\")\\\\n            torch.cuda.empty_cache()\\\\n\\\\n        if (i + 1) % 10 == 0:\\\\n            mem = torch.cuda.memory_allocated() / 1e9\\\\n            print(f\\\\\\\"\\\\\\\\n  [{i+1}/{len(remaining)}] GPU mem: {mem:.1f}GB, steps so far: {total_steps}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone! Extracted {len(remaining) - len(errors)} traces\\\\\\\")\\\\n    print(f\\\\\\\"Total steps: {total_steps}, total tokens processed: {total_tokens}\\\\\\\")\\\\n    if errors:\\\\n        print(f\\\\\\\"Errors ({len(errors)}):\\\\\\\")\\\\n        for e in errors:\\\\n            print(f\\\\\\\"  {e['trace_id']}: {e['error']}\\\\\\\")\\\\n\\\\n    summary = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-32B\\\\\\\",\\\\n        \\\\\\\"num_traces\\\\\\\": len(traces),\\\\n        \\\\\\\"num_extracted\\\\\\\": len(remaining) - len(errors),\\\\n        \\\\\\\"total_steps\\\\\\\": total_steps,\\\\n        \\\\\\\"total_tokens\\\\\\\": total_tokens,\\\\n        \\\\\\\"num_layers\\\\\\\": NUM_LAYERS,\\\\n        \\\\\\\"hidden_dim\\\\\\\": HIDDEN_DIM,\\\\n        \\\\\\\"errors\\\\\\\": errors,\\\\n    }\\\\n    with open(OUTPUT_DIR / \\\\\\\"extraction_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    print(f\\\\\\\"Summary saved to {OUTPUT_DIR / 'extraction_summary.json'}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    return result, num_tokens\\n\\n\\ndef load_r1_32b_traces():\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"labels\\\": labels,\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n            \\\"query\\\": steps[0][\\\"query\\\"],\\n        })\\n    return traces\\n\\n\\ndef main():\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n    print(\\\"Loading R1-32B traces from HarmThoughts...\\\")\\n    traces = load_r1_32b_traces()\\n    print(f\\\"Found {len(traces)} jailbreak traces with commitment points\\\")\\n\\n    existing = {f.stem for f in OUTPUT_DIR.glob(\\\"*.pt\\\")}\\n    remaining = [t for t in traces if t[\\\"trace_id\\\"] not in existing]\\n    print(f\\\"Already extracted: {len(existing)}, remaining: {len(remaining)}\\\")\\n\\n    if not remaining:\\n        print(\\\"All traces already extracted.\\\")\\n        return\\n\\n    model, tokenizer = load_model()\\n\\n    total_steps = 0\\n    total_tokens = 0\\n    errors = []\\n\\n    for i, trace in enumerate(tqdm(remaining, desc=\\\"Extracting\\\")):\\n        trace_id = trace[\\\"trace_id\\\"]\\n        sentences = trace[\\\"sentences\\\"]\\n\\n        try:\\n            hidden_states, num_tokens = extract_trace(model, tokenizer, sentences)\\n            total_steps += len(sentences)\\n            total_tokens += num_tokens\\n\\n            save_dict = {\\n                \\\"hidden_states\\\": hidden_states,\\n                \\\"trace_id\\\": trace_id,\\n                \\\"num_sentences\\\": len(sentences),\\n                \\\"commitment_point\\\": trace[\\\"commitment_point\\\"],\\n                \\\"step_labels\\\": trace[\\\"step_labels\\\"],\\n                \\\"query\\\": trace[\\\"query\\\"],\\n            }\\n            torch.save(save_dict, OUTPUT_DIR / f\\\"{trace_id}.pt\\\")\\n\\n        except Exception as e:\\n            errors.append({\\\"trace_id\\\": trace_id, \\\"error\\\": str(e)})\\n            print(f\\\"\\\\nError on {trace_id}: {e}\\\")\\n            torch.cuda.empty_cache()\\n\\n        if (i + 1) % 10 == 0:\\n            mem = torch.cuda.memory_allocated() / 1e9\\n            print(f\\\"\\\\n  [{i+1}/{len(remaining)}] GPU mem: {mem:.1f}GB, steps so far: {total_steps}\\\")\\n\\n    print(f\\\"\\\\nDone! Extracted {len(remaining) - len(errors)} traces\\\")\\n    print(f\\\"Total steps: {total_steps}, total tokens processed: {total_tokens}\\\")\\n    if errors:\\n        print(f\\\"Errors ({len(errors)}):\\\")\\n        for e in errors:\\n            print(f\\\"  {e['trace_id']}: {e['error']}\\\")\\n\\n    summary = {\\n        \\\"model\\\": \\\"DeepSeek-R1-Distill-Qwen-32B\\\",\\n        \\\"num_traces\\\": len(traces),\\n        \\\"num_extracted\\\": len(remaining) - len(errors),\\n        \\\"total_steps\\\": total_steps,\\n        \\\"total_tokens\\\": total_tokens,\\n        \\\"num_layers\\\": NUM_LAYERS,\\n        \\\"hidden_dim\\\": HIDDEN_DIM,\\n        \\\"errors\\\": errors,\\n    }\\n    with open(OUTPUT_DIR / \\\"extraction_summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    print(f\\\"Summary saved to {OUTPUT_DIR / 'extraction_summary.json'}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a1470f5f-d4e3-4eba-b6d8-c2bd1adb4423",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-17T06:14:57.689Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the codebase. Let me check the probing scripts to understand the expected output format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1f6c88e-ca12-49c3-9229-e27e1714072f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7eet1C7UxNSmndhsRbm",
+  "type": "assistant",
+  "uuid": "12a3be76-e709-47e6-9a5d-a8b1ad2b2bd6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSRpGnM5WfWRguFBmQzZkb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2404,
+      "cache_read_input_tokens": 32902,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 32902,
+          "cache_creation_input_tokens": 2404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-17T06:14:57.809Z_
+
+Now let me check the probing and bootstrap scripts for the output format:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12a3be76-e709-47e6-9a5d-a8b1ad2b2bd6",
+  "isSidechain": false,
+  "requestId": "req_011Cb7eet1C7UxNSmndhsRbm",
+  "type": "assistant",
+  "uuid": "19bd2a41-79ca-4654-a5c0-14f8d060cf4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSRpGnM5WfWRguFBmQzZkb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2404,
+      "cache_read_input_tokens": 32902,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 32902,
+          "cache_creation_input_tokens": 2404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T06:14:59.252Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013rmB9yPXe5rBUiFR8oGbUC`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -150 /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_probing.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19bd2a41-79ca-4654-a5c0-14f8d060cf4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb7eet1C7UxNSmndhsRbm",
+  "type": "assistant",
+  "uuid": "42c9cbb7-3763-420a-b0a1-dde72f9dab0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSRpGnM5WfWRguFBmQzZkb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2404,
+      "cache_read_input_tokens": 32902,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 32902,
+          "cache_creation_input_tokens": 2404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T06:14:59.634Z_
+
+<details><summary>↩ Tool result · `toolu_013rmB9yPXe5rBUiFR8oGbUC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp_001a Phases 2-5: Layer sweep, temporal LR, GRU 3-seed, bootstrap FPR.\\\"\\\"\\\"\\n\\nimport os, sys, json, time, glob\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import accuracy_score, f1_score\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\")\\nNUM_LAYERS = 64\\nHIDDEN_DIM = 5120\\nDEVICE = \\\"cuda:0\\\"\\nK_CONSECUTIVE = 5\\nTHRESHOLD = 0.5\\n\\n\\ndef load_traces():\\n    traces = []\\n    for pt_file in sorted(HS_DIR.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef split_traces(traces, train_ratio=0.6, val_ratio=0.2, seed=42):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * train_ratio)\\n    n_val = int(len(traces) * val_ratio)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef first_crossing(probs, threshold=0.5, k=5):\\n    for i in range(len(probs) - k + 1):\\n        if all(p > threshold for p in probs[i:i+k]):\\n            return i\\n    return None\\n\\n\\ndef extract_layer_data(traces, layer_idx):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(hs.shape[0], len(labels))\\n        X_list.append(hs[:n])\\n        y_list.append(labels[:n])\\n    return np.concatenate(X_list), np.concatenate(y_list)\\n\\n\\ndef evaluate_crossing(model, traces, layer_idx):\\n    lead_times = []\\n    n_crossings = 0\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(hs.shape[0], len(labels))\\n        X = hs[:n]\\n        probs = model.predict_proba(X)[:, 1]\\n        cp = t[\\\"commitment_point\\\"]\\n        fc = first_crossing(probs.tolist())\\n        if fc is not None and fc < cp:\\n            lead_times.append(cp - fc)\\n            n_crossings += 1\\n    n_total = len(traces)\\n    crossing_rate = n_crossings / n_total if n_total > 0 else 0\\n    mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\\n    median_lead = float(np.median(lead_times)) if lead_times else 0.0\\n    return crossing_rate, mean_lead, median_lead\\n\\n\\n# ============ PHASE 2: Layer Sweep ============\\n\\ndef phase2_layer_sweep(train, val, test):\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*70)\\n    print(\\\"PHASE 2: Layer Sweep (64 layers)\\\")\\n    print(\\\"=\\\"*70)\\n\\n    results = []\\n    print(f\\\"{'Layer':<6} {'Acc':<8} {'F1':<8} {'CrossRate':<11} {'LeadMean':<10} {'LeadMedian':<11}\\\")\\n    print(\\\"-\\\" * 60)\\n\\n    for layer_idx in range(NUM_LAYERS):\\n        X_train, y_train = extract_layer_data(train, layer_idx)\\n        X_test, y_test = extract_layer_data(test, layer_idx)\\n\\n        clf = LogisticRegression(C=1.0, max_iter=1000, class_weight='balanced', random_state=42)\\n        clf.fit(X_train, y_train)\\n\\n        y_pred = clf.predict(X_test)\\n        acc = accuracy_score(y_test, y_pred)\\n        f1 = f1_score(y_test, y_pred)\\n        crossing_rate, mean_lead, median_lead = evaluate_crossing(clf, test, layer_idx)\\n\\n        results.append({\\n            \\\"layer_idx\\\": layer_idx,\\n            \\\"acc\\\": float(acc),\\n            \\\"f1\\\": float(f1),\\n            \\\"crossing_rate\\\": float(crossing_rate),\\n            \\\"lead_mean\\\": float(mean_lead),\\n            \\\"lead_median\\\": float(median_lead),\\n            \\\"score\\\": float(crossing_rate * mean_lead),\\n        })\\n\\n        if layer_idx % 8 == 0 or layer_idx == NUM_LAYERS - 1:\\n            print(f\\\"{layer_idx:<6} {acc:<8.4f} {f1:<8.4f} {crossing_rate:<11.4f} {mean_lead:<10.2f} {median_lead:<11.2f}\\\")\\n\\n    # Sort by score (crossing_rate * lead_mean)\\n    sorted_results = sorted(results, key=lambda x: x[\\\"score\\\"], reverse=True)\\n    best = sorted_results[0]\\n    print(f\\\"\\\\nBest layer: {best['layer_idx']} (score={best['score']:.4f})\\\")\\n    print(f\\\"  acc={best['acc']:.4f}, f1={best['f1']:.4f}, crossing_rate={best['crossing_rate']:.4f}\\\")\\n    print(f\\\"  lead_mean={best['lead_mean']:.2f}, lead_median={best['lead_median']:.2f}\\\")\\n    print(\\\"\\\\nTop-5 layers:\\\")\\n    for i, r in enumerate(sorted_results[:5]):\\n        print(f\\\"  #{i+1}: layer {r['layer_idx']} score={r['score']:.4f} acc={r['acc']:.4f} cross={r['crossing_rate']:.4f} lead={r['lead_mean']:.2f}\\\")\\n\\n    # Save\\n    output = {\\n        \\\"all_layers\\\": results,\\n        \\\"best_layer\\\": best,\\n        \\\"top5\\\": sorted_results[:5],\\n        \\\"top7_layer_indices\\\": [r[\\\"layer_idx\\\"] for r in sorted_results[:7]],\\n    }\\n    with open(OUTPUT_DIR / \\\"layer_sweep_results.json\\\", \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"Saved: {OUTPUT_DIR / 'layer_sweep_results.json'}\\\")\\n\\n    return best[\\\"layer_idx\\\"], [r[\\\"layer_idx\\\"] for r in sorted_results[:7]]\\n\\n\\n# ============ PHASE 3: Temporal LR Probes ============\\n\\ndef make_temporal_features(traces, layer_idx, window_size):\\n    X_list, y_list = [], []\\n    half_w = window_size // 2\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42c9cbb7-3763-420a-b0a1-dde72f9dab0b",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "d53598e1-7b17-4fb9-a636-858421f72329",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"exp_001a Phases 2-5: Layer sweep, temporal LR, GRU 3-seed, bootstrap FPR.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json, time, glob\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import accuracy_score, f1_score\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\n\\\\nHS_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\\\\\")\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\\\\\")\\\\nNUM_LAYERS = 64\\\\nHIDDEN_DIM = 5120\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nK_CONSECUTIVE = 5\\\\nTHRESHOLD = 0.5\\\\n\\\\n\\\\ndef load_traces():\\\\n    traces = []\\\\n    for pt_file in sorted(HS_DIR.glob(\\\\\\\"*.pt\\\\\\\")):\\\\n        data = torch.load(pt_file, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n        if data.get(\\\\\\\"step_labels\\\\\\\") is None or data.get(\\\\\\\"commitment_point\\\\\\\") is None:\\\\n            continue\\\\n        traces.append(data)\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, train_ratio=0.6, val_ratio=0.2, seed=42):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * train_ratio)\\\\n    n_val = int(len(traces) * val_ratio)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\\\n        [traces[i] for i in indices[n_train+n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef first_crossing(probs, threshold=0.5, k=5):\\\\n    for i in range(len(probs) - k + 1):\\\\n        if all(p > threshold for p in probs[i:i+k]):\\\\n            return i\\\\n    return None\\\\n\\\\n\\\\ndef extract_layer_data(traces, layer_idx):\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"][:, layer_idx, :].float().numpy()\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(hs.shape[0], len(labels))\\\\n        X_list.append(hs[:n])\\\\n        y_list.append(labels[:n])\\\\n    return np.concatenate(X_list), np.concatenate(y_list)\\\\n\\\\n\\\\ndef evaluate_crossing(model, traces, layer_idx):\\\\n    lead_times = []\\\\n    n_crossings = 0\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"][:, layer_idx, :].float().numpy()\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(hs.shape[0], len(labels))\\\\n        X = hs[:n]\\\\n        probs = model.predict_proba(X)[:, 1]\\\\n        cp = t[\\\\\\\"commitment_point\\\\\\\"]\\\\n        fc = first_crossing(probs.tolist())\\\\n        if fc is not None and fc < cp:\\\\n            lead_times.append(cp - fc)\\\\n            n_crossings += 1\\\\n    n_total = len(traces)\\\\n    crossing_rate = n_crossings / n_total if n_total > 0 else 0\\\\n    mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\\\\n    median_lead = float(np.median(lead_times)) if lead_times else 0.0\\\\n    return crossing_rate, mean_lead, median_lead\\\\n\\\\n\\\\n# ============ PHASE 2: Layer Sweep ============\\\\n\\\\ndef phase2_layer_sweep(train, val, test):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*70)\\\\n    print(\\\\\\\"PHASE 2: Layer Sweep (64 layers)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*70)\\\\n\\\\n    results = []\\\\n    print(f\\\\\\\"{'Layer':<6} {'Acc':<8} {'F1':<8} {'CrossRate':<11} {'LeadMean':<10} {'LeadMedian':<11}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n\\\\n    for layer_idx in range(NUM_LAYERS):\\\\n        X_train, y_train = extract_layer_data(train, layer_idx)\\\\n        X_test, y_test = extract_layer_data(test, layer_idx)\\\\n\\\\n        clf = LogisticRegression(C=1.0, max_iter=1000, class_weight='balanced', random_state=42)\\\\n        clf.fit(X_train, y_train)\\\\n\\\\n        y_pred = clf.predict(X_test)\\\\n        acc = accuracy_score(y_test, y_pred)\\\\n        f1 = f1_score(y_test, y_pred)\\\\n        crossing_rate, mean_lead, median_lead = evaluate_crossing(clf, test, layer_idx)\\\\n\\\\n        results.append({\\\\n            \\\\\\\"layer_idx\\\\\\\": layer_idx,\\\\n            \\\\\\\"acc\\\\\\\": float(acc),\\\\n            \\\\\\\"f1\\\\\\\": float(f1),\\\\n            \\\\\\\"crossing_rate\\\\\\\": float(crossing_rate),\\\\n            \\\\\\\"lead_mean\\\\\\\": float(mean_lead),\\\\n            \\\\\\\"lead_median\\\\\\\": float(median_lead),\\\\n            \\\\\\\"score\\\\\\\": float(crossing_rate * mean_lead),\\\\n        })\\\\n\\\\n        if layer_idx % 8 == 0 or layer_idx == NUM_LAYERS - 1:\\\\n            print(f\\\\\\\"{layer_idx:<6} {acc:<8.4f} {f1:<8.4f} {crossing_rate:<11.4f} {mean_lead:<10.2f} {median_lead:<11.2f}\\\\\\\")\\\\n\\\\n    # Sort by score (crossing_rate * lead_mean)\\\\n    sorted_results = sorted(results, key=lambda x: x[\\\\\\\"score\\\\\\\"], reverse=True)\\\\n    best = sorted_results[0]\\\\n    print(f\\\\\\\"\\\\\\\\nBest layer: {best['layer_idx']} (score={best['score']:.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  acc={best['acc']:.4f}, f1={best['f1']:.4f}, crossing_rate={best['crossing_rate']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  lead_mean={best['lead_mean']:.2f}, lead_median={best['lead_median']:.2f}\\\\\\\")\\\\n    print(\\\\\\\"\\\\\\\\nTop-5 layers:\\\\\\\")\\\\n    for i, r in enumerate(sorted_results[:5]):\\\\n        print(f\\\\\\\"  #{i+1}: layer {r['layer_idx']} score={r['score']:.4f} acc={r['acc']:.4f} cross={r['crossing_rate']:.4f} lead={r['lead_mean']:.2f}\\\\\\\")\\\\n\\\\n    # Save\\\\n    output = {\\\\n        \\\\\\\"all_layers\\\\\\\": results,\\\\n        \\\\\\\"best_layer\\\\\\\": best,\\\\n        \\\\\\\"top5\\\\\\\": sorted_results[:5],\\\\n        \\\\\\\"top7_layer_indices\\\\\\\": [r[\\\\\\\"layer_idx\\\\\\\"] for r in sorted_results[:7]],\\\\n    }\\\\n    with open(OUTPUT_DIR / \\\\\\\"layer_sweep_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"Saved: {OUTPUT_DIR / 'layer_sweep_results.json'}\\\\\\\")\\\\n\\\\n    return best[\\\\\\\"layer_idx\\\\\\\"], [r[\\\\\\\"layer_idx\\\\\\\"] for r in sorted_results[:7]]\\\\n\\\\n\\\\n# ============ PHASE 3: Temporal LR Probes ============\\\\n\\\\ndef make_temporal_features(traces, layer_idx, window_size):\\\\n    X_list, y_list = [], []\\\\n    half_w = window_size // 2\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"][:, layer_idx, :].float().numpy()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp_001a Phases 2-5: Layer sweep, temporal LR, GRU 3-seed, bootstrap FPR.\\\"\\\"\\\"\\n\\nimport os, sys, json, time, glob\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import accuracy_score, f1_score\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\")\\nNUM_LAYERS = 64\\nHIDDEN_DIM = 5120\\nDEVICE = \\\"cuda:0\\\"\\nK_CONSECUTIVE = 5\\nTHRESHOLD = 0.5\\n\\n\\ndef load_traces():\\n    traces = []\\n    for pt_file in sorted(HS_DIR.glob(\\\"*.pt\\\")):\\n        data = torch.load(pt_file, map_location=\\\"cpu\\\", weights_only=False)\\n        if data.get(\\\"step_labels\\\") is None or data.get(\\\"commitment_point\\\") is None:\\n            continue\\n        traces.append(data)\\n    return traces\\n\\n\\ndef split_traces(traces, train_ratio=0.6, val_ratio=0.2, seed=42):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * train_ratio)\\n    n_val = int(len(traces) * val_ratio)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef first_crossing(probs, threshold=0.5, k=5):\\n    for i in range(len(probs) - k + 1):\\n        if all(p > threshold for p in probs[i:i+k]):\\n            return i\\n    return None\\n\\n\\ndef extract_layer_data(traces, layer_idx):\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(hs.shape[0], len(labels))\\n        X_list.append(hs[:n])\\n        y_list.append(labels[:n])\\n    return np.concatenate(X_list), np.concatenate(y_list)\\n\\n\\ndef evaluate_crossing(model, traces, layer_idx):\\n    lead_times = []\\n    n_crossings = 0\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(hs.shape[0], len(labels))\\n        X = hs[:n]\\n        probs = model.predict_proba(X)[:, 1]\\n        cp = t[\\\"commitment_point\\\"]\\n        fc = first_crossing(probs.tolist())\\n        if fc is not None and fc < cp:\\n            lead_times.append(cp - fc)\\n            n_crossings += 1\\n    n_total = len(traces)\\n    crossing_rate = n_crossings / n_total if n_total > 0 else 0\\n    mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\\n    median_lead = float(np.median(lead_times)) if lead_times else 0.0\\n    return crossing_rate, mean_lead, median_lead\\n\\n\\n# ============ PHASE 2: Layer Sweep ============\\n\\ndef phase2_layer_sweep(train, val, test):\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*70)\\n    print(\\\"PHASE 2: Layer Sweep (64 layers)\\\")\\n    print(\\\"=\\\"*70)\\n\\n    results = []\\n    print(f\\\"{'Layer':<6} {'Acc':<8} {'F1':<8} {'CrossRate':<11} {'LeadMean':<10} {'LeadMedian':<11}\\\")\\n    print(\\\"-\\\" * 60)\\n\\n    for layer_idx in range(NUM_LAYERS):\\n        X_train, y_train = extract_layer_data(train, layer_idx)\\n        X_test, y_test = extract_layer_data(test, layer_idx)\\n\\n        clf = LogisticRegression(C=1.0, max_iter=1000, class_weight='balanced', random_state=42)\\n        clf.fit(X_train, y_train)\\n\\n        y_pred = clf.predict(X_test)\\n        acc = accuracy_score(y_test, y_pred)\\n        f1 = f1_score(y_test, y_pred)\\n        crossing_rate, mean_lead, median_lead = evaluate_crossing(clf, test, layer_idx)\\n\\n        results.append({\\n            \\\"layer_idx\\\": layer_idx,\\n            \\\"acc\\\": float(acc),\\n            \\\"f1\\\": float(f1),\\n            \\\"crossing_rate\\\": float(crossing_rate),\\n            \\\"lead_mean\\\": float(mean_lead),\\n            \\\"lead_median\\\": float(median_lead),\\n            \\\"score\\\": float(crossing_rate * mean_lead),\\n        })\\n\\n        if layer_idx % 8 == 0 or layer_idx == NUM_LAYERS - 1:\\n            print(f\\\"{layer_idx:<6} {acc:<8.4f} {f1:<8.4f} {crossing_rate:<11.4f} {mean_lead:<10.2f} {median_lead:<11.2f}\\\")\\n\\n    # Sort by score (crossing_rate * lead_mean)\\n    sorted_results = sorted(results, key=lambda x: x[\\\"score\\\"], reverse=True)\\n    best = sorted_results[0]\\n    print(f\\\"\\\\nBest layer: {best['layer_idx']} (score={best['score']:.4f})\\\")\\n    print(f\\\"  acc={best['acc']:.4f}, f1={best['f1']:.4f}, crossing_rate={best['crossing_rate']:.4f}\\\")\\n    print(f\\\"  lead_mean={best['lead_mean']:.2f}, lead_median={best['lead_median']:.2f}\\\")\\n    print(\\\"\\\\nTop-5 layers:\\\")\\n    for i, r in enumerate(sorted_results[:5]):\\n        print(f\\\"  #{i+1}: layer {r['layer_idx']} score={r['score']:.4f} acc={r['acc']:.4f} cross={r['crossing_rate']:.4f} lead={r['lead_mean']:.2f}\\\")\\n\\n    # Save\\n    output = {\\n        \\\"all_layers\\\": results,\\n        \\\"best_layer\\\": best,\\n        \\\"top5\\\": sorted_results[:5],\\n        \\\"top7_layer_indices\\\": [r[\\\"layer_idx\\\"] for r in sorted_results[:7]],\\n    }\\n    with open(OUTPUT_DIR / \\\"layer_sweep_results.json\\\", \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"Saved: {OUTPUT_DIR / 'layer_sweep_results.json'}\\\")\\n\\n    return best[\\\"layer_idx\\\"], [r[\\\"layer_idx\\\"] for r in sorted_results[:7]]\\n\\n\\n# ============ PHASE 3: Temporal LR Probes ============\\n\\ndef make_temporal_features(traces, layer_idx, window_size):\\n    X_list, y_list = [], []\\n    half_w = window_size // 2\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].float().numpy()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "42c9cbb7-3763-420a-b0a1-dde72f9dab0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T06:15:00.178Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CXmUBSEuRSXVcsWuUNNQqK`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "head -80 /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_bootstrap_hs_vs_text.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d53598e1-7b17-4fb9-a636-858421f72329",
+  "isSidechain": false,
+  "requestId": "req_011Cb7eet1C7UxNSmndhsRbm",
+  "type": "assistant",
+  "uuid": "348caced-4e68-41b4-bf49-734849560165",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSRpGnM5WfWRguFBmQzZkb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2404,
+      "cache_read_input_tokens": 32902,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 32902,
+          "cache_creation_input_tokens": 2404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "348caced-4e68-41b4-bf49-734849560165",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T06:15:00.549Z_
+
+<details><summary>↩ Tool result · `toolu_01CXmUBSEuRSXVcsWuUNNQqK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 5b: Pre-CP FPR Paired Bootstrap Test - HS probe vs Text probe for R1-32B.\\\"\\\"\\\"\\n\\nimport os, sys, json\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\")\\nHIDDEN_DIM = 5120\\nTEXT_DIM = 384\\nLAYER_IDX = 2\\nWINDOW_SIZE = 10\\nSEED = 42\\n\\n\\ndef load_traces_with_sentences():\\n    \\\"\\\"\\\"Load R1-32B traces from HF and match with hidden states.\\\"\\\"\\\"\\n    print(\\\"Loading HarmThoughts dataset (r1-32b)...\\\")\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n\\n        hs_path = HS_DIR / f\\\"{trace_id}.pt\\\"\\n        if not hs_path.exists():\\n            continue\\n\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n\\n        hs_data = torch.load(hs_path, map_location=\\\"cpu\\\", weights_only=False)\\n\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"hidden_states\\\": hs_data[\\\"hidden_states\\\"],\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n        })\\n\\n    print(f\\\"  Loaded {len(traces)} traces with hidden states + sentences\\\")\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef build_hs_temporal_features(traces, layer_idx, window_size):\\n    \\\"\\\"\\\"Build temporal windowed features from hidden states.\\\"\\\"\\\"\\n    half_w = window_size // 2\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].numpy().astype(np.float32)\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), hs.shape[0])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "348caced-4e68-41b4-bf49-734849560165",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "4ec81186-557c-43a6-8ae7-40a1c8469170",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 5b: Pre-CP FPR Paired Bootstrap Test - HS probe vs Text probe for R1-32B.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\\\nfrom src.config import SAFETY_LABELS\\\\n\\\\nHS_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\\\\\")\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\\\\\")\\\\nHIDDEN_DIM = 5120\\\\nTEXT_DIM = 384\\\\nLAYER_IDX = 2\\\\nWINDOW_SIZE = 10\\\\nSEED = 42\\\\n\\\\n\\\\ndef load_traces_with_sentences():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load R1-32B traces from HF and match with hidden states.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    print(\\\\\\\"Loading HarmThoughts dataset (r1-32b)...\\\\\\\")\\\\n    raw_traces = load_harmthoughts(\\\\\\\"r1-32b\\\\\\\")\\\\n\\\\n    traces = []\\\\n    for trace_id, steps in raw_traces.items():\\\\n        is_jailbreak = steps[0][\\\\\\\"final_judgment\\\\\\\"] == 1.0\\\\n        if not is_jailbreak:\\\\n            continue\\\\n        labels = [s[\\\\\\\"label\\\\\\\"] for s in steps]\\\\n        cp = extract_commitment_point(labels)\\\\n        if cp is None:\\\\n            continue\\\\n\\\\n        hs_path = HS_DIR / f\\\\\\\"{trace_id}.pt\\\\\\\"\\\\n        if not hs_path.exists():\\\\n            continue\\\\n\\\\n        sentences = [s[\\\\\\\"sentence\\\\\\\"] for s in steps]\\\\n        step_labels = create_step_labels(cp, len(sentences))\\\\n\\\\n        hs_data = torch.load(hs_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"sentences\\\\\\\": sentences,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs_data[\\\\\\\"hidden_states\\\\\\\"],\\\\n            \\\\\\\"commitment_point\\\\\\\": cp,\\\\n            \\\\\\\"step_labels\\\\\\\": step_labels,\\\\n        })\\\\n\\\\n    print(f\\\\\\\"  Loaded {len(traces)} traces with hidden states + sentences\\\\\\\")\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * 0.6)\\\\n    n_val = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\\\n        [traces[i] for i in indices[n_train+n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef build_hs_temporal_features(traces, layer_idx, window_size):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build temporal windowed features from hidden states.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    half_w = window_size // 2\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"][:, layer_idx, :].numpy().astype(np.float32)\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(len(labels), hs.shape[0])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 5b: Pre-CP FPR Paired Bootstrap Test - HS probe vs Text probe for R1-32B.\\\"\\\"\\\"\\n\\nimport os, sys, json\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\")\\nHIDDEN_DIM = 5120\\nTEXT_DIM = 384\\nLAYER_IDX = 2\\nWINDOW_SIZE = 10\\nSEED = 42\\n\\n\\ndef load_traces_with_sentences():\\n    \\\"\\\"\\\"Load R1-32B traces from HF and match with hidden states.\\\"\\\"\\\"\\n    print(\\\"Loading HarmThoughts dataset (r1-32b)...\\\")\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n\\n        hs_path = HS_DIR / f\\\"{trace_id}.pt\\\"\\n        if not hs_path.exists():\\n            continue\\n\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n\\n        hs_data = torch.load(hs_path, map_location=\\\"cpu\\\", weights_only=False)\\n\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"hidden_states\\\": hs_data[\\\"hidden_states\\\"],\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n        })\\n\\n    print(f\\\"  Loaded {len(traces)} traces with hidden states + sentences\\\")\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef build_hs_temporal_features(traces, layer_idx, window_size):\\n    \\\"\\\"\\\"Build temporal windowed features from hidden states.\\\"\\\"\\\"\\n    half_w = window_size // 2\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].numpy().astype(np.float32)\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), hs.shape[0])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "348caced-4e68-41b4-bf49-734849560165",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-17T06:15:00.553Z_
+
+```json
+{
+  "parentUuid": "4ec81186-557c-43a6-8ae7-40a1c8469170",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6166a803-bfee-4cf3-8ba3-8c08409075ac",
+  "timestamp": "2026-05-17T06:15:00.553Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T06:15:03.877Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017wVjEDmDDVwjQcY6DKyeLB`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_001a_bootstrap_hs_vs_text.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6166a803-bfee-4cf3-8ba3-8c08409075ac",
+  "isSidechain": false,
+  "requestId": "req_011Cb7efJKRpnFFLtCXQdx9N",
+  "type": "assistant",
+  "uuid": "1db00449-877f-4bc1-9dc1-ad7b0d90b4f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012BkFRwrecjB1fBoYYdpFPi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4067,
+      "cache_read_input_tokens": 35306,
+      "output_tokens": 139,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 139,
+          "cache_read_input_tokens": 35306,
+          "cache_creation_input_tokens": 4067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T06:15:04.244Z_
+
+<details><summary>↩ Tool result · `toolu_017wVjEDmDDVwjQcY6DKyeLB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 5b: Pre-CP FPR Paired Bootstrap Test - HS probe vs Text probe for R1-32B.\\\"\\\"\\\"\\n\\nimport os, sys, json\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\")\\nHIDDEN_DIM = 5120\\nTEXT_DIM = 384\\nLAYER_IDX = 2\\nWINDOW_SIZE = 10\\nSEED = 42\\n\\n\\ndef load_traces_with_sentences():\\n    \\\"\\\"\\\"Load R1-32B traces from HF and match with hidden states.\\\"\\\"\\\"\\n    print(\\\"Loading HarmThoughts dataset (r1-32b)...\\\")\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n\\n        hs_path = HS_DIR / f\\\"{trace_id}.pt\\\"\\n        if not hs_path.exists():\\n            continue\\n\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n\\n        hs_data = torch.load(hs_path, map_location=\\\"cpu\\\", weights_only=False)\\n\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"hidden_states\\\": hs_data[\\\"hidden_states\\\"],\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n        })\\n\\n    print(f\\\"  Loaded {len(traces)} traces with hidden states + sentences\\\")\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef build_hs_temporal_features(traces, layer_idx, window_size):\\n    \\\"\\\"\\\"Build temporal windowed features from hidden states.\\\"\\\"\\\"\\n    half_w = window_size // 2\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].numpy().astype(np.float32)\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), hs.shape[0])\\n        hs = hs[:n]\\n        labels = labels[:n]\\n        padded = np.zeros((n + window_size - 1, HIDDEN_DIM), dtype=np.float32)\\n        padded[half_w:half_w+n] = hs\\n        windows = np.array([padded[i:i+window_size].flatten() for i in range(n)])\\n        X_list.append(windows)\\n        y_list.append(labels)\\n    return np.vstack(X_list), np.concatenate(y_list)\\n\\n\\ndef build_text_temporal_features(traces, window_size):\\n    \\\"\\\"\\\"Build temporal windowed features from text embeddings.\\\"\\\"\\\"\\n    X_list, y_list = [], []\\n    for t in traces:\\n        emb = t[\\\"text_embeddings\\\"]\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), emb.shape[0])\\n        emb = emb[:n]\\n        labels = labels[:n]\\n        X = []\\n        for i in range(n):\\n            start = max(0, i - window_size + 1)\\n            window_emb = emb[start:i+1]\\n            if len(window_emb) < window_size:\\n                pad = np.zeros((window_size - len(window_emb), TEXT_DIM), dtype=np.float32)\\n                window_emb = np.concatenate([pad, window_emb], axis=0)\\n            X.append(window_emb.flatten())\\n        X_list.append(np.array(X))\\n        y_list.append(labels)\\n    return np.vstack(X_list), np.concatenate(y_list)\\n\\n\\ndef predict_per_trace_hs(clf, traces, layer_idx, window_size):\\n    \\\"\\\"\\\"Get per-step predictions for each trace using HS probe.\\\"\\\"\\\"\\n    half_w = window_size // 2\\n    \\n\\n... [截断: 输出过长，省略 2396 字符] ...\\n\\nt(np.percentile(bootstrap_diffs, 97.5))\\n\\n    return {\\n        \\\"difference_mean\\\": float(observed_diff),\\n        \\\"difference_ci_95\\\": [ci_lower, ci_upper],\\n        \\\"p_value\\\": float(p_value),\\n        \\\"n_traces\\\": n,\\n        \\\"n_resamples\\\": n_resamples,\\n    }\\n\\n\\ndef main():\\n    # Load traces with sentences\\n    traces = load_traces_with_sentences()\\n\\n    # Compute text embeddings\\n    print(\\\"Loading sentence-transformers model (all-MiniLM-L6-v2)...\\\")\\n    from sentence_transformers import SentenceTransformer\\n    st_model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')\\n\\n    print(\\\"Encoding text embeddings for all traces...\\\")\\n    for i, t in enumerate(traces):\\n        emb = st_model.encode(t[\\\"sentences\\\"], batch_size=64, show_progress_bar=False)\\n        t[\\\"text_embeddings\\\"] = emb.astype(np.float32)\\n        if (i + 1) % 20 == 0:\\n            print(f\\\"  Encoded {i+1}/{len(traces)}\\\")\\n    print(f\\\"  Done encoding {len(traces)} traces\\\")\\n\\n    # Split\\n    train_traces, val_traces, test_traces = split_traces(traces)\\n    print(f\\\"Split: train={len(train_traces)}, val={len(val_traces)}, test={len(test_traces)}\\\")\\n\\n    # Train HS temporal probe\\n    print(f\\\"\\\\nTraining HS temporal probe (layer={LAYER_IDX}, window={WINDOW_SIZE})...\\\")\\n    X_train_hs, y_train_hs = build_hs_temporal_features(train_traces, LAYER_IDX, WINDOW_SIZE)\\n    print(f\\\"  HS feature shape: {X_train_hs.shape}\\\")\\n    clf_hs = LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000, random_state=SEED)\\n    clf_hs.fit(X_train_hs, y_train_hs)\\n    print(\\\"  HS probe trained\\\")\\n\\n    # Train text temporal probe\\n    print(f\\\"Training text temporal probe (window={WINDOW_SIZE})...\\\")\\n    X_train_text, y_train_text = build_text_temporal_features(train_traces, WINDOW_SIZE)\\n    print(f\\\"  Text feature shape: {X_train_text.shape}\\\")\\n    clf_text = LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000, random_state=SEED)\\n    clf_text.fit(X_train_text, y_train_text)\\n    print(\\\"  Text probe trained\\\")\\n\\n    # Predict on test traces\\n    print(\\\"\\\\nPredicting on test traces...\\\")\\n    hs_preds = predict_per_trace_hs(clf_hs, test_traces, LAYER_IDX, WINDOW_SIZE)\\n    text_preds = predict_per_trace_text(clf_text, test_traces, WINDOW_SIZE)\\n\\n    # Compute per-trace pre-CP FPR\\n    hs_fprs = compute_per_trace_precp_fpr(hs_preds, test_traces)\\n    text_fprs = compute_per_trace_precp_fpr(text_preds, test_traces)\\n\\n    hs_mean_fpr = float(np.mean(hs_fprs))\\n    text_mean_fpr = float(np.mean(text_fprs))\\n    print(f\\\"\\\\nPre-CP FPR (HS probe):   {hs_mean_fpr:.4f} +/- {np.std(hs_fprs):.4f}\\\")\\n    print(f\\\"Pre-CP FPR (Text probe): {text_mean_fpr:.4f} +/- {np.std(text_fprs):.4f}\\\")\\n\\n    # Paired bootstrap test\\n    print(\\\"\\\\nRunning paired bootstrap test (1000 resamples)...\\\")\\n    bootstrap_result = paired_bootstrap_test(hs_fprs, text_fprs, n_resamples=1000)\\n    print(f\\\"  Difference (HS - Text): {bootstrap_result['difference_mean']:.4f}\\\")\\n    print(f\\\"  95% CI: [{bootstrap_result['difference_ci_95'][0]:.4f}, {bootstrap_result['difference_ci_95'][1]:.4f}]\\\")\\n    print(f\\\"  p-value: {bootstrap_result['p_value']:.4f}\\\")\\n\\n    # Save output\\n    output = {\\n        \\\"hs_temporal_precp_fpr\\\": hs_mean_fpr,\\n        \\\"text_temporal_precp_fpr\\\": text_mean_fpr,\\n        \\\"difference_mean\\\": bootstrap_result[\\\"difference_mean\\\"],\\n        \\\"difference_ci_95\\\": bootstrap_result[\\\"difference_ci_95\\\"],\\n        \\\"p_value\\\": bootstrap_result[\\\"p_value\\\"],\\n        \\\"n_traces\\\": bootstrap_result[\\\"n_traces\\\"],\\n        \\\"n_resamples\\\": 1000,\\n        \\\"hs_config\\\": f\\\"LR balanced C=1.0 window={WINDOW_SIZE} layer={LAYER_IDX}\\\",\\n        \\\"text_config\\\": f\\\"all-MiniLM-L6-v2 temporal window={WINDOW_SIZE}\\\",\\n        \\\"per_trace_hs_fprs\\\": [float(x) for x in hs_fprs],\\n        \\\"per_trace_text_fprs\\\": [float(x) for x in text_fprs],\\n    }\\n\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    out_path = OUTPUT_DIR / \\\"bootstrap_hs_vs_text_fpr.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1db00449-877f-4bc1-9dc1-ad7b0d90b4f9",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "ace8da7d-2253-4b29-945a-6e31e9a4bb17",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 5b: Pre-CP FPR Paired Bootstrap Test - HS probe vs Text probe for R1-32B.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os, sys, json\\\\nos.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\nos.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/contrastive_trace_safety\\\\\\\")\\\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\\\nfrom src.config import SAFETY_LABELS\\\\n\\\\nHS_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\\\\\")\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\\\\\")\\\\nHIDDEN_DIM = 5120\\\\nTEXT_DIM = 384\\\\nLAYER_IDX = 2\\\\nWINDOW_SIZE = 10\\\\nSEED = 42\\\\n\\\\n\\\\ndef load_traces_with_sentences():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load R1-32B traces from HF and match with hidden states.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    print(\\\\\\\"Loading HarmThoughts dataset (r1-32b)...\\\\\\\")\\\\n    raw_traces = load_harmthoughts(\\\\\\\"r1-32b\\\\\\\")\\\\n\\\\n    traces = []\\\\n    for trace_id, steps in raw_traces.items():\\\\n        is_jailbreak = steps[0][\\\\\\\"final_judgment\\\\\\\"] == 1.0\\\\n        if not is_jailbreak:\\\\n            continue\\\\n        labels = [s[\\\\\\\"label\\\\\\\"] for s in steps]\\\\n        cp = extract_commitment_point(labels)\\\\n        if cp is None:\\\\n            continue\\\\n\\\\n        hs_path = HS_DIR / f\\\\\\\"{trace_id}.pt\\\\\\\"\\\\n        if not hs_path.exists():\\\\n            continue\\\\n\\\\n        sentences = [s[\\\\\\\"sentence\\\\\\\"] for s in steps]\\\\n        step_labels = create_step_labels(cp, len(sentences))\\\\n\\\\n        hs_data = torch.load(hs_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=False)\\\\n\\\\n        traces.append({\\\\n            \\\\\\\"trace_id\\\\\\\": trace_id,\\\\n            \\\\\\\"sentences\\\\\\\": sentences,\\\\n            \\\\\\\"hidden_states\\\\\\\": hs_data[\\\\\\\"hidden_states\\\\\\\"],\\\\n            \\\\\\\"commitment_point\\\\\\\": cp,\\\\n            \\\\\\\"step_labels\\\\\\\": step_labels,\\\\n        })\\\\n\\\\n    print(f\\\\\\\"  Loaded {len(traces)} traces with hidden states + sentences\\\\\\\")\\\\n    return traces\\\\n\\\\n\\\\ndef split_traces(traces, seed=SEED):\\\\n    rng = np.random.default_rng(seed)\\\\n    indices = rng.permutation(len(traces))\\\\n    n_train = int(len(traces) * 0.6)\\\\n    n_val = int(len(traces) * 0.2)\\\\n    return (\\\\n        [traces[i] for i in indices[:n_train]],\\\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\\\n        [traces[i] for i in indices[n_train+n_val:]],\\\\n    )\\\\n\\\\n\\\\ndef build_hs_temporal_features(traces, layer_idx, window_size):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build temporal windowed features from hidden states.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    half_w = window_size // 2\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        hs = t[\\\\\\\"hidden_states\\\\\\\"][:, layer_idx, :].numpy().astype(np.float32)\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(len(labels), hs.shape[0])\\\\n        hs = hs[:n]\\\\n        labels = labels[:n]\\\\n        padded = np.zeros((n + window_size - 1, HIDDEN_DIM), dtype=np.float32)\\\\n        padded[half_w:half_w+n] = hs\\\\n        windows = np.array([padded[i:i+window_size].flatten() for i in range(n)])\\\\n        X_list.append(windows)\\\\n        y_list.append(labels)\\\\n    return np.vstack(X_list), np.concatenate(y_list)\\\\n\\\\n\\\\ndef build_text_temporal_features(traces, window_size):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build temporal windowed features from text embeddings.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    X_list, y_list = [], []\\\\n    for t in traces:\\\\n        emb = t[\\\\\\\"text_embeddings\\\\\\\"]\\\\n        labels = np.array(t[\\\\\\\"step_labels\\\\\\\"])\\\\n        n = min(len(labels), emb.shape[0])\\\\n        emb = emb[:n]\\\\n        labels = labels[:n]\\\\n        X = []\\\\n        for i in range(n):\\\\n            start = max(0, i - window_size + 1)\\\\n            window_emb = emb[start:i+1]\\\\n            if len(window_emb) < window_size:\\\\n                pad = np.zeros((window_size - len(window_emb), TEXT_DIM), dtype=np.float32)\\\\n                window_emb = np.concatenate([pad, window_emb], axis=0)\\\\n            X.append(window_emb.flatten())\\\\n        X_list.append(np.array(X))\\\\n        y_list.append(labels)\\\\n    return np.vstack(X_list), np.concatenate(y_list)\\\\n\\\\n\\\\ndef predict_per_trace_hs(clf, traces, layer_idx, window_size):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Get per-step predictions for each trace using HS probe.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    half_w = window_size // 2\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 2396 字符] ...\\\\n\\\\nt(np.percentile(bootstrap_diffs, 97.5))\\\\n\\\\n    return {\\\\n        \\\\\\\"difference_mean\\\\\\\": float(observed_diff),\\\\n        \\\\\\\"difference_ci_95\\\\\\\": [ci_lower, ci_upper],\\\\n        \\\\\\\"p_value\\\\\\\": float(p_value),\\\\n        \\\\\\\"n_traces\\\\\\\": n,\\\\n        \\\\\\\"n_resamples\\\\\\\": n_resamples,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    # Load traces with sentences\\\\n    traces = load_traces_with_sentences()\\\\n\\\\n    # Compute text embeddings\\\\n    print(\\\\\\\"Loading sentence-transformers model (all-MiniLM-L6-v2)...\\\\\\\")\\\\n    from sentence_transformers import SentenceTransformer\\\\n    st_model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')\\\\n\\\\n    print(\\\\\\\"Encoding text embeddings for all traces...\\\\\\\")\\\\n    for i, t in enumerate(traces):\\\\n        emb = st_model.encode(t[\\\\\\\"sentences\\\\\\\"], batch_size=64, show_progress_bar=False)\\\\n        t[\\\\\\\"text_embeddings\\\\\\\"] = emb.astype(np.float32)\\\\n        if (i + 1) % 20 == 0:\\\\n            print(f\\\\\\\"  Encoded {i+1}/{len(traces)}\\\\\\\")\\\\n    print(f\\\\\\\"  Done encoding {len(traces)} traces\\\\\\\")\\\\n\\\\n    # Split\\\\n    train_traces, val_traces, test_traces = split_traces(traces)\\\\n    print(f\\\\\\\"Split: train={len(train_traces)}, val={len(val_traces)}, test={len(test_traces)}\\\\\\\")\\\\n\\\\n    # Train HS temporal probe\\\\n    print(f\\\\\\\"\\\\\\\\nTraining HS temporal probe (layer={LAYER_IDX}, window={WINDOW_SIZE})...\\\\\\\")\\\\n    X_train_hs, y_train_hs = build_hs_temporal_features(train_traces, LAYER_IDX, WINDOW_SIZE)\\\\n    print(f\\\\\\\"  HS feature shape: {X_train_hs.shape}\\\\\\\")\\\\n    clf_hs = LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000, random_state=SEED)\\\\n    clf_hs.fit(X_train_hs, y_train_hs)\\\\n    print(\\\\\\\"  HS probe trained\\\\\\\")\\\\n\\\\n    # Train text temporal probe\\\\n    print(f\\\\\\\"Training text temporal probe (window={WINDOW_SIZE})...\\\\\\\")\\\\n    X_train_text, y_train_text = build_text_temporal_features(train_traces, WINDOW_SIZE)\\\\n    print(f\\\\\\\"  Text feature shape: {X_train_text.shape}\\\\\\\")\\\\n    clf_text = LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000, random_state=SEED)\\\\n    clf_text.fit(X_train_text, y_train_text)\\\\n    print(\\\\\\\"  Text probe trained\\\\\\\")\\\\n\\\\n    # Predict on test traces\\\\n    print(\\\\\\\"\\\\\\\\nPredicting on test traces...\\\\\\\")\\\\n    hs_preds = predict_per_trace_hs(clf_hs, test_traces, LAYER_IDX, WINDOW_SIZE)\\\\n    text_preds = predict_per_trace_text(clf_text, test_traces, WINDOW_SIZE)\\\\n\\\\n    # Compute per-trace pre-CP FPR\\\\n    hs_fprs = compute_per_trace_precp_fpr(hs_preds, test_traces)\\\\n    text_fprs = compute_per_trace_precp_fpr(text_preds, test_traces)\\\\n\\\\n    hs_mean_fpr = float(np.mean(hs_fprs))\\\\n    text_mean_fpr = float(np.mean(text_fprs))\\\\n    print(f\\\\\\\"\\\\\\\\nPre-CP FPR (HS probe):   {hs_mean_fpr:.4f} +/- {np.std(hs_fprs):.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Pre-CP FPR (Text probe): {text_mean_fpr:.4f} +/- {np.std(text_fprs):.4f}\\\\\\\")\\\\n\\\\n    # Paired bootstrap test\\\\n    print(\\\\\\\"\\\\\\\\nRunning paired bootstrap test (1000 resamples)...\\\\\\\")\\\\n    bootstrap_result = paired_bootstrap_test(hs_fprs, text_fprs, n_resamples=1000)\\\\n    print(f\\\\\\\"  Difference (HS - Text): {bootstrap_result['difference_mean']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  95% CI: [{bootstrap_result['difference_ci_95'][0]:.4f}, {bootstrap_result['difference_ci_95'][1]:.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  p-value: {bootstrap_result['p_value']:.4f}\\\\\\\")\\\\n\\\\n    # Save output\\\\n    output = {\\\\n        \\\\\\\"hs_temporal_precp_fpr\\\\\\\": hs_mean_fpr,\\\\n        \\\\\\\"text_temporal_precp_fpr\\\\\\\": text_mean_fpr,\\\\n        \\\\\\\"difference_mean\\\\\\\": bootstrap_result[\\\\\\\"difference_mean\\\\\\\"],\\\\n        \\\\\\\"difference_ci_95\\\\\\\": bootstrap_result[\\\\\\\"difference_ci_95\\\\\\\"],\\\\n        \\\\\\\"p_value\\\\\\\": bootstrap_result[\\\\\\\"p_value\\\\\\\"],\\\\n        \\\\\\\"n_traces\\\\\\\": bootstrap_result[\\\\\\\"n_traces\\\\\\\"],\\\\n        \\\\\\\"n_resamples\\\\\\\": 1000,\\\\n        \\\\\\\"hs_config\\\\\\\": f\\\\\\\"LR balanced C=1.0 window={WINDOW_SIZE} layer={LAYER_IDX}\\\\\\\",\\\\n        \\\\\\\"text_config\\\\\\\": f\\\\\\\"all-MiniLM-L6-v2 temporal window={WINDOW_SIZE}\\\\\\\",\\\\n        \\\\\\\"per_trace_hs_fprs\\\\\\\": [float(x) for x in hs_fprs],\\\\n        \\\\\\\"per_trace_text_fprs\\\\\\\": [float(x) for x in text_fprs],\\\\n    }\\\\n\\\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n    out_path = OUTPUT_DIR / \\\\\\\"bootstrap_hs_vs_text_fpr.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 5b: Pre-CP FPR Paired Bootstrap Test - HS probe vs Text probe for R1-32B.\\\"\\\"\\\"\\n\\nimport os, sys, json\\nos.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.linear_model import LogisticRegression\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/contrastive_trace_safety\\\")\\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\\nfrom src.config import SAFETY_LABELS\\n\\nHS_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_r1_32b\\\")\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_001a\\\")\\nHIDDEN_DIM = 5120\\nTEXT_DIM = 384\\nLAYER_IDX = 2\\nWINDOW_SIZE = 10\\nSEED = 42\\n\\n\\ndef load_traces_with_sentences():\\n    \\\"\\\"\\\"Load R1-32B traces from HF and match with hidden states.\\\"\\\"\\\"\\n    print(\\\"Loading HarmThoughts dataset (r1-32b)...\\\")\\n    raw_traces = load_harmthoughts(\\\"r1-32b\\\")\\n\\n    traces = []\\n    for trace_id, steps in raw_traces.items():\\n        is_jailbreak = steps[0][\\\"final_judgment\\\"] == 1.0\\n        if not is_jailbreak:\\n            continue\\n        labels = [s[\\\"label\\\"] for s in steps]\\n        cp = extract_commitment_point(labels)\\n        if cp is None:\\n            continue\\n\\n        hs_path = HS_DIR / f\\\"{trace_id}.pt\\\"\\n        if not hs_path.exists():\\n            continue\\n\\n        sentences = [s[\\\"sentence\\\"] for s in steps]\\n        step_labels = create_step_labels(cp, len(sentences))\\n\\n        hs_data = torch.load(hs_path, map_location=\\\"cpu\\\", weights_only=False)\\n\\n        traces.append({\\n            \\\"trace_id\\\": trace_id,\\n            \\\"sentences\\\": sentences,\\n            \\\"hidden_states\\\": hs_data[\\\"hidden_states\\\"],\\n            \\\"commitment_point\\\": cp,\\n            \\\"step_labels\\\": step_labels,\\n        })\\n\\n    print(f\\\"  Loaded {len(traces)} traces with hidden states + sentences\\\")\\n    return traces\\n\\n\\ndef split_traces(traces, seed=SEED):\\n    rng = np.random.default_rng(seed)\\n    indices = rng.permutation(len(traces))\\n    n_train = int(len(traces) * 0.6)\\n    n_val = int(len(traces) * 0.2)\\n    return (\\n        [traces[i] for i in indices[:n_train]],\\n        [traces[i] for i in indices[n_train:n_train+n_val]],\\n        [traces[i] for i in indices[n_train+n_val:]],\\n    )\\n\\n\\ndef build_hs_temporal_features(traces, layer_idx, window_size):\\n    \\\"\\\"\\\"Build temporal windowed features from hidden states.\\\"\\\"\\\"\\n    half_w = window_size // 2\\n    X_list, y_list = [], []\\n    for t in traces:\\n        hs = t[\\\"hidden_states\\\"][:, layer_idx, :].numpy().astype(np.float32)\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), hs.shape[0])\\n        hs = hs[:n]\\n        labels = labels[:n]\\n        padded = np.zeros((n + window_size - 1, HIDDEN_DIM), dtype=np.float32)\\n        padded[half_w:half_w+n] = hs\\n        windows = np.array([padded[i:i+window_size].flatten() for i in range(n)])\\n        X_list.append(windows)\\n        y_list.append(labels)\\n    return np.vstack(X_list), np.concatenate(y_list)\\n\\n\\ndef build_text_temporal_features(traces, window_size):\\n    \\\"\\\"\\\"Build temporal windowed features from text embeddings.\\\"\\\"\\\"\\n    X_list, y_list = [], []\\n    for t in traces:\\n        emb = t[\\\"text_embeddings\\\"]\\n        labels = np.array(t[\\\"step_labels\\\"])\\n        n = min(len(labels), emb.shape[0])\\n        emb = emb[:n]\\n        labels = labels[:n]\\n        X = []\\n        for i in range(n):\\n            start = max(0, i - window_size + 1)\\n            window_emb = emb[start:i+1]\\n            if len(window_emb) < window_size:\\n                pad = np.zeros((window_size - len(window_emb), TEXT_DIM), dtype=np.float32)\\n                window_emb = np.concatenate([pad, window_emb], axis=0)\\n            X.append(window_emb.flatten())\\n        X_list.append(np.array(X))\\n        y_list.append(labels)\\n    return np.vstack(X_list), np.concatenate(y_list)\\n\\n\\ndef predict_per_trace_hs(clf, traces, layer_idx, window_size):\\n    \\\"\\\"\\\"Get per-step predictions for each trace using HS probe.\\\"\\\"\\\"\\n    half_w = window_size // 2\\n    \\n\\n... [截断: 输出过长，省略 2396 字符] ...\\n\\nt(np.percentile(bootstrap_diffs, 97.5))\\n\\n    return {\\n        \\\"difference_mean\\\": float(observed_diff),\\n        \\\"difference_ci_95\\\": [ci_lower, ci_upper],\\n        \\\"p_value\\\": float(p_value),\\n        \\\"n_traces\\\": n,\\n        \\\"n_resamples\\\": n_resamples,\\n    }\\n\\n\\ndef main():\\n    # Load traces with sentences\\n    traces = load_traces_with_sentences()\\n\\n    # Compute text embeddings\\n    print(\\\"Loading sentence-transformers model (all-MiniLM-L6-v2)...\\\")\\n    from sentence_transformers import SentenceTransformer\\n    st_model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')\\n\\n    print(\\\"Encoding text embeddings for all traces...\\\")\\n    for i, t in enumerate(traces):\\n        emb = st_model.encode(t[\\\"sentences\\\"], batch_size=64, show_progress_bar=False)\\n        t[\\\"text_embeddings\\\"] = emb.astype(np.float32)\\n        if (i + 1) % 20 == 0:\\n            print(f\\\"  Encoded {i+1}/{len(traces)}\\\")\\n    print(f\\\"  Done encoding {len(traces)} traces\\\")\\n\\n    # Split\\n    train_traces, val_traces, test_traces = split_traces(traces)\\n    print(f\\\"Split: train={len(train_traces)}, val={len(val_traces)}, test={len(test_traces)}\\\")\\n\\n    # Train HS temporal probe\\n    print(f\\\"\\\\nTraining HS temporal probe (layer={LAYER_IDX}, window={WINDOW_SIZE})...\\\")\\n    X_train_hs, y_train_hs = build_hs_temporal_features(train_traces, LAYER_IDX, WINDOW_SIZE)\\n    print(f\\\"  HS feature shape: {X_train_hs.shape}\\\")\\n    clf_hs = LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000, random_state=SEED)\\n    clf_hs.fit(X_train_hs, y_train_hs)\\n    print(\\\"  HS probe trained\\\")\\n\\n    # Train text temporal probe\\n    print(f\\\"Training text temporal probe (window={WINDOW_SIZE})...\\\")\\n    X_train_text, y_train_text = build_text_temporal_features(train_traces, WINDOW_SIZE)\\n    print(f\\\"  Text feature shape: {X_train_text.shape}\\\")\\n    clf_text = LogisticRegression(C=1.0, class_weight='balanced', max_iter=1000, random_state=SEED)\\n    clf_text.fit(X_train_text, y_train_text)\\n    print(\\\"  Text probe trained\\\")\\n\\n    # Predict on test traces\\n    print(\\\"\\\\nPredicting on test traces...\\\")\\n    hs_preds = predict_per_trace_hs(clf_hs, test_traces, LAYER_IDX, WINDOW_SIZE)\\n    text_preds = predict_per_trace_text(clf_text, test_traces, WINDOW_SIZE)\\n\\n    # Compute per-trace pre-CP FPR\\n    hs_fprs = compute_per_trace_precp_fpr(hs_preds, test_traces)\\n    text_fprs = compute_per_trace_precp_fpr(text_preds, test_traces)\\n\\n    hs_mean_fpr = float(np.mean(hs_fprs))\\n    text_mean_fpr = float(np.mean(text_fprs))\\n    print(f\\\"\\\\nPre-CP FPR (HS probe):   {hs_mean_fpr:.4f} +/- {np.std(hs_fprs):.4f}\\\")\\n    print(f\\\"Pre-CP FPR (Text probe): {text_mean_fpr:.4f} +/- {np.std(text_fprs):.4f}\\\")\\n\\n    # Paired bootstrap test\\n    print(\\\"\\\\nRunning paired bootstrap test (1000 resamples)...\\\")\\n    bootstrap_result = paired_bootstrap_test(hs_fprs, text_fprs, n_resamples=1000)\\n    print(f\\\"  Difference (HS - Text): {bootstrap_result['difference_mean']:.4f}\\\")\\n    print(f\\\"  95% CI: [{bootstrap_result['difference_ci_95'][0]:.4f}, {bootstrap_result['difference_ci_95'][1]:.4f}]\\\")\\n    print(f\\\"  p-value: {bootstrap_result['p_value']:.4f}\\\")\\n\\n    # Save output\\n    output = {\\n        \\\"hs_temporal_precp_fpr\\\": hs_mean_fpr,\\n        \\\"text_temporal_precp_fpr\\\": text_mean_fpr,\\n        \\\"difference_mean\\\": bootstrap_result[\\\"difference_mean\\\"],\\n        \\\"difference_ci_95\\\": bootstrap_result[\\\"difference_ci_95\\\"],\\n        \\\"p_value\\\": bootstrap_result[\\\"p_value\\\"],\\n        \\\"n_traces\\\": bootstrap_result[\\\"n_traces\\\"],\\n        \\\"n_resamples\\\": 1000,\\n        \\\"hs_config\\\": f\\\"LR balanced C=1.0 window={WINDOW_SIZE} layer={LAYER_IDX}\\\",\\n        \\\"text_config\\\": f\\\"all-MiniLM-L6-v2 temporal window={WINDOW_SIZE}\\\",\\n        \\\"per_trace_hs_fprs\\\": [float(x) for x in hs_fprs],\\n        \\\"per_trace_text_fprs\\\": [float(x) for x in text_fprs],\\n    }\\n\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    out_path = OUTPUT_DIR / \\\"bootstrap_hs_vs_text_fpr.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1db00449-877f-4bc1-9dc1-ad7b0d90b4f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ace8da7d-2253-4b29-945a-6e31e9a4bb17",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-17T06:15:15.168Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have a good understanding of the codebase. Now let me check existing artifacts and GPU status, then write and execute the full pipeline script for OpenThinker-7B.
+
+Key details:
+- SAFETY_LABELS in config.py = {"RA", "AL", "CC", "ED", "IA"} (5 labels)
+- Task says to use SAFETY_LABELS = {'RA', 'AL', 'CC', 'ED', 'IA', 'CR', 'PS', 'RS', 'IR'} if not found in code
+
+
+- The code has SAFETY_LABELS = {"RA", "AL", "CC", "ED", "IA"}, so I'll stick with that
+- Model: OpenThinker-7B with Qwen2.5-7B base, 28 layers, hidden_dim=3584
+- CP = last safety label + 1, solver = 'liblinear' (unlike exp_001a which uses the default lbfgs)
+
+Now I need to check GPU status and write the full pipeline script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ace8da7d-2253-4b29-945a-6e31e9a4bb17",
+  "isSidechain": false,
+  "requestId": "req_011Cb7efaCA2pJ5XrgHnmXDW",
+  "type": "assistant",
+  "uuid": "999003bf-d6f2-48c5-9cb1-ebbdd1280a50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HE8kdnkdMZ6ZZbWru6KBd3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3677,
+      "cache_read_input_tokens": 39373,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3677,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 39373,
+          "cache_creation_input_tokens": 3677,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3677
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-17T06:15:15.270Z_
+
+Good, I have the full picture. SAFETY_LABELS = {"RA", "AL", "CC", "ED", "IA"} from config.py. Let me check GPU status and disk space, then write and run the full pipeline script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "999003bf-d6f2-48c5-9cb1-ebbdd1280a50",
+  "isSidechain": false,
+  "requestId": "req_011Cb7efaCA2pJ5XrgHnmXDW",
+  "type": "assistant",
+  "uuid": "93522174-cbe5-49e2-b446-59b9e023ccc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HE8kdnkdMZ6ZZbWru6KBd3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3677,
+      "cache_read_input_tokens": 39373,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3677,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 39373,
+          "cache_creation_input_tokens": 3677,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3677
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T06:15:16.238Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EdsMJVTn5tFmiELCgjKdKT`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "df -h /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93522174-cbe5-49e2-b446-59b9e023ccc6",
+  "isSidechain": false,
+  "requestId": "req_011Cb7efaCA2pJ5XrgHnmXDW",
+  "type": "assistant",
+  "uuid": "efa80d16-d916-410e-93c3-8bbdeb72f3bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HE8kdnkdMZ6ZZbWru6KBd3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3677,
+      "cache_read_input_tokens": 39373,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3677,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 39373,
+          "cache_creation_input_tokens": 3677,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3677
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T06:15:16.613Z_
+
+<details><summary>↩ Tool result · `toolu_01EdsMJVTn5tFmiELCgjKdKT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  161G   90G  65% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "efa80d16-d916-410e-93c3-8bbdeb72f3bc",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "bfd75b38-8328-43d5-8b61-2ceb4522dbf2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  161G   90G  65% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  161G   90G  65% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "efa80d16-d916-410e-93c3-8bbdeb72f3bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T06:15:17.569Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NjWna5hLrzFiPqCDHwJ4Fs`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "nvidia-smi --query-gpu=name,memory.total,memory.used,memory.free --format=csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfd75b38-8328-43d5-8b61-2ceb4522dbf2",
+  "isSidechain": false,
+  "requestId": "req_011Cb7efaCA2pJ5XrgHnmXDW",
+  "type": "assistant",
+  "uuid": "c0da4b58-b86d-4e36-8681-75232b1133f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HE8kdnkdMZ6ZZbWru6KBd3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3677,
+      "cache_read_input_tokens": 39373,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3677,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 39373,
+          "cache_creation_input_tokens": 3677,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3677
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T06:15:17.983Z_
+
+<details><summary>↩ Tool result · `toolu_01NjWna5hLrzFiPqCDHwJ4Fs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"name, memory.total [MiB], memory.used [MiB], memory.free [MiB]\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB, 97253 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0da4b58-b86d-4e36-8681-75232b1133f9",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "0d858f6b-3dbf-43c1-ac52-bb86f1d42e34",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"name, memory.total [MiB], memory.used [MiB], memory.free [MiB]\\\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB, 97253 MiB\\\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB, 97253 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"name, memory.total [MiB], memory.used [MiB], memory.free [MiB]\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB, 97253 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c0da4b58-b86d-4e36-8681-75232b1133f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T06:15:18.010Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WzqFMRCFMHd8rxfeWzUdsc`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/contrastive_trace_safety/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d858f6b-3dbf-43c1-ac52-bb86f1d42e34",
+  "isSidechain": false,
+  "requestId": "req_011Cb7efaCA2pJ5XrgHnmXDW",
+  "type": "assistant",
+  "uuid": "c1737f6b-3c3f-4845-9447-8801653a8c19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HE8kdnkdMZ6ZZbWru6KBd3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3677,
+      "cache_read_input_tokens": 39373,
+      "output_tokens": 691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3677,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 691,
+          "cache_read_input_tokens": 39373,
+          "cache_creation_input_tokens": 3677,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3677
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T06:15:18.425Z_
+
+<details><summary>↩ Tool result · `toolu_01WzqFMRCFMHd8rxfeWzUdsc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"acc_precision_bootstrap\\ndiagnostics\\neval_results.json\\nexp_001a\\nexp_001a_extraction.log\\nexp_001a_probing.log\\nexp_001b\\nexp_003_cross_transfer\\nexp_005_trajguard\\nexp_006_bootstrap\\nexp_007_window_ablation\\nexp_013_text_baseline\\nexp_014_bocpd\\nexp_015_fpr\\nexp_c2_control\\nexp_pathC_two_stage\\nfigures\\nhidden_states\\nhidden_states_qwq_32b\\nhidden_states_r1_32b\\nhs_vs_text_acc_prec.json\\nm001_layer_fix\\nmetric_correlation\\npaper_data\\nprobes\\nqwq_paired_bootstrap_w5\\nqwq_text_verify\\nr1_32b_paired_bootstrap\\nr1_8b_balanced_recompute\\nr1_8b_bootstrap_hs_text\\nr1_8b_bootstrap_run.log\\nreport_hs_vs_text_acc.md\\nreport_r1_32b_selectivity_l10.md\\ntext_window_ablation_r1_8b\\ntext_window_ablation_r1_8b_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1737f6b-3c3f-4845-9447-8801653a8c19",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "88821a49-e8dd-4434-aaf5-7a38fa25b9f7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"acc_precision_bootstrap\\\\ndiagnostics\\\\neval_results.json\\\\nexp_001a\\\\nexp_001a_extraction.log\\\\nexp_001a_probing.log\\\\nexp_001b\\\\nexp_003_cross_transfer\\\\nexp_005_trajguard\\\\nexp_006_bootstrap\\\\nexp_007_window_ablation\\\\nexp_013_text_baseline\\\\nexp_014_bocpd\\\\nexp_015_fpr\\\\nexp_c2_control\\\\nexp_pathC_two_stage\\\\nfigures\\\\nhidden_states\\\\nhidden_states_qwq_32b\\\\nhidden_states_r1_32b\\\\nhs_vs_text_acc_prec.json\\\\nm001_layer_fix\\\\nmetric_correlation\\\\npaper_data\\\\nprobes\\\\nqwq_paired_bootstrap_w5\\\\nqwq_text_verify\\\\nr1_32b_paired_bootstrap\\\\nr1_8b_balanced_recompute\\\\nr1_8b_bootstrap_hs_text\\\\nr1_8b_bootstrap_run.log\\\\nreport_hs_vs_text_acc.md\\\\nreport_r1_32b_selectivity_l10.md\\\\ntext_window_ablation_r1_8b\\\\ntext_window_ablation_r1_8b_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"acc_precision_bootstrap\\ndiagnostics\\neval_results.json\\nexp_001a\\nexp_001a_extraction.log\\nexp_001a_probing.log\\nexp_001b\\nexp_003_cross_transfer\\nexp_005_trajguard\\nexp_006_bootstrap\\nexp_007_window_ablation\\nexp_013_text_baseline\\nexp_014_bocpd\\nexp_015_fpr\\nexp_c2_control\\nexp_pathC_two_stage\\nfigures\\nhidden_states\\nhidden_states_qwq_32b\\nhidden_states_r1_32b\\nhs_vs_text_acc_prec.json\\nm001_layer_fix\\nmetric_correlation\\npaper_data\\nprobes\\nqwq_paired_bootstrap_w5\\nqwq_text_verify\\nr1_32b_paired_bootstrap\\nr1_8b_balanced_recompute\\nr1_8b_bootstrap_hs_text\\nr1_8b_bootstrap_run.log\\nreport_hs_vs_text_acc.md\\nreport_r1_32b_selectivity_l10.md\\ntext_window_ablation_r1_8b\\ntext_window_ablation_r1_8b_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c1737f6b-3c3f-4845-9447-8801653a8c19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-17T06:15:22.673Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+GPU is clean (0 MiB used), plenty of disk space (90G available). Let me check the model names in the dataset to confirm what "ot-7b" traces look like, and then write the full pipeline script.
+
+Let me first check if HF model repo name is correct by checking what's cached locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88821a49-e8dd-4434-aaf5-7a38fa25b9f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb7egcizHgHEeFCuEKE6G",
+  "type": "assistant",
+  "uuid": "77307f4d-e5d4-4bce-8172-2a9865f92b0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqRAD97Q3xN4y5UbcqTaPj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1481,
+      "cache_read_input_tokens": 43050,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 43050,
+          "cache_creation_input_tokens": 1481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-17T06:15:23.639Z_
+
+GPU is clean (97GB VRAM free), 90GB disk. Let me check if the model is already cached and verify the dataset model name:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77307f4d-e5d4-4bce-8172-2a9865f92b0e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7egcizHgHEeFCuEKE6G",
+  "type": "assistant",
+  "uuid": "7d9e7e80-45a1-418f-9583-6fea20faf16f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqRAD97Q3xN4y5UbcqTaPj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1481,
+      "cache_read_input_tokens": 43050,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 43050,
+          "cache_creation_input_tokens": 1481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T06:15:25.147Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CpNso76XfwUgEpYDSeqoiA`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "ls /root/autodl-tmp/.hf_cache/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d9e7e80-45a1-418f-9583-6fea20faf16f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7egcizHgHEeFCuEKE6G",
+  "type": "assistant",
+  "uuid": "838bf47c-f293-41b5-a1d5-4a44db17d7cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqRAD97Q3xN4y5UbcqTaPj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1481,
+      "cache_read_input_tokens": 43050,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 43050,
+          "cache_creation_input_tokens": 1481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T06:15:25.516Z_
+
+<details><summary>↩ Tool result · `toolu_01CpNso76XfwUgEpYDSeqoiA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen\\ndatasets\\ndeepseek-ai\\nhub\\nishitakakkar-10___harm_thoughts\\nmodels--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B\\nmodels--microsoft--unixcoder-base\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "838bf47c-f293-41b5-a1d5-4a44db17d7cc",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "f955ad8d-172a-4075-984d-faa93b8ac7a1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen\\\\ndatasets\\\\ndeepseek-ai\\\\nhub\\\\nishitakakkar-10___harm_thoughts\\\\nmodels--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B\\\\nmodels--microsoft--unixcoder-base\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen\\ndatasets\\ndeepseek-ai\\nhub\\nishitakakkar-10___harm_thoughts\\nmodels--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B\\nmodels--microsoft--unixcoder-base\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "838bf47c-f293-41b5-a1d5-4a44db17d7cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T06:15:28.875Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WvGeqNtvL5o4Xnb9dY7iLg`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 -c \"\nfrom datasets import load_dataset\nds = load_dataset('ishitakakkar-10/HarmThoughts', split='train')\nmodels = set(ds['model_name'])\nprint('Models in dataset:', models)\nfor m in models:\n    subset = ds.filter(lambda x: x['model_name'] == m)\n    jb = subset.filter(lambda x: x['final_judgment'] == 1.0)\n    print(f'  {m}: total={len(subset)}, jailbreak_steps={len(jb)}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f955ad8d-172a-4075-984d-faa93b8ac7a1",
+  "isSidechain": false,
+  "requestId": "req_011Cb7egcizHgHEeFCuEKE6G",
+  "type": "assistant",
+  "uuid": "daf14c14-a1bf-40c4-9225-3dfddfbcdf16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqRAD97Q3xN4y5UbcqTaPj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1481,
+      "cache_read_input_tokens": 43050,
+      "output_tokens": 501,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 501,
+          "cache_read_input_tokens": 43050,
+          "cache_creation_input_tokens": 1481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T06:15:36.809Z_
+
+<details><summary>↩ Tool result · `toolu_01WvGeqNtvL5o4Xnb9dY7iLg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Models in dataset: {'r1-32b', 'r1-8b', 'QwQ', 'ot-7b'}\\n  r1-32b: total=8525, jailbreak_steps=5739\\n  r1-8b: total=14746, jailbreak_steps=12505\\n  QwQ: total=7007, jailbreak_steps=5108\\n  ot-7b: total=26653, jailbreak_steps=22171\\n\", \"stderr\": \"\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  30%|██▉       | 17000/56931 [00:00<00:00, 162483.98 examples/s]\\rFilter:  74%|███████▍  | 42000/56931 [00:00<00:00, 160770.35 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 159256.33 examples/s]\\n\\rFilter:   0%|          | 0/8525 [00:00<?, ? examples/s]\\rFilter:  94%|█████████▍| 8000/8525 [00:00<00:00, 70272.68 examples/s]\\rFilter: 100%|██████████| 8525/8525 [00:00<00:00, 68815.45 examples/s]\\n\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  32%|███▏      | 18000/56931 [00:00<00:00, 167947.20 examples/s]\\rFilter:  61%|██████▏   | 35000/56931 [00:00<00:00, 162759.88 examples/s]\\rFilter:  91%|█████████▏| 52000/56931 [00:00<00:00, 162994.82 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 164635.78 examples/s]\\n\\rFilter:   0%|          | 0/14746 [00:00<?, ? examples/s]\\rFilter:  54%|█████▍    | 8000/14746 [00:00<00:00, 73950.47 examples/s]\\rFilter: 100%|██████████| 14746/14746 [00:00<00:00, 72767.88 examples/s]\\n\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  32%|███▏      | 18000/56931 [00:00<00:00, 174194.52 examples/s]\\rFilter:  63%|██████▎   | 36000/56931 [00:00<00:00, 170607.07 examples/s]\\rFilter:  95%|█████████▍| 54000/56931 [00:00<00:00, 169006.60 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 170211.83 examples/s]\\n\\rFilter:   0%|          | 0/7007 [00:00<?, ? examples/s]\\rFilter: 100%|██████████| 7007/7007 [00:00<00:00, 61628.43 examples/s]\\rFilter: 100%|██████████| 7007/7007 [00:00<00:00, 60961.65 examples/s]\\n\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  33%|███▎      | 19000/56931 [00:00<00:00, 176542.02 examples/s]\\rFilter:  79%|███████▉  | 45000/56931 [00:00<00:00, 168141.68 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 168435.83 examples/s]\\n\\rFilter:   0%|          | 0/26653 [00:00<?, ? examples/s]\\rFilter:  30%|███       | 8000/26653 [00:00<00:00, 70747.10 examples/s]\\rFilter:  60%|██████    | 16000/26653 [00:00<00:00, 68907.44 examples/s]\\rFilter:  90%|█████████ | 24000/26653 [00:00<00:00, 68813.38 examples/s]\\rFilter: 100%|██████████| 26653/26653 [00:00<00:00, 68886.28 examples/s]\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "daf14c14-a1bf-40c4-9225-3dfddfbcdf16",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "a75bac04-f773-4d76-bcf5-ff41110d189e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Models in dataset: {'r1-32b', 'r1-8b', 'QwQ', 'ot-7b'}\\\\n  r1-32b: total=8525, jailbreak_steps=5739\\\\n  r1-8b: total=14746, jailbreak_steps=12505\\\\n  QwQ: total=7007, jailbreak_steps=5108\\\\n  ot-7b: total=26653, jailbreak_steps=22171\\\\n\\\", \\\"stderr\\\": \\\"\\\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\\\rFilter:  30%|██▉       | 17000/56931 [00:00<00:00, 162483.98 examples/s]\\\\rFilter:  74%|███████▍  | 42000/56931 [00:00<00:00, 160770.35 examples/s]\\\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 159256.33 examples/s]\\\\n\\\\rFilter:   0%|          | 0/8525 [00:00<?, ? examples/s]\\\\rFilter:  94%|█████████▍| 8000/8525 [00:00<00:00, 70272.68 examples/s]\\\\rFilter: 100%|██████████| 8525/8525 [00:00<00:00, 68815.45 examples/s]\\\\n\\\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\\\rFilter:  32%|███▏      | 18000/56931 [00:00<00:00, 167947.20 examples/s]\\\\rFilter:  61%|██████▏   | 35000/56931 [00:00<00:00, 162759.88 examples/s]\\\\rFilter:  91%|█████████▏| 52000/56931 [00:00<00:00, 162994.82 examples/s]\\\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 164635.78 examples/s]\\\\n\\\\rFilter:   0%|          | 0/14746 [00:00<?, ? examples/s]\\\\rFilter:  54%|█████▍    | 8000/14746 [00:00<00:00, 73950.47 examples/s]\\\\rFilter: 100%|██████████| 14746/14746 [00:00<00:00, 72767.88 examples/s]\\\\n\\\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\\\rFilter:  32%|███▏      | 18000/56931 [00:00<00:00, 174194.52 examples/s]\\\\rFilter:  63%|██████▎   | 36000/56931 [00:00<00:00, 170607.07 examples/s]\\\\rFilter:  95%|█████████▍| 54000/56931 [00:00<00:00, 169006.60 examples/s]\\\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 170211.83 examples/s]\\\\n\\\\rFilter:   0%|          | 0/7007 [00:00<?, ? examples/s]\\\\rFilter: 100%|██████████| 7007/7007 [00:00<00:00, 61628.43 examples/s]\\\\rFilter: 100%|██████████| 7007/7007 [00:00<00:00, 60961.65 examples/s]\\\\n\\\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\\\rFilter:  33%|███▎      | 19000/56931 [00:00<00:00, 176542.02 examples/s]\\\\rFilter:  79%|███████▉  | 45000/56931 [00:00<00:00, 168141.68 examples/s]\\\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 168435.83 examples/s]\\\\n\\\\rFilter:   0%|          | 0/26653 [00:00<?, ? examples/s]\\\\rFilter:  30%|███       | 8000/26653 [00:00<00:00, 70747.10 examples/s]\\\\rFilter:  60%|██████    | 16000/26653 [00:00<00:00, 68907.44 examples/s]\\\\rFilter:  90%|█████████ | 24000/26653 [00:00<00:00, 68813.38 examples/s]\\\\rFilter: 100%|██████████| 26653/26653 [00:00<00:00, 68886.28 examples/s]\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.92}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Models in dataset: {'r1-32b', 'r1-8b', 'QwQ', 'ot-7b'}\\n  r1-32b: total=8525, jailbreak_steps=5739\\n  r1-8b: total=14746, jailbreak_steps=12505\\n  QwQ: total=7007, jailbreak_steps=5108\\n  ot-7b: total=26653, jailbreak_steps=22171\\n\", \"stderr\": \"\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  30%|██▉       | 17000/56931 [00:00<00:00, 162483.98 examples/s]\\rFilter:  74%|███████▍  | 42000/56931 [00:00<00:00, 160770.35 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 159256.33 examples/s]\\n\\rFilter:   0%|          | 0/8525 [00:00<?, ? examples/s]\\rFilter:  94%|█████████▍| 8000/8525 [00:00<00:00, 70272.68 examples/s]\\rFilter: 100%|██████████| 8525/8525 [00:00<00:00, 68815.45 examples/s]\\n\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  32%|███▏      | 18000/56931 [00:00<00:00, 167947.20 examples/s]\\rFilter:  61%|██████▏   | 35000/56931 [00:00<00:00, 162759.88 examples/s]\\rFilter:  91%|█████████▏| 52000/56931 [00:00<00:00, 162994.82 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 164635.78 examples/s]\\n\\rFilter:   0%|          | 0/14746 [00:00<?, ? examples/s]\\rFilter:  54%|█████▍    | 8000/14746 [00:00<00:00, 73950.47 examples/s]\\rFilter: 100%|██████████| 14746/14746 [00:00<00:00, 72767.88 examples/s]\\n\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  32%|███▏      | 18000/56931 [00:00<00:00, 174194.52 examples/s]\\rFilter:  63%|██████▎   | 36000/56931 [00:00<00:00, 170607.07 examples/s]\\rFilter:  95%|█████████▍| 54000/56931 [00:00<00:00, 169006.60 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 170211.83 examples/s]\\n\\rFilter:   0%|          | 0/7007 [00:00<?, ? examples/s]\\rFilter: 100%|██████████| 7007/7007 [00:00<00:00, 61628.43 examples/s]\\rFilter: 100%|██████████| 7007/7007 [00:00<00:00, 60961.65 examples/s]\\n\\rFilter:   0%|          | 0/56931 [00:00<?, ? examples/s]\\rFilter:  33%|███▎      | 19000/56931 [00:00<00:00, 176542.02 examples/s]\\rFilter:  79%|███████▉  | 45000/56931 [00:00<00:00, 168141.68 examples/s]\\rFilter: 100%|██████████| 56931/56931 [00:00<00:00, 168435.83 examples/s]\\n\\rFilter:   0%|          | 0/26653 [00:00<?, ? examples/s]\\rFilter:  30%|███       | 8000/26653 [00:00<00:00, 70747.10 examples/s]\\rFilter:  60%|██████    | 16000/26653 [00:00<00:00, 68907.44 examples/s]\\rFilter:  90%|█████████ | 24000/26653 [00:00<00:00, 68813.38 examples/s]\\rFilter: 100%|██████████| 26653/26653 [00:00<00:00, 68886.28 examples/s]\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.92}}"
+    }
+  },
+  "sourceToolAssistantUUID": "daf14c14-a1bf-40c4-9225-3dfddfbcdf16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a75bac04-f773-4d76-bcf5-ff41110d189e",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-17T06:15:52.496Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good data:
+- ot-7b: 26653 total steps, 22171 jailbreak steps
+- The model isn't cached locally yet, so I'll need to download it
+
+Now let me figure out the exact HuggingFace repo name for OpenThinker-7B. The task suggests "open-thoughts/OpenThinker-7B". Let me check if this is correct. Since the model is based on Qwen2.5-7B, it should have 28 layers and hidden_dim=3584.
+
+Actually, looking at the HF cache, there's no OpenThinker-7B cached. 
+
+I'm building a comprehensive pipeline script that handles the full analysis workflow—downloading the model, loading the jailbreak data, computing commitment points, extracting hidden states across all layers, running layer sweeps and temporal probes, performing text probes and bootstrap comparisons, applying selectivity controls, and saving the results. With roughly 277 traces based on the 22171 jailbreak steps, I need to make sure the script handles the data efficiently.
+
+Writing the pipeline script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a75bac04-f773-4d76-bcf5-ff41110d189e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ehyMjwCVacYyEHddVv",
+  "type": "assistant",
+  "uuid": "120833ac-cd26-403d-99ea-0f1bc490427f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1DCYVD5w827mfCXCtLaiD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2066,
+      "cache_read_input_tokens": 44531,
+      "output_tokens": 934,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 934,
+          "cache_read_input_tokens": 44531,
+          "cache_creation_input_tokens": 2066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-17T06:15:52.557Z_
+
+ot-7b has 22171 jailbreak steps. Now let me write the full pipeline script. First, let me check the exact model repo name:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "120833ac-cd26-403d-99ea-0f1bc490427f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ehyMjwCVacYyEHddVv",
+  "type": "assistant",
+  "uuid": "8e97381b-5c02-4f9e-a9c7-e870ec2dc5c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1DCYVD5w827mfCXCtLaiD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2066,
+      "cache_read_input_tokens": 44531,
+      "output_tokens": 934,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 934,
+          "cache_read_input_tokens": 44531,
+          "cache_creation_input_tokens": 2066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T06:15:57.756Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01E4Z9K4eeHeQ2EawVGTJkFQ`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 -c \"\nimport sys\nsys.path.insert(0, '/root/autodl-tmp/contrastive_trace_safety')\nfrom src.data_loader import load_harmthoughts, extract_commitment_point\nfrom src.config import SAFETY_LABELS\nprint('SAFETY_LABELS:', SAFETY_LABELS)\n\nraw = load_harmthoughts('ot-7b')\nprint(f'Total ot-7b traces: {len(raw)}')\n\n# Count jailbreak with CP\njb_with_cp = 0\njb_no_cp = 0\nlengths = []\nfor tid, steps in raw.items():\n    if steps[0]['final_judgment'] != 1.0:\n        continue\n    labels = [s['label'] for s in steps]\n    cp = extract_commitment_point(labels)\n    if cp is not None:\n        jb_with_cp += 1\n        lengths.append(len(steps))\n    else:\n        jb_no_cp += 1\n\nimport numpy as np\nprint(f'Jailbreak with CP: {jb_with_cp}')\nprint(f'Jailbreak no CP: {jb_no_cp}')\nprint(f'Mean trace length: {np.mean(lengths):.1f}')\nprint(f'Max trace length: {max(lengths)}')\nprint(f'Min trace length: {min(lengths)}')\nprint(f'Median: {np.median(lengths):.1f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e97381b-5c02-4f9e-a9c7-e870ec2dc5c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ehyMjwCVacYyEHddVv",
+  "type": "assistant",
+  "uuid": "01c6acb0-4e1c-4503-bc88-5723c3d1d1b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C1DCYVD5w827mfCXCtLaiD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2066,
+      "cache_read_input_tokens": 44531,
+      "output_tokens": 934,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 934,
+          "cache_read_input_tokens": 44531,
+          "cache_creation_input_tokens": 2066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T06:16:05.618Z_
+
+<details><summary>↩ Tool result · `toolu_01E4Z9K4eeHeQ2EawVGTJkFQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SAFETY_LABELS: {'RA', 'ED', 'CC', 'IA', 'AL'}\\nTotal ot-7b traces: 333\\nJailbreak with CP: 228\\nJailbreak no CP: 42\\nMean trace length: 80.1\\nMax trace length: 234\\nMin trace length: 21\\nMedian: 73.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01c6acb0-4e1c-4503-bc88-5723c3d1d1b1",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "5d48d961-d076-4bb0-9c3e-b0d667c529c5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SAFETY_LABELS: {'RA', 'ED', 'CC', 'IA', 'AL'}\\\\nTotal ot-7b traces: 333\\\\nJailbreak with CP: 228\\\\nJailbreak no CP: 42\\\\nMean trace length: 80.1\\\\nMax trace length: 234\\\\nMin trace length: 21\\\\nMedian: 73.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.85}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SAFETY_LABELS: {'RA', 'ED', 'CC', 'IA', 'AL'}\\nTotal ot-7b traces: 333\\nJailbreak with CP: 228\\nJailbreak no CP: 42\\nMean trace length: 80.1\\nMax trace length: 234\\nMin trace length: 21\\nMedian: 73.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.85}}"
+    }
+  },
+  "sourceToolAssistantUUID": "01c6acb0-4e1c-4503-bc88-5723c3d1d1b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63 · 2026-05-17T06:16:05.627Z_
+
+```json
+{
+  "parentUuid": "5d48d961-d076-4bb0-9c3e-b0d667c529c5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "96f6c775-b86d-447c-9001-f1d21ea2553c",
+  "timestamp": "2026-05-17T06:16:05.627Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-17T06:16:17.671Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. 228 jailbreak traces with CP, mean length 80 sentences. That's a lot of sentences to process. With 28 layers and hidden_dim=3584, each trace will produce a tensor of shape [80, 28, 3584] ≈ 80*28*3584*2 bytes (bfloat16) = ~16MB per trace. For 228 traces that's ~3.6GB total on disk which is fine.
+
+Now let me write the full pipeline script. Given the traces are long (avg 80, max 234 sentences), I need to be careful with OOM during forward passes. 
+
+The 7B model in bf16 takes about 14GB VRAM, which the 97GB GPU can handle without issue. With max token length around 4700 tokens (accounting for ~234 sentences at ~20 tokens each), I'm well within the context window. Let me write out the full end-to-end pipeline script, and I'll try loading the OpenThinker-7B model directly from the HuggingFace repo, handling any errors that come up.
+
+Writing the pipeline script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96f6c775-b86d-447c-9001-f1d21ea2553c",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ek6XQNx5mmeyie2Duf",
+  "type": "assistant",
+  "uuid": "9b75aa2c-91b5-444a-ac11-d78cd5f0924b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUEmvy2u98DJzdxfY6RfbF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 46597,
+      "output_tokens": 10774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10774,
+          "cache_read_input_tokens": 46597,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-17T06:16:17.685Z_
+
+228 traces with CP, mean length 80. Now let me write and execute the full pipeline script:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b75aa2c-91b5-444a-ac11-d78cd5f0924b",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ek6XQNx5mmeyie2Duf",
+  "type": "assistant",
+  "uuid": "5630338f-647f-479d-8167-2399f63b10c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUEmvy2u98DJzdxfY6RfbF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 46597,
+      "output_tokens": 10774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10774,
+          "cache_read_input_tokens": 46597,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-17T06:18:14.176Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XiYcZq56CXARHQYq855MD3`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cat > /root/autodl-tmp/contrastive_trace_safety/src/experiments/exp_ot7b_full_pipeline.py << 'SCRIPT'\n\"\"\"OpenThinker-7B Full Commitment Detection Pipeline.\"\"\"\n\nimport os, sys, json, time\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import balanced_accuracy_score, precision_score\nfrom tqdm import tqdm\n\nsys.path.insert(0, \"/root/autodl-tmp/contrastive_trace_safety\")\nfrom src.data_loader import load_harmthoughts, extract_commitment_point, create_step_labels\nfrom src.config import SAFETY_LABELS\n\nMODEL_NAME = \"open-thoughts/OpenThinker-7B\"\nMODEL_CACHE = \"/root/autodl-tmp/.hf_cache/open-thoughts/OpenThinker-7B\"\nHS_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b\")\nOUTPUT_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline\")\nNUM_LAYERS = 28\nHIDDEN_DIM = 3584\nDEVICE = \"cuda:0\"\nMAX_LENGTH = 8192\nSEED = 42\nK_CONSECUTIVE = 5\nTHRESHOLD = 0.5\n\n# ============ DATA LOADING ============\n\ndef load_ot7b_traces():\n    raw_traces = load_harmthoughts(\"ot-7b\")\n    traces = []\n    for trace_id, steps in raw_traces.items():\n        if steps[0][\"final_judgment\"] != 1.0:\n            continue\n        labels = [s[\"label\"] for s in steps]\n        cp = extract_commitment_point(labels)\n        if cp is None:\n            continue\n        sentences = [s[\"sentence\"] for s in steps]\n        step_labels = create_step_labels(cp, len(sentences))\n        traces.append({\n            \"trace_id\": trace_id,\n            \"sentences\": sentences,\n            \"labels\": labels,\n            \"commitment_point\": cp,\n            \"step_labels\": step_labels,\n            \"query\": steps[0][\"query\"],\n        })\n    return traces\n\n# ============ HIDDEN STATE EXTRACTION ============\n\ndef find_sentence_boundaries(tokenizer, sentences):\n    full_text = \" \".join(sentences)\n    encoding = tokenizer(\n        full_text,\n        return_offsets_mapping=True,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=MAX_LENGTH,\n    )\n    offsets = encoding[\"offset_mapping\"][0]\n    boundaries = []\n    char_pos = 0\n    for sent in sentences:\n        char_end = char_pos + len(sent)\n        last_token_idx = 0\n        for tok_idx, (start, end) in enumerate(offsets):\n            if start < char_end:\n                last_token_idx = tok_idx\n        boundaries.append(last_token_idx)\n        char_pos = char_end + 1\n    return boundaries\n\n\ndef extract_trace(model, tokenizer, sentences):\n    boundary_positions = find_sentence_boundaries(tokenizer, sentences)\n    full_text = \" \".join(sentences)\n    inputs = tokenizer(\n        full_text, return_tensors=\"pt\", truncation=True, max_length=MAX_LENGTH\n    ).to(DEVICE)\n\n    num_tokens = inputs[\"input_ids\"].shape[1]\n    boundary_positions = [min(p, num_tokens - 1) for p in boundary_positions]\n\n    with torch.no_grad():\n        outputs = model(**inputs, output_hidden_states=True)\n\n    hidden_states = outputs.hidden_states\n    num_sentences = len(sentences)\n    result = torch.zeros(num_sentences, NUM_LAYERS, HIDDEN_DIM, dtype=torch.bfloat16)\n\n    for sent_idx, pos in enumerate(boundary_positions):\n        for layer_idx in range(NUM_LAYERS):\n            hs = hidden_states[layer_idx + 1][0, pos, :]\n            result[sent_idx, layer_idx, :] = hs.cpu()\n\n    del outputs, hidden_states\n    torch.cuda.empty_cache()\n    return result, num_tokens\n\n\ndef phase1_extract(traces):\n    \"\"\"Extract hidden states for all traces.\"\"\"\n    HS_DIR.mkdir(parents=True, exist_ok=True)\n    \n    existing = {f.stem for f in HS_DIR.glob(\"*.pt\")}\n    remaining = [t for t in traces if t[\"trace_id\"] not in existing]\n    print(f\"Already extracted: {len(existing)}, remaining: {len(remaining)}\")\n    \n    if not remaining:\n        print(\"All traces already extracted.\")\n        return\n    \n    print(\"Loading OpenThinker-7B model...\")\n    t0 = time.time()\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True, cache_dir=\"/root/autodl-tmp/.hf_cache\")\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    \n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_NAME, torch_dtype=torch.bfloat16, device_map=DEVICE,\n        trust_remote_code=True, cache_dir=\"/root/autodl-tmp/.hf_cache\"\n    )\n    model.eval()\n    print(f\"Model loaded in {time.time()-t0:.1f}s\")\n    \n    errors = []\n    for i, trace in enumerate(tqdm(remaining, desc=\"Extracting HS\")):\n        try:\n            hs, ntok = extract_trace(model, tokenizer, trace[\"sentences\"])\n            save_dict = {\n                \"hidden_states\": hs,\n                \"trace_id\": trace[\"trace_id\"],\n                \"num_sentences\": len(trace[\"sentences\"]),\n                \"commitment_point\": trace[\"commitment_point\"],\n                \"step_labels\": trace[\"step_labels\"],\n                \"query\": trace[\"query\"],\n            }\n            torch.save(save_dict, HS_DIR / f\"{trace['trace_id']}.pt\")\n        except Exception as e:\n            errors.append({\"trace_id\": trace[\"trace_id\"], \"error\": str(e)})\n            print(f\"\\nError on {trace['trace_id']}: {e}\")\n            torch.cuda.empty_cache()\n        \n        if (i + 1) % 20 == 0:\n            mem = torch.cuda.memory_allocated() / 1e9\n            print(f\"\\n  [{i+1}/{len(remaining)}] GPU mem: {mem:.1f}GB\")\n    \n    print(f\"\\nExtraction done. Errors: {len(errors)}\")\n    if errors:\n        for e in errors[:5]:\n            print(f\"  {e['trace_id']}: {e['error']}\")\n    \n    # Free GPU memory\n    del model, tokenizer\n    torch.cuda.empty_cache()\n    \n    return errors\n\n# ============ ANALYSIS FUNCTIONS ============\n\ndef load_extracted_traces():\n    traces = []\n    for pt_file in sorted(HS_DIR.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    indices = rng.permutation(len(traces))\n    n_train = int(len(traces) * 0.6)\n    n_val = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in indices[:n_train]],\n        [traces[i] for i in indices[n_train:n_train+n_val]],\n        [traces[i] for i in indices[n_train+n_val:]],\n    )\n\n\ndef extract_layer_data(traces, layer_idx):\n    X_list, y_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        X_list.append(hs[:n])\n        y_list.append(labels[:n])\n    return np.concatenate(X_list), np.concatenate(y_list)\n\n\ndef first_crossing(probs, threshold=THRESHOLD, k=K_CONSECUTIVE):\n    for i in range(len(probs) - k + 1):\n        if all(p > threshold for p in probs[i:i+k]):\n            return i\n    return None\n\n\ndef evaluate_crossing(clf, traces, layer_idx):\n    lead_times = []\n    n_crossings = 0\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        probs = clf.predict_proba(hs[:n])[:, 1]\n        cp = t[\"commitment_point\"]\n        fc = first_crossing(probs.tolist())\n        if fc is not None and fc < cp:\n            lead_times.append(cp - fc)\n            n_crossings += 1\n    crossing_rate = n_crossings / len(traces) if traces else 0\n    mean_lead = float(np.mean(lead_times)) if lead_times else 0.0\n    return crossing_rate, mean_lead\n\n\ndef compute_pre_cp_fpr(clf, traces, layer_idx=None, use_text=False, window_size=None):\n    \"\"\"Compute trace-level pre-CP FPR.\"\"\"\n    fprs = []\n    for t in traces:\n        cp = t[\"commitment_point\"]\n        if cp <= 0:\n            continue\n        if use_text:\n            emb = t[\"text_embeddings\"][:cp]\n            if window_size:\n                X = build_window_features_single(emb, window_size, emb.shape[1])\n            else:\n                X = emb\n        else:\n            hs = t[\"hidden_states\"][:cp, layer_idx, :].float().numpy()\n            if window_size:\n                X = build_window_features_single(hs, window_size, hs.shape[1])\n            else:\n                X = hs\n        preds = clf.predict(X)\n        fpr = float(np.mean(preds)) if len(preds) > 0 else 0.0\n        fprs.append(fpr)\n    return fprs\n\n\ndef build_window_features_single(features, window_size, dim):\n    \"\"\"Build windowed features for a single sequence.\"\"\"\n    n = features.shape[0]\n    X = []\n    for i in range(n):\n        start = max(0, i - window_size + 1)\n        window = features[start:i+1]\n        if len(window) < window_size:\n            pad = np.zeros((window_size - len(window), dim), dtype=np.float32)\n            window = np.concatenate([pad, window], axis=0)\n        X.append(window.flatten())\n    return np.array(X, dtype=np.float32)\n\n\ndef make_temporal_features(traces, layer_idx, window_size):\n    X_list, y_list = [], []\n    for t in traces:\n        hs = t[\"hidden_states\"][:, layer_idx, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        hs = hs[:n]\n        labels = labels[:n]\n        X = build_window_features_single(hs, window_size, HIDDEN_DIM)\n        X_list.append(X)\n        y_list.append(labels)\n    return np.vstack(X_list), np.concatenate(y_list)\n\n\ndef make_text_temporal_features(traces, window_size):\n    X_list, y_list = [], []\n    for t in traces:\n        emb = t[\"text_embeddings\"]\n        labels = np.array(t[\"step_labels\"])\n        n = min(emb.shape[0], len(labels))\n        emb = emb[:n]\n        labels = labels[:n]\n        X = build_window_features_single(emb, window_size, emb.shape[1])\n        X_list.append(X)\n        y_list.append(labels)\n    return np.vstack(X_list), np.concatenate(y_list)\n\n\n# ============ PHASE 2: LAYER SWEEP ============\n\ndef phase2_layer_sweep(train, val, test):\n    print(\"\\n\" + \"=\"*60)\n    print(\"PHASE 2: Layer Sweep (28 layers)\")\n    print(\"=\"*60)\n    \n    results = []\n    for layer_idx in range(NUM_LAYERS):\n        X_train, y_train = extract_layer_data(train, layer_idx)\n        X_test, y_test = extract_layer_data(test, layer_idx)\n        \n        clf = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\n                                 class_weight='balanced', random_state=SEED)\n        clf.fit(X_train, y_train)\n        \n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        crossing_rate, lead_mean = evaluate_crossing(clf, test, layer_idx)\n        \n        # Pre-CP FPR\n        fprs = compute_pre_cp_fpr(clf, test, layer_idx=layer_idx)\n        pre_cp_fpr = float(np.mean(fprs)) if fprs else 0.0\n        \n        score = bal_acc * crossing_rate\n        results.append({\n            \"layer_idx\": layer_idx,\n            \"bal_acc\": float(bal_acc),\n            \"crossing_rate\": float(crossing_rate),\n            \"lead_mean\": float(lead_mean),\n            \"pre_cp_fpr\": float(pre_cp_fpr),\n            \"score\": float(score),\n        })\n        \n        if layer_idx % 4 == 0 or layer_idx == NUM_LAYERS - 1:\n            print(f\"  Layer {layer_idx:2d}: bal_acc={bal_acc:.4f} cross={crossing_rate:.4f} lead={lead_mean:.1f} fpr={pre_cp_fpr:.4f} score={score:.4f}\")\n    \n    sorted_results = sorted(results, key=lambda x: x[\"score\"], reverse=True)\n    best = sorted_results[0]\n    print(f\"\\nBest layer: {best['layer_idx']} (depth={best['layer_idx']/NUM_LAYERS*100:.0f}%)\")\n    print(f\"  bal_acc={best['bal_acc']:.4f}, crossing_rate={best['crossing_rate']:.4f}, lead_mean={best['lead_mean']:.1f}\")\n    \n    return best[\"layer_idx\"], results\n\n\n# ============ PHASE 3: TEMPORAL PROBES ============\n\ndef phase3_temporal_probes(train, val, test, best_layer):\n    print(\"\\n\" + \"=\"*60)\n    print(f\"PHASE 3: Temporal LR Probes (layer={best_layer})\")\n    print(\"=\"*60)\n    \n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n    \n    for w in windows:\n        X_train, y_train = make_temporal_features(train, best_layer, w)\n        X_val, y_val = make_temporal_features(val, best_layer, w)\n        X_test, y_test = make_temporal_features(test, best_layer, w)\n        \n        clf = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\n                                 class_weight='balanced', random_state=SEED)\n        clf.fit(X_train, y_train)\n        \n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        \n        # Coverage (fraction of test traces where crossing happens before end)\n        n_cover = 0\n        for t in test:\n            hs = t[\"hidden_states\"][:, best_layer, :].float().numpy()\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_t = build_window_features_single(hs[:n], w, HIDDEN_DIM)\n            probs = clf.predict_proba(X_t)[:, 1]\n            fc = first_crossing(probs.tolist())\n            if fc is not None:\n                n_cover += 1\n        coverage = n_cover / len(test)\n        \n        # Pre-CP FPR (trace-level)\n        fprs = []\n        for t in test:\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            hs = t[\"hidden_states\"][:cp, best_layer, :].float().numpy()\n            X_pre = build_window_features_single(hs, w, HIDDEN_DIM)\n            preds = clf.predict(X_pre)\n            fprs.append(float(np.mean(preds)))\n        pre_cp_fpr = float(np.mean(fprs))\n        \n        # Lead mean\n        leads = []\n        for t in test:\n            hs = t[\"hidden_states\"][:, best_layer, :].float().numpy()\n            labels = np.array(t[\"step_labels\"])\n            n = min(hs.shape[0], len(labels))\n            X_t = build_window_features_single(hs[:n], w, HIDDEN_DIM)\n            probs = clf.predict_proba(X_t)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                leads.append(cp - fc)\n        lead_mean = float(np.mean(leads)) if leads else 0.0\n        \n        results.append({\n            \"window\": w,\n            \"bal_acc\": float(bal_acc),\n            \"precision\": float(prec),\n            \"coverage\": float(coverage),\n            \"pre_cp_fpr\": float(pre_cp_fpr),\n            \"lead_mean\": float(lead_mean),\n        })\n        print(f\"  W={w:2d}: bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={pre_cp_fpr:.4f} lead={lead_mean:.1f}\")\n    \n    best_w_result = max(results, key=lambda x: x[\"bal_acc\"])\n    print(f\"\\nBest W={best_w_result['window']} (bal_acc={best_w_result['bal_acc']:.4f})\")\n    return results, best_w_result[\"window\"]\n\n\n# ============ PHASE 4: TEXT PROBES ============\n\ndef phase4_text_probes(train, val, test):\n    print(\"\\n\" + \"=\"*60)\n    print(\"PHASE 4: Text Probes (all-MiniLM-L6-v2)\")\n    print(\"=\"*60)\n    \n    from sentence_transformers import SentenceTransformer\n    st_model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')\n    TEXT_DIM = 384\n    \n    print(\"Encoding text embeddings...\")\n    all_traces = train + val + test\n    for i, t in enumerate(all_traces):\n        emb = st_model.encode(t[\"sentences\"], batch_size=64, show_progress_bar=False)\n        t[\"text_embeddings\"] = emb.astype(np.float32)\n        if (i + 1) % 50 == 0:\n            print(f\"  Encoded {i+1}/{len(all_traces)}\")\n    print(f\"  Done encoding {len(all_traces)} traces\")\n    \n    del st_model\n    \n    windows = [1, 3, 5, 10, 15, 20, 25]\n    results = []\n    \n    for w in windows:\n        X_train, y_train = make_text_temporal_features(train, w)\n        X_test, y_test = make_text_temporal_features(test, w)\n        \n        clf = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\n                                 class_weight='balanced', random_state=SEED)\n        clf.fit(X_train, y_train)\n        \n        y_pred = clf.predict(X_test)\n        bal_acc = balanced_accuracy_score(y_test, y_pred)\n        prec = precision_score(y_test, y_pred, zero_division=0)\n        \n        # Coverage\n        n_cover = 0\n        for t in test:\n            emb = t[\"text_embeddings\"]\n            labels = np.array(t[\"step_labels\"])\n            n = min(emb.shape[0], len(labels))\n            X_t = build_window_features_single(emb[:n], w, TEXT_DIM)\n            probs = clf.predict_proba(X_t)[:, 1]\n            fc = first_crossing(probs.tolist())\n            if fc is not None:\n                n_cover += 1\n        coverage = n_cover / len(test)\n        \n        # Pre-CP FPR\n        fprs = []\n        for t in test:\n            cp = t[\"commitment_point\"]\n            if cp <= 0:\n                continue\n            emb = t[\"text_embeddings\"][:cp]\n            X_pre = build_window_features_single(emb, w, TEXT_DIM)\n            preds = clf.predict(X_pre)\n            fprs.append(float(np.mean(preds)))\n        pre_cp_fpr = float(np.mean(fprs))\n        \n        # Lead mean\n        leads = []\n        for t in test:\n            emb = t[\"text_embeddings\"]\n            labels = np.array(t[\"step_labels\"])\n            n = min(emb.shape[0], len(labels))\n            X_t = build_window_features_single(emb[:n], w, TEXT_DIM)\n            probs = clf.predict_proba(X_t)[:, 1]\n            cp = t[\"commitment_point\"]\n            fc = first_crossing(probs.tolist())\n            if fc is not None and fc < cp:\n                leads.append(cp - fc)\n        lead_mean = float(np.mean(leads)) if leads else 0.0\n        \n        results.append({\n            \"window\": w,\n            \"bal_acc\": float(bal_acc),\n            \"precision\": float(prec),\n            \"coverage\": float(coverage),\n            \"pre_cp_fpr\": float(pre_cp_fpr),\n            \"lead_mean\": float(lead_mean),\n        })\n        print(f\"  W={w:2d}: bal_acc={bal_acc:.4f} prec={prec:.4f} cov={coverage:.4f} fpr={pre_cp_fpr:.4f} lead={lead_mean:.1f}\")\n    \n    return results\n\n\n# ============ PHASE 5: PAIRED BOOTSTRAP ============\n\ndef phase5_bootstrap(train, test, best_layer, best_w):\n    print(\"\\n\" + \"=\"*60)\n    print(f\"PHASE 5: Paired Bootstrap (layer={best_layer}, W={best_w})\")\n    print(\"=\"*60)\n    \n    TEXT_DIM = 384\n    N_RESAMPLES = 1000\n    \n    # Train both probes\n    X_train_hs, y_train_hs = make_temporal_features(train, best_layer, best_w)\n    clf_hs = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\n                                class_weight='balanced', random_state=SEED)\n    clf_hs.fit(X_train_hs, y_train_hs)\n    \n    X_train_text, y_train_text = make_text_temporal_features(train, best_w)\n    clf_text = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\n                                  class_weight='balanced', random_state=SEED)\n    clf_text.fit(X_train_text, y_train_text)\n    \n    # Get per-trace metrics\n    hs_bal_accs, text_bal_accs = [], []\n    hs_precs, text_precs = [], []\n    hs_fprs, text_fprs = [], []\n    \n    for t in test:\n        cp = t[\"commitment_point\"]\n        hs = t[\"hidden_states\"][:, best_layer, :].float().numpy()\n        labels = np.array(t[\"step_labels\"])\n        n = min(hs.shape[0], len(labels))\n        \n        # HS predictions\n        X_hs = build_window_features_single(hs[:n], best_w, HIDDEN_DIM)\n        hs_pred = clf_hs.predict(X_hs)\n        hs_ba = balanced_accuracy_score(labels[:n], hs_pred)\n        hs_p = precision_score(labels[:n], hs_pred, zero_division=0)\n        hs_fpr_val = float(np.mean(hs_pred[:cp])) if cp > 0 else 0.0\n        \n        # Text predictions\n        emb = t[\"text_embeddings\"]\n        X_text = build_window_features_single(emb[:n], best_w, TEXT_DIM)\n        text_pred = clf_text.predict(X_text)\n        text_ba = balanced_accuracy_score(labels[:n], text_pred)\n        text_p = precision_score(labels[:n], text_pred, zero_division=0)\n        text_fpr_val = float(np.mean(text_pred[:cp])) if cp > 0 else 0.0\n        \n        hs_bal_accs.append(hs_ba)\n        text_bal_accs.append(text_ba)\n        hs_precs.append(hs_p)\n        text_precs.append(text_p)\n        hs_fprs.append(hs_fpr_val)\n        text_fprs.append(text_fpr_val)\n    \n    hs_bal_accs = np.array(hs_bal_accs)\n    text_bal_accs = np.array(text_bal_accs)\n    hs_precs = np.array(hs_precs)\n    text_precs = np.array(text_precs)\n    hs_fprs = np.array(hs_fprs)\n    text_fprs = np.array(text_fprs)\n    \n    def paired_bootstrap(metric_a, metric_b, n_resamples=N_RESAMPLES):\n        n = len(metric_a)\n        observed_diff = float(np.mean(metric_a) - np.mean(metric_b))\n        rng = np.random.default_rng(SEED)\n        diffs = []\n        for _ in range(n_resamples):\n            idx = rng.integers(0, n, size=n)\n            diffs.append(np.mean(metric_a[idx]) - np.mean(metric_b[idx]))\n        diffs = np.array(diffs)\n        # Two-sided p-value\n        p_value = float(np.mean(np.abs(diffs - np.mean(diffs)) >= np.abs(observed_diff)))\n        ci_lower = float(np.percentile(diffs, 2.5))\n        ci_upper = float(np.percentile(diffs, 97.5))\n        return observed_diff, ci_lower, ci_upper, p_value\n    \n    results = {}\n    for metric_name, hs_arr, text_arr in [\n        (\"bal_acc\", hs_bal_accs, text_bal_accs),\n        (\"precision\", hs_precs, text_precs),\n        (\"pre_cp_fpr\", hs_fprs, text_fprs),\n    ]:\n        diff, ci_lo, ci_hi, p = paired_bootstrap(hs_arr, text_arr)\n        bonferroni_sig = \"Yes\" if p < 0.017 else \"No\"\n        results[metric_name] = {\n            \"hs_mean\": float(np.mean(hs_arr)),\n            \"text_mean\": float(np.mean(text_arr)),\n            \"delta\": diff,\n            \"ci_95\": [ci_lo, ci_hi],\n            \"p_value\": p,\n            \"bonferroni_sig\": bonferroni_sig,\n        }\n        print(f\"  {metric_name}: HS={np.mean(hs_arr):.4f} Text={np.mean(text_arr):.4f} delta={diff:.4f} p={p:.4f} Bonf={bonferroni_sig}\")\n    \n    return results\n\n\n# ============ PHASE 6: SELECTIVITY CONTROL ============\n\ndef phase6_selectivity(train, test, best_layer, best_w):\n    print(\"\\n\" + \"=\"*60)\n    print(f\"PHASE 6: Selectivity Control (layer={best_layer}, W={best_w})\")\n    print(\"=\"*60)\n    \n    # Real accuracy\n    X_train, y_train = make_temporal_features(train, best_layer, best_w)\n    X_test, y_test = make_temporal_features(test, best_layer, best_w)\n    \n    clf = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\n                             class_weight='balanced', random_state=SEED)\n    clf.fit(X_train, y_train)\n    real_acc = balanced_accuracy_score(y_test, clf.predict(X_test))\n    \n    # Random permutation control\n    n_perms = 10\n    random_accs = []\n    rng = np.random.default_rng(SEED)\n    for perm_i in range(n_perms):\n        y_train_perm = rng.permutation(y_train)\n        clf_rand = LogisticRegression(solver='liblinear', C=1.0, max_iter=1000,\n                                      class_weight='balanced', random_state=SEED+perm_i)\n        clf_rand.fit(X_train, y_train_perm)\n        rand_acc = balanced_accuracy_score(y_test, clf_rand.predict(X_test))\n        random_accs.append(rand_acc)\n    \n    random_mean = float(np.mean(random_accs))\n    random_std = float(np.std(random_accs))\n    selectivity = float(real_acc - random_mean) * 100  # in pp\n    \n    print(f\"  real_acc: {real_acc:.4f}\")\n    print(f\"  random_mean +/- std: {random_mean:.4f} +/- {random_std:.4f}\")\n    print(f\"  selectivity: {selectivity:.1f} pp\")\n    \n    return {\n        \"real_acc\": float(real_acc),\n        \"random_mean\": random_mean,\n        \"random_std\": random_std,\n        \"selectivity_pp\": selectivity,\n        \"n_perms\": n_perms,\n        \"random_accs\": random_accs,\n    }\n\n\n# ============ MAIN ============\n\ndef main():\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n    \n    print(\"=\"*60)\n    print(\"OpenThinker-7B Full Pipeline (exp_ot7b_full_pipeline)\")\n    print(\"=\"*60)\n    \n    # Step 1: Load data\n    print(\"\\nStep 1: Loading ot-7b traces...\")\n    traces = load_ot7b_traces()\n    print(f\"  Found {len(traces)} jailbreak traces with commitment points\")\n    lengths = [len(t[\"sentences\"]) for t in traces]\n    print(f\"  Mean trace length: {np.mean(lengths):.1f} sentences\")\n    \n    # Step 2: Extract hidden states\n    print(\"\\nStep 2: Extracting hidden states...\")\n    errors = phase1_extract(traces)\n    \n    # Verify extraction\n    print(\"\\nVerifying extraction...\")\n    extracted = list(HS_DIR.glob(\"*.pt\"))\n    print(f\"  Total .pt files: {len(extracted)}\")\n    \n    # Spot check 3 random files\n    import random\n    random.seed(42)\n    checks = random.sample(extracted, min(3, len(extracted)))\n    for f in checks:\n        d = torch.load(f, map_location=\"cpu\", weights_only=False)\n        print(f\"  {f.stem}: shape={list(d['hidden_states'].shape)} CP={d['commitment_point']} n_sent={d['num_sentences']}\")\n    \n    # Step 3: Load extracted traces for analysis\n    print(\"\\nStep 3: Loading extracted hidden states...\")\n    all_traces = load_extracted_traces()\n    print(f\"  Loaded {len(all_traces)} traces\")\n    \n    train, val, test = split_traces(all_traces)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n    \n    # Step 4: Layer sweep\n    best_layer, layer_results = phase2_layer_sweep(train, val, test)\n    \n    # Step 5: Temporal probes\n    hs_probe_results, best_w = phase3_temporal_probes(train, val, test, best_layer)\n    \n    # Step 6: Text probes\n    text_probe_results = phase4_text_probes(train, val, test)\n    \n    # Step 7: Bootstrap\n    bootstrap_results = phase5_bootstrap(train, test, best_layer, best_w)\n    \n    # Step 8: Selectivity\n    selectivity_results = phase6_selectivity(train, test, best_layer, best_w)\n    \n    # ============ SAVE RESULTS ============\n    print(\"\\n\" + \"=\"*60)\n    print(\"Saving results...\")\n    \n    final_results = {\n        \"experiment_id\": \"exp_ot7b_full_pipeline\",\n        \"model\": \"OpenThinker-7B (open-thoughts/OpenThinker-7B)\",\n        \"base_model\": \"Qwen2.5-7B\",\n        \"num_layers\": NUM_LAYERS,\n        \"hidden_dim\": HIDDEN_DIM,\n        \"data\": {\n            \"total_traces\": len(all_traces),\n            \"train\": len(train),\n            \"val\": len(val),\n            \"test\": len(test),\n            \"mean_trace_length\": float(np.mean([t[\"num_sentences\"] for t in all_traces])),\n        },\n        \"best_layer\": {\n            \"layer_idx\": best_layer,\n            \"depth_pct\": float(best_layer / NUM_LAYERS * 100),\n        },\n        \"layer_sweep\": layer_results,\n        \"hs_temporal_probes\": hs_probe_results,\n        \"text_temporal_probes\": text_probe_results,\n        \"best_window\": best_w,\n        \"bootstrap\": bootstrap_results,\n        \"selectivity\": selectivity_results,\n        \"config\": {\n            \"safety_labels\": list(SAFETY_LABELS),\n            \"solver\": \"liblinear\",\n            \"seed\": SEED,\n            \"k_consecutive\": K_CONSECUTIVE,\n            \"threshold\": THRESHOLD,\n            \"bootstrap_resamples\": 1000,\n            \"bonferroni_threshold\": 0.017,\n        },\n    }\n    \n    with open(OUTPUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(final_results, f, indent=2)\n    print(f\"  Saved: {OUTPUT_DIR / 'results.json'}\")\n    \n    # Generate report\n    best_layer_info = next(r for r in layer_results if r[\"layer_idx\"] == best_layer)\n    report = f\"\"\"# OpenThinker-7B Results\n\n## Data\n- Total traces: {len(all_traces)} (jailbreak+CP)\n- Train/Val/Test split: {len(train)}/{len(val)}/{len(test)}\n- Mean trace length: {np.mean([t['num_sentences'] for t in all_traces]):.1f} sentences\n\n## Best Layer\n- Layer: {best_layer} (depth: {best_layer/NUM_LAYERS*100:.0f}%)\n- bal_acc: {best_layer_info['bal_acc']:.4f}, crossing_rate: {best_layer_info['crossing_rate']:.4f}\n\n## Temporal Probes (HS, layer={best_layer})\n| W | bal_acc | precision | coverage | pre_cp_fpr | lead_mean |\n|---|---------|-----------|----------|------------|-----------|\n\"\"\"\n    for r in hs_probe_results:\n        report += f\"| {r['window']} | {r['bal_acc']:.4f} | {r['precision']:.4f} | {r['coverage']:.4f} | {r['pre_cp_fpr']:.4f} | {r['lead_mean']:.1f} |\\n\"\n    \n    report += f\"\"\"\n## Text Probes (all-MiniLM-L6-v2)\n| W | bal_acc | precision | coverage | pre_cp_fpr | lead_mean |\n|---|---------|-----------|----------|------------|-----------|\n\"\"\"\n    for r in text_probe_results:\n        report += f\"| {r['window']} | {r['bal_acc']:.4f} | {r['precision']:.4f} | {r['coverage']:.4f} | {r['pre_cp_fpr']:.4f} | {r['lead_mean']:.1f} |\\n\"\n    \n    report += f\"\"\"\n## HS vs Text Bootstrap (W={best_w})\n| Metric | HS | Text | Delta | p-value | Bonferroni |\n|--------|-----|------|-------|---------|------------|\n\"\"\"\n    for metric_name in [\"bal_acc\", \"precision\", \"pre_cp_fpr\"]:\n        b = bootstrap_results[metric_name]\n        report += f\"| {metric_name} | {b['hs_mean']:.4f} | {b['text_mean']:.4f} | {b['delta']:.4f} | {b['p_value']:.4f} | {b['bonferroni_sig']} |\\n\"\n    \n    report += f\"\"\"\n## Selectivity Control\n- real_acc: {selectivity_results['real_acc']:.4f}\n- random_mean +/- std: {selectivity_results['random_mean']:.4f} +/- {selectivity_results['random_std']:.4f}\n- selectivity: {selectivity_results['selectivity_pp']:.1f} pp\n\"\"\"\n    \n    with open(OUTPUT_DIR / \"report.md\", \"w\") as f:\n        f.write(report)\n    print(f\"  Saved: {OUTPUT_DIR / 'report.md'}\")\n    \n    print(\"\\n\" + \"=\"*60)\n    print(\"PIPELINE COMPLETE\")\n    print(\"=\"*60)\n    print(report)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5630338f-647f-479d-8167-2399f63b10c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ek6XQNx5mmeyie2Duf",
+  "type": "assistant",
+  "uuid": "2533b1d6-5205-4bb9-aa52-98de27c699e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUEmvy2u98DJzdxfY6RfbF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 46597,
+      "output_tokens": 10774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1206,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10774,
+          "cache_read_input_tokens": 46597,
+          "cache_creation_input_tokens": 1206,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1206
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "2533b1d6-5205-4bb9-aa52-98de27c699e7",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T06:18:14.621Z_
+
+<details><summary>↩ Tool result · `toolu_01XiYcZq56CXARHQYq855MD3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2533b1d6-5205-4bb9-aa52-98de27c699e7",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "ee21b25d-75c9-4da9-9cee-f4057b3ce19c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2533b1d6-5205-4bb9-aa52-98de27c699e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-17T06:18:26.167Z_
+
+Now let me run the pipeline. This will take ~30-50 minutes due to model download + hidden state extraction:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee21b25d-75c9-4da9-9cee-f4057b3ce19c",
+  "isSidechain": false,
+  "requestId": "req_011Cb7euc7PY2oepcbLo1zUt",
+  "type": "assistant",
+  "uuid": "b51cc06c-f280-4c09-b9ec-9fb6a536eeef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01834FySCJNpBFRwjg6s5NPG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10850,
+      "cache_read_input_tokens": 47803,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 47803,
+          "cache_creation_input_tokens": 10850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-17T06:18:28.925Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012BMZtFtH5CL8SHmcPWBq1Q`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && CUDA_VISIBLE_DEVICES=0 HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 src/experiments/exp_ot7b_full_pipeline.py 2>&1 | head -80",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b51cc06c-f280-4c09-b9ec-9fb6a536eeef",
+  "isSidechain": false,
+  "requestId": "req_011Cb7euc7PY2oepcbLo1zUt",
+  "type": "assistant",
+  "uuid": "3135dcd7-14c0-49af-aba7-6dc2b2fe59d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01834FySCJNpBFRwjg6s5NPG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10850,
+      "cache_read_input_tokens": 47803,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 47803,
+          "cache_creation_input_tokens": 10850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T06:18:59.299Z_
+
+<details><summary>↩ Tool result · `toolu_012BMZtFtH5CL8SHmcPWBq1Q`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && CUDA_VISIBLE_DEVICES=0 HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 src/experiments/exp_ot7b_full_pipeline.py 2>&1 | head -80'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3135dcd7-14c0-49af-aba7-6dc2b2fe59d4",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "f06fa5dc-99ac-49ae-b899-68f3678351af",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && CUDA_VISIBLE_DEVICES=0 HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 src/experiments/exp_ot7b_full_pipeline.py 2>&1 | head -80'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && CUDA_VISIBLE_DEVICES=0 HF_ENDPOINT=https://hf-mirror.com /root/miniconda3/bin/python3.12 src/experiments/exp_ot7b_full_pipeline.py 2>&1 | head -80'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3135dcd7-14c0-49af-aba7-6dc2b2fe59d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-17T06:19:03.078Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The command timed out at 30 seconds. I need to use nohup to run it in the background, then check on it later.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f06fa5dc-99ac-49ae-b899-68f3678351af",
+  "isSidechain": false,
+  "requestId": "req_011Cb7exuA9dBLmJyzxDeQ7V",
+  "type": "assistant",
+  "uuid": "eea9f1eb-afa0-42ad-a4f2-aa7b338e07d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BX2rkTinjqoSWJQa99jeaB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 58653,
+      "output_tokens": 250,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 250,
+          "cache_read_input_tokens": 58653,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-17T06:19:03.622Z_
+
+The script will take a long time. Let me run it in the background with nohup:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eea9f1eb-afa0-42ad-a4f2-aa7b338e07d3",
+  "isSidechain": false,
+  "requestId": "req_011Cb7exuA9dBLmJyzxDeQ7V",
+  "type": "assistant",
+  "uuid": "cc472519-9801-47e6-8d83-24d511ec816b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BX2rkTinjqoSWJQa99jeaB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 58653,
+      "output_tokens": 250,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 250,
+          "cache_read_input_tokens": 58653,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-17T06:19:08.559Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Kdc6vkZH2Gxcn9MHUAQ28s`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python3.12 -u src/experiments/exp_ot7b_full_pipeline.py > artifacts/exp_ot7b_full_pipeline.log 2>&1 &\necho \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc472519-9801-47e6-8d83-24d511ec816b",
+  "isSidechain": false,
+  "requestId": "req_011Cb7exuA9dBLmJyzxDeQ7V",
+  "type": "assistant",
+  "uuid": "061a3f4d-bd87-47e8-82ef-a5dc3bc5fc02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BX2rkTinjqoSWJQa99jeaB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 58653,
+      "output_tokens": 250,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 250,
+          "cache_read_input_tokens": 58653,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T06:19:39.508Z_
+
+<details><summary>↩ Tool result · `toolu_01Kdc6vkZH2Gxcn9MHUAQ28s`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python3.12 -u src/experiments/exp_ot7b_full_pipeline.py > artifacts/exp_ot7b_full_pipeline.log 2>&1 &\\\\necho \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 60094\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "061a3f4d-bd87-47e8-82ef-a5dc3bc5fc02",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "b7b6ee7b-3b65-4385-a8f1-0ef90c1fd3a1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python3.12 -u src/experiments/exp_ot7b_full_pipeline.py > artifacts/exp_ot7b_full_pipeline.log 2>&1 &\\\\\\\\necho \\\\\\\"PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID: 60094\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.94}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/contrastive_trace_safety && nohup /root/miniconda3/bin/python3.12 -u src/experiments/exp_ot7b_full_pipeline.py > artifacts/exp_ot7b_full_pipeline.log 2>&1 &\\\\necho \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 60094\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.94}}"
+    }
+  },
+  "sourceToolAssistantUUID": "061a3f4d-bd87-47e8-82ef-a5dc3bc5fc02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-17T06:19:42.868Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It timed out but PID was printed. Let me check if the process is running and see the early log output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7b6ee7b-3b65-4385-a8f1-0ef90c1fd3a1",
+  "isSidechain": false,
+  "requestId": "req_011Cb7f1s6TVQVeVdNXeKy4r",
+  "type": "assistant",
+  "uuid": "ba38f11c-a4a9-4626-afa8-834de451bc87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbiZd8d86KytVJQB8eiuFt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 59057,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 59057,
+          "cache_creation_input_tokens": 440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-17T06:19:43.415Z_
+
+Process started (PID 60094). Let me check its status:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba38f11c-a4a9-4626-afa8-834de451bc87",
+  "isSidechain": false,
+  "requestId": "req_011Cb7f1s6TVQVeVdNXeKy4r",
+  "type": "assistant",
+  "uuid": "6510b285-4cd9-402a-b1d3-e7fa59a70bac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbiZd8d86KytVJQB8eiuFt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 59057,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 59057,
+          "cache_creation_input_tokens": 440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-17T06:19:44.292Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JgGz8PqUURNHuZ5Y4VYaWH`</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "command": "tail -30 /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6510b285-4cd9-402a-b1d3-e7fa59a70bac",
+  "isSidechain": false,
+  "requestId": "req_011Cb7f1s6TVQVeVdNXeKy4r",
+  "type": "assistant",
+  "uuid": "80f622cd-ef7d-48f3-bd51-e6da645a159c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbiZd8d86KytVJQB8eiuFt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 440,
+      "cache_read_input_tokens": 59057,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 59057,
+          "cache_creation_input_tokens": 440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-17T06:19:45.192Z_
+
+<details><summary>↩ Tool result · `toolu_01JgGz8PqUURNHuZ5Y4VYaWH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nOpenThinker-7B Full Pipeline (exp_ot7b_full_pipeline)\\n============================================================\\n\\nStep 1: Loading ot-7b traces...\\n  Found 228 jailbreak traces with commitment points\\n  Mean trace length: 80.1 sentences\\n\\nStep 2: Extracting hidden states...\\nAlready extracted: 0, remaining: 228\\nLoading OpenThinker-7B model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rFetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80f622cd-ef7d-48f3-bd51-e6da645a159c",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "4c81ad54-cff4-4ccb-8e8c-0ec2fcb0abcb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nOpenThinker-7B Full Pipeline (exp_ot7b_full_pipeline)\\\\n============================================================\\\\n\\\\nStep 1: Loading ot-7b traces...\\\\n  Found 228 jailbreak traces with commitment points\\\\n  Mean trace length: 80.1 sentences\\\\n\\\\nStep 2: Extracting hidden states...\\\\nAlready extracted: 0, remaining: 228\\\\nLoading OpenThinker-7B model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rFetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nOpenThinker-7B Full Pipeline (exp_ot7b_full_pipeline)\\n============================================================\\n\\nStep 1: Loading ot-7b traces...\\n  Found 228 jailbreak traces with commitment points\\n  Mean trace length: 80.1 sentences\\n\\nStep 2: Extracting hidden states...\\nAlready extracted: 0, remaining: 228\\nLoading OpenThinker-7B model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rFetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  },
+  "sourceToolAssistantUUID": "80f622cd-ef7d-48f3-bd51-e6da645a159c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-17T06:19:51.785Z_
+
+Model is downloading. Let me check back in a few minutes:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c81ad54-cff4-4ccb-8e8c-0ec2fcb0abcb",
+  "isSidechain": false,
+  "requestId": "req_011Cb7f2HHzpoMh5cKC8m2Yk",
+  "type": "assistant",
+  "uuid": "f9062d98-3e21-4962-bbdd-66974f128d9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DM8FmUvQ5JkQYGtp9J9cBj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 427,
+      "cache_read_input_tokens": 59497,
+      "output_tokens": 2248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2248,
+          "cache_read_input_tokens": 59497,
+          "cache_creation_input_tokens": 427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-17T06:20:35.023Z_
+
+<details open><summary>🔧 Tool call — ScheduleWakeup · `toolu_0155RxFajbAKtrd4Yyb8fdpa`</summary>
+
+````json
+{
+  "delaySeconds": 180,
+  "reason": "Waiting for OT-7B model download to complete before extraction starts",
+  "prompt": "## 任务：OpenThinker-7B 全量 Pipeline 执行（Path A 核心实验）\n\n### 目标\n在 autodl-rtx6000 cuda:0 上执行 OpenThinker-7B (open-thoughts/OpenThinker-7B, Qwen2.5-7B, 28 layers, hidden_dim=3584) 的完整 commitment detection pipeline。端到端约 30-50 分钟。\n\n### 实验 ID: `exp_ot7b_full_pipeline`\n\n---\n\n### Pipeline 步骤\n\n#### Step 0: 环境确认\n- Python: `/root/miniconda3/bin/python3.12`\n- GPU: cuda:0\n- 项目路径: `/root/autodl-tmp/contrastive_trace_safety/`\n- 设置 `export HF_ENDPOINT=https://hf-mirror.com`\n- 设置 `export CUDA_VISIBLE_DEVICES=0`\n\n#### Step 1: 加载数据 + 定义 Commitment Point\n```python\nfrom datasets import load_dataset\nimport os\nos.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'\n\nds = load_dataset(\"ishitakakkar-10/HarmThoughts\")\n# 筛选 ot-7b 的 jailbreak traces\not7b = ds['train'].filter(lambda x: x['model_name'] == 'ot-7b' and x['final_judgment'] == 1.0)\n```\n\n**CP 定义（硬规则）**: CP = 最后一个 safety label 出现的 step + 1。\n- 先看现有代码的 safety label 定义（检查 `src/data_loader.py` 或相关文件中的 SAFETY_LABELS）\n- 如果找不到，使用: SAFETY_LABELS = {'RA', 'AL', 'CC', 'ED', 'IA', 'CR', 'PS', 'RS', 'IR'}（所有非有害/非中性的标签）\n- **不要用 \"首个 DKE\" 作为 CP**，必须用 \"最后 safety label + 1\"\n\n#### Step 2: 下载模型\n```python\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nmodel_name = \"open-thoughts/OpenThinker-7B\"  # 确认 HuggingFace 上的准确 repo name\n# 如果找不到，尝试 \"mithrilai/OpenThinker-7B\" 或 WebSearch 确认\ntokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)\nmodel = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.bfloat16, device_map=\"cuda:0\", trust_remote_code=True)\n```\n\n#### Step 3: Hidden State 提取\n参考现有脚本 `src/experiments/exp_001a_extract_r1_32b.py` 的逻辑：\n- 对每条 trace 的每个 sentence：tokenize，forward pass，提取所有 28 层的 last-token hidden state\n- 保存格式与现有一致: `hidden_states` tensor [num_sentences, 28, 3584]\n- 输出目录: `artifacts/hidden_states_ot7b/`\n- 每条 trace 一个 .pt 文件，包含: hidden_states, trace_id, num_sentences, commitment_point, step_labels, query\n\n#### Step 4: Layer Sweep\n- 对所有 28 层，用 LogisticRegression(solver='liblinear', class_weight='balanced') 做 static probe\n- Split: 60/20/20 (train/val/test)，seed=42\n- 选层指标: balanced_accuracy × crossing_rate（与其他模型一致）\n- 报告: 每层的 bal_acc, crossing_rate, lead_mean, pre_cp_fpr\n\n#### Step 5: 主 Probe Pipeline（在最优层上）\n- **Temporal LR probes**: W=1,3,5,10,15,20,25，solver='liblinear', class_weight='balanced'\n- **Text probes**: 用 all-MiniLM-L6-v2 对同样的 sentences 做 embedding，然后相同 W 做 LR probe\n- 指标: bal_acc, precision, coverage, pre_cp_fpr (trace-level + step-level), lead_mean\n- **Selectivity control task**: \n  - 10 次 random label permutation，计算 random_acc mean ± std\n  - selectivity = real_acc - random_mean (要求 >5pp)\n\n#### Step 6: Paired Bootstrap\n- 1000 resamples, two-sided permutation test\n- 在最佳 W 下对比 HS vs Text: balanced_accuracy, precision, pre_cp_fpr\n- solver='liblinear'\n- 报告 p-values + 95% CI for each metric delta\n- Bonferroni threshold: 0.017 (3 comparisons)\n\n#### Step 7: 保存结果\n- 所有结果保存到 `artifacts/exp_ot7b_full_pipeline/results.json`\n- 格式与 exp_001a/exp_001b 一致\n- 同时保存 per-W metrics table\n\n---\n\n### 输出格式（最终报告）\n\n```\n# OpenThinker-7B Results\n\n## Data\n- Total traces: X (jailbreak+CP)\n- Train/Val/Test split: X/X/X\n- Mean trace length: X sentences\n\n## Best Layer\n- Layer: X (depth: X%)\n- bal_acc: X, crossing_rate: X\n\n## Temporal Probes (best W)\n| W | bal_acc | precision | coverage | pre_cp_fpr | lead_mean |\n|---|---------|-----------|----------|------------|-----------|\n...\n\n## HS vs Text Bootstrap (W=best)\n| Metric | HS | Text | Delta | p-value | Bonferroni |\n|--------|-----|------|-------|---------|------------|\n| bal_acc | ... | ... | ... | ... | ... |\n| precision | ... | ... | ... | ... | ... |\n| pre_cp_fpr | ... | ... | ... | ... | ... |\n\n## Selectivity Control\n- real_acc: X\n- random_mean ± std: X ± X\n- selectivity: X pp\n```\n\n写完整结果到 `artifacts/exp_ot7b_full_pipeline/results.json` 和 `artifacts/exp_ot7b_full_pipeline/report.md`。\n\n然后用 `update_registry` 更新 exp_ot7b_full_pipeline 状态和 metrics。\n\n---\n\n### 重要注意事项\n1. **CP 用 \"last safety label + 1\"**，不是 \"first DKE\"。先看现有代码确认 SAFETY_LABELS 定义\n2. **solver 必须是 'liblinear'**（项目统一标准）\n3. **bootstrap 必须 two-sided**\n4. 如果模型 HF repo 名有误，WebSearch 确认正确的 repo\n5. 参考现有代码结构：`src/experiments/exp_001a_extract_r1_32b.py`, `src/data_loader.py`\n6. hidden_states 提取时注意 OT-7B 的 traces 更长（avg 80 sentences），可能需要 batch 处理避免 OOM\n7. 提取完成后立即验证: 随机抽 3 个 .pt 文件检查 shape 和 CP 位置合理性\n\n### 环境\n- 服务器: autodl-rtx6000\n- Python: /root/miniconda3/bin/python3.12\n- GPU: cuda:0 (CUDA_VISIBLE_DEVICES=0)\n- HF_ENDPOINT=https://hf-mirror.com\n- 项目路径: /root/autodl-tmp/contrastive_trace_safety/\n- sklearn solver: liblinear\n- torch dtype: bfloat16"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9062d98-3e21-4962-bbdd-66974f128d9f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7f2HHzpoMh5cKC8m2Yk",
+  "type": "assistant",
+  "uuid": "ab1ee812-809b-423b-a6b5-52e3e91cae44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DM8FmUvQ5JkQYGtp9J9cBj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 427,
+      "cache_read_input_tokens": 59497,
+      "output_tokens": 2248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2248,
+          "cache_read_input_tokens": 59497,
+          "cache_creation_input_tokens": 427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-17T06:20:35.038Z_
+
+<details><summary>↩ Tool result · `toolu_0155RxFajbAKtrd4Yyb8fdpa`</summary>
+
+```text
+Next wakeup scheduled for 06:24:00 (in 205s).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab1ee812-809b-423b-a6b5-52e3e91cae44",
+  "isSidechain": false,
+  "promptId": "f367005b-e92e-40e3-ae67-07736c254816",
+  "type": "user",
+  "uuid": "5abb85b5-47f4-4472-b9e7-cd8e530a3031",
+  "toolUseResult": {
+    "scheduledFor": 1778999040000,
+    "clampedDelaySeconds": 180,
+    "wasClamped": false
+  },
+  "sourceToolAssistantUUID": "ab1ee812-809b-423b-a6b5-52e3e91cae44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84 · 2026-05-17T06:20:35.048Z_
+
+```json
+{
+  "parentUuid": "5abb85b5-47f4-4472-b9e7-cd8e530a3031",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8acfbc52-253e-4abb-b20c-b690498933c2",
+  "timestamp": "2026-05-17T06:20:35.048Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-17T06:20:38.024Z_
+
+Pipeline is running in the background (PID 60094). Model download is in progress. Will check back in 3 minutes to monitor extraction progress.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8acfbc52-253e-4abb-b20c-b690498933c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb7f5xSHtTEEoDL1ACR2w",
+  "type": "assistant",
+  "uuid": "39bb75f0-3385-429e-bc51-7427f745603d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LhmmhKvNkWBYqETMtRrTcd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2382,
+      "cache_read_input_tokens": 59924,
+      "output_tokens": 35,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 35,
+          "cache_read_input_tokens": 59924,
+          "cache_creation_input_tokens": 2382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "39bb75f0-3385-429e-bc51-7427f745603d",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execute OpenThinker-7B full pipeline experiment",
+  "sessionId": "25459a29-fa2f-44f4-b6c0-29d7fc210100"
+}
+```
+
+---

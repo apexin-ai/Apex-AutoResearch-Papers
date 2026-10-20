@@ -1,0 +1,3315 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #10。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单 **仅** `bjb1-42106:cuda:0, cuda:
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-1/f0f78594-a9fa-45be-b090-50116f9e750f.jsonl`
+- **Structured JSON:** [`7eb0752ff319b9125b20.json`](../../sessions/7e/7eb0752ff319b9125b20.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T04:12:25.110Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T04:12:25.110Z",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #10。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅** `bjb1-42106:cuda:0, cuda:1`——历史上两次越界（D005, m2_early_pilot_v3 用 cuda:0 on cqa1）被 CRITICAL\n- `submit_training_job` 的 command 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && ...`。服务器用 conda，**没有 .venv**\n- Dataflow-aware 策略论文描述已改为 **BM25 排序**（D041，匹配代码实现），不要描述为 embedding 排序\n- Claim 2 已降级为 \"exploratory observation with testable prediction\"（D035），不可恢复为 core claim\n- plan_005 分层分析的 R@1 值目前全是 **dry-run mock**，禁止引用为真实结果（D039）\n- 服务器上残留旧进程 PID 465668（evaluate_pool50.py --pool-size 5 --gpu -1），需清理后再用\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-42106（2× RTX PRO 6000 96GB）\n- **工作目录**: `/root/structfuse`\n- **Python**: `/root/miniconda3/bin/python`（conda base env）\n- **模型**: Qwen2.5-Coder-3B + StarCoder2-3B（pretrained 从 HF cache）\n- **数据**: `/root/autodl-tmp/structfuse/full_m1_data/`（M1 提取）、`/root/autodl-tmp/structfuse/full_m2_training_data/`（M2 训练数据，含 BM25 negatives）\n- **Checkpoints**: `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` 和 `/m2_full_starcoder/`（子目录按 strategy_seed/best_by_* 组织）\n- **活跃进程**:\n  - cuda:0: PID 337267（m2_full_qwen chain，当前 embedding_s43，3/9 完成）\n  - cuda:1: PID 519791（m2_full_starcoder chain，当前 random_s43，1/8 resumed）\n  - CPU: m1_reextract_v2（4 workers，87% 完成）\n- **BM25 watchers**: 两个 tmux watcher 分别监控 PID 337267 和 519791，链完成后自动启动 BM25 训练\n- **Cron**: 3 个活跃（m1_reextract_v2, m2_full_starcoder_resumed, m2_full_qwen_continued）\n- **Worker**: worker_check_moto-codeql-propagation（running，检查 moto repo CodeQL timeout 传播）\n\n### 3. 📊 当前状态\n刚完成 session-start reconcile。三个 cron 均确认 job still running。\n\n**RUNNING**:\n- `m2_full_qwen_continued`: embedding_distance_s43 step 150/2810（刚开始）。random 三个 seed 全部完成（s42=0.5527, s43=0.5554, s44=0.6009）。剩 6 runs，ETA ~May 17\n- `m2_full_starcoder_resumed`: random_s43 step 1500/2810（~53%）。R@1 trending up 0.4708→0.4780。剩 7 runs，ETA ~May 17-18\n- `m1_reextract_v2`: 24624/28276 done（87.1%），ETA May 15 17:00-19:00 CST。moto repo 536 instances 全部 call_graph timeout（exit code 33，directCallEdge 超时），fallback to embedding-distance\n\n**PREPARING**: plan_005_stratified（脚本 ready，dry-run v5 通过，等 M2 checkpoints）\n**QUEUED**: plan_018_bm25（Phase 1 done，Phase 2 等 M2 完成 + GPU 释放，watcher 自动触发）、plan_015_dynamic（等 GPU）\n\n**等待中**:\n- Worker worker_check_moto-codeql-propagation 回调\n- M2 两条链完成回调（~May 17）→ BM25 watcher 自动启动 Phase 2\n- m1_reextract_v2 完成回调（今天）\n\n### 4. 📋 待办（条件触发式）\n- m1_reextract_v2 cron 回调 → 更新 registry（final data count）→ 汇报 Director 最终数据规模（预期 ~44K instances）→ 更新 report.md pipeline 数字\n- worker_check_moto-codeql-propagation 完成 → 读产出，决定 moto 536 instances 是否需要特殊处理\n- M2 Qwen chain 完成（~May 17）→ BM25 watcher 自动启动 BM25 Qwen 训练（cuda:0）→ 同时 spawn worker 跑 plan_005 分层分析（用真实 checkpoints 替换 --dry-run）+ evaluate_pool50.py（D042 独立评估）\n- M2 StarCoder chain 完成（~May 17-18）→ BM25 watcher 自动启动 BM25 StarCoder 训练（cuda:1）→ evaluate_pool50.py StarCoder\n- BM25 Phase 2 完成 → 对比 BM25 vs embedding/random R@1 → 决定 narrative（harm→correction / neutral→systematic comparison）→ 这是论文 story 的关键分叉点\n- Post-M2 全部完成 → plan_003 SWE-bench eval（P0，40h，可能需要 LLM API key Qwen3.6-27B）+ plan_004 RepoBench + plan_019 pool sensitivity\n- May 20-24: 论文写作窗口 → ARR May 25 deadline\n\n### 5. 🎯 战略上下文\n**核心结论链**: True embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1, across Qwen pilot)。BM25 baseline 待验证。Structure-grounded (dataflow) negatives 是 conditional observation（n=2 encoder, D035 降级）。\n\n**决策链要点**:\n- D035: Claim 2 降级为 exploratory（dataflow 效果 encoder-dependent: Qwen +0.8pp, StarCoder -0.5pp）\n- D036: 主 metric 改为 R@1（不是 val_loss）\n- D041: Dataflow 策略描述改为 BM25 排序（匹配代码实现）\n- D042/D043: pool=50 独立评估脚本（evaluate_pool50.py）替代训练时 pool=8 eval，所有 best checkpoints 需重新评估\n\n**易错点**:\n- Qwen random_s44 的 best R@1=0.6009 异常高（比 s42/s43 高 4-5pp），best_step=500——可能是 seed variance，不要过度解读单个 seed\n- M2 的 `m2_full_qwen` registry 状态是 ANALYZING（cron 自动设的），但实际链通过 `m2_full_qwen_continued` 继续跑。两个 registry entry 描述同一条链的不同阶段\n- `m2_full_starcoder` 状态 DONE(failed) 是旧 cron timeout 标记，实际通过 `m2_full_starcoder_resumed` 继续。同理\n- BM25 overlap 分层数据显示大 repo top-7 Jaccard 仅 0.297（vs embedding），之前基于 87% 全候选重叠的预测（BM25 ≈ embedding）可能不成立——Phase 2 结果才是真正的区分点\n- plan_003 SWE-bench 可能需要 LLM API key（Qwen3.6-27B），dry-run 确认中，提前准备 request_secret\n\n## 可查的历史\n前 15 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T04:12:25.114Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T04:12:25.114Z",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+## Round 1
+
+55 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T04:12:25.163Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #10。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 **仅** `bjb1-42106:cuda:0, cuda:1`——历史上两次越界（D005, m2_early_pilot_v3 用 cuda:0 on cqa1）被 CRITICAL
+- `submit_training_job` 的 command 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && ...`。服务器用 conda，**没有 .venv**
+- Dataflow-aware 策略论文描述已改为 **BM25 排序**（D041，匹配代码实现），不要描述为 embedding 排序
+- Claim 2 已降级为 "exploratory observation with testable prediction"（D035），不可恢复为 core claim
+- plan_005 分层分析的 R@1 值目前全是 **dry-run mock**，禁止引用为真实结果（D039）
+- 服务器上残留旧进程 PID 465668（evaluate_pool50.py --pool-size 5 --gpu -1），需清理后再用
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: bjb1-42106（2× RTX PRO 6000 96GB）
+- **工作目录**: `/root/structfuse`
+- **Python**: `/root/miniconda3/bin/python`（conda base env）
+- **模型**: Qwen2.5-Coder-3B + StarCoder2-3B（pretrained 从 HF cache）
+- **数据**: `/root/autodl-tmp/structfuse/full_m1_data/`（M1 提取）、`/root/autodl-tmp/structfuse/full_m2_training_data/`（M2 训练数据，含 BM25 negatives）
+- **Checkpoints**: `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` 和 `/m2_full_starcoder/`（子目录按 strategy_seed/best_by_* 组织）
+- **活跃进程**:
+  - cuda:0: PID 337267（m2_full_qwen chain，当前 embedding_s43，3/9 完成）
+  - cuda:1: PID 519791（m2_full_starcoder chain，当前 random_s43，1/8 resumed）
+  - CPU: m1_reextract_v2（4 workers，87% 完成）
+- **BM25 watchers**: 两个 tmux watcher 分别监控 PID 337267 和 519791，链完成后自动启动 BM25 训练
+- **Cron**: 3 个活跃（m1_reextract_v2, m2_full_starcoder_resumed, m2_full_qwen_continued）
+- **Worker**: worker_check_moto-codeql-propagation（running，检查 moto repo CodeQL timeout 传播）
+
+### 3. 📊 当前状态
+刚完成 session-start reconcile。三个 cron 均确认 job still running。
+
+**RUNNING**:
+- `m2_full_qwen_continued`: embedding_distance_s43 step 150/2810（刚开始）。random 三个 seed 全部完成（s42=0.5527, s43=0.5554, s44=0.6009）。剩 6 runs，ETA ~May 17
+- `m2_full_starcoder_resumed`: random_s43 step 1500/2810（~53%）。R@1 trending up 0.4708→0.4780。剩 7 runs，ETA ~May 17-18
+- `m1_reextract_v2`: 24624/28276 done（87.1%），ETA May 15 17:00-19:00 CST。moto repo 536 instances 全部 call_graph timeout（exit code 33，directCallEdge 超时），fallback to embedding-distance
+
+**PREPARING**: plan_005_stratified（脚本 ready，dry-run v5 通过，等 M2 checkpoints）
+**QUEUED**: plan_018_bm25（Phase 1 done，Phase 2 等 M2 完成 + GPU 释放，watcher 自动触发）、plan_015_dynamic（等 GPU）
+
+**等待中**:
+- Worker worker_check_moto-codeql-propagation 回调
+- M2 两条链完成回调（~May 17）→ BM25 watcher 自动启动 Phase 2
+- m1_reextract_v2 完成回调（今天）
+
+### 4. 📋 待办（条件触发式）
+- m1_reextract_v2 cron 回调 → 更新 registry（final data count）→ 汇报 Director 最终数据规模（预期 ~44K instances）→ 更新 report.md pipeline 数字
+- worker_check_moto-codeql-propagation 完成 → 读产出，决定 moto 536 instances 是否需要特殊处理
+- M2 Qwen chain 完成（~May 17）→ BM25 watcher 自动启动 BM25 Qwen 训练（cuda:0）→ 同时 spawn worker 跑 plan_005 分层分析（用真实 checkpoints 替换 --dry-run）+ evaluate_pool50.py（D042 独立评估）
+- M2 StarCoder chain 完成（~May 17-18）→ BM25 watcher 自动启动 BM25 StarCoder 训练（cuda:1）→ evaluate_pool50.py StarCoder
+- BM25 Phase 2 完成 → 对比 BM25 vs embedding/random R@1 → 决定 narrative（harm→correction / neutral→systematic comparison）→ 这是论文 story 的关键分叉点
+- Post-M2 全部完成 → plan_003 SWE-bench eval（P0，40h，可能需要 LLM API key Qwen3.6-27B）+ plan_004 RepoBench + plan_019 pool sensitivity
+- May 20-24: 论文写作窗口 → ARR May 25 deadline
+
+### 5. 🎯 战略上下文
+**核心结论链**: True embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1, across Qwen pilot)。BM25 baseline 待验证。Structure-grounded (dataflow) negatives 是 conditional observation（n=2 encoder, D035 降级）。
+
+**决策链要点**:
+- D035: Claim 2 降级为 exploratory（dataflow 效果 encoder-dependent: Qwen +0.8pp, StarCoder -0.5pp）
+- D036: 主 metric 改为 R@1（不是 val_loss）
+- D041: Dataflow 策略描述改为 BM25 排序（匹配代码实现）
+- D042/D043: pool=50 独立评估脚本（evaluate_pool50.py）替代训练时 pool=8 eval，所有 best checkpoints 需重新评估
+
+**易错点**:
+- Qwen random_s44 的 best R@1=0.6009 异常高（比 s42/s43 高 4-5pp），best_step=500——可能是 seed variance，不要过度解读单个 seed
+- M2 的 `m2_full_qwen` registry 状态是 ANALYZING（cron 自动设的），但实际链通过 `m2_full_qwen_continued` 继续跑。两个 registry entry 描述同一条链的不同阶段
+- `m2_full_starcoder` 状态 DONE(failed) 是旧 cron timeout 标记，实际通过 `m2_full_starcoder_resumed` 继续。同理
+- BM25 overlap 分层数据显示大 repo top-7 Jaccard 仅 0.297（vs embedding），之前基于 87% 全候选重叠的预测（BM25 ≈ embedding）可能不成立——Phase 2 结果才是真正的区分点
+- plan_003 SWE-bench 可能需要 LLM API key（Qwen3.6-27B），dry-run 确认中，提前准备 request_secret
+
+## 可查的历史
+前 15 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "ca3c0c34-9c3d-4b6c-b6d2-84b6a6838d84",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T04:12:25.162Z_
+
+```json
+{
+  "parentUuid": "ca3c0c34-9c3d-4b6c-b6d2-84b6a6838d84",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c8372dba-e63a-498b-baba-ac48c7513915",
+  "timestamp": "2026-05-15T04:12:25.162Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T04:12:25.162Z_
+
+```json
+{
+  "parentUuid": "c8372dba-e63a-498b-baba-ac48c7513915",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "a06be3f8-889d-4b6f-b986-73b5ccaddc3a",
+  "timestamp": "2026-05-15T04:12:25.162Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T04:12:25.162Z_
+
+```json
+{
+  "parentUuid": "a06be3f8-889d-4b6f-b986-73b5ccaddc3a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a77ac648-e694-4b4f-9e38-34585342387f",
+  "timestamp": "2026-05-15T04:12:25.162Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-15T04:12:25.162Z_
+
+```json
+{
+  "parentUuid": "a77ac648-e694-4b4f-9e38-34585342387f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "4152b847-0ef5-4323-bf23-51c012eaf1fe",
+  "timestamp": "2026-05-15T04:12:25.162Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor M2 training chains and prepare downstream analyses",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T04:12:29.323Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+新 session 启动，按 session-start 规范执行初始化。先确认硬约束已读，然后并行执行初始化步骤。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4152b847-0ef5-4323-bf23-51c012eaf1fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hhH1gfAZigpKUyjRZj",
+  "type": "assistant",
+  "uuid": "2a61b246-f7eb-4a0d-a05e-de01b29994d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUspJBybqTo12YtsECFXyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25751,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 25751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-15T04:12:34.500Z_
+
+确认已读硬约束（GPU 白名单仅 bjb1-42106:cuda:0/1、conda 环境、BM25 描述、Claim 2 降级、plan_005 mock 数据禁引用、残留 PID 465668）和当前活跃实验状态。开始 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a61b246-f7eb-4a0d-a05e-de01b29994d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hhH1gfAZigpKUyjRZj",
+  "type": "assistant",
+  "uuid": "1b91eac7-beb6-4dd0-b739-98c4f62c15f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUspJBybqTo12YtsECFXyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25751,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 25751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T04:12:35.258Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FbfhzZZShX78VGH5wjB3Jk`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b91eac7-beb6-4dd0-b739-98c4f62c15f1",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hhH1gfAZigpKUyjRZj",
+  "type": "assistant",
+  "uuid": "d3cce1e9-a4a4-4bff-80ad-e0280af48904",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUspJBybqTo12YtsECFXyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25751,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 25751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T04:12:35.266Z_
+
+<details><summary>↩ Tool result · `toolu_01FbfhzZZShX78VGH5wjB3Jk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3cce1e9-a4a4-4bff-80ad-e0280af48904",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "b575338c-5115-45db-a692-ec6521ce1a5f",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__list_workers"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "d3cce1e9-a4a4-4bff-80ad-e0280af48904",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T04:12:38.347Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01E1qsHNp9qwddPQ9BukRUUR`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b575338c-5115-45db-a692-ec6521ce1a5f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hi2GCUcoawDVedECn7",
+  "type": "assistant",
+  "uuid": "a106a18b-0e58-41a4-81d0-3852d54daefb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016LJJnq3zZ4HW1g3s5oJVsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 37198,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 37198,
+          "cache_creation_input_tokens": 1654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T04:12:38.389Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_014LENAX3XhvRHgDkKgczi6g`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a106a18b-0e58-41a4-81d0-3852d54daefb",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hi2GCUcoawDVedECn7",
+  "type": "assistant",
+  "uuid": "95d5ef15-ef08-4014-b8b9-ac6afac8cd73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016LJJnq3zZ4HW1g3s5oJVsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 37198,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 37198,
+          "cache_creation_input_tokens": 1654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T04:12:38.667Z_
+
+<details><summary>↩ Tool result · `toolu_01E1qsHNp9qwddPQ9BukRUUR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"m1_reextract_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-13T20:00:20.578Z\", \"updated_at\": \"2026-05-15T04:00:15.446Z\", \"hypothesis\": \"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"notes\": \"moto CodeQL call_graph.ql timeout (NOT OOM): directCallEdge predicate exceeds 300s timeout on every instance (exit code 33). 536 moto instances all fail call_graph, fallback to embedding-distance. Isolated failure — 1/4 workers stuck on moto (~5min/instance, ~38h total), other 3 workers process pydicom/conan/MONAI normally. DB creation succeeded; bounded_dataflow.ql unaffected.\", \"metrics\": {\"checked_at\": \"2026-05-15T09:53Z\", \"process\": \"alive (CPU, 4 workers)\", \"started\": \"2026-05-14T03:59Z\", \"elapsed_hours\": 30, \"total_instances\": 28276, \"completed_instances\": 24624, \"completion_pct\": 87.1, \"errors\": 0, \"warnings\": 19, \"rate\": \"~7 instances/min\", \"active_repos\": {\"sqlfluff/sqlfluff\": \"~1270/1272 (nearly done)\", \"conan-io/conan\": \"~770/972\", \"pydicom/pydicom\": \"~640/1315\", \"Project-MONAI/MONAI\": \"~225/524\", \"getmoto/moto\": \"just started (536)\"}, \"all_jsonl_lines\": 44173, \"eta\": \"~May 15 17:00-19:00 CST (revised, +2h due to getmoto)\", \"progress_snapshot\": \"2026-05-15T09:53 CST\"}}, \"plan_005_stratified\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T20:36:16.738Z\", \"updated_at\": \"2026-05-15T03:18:38.309Z\", \"hypothesis\": \"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\", \"parent\": \"m2_full_qwen\", \"notes\": \"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。[2026-05-15 11:17] evaluate_pool50.py (D042) 独立验证通过：260行脚本，--help/数据加载/模型加载/编码流程/--batch-mode 自动发现 best_by_* checkpoint 全部 OK。GPU 模式几分钟可跑完 2980 queries。Ready for production。注意：服务器上残留 PID 465668 (旧 evaluate_pool50.py --pool-size 5 --gpu -1 进程)，需清理。\", \"metrics\": {\"confound_analysis\": {\"data_validity\": \"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\", \"valid_findings\": {\"distribution_structure\": \"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\", \"correlation\": {\"dataflow_edges_vs_repo_size_pearson_r\": 0.089}, \"cross_distribution\": {\"rich_in_large_xlarge_pct\": 99.3, \"rich_in_small\": 0, \"moderate_in_large_xlarge_pct\": 60.9}, \"implication\": \"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\"}, \"invalid_findings\": \"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\", \"artifacts_path\": \"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\", \"valid_artifact\": \"cross_tabulation.csv\"}}}, \"m2_full_starcoder_resumed\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T18:44:19.253Z\", \"updated_at\": \"2026-05-15T02:06:23.058Z\", \"hypothesis\": \"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\", \"parent\": \"m2_full_starcoder\", \"metrics\": {\"checked_at\": \"2026-05-15T02:04Z\", \"process\": \"alive (PID 519791)\", \"gpu\": \"cuda:1, 100% util, 54GB/97GB VRAM\", \"current_subrun\": \"random_s43 (1/8 in resumed chain)\", \"current_step\": \"1500/2810 (~53%, Epoch 2)\", \"latest_loss\": 0.0268, \"completed_subruns\": 1, \"remaining_subruns\": 7, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.4604, \"best_val_loss\": 0.6134, \"source\": \"parent\"}, \"random_s43\": {\"status\": \"RUNNING\", \"eval_at_500\": {\"R@1\": 0.4708, \"val_loss\": 0.5279, \"best_val_loss\": true}, \"eval_at_1000\": {\"R@1\": 0.478, \"val_loss\": 0.543, \"early_stopping\": \"1/2\"}, \"eval_at_1500\": \"computing (pending)\", \"note\": \"R@1 trending up (0.4708→0.4780). eval@1500 will determine early stop (if val_loss > 0.5279, patience=2/2).\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\"], \"bm25_watcher\": \"active (PID watcher on 519791, will start BM25 StarCoder on cuda:1 when chain finishes)\", \"eta_hours\": \"55-65\", \"progress_snapshot\": \"2026-05-15T10:04 CST\"}}, \"m2_full_qwen_continued\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T18:44:20.646Z\", \"updated_at\": \"2026-05-15T01:11:10.448Z\", \"hypothesis\": \"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\", \"parent\": \"m2_full_qwen\", \"metrics\": {\"checked_at\": \"2026-05-15T01:12Z\", \"process\": \"alive (PID 337267, uptime 13h45m)\", \"gpu\": \"cuda:0, 100% util, 49521/97887 MiB\", \"current_subrun\": \"embedding_distance_s43 (3/9 in chain)\", \"current_step\": \"150/2810 (~5%)\", \"latest_loss\": 0.5041, \"lr\": \"1.06e-05\", \"completed_subruns\": 3, \"remaining_subruns\": 6, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.5527, \"source\": \"parent m2_full_qwen\"}, \"random_s43\": {\"status\": \"DONE\", \"best_R1\": 0.5554, \"best_val_loss\": 0.4476, \"early_stopped\": \"step 1500\"}, \"random_s44\": {\"status\": \"DONE\", \"best_R1\": 0.6009, \"best_val_loss\": 0.4252, \"early_stopped\": \"step 1500\", \"best_step\": 500}, \"embedding_distance_s43\": {\"status\": \"RUNNING\", \"step\": 150, \"started\": \"08:32 CST\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\", \"random_s44/best_by_val_loss\", \"random_s44/best_by_recall_at_1\", \"random_s44/final\"], \"bm25_watcher\": \"active (PID watcher on 337267, will start BM25 Qwen on cuda:0 when chain finishes)\", \"eta_hours\": \"50-55\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"plan_017_literature\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:49:00.477Z\", \"updated_at\": \"2026-05-14T21:33:45.149Z\", \"hypothesis\": \"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\", \"conclusion\": \"success\", \"metrics\": {\"papers_surveyed\": 8, \"citations_verified\": 8, \"discussion_draft\": \"artifacts/paper_drafts/discussion_v2.md\", \"artifact_id\": \"art_20260514_a2e1cd\"}, \"notes\": \"Inference-time graph method comparison 完成。8 papers surveyed，其中 6 篇纳入 literature_map.yaml 和 discussion_v2.md（CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph）。CodeGRAG 和 CodeRAG 经调研排除：CodeGRAG（arXiv 2405.02355）关注 NL→code generation 的 graph-augmented prompting，不涉及代码检索或对比学习；CodeRAG 系列（CodeRAG-Bench 2406.14497 / CodeRAG 2504.10046）关注 retrieval-augmented code generation benchmark 和 bigraph-based 代码生成，均为生成任务而非检索训练。两者与 StructFuse 的 scope（训练时结构信号用于对比学习代码检索）不符，故未纳入 discussion。\"}, \"m2_full_starcoder\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T16:18:15.415Z\", \"updated_at\": \"2026-05-14T18:04:29.245Z\", \"hypothesis\": \"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\", \"parent\": \"plan_013_starcoder\", \"notes\": \"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs。[2026-05-15 02:02 CST] cuda:1 进程冲突修复并重新提交（PID 519791, timeout=144h）。Registry 状态 DONE(failed) 是旧 cron timeout 标记，实际正在运行 random_s43 [1/8]。新 cron 已注册监控 PID 519791。序列：random_s43→s44→(待插入bm25_s42)→embedding×3→dataflow×3。random_s42 结果：best R@1=0.4604 at step 2500, val_loss=0.6134 at step 1000。\", \"metrics\": {\"random_s42\": {\"epoch\": \"3/3\", \"current_step\": 4200, \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.6194, \"recall_at_1\": 0.435, \"recall_at_5\": 0.905, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.6134, \"recall_at_1\": 0.454, \"recall_at_5\": 0.92, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.6528, \"recall_at_1\": 0.449, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.6698, \"recall_at_1\": 0.4456, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.6342, \"recall_at_1\": 0.4604, \"recall_at_5\": 0.9117, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.6516, \"recall_at_1\": 0.4544, \"recall_at_5\": 0.9077, \"recall_at_10\": 1}, \"eval_3500\": {\"val_loss\": 0.6588, \"recall_at_1\": 0.4534, \"recall_at_5\": 0.9057, \"recall_at_10\": 1}, \"eval_4000\": {\"val_loss\": 0.6637, \"recall_at_1\": 0.4547, \"recall_at_5\": 0.9003, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)\", \"conclusion\": \"effectively_complete (timeout at step 4200/4242, lr=7.8e-9, remaining 42 steps negligible)\"}, \"progress_snapshot\": \"2026-05-15T01:50 CST\"}, \"conclusion\": \"failed\"}, \"m2_full_qwen\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-13T16:18:14.870Z\", \"updated_at\": \"2026-05-14T18:00:29.323Z\", \"hypothesis\": \"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\", \"parent\": \"m2_embed_verify\", \"notes\": \"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed. [D026] s42 保持 3 epochs 提供完整 overfitting curve; s43/s44 及后续 runs 改为 2 epochs + early_stopping_patience=2。[STATUS 2026-05-15 00:19 CST] Registry 状态 ANALYZING 是 cron 自动设置（s42 进程退出触发），但实验实际仍在进行中。random_s43 在 cuda:0 正常运行，step 1200/2810 (43%)。eval@500 R@1=0.5357, eval@1000 R@1=0.5285 (early_stopping 1/2)。Best R@1=0.5357 at step 500。GPU 100% 利用率, 50.5/97.9GB VRAM。\", \"metrics\": {\"random_s42\": {\"status\": \"DONE\", \"epoch\": \"3/3\", \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.4869, \"recall_at_1\": 0.533, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.4651, \"recall_at_1\": 0.553, \"recall_at_5\": 0.959, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.5365, \"recall_at_1\": 0.523, \"recall_at_5\": 0.955, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.5162, \"recall_at_1\": 0.523, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.5264, \"recall_at_1\": 0.527, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.5406, \"recall_at_1\": 0.536, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.4651, R@1=0.5527)\", \"conclusion\": \"Overfit after step 1000. Best R@1=0.5527, +1.7pp vs pilot (0.5357). Full data helps.\"}, \"random_s43\": {\"status\": \"DONE\", \"epoch\": \"early_stopped\", \"total_steps_per_epoch\": 1405, \"eval_500\": {\"val_loss\": 0.4476, \"recall_at_1\": 0.5357}, \"eval_1000\": {\"val_loss\": 0.4637, \"recall_at_1\": 0.5285}, \"eval_1500\": {\"recall_at_1\": 0.5554}, \"best_by_val_loss\": \"step 500 (val_loss=0.4476)\", \"best_by_recall_at_1\": \"step 1500 (R@1=0.5554)\", \"conclusion\": \"Early stopped at step 1500. Best R@1=0.5554, consistent with s42 (0.5527). val_loss and R@1 criterion diverge.\"}, \"random_s44\": {\"status\": \"RUNNING\", \"note\": \"Auto-started 01:58 CST, epoch 1/2, 1408 batches/epoch\"}, \"progress_snapshot\": \"2026-05-15T02:00 CST\"}}, \"plan_018_bm25\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T16:38:40.603Z\", \"updated_at\": \"2026-05-14T17:09:50.985Z\", \"hypothesis\": \"BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。\", \"parent\": \"m2_full_qwen\", \"notes\": \"Phase 1 (CPU) COMPLETE: BM25 negative mining 完成。3 seeds 数据生成，record counts 与其他策略完全一致，0 fallback。BM25 score 分布: mean=246.50, std=155.96。重叠率: BM25 vs embedding_distance ~87.1%, vs random ~76.2%, vs dataflow_aware ~71.8%。高 median=1.0 因小 repo 候选池≤50 文件导致策略完全重合，BM25 differentiation 主要在大 repo。脚本: /root/structfuse/scripts/mine_bm25_negatives.py。输出: /root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl。Phase 2 (GPU): 等 re-dream gate 通过 + M2 完成后训练。\", \"metrics\": {\"phase1_complete\": true, \"seed_42\": {\"train_records\": 11308, \"val_records\": 2980, \"train_size_mb\": 1280.8, \"val_size_mb\": 344.6}, \"seed_43\": {\"train_records\": 11236, \"val_records\": 3052, \"train_size_mb\": 1280.9, \"val_size_mb\": 316}, \"seed_44\": {\"train_records\": 11264, \"val_records\": 3024, \"train_size_mb\": 1347.1, \"val_size_mb\": 295.9}, \"bm25_score_dist\": {\"count\": 392954, \"mean\": 246.5, \"std\": 155.96, \"p25\": 128.38, \"p50\": 228.41, \"p75\": 347.85, \"max\": 2585.74}, \"overlap_overall\": {\"bm25_vs_embedding\": 0.871, \"bm25_vs_random\": 0.762, \"bm25_vs_dataflow\": 0.718, \"note\": \"k=50 full candidate overlap from mining worker\"}, \"overlap_stratified_top7_jaccard\": {\"small_lt50\": {\"repos\": 39, \"bm25_vs_embedding\": 0.668, \"bm25_vs_random\": 0.411, \"bm25_vs_dataflow\": 0.667}, \"medium_50_200\": {\"repos\": 29, \"bm25_vs_embedding\": 0.38, \"bm25_vs_random\": 0.067, \"bm25_vs_dataflow\": 0.363}, \"large_200plus\": {\"repos\": 15, \"bm25_vs_embedding\": 0.297, \"bm25_vs_random\": 0.007, \"bm25_vs_dataflow\": 0.405}, \"matched_queries\": 2920, \"total_queries\": 12290, \"note\": \"top-7 Jaccard on s42 matched queries only (24% match rate due to different train/val splits)\"}}}, \"plan_015_dynamic\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T17:03:24.316Z\", \"updated_at\": \"2026-05-14T17:03:30.544Z\", \"hypothesis\": \"Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。\", \"notes\": \"Director D031 缩减：原 44h → 11h 单卡。只跑 dynamic_ep × 1 seed (Qwen, s42)，跳过 dynamic_500。Post-M2 与 plan_003 并行（一卡 SWE-bench，一卡 dynamic_ep）。受 re-dream gate 约束。设计文档已由 Worker 完成。\"}, \"neg_difficulty_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:39:20.016Z\", \"updated_at\": \"2026-05-14T00:13:49.046Z\", \"hypothesis\": \"Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\", \"notes\": \"128 vs 2048 token 对比完成（2026-05-14 05:54 CST）。Qwen pos_sim 在 2048t 下 0.9855（比 128t 的 0.9804 更高），确认 ceiling 为 Qwen 表征的结构性特征，非截断 artifact。StarCoder margin 2.6-4.1x Qwen（2048t）。核心结论：pretrained representation separability varies across encoders，跨两种 token 长度成立。数据源：128t → stats_v2.json，2048t → stats_v3_2048.json。\", \"metrics\": {\"qwen_128\": {\"random\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.899, \"margin\": 0.0816, \"pct_positive_margin\": 77.8}, \"embedding_distance\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.959, \"margin\": 0.0209, \"pct_positive_margin\": 60.7}, \"dataflow_aware\": {\"pos_sim\": 0.9805, \"neg_sim\": 0.95, \"margin\": 0.0309, \"pct_positive_margin\": 67.4}}, \"starcoder_128\": {\"random\": {\"pos_sim\": 0.757, \"neg_sim\": 0.553, \"margin\": 0.2039, \"pct_positive_margin\": 72.8}, \"embedding_distance\": {\"pos_sim\": 0.784, \"neg_sim\": 0.668, \"margin\": 0.1159, \"pct_positive_margin\": 59.2}, \"dataflow_aware\": {\"pos_sim\": 0.761, \"neg_sim\": 0.659, \"margin\": 0.1022, \"pct_positive_margin\": 62.8}}, \"qwen_2048\": {\"random\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9111, \"margin\": 0.0743, \"margin_std\": 0.2322, \"pct_positive_margin\": 81.8}, \"embedding_distance\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9685, \"margin\": 0.017, \"margin_std\": 0.114, \"pct_positive_margin\": 58.8}, \"dataflow_aware\": {\"pos_sim\": 0.9856, \"neg_sim\": 0.9563, \"margin\": 0.0293, \"margin_std\": 0.1407, \"pct_positive_margin\": 73.9}}, \"starcoder_2048\": {\"random\": {\"pos_sim\": 0.7985, \"neg_sim\": 0.6045, \"margin\": 0.194, \"margin_std\": 0.2788, \"pct_positive_margin\": 78}, \"embedding_distance\": {\"pos_sim\": 0.8079, \"neg_sim\": 0.7409, \"margin\": 0.067, \"margin_std\": 0.2056, \"pct_positive_margin\": 55}, \"dataflow_aware\": {\"pos_sim\": 0.8009, \"neg_sim\": 0.6818, \"margin\": 0.1192, \"margin_std\": 0.2264, \"pct_positive_margin\": 70.4}}, \"sc_qwen_margin_ratio_128\": {\"random\": 2.5, \"embedding_distance\": 5.54, \"dataflow_aware\": 3.3}, \"sc_qwen_margin_ratio_2048\": {\"random\": 2.61, \"embedding_distance\": 3.94, \"dataflow_aware\": 4.07}}, \"conclusion\": \"success\"}, \"m1_reextract\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:35:23.954Z\", \"updated_at\": \"2026-05-13T19:45:53.741Z\", \"hypothesis\": \"M1 重提取：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"conclusion\": \"failed\", \"notes\": \"CodeQL query 100% 失败（exit status 2）。根因：Worker 安装 CodeQL CLI 2.25.4 时未执行 `codeql pack install`，`codeql/python-all@7.1.0` 标准库 pack 缺失。修复命令：`cd /root/structfuse/extraction/codeql_queries && /opt/codeql/codeql pack install`。已 kill 进程 + tmux session。无新数据产出（all.jsonl 未受影响）。等 Director 确认后修复重跑。\"}, \"m1_extraction\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T21:00:02.300Z\", \"updated_at\": \"2026-05-13T19:26:13.901Z\", \"metrics\": {\"total_instances_attempted\": 44173, \"instances_skipped\": 6696, \"total_instances\": 50869, \"codeql_success\": 15133, \"beniget_fallback\": 764, \"extraction_failed\": 28276, \"structural_data_rate\": 0.36, \"repos_with_output\": 123, \"repos_total\": 131, \"repo_coverage\": 0.939, \"skip_clone_failed\": 5852, \"skip_checkout_failed\": 836, \"skip_stale_handle\": 8, \"elapsed_minutes\": 837.8, \"avg_time_per_instance_s\": 8.9, \"output_size_gb\": 6.6, \"disk_usage_gb\": 13, \"output_file\": \"all.jsonl\"}, \"notes\": \"[2026-05-13 19:25] COMPLETED. 837.8min, 123/131 repos (93.9%), 15,897/44,173 instances with structural data (36.0%), 6,696 skipped (clone/checkout). Output: all.jsonl 6.6GB. [2026-05-13 19:23 UPDATE] 28,276 buggy_file_not_found errors 经验证并非上游数据质量问题——10/10 抽查的文件在 repo 中全部存在。根因是运行时瞬态文件系统故障（CodeQL 并行 database creation 导致磁盘耗尽，锐截止模式）。这些 instances 可通过重跑恢复。D022: 准备重跑脚本中，等 Director 确认后执行。\", \"conclusion\": \"success\"}, \"plan_006_scalability\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T07:57:43.631Z\", \"updated_at\": \"2026-05-13T19:24:00.741Z\", \"conclusion\": \"success\", \"notes\": \"[2026-05-13 19:23] 全量统计 + error 分析 + fuzzy match 验证完成。关键发现: (1) 0 timeout; (2) 28,276 error 全部 buggy_file_not_found，但 fuzzy match 验证发现文件实际都存在——根因是运行时瞬态文件系统故障（锐截止模式：每个 repo 内先成功后突然全部失败，extraction_time=0.0s），可能是 CodeQL 并行数据库创建导致磁盘空间耗尽; (3) 这些 instance 可通过重跑恢复（当前 resolve_file_in_repo 对全部样本返回正确路径）; (4) 结构数据率 34.3% 有望提升至接近 100%（若重跑成功）; (5) Z% 随 repo 规模上升 (XL median 96%). Artifacts: plan006_full_scalability.json, art_20260513_d262da (error patterns)\", \"hypothesis\": \"Claim 3: CodeQL bounded data-flow extraction scales to large repos with acceptable timeout rates and provides meaningful structural coverage (Z%) that increases with repo complexity\", \"metrics\": {\"repos\": 123, \"total_instances\": 44173, \"structural_data_rate\": 0.343, \"error_rate\": 0.64, \"zero_timeout_rate\": true, \"processing_time\": {\"mean_s\": 8.93, \"median_s\": 0, \"p95_s\": 31.95, \"max_s\": 633.68, \"total_hours\": 109.58}, \"by_tier\": {\"small_lt50\": {\"repos\": 1, \"instances\": 500, \"error_rate\": 0.054, \"struct_rate\": 0.81, \"z_pct_mean\": 0.284, \"z_pct_median\": 0}, \"medium_50_200\": {\"repos\": 17, \"instances\": 4096, \"error_rate\": 0.485, \"struct_rate\": 0.472, \"z_pct_mean\": 0.444, \"z_pct_median\": 0.5}, \"large_200_500\": {\"repos\": 40, \"instances\": 13628, \"error_rate\": 0.639, \"struct_rate\": 0.343, \"z_pct_mean\": 0.604, \"z_pct_median\": 0.857}, \"xlarge_500plus\": {\"repos\": 29, \"instances\": 25949, \"error_rate\": 0.676, \"struct_rate\": 0.314, \"z_pct_mean\": 0.812, \"z_pct_median\": 0.96}}, \"instance_distribution\": {\"lt10\": 1, \"10_50\": 17, \"50_200\": 36, \"200_500\": 40, \"500plus\": 29}, \"artifact\": \"plan006_full_scalability.json\"}}, \"plan_013_starcoder\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T05:09:14.885Z\", \"updated_at\": \"2026-05-13T18:09:54.153Z\", \"hypothesis\": \"Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\", \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5078) > random (0.4922) > dataflow (0.4869). Embedding vs random: +1.6pp (consistent with Qwen). Dataflow vs random: -0.5pp (DIFFERS from Qwen where dataflow > random +0.8pp). Hypothesis NEGATIVE: strategy ranking NOT identical across encoders. Embedding > random is encoder-agnostic, dataflow position is encoder-dependent. Log: /root/runs/faith-evidence-ie/plan_013_starcoder.log. Cron misreported EXIT_CODE=129 but all strategies completed (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_val_loss\": 0.5113, \"best_recall@1\": 0.4922, \"best_recall@5\": 0.98, \"best_recall@10\": 1, \"source\": \"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\"}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.4816, \"best_recall@1\": 0.5078, \"best_recall@5\": 0.9843, \"best_recall@10\": 1, \"final_val_loss\": 0.506, \"final_recall@1\": 0.5174}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.5255, \"best_recall@1\": 0.4869, \"best_recall@5\": 0.9695, \"best_recall@10\": 1, \"final_val_loss\": 0.5509, \"final_recall@1\": 0.5078}}, \"conclusion\": \"negative\"}, \"m2_embed_verify\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T04:39:16.051Z\", \"updated_at\": \"2026-05-13T15:59:51.621Z\", \"hypothesis\": \"True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence.\", \"parent\": \"m2_early_pilot\", \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5557) > dataflow (0.5436) > random (0.5357). Embedding vs random: +2.0pp. Dataflow vs random: +0.8pp. All best at step 500, overfitting after. Hypothesis confirmed: true embedding negatives are harder → Claim 2 supported. Log: /root/runs/faith-evidence-ie/m2_embed_verify.log. Cron misreported EXIT_CODE=2 but all strategies completed successfully (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4834, \"best_recall@1\": 0.5357, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5978, \"final_recall@1\": 0.5122}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4603, \"best_recall@1\": 0.5557, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5935, \"final_recall@1\": 0.5209}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.5602, \"best_recall@1\": 0.5436, \"best_recall@5\": 0.9817, \"best_recall@10\": 1, \"final_val_loss\": 0.6201, \"final_recall@1\": 0.5287}}, \"conclusion\": \"success\"}, \"mvp_p2b_contrastive_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T15:03:02.370Z\", \"updated_at\": \"2026-05-13T07:23:28.932Z\", \"conclusion\": \"killed\", \"notes\": \"P2b 对比训练 v2，因磁盘空间不足被 kill。已被 p2b_5reruns（成功完成 9/9 runs）替代。\"}, \"p2b_dataflow_retrain\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T19:49:00.303Z\", \"updated_at\": \"2026-05-13T07:23:27.706Z\", \"conclusion\": \"negative\", \"notes\": \"Dataflow 策略重训练计划，因 embedding_distance 命名问题（实际用 BM25 而非 embedding）被 Reviewer 发现后搁置。已被 m2_embed_verify（true embedding mining）替代。\"}, \"p2b_eval_all\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T16:27:50.967Z\", \"updated_at\": \"2026-05-13T07:23:24.721Z\", \"conclusion\": \"killed\", \"notes\": \"P2b 全量 eval（pool_size=26），被 D013 服务器迁移计划取消。已被 p2b_eval_4runs_pool50（pool_size=50）替代。\"}, \"m2_early_pilot\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T01:39:53.920Z\", \"updated_at\": \"2026-05-13T04:44:22.077Z\", \"hypothesis\": \"Early pilot on partial M1 data (24 repos, ~5K instances): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"conclusion\": \"killed\", \"notes\": \"PID 795791 在 cqa1 cuda:4 运行，wrapper 脚本顺序跑 random→embedding→dataflow（set -e）。random 策略跑到 step 4000 后卡住（~45min 无新日志），embedding/dataflow 未启动。Best checkpoint at step 1500。Val_loss 持续恶化（0.5879→0.728），明显过拟合。另有 OOM 进程干扰（某进程试图在同 GPU 启动导致 OOM，可能破坏 GPU 状态）。eval recall@k bug 已确认。\", \"metrics\": {\"pid\": 795791, \"gpu\": \"cuda:4\", \"gpu_mem_mb\": 9342, \"gpu_util_pct\": 83, \"batch_size\": 2, \"num_negatives\": 3, \"max_seq_length\": 1024, \"strategy_running\": \"random (stuck at step 4000, epoch 3)\", \"strategies_completed\": \"0/3\", \"eval_1500\": {\"val_loss\": 0.5879, \"recall_at_1\": 0.4693, \"recall_at_5\": 0.4693, \"recall_at_10\": 0.4693}, \"eval_2000\": {\"val_loss\": 0.7089, \"recall_at_1\": 0.4398}, \"eval_2500\": {\"val_loss\": 0.6961, \"recall_at_1\": 0.4291}, \"eval_3000\": {\"val_loss\": 0.728, \"recall_at_1\": 0.4104}, \"eval_3500\": {\"val_loss\": 0.7022, \"recall_at_1\": 0.4439}, \"best_checkpoint\": \"step_1500 (val_loss=0.5879, 6.2GB)\", \"WARNING\": \"recall@1=recall@5=recall@10 confirmed eval bug. Process hung after step 4000 (~45min no output). Overfitting after step 1500.\", \"status_check_at\": \"2026-05-13T04:42:00Z\"}}, \"m2_early_pilot_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T01:59:06.557Z\", \"updated_at\": \"2026-05-13T02:13:43.400Z\", \"conclusion\": \"killed\", \"notes\": \"GPU 越界 cuda:0，违反项目 GPU 分配 gpu_ids=[\\\"cuda:4\\\"]。第二次 GPU 越界违规（首次 D005）。Worker 未正确映射 CUDA_VISIBLE_DEVICES。\"}, \"m2_early_pilot_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T01:52:52.724Z\", \"updated_at\": \"2026-05-13T02:13:31.039Z\", \"hypothesis\": \"Early pilot on partial M1 data (24 repos, 2672 train + 746 val): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"parent\": \"m1_extraction\", \"notes\": \"wandb API key error, EXIT_CODE=1。首次提交因 wandb 未配置离线模式而立即退出。\", \"conclusion\": \"failed\"}, \"mvp_p2b_contrastive_training\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:37:44.628Z\", \"updated_at\": \"2026-05-13T01:31:27.220Z\", \"notes\": \"4/9 runs 完成 (random×3 + embedding_distance_s42), 5/9 失败 (磁盘满 torch.save RuntimeError). /root/autodl-tmp 93% (14GB剩余, 每个checkpoint 5.8GB). 失败从 embedding_distance_s123 开始级联.\", \"metrics\": {\"random_s42_recall1\": 0.984, \"random_s123_recall1\": 0.984, \"random_s456_recall1\": 0.992, \"embedding_s42_recall1\": 0.874, \"random_mean_recall1\": 0.987, \"runs_completed\": 4, \"runs_failed\": 5, \"failure_type\": \"disk_full_torch_save\"}, \"conclusion\": \"killed\"}, \"p2b_eval_4runs_pool50\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T20:10:54.579Z\", \"updated_at\": \"2026-05-13T00:27:50.197Z\", \"conclusion\": \"success\", \"metrics\": {\"pool_size\": 50, \"n_samples\": 127, \"random_s42\": {\"recall@1\": 0.496, \"recall@5\": 0.843, \"recall@10\": 0.945}, \"random_s123\": {\"recall@1\": 0.535, \"recall@5\": 0.85, \"recall@10\": 0.921}, \"random_s456\": {\"recall@1\": 0.543, \"recall@5\": 0.843, \"recall@10\": 0.953}, \"emb_dist_s42\": {\"recall@1\": 0.488, \"recall@5\": 0.835, \"recall@10\": 0.874}, \"random_mean\": {\"recall@1\": 0.525, \"recall@5\": 0.845, \"recall@10\": 0.94}, \"emb_dist_vs_random_delta\": {\"recall@1\": -0.037, \"recall@5\": -0.01, \"recall@10\": -0.066}}}, \"d007_50repo_overlap\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T20:37:24.289Z\", \"updated_at\": \"2026-05-12T20:37:39.566Z\", \"conclusion\": \"success\", \"metrics\": {\"total_instances\": 240, \"instances_with_extra_connected\": 98, \"Z_pct\": 40.8, \"avg_connected_minus_gold\": 6, \"codeql_timeout_rate_pct\": 4, \"by_repo_size\": {\"small_lt50\": {\"Z_pct\": 38.6, \"avg_extra\": 2.5}, \"medium_50_200\": {\"Z_pct\": 55.7, \"avg_extra\": 11.8}, \"large_gt200\": {\"Z_pct\": 16.7, \"avg_extra\": 8.8}}, \"decision\": \"Z=40.8% >= 20% -> original method viable, proceed to M1\"}}, \"p2b_5reruns\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:26:47.603Z\", \"updated_at\": \"2026-05-12T19:19:53.785Z\", \"conclusion\": \"success\", \"metrics\": {\"random_s42\": {\"val_loss\": 0.0347, \"recall@1\": 0.9843}, \"random_s123\": {\"val_loss\": 0.0446, \"recall@1\": 0.9843}, \"random_s456\": {\"val_loss\": 0.0188, \"recall@1\": 0.9921}, \"emb_dist_s42\": {\"val_loss\": 0.1876, \"recall@1\": 0.874}, \"emb_dist_s123\": {\"val_loss\": 0.1461, \"recall@1\": 0.874}, \"emb_dist_s456\": {\"val_loss\": 0.1281, \"recall@1\": 0.8819}, \"dataflow_s42\": {\"val_loss\": 0.1878, \"recall@1\": 0.874}, \"dataflow_s123\": {\"val_loss\": 0.146, \"recall@1\": 0.874}, \"dataflow_s456\": {\"val_loss\": 0.1278, \"recall@1\": 0.8819}, \"runs_completed\": 9, \"runs_failed\": 0, \"WARNING\": \"dataflow_aware ≈ embedding_distance to 4 decimal places across all seeds — likely code bug in negative sampling\"}}, \"p2b_eval_4runs_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:21:49.599Z\", \"updated_at\": \"2026-05-12T17:22:16.595Z\", \"conclusion\": \"success\", \"metrics\": {\"random_seed42\": {\"recall@1\": 0.9449, \"recall@5\": 0.9843, \"recall@10\": 0.9843}, \"random_seed123\": {\"recall@1\": 0.9449, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"random_seed456\": {\"recall@1\": 0.9291, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"emb_dist_seed42\": {\"recall@1\": 0.6693, \"recall@5\": 0.8898, \"recall@10\": 0.9291}, \"pool_size\": 26, \"n_samples\": 127}}, \"p2b-all-9runs\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:34:24.923Z\", \"updated_at\": \"2026-05-12T15:05:49.244Z\", \"conclusion\": \"killed\"}, \"p2b-smoke8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:32:22.931Z\", \"updated_at\": \"2026-05-12T15:05:48.324Z\", \"conclusion\": \"killed\"}, \"p2b-smoke7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:28:55.114Z\", \"updated_at\": \"2026-05-12T15:05:47.346Z\", \"conclusion\": \"killed\"}, \"p2b-smoke6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:22:54.445Z\", \"updated_at\": \"2026-05-12T15:05:46.413Z\", \"conclusion\": \"killed\"}, \"p2b-smoke5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:22:05.754Z\", \"updated_at\": \"2026-05-12T15:05:45.484Z\", \"conclusion\": \"killed\"}, \"p2b-smoke4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:20:53.305Z\", \"updated_at\": \"2026-05-12T15:05:44.066Z\", \"conclusion\": \"killed\"}, \"p2b-smoke3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:18:19.105Z\", \"updated_at\": \"2026-05-12T15:05:43.111Z\", \"conclusion\": \"killed\"}, \"p2b-smoke2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:16:08.154Z\", \"updated_at\": \"2026-05-12T15:05:42.174Z\", \"conclusion\": \"killed\"}, \"p2b-smoke-test\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:14:30.477Z\", \"updated_at\": \"2026-05-12T15:05:41.269Z\", \"conclusion\": \"killed\"}, \"mvp_p2a_linear_proxy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T11:53:42.223Z\", \"updated_at\": \"2026-05-12T11:58:15.436Z\", \"conclusion\": \"success\", \"metrics\": {\"df_bm25_auc\": 0.78, \"bm25_only_auc\": 0.476, \"auc_delta\": 0.304, \"df_bm25_mrr\": 0.556, \"bm25_only_mrr\": 0.115, \"mrr_delta\": 0.441, \"df_bm25_f1\": 0.143, \"bm25_only_f1\": 0.039, \"top_feature\": \"is_connected (+2.82)\", \"repos_evaluated\": 3, \"note\": \"3 repos / 3 positive samples, directional evidence\"}}, \"mvp_p1_codeql_feasibility\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T11:30:45.938Z\", \"updated_at\": \"2026-05-12T11:58:06.197Z\", \"conclusion\": \"success\", \"metrics\": {\"timeout_rate\": 0, \"repos_processed\": 8, \"repos_skipped\": 2, \"cg_mean_s\": 29.6, \"cg_max_s\": 119.8, \"df_mean_s\": 43.4, \"df_max_s\": 167.1, \"h2_connected_coverage\": 0.014815, \"h2_disconnected_coverage\": 0, \"h2_fisher_p\": 6.5e-09, \"h2_gold_in_connected_ratio\": 1, \"h2_note\": \"After path normalization fix: 8/8 gold in connected (was 6/8)\"}}}, \"count\": 37, \"total\": 37, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2843}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a106a18b-0e58-41a4-81d0-3852d54daefb",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "0fa43d7b-bf69-48a9-a82a-e37850c92cb3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"m1_reextract_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-13T20:00:20.578Z\\\", \\\"updated_at\\\": \\\"2026-05-15T04:00:15.446Z\\\", \\\"hypothesis\\\": \\\"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"notes\\\": \\\"moto CodeQL call_graph.ql timeout (NOT OOM): directCallEdge predicate exceeds 300s timeout on every instance (exit code 33). 536 moto instances all fail call_graph, fallback to embedding-distance. Isolated failure — 1/4 workers stuck on moto (~5min/instance, ~38h total), other 3 workers process pydicom/conan/MONAI normally. DB creation succeeded; bounded_dataflow.ql unaffected.\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T09:53Z\\\", \\\"process\\\": \\\"alive (CPU, 4 workers)\\\", \\\"started\\\": \\\"2026-05-14T03:59Z\\\", \\\"elapsed_hours\\\": 30, \\\"total_instances\\\": 28276, \\\"completed_instances\\\": 24624, \\\"completion_pct\\\": 87.1, \\\"errors\\\": 0, \\\"warnings\\\": 19, \\\"rate\\\": \\\"~7 instances/min\\\", \\\"active_repos\\\": {\\\"sqlfluff/sqlfluff\\\": \\\"~1270/1272 (nearly done)\\\", \\\"conan-io/conan\\\": \\\"~770/972\\\", \\\"pydicom/pydicom\\\": \\\"~640/1315\\\", \\\"Project-MONAI/MONAI\\\": \\\"~225/524\\\", \\\"getmoto/moto\\\": \\\"just started (536)\\\"}, \\\"all_jsonl_lines\\\": 44173, \\\"eta\\\": \\\"~May 15 17:00-19:00 CST (revised, +2h due to getmoto)\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:53 CST\\\"}}, \\\"plan_005_stratified\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:18:38.309Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。[2026-05-15 11:17] evaluate_pool50.py (D042) 独立验证通过：260行脚本，--help/数据加载/模型加载/编码流程/--batch-mode 自动发现 best_by_* checkpoint 全部 OK。GPU 模式几分钟可跑完 2980 queries。Ready for production。注意：服务器上残留 PID 465668 (旧 evaluate_pool50.py --pool-size 5 --gpu -1 进程)，需清理。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"data_validity\\\": \\\"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\\\", \\\"valid_findings\\\": {\\\"distribution_structure\\\": \\\"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"implication\\\": \\\"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\\\"}, \\\"invalid_findings\\\": \\\"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\", \\\"valid_artifact\\\": \\\"cross_tabulation.csv\\\"}}}, \\\"m2_full_starcoder_resumed\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:06:23.058Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\\\", \\\"parent\\\": \\\"m2_full_starcoder\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T02:04Z\\\", \\\"process\\\": \\\"alive (PID 519791)\\\", \\\"gpu\\\": \\\"cuda:1, 100% util, 54GB/97GB VRAM\\\", \\\"current_subrun\\\": \\\"random_s43 (1/8 in resumed chain)\\\", \\\"current_step\\\": \\\"1500/2810 (~53%, Epoch 2)\\\", \\\"latest_loss\\\": 0.0268, \\\"completed_subruns\\\": 1, \\\"remaining_subruns\\\": 7, \\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.4604, \\\"best_val_loss\\\": 0.6134, \\\"source\\\": \\\"parent\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"eval_at_500\\\": {\\\"R@1\\\": 0.4708, \\\"val_loss\\\": 0.5279, \\\"best_val_loss\\\": true}, \\\"eval_at_1000\\\": {\\\"R@1\\\": 0.478, \\\"val_loss\\\": 0.543, \\\"early_stopping\\\": \\\"1/2\\\"}, \\\"eval_at_1500\\\": \\\"computing (pending)\\\", \\\"note\\\": \\\"R@1 trending up (0.4708→0.4780). eval@1500 will determine early stop (if val_loss > 0.5279, patience=2/2).\\\"}, \\\"checkpoints\\\": [\\\"random_s42/best_by_val_loss\\\", \\\"random_s42/best_by_recall_at_1\\\", \\\"random_s43/best_by_val_loss\\\", \\\"random_s43/best_by_recall_at_1\\\"], \\\"bm25_watcher\\\": \\\"active (PID watcher on 519791, will start BM25 StarCoder on cuda:1 when chain finishes)\\\", \\\"eta_hours\\\": \\\"55-65\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T10:04 CST\\\"}}, \\\"m2_full_qwen_continued\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:11:10.448Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"metrics\\\": {\\\"checked_at\\\": \\\"2026-05-15T01:12Z\\\", \\\"process\\\": \\\"alive (PID 337267, uptime 13h45m)\\\", \\\"gpu\\\": \\\"cuda:0, 100% util, 49521/97887 MiB\\\", \\\"current_subrun\\\": \\\"embedding_distance_s43 (3/9 in chain)\\\", \\\"current_step\\\": \\\"150/2810 (~5%)\\\", \\\"latest_loss\\\": 0.5041, \\\"lr\\\": \\\"1.06e-05\\\", \\\"completed_subruns\\\": 3, \\\"remaining_subruns\\\": 6, \\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5527, \\\"source\\\": \\\"parent m2_full_qwen\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5554, \\\"best_val_loss\\\": 0.4476, \\\"early_stopped\\\": \\\"step 1500\\\"}, \\\"random_s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.6009, \\\"best_val_loss\\\": 0.4252, \\\"early_stopped\\\": \\\"step 1500\\\", \\\"best_step\\\": 500}, \\\"embedding_distance_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"step\\\": 150, \\\"started\\\": \\\"08:32 CST\\\"}, \\\"checkpoints\\\": [\\\"random_s42/best_by_val_loss\\\", \\\"random_s42/best_by_recall_at_1\\\", \\\"random_s43/best_by_val_loss\\\", \\\"random_s43/best_by_recall_at_1\\\", \\\"random_s44/best_by_val_loss\\\", \\\"random_s44/best_by_recall_at_1\\\", \\\"random_s44/final\\\"], \\\"bm25_watcher\\\": \\\"active (PID watcher on 337267, will start BM25 Qwen on cuda:0 when chain finishes)\\\", \\\"eta_hours\\\": \\\"50-55\\\", \\\"progress_snapshot\\\": \\\"2026-05-15T09:12 CST\\\"}}, \\\"plan_017_literature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:49:00.477Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:45.149Z\\\", \\\"hypothesis\\\": \\\"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"papers_surveyed\\\": 8, \\\"citations_verified\\\": 8, \\\"discussion_draft\\\": \\\"artifacts/paper_drafts/discussion_v2.md\\\", \\\"artifact_id\\\": \\\"art_20260514_a2e1cd\\\"}, \\\"notes\\\": \\\"Inference-time graph method comparison 完成。8 papers surveyed，其中 6 篇纳入 literature_map.yaml 和 discussion_v2.md（CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph）。CodeGRAG 和 CodeRAG 经调研排除：CodeGRAG（arXiv 2405.02355）关注 NL→code generation 的 graph-augmented prompting，不涉及代码检索或对比学习；CodeRAG 系列（CodeRAG-Bench 2406.14497 / CodeRAG 2504.10046）关注 retrieval-augmented code generation benchmark 和 bigraph-based 代码生成，均为生成任务而非检索训练。两者与 StructFuse 的 scope（训练时结构信号用于对比学习代码检索）不符，故未纳入 discussion。\\\"}, \\\"m2_full_starcoder\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T16:18:15.415Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:04:29.245Z\\\", \\\"hypothesis\\\": \\\"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\\\", \\\"parent\\\": \\\"plan_013_starcoder\\\", \\\"notes\\\": \\\"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs。[2026-05-15 02:02 CST] cuda:1 进程冲突修复并重新提交（PID 519791, timeout=144h）。Registry 状态 DONE(failed) 是旧 cron timeout 标记，实际正在运行 random_s43 [1/8]。新 cron 已注册监控 PID 519791。序列：random_s43→s44→(待插入bm25_s42)→embedding×3→dataflow×3。random_s42 结果：best R@1=0.4604 at step 2500, val_loss=0.6134 at step 1000。\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"epoch\\\": \\\"3/3\\\", \\\"current_step\\\": 4200, \\\"total_steps\\\": 4242, \\\"total_steps_per_epoch\\\": 1414, \\\"eval_500\\\": {\\\"val_loss\\\": 0.6194, \\\"recall_at_1\\\": 0.435, \\\"recall_at_5\\\": 0.905, \\\"recall_at_10\\\": 1}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.6134, \\\"recall_at_1\\\": 0.454, \\\"recall_at_5\\\": 0.92, \\\"recall_at_10\\\": 1}, \\\"eval_1500\\\": {\\\"val_loss\\\": 0.6528, \\\"recall_at_1\\\": 0.449, \\\"recall_at_5\\\": 0.906, \\\"recall_at_10\\\": 1}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.6698, \\\"recall_at_1\\\": 0.4456, \\\"recall_at_5\\\": 0.906, \\\"recall_at_10\\\": 1}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.6342, \\\"recall_at_1\\\": 0.4604, \\\"recall_at_5\\\": 0.9117, \\\"recall_at_10\\\": 1}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.6516, \\\"recall_at_1\\\": 0.4544, \\\"recall_at_5\\\": 0.9077, \\\"recall_at_10\\\": 1}, \\\"eval_3500\\\": {\\\"val_loss\\\": 0.6588, \\\"recall_at_1\\\": 0.4534, \\\"recall_at_5\\\": 0.9057, \\\"recall_at_10\\\": 1}, \\\"eval_4000\\\": {\\\"val_loss\\\": 0.6637, \\\"recall_at_1\\\": 0.4547, \\\"recall_at_5\\\": 0.9003, \\\"recall_at_10\\\": 1}, \\\"best_checkpoint\\\": \\\"step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)\\\", \\\"conclusion\\\": \\\"effectively_complete (timeout at step 4200/4242, lr=7.8e-9, remaining 42 steps negligible)\\\"}, \\\"progress_snapshot\\\": \\\"2026-05-15T01:50 CST\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"m2_full_qwen\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:00:29.323Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed. [D026] s42 保持 3 epochs 提供完整 overfitting curve; s43/s44 及后续 runs 改为 2 epochs + early_stopping_patience=2。[STATUS 2026-05-15 00:19 CST] Registry 状态 ANALYZING 是 cron 自动设置（s42 进程退出触发），但实验实际仍在进行中。random_s43 在 cuda:0 正常运行，step 1200/2810 (43%)。eval@500 R@1=0.5357, eval@1000 R@1=0.5285 (early_stopping 1/2)。Best R@1=0.5357 at step 500。GPU 100% 利用率, 50.5/97.9GB VRAM。\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"epoch\\\": \\\"3/3\\\", \\\"total_steps\\\": 4242, \\\"total_steps_per_epoch\\\": 1414, \\\"eval_500\\\": {\\\"val_loss\\\": 0.4869, \\\"recall_at_1\\\": 0.533, \\\"recall_at_5\\\": 0.954, \\\"recall_at_10\\\": 1}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.4651, \\\"recall_at_1\\\": 0.553, \\\"recall_at_5\\\": 0.959, \\\"recall_at_10\\\": 1}, \\\"eval_1500\\\": {\\\"val_loss\\\": 0.5365, \\\"recall_at_1\\\": 0.523, \\\"recall_at_5\\\": 0.955, \\\"recall_at_10\\\": 1}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.5162, \\\"recall_at_1\\\": 0.523, \\\"recall_at_5\\\": 0.954, \\\"recall_at_10\\\": 1}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.5264, \\\"recall_at_1\\\": 0.527, \\\"recall_at_5\\\": 0.956, \\\"recall_at_10\\\": 1}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.5406, \\\"recall_at_1\\\": 0.536, \\\"recall_at_5\\\": 0.956, \\\"recall_at_10\\\": 1}, \\\"best_checkpoint\\\": \\\"step_1000 (val_loss=0.4651, R@1=0.5527)\\\", \\\"conclusion\\\": \\\"Overfit after step 1000. Best R@1=0.5527, +1.7pp vs pilot (0.5357). Full data helps.\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"epoch\\\": \\\"early_stopped\\\", \\\"total_steps_per_epoch\\\": 1405, \\\"eval_500\\\": {\\\"val_loss\\\": 0.4476, \\\"recall_at_1\\\": 0.5357}, \\\"eval_1000\\\": {\\\"val_loss\\\": 0.4637, \\\"recall_at_1\\\": 0.5285}, \\\"eval_1500\\\": {\\\"recall_at_1\\\": 0.5554}, \\\"best_by_val_loss\\\": \\\"step 500 (val_loss=0.4476)\\\", \\\"best_by_recall_at_1\\\": \\\"step 1500 (R@1=0.5554)\\\", \\\"conclusion\\\": \\\"Early stopped at step 1500. Best R@1=0.5554, consistent with s42 (0.5527). val_loss and R@1 criterion diverge.\\\"}, \\\"random_s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"note\\\": \\\"Auto-started 01:58 CST, epoch 1/2, 1408 batches/epoch\\\"}, \\\"progress_snapshot\\\": \\\"2026-05-15T02:00 CST\\\"}}, \\\"plan_018_bm25\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T16:38:40.603Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:09:50.985Z\\\", \\\"hypothesis\\\": \\\"BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"Phase 1 (CPU) COMPLETE: BM25 negative mining 完成。3 seeds 数据生成，record counts 与其他策略完全一致，0 fallback。BM25 score 分布: mean=246.50, std=155.96。重叠率: BM25 vs embedding_distance ~87.1%, vs random ~76.2%, vs dataflow_aware ~71.8%。高 median=1.0 因小 repo 候选池≤50 文件导致策略完全重合，BM25 differentiation 主要在大 repo。脚本: /root/structfuse/scripts/mine_bm25_negatives.py。输出: /root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl。Phase 2 (GPU): 等 re-dream gate 通过 + M2 完成后训练。\\\", \\\"metrics\\\": {\\\"phase1_complete\\\": true, \\\"seed_42\\\": {\\\"train_records\\\": 11308, \\\"val_records\\\": 2980, \\\"train_size_mb\\\": 1280.8, \\\"val_size_mb\\\": 344.6}, \\\"seed_43\\\": {\\\"train_records\\\": 11236, \\\"val_records\\\": 3052, \\\"train_size_mb\\\": 1280.9, \\\"val_size_mb\\\": 316}, \\\"seed_44\\\": {\\\"train_records\\\": 11264, \\\"val_records\\\": 3024, \\\"train_size_mb\\\": 1347.1, \\\"val_size_mb\\\": 295.9}, \\\"bm25_score_dist\\\": {\\\"count\\\": 392954, \\\"mean\\\": 246.5, \\\"std\\\": 155.96, \\\"p25\\\": 128.38, \\\"p50\\\": 228.41, \\\"p75\\\": 347.85, \\\"max\\\": 2585.74}, \\\"overlap_overall\\\": {\\\"bm25_vs_embedding\\\": 0.871, \\\"bm25_vs_random\\\": 0.762, \\\"bm25_vs_dataflow\\\": 0.718, \\\"note\\\": \\\"k=50 full candidate overlap from mining worker\\\"}, \\\"overlap_stratified_top7_jaccard\\\": {\\\"small_lt50\\\": {\\\"repos\\\": 39, \\\"bm25_vs_embedding\\\": 0.668, \\\"bm25_vs_random\\\": 0.411, \\\"bm25_vs_dataflow\\\": 0.667}, \\\"medium_50_200\\\": {\\\"repos\\\": 29, \\\"bm25_vs_embedding\\\": 0.38, \\\"bm25_vs_random\\\": 0.067, \\\"bm25_vs_dataflow\\\": 0.363}, \\\"large_200plus\\\": {\\\"repos\\\": 15, \\\"bm25_vs_embedding\\\": 0.297, \\\"bm25_vs_random\\\": 0.007, \\\"bm25_vs_dataflow\\\": 0.405}, \\\"matched_queries\\\": 2920, \\\"total_queries\\\": 12290, \\\"note\\\": \\\"top-7 Jaccard on s42 matched queries only (24% match rate due to different train/val splits)\\\"}}}, \\\"plan_015_dynamic\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T17:03:24.316Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:03:30.544Z\\\", \\\"hypothesis\\\": \\\"Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。\\\", \\\"notes\\\": \\\"Director D031 缩减：原 44h → 11h 单卡。只跑 dynamic_ep × 1 seed (Qwen, s42)，跳过 dynamic_500。Post-M2 与 plan_003 并行（一卡 SWE-bench，一卡 dynamic_ep）。受 re-dream gate 约束。设计文档已由 Worker 完成。\\\"}, \\\"neg_difficulty_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T19:39:20.016Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:13:49.046Z\\\", \\\"hypothesis\\\": \\\"Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\\\", \\\"notes\\\": \\\"128 vs 2048 token 对比完成（2026-05-14 05:54 CST）。Qwen pos_sim 在 2048t 下 0.9855（比 128t 的 0.9804 更高），确认 ceiling 为 Qwen 表征的结构性特征，非截断 artifact。StarCoder margin 2.6-4.1x Qwen（2048t）。核心结论：pretrained representation separability varies across encoders，跨两种 token 长度成立。数据源：128t → stats_v2.json，2048t → stats_v3_2048.json。\\\", \\\"metrics\\\": {\\\"qwen_128\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.9804, \\\"neg_sim\\\": 0.899, \\\"margin\\\": 0.0816, \\\"pct_positive_margin\\\": 77.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.9804, \\\"neg_sim\\\": 0.959, \\\"margin\\\": 0.0209, \\\"pct_positive_margin\\\": 60.7}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.9805, \\\"neg_sim\\\": 0.95, \\\"margin\\\": 0.0309, \\\"pct_positive_margin\\\": 67.4}}, \\\"starcoder_128\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.757, \\\"neg_sim\\\": 0.553, \\\"margin\\\": 0.2039, \\\"pct_positive_margin\\\": 72.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.784, \\\"neg_sim\\\": 0.668, \\\"margin\\\": 0.1159, \\\"pct_positive_margin\\\": 59.2}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.761, \\\"neg_sim\\\": 0.659, \\\"margin\\\": 0.1022, \\\"pct_positive_margin\\\": 62.8}}, \\\"qwen_2048\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.9855, \\\"neg_sim\\\": 0.9111, \\\"margin\\\": 0.0743, \\\"margin_std\\\": 0.2322, \\\"pct_positive_margin\\\": 81.8}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.9855, \\\"neg_sim\\\": 0.9685, \\\"margin\\\": 0.017, \\\"margin_std\\\": 0.114, \\\"pct_positive_margin\\\": 58.8}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.9856, \\\"neg_sim\\\": 0.9563, \\\"margin\\\": 0.0293, \\\"margin_std\\\": 0.1407, \\\"pct_positive_margin\\\": 73.9}}, \\\"starcoder_2048\\\": {\\\"random\\\": {\\\"pos_sim\\\": 0.7985, \\\"neg_sim\\\": 0.6045, \\\"margin\\\": 0.194, \\\"margin_std\\\": 0.2788, \\\"pct_positive_margin\\\": 78}, \\\"embedding_distance\\\": {\\\"pos_sim\\\": 0.8079, \\\"neg_sim\\\": 0.7409, \\\"margin\\\": 0.067, \\\"margin_std\\\": 0.2056, \\\"pct_positive_margin\\\": 55}, \\\"dataflow_aware\\\": {\\\"pos_sim\\\": 0.8009, \\\"neg_sim\\\": 0.6818, \\\"margin\\\": 0.1192, \\\"margin_std\\\": 0.2264, \\\"pct_positive_margin\\\": 70.4}}, \\\"sc_qwen_margin_ratio_128\\\": {\\\"random\\\": 2.5, \\\"embedding_distance\\\": 5.54, \\\"dataflow_aware\\\": 3.3}, \\\"sc_qwen_margin_ratio_2048\\\": {\\\"random\\\": 2.61, \\\"embedding_distance\\\": 3.94, \\\"dataflow_aware\\\": 4.07}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"m1_reextract\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T19:35:23.954Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:45:53.741Z\\\", \\\"hypothesis\\\": \\\"M1 重提取：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"CodeQL query 100% 失败（exit status 2）。根因：Worker 安装 CodeQL CLI 2.25.4 时未执行 `codeql pack install`，`codeql/python-all@7.1.0` 标准库 pack 缺失。修复命令：`cd /root/structfuse/extraction/codeql_queries && /opt/codeql/codeql pack install`。已 kill 进程 + tmux session。无新数据产出（all.jsonl 未受影响）。等 Director 确认后修复重跑。\\\"}, \\\"m1_extraction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T21:00:02.300Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:26:13.901Z\\\", \\\"metrics\\\": {\\\"total_instances_attempted\\\": 44173, \\\"instances_skipped\\\": 6696, \\\"total_instances\\\": 50869, \\\"codeql_success\\\": 15133, \\\"beniget_fallback\\\": 764, \\\"extraction_failed\\\": 28276, \\\"structural_data_rate\\\": 0.36, \\\"repos_with_output\\\": 123, \\\"repos_total\\\": 131, \\\"repo_coverage\\\": 0.939, \\\"skip_clone_failed\\\": 5852, \\\"skip_checkout_failed\\\": 836, \\\"skip_stale_handle\\\": 8, \\\"elapsed_minutes\\\": 837.8, \\\"avg_time_per_instance_s\\\": 8.9, \\\"output_size_gb\\\": 6.6, \\\"disk_usage_gb\\\": 13, \\\"output_file\\\": \\\"all.jsonl\\\"}, \\\"notes\\\": \\\"[2026-05-13 19:25] COMPLETED. 837.8min, 123/131 repos (93.9%), 15,897/44,173 instances with structural data (36.0%), 6,696 skipped (clone/checkout). Output: all.jsonl 6.6GB. [2026-05-13 19:23 UPDATE] 28,276 buggy_file_not_found errors 经验证并非上游数据质量问题——10/10 抽查的文件在 repo 中全部存在。根因是运行时瞬态文件系统故障（CodeQL 并行 database creation 导致磁盘耗尽，锐截止模式）。这些 instances 可通过重跑恢复。D022: 准备重跑脚本中，等 Director 确认后执行。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan_006_scalability\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T07:57:43.631Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:24:00.741Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"[2026-05-13 19:23] 全量统计 + error 分析 + fuzzy match 验证完成。关键发现: (1) 0 timeout; (2) 28,276 error 全部 buggy_file_not_found，但 fuzzy match 验证发现文件实际都存在——根因是运行时瞬态文件系统故障（锐截止模式：每个 repo 内先成功后突然全部失败，extraction_time=0.0s），可能是 CodeQL 并行数据库创建导致磁盘空间耗尽; (3) 这些 instance 可通过重跑恢复（当前 resolve_file_in_repo 对全部样本返回正确路径）; (4) 结构数据率 34.3% 有望提升至接近 100%（若重跑成功）; (5) Z% 随 repo 规模上升 (XL median 96%). Artifacts: plan006_full_scalability.json, art_20260513_d262da (error patterns)\\\", \\\"hypothesis\\\": \\\"Claim 3: CodeQL bounded data-flow extraction scales to large repos with acceptable timeout rates and provides meaningful structural coverage (Z%) that increases with repo complexity\\\", \\\"metrics\\\": {\\\"repos\\\": 123, \\\"total_instances\\\": 44173, \\\"structural_data_rate\\\": 0.343, \\\"error_rate\\\": 0.64, \\\"zero_timeout_rate\\\": true, \\\"processing_time\\\": {\\\"mean_s\\\": 8.93, \\\"median_s\\\": 0, \\\"p95_s\\\": 31.95, \\\"max_s\\\": 633.68, \\\"total_hours\\\": 109.58}, \\\"by_tier\\\": {\\\"small_lt50\\\": {\\\"repos\\\": 1, \\\"instances\\\": 500, \\\"error_rate\\\": 0.054, \\\"struct_rate\\\": 0.81, \\\"z_pct_mean\\\": 0.284, \\\"z_pct_median\\\": 0}, \\\"medium_50_200\\\": {\\\"repos\\\": 17, \\\"instances\\\": 4096, \\\"error_rate\\\": 0.485, \\\"struct_rate\\\": 0.472, \\\"z_pct_mean\\\": 0.444, \\\"z_pct_median\\\": 0.5}, \\\"large_200_500\\\": {\\\"repos\\\": 40, \\\"instances\\\": 13628, \\\"error_rate\\\": 0.639, \\\"struct_rate\\\": 0.343, \\\"z_pct_mean\\\": 0.604, \\\"z_pct_median\\\": 0.857}, \\\"xlarge_500plus\\\": {\\\"repos\\\": 29, \\\"instances\\\": 25949, \\\"error_rate\\\": 0.676, \\\"struct_rate\\\": 0.314, \\\"z_pct_mean\\\": 0.812, \\\"z_pct_median\\\": 0.96}}, \\\"instance_distribution\\\": {\\\"lt10\\\": 1, \\\"10_50\\\": 17, \\\"50_200\\\": 36, \\\"200_500\\\": 40, \\\"500plus\\\": 29}, \\\"artifact\\\": \\\"plan006_full_scalability.json\\\"}}, \\\"plan_013_starcoder\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T05:09:14.885Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:09:54.153Z\\\", \\\"hypothesis\\\": \\\"Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\\\", \\\"notes\\\": \\\"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5078) > random (0.4922) > dataflow (0.4869). Embedding vs random: +1.6pp (consistent with Qwen). Dataflow vs random: -0.5pp (DIFFERS from Qwen where dataflow > random +0.8pp). Hypothesis NEGATIVE: strategy ranking NOT identical across encoders. Embedding > random is encoder-agnostic, dataflow position is encoder-dependent. Log: /root/runs/faith-evidence-ie/plan_013_starcoder.log. Cron misreported EXIT_CODE=129 but all strategies completed (confirmed via log extraction worker).\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_val_loss\\\": 0.5113, \\\"best_recall@1\\\": 0.4922, \\\"best_recall@5\\\": 0.98, \\\"best_recall@10\\\": 1, \\\"source\\\": \\\"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\\\"}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.4816, \\\"best_recall@1\\\": 0.5078, \\\"best_recall@5\\\": 0.9843, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.506, \\\"final_recall@1\\\": 0.5174}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.5255, \\\"best_recall@1\\\": 0.4869, \\\"best_recall@5\\\": 0.9695, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5509, \\\"final_recall@1\\\": 0.5078}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"m2_embed_verify\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T04:39:16.051Z\\\", \\\"updated_at\\\": \\\"2026-05-13T15:59:51.621Z\\\", \\\"hypothesis\\\": \\\"True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence.\\\", \\\"parent\\\": \\\"m2_early_pilot\\\", \\\"notes\\\": \\\"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5557) > dataflow (0.5436) > random (0.5357). Embedding vs random: +2.0pp. Dataflow vs random: +0.8pp. All best at step 500, overfitting after. Hypothesis confirmed: true embedding negatives are harder → Claim 2 supported. Log: /root/runs/faith-evidence-ie/m2_embed_verify.log. Cron misreported EXIT_CODE=2 but all strategies completed successfully (confirmed via log extraction worker).\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4834, \\\"best_recall@1\\\": 0.5357, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5978, \\\"final_recall@1\\\": 0.5122}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4603, \\\"best_recall@1\\\": 0.5557, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5935, \\\"final_recall@1\\\": 0.5209}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.5602, \\\"best_recall@1\\\": 0.5436, \\\"best_recall@5\\\": 0.9817, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.6201, \\\"final_recall@1\\\": 0.5287}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_p2b_contrastive_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T15:03:02.370Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:28.932Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"P2b 对比训练 v2，因磁盘空间不足被 kill。已被 p2b_5reruns（成功完成 9/9 runs）替代。\\\"}, \\\"p2b_dataflow_retrain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T19:49:00.303Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:27.706Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Dataflow 策略重训练计划，因 embedding_distance 命名问题（实际用 BM25 而非 embedding）被 Reviewer 发现后搁置。已被 m2_embed_verify（true embedding mining）替代。\\\"}, \\\"p2b_eval_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T16:27:50.967Z\\\", \\\"updated_at\\\": \\\"2026-05-13T07:23:24.721Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"P2b 全量 eval（pool_size=26），被 D013 服务器迁移计划取消。已被 p2b_eval_4runs_pool50（pool_size=50）替代。\\\"}, \\\"m2_early_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T01:39:53.920Z\\\", \\\"updated_at\\\": \\\"2026-05-13T04:44:22.077Z\\\", \\\"hypothesis\\\": \\\"Early pilot on partial M1 data (24 repos, ~5K instances): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"PID 795791 在 cqa1 cuda:4 运行，wrapper 脚本顺序跑 random→embedding→dataflow（set -e）。random 策略跑到 step 4000 后卡住（~45min 无新日志），embedding/dataflow 未启动。Best checkpoint at step 1500。Val_loss 持续恶化（0.5879→0.728），明显过拟合。另有 OOM 进程干扰（某进程试图在同 GPU 启动导致 OOM，可能破坏 GPU 状态）。eval recall@k bug 已确认。\\\", \\\"metrics\\\": {\\\"pid\\\": 795791, \\\"gpu\\\": \\\"cuda:4\\\", \\\"gpu_mem_mb\\\": 9342, \\\"gpu_util_pct\\\": 83, \\\"batch_size\\\": 2, \\\"num_negatives\\\": 3, \\\"max_seq_length\\\": 1024, \\\"strategy_running\\\": \\\"random (stuck at step 4000, epoch 3)\\\", \\\"strategies_completed\\\": \\\"0/3\\\", \\\"eval_1500\\\": {\\\"val_loss\\\": 0.5879, \\\"recall_at_1\\\": 0.4693, \\\"recall_at_5\\\": 0.4693, \\\"recall_at_10\\\": 0.4693}, \\\"eval_2000\\\": {\\\"val_loss\\\": 0.7089, \\\"recall_at_1\\\": 0.4398}, \\\"eval_2500\\\": {\\\"val_loss\\\": 0.6961, \\\"recall_at_1\\\": 0.4291}, \\\"eval_3000\\\": {\\\"val_loss\\\": 0.728, \\\"recall_at_1\\\": 0.4104}, \\\"eval_3500\\\": {\\\"val_loss\\\": 0.7022, \\\"recall_at_1\\\": 0.4439}, \\\"best_checkpoint\\\": \\\"step_1500 (val_loss=0.5879, 6.2GB)\\\", \\\"WARNING\\\": \\\"recall@1=recall@5=recall@10 confirmed eval bug. Process hung after step 4000 (~45min no output). Overfitting after step 1500.\\\", \\\"status_check_at\\\": \\\"2026-05-13T04:42:00Z\\\"}}, \\\"m2_early_pilot_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T01:59:06.557Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:13:43.400Z\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"GPU 越界 cuda:0，违反项目 GPU 分配 gpu_ids=[\\\\\\\"cuda:4\\\\\\\"]。第二次 GPU 越界违规（首次 D005）。Worker 未正确映射 CUDA_VISIBLE_DEVICES。\\\"}, \\\"m2_early_pilot_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T01:52:52.724Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:13:31.039Z\\\", \\\"hypothesis\\\": \\\"Early pilot on partial M1 data (24 repos, 2672 train + 746 val): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"notes\\\": \\\"wandb API key error, EXIT_CODE=1。首次提交因 wandb 未配置离线模式而立即退出。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_p2b_contrastive_training\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:37:44.628Z\\\", \\\"updated_at\\\": \\\"2026-05-13T01:31:27.220Z\\\", \\\"notes\\\": \\\"4/9 runs 完成 (random×3 + embedding_distance_s42), 5/9 失败 (磁盘满 torch.save RuntimeError). /root/autodl-tmp 93% (14GB剩余, 每个checkpoint 5.8GB). 失败从 embedding_distance_s123 开始级联.\\\", \\\"metrics\\\": {\\\"random_s42_recall1\\\": 0.984, \\\"random_s123_recall1\\\": 0.984, \\\"random_s456_recall1\\\": 0.992, \\\"embedding_s42_recall1\\\": 0.874, \\\"random_mean_recall1\\\": 0.987, \\\"runs_completed\\\": 4, \\\"runs_failed\\\": 5, \\\"failure_type\\\": \\\"disk_full_torch_save\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b_eval_4runs_pool50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T20:10:54.579Z\\\", \\\"updated_at\\\": \\\"2026-05-13T00:27:50.197Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pool_size\\\": 50, \\\"n_samples\\\": 127, \\\"random_s42\\\": {\\\"recall@1\\\": 0.496, \\\"recall@5\\\": 0.843, \\\"recall@10\\\": 0.945}, \\\"random_s123\\\": {\\\"recall@1\\\": 0.535, \\\"recall@5\\\": 0.85, \\\"recall@10\\\": 0.921}, \\\"random_s456\\\": {\\\"recall@1\\\": 0.543, \\\"recall@5\\\": 0.843, \\\"recall@10\\\": 0.953}, \\\"emb_dist_s42\\\": {\\\"recall@1\\\": 0.488, \\\"recall@5\\\": 0.835, \\\"recall@10\\\": 0.874}, \\\"random_mean\\\": {\\\"recall@1\\\": 0.525, \\\"recall@5\\\": 0.845, \\\"recall@10\\\": 0.94}, \\\"emb_dist_vs_random_delta\\\": {\\\"recall@1\\\": -0.037, \\\"recall@5\\\": -0.01, \\\"recall@10\\\": -0.066}}}, \\\"d007_50repo_overlap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T20:37:24.289Z\\\", \\\"updated_at\\\": \\\"2026-05-12T20:37:39.566Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_instances\\\": 240, \\\"instances_with_extra_connected\\\": 98, \\\"Z_pct\\\": 40.8, \\\"avg_connected_minus_gold\\\": 6, \\\"codeql_timeout_rate_pct\\\": 4, \\\"by_repo_size\\\": {\\\"small_lt50\\\": {\\\"Z_pct\\\": 38.6, \\\"avg_extra\\\": 2.5}, \\\"medium_50_200\\\": {\\\"Z_pct\\\": 55.7, \\\"avg_extra\\\": 11.8}, \\\"large_gt200\\\": {\\\"Z_pct\\\": 16.7, \\\"avg_extra\\\": 8.8}}, \\\"decision\\\": \\\"Z=40.8% >= 20% -> original method viable, proceed to M1\\\"}}, \\\"p2b_5reruns\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T17:26:47.603Z\\\", \\\"updated_at\\\": \\\"2026-05-12T19:19:53.785Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"val_loss\\\": 0.0347, \\\"recall@1\\\": 0.9843}, \\\"random_s123\\\": {\\\"val_loss\\\": 0.0446, \\\"recall@1\\\": 0.9843}, \\\"random_s456\\\": {\\\"val_loss\\\": 0.0188, \\\"recall@1\\\": 0.9921}, \\\"emb_dist_s42\\\": {\\\"val_loss\\\": 0.1876, \\\"recall@1\\\": 0.874}, \\\"emb_dist_s123\\\": {\\\"val_loss\\\": 0.1461, \\\"recall@1\\\": 0.874}, \\\"emb_dist_s456\\\": {\\\"val_loss\\\": 0.1281, \\\"recall@1\\\": 0.8819}, \\\"dataflow_s42\\\": {\\\"val_loss\\\": 0.1878, \\\"recall@1\\\": 0.874}, \\\"dataflow_s123\\\": {\\\"val_loss\\\": 0.146, \\\"recall@1\\\": 0.874}, \\\"dataflow_s456\\\": {\\\"val_loss\\\": 0.1278, \\\"recall@1\\\": 0.8819}, \\\"runs_completed\\\": 9, \\\"runs_failed\\\": 0, \\\"WARNING\\\": \\\"dataflow_aware ≈ embedding_distance to 4 decimal places across all seeds — likely code bug in negative sampling\\\"}}, \\\"p2b_eval_4runs_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T17:21:49.599Z\\\", \\\"updated_at\\\": \\\"2026-05-12T17:22:16.595Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"random_seed42\\\": {\\\"recall@1\\\": 0.9449, \\\"recall@5\\\": 0.9843, \\\"recall@10\\\": 0.9843}, \\\"random_seed123\\\": {\\\"recall@1\\\": 0.9449, \\\"recall@5\\\": 0.9921, \\\"recall@10\\\": 0.9921}, \\\"random_seed456\\\": {\\\"recall@1\\\": 0.9291, \\\"recall@5\\\": 0.9921, \\\"recall@10\\\": 0.9921}, \\\"emb_dist_seed42\\\": {\\\"recall@1\\\": 0.6693, \\\"recall@5\\\": 0.8898, \\\"recall@10\\\": 0.9291}, \\\"pool_size\\\": 26, \\\"n_samples\\\": 127}}, \\\"p2b-all-9runs\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:34:24.923Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:49.244Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:32:22.931Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:48.324Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:28:55.114Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:47.346Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:22:54.445Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:46.413Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:22:05.754Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:45.484Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:20:53.305Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:44.066Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:18:19.105Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:43.111Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:16:08.154Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:42.174Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"p2b-smoke-test\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T12:14:30.477Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:41.269Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_p2a_linear_proxy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T11:53:42.223Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:58:15.436Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"df_bm25_auc\\\": 0.78, \\\"bm25_only_auc\\\": 0.476, \\\"auc_delta\\\": 0.304, \\\"df_bm25_mrr\\\": 0.556, \\\"bm25_only_mrr\\\": 0.115, \\\"mrr_delta\\\": 0.441, \\\"df_bm25_f1\\\": 0.143, \\\"bm25_only_f1\\\": 0.039, \\\"top_feature\\\": \\\"is_connected (+2.82)\\\", \\\"repos_evaluated\\\": 3, \\\"note\\\": \\\"3 repos / 3 positive samples, directional evidence\\\"}}, \\\"mvp_p1_codeql_feasibility\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-12T11:30:45.938Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:58:06.197Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"timeout_rate\\\": 0, \\\"repos_processed\\\": 8, \\\"repos_skipped\\\": 2, \\\"cg_mean_s\\\": 29.6, \\\"cg_max_s\\\": 119.8, \\\"df_mean_s\\\": 43.4, \\\"df_max_s\\\": 167.1, \\\"h2_connected_coverage\\\": 0.014815, \\\"h2_disconnected_coverage\\\": 0, \\\"h2_fisher_p\\\": 6.5e-09, \\\"h2_gold_in_connected_ratio\\\": 1, \\\"h2_note\\\": \\\"After path normalization fix: 8/8 gold in connected (was 6/8)\\\"}}}, \\\"count\\\": 37, \\\"total\\\": 37, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2843}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"m1_reextract_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-13T20:00:20.578Z\", \"updated_at\": \"2026-05-15T04:00:15.446Z\", \"hypothesis\": \"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"notes\": \"moto CodeQL call_graph.ql timeout (NOT OOM): directCallEdge predicate exceeds 300s timeout on every instance (exit code 33). 536 moto instances all fail call_graph, fallback to embedding-distance. Isolated failure — 1/4 workers stuck on moto (~5min/instance, ~38h total), other 3 workers process pydicom/conan/MONAI normally. DB creation succeeded; bounded_dataflow.ql unaffected.\", \"metrics\": {\"checked_at\": \"2026-05-15T09:53Z\", \"process\": \"alive (CPU, 4 workers)\", \"started\": \"2026-05-14T03:59Z\", \"elapsed_hours\": 30, \"total_instances\": 28276, \"completed_instances\": 24624, \"completion_pct\": 87.1, \"errors\": 0, \"warnings\": 19, \"rate\": \"~7 instances/min\", \"active_repos\": {\"sqlfluff/sqlfluff\": \"~1270/1272 (nearly done)\", \"conan-io/conan\": \"~770/972\", \"pydicom/pydicom\": \"~640/1315\", \"Project-MONAI/MONAI\": \"~225/524\", \"getmoto/moto\": \"just started (536)\"}, \"all_jsonl_lines\": 44173, \"eta\": \"~May 15 17:00-19:00 CST (revised, +2h due to getmoto)\", \"progress_snapshot\": \"2026-05-15T09:53 CST\"}}, \"plan_005_stratified\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T20:36:16.738Z\", \"updated_at\": \"2026-05-15T03:18:38.309Z\", \"hypothesis\": \"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\", \"parent\": \"m2_full_qwen\", \"notes\": \"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n<30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。[2026-05-14 21:07] Worker 完成 5 项 Patch。[2026-05-15 09:10] Dry-run v5 全流程验证通过（21秒）。confound 分析 + BM25 overlap stratified 分析均通过。数据预处理全部完成。等 M2 checkpoint 就绪后替换 --dry-run 为 --checkpoints-dir 即可。[2026-05-15 11:17] evaluate_pool50.py (D042) 独立验证通过：260行脚本，--help/数据加载/模型加载/编码流程/--batch-mode 自动发现 best_by_* checkpoint 全部 OK。GPU 模式几分钟可跑完 2980 queries。Ready for production。注意：服务器上残留 PID 465668 (旧 evaluate_pool50.py --pool-size 5 --gpu -1 进程)，需清理。\", \"metrics\": {\"confound_analysis\": {\"data_validity\": \"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\", \"valid_findings\": {\"distribution_structure\": \"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\", \"correlation\": {\"dataflow_edges_vs_repo_size_pearson_r\": 0.089}, \"cross_distribution\": {\"rich_in_large_xlarge_pct\": 99.3, \"rich_in_small\": 0, \"moderate_in_large_xlarge_pct\": 60.9}, \"implication\": \"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\"}, \"invalid_findings\": \"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\", \"artifacts_path\": \"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\", \"valid_artifact\": \"cross_tabulation.csv\"}}}, \"m2_full_starcoder_resumed\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T18:44:19.253Z\", \"updated_at\": \"2026-05-15T02:06:23.058Z\", \"hypothesis\": \"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\", \"parent\": \"m2_full_starcoder\", \"metrics\": {\"checked_at\": \"2026-05-15T02:04Z\", \"process\": \"alive (PID 519791)\", \"gpu\": \"cuda:1, 100% util, 54GB/97GB VRAM\", \"current_subrun\": \"random_s43 (1/8 in resumed chain)\", \"current_step\": \"1500/2810 (~53%, Epoch 2)\", \"latest_loss\": 0.0268, \"completed_subruns\": 1, \"remaining_subruns\": 7, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.4604, \"best_val_loss\": 0.6134, \"source\": \"parent\"}, \"random_s43\": {\"status\": \"RUNNING\", \"eval_at_500\": {\"R@1\": 0.4708, \"val_loss\": 0.5279, \"best_val_loss\": true}, \"eval_at_1000\": {\"R@1\": 0.478, \"val_loss\": 0.543, \"early_stopping\": \"1/2\"}, \"eval_at_1500\": \"computing (pending)\", \"note\": \"R@1 trending up (0.4708→0.4780). eval@1500 will determine early stop (if val_loss > 0.5279, patience=2/2).\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\"], \"bm25_watcher\": \"active (PID watcher on 519791, will start BM25 StarCoder on cuda:1 when chain finishes)\", \"eta_hours\": \"55-65\", \"progress_snapshot\": \"2026-05-15T10:04 CST\"}}, \"m2_full_qwen_continued\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T18:44:20.646Z\", \"updated_at\": \"2026-05-15T01:11:10.448Z\", \"hypothesis\": \"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\", \"parent\": \"m2_full_qwen\", \"metrics\": {\"checked_at\": \"2026-05-15T01:12Z\", \"process\": \"alive (PID 337267, uptime 13h45m)\", \"gpu\": \"cuda:0, 100% util, 49521/97887 MiB\", \"current_subrun\": \"embedding_distance_s43 (3/9 in chain)\", \"current_step\": \"150/2810 (~5%)\", \"latest_loss\": 0.5041, \"lr\": \"1.06e-05\", \"completed_subruns\": 3, \"remaining_subruns\": 6, \"random_s42\": {\"status\": \"DONE\", \"best_R1\": 0.5527, \"source\": \"parent m2_full_qwen\"}, \"random_s43\": {\"status\": \"DONE\", \"best_R1\": 0.5554, \"best_val_loss\": 0.4476, \"early_stopped\": \"step 1500\"}, \"random_s44\": {\"status\": \"DONE\", \"best_R1\": 0.6009, \"best_val_loss\": 0.4252, \"early_stopped\": \"step 1500\", \"best_step\": 500}, \"embedding_distance_s43\": {\"status\": \"RUNNING\", \"step\": 150, \"started\": \"08:32 CST\"}, \"checkpoints\": [\"random_s42/best_by_val_loss\", \"random_s42/best_by_recall_at_1\", \"random_s43/best_by_val_loss\", \"random_s43/best_by_recall_at_1\", \"random_s44/best_by_val_loss\", \"random_s44/best_by_recall_at_1\", \"random_s44/final\"], \"bm25_watcher\": \"active (PID watcher on 337267, will start BM25 Qwen on cuda:0 when chain finishes)\", \"eta_hours\": \"50-55\", \"progress_snapshot\": \"2026-05-15T09:12 CST\"}}, \"plan_017_literature\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:49:00.477Z\", \"updated_at\": \"2026-05-14T21:33:45.149Z\", \"hypothesis\": \"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\", \"conclusion\": \"success\", \"metrics\": {\"papers_surveyed\": 8, \"citations_verified\": 8, \"discussion_draft\": \"artifacts/paper_drafts/discussion_v2.md\", \"artifact_id\": \"art_20260514_a2e1cd\"}, \"notes\": \"Inference-time graph method comparison 完成。8 papers surveyed，其中 6 篇纳入 literature_map.yaml 和 discussion_v2.md（CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph）。CodeGRAG 和 CodeRAG 经调研排除：CodeGRAG（arXiv 2405.02355）关注 NL→code generation 的 graph-augmented prompting，不涉及代码检索或对比学习；CodeRAG 系列（CodeRAG-Bench 2406.14497 / CodeRAG 2504.10046）关注 retrieval-augmented code generation benchmark 和 bigraph-based 代码生成，均为生成任务而非检索训练。两者与 StructFuse 的 scope（训练时结构信号用于对比学习代码检索）不符，故未纳入 discussion。\"}, \"m2_full_starcoder\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T16:18:15.415Z\", \"updated_at\": \"2026-05-14T18:04:29.245Z\", \"hypothesis\": \"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\", \"parent\": \"plan_013_starcoder\", \"notes\": \"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds: 42,43,44。[D026] s42 保持 3 epochs; s43/s44 及后续 runs 改为 2 epochs。[2026-05-15 02:02 CST] cuda:1 进程冲突修复并重新提交（PID 519791, timeout=144h）。Registry 状态 DONE(failed) 是旧 cron timeout 标记，实际正在运行 random_s43 [1/8]。新 cron 已注册监控 PID 519791。序列：random_s43→s44→(待插入bm25_s42)→embedding×3→dataflow×3。random_s42 结果：best R@1=0.4604 at step 2500, val_loss=0.6134 at step 1000。\", \"metrics\": {\"random_s42\": {\"epoch\": \"3/3\", \"current_step\": 4200, \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.6194, \"recall_at_1\": 0.435, \"recall_at_5\": 0.905, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.6134, \"recall_at_1\": 0.454, \"recall_at_5\": 0.92, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.6528, \"recall_at_1\": 0.449, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.6698, \"recall_at_1\": 0.4456, \"recall_at_5\": 0.906, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.6342, \"recall_at_1\": 0.4604, \"recall_at_5\": 0.9117, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.6516, \"recall_at_1\": 0.4544, \"recall_at_5\": 0.9077, \"recall_at_10\": 1}, \"eval_3500\": {\"val_loss\": 0.6588, \"recall_at_1\": 0.4534, \"recall_at_5\": 0.9057, \"recall_at_10\": 1}, \"eval_4000\": {\"val_loss\": 0.6637, \"recall_at_1\": 0.4547, \"recall_at_5\": 0.9003, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.6134) / step_2500 (R@1=0.4604)\", \"conclusion\": \"effectively_complete (timeout at step 4200/4242, lr=7.8e-9, remaining 42 steps negligible)\"}, \"progress_snapshot\": \"2026-05-15T01:50 CST\"}, \"conclusion\": \"failed\"}, \"m2_full_qwen\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-13T16:18:14.870Z\", \"updated_at\": \"2026-05-14T18:00:29.323Z\", \"hypothesis\": \"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\", \"parent\": \"m2_embed_verify\", \"notes\": \"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed. [D026] s42 保持 3 epochs 提供完整 overfitting curve; s43/s44 及后续 runs 改为 2 epochs + early_stopping_patience=2。[STATUS 2026-05-15 00:19 CST] Registry 状态 ANALYZING 是 cron 自动设置（s42 进程退出触发），但实验实际仍在进行中。random_s43 在 cuda:0 正常运行，step 1200/2810 (43%)。eval@500 R@1=0.5357, eval@1000 R@1=0.5285 (early_stopping 1/2)。Best R@1=0.5357 at step 500。GPU 100% 利用率, 50.5/97.9GB VRAM。\", \"metrics\": {\"random_s42\": {\"status\": \"DONE\", \"epoch\": \"3/3\", \"total_steps\": 4242, \"total_steps_per_epoch\": 1414, \"eval_500\": {\"val_loss\": 0.4869, \"recall_at_1\": 0.533, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_1000\": {\"val_loss\": 0.4651, \"recall_at_1\": 0.553, \"recall_at_5\": 0.959, \"recall_at_10\": 1}, \"eval_1500\": {\"val_loss\": 0.5365, \"recall_at_1\": 0.523, \"recall_at_5\": 0.955, \"recall_at_10\": 1}, \"eval_2000\": {\"val_loss\": 0.5162, \"recall_at_1\": 0.523, \"recall_at_5\": 0.954, \"recall_at_10\": 1}, \"eval_2500\": {\"val_loss\": 0.5264, \"recall_at_1\": 0.527, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"eval_3000\": {\"val_loss\": 0.5406, \"recall_at_1\": 0.536, \"recall_at_5\": 0.956, \"recall_at_10\": 1}, \"best_checkpoint\": \"step_1000 (val_loss=0.4651, R@1=0.5527)\", \"conclusion\": \"Overfit after step 1000. Best R@1=0.5527, +1.7pp vs pilot (0.5357). Full data helps.\"}, \"random_s43\": {\"status\": \"DONE\", \"epoch\": \"early_stopped\", \"total_steps_per_epoch\": 1405, \"eval_500\": {\"val_loss\": 0.4476, \"recall_at_1\": 0.5357}, \"eval_1000\": {\"val_loss\": 0.4637, \"recall_at_1\": 0.5285}, \"eval_1500\": {\"recall_at_1\": 0.5554}, \"best_by_val_loss\": \"step 500 (val_loss=0.4476)\", \"best_by_recall_at_1\": \"step 1500 (R@1=0.5554)\", \"conclusion\": \"Early stopped at step 1500. Best R@1=0.5554, consistent with s42 (0.5527). val_loss and R@1 criterion diverge.\"}, \"random_s44\": {\"status\": \"RUNNING\", \"note\": \"Auto-started 01:58 CST, epoch 1/2, 1408 batches/epoch\"}, \"progress_snapshot\": \"2026-05-15T02:00 CST\"}}, \"plan_018_bm25\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T16:38:40.603Z\", \"updated_at\": \"2026-05-14T17:09:50.985Z\", \"hypothesis\": \"BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。\", \"parent\": \"m2_full_qwen\", \"notes\": \"Phase 1 (CPU) COMPLETE: BM25 negative mining 完成。3 seeds 数据生成，record counts 与其他策略完全一致，0 fallback。BM25 score 分布: mean=246.50, std=155.96。重叠率: BM25 vs embedding_distance ~87.1%, vs random ~76.2%, vs dataflow_aware ~71.8%。高 median=1.0 因小 repo 候选池≤50 文件导致策略完全重合，BM25 differentiation 主要在大 repo。脚本: /root/structfuse/scripts/mine_bm25_negatives.py。输出: /root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl。Phase 2 (GPU): 等 re-dream gate 通过 + M2 完成后训练。\", \"metrics\": {\"phase1_complete\": true, \"seed_42\": {\"train_records\": 11308, \"val_records\": 2980, \"train_size_mb\": 1280.8, \"val_size_mb\": 344.6}, \"seed_43\": {\"train_records\": 11236, \"val_records\": 3052, \"train_size_mb\": 1280.9, \"val_size_mb\": 316}, \"seed_44\": {\"train_records\": 11264, \"val_records\": 3024, \"train_size_mb\": 1347.1, \"val_size_mb\": 295.9}, \"bm25_score_dist\": {\"count\": 392954, \"mean\": 246.5, \"std\": 155.96, \"p25\": 128.38, \"p50\": 228.41, \"p75\": 347.85, \"max\": 2585.74}, \"overlap_overall\": {\"bm25_vs_embedding\": 0.871, \"bm25_vs_random\": 0.762, \"bm25_vs_dataflow\": 0.718, \"note\": \"k=50 full candidate overlap from mining worker\"}, \"overlap_stratified_top7_jaccard\": {\"small_lt50\": {\"repos\": 39, \"bm25_vs_embedding\": 0.668, \"bm25_vs_random\": 0.411, \"bm25_vs_dataflow\": 0.667}, \"medium_50_200\": {\"repos\": 29, \"bm25_vs_embedding\": 0.38, \"bm25_vs_random\": 0.067, \"bm25_vs_dataflow\": 0.363}, \"large_200plus\": {\"repos\": 15, \"bm25_vs_embedding\": 0.297, \"bm25_vs_random\": 0.007, \"bm25_vs_dataflow\": 0.405}, \"matched_queries\": 2920, \"total_queries\": 12290, \"note\": \"top-7 Jaccard on s42 matched queries only (24% match rate due to different train/val splits)\"}}}, \"plan_015_dynamic\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-14T17:03:24.316Z\", \"updated_at\": \"2026-05-14T17:03:30.544Z\", \"hypothesis\": \"Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。\", \"notes\": \"Director D031 缩减：原 44h → 11h 单卡。只跑 dynamic_ep × 1 seed (Qwen, s42)，跳过 dynamic_500。Post-M2 与 plan_003 并行（一卡 SWE-bench，一卡 dynamic_ep）。受 re-dream gate 约束。设计文档已由 Worker 完成。\"}, \"neg_difficulty_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:39:20.016Z\", \"updated_at\": \"2026-05-14T00:13:49.046Z\", \"hypothesis\": \"Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\", \"notes\": \"128 vs 2048 token 对比完成（2026-05-14 05:54 CST）。Qwen pos_sim 在 2048t 下 0.9855（比 128t 的 0.9804 更高），确认 ceiling 为 Qwen 表征的结构性特征，非截断 artifact。StarCoder margin 2.6-4.1x Qwen（2048t）。核心结论：pretrained representation separability varies across encoders，跨两种 token 长度成立。数据源：128t → stats_v2.json，2048t → stats_v3_2048.json。\", \"metrics\": {\"qwen_128\": {\"random\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.899, \"margin\": 0.0816, \"pct_positive_margin\": 77.8}, \"embedding_distance\": {\"pos_sim\": 0.9804, \"neg_sim\": 0.959, \"margin\": 0.0209, \"pct_positive_margin\": 60.7}, \"dataflow_aware\": {\"pos_sim\": 0.9805, \"neg_sim\": 0.95, \"margin\": 0.0309, \"pct_positive_margin\": 67.4}}, \"starcoder_128\": {\"random\": {\"pos_sim\": 0.757, \"neg_sim\": 0.553, \"margin\": 0.2039, \"pct_positive_margin\": 72.8}, \"embedding_distance\": {\"pos_sim\": 0.784, \"neg_sim\": 0.668, \"margin\": 0.1159, \"pct_positive_margin\": 59.2}, \"dataflow_aware\": {\"pos_sim\": 0.761, \"neg_sim\": 0.659, \"margin\": 0.1022, \"pct_positive_margin\": 62.8}}, \"qwen_2048\": {\"random\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9111, \"margin\": 0.0743, \"margin_std\": 0.2322, \"pct_positive_margin\": 81.8}, \"embedding_distance\": {\"pos_sim\": 0.9855, \"neg_sim\": 0.9685, \"margin\": 0.017, \"margin_std\": 0.114, \"pct_positive_margin\": 58.8}, \"dataflow_aware\": {\"pos_sim\": 0.9856, \"neg_sim\": 0.9563, \"margin\": 0.0293, \"margin_std\": 0.1407, \"pct_positive_margin\": 73.9}}, \"starcoder_2048\": {\"random\": {\"pos_sim\": 0.7985, \"neg_sim\": 0.6045, \"margin\": 0.194, \"margin_std\": 0.2788, \"pct_positive_margin\": 78}, \"embedding_distance\": {\"pos_sim\": 0.8079, \"neg_sim\": 0.7409, \"margin\": 0.067, \"margin_std\": 0.2056, \"pct_positive_margin\": 55}, \"dataflow_aware\": {\"pos_sim\": 0.8009, \"neg_sim\": 0.6818, \"margin\": 0.1192, \"margin_std\": 0.2264, \"pct_positive_margin\": 70.4}}, \"sc_qwen_margin_ratio_128\": {\"random\": 2.5, \"embedding_distance\": 5.54, \"dataflow_aware\": 3.3}, \"sc_qwen_margin_ratio_2048\": {\"random\": 2.61, \"embedding_distance\": 3.94, \"dataflow_aware\": 4.07}}, \"conclusion\": \"success\"}, \"m1_reextract\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:35:23.954Z\", \"updated_at\": \"2026-05-13T19:45:53.741Z\", \"hypothesis\": \"M1 重提取：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\", \"parent\": \"m1_extraction\", \"conclusion\": \"failed\", \"notes\": \"CodeQL query 100% 失败（exit status 2）。根因：Worker 安装 CodeQL CLI 2.25.4 时未执行 `codeql pack install`，`codeql/python-all@7.1.0` 标准库 pack 缺失。修复命令：`cd /root/structfuse/extraction/codeql_queries && /opt/codeql/codeql pack install`。已 kill 进程 + tmux session。无新数据产出（all.jsonl 未受影响）。等 Director 确认后修复重跑。\"}, \"m1_extraction\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T21:00:02.300Z\", \"updated_at\": \"2026-05-13T19:26:13.901Z\", \"metrics\": {\"total_instances_attempted\": 44173, \"instances_skipped\": 6696, \"total_instances\": 50869, \"codeql_success\": 15133, \"beniget_fallback\": 764, \"extraction_failed\": 28276, \"structural_data_rate\": 0.36, \"repos_with_output\": 123, \"repos_total\": 131, \"repo_coverage\": 0.939, \"skip_clone_failed\": 5852, \"skip_checkout_failed\": 836, \"skip_stale_handle\": 8, \"elapsed_minutes\": 837.8, \"avg_time_per_instance_s\": 8.9, \"output_size_gb\": 6.6, \"disk_usage_gb\": 13, \"output_file\": \"all.jsonl\"}, \"notes\": \"[2026-05-13 19:25] COMPLETED. 837.8min, 123/131 repos (93.9%), 15,897/44,173 instances with structural data (36.0%), 6,696 skipped (clone/checkout). Output: all.jsonl 6.6GB. [2026-05-13 19:23 UPDATE] 28,276 buggy_file_not_found errors 经验证并非上游数据质量问题——10/10 抽查的文件在 repo 中全部存在。根因是运行时瞬态文件系统故障（CodeQL 并行 database creation 导致磁盘耗尽，锐截止模式）。这些 instances 可通过重跑恢复。D022: 准备重跑脚本中，等 Director 确认后执行。\", \"conclusion\": \"success\"}, \"plan_006_scalability\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T07:57:43.631Z\", \"updated_at\": \"2026-05-13T19:24:00.741Z\", \"conclusion\": \"success\", \"notes\": \"[2026-05-13 19:23] 全量统计 + error 分析 + fuzzy match 验证完成。关键发现: (1) 0 timeout; (2) 28,276 error 全部 buggy_file_not_found，但 fuzzy match 验证发现文件实际都存在——根因是运行时瞬态文件系统故障（锐截止模式：每个 repo 内先成功后突然全部失败，extraction_time=0.0s），可能是 CodeQL 并行数据库创建导致磁盘空间耗尽; (3) 这些 instance 可通过重跑恢复（当前 resolve_file_in_repo 对全部样本返回正确路径）; (4) 结构数据率 34.3% 有望提升至接近 100%（若重跑成功）; (5) Z% 随 repo 规模上升 (XL median 96%). Artifacts: plan006_full_scalability.json, art_20260513_d262da (error patterns)\", \"hypothesis\": \"Claim 3: CodeQL bounded data-flow extraction scales to large repos with acceptable timeout rates and provides meaningful structural coverage (Z%) that increases with repo complexity\", \"metrics\": {\"repos\": 123, \"total_instances\": 44173, \"structural_data_rate\": 0.343, \"error_rate\": 0.64, \"zero_timeout_rate\": true, \"processing_time\": {\"mean_s\": 8.93, \"median_s\": 0, \"p95_s\": 31.95, \"max_s\": 633.68, \"total_hours\": 109.58}, \"by_tier\": {\"small_lt50\": {\"repos\": 1, \"instances\": 500, \"error_rate\": 0.054, \"struct_rate\": 0.81, \"z_pct_mean\": 0.284, \"z_pct_median\": 0}, \"medium_50_200\": {\"repos\": 17, \"instances\": 4096, \"error_rate\": 0.485, \"struct_rate\": 0.472, \"z_pct_mean\": 0.444, \"z_pct_median\": 0.5}, \"large_200_500\": {\"repos\": 40, \"instances\": 13628, \"error_rate\": 0.639, \"struct_rate\": 0.343, \"z_pct_mean\": 0.604, \"z_pct_median\": 0.857}, \"xlarge_500plus\": {\"repos\": 29, \"instances\": 25949, \"error_rate\": 0.676, \"struct_rate\": 0.314, \"z_pct_mean\": 0.812, \"z_pct_median\": 0.96}}, \"instance_distribution\": {\"lt10\": 1, \"10_50\": 17, \"50_200\": 36, \"200_500\": 40, \"500plus\": 29}, \"artifact\": \"plan006_full_scalability.json\"}}, \"plan_013_starcoder\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T05:09:14.885Z\", \"updated_at\": \"2026-05-13T18:09:54.153Z\", \"hypothesis\": \"Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\", \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5078) > random (0.4922) > dataflow (0.4869). Embedding vs random: +1.6pp (consistent with Qwen). Dataflow vs random: -0.5pp (DIFFERS from Qwen where dataflow > random +0.8pp). Hypothesis NEGATIVE: strategy ranking NOT identical across encoders. Embedding > random is encoder-agnostic, dataflow position is encoder-dependent. Log: /root/runs/faith-evidence-ie/plan_013_starcoder.log. Cron misreported EXIT_CODE=129 but all strategies completed (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_val_loss\": 0.5113, \"best_recall@1\": 0.4922, \"best_recall@5\": 0.98, \"best_recall@10\": 1, \"source\": \"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\"}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.4816, \"best_recall@1\": 0.5078, \"best_recall@5\": 0.9843, \"best_recall@10\": 1, \"final_val_loss\": 0.506, \"final_recall@1\": 0.5174}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.5255, \"best_recall@1\": 0.4869, \"best_recall@5\": 0.9695, \"best_recall@10\": 1, \"final_val_loss\": 0.5509, \"final_recall@1\": 0.5078}}, \"conclusion\": \"negative\"}, \"m2_embed_verify\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T04:39:16.051Z\", \"updated_at\": \"2026-05-13T15:59:51.621Z\", \"hypothesis\": \"True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence.\", \"parent\": \"m2_early_pilot\", \"notes\": \"[2026-05-13 16:00] ALL 3 STRATEGIES DONE. Ranking: embedding (R@1=0.5557) > dataflow (0.5436) > random (0.5357). Embedding vs random: +2.0pp. Dataflow vs random: +0.8pp. All best at step 500, overfitting after. Hypothesis confirmed: true embedding negatives are harder → Claim 2 supported. Log: /root/runs/faith-evidence-ie/m2_embed_verify.log. Cron misreported EXIT_CODE=2 but all strategies completed successfully (confirmed via log extraction worker).\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4834, \"best_recall@1\": 0.5357, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5978, \"final_recall@1\": 0.5122}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4603, \"best_recall@1\": 0.5557, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5935, \"final_recall@1\": 0.5209}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.5602, \"best_recall@1\": 0.5436, \"best_recall@5\": 0.9817, \"best_recall@10\": 1, \"final_val_loss\": 0.6201, \"final_recall@1\": 0.5287}}, \"conclusion\": \"success\"}, \"mvp_p2b_contrastive_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T15:03:02.370Z\", \"updated_at\": \"2026-05-13T07:23:28.932Z\", \"conclusion\": \"killed\", \"notes\": \"P2b 对比训练 v2，因磁盘空间不足被 kill。已被 p2b_5reruns（成功完成 9/9 runs）替代。\"}, \"p2b_dataflow_retrain\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T19:49:00.303Z\", \"updated_at\": \"2026-05-13T07:23:27.706Z\", \"conclusion\": \"negative\", \"notes\": \"Dataflow 策略重训练计划，因 embedding_distance 命名问题（实际用 BM25 而非 embedding）被 Reviewer 发现后搁置。已被 m2_embed_verify（true embedding mining）替代。\"}, \"p2b_eval_all\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T16:27:50.967Z\", \"updated_at\": \"2026-05-13T07:23:24.721Z\", \"conclusion\": \"killed\", \"notes\": \"P2b 全量 eval（pool_size=26），被 D013 服务器迁移计划取消。已被 p2b_eval_4runs_pool50（pool_size=50）替代。\"}, \"m2_early_pilot\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T01:39:53.920Z\", \"updated_at\": \"2026-05-13T04:44:22.077Z\", \"hypothesis\": \"Early pilot on partial M1 data (24 repos, ~5K instances): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"conclusion\": \"killed\", \"notes\": \"PID 795791 在 cqa1 cuda:4 运行，wrapper 脚本顺序跑 random→embedding→dataflow（set -e）。random 策略跑到 step 4000 后卡住（~45min 无新日志），embedding/dataflow 未启动。Best checkpoint at step 1500。Val_loss 持续恶化（0.5879→0.728），明显过拟合。另有 OOM 进程干扰（某进程试图在同 GPU 启动导致 OOM，可能破坏 GPU 状态）。eval recall@k bug 已确认。\", \"metrics\": {\"pid\": 795791, \"gpu\": \"cuda:4\", \"gpu_mem_mb\": 9342, \"gpu_util_pct\": 83, \"batch_size\": 2, \"num_negatives\": 3, \"max_seq_length\": 1024, \"strategy_running\": \"random (stuck at step 4000, epoch 3)\", \"strategies_completed\": \"0/3\", \"eval_1500\": {\"val_loss\": 0.5879, \"recall_at_1\": 0.4693, \"recall_at_5\": 0.4693, \"recall_at_10\": 0.4693}, \"eval_2000\": {\"val_loss\": 0.7089, \"recall_at_1\": 0.4398}, \"eval_2500\": {\"val_loss\": 0.6961, \"recall_at_1\": 0.4291}, \"eval_3000\": {\"val_loss\": 0.728, \"recall_at_1\": 0.4104}, \"eval_3500\": {\"val_loss\": 0.7022, \"recall_at_1\": 0.4439}, \"best_checkpoint\": \"step_1500 (val_loss=0.5879, 6.2GB)\", \"WARNING\": \"recall@1=recall@5=recall@10 confirmed eval bug. Process hung after step 4000 (~45min no output). Overfitting after step 1500.\", \"status_check_at\": \"2026-05-13T04:42:00Z\"}}, \"m2_early_pilot_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T01:59:06.557Z\", \"updated_at\": \"2026-05-13T02:13:43.400Z\", \"conclusion\": \"killed\", \"notes\": \"GPU 越界 cuda:0，违反项目 GPU 分配 gpu_ids=[\\\"cuda:4\\\"]。第二次 GPU 越界违规（首次 D005）。Worker 未正确映射 CUDA_VISIBLE_DEVICES。\"}, \"m2_early_pilot_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T01:52:52.724Z\", \"updated_at\": \"2026-05-13T02:13:31.039Z\", \"hypothesis\": \"Early pilot on partial M1 data (24 repos, 2672 train + 746 val): verify M2 training pipeline works end-to-end and get early signal on 3-strategy differentiation before full M1 completes\", \"parent\": \"m1_extraction\", \"notes\": \"wandb API key error, EXIT_CODE=1。首次提交因 wandb 未配置离线模式而立即退出。\", \"conclusion\": \"failed\"}, \"mvp_p2b_contrastive_training\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:37:44.628Z\", \"updated_at\": \"2026-05-13T01:31:27.220Z\", \"notes\": \"4/9 runs 完成 (random×3 + embedding_distance_s42), 5/9 失败 (磁盘满 torch.save RuntimeError). /root/autodl-tmp 93% (14GB剩余, 每个checkpoint 5.8GB). 失败从 embedding_distance_s123 开始级联.\", \"metrics\": {\"random_s42_recall1\": 0.984, \"random_s123_recall1\": 0.984, \"random_s456_recall1\": 0.992, \"embedding_s42_recall1\": 0.874, \"random_mean_recall1\": 0.987, \"runs_completed\": 4, \"runs_failed\": 5, \"failure_type\": \"disk_full_torch_save\"}, \"conclusion\": \"killed\"}, \"p2b_eval_4runs_pool50\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T20:10:54.579Z\", \"updated_at\": \"2026-05-13T00:27:50.197Z\", \"conclusion\": \"success\", \"metrics\": {\"pool_size\": 50, \"n_samples\": 127, \"random_s42\": {\"recall@1\": 0.496, \"recall@5\": 0.843, \"recall@10\": 0.945}, \"random_s123\": {\"recall@1\": 0.535, \"recall@5\": 0.85, \"recall@10\": 0.921}, \"random_s456\": {\"recall@1\": 0.543, \"recall@5\": 0.843, \"recall@10\": 0.953}, \"emb_dist_s42\": {\"recall@1\": 0.488, \"recall@5\": 0.835, \"recall@10\": 0.874}, \"random_mean\": {\"recall@1\": 0.525, \"recall@5\": 0.845, \"recall@10\": 0.94}, \"emb_dist_vs_random_delta\": {\"recall@1\": -0.037, \"recall@5\": -0.01, \"recall@10\": -0.066}}}, \"d007_50repo_overlap\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T20:37:24.289Z\", \"updated_at\": \"2026-05-12T20:37:39.566Z\", \"conclusion\": \"success\", \"metrics\": {\"total_instances\": 240, \"instances_with_extra_connected\": 98, \"Z_pct\": 40.8, \"avg_connected_minus_gold\": 6, \"codeql_timeout_rate_pct\": 4, \"by_repo_size\": {\"small_lt50\": {\"Z_pct\": 38.6, \"avg_extra\": 2.5}, \"medium_50_200\": {\"Z_pct\": 55.7, \"avg_extra\": 11.8}, \"large_gt200\": {\"Z_pct\": 16.7, \"avg_extra\": 8.8}}, \"decision\": \"Z=40.8% >= 20% -> original method viable, proceed to M1\"}}, \"p2b_5reruns\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:26:47.603Z\", \"updated_at\": \"2026-05-12T19:19:53.785Z\", \"conclusion\": \"success\", \"metrics\": {\"random_s42\": {\"val_loss\": 0.0347, \"recall@1\": 0.9843}, \"random_s123\": {\"val_loss\": 0.0446, \"recall@1\": 0.9843}, \"random_s456\": {\"val_loss\": 0.0188, \"recall@1\": 0.9921}, \"emb_dist_s42\": {\"val_loss\": 0.1876, \"recall@1\": 0.874}, \"emb_dist_s123\": {\"val_loss\": 0.1461, \"recall@1\": 0.874}, \"emb_dist_s456\": {\"val_loss\": 0.1281, \"recall@1\": 0.8819}, \"dataflow_s42\": {\"val_loss\": 0.1878, \"recall@1\": 0.874}, \"dataflow_s123\": {\"val_loss\": 0.146, \"recall@1\": 0.874}, \"dataflow_s456\": {\"val_loss\": 0.1278, \"recall@1\": 0.8819}, \"runs_completed\": 9, \"runs_failed\": 0, \"WARNING\": \"dataflow_aware ≈ embedding_distance to 4 decimal places across all seeds — likely code bug in negative sampling\"}}, \"p2b_eval_4runs_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:21:49.599Z\", \"updated_at\": \"2026-05-12T17:22:16.595Z\", \"conclusion\": \"success\", \"metrics\": {\"random_seed42\": {\"recall@1\": 0.9449, \"recall@5\": 0.9843, \"recall@10\": 0.9843}, \"random_seed123\": {\"recall@1\": 0.9449, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"random_seed456\": {\"recall@1\": 0.9291, \"recall@5\": 0.9921, \"recall@10\": 0.9921}, \"emb_dist_seed42\": {\"recall@1\": 0.6693, \"recall@5\": 0.8898, \"recall@10\": 0.9291}, \"pool_size\": 26, \"n_samples\": 127}}, \"p2b-all-9runs\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:34:24.923Z\", \"updated_at\": \"2026-05-12T15:05:49.244Z\", \"conclusion\": \"killed\"}, \"p2b-smoke8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:32:22.931Z\", \"updated_at\": \"2026-05-12T15:05:48.324Z\", \"conclusion\": \"killed\"}, \"p2b-smoke7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:28:55.114Z\", \"updated_at\": \"2026-05-12T15:05:47.346Z\", \"conclusion\": \"killed\"}, \"p2b-smoke6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:22:54.445Z\", \"updated_at\": \"2026-05-12T15:05:46.413Z\", \"conclusion\": \"killed\"}, \"p2b-smoke5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:22:05.754Z\", \"updated_at\": \"2026-05-12T15:05:45.484Z\", \"conclusion\": \"killed\"}, \"p2b-smoke4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:20:53.305Z\", \"updated_at\": \"2026-05-12T15:05:44.066Z\", \"conclusion\": \"killed\"}, \"p2b-smoke3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:18:19.105Z\", \"updated_at\": \"2026-05-12T15:05:43.111Z\", \"conclusion\": \"killed\"}, \"p2b-smoke2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:16:08.154Z\", \"updated_at\": \"2026-05-12T15:05:42.174Z\", \"conclusion\": \"killed\"}, \"p2b-smoke-test\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T12:14:30.477Z\", \"updated_at\": \"2026-05-12T15:05:41.269Z\", \"conclusion\": \"killed\"}, \"mvp_p2a_linear_proxy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T11:53:42.223Z\", \"updated_at\": \"2026-05-12T11:58:15.436Z\", \"conclusion\": \"success\", \"metrics\": {\"df_bm25_auc\": 0.78, \"bm25_only_auc\": 0.476, \"auc_delta\": 0.304, \"df_bm25_mrr\": 0.556, \"bm25_only_mrr\": 0.115, \"mrr_delta\": 0.441, \"df_bm25_f1\": 0.143, \"bm25_only_f1\": 0.039, \"top_feature\": \"is_connected (+2.82)\", \"repos_evaluated\": 3, \"note\": \"3 repos / 3 positive samples, directional evidence\"}}, \"mvp_p1_codeql_feasibility\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T11:30:45.938Z\", \"updated_at\": \"2026-05-12T11:58:06.197Z\", \"conclusion\": \"success\", \"metrics\": {\"timeout_rate\": 0, \"repos_processed\": 8, \"repos_skipped\": 2, \"cg_mean_s\": 29.6, \"cg_max_s\": 119.8, \"df_mean_s\": 43.4, \"df_max_s\": 167.1, \"h2_connected_coverage\": 0.014815, \"h2_disconnected_coverage\": 0, \"h2_fisher_p\": 6.5e-09, \"h2_gold_in_connected_ratio\": 1, \"h2_note\": \"After path normalization fix: 8/8 gold in connected (was 6/8)\"}}}, \"count\": 37, \"total\": 37, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2843}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a106a18b-0e58-41a4-81d0-3852d54daefb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T04:12:38.764Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01DiUBh7Mi52uawPa7ktH33b`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fa43d7b-bf69-48a9-a82a-e37850c92cb3",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hi2GCUcoawDVedECn7",
+  "type": "assistant",
+  "uuid": "d635248c-b912-49ce-a293-ccc1ad126b1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016LJJnq3zZ4HW1g3s5oJVsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 37198,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 37198,
+          "cache_creation_input_tokens": 1654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T04:12:39.182Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_016C1yZUFMPB8vJKATyXQAF7`</summary>
+
+```json
+{
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d635248c-b912-49ce-a293-ccc1ad126b1b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hi2GCUcoawDVedECn7",
+  "type": "assistant",
+  "uuid": "de99c3f1-3f41-479a-acbf-c4c63aaf0dcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016LJJnq3zZ4HW1g3s5oJVsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 37198,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 37198,
+          "cache_creation_input_tokens": 1654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T04:12:39.534Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01VVKRTedApdRQma519WBo9V`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de99c3f1-3f41-479a-acbf-c4c63aaf0dcb",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hi2GCUcoawDVedECn7",
+  "type": "assistant",
+  "uuid": "6fbc33ef-15ac-4fe9-81f6-41080f3b326f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016LJJnq3zZ4HW1g3s5oJVsa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 37198,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 37198,
+          "cache_creation_input_tokens": 1654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #10。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 **仅** `bjb1-42106:cuda:0, cuda:1`——历史上两次越界（D005, m2_early_pilot_v3 用 cuda:0 on cqa1）被 CRITICAL - `submit_tra…",
+  "leafUuid": "6fbc33ef-15ac-4fe9-81f6-41080f3b326f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor M2 training chains and prepare downstream analyses",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T04:12:43.682Z_
+
+<details><summary>↩ Tool result · `toolu_014LENAX3XhvRHgDkKgczi6g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"m1_reextract_v2\", \"success\": true, \"actions\": [\"Job still running (pid=m1_reextract_v2)\"]}, {\"exp_id\": \"m2_full_starcoder_resumed\", \"success\": true, \"actions\": [\"Job still running (pid=519791)\"]}, {\"exp_id\": \"m2_full_qwen_continued\", \"success\": true, \"actions\": [\"Job still running (pid=337267)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95d5ef15-ef08-4014-b8b9-ac6afac8cd73",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "9b21d667-ff96-473e-8f52-208da02f689f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"m1_reextract_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=m1_reextract_v2)\\\"]}, {\\\"exp_id\\\": \\\"m2_full_starcoder_resumed\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=519791)\\\"]}, {\\\"exp_id\\\": \\\"m2_full_qwen_continued\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=337267)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"m1_reextract_v2\", \"success\": true, \"actions\": [\"Job still running (pid=m1_reextract_v2)\"]}, {\"exp_id\": \"m2_full_starcoder_resumed\", \"success\": true, \"actions\": [\"Job still running (pid=519791)\"]}, {\"exp_id\": \"m2_full_qwen_continued\", \"success\": true, \"actions\": [\"Job still running (pid=337267)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "95d5ef15-ef08-4014-b8b9-ac6afac8cd73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T04:12:43.731Z_
+
+<details><summary>↩ Tool result · `toolu_01DiUBh7Mi52uawPa7ktH33b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| m2_full_qwen_continued | M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。 | — | — | — |\\n| m2_full_starcoder_resumed | M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。 | — | — | — |\\n| m1_reextract_v2 | M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。 | — | — | — |\\n\\n## 待处理\\n- plan_018_bm25: BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。（排队等待 GPU）\\n- plan_015_dynamic: Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。（排队等待 GPU）\\n- plan_005_stratified（准备中）\\n\\n## 近期结论\\n- **plan_017_literature** (success): Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\n- **m2_full_starcoder** (failed): Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). ← 基于 plan_013_starcoder\\n  [m2_starcoder_status_check](/api/workspace-files/projects/structfuse-context/artifacts/m2_full_starcoder/report/m2_starcoder_status_check.md)\\n- **neg_difficulty_analysis** (success): Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\\n  [neg_difficulty_margin_comparison](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta.txt) | [neg_difficulty_margin_comparison](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta_01876a.txt) | [neg_difficulty_similarity_dist](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_similarity_dist_meta.txt) | [neg_difficulty_ratio_heatmap](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_ratio_heatmap_meta.txt)\\n\\n## 趋势\\n成功 11 / 负向 2 / 失败 3 / 共 30\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-42106: 无 GPU 信息\\n\\n## 告警\\n- p2b-smoke-test: 已被终止 — unknown\\n- p2b-smoke2: 已被终止 — unknown\\n- p2b-smoke3: 已被终止 — unknown\\n- p2b-smoke4: 已被终止 — unknown\\n- p2b-smoke5: 已被终止 — unknown\\n- p2b-smoke6: 已被终止 — unknown\\n- p2b-smoke7: 已被终止 — unknown\\n- p2b-smoke8: 已被终止 — unknown\\n- p2b-all-9runs: 已被终止 — unknown\\n- mvp_p2b_contrastive_training: 已被终止 — unknown\\n- mvp_p2b_contrastive_v2: 已被终止 — unknown\\n- p2b_eval_all: 已被终止 — unknown\\n- m2_early_pilot: 已被终止 — unknown\\n- m2_early_pilot_v2: 训练失败 — unknown\\n- m2_early_pilot_v3: 已被终止 — unknown\\n- m2_full_starcoder: 训练失败 — unknown\\n- m1_reextract: 训练失败 — unknown\\n\", \"total_chars\": 3504, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d635248c-b912-49ce-a293-ccc1ad126b1b",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "e8bda3d8-177d-43b6-b925-385d8e1c0956",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| m2_full_qwen_continued | M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。 | — | — | — |\\\\n| m2_full_starcoder_resumed | M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。 | — | — | — |\\\\n| m1_reextract_v2 | M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan_018_bm25: BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。（排队等待 GPU）\\\\n- plan_015_dynamic: Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。（排队等待 GPU）\\\\n- plan_005_stratified（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan_017_literature** (success): Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\\n- **m2_full_starcoder** (failed): Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). ← 基于 plan_013_starcoder\\\\n  [m2_starcoder_status_check](/api/workspace-files/projects/structfuse-context/artifacts/m2_full_starcoder/report/m2_starcoder_status_check.md)\\\\n- **neg_difficulty_analysis** (success): Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\\\\n  [neg_difficulty_margin_comparison](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta.txt) | [neg_difficulty_margin_comparison](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta_01876a.txt) | [neg_difficulty_similarity_dist](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_similarity_dist_meta.txt) | [neg_difficulty_ratio_heatmap](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_ratio_heatmap_meta.txt)\\\\n\\\\n## 趋势\\\\n成功 11 / 负向 2 / 失败 3 / 共 30\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-42106: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- p2b-smoke-test: 已被终止 — unknown\\\\n- p2b-smoke2: 已被终止 — unknown\\\\n- p2b-smoke3: 已被终止 — unknown\\\\n- p2b-smoke4: 已被终止 — unknown\\\\n- p2b-smoke5: 已被终止 — unknown\\\\n- p2b-smoke6: 已被终止 — unknown\\\\n- p2b-smoke7: 已被终止 — unknown\\\\n- p2b-smoke8: 已被终止 — unknown\\\\n- p2b-all-9runs: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_training: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_v2: 已被终止 — unknown\\\\n- p2b_eval_all: 已被终止 — unknown\\\\n- m2_early_pilot: 已被终止 — unknown\\\\n- m2_early_pilot_v2: 训练失败 — unknown\\\\n- m2_early_pilot_v3: 已被终止 — unknown\\\\n- m2_full_starcoder: 训练失败 — unknown\\\\n- m1_reextract: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 3504, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| m2_full_qwen_continued | M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。 | — | — | — |\\n| m2_full_starcoder_resumed | M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。 | — | — | — |\\n| m1_reextract_v2 | M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。 | — | — | — |\\n\\n## 待处理\\n- plan_018_bm25: BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。（排队等待 GPU）\\n- plan_015_dynamic: Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。（排队等待 GPU）\\n- plan_005_stratified（准备中）\\n\\n## 近期结论\\n- **plan_017_literature** (success): Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\n- **m2_full_starcoder** (failed): Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). ← 基于 plan_013_starcoder\\n  [m2_starcoder_status_check](/api/workspace-files/projects/structfuse-context/artifacts/m2_full_starcoder/report/m2_starcoder_status_check.md)\\n- **neg_difficulty_analysis** (success): Negative difficulty distribution analysis: 用预训练 Qwen2.5-Coder-3B 和 StarCoder2-3B 计算 3 策略 (random/embedding/dataflow) 的 query-negative/positive cosine similarity，分析 pretrained representation separability 跨编码器差异。MAX_LENGTH=2048 匹配训练设置。\\n  [neg_difficulty_margin_comparison](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta.txt) | [neg_difficulty_margin_comparison](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison_meta_01876a.txt) | [neg_difficulty_similarity_dist](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_similarity_dist_meta.txt) | [neg_difficulty_ratio_heatmap](/api/workspace-files/projects/structfuse-context/artifacts/neg_difficulty_analysis/chart/neg_difficulty_ratio_heatmap_meta.txt)\\n\\n## 趋势\\n成功 11 / 负向 2 / 失败 3 / 共 30\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-42106: 无 GPU 信息\\n\\n## 告警\\n- p2b-smoke-test: 已被终止 — unknown\\n- p2b-smoke2: 已被终止 — unknown\\n- p2b-smoke3: 已被终止 — unknown\\n- p2b-smoke4: 已被终止 — unknown\\n- p2b-smoke5: 已被终止 — unknown\\n- p2b-smoke6: 已被终止 — unknown\\n- p2b-smoke7: 已被终止 — unknown\\n- p2b-smoke8: 已被终止 — unknown\\n- p2b-all-9runs: 已被终止 — unknown\\n- mvp_p2b_contrastive_training: 已被终止 — unknown\\n- mvp_p2b_contrastive_v2: 已被终止 — unknown\\n- p2b_eval_all: 已被终止 — unknown\\n- m2_early_pilot: 已被终止 — unknown\\n- m2_early_pilot_v2: 训练失败 — unknown\\n- m2_early_pilot_v3: 已被终止 — unknown\\n- m2_full_starcoder: 训练失败 — unknown\\n- m1_reextract: 训练失败 — unknown\\n\", \"total_chars\": 3504, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d635248c-b912-49ce-a293-ccc1ad126b1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T04:12:43.779Z_
+
+<details><summary>↩ Tool result · `toolu_016C1yZUFMPB8vJKATyXQAF7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/ROADMAP.md\", \"content\": \"# StructFuse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 18:50 UTC | 更新原因: D035 post-M2 优先级确定，Claim 2 降级，plan_017 DONE，registry 状态同步\\n\\n## 核心方向\\nTrue embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1). BM25 baseline empirically closes CoCoHaNeRe correction argument. Structure-grounded negatives conditional on representation saturation (n=2, exploratory observation per D035). 详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\n- **M2 全量训练**: Qwen random_s44 running (cuda:0, PID 337267), StarCoder random_s43 running (cuda:1, PID 519791)。ETA: 两卡 **~May 17**\\n- **Registry 同步**: m2_full_qwen_continued + m2_full_starcoder_resumed 均 RUNNING，cron 已注册\\n- **BM25 Phase 2 watcher**: 两个 tmux watcher 监控链 PID，完成后自动触发 BM25 训练\\n- **plan_017 ✅**: Discussion draft + literature comparison (8 papers, citations verified) → DONE\\n- **plan_018 Phase 1 ✅**: BM25 data ready, 3 seeds aligned, stratified overlap 分析完成\\n- **neg_difficulty 可视化 ✅**: 3 张图表 (margin/similarity/heatmap)\\n- **K/checkpoint 文档 ✅**: 已更新 Qwen 4/5 same, StarCoder 0/3 same\\n- **m1_reextract_v2**: 后台 (~80% done, ETA today)\\n\\n## Post-M2 优先级 (D035)\\n| Priority | Plan | Description | GPU hours | 状态 |\\n|----------|------|-------------|-----------|------|\\n| **P0** | plan_003 | SWE-bench Lite (300) e2e eval | 40h | dry-run 验证中 |\\n| **P0** | plan_018 Phase 2 | BM25 训练 Qwen+StarCoder | 15h | watcher 自动触发 |\\n| **P1** | plan_004 | RepoBench-R (多seed+CIs) | 15h | planned |\\n| **P1** | plan_019 | Pool size sensitivity | 5h | planned |\\n| **P1** | plan_005 | 分层分析 (Claim 2 支撑) | 5h | planned |\\n| ~~砍掉~~ | plan_007-012,014 | 推迟到 camera-ready | — | deferred |\\n\\n## 近期任务\\n- [ ] plan_003 SWE-bench dry-run（worker 进行中）\\n- [ ] M2 full runs 完成 (~May 17) → BM25 watcher 自动启动\\n- [ ] 统计检验 — M2 完成后立即执行\\n- [ ] plan_003 正式 eval — M2 best checkpoint 出后启动\\n- [ ] plan_004 + plan_019 — post-M2 第二批\\n- [ ] plan_005 分层分析 — 0 GPU，可提前做\\n- [ ] 论文写作提分重点：related work 25+ citations, checkpoint criterion+K, Claim 2→exploratory\\n- [ ] 论文初稿 (~May 24)\\n\\n## 写作提分路径 (Best R1: → 5/6)\\n1. ✅ 明确 checkpoint selection criterion + K (negatives per query) — documented\\n2. Report both checkpoint criteria 结果\\n3. ✅ Claim 2 → \\\"exploratory observation with testable prediction\\\" (D035)\\n4. 34% structural coverage 分层为主报告\\n5. Related work 扩展到 25+ citations\\n6. 每个 claim 附 CI + p-value\\n7. Sub-group 分析加 CI 或明确标注 \\\"underpowered\\\"\\n\\n## GPU 预算\\n- **bjb1-42106**: 2× RTX PRO 6000 96GB, 满载 M2\\n- **Post-M2 关键路径** (D035):\\n  - Must-do: plan_003 (40h) + plan_018 Phase 2 (15h) = 55h → 并行 2 GPU ≈ 28h\\n  - Should-do: plan_004 (15h) + plan_019 (5h) + plan_005 (5h) = 25h → ~13h\\n  - Total: 80h / 2 GPU ≈ 40h real ≈ 1.7 天\\n- **时间线**: M2(~May 17) → post-M2(~May 19) → 写作(~May 20-24) → ARR May 25\\n\\n## 关键风险\\n1. **ARR May 25**: M2 提前到 ~May 17，时间线更可行\\n2. **Median=WR 固有**: novelty/effect-size/n=2 不可修复，目标最大化 Best case\\n3. **BM25 narrative**: Phase 2 结果决定叙事方向（harm→correction / neutral→systematic comparison）\\n4. **plan_003 依赖**: 可能需要 LLM API key (Qwen3.6-27B)，dry-run 确认中\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D043 | 2026-05-15 | 实现 pool=50 独立评估替代当前 pool=8；删除 R@10 报告；数据管道数字等 M1v2 | m2_full_qwen_continued, m2_full_starcoder_resumed, m1_reextract_v2 |\\n| D042 | 2026-05-15 | 实现 pool=50 独立评估脚本，重新评估所有 best checkpoints；删除 R@10  | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D041 | 2026-05-15 | Dataflow-aware 策略论文描述改为 BM25 排序（匹配代码实现），不重建数据 | m1_reextract_v2, m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D040 | 2026-05-14 | Claim 1 framing 微调：从\\\"纠正 embedding negatives 不行的误解\\\" | plan_017_literature |\\n| D039 | 2026-05-14 | 分层分析 R@1 数据无效：dry-run mock predictions，非真实模型结果。con | worker_analysis_dataflow_reposize_confound, m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D038 | 2026-05-14 | Plan 005 分层分析需额外控制 pool_size；dataflow richness 维度不 | plan_005_stratified |\\n| D037 | 2026-05-14 | D037: M2 checkpoint 改为只存 LoRA adapter weights，不存 m | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D036 | 2026-05-14 | M2 checkpoint 选择统一用 R@1 而非 val_loss 作为 primary cri | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D035 | 2026-05-14 | Claim 2 降级：从 \\\"conditional benefit beyond embedding | m2_embed_verify, plan_013_starcoder |\\n| D034 | 2026-05-14 | Re-dream gate 未通过但决定继续：median=WR 由不可修复因素驱动（novelty | dream_20260514T162530, plan_018 |\\n\\n\", \"lines\": 77}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de99c3f1-3f41-479a-acbf-c4c63aaf0dcb",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "3c44e972-4ea7-4497-938e-c37dd705ab50",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/ROADMAP.md\\\", \\\"content\\\": \\\"# StructFuse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 18:50 UTC | 更新原因: D035 post-M2 优先级确定，Claim 2 降级，plan_017 DONE，registry 状态同步\\\\n\\\\n## 核心方向\\\\nTrue embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1). BM25 baseline empirically closes CoCoHaNeRe correction argument. Structure-grounded negatives conditional on representation saturation (n=2, exploratory observation per D035). 详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\\\n- **M2 全量训练**: Qwen random_s44 running (cuda:0, PID 337267), StarCoder random_s43 running (cuda:1, PID 519791)。ETA: 两卡 **~May 17**\\\\n- **Registry 同步**: m2_full_qwen_continued + m2_full_starcoder_resumed 均 RUNNING，cron 已注册\\\\n- **BM25 Phase 2 watcher**: 两个 tmux watcher 监控链 PID，完成后自动触发 BM25 训练\\\\n- **plan_017 ✅**: Discussion draft + literature comparison (8 papers, citations verified) → DONE\\\\n- **plan_018 Phase 1 ✅**: BM25 data ready, 3 seeds aligned, stratified overlap 分析完成\\\\n- **neg_difficulty 可视化 ✅**: 3 张图表 (margin/similarity/heatmap)\\\\n- **K/checkpoint 文档 ✅**: 已更新 Qwen 4/5 same, StarCoder 0/3 same\\\\n- **m1_reextract_v2**: 后台 (~80% done, ETA today)\\\\n\\\\n## Post-M2 优先级 (D035)\\\\n| Priority | Plan | Description | GPU hours | 状态 |\\\\n|----------|------|-------------|-----------|------|\\\\n| **P0** | plan_003 | SWE-bench Lite (300) e2e eval | 40h | dry-run 验证中 |\\\\n| **P0** | plan_018 Phase 2 | BM25 训练 Qwen+StarCoder | 15h | watcher 自动触发 |\\\\n| **P1** | plan_004 | RepoBench-R (多seed+CIs) | 15h | planned |\\\\n| **P1** | plan_019 | Pool size sensitivity | 5h | planned |\\\\n| **P1** | plan_005 | 分层分析 (Claim 2 支撑) | 5h | planned |\\\\n| ~~砍掉~~ | plan_007-012,014 | 推迟到 camera-ready | — | deferred |\\\\n\\\\n## 近期任务\\\\n- [ ] plan_003 SWE-bench dry-run（worker 进行中）\\\\n- [ ] M2 full runs 完成 (~May 17) → BM25 watcher 自动启动\\\\n- [ ] 统计检验 — M2 完成后立即执行\\\\n- [ ] plan_003 正式 eval — M2 best checkpoint 出后启动\\\\n- [ ] plan_004 + plan_019 — post-M2 第二批\\\\n- [ ] plan_005 分层分析 — 0 GPU，可提前做\\\\n- [ ] 论文写作提分重点：related work 25+ citations, checkpoint criterion+K, Claim 2→exploratory\\\\n- [ ] 论文初稿 (~May 24)\\\\n\\\\n## 写作提分路径 (Best R1: → 5/6)\\\\n1. ✅ 明确 checkpoint selection criterion + K (negatives per query) — documented\\\\n2. Report both checkpoint criteria 结果\\\\n3. ✅ Claim 2 → \\\\\\\"exploratory observation with testable prediction\\\\\\\" (D035)\\\\n4. 34% structural coverage 分层为主报告\\\\n5. Related work 扩展到 25+ citations\\\\n6. 每个 claim 附 CI + p-value\\\\n7. Sub-group 分析加 CI 或明确标注 \\\\\\\"underpowered\\\\\\\"\\\\n\\\\n## GPU 预算\\\\n- **bjb1-42106**: 2× RTX PRO 6000 96GB, 满载 M2\\\\n- **Post-M2 关键路径** (D035):\\\\n  - Must-do: plan_003 (40h) + plan_018 Phase 2 (15h) = 55h → 并行 2 GPU ≈ 28h\\\\n  - Should-do: plan_004 (15h) + plan_019 (5h) + plan_005 (5h) = 25h → ~13h\\\\n  - Total: 80h / 2 GPU ≈ 40h real ≈ 1.7 天\\\\n- **时间线**: M2(~May 17) → post-M2(~May 19) → 写作(~May 20-24) → ARR May 25\\\\n\\\\n## 关键风险\\\\n1. **ARR May 25**: M2 提前到 ~May 17，时间线更可行\\\\n2. **Median=WR 固有**: novelty/effect-size/n=2 不可修复，目标最大化 Best case\\\\n3. **BM25 narrative**: Phase 2 结果决定叙事方向（harm→correction / neutral→systematic comparison）\\\\n4. **plan_003 依赖**: 可能需要 LLM API key (Qwen3.6-27B)，dry-run 确认中\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D043 | 2026-05-15 | 实现 pool=50 独立评估替代当前 pool=8；删除 R@10 报告；数据管道数字等 M1v2 | m2_full_qwen_continued, m2_full_starcoder_resumed, m1_reextract_v2 |\\\\n| D042 | 2026-05-15 | 实现 pool=50 独立评估脚本，重新评估所有 best checkpoints；删除 R@10  | m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D041 | 2026-05-15 | Dataflow-aware 策略论文描述改为 BM25 排序（匹配代码实现），不重建数据 | m1_reextract_v2, m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D040 | 2026-05-14 | Claim 1 framing 微调：从\\\\\\\"纠正 embedding negatives 不行的误解\\\\\\\" | plan_017_literature |\\\\n| D039 | 2026-05-14 | 分层分析 R@1 数据无效：dry-run mock predictions，非真实模型结果。con | worker_analysis_dataflow_reposize_confound, m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D038 | 2026-05-14 | Plan 005 分层分析需额外控制 pool_size；dataflow richness 维度不 | plan_005_stratified |\\\\n| D037 | 2026-05-14 | D037: M2 checkpoint 改为只存 LoRA adapter weights，不存 m | m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D036 | 2026-05-14 | M2 checkpoint 选择统一用 R@1 而非 val_loss 作为 primary cri | m2_full_qwen_continued, m2_full_starcoder_resumed |\\\\n| D035 | 2026-05-14 | Claim 2 降级：从 \\\\\\\"conditional benefit beyond embedding | m2_embed_verify, plan_013_starcoder |\\\\n| D034 | 2026-05-14 | Re-dream gate 未通过但决定继续：median=WR 由不可修复因素驱动（novelty | dream_20260514T162530, plan_018 |\\\\n\\\\n\\\", \\\"lines\\\": 77}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/ROADMAP.md\", \"content\": \"# StructFuse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 18:50 UTC | 更新原因: D035 post-M2 优先级确定，Claim 2 降级，plan_017 DONE，registry 状态同步\\n\\n## 核心方向\\nTrue embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1). BM25 baseline empirically closes CoCoHaNeRe correction argument. Structure-grounded negatives conditional on representation saturation (n=2, exploratory observation per D035). 详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\n- **M2 全量训练**: Qwen random_s44 running (cuda:0, PID 337267), StarCoder random_s43 running (cuda:1, PID 519791)。ETA: 两卡 **~May 17**\\n- **Registry 同步**: m2_full_qwen_continued + m2_full_starcoder_resumed 均 RUNNING，cron 已注册\\n- **BM25 Phase 2 watcher**: 两个 tmux watcher 监控链 PID，完成后自动触发 BM25 训练\\n- **plan_017 ✅**: Discussion draft + literature comparison (8 papers, citations verified) → DONE\\n- **plan_018 Phase 1 ✅**: BM25 data ready, 3 seeds aligned, stratified overlap 分析完成\\n- **neg_difficulty 可视化 ✅**: 3 张图表 (margin/similarity/heatmap)\\n- **K/checkpoint 文档 ✅**: 已更新 Qwen 4/5 same, StarCoder 0/3 same\\n- **m1_reextract_v2**: 后台 (~80% done, ETA today)\\n\\n## Post-M2 优先级 (D035)\\n| Priority | Plan | Description | GPU hours | 状态 |\\n|----------|------|-------------|-----------|------|\\n| **P0** | plan_003 | SWE-bench Lite (300) e2e eval | 40h | dry-run 验证中 |\\n| **P0** | plan_018 Phase 2 | BM25 训练 Qwen+StarCoder | 15h | watcher 自动触发 |\\n| **P1** | plan_004 | RepoBench-R (多seed+CIs) | 15h | planned |\\n| **P1** | plan_019 | Pool size sensitivity | 5h | planned |\\n| **P1** | plan_005 | 分层分析 (Claim 2 支撑) | 5h | planned |\\n| ~~砍掉~~ | plan_007-012,014 | 推迟到 camera-ready | — | deferred |\\n\\n## 近期任务\\n- [ ] plan_003 SWE-bench dry-run（worker 进行中）\\n- [ ] M2 full runs 完成 (~May 17) → BM25 watcher 自动启动\\n- [ ] 统计检验 — M2 完成后立即执行\\n- [ ] plan_003 正式 eval — M2 best checkpoint 出后启动\\n- [ ] plan_004 + plan_019 — post-M2 第二批\\n- [ ] plan_005 分层分析 — 0 GPU，可提前做\\n- [ ] 论文写作提分重点：related work 25+ citations, checkpoint criterion+K, Claim 2→exploratory\\n- [ ] 论文初稿 (~May 24)\\n\\n## 写作提分路径 (Best R1: → 5/6)\\n1. ✅ 明确 checkpoint selection criterion + K (negatives per query) — documented\\n2. Report both checkpoint criteria 结果\\n3. ✅ Claim 2 → \\\"exploratory observation with testable prediction\\\" (D035)\\n4. 34% structural coverage 分层为主报告\\n5. Related work 扩展到 25+ citations\\n6. 每个 claim 附 CI + p-value\\n7. Sub-group 分析加 CI 或明确标注 \\\"underpowered\\\"\\n\\n## GPU 预算\\n- **bjb1-42106**: 2× RTX PRO 6000 96GB, 满载 M2\\n- **Post-M2 关键路径** (D035):\\n  - Must-do: plan_003 (40h) + plan_018 Phase 2 (15h) = 55h → 并行 2 GPU ≈ 28h\\n  - Should-do: plan_004 (15h) + plan_019 (5h) + plan_005 (5h) = 25h → ~13h\\n  - Total: 80h / 2 GPU ≈ 40h real ≈ 1.7 天\\n- **时间线**: M2(~May 17) → post-M2(~May 19) → 写作(~May 20-24) → ARR May 25\\n\\n## 关键风险\\n1. **ARR May 25**: M2 提前到 ~May 17，时间线更可行\\n2. **Median=WR 固有**: novelty/effect-size/n=2 不可修复，目标最大化 Best case\\n3. **BM25 narrative**: Phase 2 结果决定叙事方向（harm→correction / neutral→systematic comparison）\\n4. **plan_003 依赖**: 可能需要 LLM API key (Qwen3.6-27B)，dry-run 确认中\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D043 | 2026-05-15 | 实现 pool=50 独立评估替代当前 pool=8；删除 R@10 报告；数据管道数字等 M1v2 | m2_full_qwen_continued, m2_full_starcoder_resumed, m1_reextract_v2 |\\n| D042 | 2026-05-15 | 实现 pool=50 独立评估脚本，重新评估所有 best checkpoints；删除 R@10  | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D041 | 2026-05-15 | Dataflow-aware 策略论文描述改为 BM25 排序（匹配代码实现），不重建数据 | m1_reextract_v2, m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D040 | 2026-05-14 | Claim 1 framing 微调：从\\\"纠正 embedding negatives 不行的误解\\\" | plan_017_literature |\\n| D039 | 2026-05-14 | 分层分析 R@1 数据无效：dry-run mock predictions，非真实模型结果。con | worker_analysis_dataflow_reposize_confound, m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D038 | 2026-05-14 | Plan 005 分层分析需额外控制 pool_size；dataflow richness 维度不 | plan_005_stratified |\\n| D037 | 2026-05-14 | D037: M2 checkpoint 改为只存 LoRA adapter weights，不存 m | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D036 | 2026-05-14 | M2 checkpoint 选择统一用 R@1 而非 val_loss 作为 primary cri | m2_full_qwen_continued, m2_full_starcoder_resumed |\\n| D035 | 2026-05-14 | Claim 2 降级：从 \\\"conditional benefit beyond embedding | m2_embed_verify, plan_013_starcoder |\\n| D034 | 2026-05-14 | Re-dream gate 未通过但决定继续：median=WR 由不可修复因素驱动（novelty | dream_20260514T162530, plan_018 |\\n\\n\", \"lines\": 77}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "de99c3f1-3f41-479a-acbf-c4c63aaf0dcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #10。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 **仅** `bjb1-42106:cuda:0, cuda:1`——历史上两次越界（D005, m2_early_pilot_v3 用 cuda:0 on cqa1）被 CRITICAL - `submit_tra…",
+  "leafUuid": "3c44e972-4ea7-4497-938e-c37dd705ab50",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor M2 training chains and prepare downstream analyses",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T04:12:43.913Z_
+
+<details><summary>↩ Tool result · `toolu_01VVKRTedApdRQma519WBo9V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_check_moto-codeql-propagation_20260515T020039\", \"task_type\": \"check:moto-codeql-propagation\", \"project\": \"structfuse-context\", \"status\": \"running\", \"started_at\": \"2026-05-15T02:00:39.599037+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6fbc33ef-15ac-4fe9-81f6-41080f3b326f",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "a959f643-15dc-4bf6-a036-518b68a3e897",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_check_moto-codeql-propagation_20260515T020039\\\", \\\"task_type\\\": \\\"check:moto-codeql-propagation\\\", \\\"project\\\": \\\"structfuse-context\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T02:00:39.599037+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_check_moto-codeql-propagation_20260515T020039\", \"task_type\": \"check:moto-codeql-propagation\", \"project\": \"structfuse-context\", \"status\": \"running\", \"started_at\": \"2026-05-15T02:00:39.599037+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6fbc33ef-15ac-4fe9-81f6-41080f3b326f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-15T04:13:19.598Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start initialization complete. Let me summarize the current state:
+
+**RUNNING experiments (3)**:
+1. `m2_full_qwen_continued` - embedding_distance_s43 step 150/2810 (~5%), 6 runs remaining, ETA ~May 17
+2. `m2_full_starcoder_resumed` - random_s43 step 1500/2810 (~53%), 7 runs remaining, ETA ~May 17-18
+3. `m1_reextract_v2` - 24624/28276 (87.1%), ETA ~May 15 17:00-19:00 CST
+
+
+All three cron jobs are still active, and the worker for moto-codeql-propagation is running. I've got plan_005_stratified preparing and plan_018_bm25 and plan_015_dynamic queued up. Before I report to the Director, I need to check resource saturation—looking at GPU allocation, I can see both cuda:0 and cuda:1 are occupied on bjb1-42106.
+
+The issue is that I only have 1 worker running when the minimum threshold is 2, which violates the constraint. I'm reviewing what I can parallelize: m1_reextract_v2 is at 87.1% and should finish today, the moto CodeQL worker is still active, plan_005_stratified is waiting for M2 checkpoints, and both plan_018_bm25 and plan_015_dynamic are blocked on GPU availability or M2 completion.
+
+I need to find something productive to spawn workers for right now. The SWE-bench dry-run (plan_003) is marked as "验证中" in the roadmap and could use a worker to move forward, or I could focus on updating report.md with the latest metrics from Qwen and StarCoder runs, though I should wait for the moto callback first before deciding.
+
+Looking at plan_005, I realize it needs all M2 checkpoints across strategies and seeds to do a proper comparison—the random checkpoints alone won't cut it since they can't show strategy differences. So that has to wait. The highest priority seems to be getting the SWE-bench dry-run verified, which is a P0 task per the roadmap.
+
+Before I report to the Director, I should review the resource-saturation skill and handle that cleanup task mentioned in the handoff—there's an old evaluate_pool process that needs to be delegated to a worker. Since the three running experiments are still going and nothing new has completed, I'll need to spawn at least one more worker to maintain the pool requirement, then give the Director an update.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a959f643-15dc-4bf6-a036-518b68a3e897",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hifBDNYTXR5tqQkddV",
+  "type": "assistant",
+  "uuid": "fc48e9d7-0d97-4c67-ac7e-53de25278c2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147SPQ5ySpRrepEfii51bpU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20621,
+      "cache_read_input_tokens": 38852,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20621,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 38852,
+          "cache_creation_input_tokens": 20621,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20621
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-15T04:13:19.663Z_
+
+3 个 cron 全部确认 job still running，registry 状态与 handoff 一致。Worker 池只有 1 个（低于硬约束 ≥2），需要补充。先读 resource-saturation skill，然后补 Worker 并汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc48e9d7-0d97-4c67-ac7e-53de25278c2a",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hifBDNYTXR5tqQkddV",
+  "type": "assistant",
+  "uuid": "7cbf34cf-924e-4d20-9192-6b8252fed8ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147SPQ5ySpRrepEfii51bpU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20621,
+      "cache_read_input_tokens": 38852,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20621,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 38852,
+          "cache_creation_input_tokens": 20621,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20621
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T04:13:21.148Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013q1Kwt7tc2PHR4wkRotAbP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7cbf34cf-924e-4d20-9192-6b8252fed8ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hifBDNYTXR5tqQkddV",
+  "type": "assistant",
+  "uuid": "3c34a099-2b94-4899-942a-3bf26848cdb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147SPQ5ySpRrepEfii51bpU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20621,
+      "cache_read_input_tokens": 38852,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20621,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 38852,
+          "cache_creation_input_tokens": 20621,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20621
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T04:13:21.168Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_013q1Kwt7tc2PHR4wkRotAbP`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c34a099-2b94-4899-942a-3bf26848cdb5",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "edd78666-1101-4931-ae12-8d758868c492",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f.",
+  "sourceToolAssistantUUID": "3c34a099-2b94-4899-942a-3bf26848cdb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T04:13:23.957Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01V587TkWi7yfTQ42wkC7FFv`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edd78666-1101-4931-ae12-8d758868c492",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hmQS2tbkt5Lkb3fUZZ",
+  "type": "assistant",
+  "uuid": "7a21eeaf-05ec-4632-8550-f39bed0abe7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsZhsdWdHSrECrPqvEpDDj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 59473,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1392,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 59473,
+          "cache_creation_input_tokens": 1392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1392
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T04:13:23.980Z_
+
+<details><summary>↩ Tool result · `toolu_01V587TkWi7yfTQ42wkC7FFv`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a21eeaf-05ec-4632-8550-f39bed0abe7d",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "55b59060-182f-4790-b4b6-1940b5d77357",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 18,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "7a21eeaf-05ec-4632-8550-f39bed0abe7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-15T04:13:24.017Z_
+
+```json
+{
+  "parentUuid": "55b59060-182f-4790-b4b6-1940b5d77357",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d4ac0fab-bf08-4566-9e3f-787c57f97fff",
+  "timestamp": "2026-05-15T04:13:24.017Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T04:13:29.734Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01G8ACVr42kx2mmHKnrLTykx`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4ac0fab-bf08-4566-9e3f-787c57f97fff",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hmnTc13fXxKrHpcyeL",
+  "type": "assistant",
+  "uuid": "d994cb85-a044-4005-8f67-820dfdff8bbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFzwVeeXgmR5Qh1iDL6UQC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 214,
+      "cache_read_input_tokens": 60865,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 60865,
+          "cache_creation_input_tokens": 214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T04:13:29.963Z_
+
+<details><summary>↩ Tool result · `toolu_01G8ACVr42kx2mmHKnrLTykx`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d994cb85-a044-4005-8f67-820dfdff8bbb",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "c646dda2-cccb-41d9-8a7c-0f3c615d3bc5",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+    ],
+    "durationMs": 224,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "d994cb85-a044-4005-8f67-820dfdff8bbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T04:13:32.162Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PNGjH2VhKQywu7RgNctqmg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c646dda2-cccb-41d9-8a7c-0f3c615d3bc5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hn3p5c1bFFFFzFVQse",
+  "type": "assistant",
+  "uuid": "c085773e-6725-480f-92d6-ad9d7839b55d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W2vZPnyzVS7zTJLCoE7Lwv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 112,
+      "cache_read_input_tokens": 61079,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 61079,
+          "cache_creation_input_tokens": 112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T04:13:32.178Z_
+
+<details><summary>↩ Tool result · `toolu_01PNGjH2VhKQywu7RgNctqmg`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c085773e-6725-480f-92d6-ad9d7839b55d",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "c3ce2590-5259-4c29-ace1-ed154c1f8f2d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "c085773e-6725-480f-92d6-ad9d7839b55d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-15T04:13:45.728Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, now I have the resource saturation skill. Let me do the assessment:
+
+**A. GPU 分配率**: 
+- Allocated: bjb1-42106 cuda:0, cuda:1 (2 GPUs)
+- Actually running: cuda:0 (m2_full_qwen_continued, PID 337267), cuda:1 (m2_full_starcoder_resumed, PID 519791) = 2 GPUs
+- No idle GPUs ✓
+
+**B. GPU 效率**: Both at 100% utilization per last check ✓
+
+
+**C. 非 GPU 任务并行**: I only have one worker running (worker_check_moto-codeql-propagation), which violates the minimum of 2 workers, so I need to spawn another one. Looking at what's available, the plan_003 SWE-bench dry-run verification from the ROADMAP seems like the right next task to parallelize.
+
+I should spawn a worker for plan_003 preparation to get ahead on this P0 post-M2 task, though I'm realizing I may need to load the spawn_worker tool first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3ce2590-5259-4c29-ace1-ed154c1f8f2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hnDG73trbQQnETbDKy",
+  "type": "assistant",
+  "uuid": "2ebcbd37-7392-404f-ba84-1843befa97a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwQiuXA41wq1qgvXam4WVd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 61191,
+      "output_tokens": 687,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 687,
+          "cache_read_input_tokens": 61191,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-15T04:13:48.108Z_
+
+资源检查完成。GPU 2/2 满载运行，但 Worker 池只有 1 个，违反 ≥2 硬约束。需要立即补 Worker。
+
+当前可并行推进的 CPU 任务：
+1. plan_003 SWE-bench 准备推进（P0，ROADMAP 标记 dry-run 验证中但无 worker 在做）
+2. 清理服务器残留 PID 465668 + 更新 report.md
+
+先加载 spawn_worker 工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ebcbd37-7392-404f-ba84-1843befa97a4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hnDG73trbQQnETbDKy",
+  "type": "assistant",
+  "uuid": "77f610d9-d3db-4a01-b037-144fb808d4e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwQiuXA41wq1qgvXam4WVd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 61191,
+      "output_tokens": 687,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 687,
+          "cache_read_input_tokens": 61191,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T04:13:50.075Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CQKyrnrrscgx5JhshfVUqU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77f610d9-d3db-4a01-b037-144fb808d4e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hnDG73trbQQnETbDKy",
+  "type": "assistant",
+  "uuid": "d47b28ca-1daa-44a0-b41d-63e11be77bd2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwQiuXA41wq1qgvXam4WVd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 61191,
+      "output_tokens": 687,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 687,
+          "cache_read_input_tokens": 61191,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T04:13:50.089Z_
+
+<details><summary>↩ Tool result · `toolu_01CQKyrnrrscgx5JhshfVUqU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d47b28ca-1daa-44a0-b41d-63e11be77bd2",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "6237fce2-054f-4ec8-b5ce-68ba92081956",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__read_experiment_plan_with_status"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "d47b28ca-1daa-44a0-b41d-63e11be77bd2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #10。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 **仅** `bjb1-42106:cuda:0, cuda:1`——历史上两次越界（D005, m2_early_pilot_v3 用 cuda:0 on cqa1）被 CRITICAL - `submit_tra…",
+  "leafUuid": "6237fce2-054f-4ec8-b5ce-68ba92081956",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor M2 training chains and prepare downstream analyses",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-15T04:13:57.131Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the experiment plan to understand what plan_003 needs, and load project config to confirm GPU allocation. Then I'll spawn a worker to advance plan_003 preparation and report to Director.
+
+Actually, let me think about what workers I can spawn right now:
+
+1. plan_003 SWE-bench prep - this is P0, needs investigation on LLM API key requirements and dry-run completion
+2. Clean up PID 465668 on server - quick task, could combine with other SSH work
+
+
+3. I need to review the experiment plan to see what plan_003 actually requires.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6237fce2-054f-4ec8-b5ce-68ba92081956",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hoY5DtyDXi7nKr4qMU",
+  "type": "assistant",
+  "uuid": "a1b4854a-fa15-4256-a1e6-1228afe8ec1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Ns5HBzA5Xyydyasa84JgN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2946,
+      "cache_read_input_tokens": 62338,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2946,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 62338,
+          "cache_creation_input_tokens": 2946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2946
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T04:13:57.132Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01Eq6EBhKHDtywJ7PZJCoPCJ`</summary>
+
+```json
+{
+  "project": "structfuse-context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1b4854a-fa15-4256-a1e6-1228afe8ec1e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hoY5DtyDXi7nKr4qMU",
+  "type": "assistant",
+  "uuid": "a3e2477c-8dc0-4dc0-a46c-40a751359c35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Ns5HBzA5Xyydyasa84JgN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2946,
+      "cache_read_input_tokens": 62338,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2946,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 62338,
+          "cache_creation_input_tokens": 2946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2946
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T04:13:57.266Z_
+
+<details><summary>↩ Tool result · `toolu_01Eq6EBhKHDtywJ7PZJCoPCJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"M1 全量 CodeQL 提取: 5K SWE-smith repos data-flow extraction + connected vs gold statistics\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"registry_id\": \"m1_extraction\", \"mvp_registry_id\": \"mvp_p1_codeql_feasibility\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_instances_attempted\": 44173, \"instances_skipped\": 6696, \"total_instances\": 50869, \"codeql_success\": 15133, \"beniget_fallback\": 764, \"extraction_failed\": 28276, \"structural_data_rate\": 0.36, \"repos_with_output\": 123, \"repos_total\": 131, \"repo_coverage\": 0.939, \"skip_clone_failed\": 5852, \"skip_checkout_failed\": 836, \"skip_stale_handle\": 8, \"elapsed_minutes\": 837.8, \"avg_time_per_instance_s\": 8.9, \"output_size_gb\": 6.6, \"disk_usage_gb\": 13, \"output_file\": \"all.jsonl\"}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"M2 全量 3-strategy 对比训练: random vs embedding_distance vs dataflow_aware, 3 seeds each, Qwen2.5-Coder-3B LoRA\", \"priority\": \"P0\", \"gpu_budget_hours\": 200, \"deps\": [\"plan_001\"], \"registry_id\": \"m2_embed_verify\", \"mvp_registry_id\": \"mvp_p2b_contrastive_training\", \"full_registry_ids\": [\"m2_full_qwen\", \"m2_full_starcoder\"], \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4834, \"best_recall@1\": 0.5357, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5978, \"final_recall@1\": 0.5122}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4603, \"best_recall@1\": 0.5557, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5935, \"final_recall@1\": 0.5209}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.5602, \"best_recall@1\": 0.5436, \"best_recall@5\": 0.9817, \"best_recall@10\": 1, \"final_val_loss\": 0.6201, \"final_recall@1\": 0.5287}}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"M3a SWE-bench Lite (300) end-to-end evaluation: 3 strategies x best checkpoint, Qwen3.6-27B agent\", \"priority\": \"P0\", \"gpu_budget_hours\": 40, \"deps\": [\"plan_002\"], \"notes\": \"eval script ready (eval_swebench.py), dry-run passed, 12 SWE-bench repos pre-cloned to /root/autodl-tmp/structfuse/swebench_repos. Awaiting M2 checkpoint.\", \"status\": \"planned\"}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"M3b RepoBench-R cross-file retrieval evaluation: retrieval-only, no LLM agent\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_002\"], \"notes\": \"eval script ready (eval_repobench.py), dry-run passed. RepoBench-R data via hf_hub_download. test_easy 8K instances (pool ~6), test_hard 8K (pool ~18). Awaiting M2 checkpoint. [Dream fix] Must run with multiple seeds and report 95% CIs — dream reviewers flagged inconsistent statistical reporting (CIs on SWE-bench but not RepoBench-R) across all 3 tiers.\", \"status\": \"planned\"}, {\"id\": \"plan_005\", \"claim\": 2, \"description\": \"Embedding vs random 深度分析: 按 repo size/complexity 分层, 分析 embedding negatives 何时最有害\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_002\"], \"notes\": \"analysis script ready (analyze_stratified.py), dry-run passed. 3 strata: repo size / pool size / query-positive similarity. Outputs stratified_results.json + plots PDF. Awaiting M2 checkpoints for re-eval. [Dream fix] Must add 2 more strata: (a) structural data availability (34% with dataflow vs 66% fallback) per [B][M][W] all tiers, (b) neg_difficulty quartile analysis per [W] tier. Total 5 strata.\", \"status\": \"planned\"}, {\"id\": \"plan_006\", \"claim\": 3, \"description\": \"M1 scalability statistics: timeout rate, extraction time, coverage, connected-but-not-gold ratio by repo size\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_001\"], \"registry_id\": \"plan_006_scalability\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"repos\": 123, \"total_instances\": 44173, \"structural_data_rate\": 0.343, \"error_rate\": 0.64, \"zero_timeout_rate\": true, \"processing_time\": {\"mean_s\": 8.93, \"median_s\": 0, \"p95_s\": 31.95, \"max_s\": 633.68, \"total_hours\": 109.58}, \"by_tier\": {\"small_lt50\": {\"repos\": 1, \"instances\": 500, \"error_rate\": 0.054, \"struct_rate\": 0.81, \"z_pct_mean\": 0.284, \"z_pct_median\": 0}, \"medium_50_200\": {\"repos\": 17, \"instances\": 4096, \"error_rate\": 0.485, \"struct_rate\": 0.472, \"z_pct_mean\": 0.444, \"z_pct_median\": 0.5}, \"large_200_500\": {\"repos\": 40, \"instances\": 13628, \"error_rate\": 0.639, \"struct_rate\": 0.343, \"z_pct_mean\": 0.604, \"z_pct_median\": 0.857}, \"xlarge_500plus\": {\"repos\": 29, \"instances\": 25949, \"error_rate\": 0.676, \"struct_rate\": 0.314, \"z_pct_mean\": 0.812, \"z_pct_median\": 0.96}}, \"instance_distribution\": {\"lt10\": 1, \"10_50\": 17, \"50_200\": 36, \"200_500\": 40, \"500plus\": 29}, \"artifact\": \"plan006_full_scalability.json\"}}, {\"id\": \"plan_007\", \"claim\": 1, \"description\": \"Ablation: 1-hop vs 2-hop vs 3-hop call-graph bounding\", \"priority\": \"P1\", \"gpu_budget_hours\": 20, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"Ablation: training data size scaling (1K vs 3K vs 5K instances)\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_009\", \"claim\": 1, \"description\": \"Ablation: fusion head (embedding-only vs structural-features-only vs combined)\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_002\"], \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"Ablation: dataflow-distance weighted negatives vs binary connected/disconnected\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"Failure analysis: 50 SweRank/BM25 failures, categorize by whether data-flow helps\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_003\"], \"status\": \"planned\"}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Qualitative examples: 5-10 cases where structural negatives changed retrieval outcome\", \"priority\": \"P2\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_003\"], \"status\": \"planned\"}, {\"id\": \"plan_013\", \"claim\": 1, \"description\": \"Second encoder validation: repeat M2 core comparison (3 strategies, 1 seed) on StarCoder-3B or CodeBERT to test architecture generality\", \"priority\": \"P0\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001\"], \"dream_source\": \"best-R1-W1, median-R2-W5: single encoder is primary generality concern. Upgraded to P0 per Reviewer — this is the #1 factor separating WA from WR.\", \"registry_id\": \"plan_013_starcoder\", \"full_registry_id\": \"m2_full_starcoder\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_val_loss\": 0.5113, \"best_recall@1\": 0.4922, \"best_recall@5\": 0.98, \"best_recall@10\": 1, \"source\": \"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\"}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.4816, \"best_recall@1\": 0.5078, \"best_recall@5\": 0.9843, \"best_recall@10\": 1, \"final_val_loss\": 0.506, \"final_recall@1\": 0.5174}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.5255, \"best_recall@1\": 0.4869, \"best_recall@5\": 0.9695, \"best_recall@10\": 1, \"final_val_loss\": 0.5509, \"final_recall@1\": 0.5078}}}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"Temperature ablation: τ ∈ {0.05, 0.1, 0.2} for all 3 strategies, test regime-specificity of embedding harm\", \"priority\": \"P1\", \"gpu_budget_hours\": 70, \"deps\": [\"plan_002\"], \"dream_source\": \"median-R1-W3: τ=0.05 unusually low, finding may be regime-specific\", \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"Dynamic embedding mining baseline: re-mine embedding negatives per epoch vs static (mine once from pretrained). Isolate selection criterion from curriculum shift.\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_002\"], \"dream_source\": \"best-R1-W2, median-R1-W2: static vs dynamic mining is potential confound for Claim 2\", \"status\": \"planned\"}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"Bootstrap CI for SWE-bench Lite: add 95% bootstrap confidence intervals to end-to-end resolve rate evaluation\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_003\"], \"dream_source\": \"best-R1-W3, worst-R1-W5: +2.0pp on 300 instances needs statistical significance test\", \"status\": \"planned\"}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Inference-time graph method comparison: discuss/compare with CodexGraph, LocAgent — is StructFuse complementary or alternative? Analysis complete, document in artifacts/analysis/plan017_literature_comparison.md. Discussion draft in artifacts/paper_drafts/discussion_draft.md.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_002\"], \"registry_id\": \"plan_017_literature\", \"dream_source\": \"best-R2-W5: no comparison with inference-time graph methods\", \"notes\": \"DONE (analysis only, no experiment). 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). All citations verified. Conclusion: training-time vs inference-time are complementary, not competing.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"papers_surveyed\": 8, \"citations_verified\": 8, \"discussion_draft\": \"artifacts/paper_drafts/discussion_v2.md\", \"artifact_id\": \"art_20260514_a2e1cd\"}}, {\"id\": \"plan_018\", \"claim\": 1, \"description\": \"BM25 negative baseline: mine BM25-based hard negatives as 4th strategy, train ≥1 seed × 2 encoders, compare R@1 with random/embedding/dataflow. Empirically verify CoCoHaNeRe BM25-proxy caused the reported harm.\", \"priority\": \"P0\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001\"], \"dream_source\": \"dream_20260514T075732 [B][M][W]: all 3 tiers identify missing BM25 baseline as #1 structural gap. CoCoHaNeRe correction claim requires empirical verification — without it the paper motivation is asserted but unverified.\", \"notes\": \"Phase 1 (CPU, can start now): build BM25 index over training corpus, mine top-k BM25 negatives per query using same protocol as other strategies, produce bm25_training_data.jsonl. Phase 2 (GPU, after M2 frees up): train 1 seed × 2 encoders with BM25 negatives (~7.5h each). 3 seeds preferred if GPU budget allows. Expected result: BM25 negatives harm → confirms CoCoHaNeRe artifact → closes argument.\", \"status\": \"planned\"}, {\"id\": \"plan_019\", \"claim\": 1, \"description\": \"Pool size sensitivity analysis: test strategy ranking stability at pool={50, 100, 200, 500} candidates per query on SWE-smith validation.\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_002\"], \"dream_source\": \"dream_20260514T075732 [B][M][W]: all 3 tiers flag pool=50 as unrealistically small. Strategy differences may not preserve at realistic pool sizes.\", \"notes\": \"Requires M2 best checkpoints. Re-evaluate on expanded candidate pools. If strategy ranking changes at pool>200, must discuss in paper.\", \"status\": \"planned\"}], \"total\": 19}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3e2477c-8dc0-4dc0-a46c-40a751359c35",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "a50f9f7b-229a-4048-a659-74ba10af82e5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"M1 全量 CodeQL 提取: 5K SWE-smith repos data-flow extraction + connected vs gold statistics\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"registry_id\\\": \\\"m1_extraction\\\", \\\"mvp_registry_id\\\": \\\"mvp_p1_codeql_feasibility\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_instances_attempted\\\": 44173, \\\"instances_skipped\\\": 6696, \\\"total_instances\\\": 50869, \\\"codeql_success\\\": 15133, \\\"beniget_fallback\\\": 764, \\\"extraction_failed\\\": 28276, \\\"structural_data_rate\\\": 0.36, \\\"repos_with_output\\\": 123, \\\"repos_total\\\": 131, \\\"repo_coverage\\\": 0.939, \\\"skip_clone_failed\\\": 5852, \\\"skip_checkout_failed\\\": 836, \\\"skip_stale_handle\\\": 8, \\\"elapsed_minutes\\\": 837.8, \\\"avg_time_per_instance_s\\\": 8.9, \\\"output_size_gb\\\": 6.6, \\\"disk_usage_gb\\\": 13, \\\"output_file\\\": \\\"all.jsonl\\\"}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"M2 全量 3-strategy 对比训练: random vs embedding_distance vs dataflow_aware, 3 seeds each, Qwen2.5-Coder-3B LoRA\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 200, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"m2_embed_verify\\\", \\\"mvp_registry_id\\\": \\\"mvp_p2b_contrastive_training\\\", \\\"full_registry_ids\\\": [\\\"m2_full_qwen\\\", \\\"m2_full_starcoder\\\"], \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4834, \\\"best_recall@1\\\": 0.5357, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5978, \\\"final_recall@1\\\": 0.5122}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.4603, \\\"best_recall@1\\\": 0.5557, \\\"best_recall@5\\\": 0.9808, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5935, \\\"final_recall@1\\\": 0.5209}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 500, \\\"best_val_loss\\\": 0.5602, \\\"best_recall@1\\\": 0.5436, \\\"best_recall@5\\\": 0.9817, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.6201, \\\"final_recall@1\\\": 0.5287}}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"M3a SWE-bench Lite (300) end-to-end evaluation: 3 strategies x best checkpoint, Qwen3.6-27B agent\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 40, \\\"deps\\\": [\\\"plan_002\\\"], \\\"notes\\\": \\\"eval script ready (eval_swebench.py), dry-run passed, 12 SWE-bench repos pre-cloned to /root/autodl-tmp/structfuse/swebench_repos. Awaiting M2 checkpoint.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"M3b RepoBench-R cross-file retrieval evaluation: retrieval-only, no LLM agent\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"plan_002\\\"], \\\"notes\\\": \\\"eval script ready (eval_repobench.py), dry-run passed. RepoBench-R data via hf_hub_download. test_easy 8K instances (pool ~6), test_hard 8K (pool ~18). Awaiting M2 checkpoint. [Dream fix] Must run with multiple seeds and report 95% CIs — dream reviewers flagged inconsistent statistical reporting (CIs on SWE-bench but not RepoBench-R) across all 3 tiers.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Embedding vs random 深度分析: 按 repo size/complexity 分层, 分析 embedding negatives 何时最有害\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"plan_002\\\"], \\\"notes\\\": \\\"analysis script ready (analyze_stratified.py), dry-run passed. 3 strata: repo size / pool size / query-positive similarity. Outputs stratified_results.json + plots PDF. Awaiting M2 checkpoints for re-eval. [Dream fix] Must add 2 more strata: (a) structural data availability (34% with dataflow vs 66% fallback) per [B][M][W] all tiers, (b) neg_difficulty quartile analysis per [W] tier. Total 5 strata.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"M1 scalability statistics: timeout rate, extraction time, coverage, connected-but-not-gold ratio by repo size\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"plan_006_scalability\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"repos\\\": 123, \\\"total_instances\\\": 44173, \\\"structural_data_rate\\\": 0.343, \\\"error_rate\\\": 0.64, \\\"zero_timeout_rate\\\": true, \\\"processing_time\\\": {\\\"mean_s\\\": 8.93, \\\"median_s\\\": 0, \\\"p95_s\\\": 31.95, \\\"max_s\\\": 633.68, \\\"total_hours\\\": 109.58}, \\\"by_tier\\\": {\\\"small_lt50\\\": {\\\"repos\\\": 1, \\\"instances\\\": 500, \\\"error_rate\\\": 0.054, \\\"struct_rate\\\": 0.81, \\\"z_pct_mean\\\": 0.284, \\\"z_pct_median\\\": 0}, \\\"medium_50_200\\\": {\\\"repos\\\": 17, \\\"instances\\\": 4096, \\\"error_rate\\\": 0.485, \\\"struct_rate\\\": 0.472, \\\"z_pct_mean\\\": 0.444, \\\"z_pct_median\\\": 0.5}, \\\"large_200_500\\\": {\\\"repos\\\": 40, \\\"instances\\\": 13628, \\\"error_rate\\\": 0.639, \\\"struct_rate\\\": 0.343, \\\"z_pct_mean\\\": 0.604, \\\"z_pct_median\\\": 0.857}, \\\"xlarge_500plus\\\": {\\\"repos\\\": 29, \\\"instances\\\": 25949, \\\"error_rate\\\": 0.676, \\\"struct_rate\\\": 0.314, \\\"z_pct_mean\\\": 0.812, \\\"z_pct_median\\\": 0.96}}, \\\"instance_distribution\\\": {\\\"lt10\\\": 1, \\\"10_50\\\": 17, \\\"50_200\\\": 36, \\\"200_500\\\": 40, \\\"500plus\\\": 29}, \\\"artifact\\\": \\\"plan006_full_scalability.json\\\"}}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Ablation: 1-hop vs 2-hop vs 3-hop call-graph bounding\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [\\\"plan_001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Ablation: training data size scaling (1K vs 3K vs 5K instances)\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"plan_001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_009\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Ablation: fusion head (embedding-only vs structural-features-only vs combined)\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_002\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_010\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Ablation: dataflow-distance weighted negatives vs binary connected/disconnected\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Failure analysis: 50 SweRank/BM25 failures, categorize by whether data-flow helps\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"plan_003\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_012\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Qualitative examples: 5-10 cases where structural negatives changed retrieval outcome\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_003\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_013\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Second encoder validation: repeat M2 core comparison (3 strategies, 1 seed) on StarCoder-3B or CodeBERT to test architecture generality\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"plan_001\\\"], \\\"dream_source\\\": \\\"best-R1-W1, median-R2-W5: single encoder is primary generality concern. Upgraded to P0 per Reviewer — this is the #1 factor separating WA from WR.\\\", \\\"registry_id\\\": \\\"plan_013_starcoder\\\", \\\"full_registry_id\\\": \\\"m2_full_starcoder\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_val_loss\\\": 0.5113, \\\"best_recall@1\\\": 0.4922, \\\"best_recall@5\\\": 0.98, \\\"best_recall@10\\\": 1, \\\"source\\\": \\\"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\\\"}, \\\"embedding_distance\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.4816, \\\"best_recall@1\\\": 0.5078, \\\"best_recall@5\\\": 0.9843, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.506, \\\"final_recall@1\\\": 0.5174}, \\\"dataflow_aware\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_step\\\": 1000, \\\"best_val_loss\\\": 0.5255, \\\"best_recall@1\\\": 0.4869, \\\"best_recall@5\\\": 0.9695, \\\"best_recall@10\\\": 1, \\\"final_val_loss\\\": 0.5509, \\\"final_recall@1\\\": 0.5078}}}, {\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Temperature ablation: τ ∈ {0.05, 0.1, 0.2} for all 3 strategies, test regime-specificity of embedding harm\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 70, \\\"deps\\\": [\\\"plan_002\\\"], \\\"dream_source\\\": \\\"median-R1-W3: τ=0.05 unusually low, finding may be regime-specific\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_015\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Dynamic embedding mining baseline: re-mine embedding negatives per epoch vs static (mine once from pretrained). Isolate selection criterion from curriculum shift.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_002\\\"], \\\"dream_source\\\": \\\"best-R1-W2, median-R1-W2: static vs dynamic mining is potential confound for Claim 2\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_016\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Bootstrap CI for SWE-bench Lite: add 95% bootstrap confidence intervals to end-to-end resolve rate evaluation\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_003\\\"], \\\"dream_source\\\": \\\"best-R1-W3, worst-R1-W5: +2.0pp on 300 instances needs statistical significance test\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_017\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Inference-time graph method comparison: discuss/compare with CodexGraph, LocAgent — is StructFuse complementary or alternative? Analysis complete, document in artifacts/analysis/plan017_literature_comparison.md. Discussion draft in artifacts/paper_drafts/discussion_draft.md.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": \\\"plan_017_literature\\\", \\\"dream_source\\\": \\\"best-R2-W5: no comparison with inference-time graph methods\\\", \\\"notes\\\": \\\"DONE (analysis only, no experiment). 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). All citations verified. Conclusion: training-time vs inference-time are complementary, not competing.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"papers_surveyed\\\": 8, \\\"citations_verified\\\": 8, \\\"discussion_draft\\\": \\\"artifacts/paper_drafts/discussion_v2.md\\\", \\\"artifact_id\\\": \\\"art_20260514_a2e1cd\\\"}}, {\\\"id\\\": \\\"plan_018\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"BM25 negative baseline: mine BM25-based hard negatives as 4th strategy, train ≥1 seed × 2 encoders, compare R@1 with random/embedding/dataflow. Empirically verify CoCoHaNeRe BM25-proxy caused the reported harm.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"plan_001\\\"], \\\"dream_source\\\": \\\"dream_20260514T075732 [B][M][W]: all 3 tiers identify missing BM25 baseline as #1 structural gap. CoCoHaNeRe correction claim requires empirical verification — without it the paper motivation is asserted but unverified.\\\", \\\"notes\\\": \\\"Phase 1 (CPU, can start now): build BM25 index over training corpus, mine top-k BM25 negatives per query using same protocol as other strategies, produce bm25_training_data.jsonl. Phase 2 (GPU, after M2 frees up): train 1 seed × 2 encoders with BM25 negatives (~7.5h each). 3 seeds preferred if GPU budget allows. Expected result: BM25 negatives harm → confirms CoCoHaNeRe artifact → closes argument.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_019\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pool size sensitivity analysis: test strategy ranking stability at pool={50, 100, 200, 500} candidates per query on SWE-smith validation.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"plan_002\\\"], \\\"dream_source\\\": \\\"dream_20260514T075732 [B][M][W]: all 3 tiers flag pool=50 as unrealistically small. Strategy differences may not preserve at realistic pool sizes.\\\", \\\"notes\\\": \\\"Requires M2 best checkpoints. Re-evaluate on expanded candidate pools. If strategy ranking changes at pool>200, must discuss in paper.\\\", \\\"status\\\": \\\"planned\\\"}], \\\"total\\\": 19}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"M1 全量 CodeQL 提取: 5K SWE-smith repos data-flow extraction + connected vs gold statistics\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"registry_id\": \"m1_extraction\", \"mvp_registry_id\": \"mvp_p1_codeql_feasibility\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_instances_attempted\": 44173, \"instances_skipped\": 6696, \"total_instances\": 50869, \"codeql_success\": 15133, \"beniget_fallback\": 764, \"extraction_failed\": 28276, \"structural_data_rate\": 0.36, \"repos_with_output\": 123, \"repos_total\": 131, \"repo_coverage\": 0.939, \"skip_clone_failed\": 5852, \"skip_checkout_failed\": 836, \"skip_stale_handle\": 8, \"elapsed_minutes\": 837.8, \"avg_time_per_instance_s\": 8.9, \"output_size_gb\": 6.6, \"disk_usage_gb\": 13, \"output_file\": \"all.jsonl\"}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"M2 全量 3-strategy 对比训练: random vs embedding_distance vs dataflow_aware, 3 seeds each, Qwen2.5-Coder-3B LoRA\", \"priority\": \"P0\", \"gpu_budget_hours\": 200, \"deps\": [\"plan_001\"], \"registry_id\": \"m2_embed_verify\", \"mvp_registry_id\": \"mvp_p2b_contrastive_training\", \"full_registry_ids\": [\"m2_full_qwen\", \"m2_full_starcoder\"], \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4834, \"best_recall@1\": 0.5357, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5978, \"final_recall@1\": 0.5122}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.4603, \"best_recall@1\": 0.5557, \"best_recall@5\": 0.9808, \"best_recall@10\": 1, \"final_val_loss\": 0.5935, \"final_recall@1\": 0.5209}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 500, \"best_val_loss\": 0.5602, \"best_recall@1\": 0.5436, \"best_recall@5\": 0.9817, \"best_recall@10\": 1, \"final_val_loss\": 0.6201, \"final_recall@1\": 0.5287}}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"M3a SWE-bench Lite (300) end-to-end evaluation: 3 strategies x best checkpoint, Qwen3.6-27B agent\", \"priority\": \"P0\", \"gpu_budget_hours\": 40, \"deps\": [\"plan_002\"], \"notes\": \"eval script ready (eval_swebench.py), dry-run passed, 12 SWE-bench repos pre-cloned to /root/autodl-tmp/structfuse/swebench_repos. Awaiting M2 checkpoint.\", \"status\": \"planned\"}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"M3b RepoBench-R cross-file retrieval evaluation: retrieval-only, no LLM agent\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_002\"], \"notes\": \"eval script ready (eval_repobench.py), dry-run passed. RepoBench-R data via hf_hub_download. test_easy 8K instances (pool ~6), test_hard 8K (pool ~18). Awaiting M2 checkpoint. [Dream fix] Must run with multiple seeds and report 95% CIs — dream reviewers flagged inconsistent statistical reporting (CIs on SWE-bench but not RepoBench-R) across all 3 tiers.\", \"status\": \"planned\"}, {\"id\": \"plan_005\", \"claim\": 2, \"description\": \"Embedding vs random 深度分析: 按 repo size/complexity 分层, 分析 embedding negatives 何时最有害\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_002\"], \"notes\": \"analysis script ready (analyze_stratified.py), dry-run passed. 3 strata: repo size / pool size / query-positive similarity. Outputs stratified_results.json + plots PDF. Awaiting M2 checkpoints for re-eval. [Dream fix] Must add 2 more strata: (a) structural data availability (34% with dataflow vs 66% fallback) per [B][M][W] all tiers, (b) neg_difficulty quartile analysis per [W] tier. Total 5 strata.\", \"status\": \"planned\"}, {\"id\": \"plan_006\", \"claim\": 3, \"description\": \"M1 scalability statistics: timeout rate, extraction time, coverage, connected-but-not-gold ratio by repo size\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_001\"], \"registry_id\": \"plan_006_scalability\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"repos\": 123, \"total_instances\": 44173, \"structural_data_rate\": 0.343, \"error_rate\": 0.64, \"zero_timeout_rate\": true, \"processing_time\": {\"mean_s\": 8.93, \"median_s\": 0, \"p95_s\": 31.95, \"max_s\": 633.68, \"total_hours\": 109.58}, \"by_tier\": {\"small_lt50\": {\"repos\": 1, \"instances\": 500, \"error_rate\": 0.054, \"struct_rate\": 0.81, \"z_pct_mean\": 0.284, \"z_pct_median\": 0}, \"medium_50_200\": {\"repos\": 17, \"instances\": 4096, \"error_rate\": 0.485, \"struct_rate\": 0.472, \"z_pct_mean\": 0.444, \"z_pct_median\": 0.5}, \"large_200_500\": {\"repos\": 40, \"instances\": 13628, \"error_rate\": 0.639, \"struct_rate\": 0.343, \"z_pct_mean\": 0.604, \"z_pct_median\": 0.857}, \"xlarge_500plus\": {\"repos\": 29, \"instances\": 25949, \"error_rate\": 0.676, \"struct_rate\": 0.314, \"z_pct_mean\": 0.812, \"z_pct_median\": 0.96}}, \"instance_distribution\": {\"lt10\": 1, \"10_50\": 17, \"50_200\": 36, \"200_500\": 40, \"500plus\": 29}, \"artifact\": \"plan006_full_scalability.json\"}}, {\"id\": \"plan_007\", \"claim\": 1, \"description\": \"Ablation: 1-hop vs 2-hop vs 3-hop call-graph bounding\", \"priority\": \"P1\", \"gpu_budget_hours\": 20, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"Ablation: training data size scaling (1K vs 3K vs 5K instances)\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_009\", \"claim\": 1, \"description\": \"Ablation: fusion head (embedding-only vs structural-features-only vs combined)\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_002\"], \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"Ablation: dataflow-distance weighted negatives vs binary connected/disconnected\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"status\": \"planned\"}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"Failure analysis: 50 SweRank/BM25 failures, categorize by whether data-flow helps\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_003\"], \"status\": \"planned\"}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Qualitative examples: 5-10 cases where structural negatives changed retrieval outcome\", \"priority\": \"P2\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_003\"], \"status\": \"planned\"}, {\"id\": \"plan_013\", \"claim\": 1, \"description\": \"Second encoder validation: repeat M2 core comparison (3 strategies, 1 seed) on StarCoder-3B or CodeBERT to test architecture generality\", \"priority\": \"P0\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001\"], \"dream_source\": \"best-R1-W1, median-R2-W5: single encoder is primary generality concern. Upgraded to P0 per Reviewer — this is the #1 factor separating WA from WR.\", \"registry_id\": \"plan_013_starcoder\", \"full_registry_id\": \"m2_full_starcoder\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"random\": {\"status\": \"DONE\", \"best_val_loss\": 0.5113, \"best_recall@1\": 0.4922, \"best_recall@5\": 0.98, \"best_recall@10\": 1, \"source\": \"/tmp/eval_random_s42.log (post-hoc eval, no in-training eval)\"}, \"embedding_distance\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.4816, \"best_recall@1\": 0.5078, \"best_recall@5\": 0.9843, \"best_recall@10\": 1, \"final_val_loss\": 0.506, \"final_recall@1\": 0.5174}, \"dataflow_aware\": {\"status\": \"DONE\", \"best_step\": 1000, \"best_val_loss\": 0.5255, \"best_recall@1\": 0.4869, \"best_recall@5\": 0.9695, \"best_recall@10\": 1, \"final_val_loss\": 0.5509, \"final_recall@1\": 0.5078}}}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"Temperature ablation: τ ∈ {0.05, 0.1, 0.2} for all 3 strategies, test regime-specificity of embedding harm\", \"priority\": \"P1\", \"gpu_budget_hours\": 70, \"deps\": [\"plan_002\"], \"dream_source\": \"median-R1-W3: τ=0.05 unusually low, finding may be regime-specific\", \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"Dynamic embedding mining baseline: re-mine embedding negatives per epoch vs static (mine once from pretrained). Isolate selection criterion from curriculum shift.\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_002\"], \"dream_source\": \"best-R1-W2, median-R1-W2: static vs dynamic mining is potential confound for Claim 2\", \"status\": \"planned\"}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"Bootstrap CI for SWE-bench Lite: add 95% bootstrap confidence intervals to end-to-end resolve rate evaluation\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_003\"], \"dream_source\": \"best-R1-W3, worst-R1-W5: +2.0pp on 300 instances needs statistical significance test\", \"status\": \"planned\"}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Inference-time graph method comparison: discuss/compare with CodexGraph, LocAgent — is StructFuse complementary or alternative? Analysis complete, document in artifacts/analysis/plan017_literature_comparison.md. Discussion draft in artifacts/paper_drafts/discussion_draft.md.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_002\"], \"registry_id\": \"plan_017_literature\", \"dream_source\": \"best-R2-W5: no comparison with inference-time graph methods\", \"notes\": \"DONE (analysis only, no experiment). 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). All citations verified. Conclusion: training-time vs inference-time are complementary, not competing.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"papers_surveyed\": 8, \"citations_verified\": 8, \"discussion_draft\": \"artifacts/paper_drafts/discussion_v2.md\", \"artifact_id\": \"art_20260514_a2e1cd\"}}, {\"id\": \"plan_018\", \"claim\": 1, \"description\": \"BM25 negative baseline: mine BM25-based hard negatives as 4th strategy, train ≥1 seed × 2 encoders, compare R@1 with random/embedding/dataflow. Empirically verify CoCoHaNeRe BM25-proxy caused the reported harm.\", \"priority\": \"P0\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001\"], \"dream_source\": \"dream_20260514T075732 [B][M][W]: all 3 tiers identify missing BM25 baseline as #1 structural gap. CoCoHaNeRe correction claim requires empirical verification — without it the paper motivation is asserted but unverified.\", \"notes\": \"Phase 1 (CPU, can start now): build BM25 index over training corpus, mine top-k BM25 negatives per query using same protocol as other strategies, produce bm25_training_data.jsonl. Phase 2 (GPU, after M2 frees up): train 1 seed × 2 encoders with BM25 negatives (~7.5h each). 3 seeds preferred if GPU budget allows. Expected result: BM25 negatives harm → confirms CoCoHaNeRe artifact → closes argument.\", \"status\": \"planned\"}, {\"id\": \"plan_019\", \"claim\": 1, \"description\": \"Pool size sensitivity analysis: test strategy ranking stability at pool={50, 100, 200, 500} candidates per query on SWE-smith validation.\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_002\"], \"dream_source\": \"dream_20260514T075732 [B][M][W]: all 3 tiers flag pool=50 as unrealistically small. Strategy differences may not preserve at realistic pool sizes.\", \"notes\": \"Requires M2 best checkpoints. Re-evaluate on expanded candidate pools. If strategy ranking changes at pool>200, must discuss in paper.\", \"status\": \"planned\"}], \"total\": 19}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a3e2477c-8dc0-4dc0-a46c-40a751359c35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T04:13:57.343Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_014U5An1teQDK25e2sfjTYne`</summary>
+
+```json
+{
+  "project_name": "structfuse-context",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a50f9f7b-229a-4048-a659-74ba10af82e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hoY5DtyDXi7nKr4qMU",
+  "type": "assistant",
+  "uuid": "88ba8071-c11b-40e1-a5ee-a6b0525d382c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Ns5HBzA5Xyydyasa84JgN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2946,
+      "cache_read_input_tokens": 62338,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2946,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 62338,
+          "cache_creation_input_tokens": 2946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2946
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T04:13:57.355Z_
+
+<details><summary>↩ Tool result · `toolu_014U5An1teQDK25e2sfjTYne`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"structfuse-context\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": \"bjb1-42106:cuda:0,cuda:1\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/structfuse\", \"servers\": [{\"account\": \"root\", \"server\": \"bjb1-42106\"}]}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88ba8071-c11b-40e1-a5ee-a6b0525d382c",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "27152f4d-95b2-4071-bd7f-acad99a5b23e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"structfuse-context\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": \\\"bjb1-42106:cuda:0,cuda:1\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/structfuse\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-42106\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"structfuse-context\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": \"bjb1-42106:cuda:0,cuda:1\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/structfuse\", \"servers\": [{\"account\": \"root\", \"server\": \"bjb1-42106\"}]}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "88ba8071-c11b-40e1-a5ee-a6b0525d382c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #10。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 **仅** `bjb1-42106:cuda:0, cuda:1`——历史上两次越界（D005, m2_early_pilot_v3 用 cuda:0 on cqa1）被 CRITICAL - `submit_tra…",
+  "leafUuid": "27152f4d-95b2-4071-bd7f-acad99a5b23e",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor M2 training chains and prepare downstream analyses",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-15T04:14:27.250Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, now I have a clear picture. Let me assess what I can spawn workers for:
+
+1. **plan_003 SWE-bench**: P0, status "planned", needs M2 checkpoints. The notes say "eval script ready (eval_swebench.py), dry-run passed, 12 SWE-bench repos pre-cloned". It's waiting for M2 checkpoints. But the ROADMAP says "dry-run 验证中" and "可能需要 LLM API key (Qwen3.6-27B)". So there's prep work that can be done: verifying the LLM API key situation.
+
+
+2. **PID 465668 cleanup**: Quick SSH task on the server.
+3. **Paper preparation**: Could start related work expansion (25+ citations target per ROADMAP).
+
+I'll spawn two workers: one to SSH into the server and clean up that process while checking on m1_reextract_v2's progress (should be near completion with an ETA around 17:00-19:00 CST), and another to handle the SWE-bench prep work by verifying the LLM API key requirements and confirming whether we need to request_secret.
+
+Actually, I'm noticing something—the ROADMAP lists plan_003 as "worker 进行中" but the experiment plan shows it as "planned" with no registry_id. Looking at the notes though, the dry-run already passed and the eval script is ready with repos pre-cloned. The real blocker is just getting the LLM API key for Qwen3.6-27B sorted out.
+
+Given the timeline—M2 chains finishing around May 17, m1_reextract_v2 completing today, and multiple plans waiting on M2 checkpoints—the most impactful thing right now is verifying plan_003's API requirements so we're not blocked when M2 finishes. I should also tackle some paper writing prep and clean up residual processes on the server. Let me spawn two workers: one to handle the API key verification and server cleanup, another for the paper-related work like expanding the related work citations.
+
+Actually, I should check the current state of things first—m1_reextract_v2 might already be done, and I need to verify what plan_004 needs since the notes mention the eval script is ready. Let me just get two focused workers going: one to SSH in and check progress on m1_reextract_v2, kill that lingering process, and verify plan_003's dependencies, and another to investigate what citations we currently have and identify gaps to reach 25+.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27152f4d-95b2-4071-bd7f-acad99a5b23e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hp4z5Sp5Fy639qynbx",
+  "type": "assistant",
+  "uuid": "36d76306-4885-46e7-a20f-57b3608623ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyYxfivTjiUjr9tNa3djht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4885,
+      "cache_read_input_tokens": 65284,
+      "output_tokens": 4267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4267,
+          "cache_read_input_tokens": 65284,
+          "cache_creation_input_tokens": 4885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-15T04:14:32.722Z_
+
+初始化完成。当前状态确认：
+- **GPU**: 2/2 满载（cuda:0 Qwen embedding_s43 5%, cuda:1 StarCoder random_s43 53%）
+- **Worker 池**: 1 个（moto CodeQL 检查，低于 ≥2 硬约束）
+- **Cron**: 3 个活跃，全部 still running
+- **PREPARING**: plan_005_stratified（等 M2 checkpoints）
+- **QUEUED**: plan_018_bm25 Phase 2（watcher 自动触发）、plan_015_dynamic（等 GPU）
+
+需要补 Worker + 汇报 Director。并行执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36d76306-4885-46e7-a20f-57b3608623ea",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hp4z5Sp5Fy639qynbx",
+  "type": "assistant",
+  "uuid": "f35074bc-5267-43f2-b466-224bc3bf3bdc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyYxfivTjiUjr9tNa3djht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4885,
+      "cache_read_input_tokens": 65284,
+      "output_tokens": 4267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4267,
+          "cache_read_input_tokens": 65284,
+          "cache_creation_input_tokens": 4885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T04:14:55.586Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01JguibTRUwJNKMxfHu1cxwe`</summary>
+
+````json
+{
+  "task_type": "check:server-status-and-cleanup",
+  "project": "structfuse-context",
+  "task_prompt": "## 任务：服务器状态检查 + 清理 + plan_003 准备验证\n\n### 服务器信息\n- 服务器：bjb1-42106\n- 账户：root\n- 工作目录：/root/structfuse\n- Python：/root/miniconda3/bin/python（conda base env）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 任务清单\n\n**1. m1_reextract_v2 进度检查**（只读）\n```bash\n# 检查进程是否还活着\nps aux | grep reextract | grep -v grep\n# 检查完成数量\nwc -l /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\n# 检查各 worker 的 log\nls -la /root/structfuse/logs/reextract_v2*.log 2>/dev/null || ls -la /root/structfuse/extraction/logs/ 2>/dev/null\n# 检查总 instance 完成数\nfind /root/autodl-tmp/structfuse/full_m1_data/ -name \"*.jsonl\" -exec wc -l {} + 2>/dev/null | tail -5\n```\n报告：完成百分比、是否仍在运行、ETA\n\n**2. 清理残留进程 PID 465668**\n```bash\n# 先确认进程还在\nps -p 465668 -o pid,cmd --no-headers 2>/dev/null\n# 如果存在且是 evaluate_pool50.py --pool-size 5 --gpu -1，kill 它\nkill 465668 2>/dev/null\n# 验证已清理\nps -p 465668 -o pid= 2>/dev/null && echo \"STILL_ALIVE\" || echo \"KILLED_OK\"\n```\n\n**3. M2 训练链进度检查**（只读）\n```bash\n# Qwen chain (cuda:0, PID 337267)\nps -p 337267 -o pid,etime,cmd --no-headers 2>/dev/null\nnvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\n# 检查当前 subrun\nls -lt /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/ 2>/dev/null | head -10\n# StarCoder chain (cuda:1, PID 519791)\nps -p 519791 -o pid,etime,cmd --no-headers 2>/dev/null\n```\n\n**4. plan_003 SWE-bench 准备验证**（只读）\n```bash\n# 检查 eval 脚本是否存在\nls -la /root/structfuse/scripts/eval_swebench.py 2>/dev/null || ls -la /root/structfuse/evaluation/eval_swebench.py 2>/dev/null\n# 检查预克隆的 repos\nls /root/autodl-tmp/structfuse/swebench_repos/ 2>/dev/null | wc -l\n# 检查是否有 qwen3 或 LLM 相关依赖\ngrep -ri \"qwen\\|openai\\|api_key\\|llm\" /root/structfuse/scripts/eval_swebench.py 2>/dev/null || grep -ri \"qwen\\|openai\\|api_key\\|llm\" /root/structfuse/evaluation/eval_swebench.py 2>/dev/null\n# 看脚本的 --help\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/structfuse/scripts/eval_swebench.py --help 2>/dev/null || python /root/structfuse/evaluation/eval_swebench.py --help 2>/dev/null\n```\n重点确认：plan_003 是否需要外部 LLM API key（如 Qwen3.6-27B）？如果需要，明确说明哪个环境变量、什么格式。\n\n**5. 磁盘状况**\n```bash\ndf -h / /root/autodl-tmp 2>/dev/null\ndu -sh /root/autodl-tmp/structfuse/checkpoints/ 2>/dev/null\n```\n\n### 产出要求\n用 save_project_file 写一份简洁状态报告到 memory.md（追加到末尾）：\n- m1_reextract_v2 完成进度和 ETA\n- PID 465668 清理结果\n- M2 链进度（当前 subrun + step）\n- plan_003 LLM API 依赖详情\n- 磁盘剩余空间\n\n不要修改任何训练脚本或配置文件。",
+  "tool_groups": [
+    "ssh"
+  ],
+  "tools": [
+    "save_project_file"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f35074bc-5267-43f2-b466-224bc3bf3bdc",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hp4z5Sp5Fy639qynbx",
+  "type": "assistant",
+  "uuid": "fa5752de-6ebe-4869-a62e-3bc0ab94c2f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyYxfivTjiUjr9tNa3djht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4885,
+      "cache_read_input_tokens": 65284,
+      "output_tokens": 4267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4267,
+          "cache_read_input_tokens": 65284,
+          "cache_creation_input_tokens": 4885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T04:14:58.490Z_
+
+<details><summary>↩ Tool result · `toolu_01JguibTRUwJNKMxfHu1cxwe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_server-status-and-cleanup_20260515T041456\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_check_server-status-and-cleanup_20260515T041456.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_server-status-and-cleanup_20260515T041456 started. Use get_worker_status('worker_check_server-status-and-cleanup_20260515T041456') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa5752de-6ebe-4869-a62e-3bc0ab94c2f8",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "d4059981-f03e-473e-bd2c-75f0e864f5db",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_server-status-and-cleanup_20260515T041456\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_check_server-status-and-cleanup_20260515T041456.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_server-status-and-cleanup_20260515T041456 started. Use get_worker_status('worker_check_server-status-and-cleanup_20260515T041456') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_check_server-status-and-cleanup_20260515T041456\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_check_server-status-and-cleanup_20260515T041456.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_server-status-and-cleanup_20260515T041456 started. Use get_worker_status('worker_check_server-status-and-cleanup_20260515T041456') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fa5752de-6ebe-4869-a62e-3bc0ab94c2f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T04:15:14.293Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_012Q75h2VrFcqw4PcngzGmkm`</summary>
+
+```json
+{
+  "task_type": "research:related-work-gap-analysis",
+  "project": "structfuse-context",
+  "task_prompt": "## 任务：Related Work 引用缺口分析\n\n### 背景\nStructFuse 论文目标投 ARR May 25。Dream 审稿指出 related work 需要 25+ citations。当前 literature_map.yaml 和 discussion_v2.md 已有部分引用，需要做 gap 分析。\n\n论文核心方向：\n- 利用代码结构信息（call graph / data-flow）做 contrastive learning 的 hard negative mining，提升代码检索质量\n- 3 种策略对比：random / embedding_distance / dataflow_aware\n- 验证平台：SWE-smith 数据 + SWE-bench Lite eval\n- 两个 encoder：Qwen2.5-Coder-3B / StarCoder2-3B\n\n### 任务\n1. 读取 `literature_map.yaml`（用 `read_project_file(project=\"structfuse-context\", file=\"literature_map.yaml\")`）\n2. 读取 `discussion_v2.md`（用 `read_project_file(project=\"structfuse-context\", file=\"artifacts/paper_drafts/discussion_v2.md\")`）- 如果路径不对，尝试其他路径\n3. 统计当前已有的 citation 数量，按 category 分类\n4. 识别以下领域的引用缺口：\n   - Code retrieval / code search（基础方法）\n   - Contrastive learning for code（方法论）\n   - Hard negative mining（通用 ML + code-specific）\n   - Static analysis / program analysis for ML（CodeQL, data-flow）\n   - Code representation learning（CodeBERT, UniXcoder, StarCoder, etc.）\n   - Repository-level code understanding\n   - SWE-bench / software engineering benchmarks\n   - Inference-time graph methods（已有 8 篇，检查是否充分）\n5. 对每个缺口，用 WebSearch 搜索 1-2 篇高影响力论文（优先 2023-2026 顶会 ICML/NeurIPS/ICLR/ACL/EMNLP/ICSE/FSE/ASE）\n6. 产出一份 gap 分析报告，包含：\n   - 当前 citation 数（by category）\n   - 缺口列表 + 推荐论文（title, venue, year, 为什么要引）\n   - 达到 25+ citations 的路径\n\n### 产出\n用 `save_project_file` 将分析写入 `memory.md`（追加格式，不覆盖已有内容），标题为 `## Related Work Gap Analysis (2026-05-15)`。\n\n注意：不要编造论文。每篇推荐论文必须通过 WebSearch 确认真实存在。",
+  "tool_groups": [
+    "knowledge"
+  ],
+  "tools": [
+    "WebSearch"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4059981-f03e-473e-bd2c-75f0e864f5db",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hp4z5Sp5Fy639qynbx",
+  "type": "assistant",
+  "uuid": "ced51f9c-50eb-48b1-abd6-ae4fb1ffa1b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyYxfivTjiUjr9tNa3djht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4885,
+      "cache_read_input_tokens": 65284,
+      "output_tokens": 4267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4267,
+          "cache_read_input_tokens": 65284,
+          "cache_creation_input_tokens": 4885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T04:15:16.746Z_
+
+<details><summary>↩ Tool result · `toolu_012Q75h2VrFcqw4PcngzGmkm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_related-work-gap-analysis_20260515T041514\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_research_related-work-gap-analysis_20260515T041514.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_related-work-gap-analysis_20260515T041514 started. Use get_worker_status('worker_research_related-work-gap-analysis_20260515T041514') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ced51f9c-50eb-48b1-abd6-ae4fb1ffa1b5",
+  "isSidechain": false,
+  "promptId": "9d39efe4-dec6-4e52-8674-c6aac3c9aa09",
+  "type": "user",
+  "uuid": "88539153-0d09-4707-aaa9-2bf6746e6daa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_related-work-gap-analysis_20260515T041514\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_research_related-work-gap-analysis_20260515T041514.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_research_related-work-gap-analysis_20260515T041514 started. Use get_worker_status('worker_research_related-work-gap-analysis_20260515T041514') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_research_related-work-gap-analysis_20260515T041514\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_research_related-work-gap-analysis_20260515T041514.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_related-work-gap-analysis_20260515T041514 started. Use get_worker_status('worker_research_related-work-gap-analysis_20260515T041514') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ced51f9c-50eb-48b1-abd6-ae4fb1ffa1b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T04:15:29.174Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01XTHow9Dg9L6THX1eA7UZtp`</summary>
+
+```json
+{
+  "project": "structfuse-context",
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 3 (GPU 0 / CPU 3)\n\n## Session-Start 状态汇报 (Loop #10, 2026-05-15)\n\n**RUNNING 实验 (3)**:\n1. **m2_full_qwen_continued** (cuda:0, PID 337267): embedding_distance_s43 step 150/2810 (~5%)。random 三个 seed 全部完成（s42=0.5527, s43=0.5554, s44=0.6009 R@1）。剩 6 runs，ETA ~May 17\n2. **m2_full_starcoder_resumed** (cuda:1, PID 519791): random_s43 step 1500/2810 (~53%)。R@1 trending up 0.4708→0.4780。剩 7 runs，ETA ~May 17-18\n3. **m1_reextract_v2** (CPU): 24624/28276 (87.1%)，ETA 今天 17:00-19:00 CST\n\n**Cron**: 3 个活跃，全部 still running，已 reconcile\n\n**Worker 派发**:\n- worker_check_moto-codeql-propagation: 仍在运行（检查 moto repo CodeQL timeout 传播）\n- 新派 worker_server-status-and-cleanup: 服务器状态检查 + 清理 PID 465668 + plan_003 LLM API 依赖验证\n- 新派 worker_related-work-gap-analysis: 论文 related work 引用缺口分析（目标 25+ citations）\n\n**待触发事件**:\n- m1_reextract_v2 完成（今天）→ 更新 registry 最终数据规模\n- M2 链完成（~May 17）→ BM25 watcher 自动启动 Phase 2 → plan_005 分层分析 + evaluate_pool50\n- Post-M2 关键路径: plan_003 SWE-bench (P0, 40h) + plan_018 Phase 2 (P0, 15h) 并行\n\n**无阻塞项**，全速推进中。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88539153-0d09-4707-aaa9-2bf6746e6daa",
+  "isSidechain": false,
+  "requestId": "req_011Cb3hp4z5Sp5Fy639qynbx",
+  "type": "assistant",
+  "uuid": "92511a06-aa87-49c5-a954-3fdfb3a91364",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_2bc11d4f",
+  "sessionId": "f0f78594-a9fa-45be-b090-50116f9e750f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyYxfivTjiUjr9tNa3djht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4885,
+      "cache_read_input_tokens": 65284,
+      "output_tokens": 4267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4267,
+          "cache_read_input_tokens": 65284,
+          "cache_creation_input_tokens": 4885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

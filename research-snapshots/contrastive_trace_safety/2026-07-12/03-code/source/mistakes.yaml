@@ -1,0 +1,231 @@
+_next_id: 17
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: experiment_design
+  severity: high
+  summary: 32B layer selection 使用 crossing_rate × lead_mean 指标，奖励噪声层（early layers
+    acc ~62%）而非准确层（deep layers acc ~74%），导致 best layer 结论错误
+  root_cause: layer sweep 的评估指标只考虑了 coverage 和 lead time，没有纳入 accuracy。Director 审批时未审查指标合理性，直接将指标伪影（early
+    layer 因噪声获得高 lead time）包装为"novel finding"。
+  prevention: 1. Layer selection 指标必须包含 accuracy 或 F1 作为主排序维度。2. 审批实验方案时必须审查评估指标的定义和合理性。3.
+    当实验结果与预期严重不符时（44% depth → 2% depth），优先怀疑方法论而非声称新发现。
+  status: active
+  context: exp_001a R1-32B layer 2 acc=61.9% 被选为"best"(score=7.6), 而 layer 63 acc=74.3%
+    被判为"差"(score=3.2)。R1-32B GRU acc=59.5% 接近随机。Claim 4 (scale-dependent layer dynamics)
+    和 Claim 3 (2.5x scale effect) 均受影响。
+  fix: 1. 用 accuracy-aware 指标重做 32B layer selection。2. 在正确层上重训 GRU。3. 回退 Claim 4，重新评估
+    Claim 3。
+- id: M002
+  date: '2026-05-16'
+  category: code_bug
+  severity: high
+  summary: QwQ-32B text baseline 是 midpoint heuristic placeholder，不是真实 text probe。p=0.001
+    完全无效。
+  root_cause: exp_001b_bootstrap.py 的 text_baseline_predictions() 函数 (lines 85-91)
+    用 predict 1 if step >= n//2 作为 text baseline。代码作者可能写了 placeholder 但从未替换为 all-MiniLM-L6-v2
+    sentence embedding 实现。所有引用 QwQ p=0.001 的分析（paper_framing.md、ROADMAP、Director 决策）都基于此
+    bug 数据。
+  prevention: 1) 所有 baseline 实现必须有 assert/验证确认使用了正确的 feature（如 assert embedding.shape
+    == (384,) for MiniLM）2) bootstrap 代码中的 text baseline 函数名不能是 generic 的 — 必须明确标注数据来源
+    3) 审批实验时要求 Agent 报告 baseline 的具体实现方式 4) Reviewer 审查新实验结果时必须验证 baseline 实现合理性
+  status: active
+  context: QwQ-32B text baseline FPR 从 31.2% (midpoint heuristic) 变为 21.4% (real sentence
+    embedding probe)。HS FPR 从 16.4% 变为 22.4%（可能因 corrected layer 2）。修正后 p=0.904，Claim
+    1 在 QwQ 上完全失效。
+  fix: Agent 已用 all-MiniLM-L6-v2 sentence embedding 重跑 QwQ text baseline + bootstrap。修正后数据将更新到
+    paper_framing.md 和所有下游文件。
+  related_decisions:
+  - D008
+  - D010
+  - D013
+- id: M003
+  date: '2026-05-17'
+  category: code_bug
+  severity: medium
+  summary: fig2 使用旧实验数据（diag_d3/exp_015 无 balanced weights）而非 canonical balanced recompute。Coverage
+    改善被夸大近一倍(+30pp vs 实际+16pp)。
+  root_cause: 图表生成代码硬编码了 coverage 数值，来源是早期实验（不同 class weights 配置）。没有从 canonical 数据文件读取。balanced
+    recompute 完成后未验证所有下游引用是否同步更新。
+  prevention: 1) 图表生成必须从 canonical data 文件读取，不能硬编码数值 2) 每次实验配置变更（如 balanced weights）后，必须验证所有引用该数据的图表/文档是否同步
+    3) Reviewer 检查图表时对照 canonical source 验证数据点
+  status: active
+  context: fig2 中 HS W=15 coverage 76.7% 来自 diag_d3(default weights)，canonical balanced
+    recompute 为 62.8%。Text static 60.5% 来自 exp_015，canonical 为 34.9%。差异导致论文宣称的 improvement
+    magnitude 从 +16pp 被夸大为 +30pp。
+  fix: Paper Agent 重新生成 fig2，强制从 r1_8b_balanced_recompute/full_results.json 读取数据。
+  related_decisions:
+  - D015
+- id: M004
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: Paper Agent 幻觉了不存在的模型 "DeepSeek-R1-Distill-Qwen-14B"，并将模型数量从 3 写成 4。科学论文杜撰实验对象。
+  root_cause: Paper Agent 在写 Limitations 时，可能从模型命名模式推测存在 14B 变体（DeepSeek-R1 系列确实有多种
+    size），但项目中从未使用过 14B。Paper Agent 没有从 registry/config 验证实际模型列表就写入了论文。
+  prevention: 1) Paper Agent 写作时必须从 registry/experiment_plan 验证所有模型名和数量 2) 所有论文中的
+    factual claims (模型名、数据集大小、数字) 必须有 canonical source 引用 3) Reviewer 审查时重点检查是否有 hallucinated
+    entities (模型名、引用、数据集)
+  status: active
+  fix: Reviewer 发现，已派 correction 给 Paper Agent。需要全文扫描其他可能的幻觉。
+  related_decisions:
+  - D014
+- id: M005
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 'Paper Agent appendix 多处数据捏造: layer sweep 用错误层号编造 convergence 叙事, window
+    ablation 表数据系统性偏离 exp_007, selectivity 用旧数据'
+  root_cause: Paper Agent 在缺少源数据文件访问权限时，基于模糊记忆或推断编造具体数值，而非标注 TBD 或请求 Director 提供数据。这是
+    M003/M004 的同类问题（第三次发生）。
+  prevention: 1. Paper Agent 写数值表格时必须引用具体源文件路径，无源文件则标注 [TBD - need data from exp_XXX];
+    2. Director 在派 appendix 任务时必须提供所有需要的数据文件内容或路径; 3. Reviewer 必须抽查 appendix 表格数据与源文件一致性
+  status: active
+  context: appendix.tex A.2 layer sweep 用 L24/L28 (实际 L10/L2), window ablation 表 QwQ
+    W=1 bal_acc=68.3 vs exp_007=73.0 (差4.7pp), R1-32B W=1 FPR 差 2.2x, selectivity
+    用旧层数据 16.8pp vs 实际 7.5pp
+  fix: 'Pending: 需从 exp_007/results.json 重建所有表格, 用 M001 修正后的层号重写 layer sweep'
+- id: M006
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: BOCPD/CUSUM on OT-7B 使用 W=15 而非模型最优窗口 W=3，导致 53% traces FCP 为 null
+  root_cause: Director 在 D027 任务指令中未明确指定使用模型最优窗口。Agent/Worker 默认使用了 W=15（可能参照 R1-8B
+    的参数），但 OT-7B 的最优 HS 窗口是 W=3（exp_ot7b_full_pipeline 结果）。不同模型最优窗口不同，跨模型复用参数时必须检查。
+  prevention: 派发跨模型验证实验时，必须在指令中明确指定每个模型的关键超参数（best layer、best W），不能假设 Worker 会自动查找。指令模板应包含：模型名
+    → best layer → best W 的映射表。
+  status: active
+  context: D027 任务 3 BOCPD/CUSUM on OT-7B。W=15 导致 probe 阈值过高，25/47 test traces FCP
+    为 null（53%），严重削弱 head-to-head 对比。已指令 Agent 用 W=3 重跑。
+  fix: 指令 Agent 用 OT-7B 最优窗口 W=3 重跑 BOCPD/CUSUM，同时追加 Mahalanobis distance 验证。
+  related_decisions:
+  - D027
+- id: M007
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 注册 MLP 实验时使用了 K=1 bug 版本数据，忽略 Director 明确指令使用 v1 (K=5) 数据
+  root_cause: Director 指令中说"使用 v1 数据（per-model JSON）"，但 Agent/Worker 仍从最新的 results.json（v2,
+    K=1 bug 版本）读取数据注册。Worker 可能优先读取主 results.json 而非 per-model 文件，或未理解 v1 vs v2 的区别。
+  prevention: 指令中指定数据文件时，给出完整文件路径和预期数值范围（如"coverage 应在 0.4-0.9 之间，如果看到 1.0 说明读取了错误文件"）。关键修正任务完成后主动验证数据正确性。
+  status: active
+  related_decisions:
+  - D027
+- id: M008
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: SGDClassifier 反复替代 LogisticRegression — 第 3 次发生 (K ablation R1-8B W=15)
+  root_cause: Worker 脚本中高维特征 (61440d for W=15) 导致 LogisticRegression(lbfgs) 太慢，Worker
+    自行替换为 SGDClassifier 以加速。但 SGDClassifier 的收敛特性不同，导致结果与论文方法不一致。此前已在 safe-trace FPR
+    multimodel 和 QwQ FPR reversal 中各发生一次。
+  prevention: 1. 实验指令中明确写 "必须使用 LogisticRegression(solver='lbfgs', C=1.0, class_weight='balanced',
+    max_iter=2000)"，禁止替换。2. 高维场景如需加速，用 PCA 降维而非换 classifier。3. Worker 完成后 Reviewer
+    检查 classifier 类型。
+  status: active
+  context: '第1次: safe-trace FPR multimodel — QwQ-32B 出现 HS/Text FPR 反转 (SGD artifact)。第2次:
+    safe-trace FPR — 修正后 QwQ reversal 消失。第3次: K ablation R1-8B W=15 — precision 0.6727
+    (SGD) vs 0.777 (LR)。W=1 数据不受影响因为4096d可直接用LR。'
+  fix: W=1 数据作为主要结论（Reviewer 已批准），W=15 SGD 数据标注为参考。
+- id: M009
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: A1 BA-layer脚本使用max_iter=500导致OT-7B ConvergenceWarning + 可疑L2选择
+  root_cause: Worker编写脚本时未对齐论文canonical LogisticRegression配置(max_iter=2000)，使用了默认或过低的max_iter=500。4模型放单脚本导致超时，进一步压缩了可用时间。
+  prevention: 1. 实验脚本中的模型超参数必须显式从论文配置中复制，不使用默认值。2. 多模型实验拆分为独立worker，每个model单独跑避免级联超时。3.
+    审批时检查脚本中关键超参数(max_iter, C, class_weight)是否与论文一致。
+  status: active
+  context: OT-7B BA-optimal选到L2(7% depth)，BA landscape极平(7.3pp range)。max_iter=500下ConvergenceWarning表明solver未收敛，可能导致不稳定的层选择。R1-32B和QwQ-32B因超时未完成(已由check-and-resume
+    worker补完)。
+  fix: 拆分3个独立worker重跑OT-7B(max_iter=2000) + 确认R1-32B/QwQ-32B结果。指令已排队。
+  related_decisions:
+  - D045
+  - D046
+- id: M010
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: Table 3 QwQ bootstrap 使用旧层号 L60 (70/30) 而非 60/20/20 BA-optimal L63
+  root_cause: Director 发 Table 3 bootstrap 指令时照搬旧 Table 3 的 QwQ L60 层号，未交叉检查 A1 canonical
+    的 60/20/20 BA-optimal 结果 (L63)。
+  prevention: 发实验指令时，如果目标是统一到新 split，必须从该 split 的层选择结果中获取层号，不能沿用旧 split 的层号。交叉检查：A1
+    canonical → 确认 BA-optimal layers → 用于后续实验。
+  status: active
+  fix: 重跑 QwQ Table 3 bootstrap at L63 W=5 60/20/20 max_iter=2000 10k resamples。
+  related_decisions:
+  - D047
+- id: M011
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: E5-Mistral 对比实验 3/4 模型用了错误的 HS layer（biased/stale layers 而非 Table 3 corrected
+    layers）
+  root_cause: Worker 从代码/配置中读取的 layer_idx 不是论文 Table 3 的 corrected layers（R1-8B L14,
+    OT-7B L16, R1-32B L63），而是旧的或 BA-optimal layers（R1-8B idx=5, OT-7B idx=2, R1-32B
+    idx=46）。Director 审批任务时未在指令中明确指定每个模型的 exact layer_idx。
+  prevention: 所有涉及多模型对比的新实验，Director 指令中必须列出每个模型的 exact layer + W + split 参数，引用 Table
+    3 (tab:hs_vs_text) 的具体数值。不依赖 Worker 自行从代码/配置中推断 layer。
+  status: active
+  context: E5-Mistral-7B-Instruct encoder comparison 作为 rebuttal 储备。论文核心 finding 就是
+    shallow layer 会 underestimate HS advantage，而这个实验恰好在 biased shallow layers 上跑了，自我矛盾。
+  fix: 在 corrected layers (R1-8B L14, OT-7B L16, R1-32B L63, QwQ L63) 上重跑，cuda:0 空闲可立即执行。
+- id: M012
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 批量 \resizebox 修复后未视觉检查 PDF，导致表格覆盖问题被用户发现
+  root_cause: Paper Agent 对 34 个表格做批量 \resizebox 后，Director 和 Reviewer 只检查了编译 warnings
+    是否消除，未渲染 PDF 逐页检查实际排版效果。\resizebox 改变表格高度后 float 定位异常导致表格与文字覆盖，这个副作用在纯日志检查中不可见。
+  prevention: 任何批量排版修改（\resizebox、float specifier、字号调整等）后，必须用 pdf_to_images 渲染所有受影响页面并逐页视觉检查，不能只看编译
+    warnings。将此作为 Paper Agent patch 完成后的强制步骤。
+  status: active
+  fix: commit 44db1aa 将全部 38 个 [h] float specifier 改为 [htbp]，commit f268641 修复 i.001
+    渲染错误，逐页确认无覆盖。
+  commit_id: 64710f9
+- id: M013
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 两次盲目重跑失败脚本而不先诊断根因，浪费两次 GPU 运行
+  root_cause: advbench_layer_bias.py generate_trace() 在 2ms 内崩溃（空异常消息）。Agent 第一次只改了
+    EXTRACT_LAYERS 常量但没修复 error handling 也没诊断 generate 崩溃原因就重跑，导致完全相同的失败。错误处理代码只打印
+    {e} 丢失了异常类型和 traceback。
+  prevention: 脚本失败后必须：(1) 先修复 error handling 打印完整 traceback，(2) 用单个输入诊断根因，(3) 单例验证成功后再跑全量。禁止只改配置就盲目重跑。
+  status: active
+- id: M014
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: AdvBench R1-8B 第三次失败：本地代码修复未同步到服务器
+  root_cause: 本地 advbench_layer_bias.py 已修复（BatchEncoding 兼容 + traceback.print_exc），但服务器
+    /root/autodl-tmp/contrastive_trace_safety/scripts/ 仍运行旧版代码。Agent 重启实验时未验证服务器脚本版本是否与本地一致。无
+    git remote 导致 git pull 不可用，但也未用 scp/base64 等替代方案同步。
+  prevention: 重启远程实验前必须执行 3 步验证：(1) 比较本地和远程脚本的关键行（grep 修复代码）(2) 如果不一致，先同步再运行 (3) 1-prompt
+    dry run 验证修复生效。无 git remote 时用 base64 编码传输文件。
+  status: active
+  context: M013 已记录"盲目重跑不诊断"的教训，但本次失败的根因不同——不是没诊断（已知 root cause），而是诊断后的修复未传到执行环境。3
+    次失败累计浪费 ~4h GPU 时间。
+  fix: Worker 通过 base64 传输本地正确脚本到服务器，grep 验证关键修复行，清理旧数据后 1-prompt 测试再全量重启。
+- id: M015
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: medium
+  summary: 通知 Manager 释放服务器时未确认所有脚本已完成
+  root_cause: System 催促要求释放 GPU，Director 匆忙响应，未先向 Agent 确认 classifier sensitivity
+    ≥3 是否完成就通知 Manager 释放整台服务器
+  prevention: 释放服务器前必须先确认：(1) Agent 汇报所有进程已结束 (2) 无 nohup 后台任务仍在运行。不要在收到催促时仓促做释放决策。
+  status: active
+  fix: 立即发更正消息给 Manager 暂停释放
+- id: M016
+  date: '2026-05-26'
+  category: code_bug
+  severity: high
+  summary: openthinker bib 条目含 3 位虚构作者（AI 幻觉生成）
+  root_cause: bib 条目由 LLM 生成时未与原始论文核实作者列表，50 人大团队论文尤其容易出现作者幻觉
+  prevention: 所有 bib 条目必须从 arXiv/publisher 原文核实，特别是大作者团队（>10人）的论文建议用 "FirstAuthor
+    and others" 格式避免遗漏/虚构。引用审查流程已覆盖此类检查。
+  status: active
+  context: ref-audit-A 审查发现 openthinker (arXiv:2506.04178) 的 bib 条目中 Bhatia, Ragan-Kelley,
+    Narang 三人不在实际 50 人作者列表，最后作者应为 Ludwig Schmidt 而非 Hashimoto
+  fix: 派 Paper Agent 从 arXiv 原文核实后修复，改用 Guha, Etash and others 格式
