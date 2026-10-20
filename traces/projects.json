@@ -1055,6 +1055,19 @@
       }
     },
     {
+      "project": "recovery_aware_struct_prune--export-20260712",
+      "title": "How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM (July export snapshot)",
+      "catalog": "../research-snapshots/recovery_aware_struct_prune/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 936,
+        "messages": 77304,
+        "user_turns": 1075,
+        "tool_calls": 21996,
+        "unparsed_lines": 4,
+        "conversation": 936
+      }
+    },
+    {
       "project": "recursive_gen_depth_est",
       "title": "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints",
       "catalog": "../paper-assets/recursive_gen_depth_est/05-generation-trace/catalog.json",

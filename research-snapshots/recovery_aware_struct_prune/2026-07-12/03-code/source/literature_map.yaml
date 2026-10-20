@@ -1,0 +1,674 @@
+papers:
+  # === Direct Competitors ===
+  - id: self_healing_2025
+    title: "Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning"
+    authors: "Yixin Ji, Zhimin Lin, Juntao Li, Kaixin Wu, Kai Yao, Xu Jia, Linjian Mo, Min Zhang"
+    year: 2025
+    venue: "ICLR 2026 submission (OpenReview #12375, submitted Sep 2025)"
+    category: direct-competitor
+    role: "RLVR recovery baseline"
+    relevance: 9
+    key_finding: "RLVR recovers 95%+ at 25% compression; SFT only reaches ~80%. Tested on 5 LRMs across 6 math benchmarks."
+    our_relation: "We extend beyond single sparsity ratio and add CKA-guided pruning selection"
+    citation_priority: must-cite
+    arxiv_id: ""
+
+  - id: resp_2025
+    title: "RESP: Self-Reflective Structured Pruning for Reasoning LLMs"
+    authors: ""
+    year: 2025
+    venue: "arXiv Dec 2025"
+    category: direct-competitor
+    role: "Structured pruning for reasoning without recovery"
+    relevance: 8
+    key_finding: "GSM8K 81.3% at 40% sparsity via self-reflective importance"
+    our_relation: "No RLVR recovery; we show recovery-aware pruning outperforms at same sparsity"
+    citation_priority: must-cite
+    arxiv_id: "2512.02185"
+
+  - id: grasprune_2026
+    title: "GRASPrune: Global Gating-based Structural Pruning for LLMs"
+    authors: ""
+    year: 2026
+    venue: "ACL 2026 Main"
+    category: direct-competitor
+    role: "SOTA budgeted structural pruning"
+    relevance: 8
+    key_finding: "Global gating achieves best structured pruning under budget constraints"
+    our_relation: "GRASPrune as pruning backbone; we add CKA overlap + RLVR recovery on top"
+    citation_priority: must-cite
+    arxiv_id: "2604.19398"
+
+  - id: opsd_2026
+    title: "OPSD: One-shot Post-RL Structured Distillation"
+    authors: ""
+    year: 2026
+    venue: "arXiv May 2026"
+    category: direct-competitor
+    role: "Post-RL compression via distillation"
+    relevance: 7
+    key_finding: "Compress post-RL model in one shot via structured distillation"
+    our_relation: "Distillation-based vs our pruning+recovery approach; complementary"
+    citation_priority: should-cite
+    arxiv_id: ""
+
+  - id: doing_more_with_less_2026
+    title: "Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling"
+    authors: ""
+    year: 2026
+    venue: "arXiv Apr 2026"
+    category: direct-competitor
+    role: "Pruning improves test-time scaling"
+    relevance: 7
+    key_finding: "Unstructured pruning can augment test-time scaling; structured pruning degrades it"
+    our_relation: "Motivates why structured pruning needs recovery; we address this gap with RLVR"
+    citation_priority: should-cite
+    arxiv_id: "2604.25098"
+
+  - id: gprune_llm_2026
+    title: "GPrune-LLM: Generalization-Aware Structured Pruning for Large Language Models"
+    authors: ""
+    year: 2026
+    venue: "arXiv Mar 2026"
+    category: direct-competitor
+    role: "Cross-distribution generalization-aware pruning"
+    relevance: 6
+    key_finding: "Accounts for neuron cross-distribution behavior; reduces calibration bias"
+    our_relation: "Complementary importance metric; our CKA captures functional overlap vs their generalization gap"
+    citation_priority: should-cite
+    arxiv_id: "2603.13418"
+
+  - id: boiling_frog_2026
+    title: "Gradually Compacting Large Language Models for Reasoning Like a Boiling Frog"
+    authors: "Yiran Zhao, Shengyang Zhou, Zijian Wu, Tongyan Hu, Yuhui Xu, Rengan Dou, Kenji Kawaguchi, Shafiq Joty, Junnan Li, Michael Qizhe Shieh"
+    year: 2026
+    venue: "arXiv Feb 2026"
+    category: direct-competitor
+    role: "Iterative prune-tune loop for reasoning model compression"
+    relevance: 7
+    key_finding: "Gradual Prune-Tune Loop avoids abrupt performance collapse; iterative pruning+finetuning preserves reasoning"
+    our_relation: "Similar prune-then-recover paradigm but uses SFT recovery; we use RLVR which is more effective and add CKA-guided pruning selection"
+    citation_priority: must-cite
+    arxiv_id: "2602.04919"
+
+  - id: think_prune_train_2025
+    title: "Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models"
+    authors: "Caia Costello, Simon Guo, Anna Goldie, Azalia Mirhoseini"
+    year: 2025
+    venue: "arXiv Apr 2025 (Stanford Scaling Intelligence Lab)"
+    category: direct-competitor
+    role: "Self-training on pruned reasoning traces to improve small models"
+    relevance: 6
+    key_finding: "Iterative fine-tuning on ground-truth-pruned reasoning traces; Gemma2-9B matches LLaMA-3.1-70B on GSM8K"
+    our_relation: "Complementary — prunes reasoning traces (CoT) not model weights; could combine with our weight pruning"
+    citation_priority: nice-to-have
+    arxiv_id: "2504.18116"
+
+  # === Method Components ===
+  - id: mpruner_2024
+    title: "MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning"
+    authors: ""
+    year: 2024
+    venue: "arXiv Aug 2024"
+    category: method-component
+    role: "CKA for layer importance estimation"
+    relevance: 8
+    key_finding: "CKA similarity between layers identifies redundant layers for removal; 50% parameter reduction with minimal accuracy loss"
+    our_relation: "We adapt CKA from layer-level to width-level functional overlap prediction"
+    citation_priority: must-cite
+    arxiv_id: "2408.13482"
+
+  - id: lachance_thesis_2024
+    title: "Using Centered Kernel Alignment for Understanding and Pruning Neural Networks"
+    authors: "Lachance"
+    year: 2024
+    venue: "URI Master's Thesis"
+    category: method-component
+    role: "CKA-based pruning theoretical foundation"
+    relevance: 6
+    key_finding: "CKA layer similarity correlates with pruning recoverability"
+    our_relation: "Validates CKA as signal for pruning decisions; we extend to predict RLVR recovery"
+    citation_priority: should-cite
+    arxiv_id: ""
+
+  - id: fang_2025
+    title: "FANG: Improving Generalization in LLM Structured Pruning via Function-Aware Neuron Grouping"
+    authors: "Tao Yu, Yongqi An, Kuan Zhu, Guibo Zhu, Ming Tang, Jinqiao Wang"
+    year: 2025
+    venue: "arXiv Dec 2025"
+    category: method-component
+    role: "Function-aware neuron grouping for structured pruning"
+    relevance: 7
+    key_finding: "Groups FFN neurons by functional roles; shared neuron retention prevents cross-task accuracy loss; outperforms FLAP/OBC by 1.5-8.5% at 30-40% sparsity"
+    our_relation: "Closest conceptual parallel — both identify functionally critical neurons, but FANG uses activation-based grouping while we use CKA similarity; no recovery component"
+    citation_priority: must-cite
+    arxiv_id: "2512.23014"
+
+  - id: funcnet_2025
+    title: "Pruning Large Language Models by Identifying and Preserving Functional Networks"
+    authors: "Yiheng Liu, Junhao Ning, Sichen Xia, Xiaohui Gao, Ning Qiang, Bao Ge, Junwei Han, Xintao Hu"
+    year: 2025
+    venue: "arXiv Aug 2025"
+    category: method-component
+    role: "ICA-based functional network identification for pruning"
+    relevance: 7
+    key_finding: "Applies ICA (from neuroimaging) to decompose LLM into functional networks; preserves key neurons within identified networks"
+    our_relation: "Similar motivation — treat LLM as digital brain and preserve functional structure — but uses ICA vs our CKA; no RLVR recovery"
+    citation_priority: must-cite
+    arxiv_id: "2508.05239"
+
+  - id: bonsai_2025
+    title: "Bonsai: Gradient-Free Structured Pruning for LLMs"
+    authors: ""
+    year: 2025
+    venue: "ICML 2025"
+    category: method-component
+    role: "Gradient-free structured pruning alternative"
+    relevance: 6
+    key_finding: "Achieves competitive structured pruning without backprop"
+    our_relation: "Alternative pruning strategy; our CKA metric is also gradient-free"
+    citation_priority: should-cite
+    arxiv_id: ""
+
+  - id: pat_2025
+    title: "PAT: Pruning-Aware Tuning for Large Language Models"
+    authors: "Yijiang Liu et al."
+    year: 2025
+    venue: "AAAI 2025"
+    category: method-component
+    role: "Joint pruning and tuning framework via Hybrid Sparsification Modules"
+    relevance: 6
+    key_finding: "Co-optimizing pruning mask and fine-tuning via HSMs; surpasses LoRA-64 by 1.26% at 25% pruning on Llama2-7B"
+    our_relation: "Related idea of pruning-tuning interaction; we separate pruning and RLVR recovery"
+    citation_priority: should-cite
+    arxiv_id: "2408.14721"
+
+  - id: rac_2025
+    title: "RAC: Chain-of-Thought Reconstruction for Pruned Reasoning Models"
+    authors: ""
+    year: 2025
+    venue: "NeurIPS 2025"
+    category: method-component
+    role: "CoT reconstruction post-pruning"
+    relevance: 7
+    key_finding: "Reconstructing CoT improves unstructured/2:4 pruned reasoning models"
+    our_relation: "Complementary recovery strategy; could combine with our RLVR approach"
+    citation_priority: should-cite
+    arxiv_id: ""
+
+  - id: paser_2025
+    title: "PASER: Data Selection for Pruning Recovery"
+    authors: ""
+    year: 2025
+    venue: "under review"
+    category: method-component
+    role: "Recovery training data selection"
+    relevance: 6
+    key_finding: "Selective data for recovery training improves efficiency"
+    our_relation: "Orthogonal contribution; can apply PASER data selection to our RLVR recovery"
+    citation_priority: nice-to-have
+    arxiv_id: ""
+
+  - id: dppo_2026
+    title: "DPPO: Unbiased Dynamic Pruning for Efficient Group-Based Policy Optimization"
+    authors: ""
+    year: 2026
+    venue: "arXiv Mar 2026"
+    category: method-component
+    role: "Rollout pruning to accelerate GRPO training"
+    relevance: 5
+    key_finding: "Importance-sampling-based rollout pruning achieves 2.37x GRPO speedup with 3.36% accuracy gain on Qwen3-4B"
+    our_relation: "Could accelerate our GRPO-based RLVR recovery phase"
+    citation_priority: nice-to-have
+    arxiv_id: "2603.04135"
+
+  - id: arrol_2026
+    title: "ARRoL: Prune as You Generate — Online Rollout Pruning for Faster and Better RLVR"
+    authors: ""
+    year: 2026
+    venue: "arXiv Mar 2026"
+    category: method-component
+    role: "Online rollout pruning for RLVR efficiency"
+    relevance: 5
+    key_finding: "Lightweight quality head predicts rollout success probability for early pruning during RLVR"
+    our_relation: "Complementary technique for speeding up RLVR recovery training"
+    citation_priority: nice-to-have
+    arxiv_id: "2603.24840"
+
+  - id: restorelcc_2025
+    title: "RestoreLCC: Restoring Pruned Large Language Models via Lost Component Compensation"
+    authors: "Zijian Feng, Hanzhang Zhou, Zixiao Zhu, Tianjiao Li, Jia Jim Deryl Chua, Lee Onn Mak, Gee Wah Ng, Kezhi Mao"
+    year: 2025
+    venue: "NeurIPS 2025 (Spotlight, top 10%)"
+    category: method-component
+    role: "Plug-and-play pruning recovery via activation compensation"
+    relevance: 6
+    key_finding: "Contrastively probes critical attention heads, extracts lost components from activation differences, injects them back; +1.25-2.65% over SOTA baselines across structured/unstructured pruning"
+    our_relation: "Alternative recovery paradigm (activation editing vs RLVR); could be complementary — apply RestoreLCC before RLVR for staged recovery"
+    citation_priority: should-cite
+    arxiv_id: "2510.21834"
+
+  - id: fastforward_2025
+    title: "FastForward Pruning: Efficient LLM Pruning via Single-Step Reinforcement Learning"
+    authors: ""
+    year: 2025
+    venue: "arXiv Nov 2025"
+    category: method-component
+    role: "RL-based non-uniform sparsity allocation for LLM pruning"
+    relevance: 5
+    key_finding: "Decoupled single-step RL framework separates policy optimization from budget satisfaction; efficient non-uniform layer-wise sparsity search"
+    our_relation: "Uses RL for pruning decisions (not recovery); complementary — could combine their RL sparsity allocation with our CKA-guided selection"
+    citation_priority: nice-to-have
+    arxiv_id: "2511.18977"
+
+  - id: nirvana_2025
+    title: "NIRVANA: Structured Pruning Reimagined for Large Language Models Compression"
+    authors: "Mengting Ai, Tianxin Wei, Sirui Chen, Jingrui He"
+    year: 2025
+    venue: "arXiv Sep 2025"
+    category: method-component
+    role: "NTK-based saliency with adaptive sparsity allocation"
+    relevance: 6
+    key_finding: "First-order saliency from Neural Tangent Kernel under Adam dynamics; adaptive cross-module sparsity; KL-based calibration data selection. Outperforms SOTA on Llama3/Qwen/T5."
+    our_relation: "Strong pruning baseline; their NTK saliency is complementary to our CKA functional overlap — could combine both signals"
+    citation_priority: should-cite
+    arxiv_id: "2509.14230"
+
+  - id: tracenas_2026
+    title: "TraceNAS: Zero-shot LLM Pruning via Gradient Trace Correlation"
+    authors: "Prajna G. Malettira, Manish Nagaraj, Arjun Roy, Shubham Negi, Kaushik Roy"
+    year: 2026
+    venue: "arXiv Feb 2026"
+    category: method-component
+    role: "Gradient trace for joint depth+width NAS-style pruning"
+    relevance: 6
+    key_finding: "Scale-invariant gradient trace correlation as proxy for pruned architecture quality; joint depth+width search on single GPU in 8.5h; competitive with training-intensive methods on Llama/Qwen"
+    our_relation: "Related NAS-for-pruning approach; their gradient trace could complement our CKA as alternative architecture quality proxy"
+    citation_priority: should-cite
+    arxiv_id: "2602.02891"
+
+  - id: rlrc_2025
+    title: "RLRC: Reinforcement Learning-based Recovery for Compressed Vision-Language-Action Models"
+    authors: "Yuxuan Chen, Xiao Li"
+    year: 2025
+    venue: "arXiv Jun 2025"
+    category: method-component
+    role: "RL-based recovery for compressed VLA models (robotics)"
+    relevance: 6
+    key_finding: "Three-stage: structured pruning → SFT+RL recovery → quantization. 8x memory reduction, 2.3x throughput, maintains/surpasses original task success."
+    our_relation: "Extends RL recovery paradigm to robotics VLAs; validates that RL recovery generalizes beyond language-only models. Parallel evidence for our RLVR recovery hypothesis."
+    citation_priority: should-cite
+    arxiv_id: "2506.17639"
+
+  # === Background / Theory ===
+  - id: kornblith_cka_2019
+    title: "Similarity of Neural Network Representations Revisited"
+    authors: "Simon Kornblith, Mohammad Norouzi, Honglak Lee, Geoffrey Hinton"
+    year: 2019
+    venue: "ICML 2019"
+    category: background
+    role: "CKA original paper — foundational method for our functional overlap metric"
+    relevance: 9
+    key_finding: "CKA achieves 99.3% accuracy in identifying corresponding layers across different initializations; CCA/SVCCA only 1.4-45.4%. Invariant to orthogonal transform and isotropic scaling."
+    our_relation: "Foundational method — our CKA-guided pruning directly builds on this. Key justification: CKA >> CCA/SVCCA for reliable layer correspondence"
+    citation_priority: must-cite
+    arxiv_id: "1905.00414"
+
+  - id: davari_cka_reliability_2023
+    title: "Reliability of CKA as a Similarity Measure in Deep Learning"
+    authors: "MohammadReza Davari, Stefan Horoi, Amine Natik, Guillaume Lajoie, Guy Wolf, Eugene Belilovsky"
+    year: 2023
+    venue: "ICLR 2023"
+    category: background
+    role: "CKA limitations and failure modes — essential for honest CKA justification"
+    relevance: 7
+    key_finding: "CKA is sensitive to outliers and simple transformations preserving linear separability; CKA values can be manipulated without changing functional behavior. Calls for caution."
+    our_relation: "Must-cite for CKA justification section. We should acknowledge limitations and explain why they don't invalidate our use case (intra-model layer comparison, not cross-model with different transformations)."
+    citation_priority: must-cite
+    arxiv_id: "2210.16156"
+
+  - id: murphy_debiased_cka_2024
+    title: "Correcting Biased Centered Kernel Alignment Measures in Biological and Artificial Neural Networks"
+    authors: "Alex Murphy, Joel Zylberberg, Alona Fyshe"
+    year: 2024
+    venue: "ICLR 2024 Re-Align Workshop"
+    category: background
+    role: "Debiased CKA for high-dimensionality settings"
+    relevance: 5
+    key_finding: "Biased CKA gives misleadingly high similarity when feature-sample ratio is skewed; debiased CKA corrects this. Shuffled data doesn't change biased CKA scores."
+    our_relation: "Nice-to-have citation. Our setting (same model, same data) is less affected by this bias, but worth mentioning in limitations."
+    citation_priority: nice-to-have
+    arxiv_id: "2405.01012"
+
+  - id: raghu_svcca_2017
+    title: "SVCCA: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability"
+    authors: "Maithra Raghu, Justin Gilmer, Jason Yosinski, Jascha Sohl-Dickstein"
+    year: 2017
+    venue: "NeurIPS 2017"
+    category: background
+    role: "SVCCA — predecessor to CKA, baseline representation similarity method"
+    relevance: 5
+    key_finding: "SVD dimensionality reduction + CCA for comparing representations; reveals bottom-up convergence dynamics and intrinsic dimensionality"
+    our_relation: "CKA alternative baseline. SVCCA lacks invariance to isotropic scaling and fails at cross-network layer identification (only 45% accuracy vs CKA's 99%)"
+    citation_priority: should-cite
+    arxiv_id: "1706.05806"
+
+  - id: klabunde_similarity_survey_2025
+    title: "Similarity of Neural Network Models: A Survey of Functional and Representational Measures"
+    authors: "Max Klabunde, Tobias Schumacher, Markus Strohmaier, Florian Lemmerich"
+    year: 2025
+    venue: "ACM Computing Surveys, Vol. 57, Issue 9"
+    category: background
+    role: "Comprehensive survey of representation similarity measures including CKA, CCA, SVCCA, PWCCA"
+    relevance: 7
+    key_finding: "First comprehensive review comparing representational vs functional similarity; covers CKA properties, robustness, and practical applications including pruning"
+    our_relation: "Key citation for CKA justification — survey confirms CKA's advantages over alternatives for model analysis and compression"
+    citation_priority: must-cite
+    arxiv_id: "2305.06329"
+
+  - id: mipp_2024
+    title: "MIPP: Mutual Information Preserving Neural Network Pruning"
+    authors: ""
+    year: 2024
+    venue: "arXiv Nov 2024"
+    category: background
+    role: "Information-theoretic pruning criterion — MI alternative to CKA"
+    relevance: 5
+    key_finding: "Structured activation-based pruning conserving MI between adjacent layers; sample efficiency proportional to MI between masks and data"
+    our_relation: "MI is a viable alternative but computationally expensive in high dimensions and less stable than CKA. Supports functional similarity matters for pruning."
+    citation_priority: nice-to-have
+    arxiv_id: "2411.00147"
+
+  - id: rl_squeezes_2026
+    title: "RL Squeezes, SFT Expands: Different Mechanisms in Post-Training"
+    authors: ""
+    year: 2026
+    venue: "ICLR 2026 Poster"
+    category: background
+    role: "Theoretical basis for why RLVR works differently from SFT"
+    relevance: 8
+    key_finding: "RLVR compresses representation while SFT expands; different inductive biases"
+    our_relation: "Explains why RLVR recovery succeeds where SFT fails post-pruning"
+    citation_priority: must-cite
+    arxiv_id: ""
+
+  - id: from_llms_to_lrms_2026
+    title: "From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models"
+    authors: "Longwei Ding, Anhao Zhao, Fanghua Ye, Ziyang Chen, Xiaoyu Shen"
+    year: 2026
+    venue: "arXiv Jan 2026"
+    category: background
+    role: "Width vs depth pruning for reasoning models"
+    relevance: 7
+    key_finding: "Width pruning preserves reasoning better than depth pruning; static pruning > dynamic for long-chain reasoning; recovery relies on distribution-aligned post-fine-tuning, not calibration data."
+    our_relation: "Motivates our focus on width-level structured pruning; validates that reasoning models need specialized pruning strategies"
+    citation_priority: must-cite
+    arxiv_id: "2601.18091"
+
+  - id: p2_law_2025
+    title: "P2 Law: Scaling Law for Pruning Recovery Training"
+    authors: ""
+    year: 2025
+    venue: "ACL 2025"
+    category: background
+    role: "Theoretical scaling of recovery compute"
+    relevance: 7
+    key_finding: "Recovery training follows predictable scaling with compute and data"
+    our_relation: "Informs our recovery budget estimation; we extend to RLVR-specific scaling"
+    citation_priority: should-cite
+    arxiv_id: ""
+
+  - id: free_lunch_retraining_2025
+    title: "A Free Lunch in LLM Compression: Revisiting Retraining after Pruning"
+    authors: "Moritz Wagner, Christophe Roux, Max Zimmer, Sebastian Pokutta"
+    year: 2025
+    venue: "arXiv Oct 2025 (revised Feb 2026)"
+    category: background
+    role: "Local reconstruction as efficient post-pruning recovery"
+    relevance: 6
+    key_finding: "Local reconstruction matches sophisticated PEFT recovery with >10x less data/compute. Pruning method matters less as model size grows."
+    our_relation: "Shows cheap recovery can work — but their SFT-based reconstruction has ceiling; our RLVR recovery pushes beyond that ceiling for reasoning tasks."
+    citation_priority: should-cite
+    arxiv_id: "2510.14444"
+
+  - id: grasp_2020
+    title: "Picking Winning Tickets Before Training by Preserving Gradient Flow"
+    authors: "Chaoqi Wang, Guodong Zhang, Roger Grosse"
+    year: 2020
+    venue: "ICLR 2020"
+    category: background
+    role: "GraSP — gradient signal preservation for pruning at initialization"
+    relevance: 5
+    key_finding: "Hessian-gradient product preserves gradient flow post-pruning; 80% VGG-16 pruning with only 1.6% top-1 drop on ImageNet; outperforms SNIP by 4-6% at high sparsity."
+    our_relation: "Classic baseline for gradient-based importance. GRASPrune extends this idea to LLMs; our CKA operates at functional level rather than gradient flow."
+    citation_priority: should-cite
+    arxiv_id: "2002.07376"
+
+  - id: fnf_2026
+    title: "FNF: Functional Network Fingerprint for Large Language Models"
+    authors: ""
+    year: 2026
+    venue: "arXiv Jan 2026"
+    category: background
+    role: "Functional network concept applied to LLM identification"
+    relevance: 4
+    key_finding: "Co-activating neuron groups form consistent functional networks; robust to model obfuscation."
+    our_relation: "Validates the 'functional network' framing we share with FANG/FuncNet; extends concept to model fingerprinting."
+    citation_priority: nice-to-have
+    arxiv_id: "2601.22692"
+
+  - id: redundancy_aware_cnn_2020
+    title: "Redundancy-Aware Pruning of Convolutional Neural Networks"
+    authors: ""
+    year: 2020
+    venue: "Neural Computation"
+    category: background
+    role: "Pioneer of redundancy-based pruning"
+    relevance: 4
+    key_finding: "Redundancy metrics guide pruning decisions in CNNs"
+    our_relation: "Conceptual ancestor; we apply redundancy-awareness to LLM structured pruning"
+    citation_priority: nice-to-have
+    arxiv_id: ""
+
+  - id: self_distilled_rlvr_2026
+    title: "Self-Distilled RLVR"
+    authors: ""
+    year: 2026
+    venue: "arXiv Apr 2026"
+    category: background
+    role: "RLVR training efficiency improvement"
+    relevance: 5
+    key_finding: "Self-distillation stabilizes RLVR training and improves sample efficiency"
+    our_relation: "Could improve our RLVR recovery phase efficiency"
+    citation_priority: nice-to-have
+    arxiv_id: "2604.03128"
+
+  - id: diet_2026
+    title: "DieT: Dimension-wise Global Pruning via Task-specific Importance Score"
+    authors: ""
+    year: 2026
+    venue: "arXiv Mar 2026"
+    category: background
+    role: "Dimension-wise importance for width pruning"
+    relevance: 5
+    key_finding: "Task-specific dimension importance outperforms activation-based metrics at 20-40% sparsity"
+    our_relation: "Alternative width importance metric; we use CKA overlap instead"
+    citation_priority: nice-to-have
+    arxiv_id: "2603.23985"
+
+  - id: task_neurons_2026
+    title: "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific LLMs"
+    authors: ""
+    year: 2026
+    venue: "arXiv Apr 2026"
+    category: background
+    role: "Task-specific neuron identification and pruning recovery dynamics"
+    relevance: 6
+    key_finding: "10% task-specific neuron removal causes collapse; 15-20% robustness threshold; fine-tuning substantially recovers"
+    our_relation: "Supports need for recovery-aware pruning; our CKA predicts which neurons are functionally critical"
+    citation_priority: should-cite
+    arxiv_id: "2604.27115"
+
+  - id: ddp_2026
+    title: "DDP: Deterministic Differentiable Structured Pruning for Large Language Models"
+    authors: ""
+    year: 2026
+    venue: "arXiv Mar 2026"
+    category: background
+    role: "Differentiable mask-only structured pruning"
+    relevance: 5
+    key_finding: "Deterministic soft surrogate of l0 constraint eliminates train-test mismatch in differentiable pruning"
+    our_relation: "Alternative pruning backbone; mask-only optimization complementary to our CKA-guided selection"
+    citation_priority: nice-to-have
+    arxiv_id: "2603.08065"
+
+  - id: pruning_vlm_recovery_2026
+    title: "Structural Pruning of Large Vision Language Models: Pruning Dynamics, Recovery, and Data Efficiency"
+    authors: "Yiran Huang, Lukas Thede, Massimiliano Mancini, Wenjia Xu, Zeynep Akata"
+    year: 2026
+    venue: "arXiv Apr 2026"
+    category: background
+    role: "Comprehensive pruning + recovery study for VLMs"
+    relevance: 5
+    key_finding: "Width pruning + KD recovery outperforms layer pruning + SFT on VLMs; 5% data recovers 95% performance; SFT+hidden-state distillation is optimal."
+    our_relation: "Validates width pruning + recovery paradigm; our CKA-guided approach adds prediction of recoverability"
+    citation_priority: nice-to-have
+    arxiv_id: "2604.24380"
+
+  - id: hape_2026
+    title: "HAP-E: Hessian-Aware Structured Pruning of LLMs for Efficient Inference"
+    authors: ""
+    year: 2026
+    venue: "ICLR 2026 (submitted)"
+    category: background
+    role: "Hessian-aware structured pruning with adaptive budget allocation"
+    relevance: 5
+    key_finding: "Adaptive cross-layer budget reallocation via global screening + OBS-equivalent batch pruning; up to 3% accuracy over SOTA structured pruning"
+    our_relation: "Alternative pruning backbone with second-order optimization; complementary to our CKA-guided selection"
+    citation_priority: nice-to-have
+    arxiv_id: ""
+
+  - id: slimllm_2025
+    title: "SlimLLM: Accurate Structured Pruning for Large Language Models"
+    authors: "Jialong Guo, Xinghao Chen, Yehui Tang, Yunhe Wang"
+    year: 2025
+    venue: "ICML 2025"
+    category: background
+    role: "Holistic channel/head importance evaluation with linear regression recovery"
+    relevance: 5
+    key_finding: "Evaluates importance of entire channels/heads holistically; non-uniform layer-based pruning ratio via cosine similarity; linear regression for fast recovery"
+    our_relation: "Alternative structured pruning metric; their cosine-based layer ratio is complementary to our CKA functional overlap"
+    citation_priority: nice-to-have
+    arxiv_id: "2505.22689"
+
+  - id: spap_2025
+    title: "SPAP: Structured Pruning via Alternating Optimization and Penalty Methods"
+    authors: ""
+    year: 2025
+    venue: "arXiv May 2025"
+    category: background
+    role: "Optimization-theory-grounded MLP pruning"
+    relevance: 5
+    key_finding: "Mixed-integer formulation with relaxation guarantee; alternating minimization with closed-form updates; 1.29x speedup at 30% sparsity"
+    our_relation: "Could serve as alternative pruning backbone for MLP layers; operates at different abstraction level from our CKA selection"
+    citation_priority: nice-to-have
+    arxiv_id: "2505.03373"
+
+  - id: wandapp_2025
+    title: "Wanda++: Pruning Large Language Models via Regional Gradients"
+    authors: ""
+    year: 2025
+    venue: "ACL 2025"
+    category: background
+    role: "Gradient-enhanced unstructured pruning"
+    relevance: 4
+    key_finding: "Regional gradients improve Wanda score by up to 32% perplexity reduction; regional optimization minimizes dense-sparse output discrepancy"
+    our_relation: "Unstructured pruning evolution; orthogonal to our structured approach but regional optimization idea could inform per-block CKA computation"
+    citation_priority: nice-to-have
+    arxiv_id: "2503.04992"
+
+  # === Must-cite gap fills (Step 3, 2026-05-18) ===
+  - id: llm_pruner_2023
+    title: "LLM-Pruner: On the Structural Pruning of Large Language Models"
+    authors: "Xinyin Ma, Gongfan Fang, Xinchao Wang"
+    year: 2023
+    venue: "NeurIPS 2023"
+    category: method-component
+    role: "Foundational structured pruning framework for LLMs using Taylor importance + dependency detection"
+    relevance: 9
+    key_finding: "First task-agnostic structured pruning for LLMs; dependency-aware group removal preserves model integrity; 20% pruning with minimal loss after LoRA recovery on LLaMA-7B/13B/30B"
+    our_relation: "Foundational baseline; our Taylor importance scoring (Standard method) directly builds on LLM-Pruner. We extend with CKA overlap and RLVR recovery"
+    citation_priority: must-cite
+    arxiv_id: "2305.11627"
+    verified: true
+
+  - id: deepseekmath_grpo_2024
+    title: "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models"
+    authors: "Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, Daya Guo"
+    year: 2024
+    venue: "arXiv Feb 2024"
+    category: background
+    role: "GRPO algorithm origin — Group Relative Policy Optimization for math reasoning"
+    relevance: 9
+    key_finding: "Introduces GRPO: group-level reward normalization without critic model; DeepSeekMath-7B achieves 51.7% on MATH competition via GRPO + code-math corpus"
+    our_relation: "Our RLVR recovery phase uses GRPO as the alignment algorithm; this is the foundational reference"
+    citation_priority: must-cite
+    arxiv_id: "2402.03300"
+    verified: true
+
+  # === RL Training Instability (added 2026-05-18) ===
+  - id: gao_reward_overoptimization_2023
+    title: "Scaling Laws for Reward Model Overoptimization"
+    authors: "Leo Gao, John Schulman, Jacob Hilton"
+    year: 2023
+    venue: "ICML 2023"
+    category: background
+    role: "RL training instability — reward overoptimization scaling laws"
+    relevance: 6
+    key_finding: "Proxy reward optimization degrades gold reward following predictable scaling laws; overoptimization worsens with more RL compute and smaller reward models"
+    our_relation: "Pruning-induced collapse can be viewed as amplified reward overoptimization where reduced model capacity widens the proxy-gold reward gap"
+    citation_priority: should-cite
+    arxiv_id: "2210.10760"
+    verified: true
+
+  - id: rl_plus_collapse_2025
+    title: "RL-PLUS: Countering Capability Boundary Collapse of LLMs in Reinforcement Learning with Hybrid-policy Optimization"
+    authors: "Yihong Dong, Xue Jiang, Yongding Tao, Huanyu Liu, Kechi Zhang, Lili Mou, Rongyu Cao, Yingwei Ma, Jue Chen, Binhua Li, Zhi Jin, Fei Huang, Yongbin Li, Ge Li"
+    year: 2025
+    venue: "arXiv Jul 2025"
+    category: background
+    role: "RL training instability — capability boundary collapse in RLVR"
+    relevance: 7
+    key_finding: "RLVR causes capability boundary collapse: pass@1 improves but pass@k degrades, narrowing the model's problem-solving scope due to on-policy training with sparse reward"
+    our_relation: "Pruning-induced collapse is a structural variant of capability boundary collapse; pruning removes capacity that exacerbates the on-policy sparse-reward instability they identify"
+    citation_priority: should-cite
+    arxiv_id: "2508.00222"
+    verified: true
+
+  - id: comedy_of_estimators_2025
+    title: "A Comedy of Estimators: On KL Regularization in RL Training of LLMs"
+    authors: "Vedant Shah, Johan Obando-Ceron, Vineet Jain, Brian Bartoldson, Bhavya Kailkhura, Sarthak Mittal, Glen Berseth, Pablo Samuel Castro, Yoshua Bengio, Nikolay Malkin, Moksh Jain, Siddarth Venkatraman, Aaron Courville"
+    year: 2025
+    venue: "arXiv Dec 2025"
+    category: background
+    role: "RL training instability — KL regularization implementation pitfalls"
+    relevance: 5
+    key_finding: "Prevailing KL regularization implementations in RLHF/RLVR provide incorrect gradients for stated objectives, causing training instability and suboptimal performance"
+    our_relation: "Informs our GRPO recovery design: incorrect KL estimation can destabilize RLVR recovery of pruned models, especially when pruning shifts the policy distribution"
+    citation_priority: should-cite
+    arxiv_id: "2512.21852"
+    verified: true
+
+# === Update Log ===
+# 2026-05-18: Added 3 RL training instability papers (background for pruning-induced collapse positioning)
+#   - gao_reward_overoptimization_2023: Reward overoptimization scaling laws (ICML 2023)
+#   - rl_plus_collapse_2025: Capability boundary collapse in RLVR (arXiv 2508.00222)
+#   - comedy_of_estimators_2025: KL regularization pitfalls in RL training (arXiv 2512.21852)
+# 2026-05-15: Literature survey targeting 4 reviewer-flagged gaps
+#   Direction 1 (Structured pruning + RLVR recovery): Added RLRC, NIRVANA, free_lunch_retraining
+#   Direction 2 (CKA in pruning/NAS): Added davari_cka_reliability (must-cite), murphy_debiased_cka, tracenas
+#   Direction 3 (FANG/FuncNet): Confirmed details; added FNF as background
+#   Direction 4 (GraSP baselines): Added grasp_2020 (original), tracenas
+#   Updated: self_healing authors (Ji et al., ICLR 2026), from_llms_to_lrms (Ding et al., 2601.18091),
+#            mpruner (arxiv 2408.13482), slimllm authors, pruning_vlm_recovery authors
+#   Added citation_priority field (must-cite / should-cite / nice-to-have) to all entries

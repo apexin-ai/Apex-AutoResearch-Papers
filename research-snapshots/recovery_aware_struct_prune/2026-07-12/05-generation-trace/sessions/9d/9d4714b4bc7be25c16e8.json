@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9d4714b4bc7be25c16e8",
+  "project": "recovery_aware_struct_prune--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: recovery_aware_struct_prune ## 运行环境 - 服务器名: westb-23072 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "b844b185-8e0b-4dd6-bd07-675c7d9549a8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/b844b185-8e0b-4dd6-bd07-675c7d9549a8.jsonl",
+    "occurrence": 1,
+    "bytes": 678774,
+    "sha256": "9ac61d4ef8ae83e72f82524a3ce484d3fde61c011b1496afd31069993f8668e5"
+  },
+  "statistics": {
+    "messages": 181,
+    "user_turns": 1,
+    "tool_calls": 41,
+    "roles": {
+      "record": 49,
+      "user": 1,
+      "assistant": 49,
+      "tool_call": 41,
+      "tool_result": 41
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9d4714b4bc7be25c16e8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "9d4714b4bc7be25c16e8-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "9d4714b4bc7be25c16e8-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-recovery-aware-struct-prune-westb-23072-ssh-root-ssh-execute-s-copy-50.md"
+}

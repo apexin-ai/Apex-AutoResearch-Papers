@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "cc8955e33138119a7362",
+  "project": "recovery_aware_struct_prune--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 recovery_aware_struct_prune 做结构化剪枝研究。现有代码在 /root/recovery_aware_struct_prune/src/，包含 prune_cka.py, pr",
+  "task_key": "a637d252-2dd9-4b0c-8024-4bed8dd41b33",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/a637d252-2dd9-4b0c-8024-4bed8dd41b33.jsonl",
+    "occurrence": 1,
+    "bytes": 539246,
+    "sha256": "4ada318fd9b21078a4594c498529f3a60ffb7ae455fdfb76a4aa9d34a43f4baa"
+  },
+  "statistics": {
+    "messages": 202,
+    "user_turns": 1,
+    "tool_calls": 57,
+    "roles": {
+      "record": 43,
+      "user": 1,
+      "assistant": 44,
+      "tool_call": 57,
+      "tool_result": 57
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "cc8955e33138119a7362-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 200,
+      "chunks": [
+        {
+          "path": "cc8955e33138119a7362-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "cc8955e33138119a7362-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-recovery-aware-struct-prune-root-recovery-aware-struct-prune-src.md"
+}

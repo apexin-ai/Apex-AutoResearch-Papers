@@ -166,6 +166,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1722
+        },
+        "recovery_aware_struct_prune": {
+          "status": "uploaded",
+          "project": "recovery_aware_struct_prune",
+          "collection": "recovery_aware_struct_prune--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "d21eb4dec1fbbf9d13c0cb0dc09ccf4f277766775ba3258cc8c05023a7f9cced",
+          "indexed_members": 941,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 936
         }
       },
       "status": "in_progress",

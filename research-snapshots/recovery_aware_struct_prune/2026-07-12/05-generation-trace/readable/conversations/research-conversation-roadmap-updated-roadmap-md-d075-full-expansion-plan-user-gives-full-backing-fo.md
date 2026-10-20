@@ -1,0 +1,5730 @@
+# Research conversation: [系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main pus
+
+**How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 101
+- **Recorded user turns:** 1
+- **Tool calls:** 31
+- **Original source:** `logs/chats/exported-trajectories/account-1/43482df1-9972-496d-b468-2a49656efa12.jsonl`
+- **Structured JSON:** [`d6b8e1d4b3f84ddcedce.json`](../../sessions/d6/d6b8e1d4b3f84ddcedce.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T12:44:29.192Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T12:44:29.192Z",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "content": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T12:44:29.196Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T12:44:29.196Z",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+## Round 1
+
+99 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T12:44:29.239Z_
+
+[系统通知 — roadmap_updated]:
+[系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "361650ac-bd34-4933-8904-a9f672a82a38",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T12:44:29.238Z_
+
+```json
+{
+  "parentUuid": "361650ac-bd34-4933-8904-a9f672a82a38",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "bbc1898e-15b6-400c-bd24-f3342c3fba79",
+  "timestamp": "2026-05-19T12:44:29.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T12:44:29.238Z_
+
+```json
+{
+  "parentUuid": "bbc1898e-15b6-400c-bd24-f3342c3fba79",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1ab4eb8e-63a9-42ee-968e-39440fe878b3",
+  "timestamp": "2026-05-19T12:44:29.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T12:44:29.238Z_
+
+```json
+{
+  "parentUuid": "1ab4eb8e-63a9-42ee-968e-39440fe878b3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "93ac8aab-0e1e-4416-a67d-2ac2a976515c",
+  "timestamp": "2026-05-19T12:44:29.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T12:44:38.551Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Director 通知 ROADMAP.md 已更新，原因是 D075 full expansion plan，用户全力支持 EMNLP Main 投稿。我需要审查更新后的 ROADMAP.md 的合理性。
+
+让我先读取相关文件来了解当前状态。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93ac8aab-0e1e-4416-a67d-2ac2a976515c",
+  "isSidechain": false,
+  "requestId": "req_011CbBwyjhA7wfJ1MpdcQ3ML",
+  "type": "assistant",
+  "uuid": "682c6684-5c83-47b5-b570-1dd2976901f6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRXktKydHaV5i3grJ8xXKB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20648,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 323,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 323,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T12:44:39.606Z_
+
+收到 ROADMAP 更新通知，开始审查。先并行读取关键文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "682c6684-5c83-47b5-b570-1dd2976901f6",
+  "isSidechain": false,
+  "requestId": "req_011CbBwyjhA7wfJ1MpdcQ3ML",
+  "type": "assistant",
+  "uuid": "fd6329be-d896-4dfd-b529-e71d082bbab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRXktKydHaV5i3grJ8xXKB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20648,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 323,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 323,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T12:44:41.897Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01B61ZMzo3fu2h18PMfeHpj6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics",
+  "max_results": 8
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd6329be-d896-4dfd-b529-e71d082bbab0",
+  "isSidechain": false,
+  "requestId": "req_011CbBwyjhA7wfJ1MpdcQ3ML",
+  "type": "assistant",
+  "uuid": "52c9aa9b-5cf5-4ed2-95de-54ebf8cfea3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRXktKydHaV5i3grJ8xXKB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20648,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 323,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 323,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T12:44:41.913Z_
+
+<details><summary>↩ Tool result · `toolu_01B61ZMzo3fu2h18PMfeHpj6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__compute_coverage_matrix"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52c9aa9b-5cf5-4ed2-95de-54ebf8cfea3b",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "1d7e81d8-ac85-4481-88a2-dc0cf313967a",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__fetch_wandb_metrics"
+    ],
+    "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics",
+    "total_deferred_tools": 35
+  },
+  "sourceToolAssistantUUID": "52c9aa9b-5cf5-4ed2-95de-54ebf8cfea3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T12:44:55.521Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_0176XA6FaJNrumEzVsrCsPi3`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d7e81d8-ac85-4481-88a2-dc0cf313967a",
+  "isSidechain": false,
+  "requestId": "req_011CbBwzg8sQ2eqZ92Um6YQu",
+  "type": "assistant",
+  "uuid": "cc976691-b415-4de5-ac8e-858a62bdf1a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UeeY8qu9h4Mh3p74sv5nc4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2328,
+      "cache_read_input_tokens": 32489,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2328,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 32489,
+          "cache_creation_input_tokens": 2328,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2328
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T12:44:55.543Z_
+
+<details><summary>↩ Tool result · `toolu_0176XA6FaJNrumEzVsrCsPi3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-19 12:43 UTC | 更新原因: D075 full expansion plan — user gives full backing for EMNLP Main push\\n\\n## 核心方向\\nPruning criterion determines post-RLVR recovery capacity AND capability breadth. CKA-only >> importance-based. 详见 paper_framing.md.\\n\\n## 当前阶段: D075 Full Expansion Push (EMNLP Main ≥ 4.0)\\n\\n### 已完成核心数据\\n- **C2 Recovery Gradient (7B)**: ✅ 4-method fair v5. CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\n- **E2 Extended 300步**: ✅ CKA-only 5.5x Standard. Collapse permanent.\\n- **E3 CKA Heatmap**: ✅ Mechanism confirmed.\\n- **1.5B Cross-Scale GSM8K**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%\\n- **MATH-500 @2048**: ✅ Full 3×2 table. All |GRPO-SFT| < 2pp.\\n- **Unstructured GRPO**: ✅ 87.64%. Collapse = structural damage.\\n- **GSM8K Standard fair v5**: ✅ 59.44% (784/1319). Gap vs CKA-only = 4.93pp (p=0.002)\\n- **HumanEval GRPO column**: ✅ CKA-only 20.12%, Standard 10.98%, RASP 10.98%\\n- **SFT CKA-only HumanEval v2**: ✅ 20.12% (33/164) = GRPO exactly. D073 confirmed.\\n- **D074 Overlap analysis**: ✅ 17/33 overlap, 48.5% redistribution\\n\\n### HumanEval @2048 矩阵\\n| Method | SFT (fixed) | GRPO (fair v5) | Δ |\\n|--------|------------|----------------|---|\\n| CKA-only | **20.12%** ✅ | **20.12%** ✅ | **0.00pp** |\\n| Standard | 🔄 v3 running (~16.25%) | **10.98%** ✅ | pending |\\n| RASP | ⚠️ v2 即将启动 | **10.98%** ✅ | pending |\\n\\n### Wave 1: 进行中 (今天)\\n| GPU | 实验 | 状态 | ETA |\\n|-----|------|------|-----|\\n| westd cuda:0 | GSM8K RASP fair → SFT RASP HumanEval v2 | 即将启动 | 40min + 2h |\\n| westd cuda:1 | 1.5B SFT CKA-only HumanEval | RUNNING | ~30min |\\n| westd cuda:2 | 1.5B GRPO CKA-only HumanEval | RUNNING | ~30min |\\n| westd cuda:3 | SFT Standard HumanEval v3 | RUNNING (52%) | ~2h |\\n| westb cuda:0 | 1.5B eval (待分配) | 启动中 | — |\\n| westb cuda:1 | seed123 GRPO | 60/100 | ~4.5h |\\n\\n### Wave 2: 代码准备中，明天跑 (+0.3-0.5 分)\\n- [ ] **ShortGPT baseline**: prune→SFT→GRPO→eval（审稿人必问）\\n- [ ] **MBPP 374题**: 所有模型 eval（补强 code benchmark）\\n- [ ] **Gradient flow analysis**: per-layer grad norm 可视化（升级 mechanism）\\n- [ ] **CKA calibration ablation**: 256/512/1024 stability\\n\\n### Wave 3: 后天 (+0.3 分，高风险高回报)\\n- [ ] **跨架构 Qwen2.5-Math-7B**: CKA-only vs Standard pipeline\\n- [ ] **Pruning ratio sweep**: 10%, 15% 补完曲线\\n- [ ] **Recovery Capacity Index (RCI)**: CKA diversity → GRPO recovery 预测\\n\\n### Wave 4: 第4-5天\\n- [ ] Paper Agent 全文写作\\n- [ ] 审稿 + 修改 + 投稿\\n\\n## GPU 预算\\n- 6 GPU × 5 days = 720 GPU-hours total\\n- 已用 ~100h, 剩余 ~620h\\n- 资源充裕，瓶颈是代码准备和调试\\n\\n## 投稿目标\\n- EMNLP 2026 Main (ARR May 25) — **~5 天**\\n- 目标评分: ≥ 4.0 (Conference)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D075 | 2026-05-19 | D075: Full expansion plan with user backing — all  | — |\\n| D074 | 2026-05-19 | D074: HumanEval overlap analysis reveals GRPO capa | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_standard_20_fair_2048_v3, eval_humaneval_grpo_rasp_20_fair_2048 |\\n| D073 | 2026-05-19 | D073: C1 definitively simplified — GRPO delta = 0. | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_rasp_20_fair_2048 |\\n| D072 | 2026-05-19 | D072: D071 叙事被 SFT CKA-only HumanEval v2 interim ~ | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_rasp_20_fair_2048, eval_humaneval_grpo_standard_20_fair_2048_v3 |\\n| D071 | 2026-05-19 | C1 reframing: GRPO-accuracy interaction is task-de | eval_humaneval_sft_cka_only_20, eval_humaneval_grpo_cka_only_20, eval_humaneval_sft_standard_20, eval_humaneval_sft_rasp_20 |\\n| D070 | 2026-05-19 | D070: C1 reframing — GRPO-accuracy interaction is  | eval_humaneval_sft_cka_only_20_2048, eval_humaneval_grpo_cka_only_20_2048 |\\n| D069 | 2026-05-19 | D069: C2 statistical evidence restructure — 1.5B a | bootstrap_ci_v2, grpo_cka_only_20, grpo_rasp_20_fair |\\n| D068 | 2026-05-19 | D068: Aggressive experiment expansion — P0: CKA-on | eval_humaneval_sft_standard_20_2048, eval_gsm8k_grpo_standard_20_extended_300 |\\n| D067 | 2026-05-19 | D067: OOD narrative revised — \\\"Recovery gradient g | eval_math500_dense_2048, eval_math500_sft_cka_only_20_2048, eval_math500_grpo_standard_20_fair_v2, eval_math500_sft_rasp_20_2048, eval_math500_grpo_rasp_20_fair, eval_math500_grpo_cka_only_20_2048 |\\n| D066 | 2026-05-19 | D066: 1.5B claim 从 \\\"gap amplification\\\" 降调为 \\\"cross- | eval_gsm8k_grpo_cka_only_20_1p5b, eval_gsm8k_grpo_standard_20_1p5b, eval_gsm8k_grpo_rasp_20_1p5b |\\n\\n\\n\", \"lines\": 79}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc976691-b415-4de5-ac8e-858a62bdf1a8",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "73de4300-a427-4fdb-bdaf-911002acabdf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 12:43 UTC | 更新原因: D075 full expansion plan — user gives full backing for EMNLP Main push\\\\n\\\\n## 核心方向\\\\nPruning criterion determines post-RLVR recovery capacity AND capability breadth. CKA-only >> importance-based. 详见 paper_framing.md.\\\\n\\\\n## 当前阶段: D075 Full Expansion Push (EMNLP Main ≥ 4.0)\\\\n\\\\n### 已完成核心数据\\\\n- **C2 Recovery Gradient (7B)**: ✅ 4-method fair v5. CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\\\n- **E2 Extended 300步**: ✅ CKA-only 5.5x Standard. Collapse permanent.\\\\n- **E3 CKA Heatmap**: ✅ Mechanism confirmed.\\\\n- **1.5B Cross-Scale GSM8K**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%\\\\n- **MATH-500 @2048**: ✅ Full 3×2 table. All |GRPO-SFT| < 2pp.\\\\n- **Unstructured GRPO**: ✅ 87.64%. Collapse = structural damage.\\\\n- **GSM8K Standard fair v5**: ✅ 59.44% (784/1319). Gap vs CKA-only = 4.93pp (p=0.002)\\\\n- **HumanEval GRPO column**: ✅ CKA-only 20.12%, Standard 10.98%, RASP 10.98%\\\\n- **SFT CKA-only HumanEval v2**: ✅ 20.12% (33/164) = GRPO exactly. D073 confirmed.\\\\n- **D074 Overlap analysis**: ✅ 17/33 overlap, 48.5% redistribution\\\\n\\\\n### HumanEval @2048 矩阵\\\\n| Method | SFT (fixed) | GRPO (fair v5) | Δ |\\\\n|--------|------------|----------------|---|\\\\n| CKA-only | **20.12%** ✅ | **20.12%** ✅ | **0.00pp** |\\\\n| Standard | 🔄 v3 running (~16.25%) | **10.98%** ✅ | pending |\\\\n| RASP | ⚠️ v2 即将启动 | **10.98%** ✅ | pending |\\\\n\\\\n### Wave 1: 进行中 (今天)\\\\n| GPU | 实验 | 状态 | ETA |\\\\n|-----|------|------|-----|\\\\n| westd cuda:0 | GSM8K RASP fair → SFT RASP HumanEval v2 | 即将启动 | 40min + 2h |\\\\n| westd cuda:1 | 1.5B SFT CKA-only HumanEval | RUNNING | ~30min |\\\\n| westd cuda:2 | 1.5B GRPO CKA-only HumanEval | RUNNING | ~30min |\\\\n| westd cuda:3 | SFT Standard HumanEval v3 | RUNNING (52%) | ~2h |\\\\n| westb cuda:0 | 1.5B eval (待分配) | 启动中 | — |\\\\n| westb cuda:1 | seed123 GRPO | 60/100 | ~4.5h |\\\\n\\\\n### Wave 2: 代码准备中，明天跑 (+0.3-0.5 分)\\\\n- [ ] **ShortGPT baseline**: prune→SFT→GRPO→eval（审稿人必问）\\\\n- [ ] **MBPP 374题**: 所有模型 eval（补强 code benchmark）\\\\n- [ ] **Gradient flow analysis**: per-layer grad norm 可视化（升级 mechanism）\\\\n- [ ] **CKA calibration ablation**: 256/512/1024 stability\\\\n\\\\n### Wave 3: 后天 (+0.3 分，高风险高回报)\\\\n- [ ] **跨架构 Qwen2.5-Math-7B**: CKA-only vs Standard pipeline\\\\n- [ ] **Pruning ratio sweep**: 10%, 15% 补完曲线\\\\n- [ ] **Recovery Capacity Index (RCI)**: CKA diversity → GRPO recovery 预测\\\\n\\\\n### Wave 4: 第4-5天\\\\n- [ ] Paper Agent 全文写作\\\\n- [ ] 审稿 + 修改 + 投稿\\\\n\\\\n## GPU 预算\\\\n- 6 GPU × 5 days = 720 GPU-hours total\\\\n- 已用 ~100h, 剩余 ~620h\\\\n- 资源充裕，瓶颈是代码准备和调试\\\\n\\\\n## 投稿目标\\\\n- EMNLP 2026 Main (ARR May 25) — **~5 天**\\\\n- 目标评分: ≥ 4.0 (Conference)\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D075 | 2026-05-19 | D075: Full expansion plan with user backing — all  | — |\\\\n| D074 | 2026-05-19 | D074: HumanEval overlap analysis reveals GRPO capa | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_standard_20_fair_2048_v3, eval_humaneval_grpo_rasp_20_fair_2048 |\\\\n| D073 | 2026-05-19 | D073: C1 definitively simplified — GRPO delta = 0. | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_rasp_20_fair_2048 |\\\\n| D072 | 2026-05-19 | D072: D071 叙事被 SFT CKA-only HumanEval v2 interim ~ | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_rasp_20_fair_2048, eval_humaneval_grpo_standard_20_fair_2048_v3 |\\\\n| D071 | 2026-05-19 | C1 reframing: GRPO-accuracy interaction is task-de | eval_humaneval_sft_cka_only_20, eval_humaneval_grpo_cka_only_20, eval_humaneval_sft_standard_20, eval_humaneval_sft_rasp_20 |\\\\n| D070 | 2026-05-19 | D070: C1 reframing — GRPO-accuracy interaction is  | eval_humaneval_sft_cka_only_20_2048, eval_humaneval_grpo_cka_only_20_2048 |\\\\n| D069 | 2026-05-19 | D069: C2 statistical evidence restructure — 1.5B a | bootstrap_ci_v2, grpo_cka_only_20, grpo_rasp_20_fair |\\\\n| D068 | 2026-05-19 | D068: Aggressive experiment expansion — P0: CKA-on | eval_humaneval_sft_standard_20_2048, eval_gsm8k_grpo_standard_20_extended_300 |\\\\n| D067 | 2026-05-19 | D067: OOD narrative revised — \\\\\\\"Recovery gradient g | eval_math500_dense_2048, eval_math500_sft_cka_only_20_2048, eval_math500_grpo_standard_20_fair_v2, eval_math500_sft_rasp_20_2048, eval_math500_grpo_rasp_20_fair, eval_math500_grpo_cka_only_20_2048 |\\\\n| D066 | 2026-05-19 | D066: 1.5B claim 从 \\\\\\\"gap amplification\\\\\\\" 降调为 \\\\\\\"cross- | eval_gsm8k_grpo_cka_only_20_1p5b, eval_gsm8k_grpo_standard_20_1p5b, eval_gsm8k_grpo_rasp_20_1p5b |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 79}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-19 12:43 UTC | 更新原因: D075 full expansion plan — user gives full backing for EMNLP Main push\\n\\n## 核心方向\\nPruning criterion determines post-RLVR recovery capacity AND capability breadth. CKA-only >> importance-based. 详见 paper_framing.md.\\n\\n## 当前阶段: D075 Full Expansion Push (EMNLP Main ≥ 4.0)\\n\\n### 已完成核心数据\\n- **C2 Recovery Gradient (7B)**: ✅ 4-method fair v5. CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\n- **E2 Extended 300步**: ✅ CKA-only 5.5x Standard. Collapse permanent.\\n- **E3 CKA Heatmap**: ✅ Mechanism confirmed.\\n- **1.5B Cross-Scale GSM8K**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%\\n- **MATH-500 @2048**: ✅ Full 3×2 table. All |GRPO-SFT| < 2pp.\\n- **Unstructured GRPO**: ✅ 87.64%. Collapse = structural damage.\\n- **GSM8K Standard fair v5**: ✅ 59.44% (784/1319). Gap vs CKA-only = 4.93pp (p=0.002)\\n- **HumanEval GRPO column**: ✅ CKA-only 20.12%, Standard 10.98%, RASP 10.98%\\n- **SFT CKA-only HumanEval v2**: ✅ 20.12% (33/164) = GRPO exactly. D073 confirmed.\\n- **D074 Overlap analysis**: ✅ 17/33 overlap, 48.5% redistribution\\n\\n### HumanEval @2048 矩阵\\n| Method | SFT (fixed) | GRPO (fair v5) | Δ |\\n|--------|------------|----------------|---|\\n| CKA-only | **20.12%** ✅ | **20.12%** ✅ | **0.00pp** |\\n| Standard | 🔄 v3 running (~16.25%) | **10.98%** ✅ | pending |\\n| RASP | ⚠️ v2 即将启动 | **10.98%** ✅ | pending |\\n\\n### Wave 1: 进行中 (今天)\\n| GPU | 实验 | 状态 | ETA |\\n|-----|------|------|-----|\\n| westd cuda:0 | GSM8K RASP fair → SFT RASP HumanEval v2 | 即将启动 | 40min + 2h |\\n| westd cuda:1 | 1.5B SFT CKA-only HumanEval | RUNNING | ~30min |\\n| westd cuda:2 | 1.5B GRPO CKA-only HumanEval | RUNNING | ~30min |\\n| westd cuda:3 | SFT Standard HumanEval v3 | RUNNING (52%) | ~2h |\\n| westb cuda:0 | 1.5B eval (待分配) | 启动中 | — |\\n| westb cuda:1 | seed123 GRPO | 60/100 | ~4.5h |\\n\\n### Wave 2: 代码准备中，明天跑 (+0.3-0.5 分)\\n- [ ] **ShortGPT baseline**: prune→SFT→GRPO→eval（审稿人必问）\\n- [ ] **MBPP 374题**: 所有模型 eval（补强 code benchmark）\\n- [ ] **Gradient flow analysis**: per-layer grad norm 可视化（升级 mechanism）\\n- [ ] **CKA calibration ablation**: 256/512/1024 stability\\n\\n### Wave 3: 后天 (+0.3 分，高风险高回报)\\n- [ ] **跨架构 Qwen2.5-Math-7B**: CKA-only vs Standard pipeline\\n- [ ] **Pruning ratio sweep**: 10%, 15% 补完曲线\\n- [ ] **Recovery Capacity Index (RCI)**: CKA diversity → GRPO recovery 预测\\n\\n### Wave 4: 第4-5天\\n- [ ] Paper Agent 全文写作\\n- [ ] 审稿 + 修改 + 投稿\\n\\n## GPU 预算\\n- 6 GPU × 5 days = 720 GPU-hours total\\n- 已用 ~100h, 剩余 ~620h\\n- 资源充裕，瓶颈是代码准备和调试\\n\\n## 投稿目标\\n- EMNLP 2026 Main (ARR May 25) — **~5 天**\\n- 目标评分: ≥ 4.0 (Conference)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D075 | 2026-05-19 | D075: Full expansion plan with user backing — all  | — |\\n| D074 | 2026-05-19 | D074: HumanEval overlap analysis reveals GRPO capa | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_standard_20_fair_2048_v3, eval_humaneval_grpo_rasp_20_fair_2048 |\\n| D073 | 2026-05-19 | D073: C1 definitively simplified — GRPO delta = 0. | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_rasp_20_fair_2048 |\\n| D072 | 2026-05-19 | D072: D071 叙事被 SFT CKA-only HumanEval v2 interim ~ | eval_humaneval_sft_cka_only_20_2048_v2, eval_humaneval_grpo_cka_only_20_2048, eval_humaneval_grpo_rasp_20_fair_2048, eval_humaneval_grpo_standard_20_fair_2048_v3 |\\n| D071 | 2026-05-19 | C1 reframing: GRPO-accuracy interaction is task-de | eval_humaneval_sft_cka_only_20, eval_humaneval_grpo_cka_only_20, eval_humaneval_sft_standard_20, eval_humaneval_sft_rasp_20 |\\n| D070 | 2026-05-19 | D070: C1 reframing — GRPO-accuracy interaction is  | eval_humaneval_sft_cka_only_20_2048, eval_humaneval_grpo_cka_only_20_2048 |\\n| D069 | 2026-05-19 | D069: C2 statistical evidence restructure — 1.5B a | bootstrap_ci_v2, grpo_cka_only_20, grpo_rasp_20_fair |\\n| D068 | 2026-05-19 | D068: Aggressive experiment expansion — P0: CKA-on | eval_humaneval_sft_standard_20_2048, eval_gsm8k_grpo_standard_20_extended_300 |\\n| D067 | 2026-05-19 | D067: OOD narrative revised — \\\"Recovery gradient g | eval_math500_dense_2048, eval_math500_sft_cka_only_20_2048, eval_math500_grpo_standard_20_fair_v2, eval_math500_sft_rasp_20_2048, eval_math500_grpo_rasp_20_fair, eval_math500_grpo_cka_only_20_2048 |\\n| D066 | 2026-05-19 | D066: 1.5B claim 从 \\\"gap amplification\\\" 降调为 \\\"cross- | eval_gsm8k_grpo_cka_only_20_1p5b, eval_gsm8k_grpo_standard_20_1p5b, eval_gsm8k_grpo_rasp_20_1p5b |\\n\\n\\n\", \"lines\": 79}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cc976691-b415-4de5-ac8e-858a62bdf1a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T12:44:56.478Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01GTNgcbKRQJZM8WLk51esof`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "paper_framing.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73de4300-a427-4fdb-bdaf-911002acabdf",
+  "isSidechain": false,
+  "requestId": "req_011CbBwzg8sQ2eqZ92Um6YQu",
+  "type": "assistant",
+  "uuid": "838d5ce1-89e1-4787-a0e2-5b4430a9ca35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UeeY8qu9h4Mh3p74sv5nc4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2328,
+      "cache_read_input_tokens": 32489,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2328,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 32489,
+          "cache_creation_input_tokens": 2328,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2328
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T12:44:56.490Z_
+
+<details><summary>↩ Tool result · `toolu_01GTNgcbKRQJZM8WLk51esof`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\", \"content\": \"# Paper Framing — recovery_aware_struct_prune\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight (Recovery Capacity Gradient)\\nStructural pruning criterion determines post-RLVR recovery capacity of reasoning LLMs. Under controlled GRPO training (identical v5 config, D058 resolved), we discover a **recovery capacity gradient**: CKA-only (pure representational diversity preservation) is the only method that achieves meaningful RL learning, while importance-based scoring methods fail.\\n\\nThe gradient: **CKA-only >> importance-based methods (Random/Standard/RASP)**\\n\\n**Extended gradient with unstructured control** (reward range, 100 steps identical v5 config):\\n| Method | Reward Range | Structural Integrity | Pattern |\\n|--------|-------------|---------------------|---------|\\n| Unstructured 20% | 0.73-0.88 | Full (no neuron removal) | Stable, high reward |\\n| CKA-only 20% | 0.22-0.44 | Partial (diversity-preserving) | Active learning + self-recovery |\\n| Random 20% | 0.14-0.19 | Partial (random) | Flat-low, never learns |\\n| Standard 20% | 0.02-0.08 | Partial (importance-based) | Severe collapse |\\n| RASP 20% | 0.01-0.06 | Partial (composite) | Immediate collapse |\\n\\nInterpretation: Reward capacity correlates with structural integrity. Unstructured (no structural damage) >> CKA-only (selective preservation) >> collapsed methods. This confirms GRPO collapse is caused by structural damage from pruning, not GRPO instability. Unstructured is a control, not a competitor (no hardware-agnostic speedup).\\nNote: Starting accuracy confound (unstructured 87.87% vs structured 59-64%) is inherent — structural integrity determines both starting accuracy and GRPO capacity. Paper must acknowledge this explicitly.\\n\\nThis holds across:\\n- **Model scales**: 7B (CKA-only 0.354 vs Standard 0.054) and 1.5B (CKA-only 0.238 vs Standard 0.084)\\n- **Training duration**: E2 extended to 300 steps — Standard shows zero net improvement (0.054→0.056), CKA-only maintains 0.321 at step 110 (3x Standard)\\n- **Statistical tests**: Bootstrap CI confirms all pairwise gaps significant (E5)\\n\\nNote: fine-grained ordering within \\\"low-recovery\\\" methods is scale-dependent (7B: Standard > RASP; 1.5B: RASP > Standard). The robust finding is the CKA-only vs others gap, not the within-group ordering.\\n\\nFailure modes are scale-dependent:\\n- 7B: Standard/RASP collapse via **diversity loss** (frac_zero_std 0.55-0.85, repetitive outputs)\\n- 1.5B: Standard/RASP fail via **truncation bottleneck** (clipped_ratio 0.82-0.95+, can't finish reasoning in token budget)\\n- Both pathways result in failed RL training, suggesting recovery capacity is a general property that surfaces through scale-dependent mechanisms.\\n\\nMechanism (E3 CKA heatmap evidence): CKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity** (inter-layer uniqueness). This makes the model's layer representations LESS similar to Dense (diagonal CKA mean 0.62 vs 0.88-0.92 for others) but MORE internally diverse. \\\"Representational diversity\\\" ≠ \\\"Dense fidelity.\\\" Internal diversity enables diverse policy behaviors during GRPO, producing informative reward variance and gradient signal.\\n\\nGRPO reward-accuracy interaction is **task-dependent** (D071 revision, supersedes D067 \\\"universal decoupling\\\"):\\n- **SFT-recovered tasks (GSM8K, MATH-500)**: GRPO delta ≈ 0 for ALL methods at ALL scales. Decoupling holds.\\n  - GSM8K 7B: CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp (all within stderr)\\n  - GSM8K 1.5B: CKA-only -0.15pp, Standard -0.61pp, RASP -0.75pp (all noise)\\n  - MATH-500 @2048: CKA-only +0.2pp, RASP +1.4pp (all |Δ| < 2pp)\\n- **SFT-failed tasks (HumanEval, CKA-only specific)**: GRPO provides **massive cross-task recovery**.\\n  - CKA-only: SFT 0% (catastrophic forgetting of code) → GRPO **20.12%** (33/164 final). GRPO unlocks latent code capability that SFT's distribution shift rendered inaccessible. Recovery is partial (~45% of Dense), but the 0→20 jump is unique to CKA-only.\\n  - Other methods: SFT ~10-15%, GRPO ~10-15% (old stage2 models). No GRPO benefit. ⚠️ \\\"CKA-only specific\\\" claim pending v5 fair GRPO Standard/RASP HumanEval re-eval.\\n- **⚠️ SFT CKA-only 0% UNVERIFIED**: The 0/164 result was caused by a PATH bug (subprocess couldn't find python). 3 manual samples showed math reasoning output, but full eval was never executed. Re-run required before any claim about \\\"CKA-only SFT catastrophic forgetting.\\\" If re-run confirms ~0%, the mechanism holds (math-focused SFT shifts distribution away from code). If re-run shows 5-10%, D071 \\\"extreme specialization\\\" narrative weakens significantly.\\n- **Revised C1 framing**: On tasks where SFT partially recovers capability, GRPO adds nothing (decoupling). On tasks where SFT fails entirely, GRPO's exploration can partially activate latent capabilities in CKA-only models (0%→20% HumanEval). This enriches C1 but is **supplementary evidence** (Analysis section), not headline finding. The headline remains C2 (recovery capacity gradient on GSM8K/MATH-500). HumanEval shows a secondary dimension: CKA-only preserves latent cross-task potential that GRPO can partially activate.\\n\\n## Core Contributions (D065 restructure)\\n\\n### Contribution 1 (C2, Main): Recovery capacity gradient predicted by representational diversity\\nFour pruning methods at 20% sparsity reveal a clean recovery capacity gradient during GRPO (100 steps, identical v5 config — D058 confound fully resolved):\\n\\n| Method | Best Reward | Mean Reward | Best frac_zero_std | Pattern |\\n|--------|------------|-------------|-------------------|---------|\\n| CKA-only | 0.354 (s50) | 0.285 | 0.125 (s70) | **Active learning** with self-recovery (dip s90→recovery s100) |\\n| Random | 0.190 (s70) | 0.165 | 0.300 (s50/70) | Flat-low: never learns, reward oscillates 0.14-0.19 |\\n| Standard | 0.081 (s40) | 0.049 | 0.500 (s10/30/40) | Severe collapse: reward stays <0.08 despite transient grad_norm instability |\\n| RASP | 0.061 (s50) | 0.031 | 0.850 | Immediate collapse: 92-96% outputs hit max_length |\\n\\nThe gradient: **CKA-only >> Random >> Standard ≈ RASP**\\n- **Statistical support (E5 v2, per-example bootstrap + McNemar, N=1319)**:\\n  - 7B SFT: CKA-only vs Standard **p=0.002** ✅; CKA-only vs RASP p=0.117 ❌; Standard vs RASP p=0.126 ❌\\n  - 1.5B GRPO: all CKA-only pairwise comparisons **p<0.001** ✅ (gap 8-13pp)\\n  - C1 decoupling: GRPO CKA-only vs SFT CKA-only p=0.566 (confirmed: GRPO ≠ accuracy gain)\\n- **Framing**: C2 accuracy evidence leads with 1.5B (strong significance). 7B C2 core evidence = reward dynamics (CKA-only 0.354 vs RASP 0.061 = 5.8x, directly observable). 7B SFT accuracy is directional support. Paper must honestly report CKA-only vs RASP non-significance at 7B.\\n- ⚠️ **Gap**: Standard/RASP GRPO GSM8K evals (58.91%/60.65%) may be from pre-fair models, not fair v5. Need verification or redo.\\n\\nThree distinct failure modes (only CKA-only achieves meaningful learning):\\n1. **CKA-only**: Active learning with peak reward 0.354 (step 50), frac_zero_std drops to 0.125 (step 70, below initial 0.175). Transient instability at step 90 (reward dips to 0.242) but **self-recovers to 0.344 at step 100** (frac_zero_std returns to 0.200). This self-recovery from training perturbation is the defining characteristic of high recovery capacity.\\n2. **Random**: Never lifts off. Reward 0.14-0.19 throughout, grad_norm unstable (3.5-8.6). Has diversity but lacks coherent optimization direction\\n3. **Standard/RASP**: Deep collapse. Standard: reward < 0.08 throughout, grad_norm transiently drops to 0.017 at s90 (recovers to 2.41 at s100 but reward stays low). RASP: reward < 0.01, immediate repetitive output collapse\\n\\nKey evidence dimensions:\\n- **Reward gap**: CKA-only final (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01)\\n- **Learning signal**: Only CKA-only achieves frac_zero_std < 0.2 (meaningful per-sample variance); Standard/RASP never below 0.5/0.85\\n- **Gradient health**: CKA-only grad_norm stable 1-3; Standard grad_norm exhibits transient instability (0.017 at s90, recovers to 2.41 at s100 but policy already collapsed)\\n- **Output diversity**: CKA-only generates diverse completions; RASP 92-96% hit max_length (repetitive)\\n\\nMechanism (E3 CKA heatmap): CKA-only removes redundant structures (high intra-model CKA overlap), resulting in the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88). This is by design: removing redundancy reduces Dense similarity but preserves internal representational diversity. The relationship between Dense-CKA and recovery is NOT monotonic (Random 0.92 recovers better than RASP 0.88); recovery depends on internal diversity, not Dense fidelity.\\n\\n**E2 Extended Training Evidence (D063 framing: \\\"sustained capacity without collapse\\\")**:\\n- Standard 300 steps: reward 0.054±0.002 throughout, zero net improvement. Collapse is permanent and structural.\\n- CKA-only 300 steps complete: reward oscillates 0.22-0.44, peak 0.4444 at step 280, final 0.3075. No collapse. frac_zero_std range 0.10-0.28.\\n- **Final E2 comparison**: CKA-only 0.3075 vs Standard 0.0562 = **5.5x gap** at step 300.\\n- **E2 GSM8K (downstream accuracy)**:\\n  - CKA-only 300步: ~64.0% @ 1000/1319 (vs 100步 64.37% — **no improvement, stable**)\\n  - Standard 300步: **59.29% (782/1319)** — delta +0.38pp vs 100步 (n.s.)\\n  - **Key insight**: Neither method benefits from extended training on ID accuracy. CKA-only: exact 0.00pp delta. Standard: +0.38pp within stderr.\\n- **Core E2 claim**: \\\"Recovery capacity is a structural property of the pruned model, not a function of training duration.\\\" Standard cannot be rescued by more training; CKA-only sustains capacity without collapse. Extended training for CKA-only maintains but does not improve downstream accuracy.\\n- **E2 final GSM8K**: CKA-only 300步 = 100步 = **64.37% (849/1319)**, exact match. Standard 300步 = **59.29% (782/1319)** vs 100步 58.91% = +0.38pp (n.s.).\\n- **Do NOT claim**: \\\"CKA-only continues to learn\\\" or \\\"extended training benefits CKA-only\\\" — reward oscillates (0.22-0.44) but accuracy is precisely unchanged (849/1319 both checkpoints).\\n- **Safe claims**: \\\"Standard collapse is permanent (300 steps)\\\", \\\"CKA-only maintains 5.5x reward gap at step 300\\\", \\\"CKA-only accuracy is robust under extended training (exact zero degradation)\\\", \\\"recovery capacity gap persists under extended training\\\", \\\"200 additional GRPO steps with sustained reward learning produce zero accuracy change (C1 decoupling)\\\".\\n\\n**Cross-Scale Evidence (E1)**: 1.5B DeepSeek-R1-Distill-Qwen confirms the gradient:\\n| Method | 1.5B reward | 7B reward | Ratio |\\n|--------|-------------|-----------|-------|\\n| CKA-only | 0.238 | 0.354 | 3x vs Standard (both scales) |\\n| Standard | 0.084 | 0.054 | — |\\n| RASP | 0.099 | 0.010 | Order reversed at 1.5B |\\n\\nStandard vs RASP order reverses at 1.5B due to different failure modes (truncation vs diversity collapse). The CKA-only advantage is robust across scales.\\n\\n**D062 Framing Guidance (Reviewer-validated)**:\\n- **Cross-scale claim (Abstract/Contribution)**: \\\"CKA-only pruning consistently enables superior GRPO recovery across model scales, achieving 2.8x (1.5B) to 6.4x (7B) the reward of importance-based methods.\\\"\\n- **Gap widening claim (Results)**: \\\"The accuracy gap between CKA-only and importance-based methods widens at smaller scale (16pp at 1.5B vs 5pp at 7B), suggesting representational diversity preservation becomes more critical as model capacity decreases.\\\" (Qualitative until final GSM8K numbers confirm.)\\n- **Do NOT claim**: Fixed 4-tier ordering across scales. Fine-grained within-group ordering is scale-dependent noise.\\n- **Failure modes (Section-level treatment)**:\\n  - Section 4.x Results: 1.5B table + one sentence confirming gradient\\n  - Section 5.x Analysis: ~1 paragraph on scale-dependent failure modes (diversity collapse at 7B vs truncation bottleneck at 1.5B; CKA-only avoids both)\\n  - Section 6 Discussion: one sentence limitation (\\\"warrants investigation on a\\n\\n... [截断: 省略 23632 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 35632, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "838d5ce1-89e1-4787-a0e2-5b4430a9ca35",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "e73ab7cc-82f7-435c-ac0b-f0cef67d413f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — recovery_aware_struct_prune\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Insight (Recovery Capacity Gradient)\\\\nStructural pruning criterion determines post-RLVR recovery capacity of reasoning LLMs. Under controlled GRPO training (identical v5 config, D058 resolved), we discover a **recovery capacity gradient**: CKA-only (pure representational diversity preservation) is the only method that achieves meaningful RL learning, while importance-based scoring methods fail.\\\\n\\\\nThe gradient: **CKA-only >> importance-based methods (Random/Standard/RASP)**\\\\n\\\\n**Extended gradient with unstructured control** (reward range, 100 steps identical v5 config):\\\\n| Method | Reward Range | Structural Integrity | Pattern |\\\\n|--------|-------------|---------------------|---------|\\\\n| Unstructured 20% | 0.73-0.88 | Full (no neuron removal) | Stable, high reward |\\\\n| CKA-only 20% | 0.22-0.44 | Partial (diversity-preserving) | Active learning + self-recovery |\\\\n| Random 20% | 0.14-0.19 | Partial (random) | Flat-low, never learns |\\\\n| Standard 20% | 0.02-0.08 | Partial (importance-based) | Severe collapse |\\\\n| RASP 20% | 0.01-0.06 | Partial (composite) | Immediate collapse |\\\\n\\\\nInterpretation: Reward capacity correlates with structural integrity. Unstructured (no structural damage) >> CKA-only (selective preservation) >> collapsed methods. This confirms GRPO collapse is caused by structural damage from pruning, not GRPO instability. Unstructured is a control, not a competitor (no hardware-agnostic speedup).\\\\nNote: Starting accuracy confound (unstructured 87.87% vs structured 59-64%) is inherent — structural integrity determines both starting accuracy and GRPO capacity. Paper must acknowledge this explicitly.\\\\n\\\\nThis holds across:\\\\n- **Model scales**: 7B (CKA-only 0.354 vs Standard 0.054) and 1.5B (CKA-only 0.238 vs Standard 0.084)\\\\n- **Training duration**: E2 extended to 300 steps — Standard shows zero net improvement (0.054→0.056), CKA-only maintains 0.321 at step 110 (3x Standard)\\\\n- **Statistical tests**: Bootstrap CI confirms all pairwise gaps significant (E5)\\\\n\\\\nNote: fine-grained ordering within \\\\\\\"low-recovery\\\\\\\" methods is scale-dependent (7B: Standard > RASP; 1.5B: RASP > Standard). The robust finding is the CKA-only vs others gap, not the within-group ordering.\\\\n\\\\nFailure modes are scale-dependent:\\\\n- 7B: Standard/RASP collapse via **diversity loss** (frac_zero_std 0.55-0.85, repetitive outputs)\\\\n- 1.5B: Standard/RASP fail via **truncation bottleneck** (clipped_ratio 0.82-0.95+, can't finish reasoning in token budget)\\\\n- Both pathways result in failed RL training, suggesting recovery capacity is a general property that surfaces through scale-dependent mechanisms.\\\\n\\\\nMechanism (E3 CKA heatmap evidence): CKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity** (inter-layer uniqueness). This makes the model's layer representations LESS similar to Dense (diagonal CKA mean 0.62 vs 0.88-0.92 for others) but MORE internally diverse. \\\\\\\"Representational diversity\\\\\\\" ≠ \\\\\\\"Dense fidelity.\\\\\\\" Internal diversity enables diverse policy behaviors during GRPO, producing informative reward variance and gradient signal.\\\\n\\\\nGRPO reward-accuracy interaction is **task-dependent** (D071 revision, supersedes D067 \\\\\\\"universal decoupling\\\\\\\"):\\\\n- **SFT-recovered tasks (GSM8K, MATH-500)**: GRPO delta ≈ 0 for ALL methods at ALL scales. Decoupling holds.\\\\n  - GSM8K 7B: CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp (all within stderr)\\\\n  - GSM8K 1.5B: CKA-only -0.15pp, Standard -0.61pp, RASP -0.75pp (all noise)\\\\n  - MATH-500 @2048: CKA-only +0.2pp, RASP +1.4pp (all |Δ| < 2pp)\\\\n- **SFT-failed tasks (HumanEval, CKA-only specific)**: GRPO provides **massive cross-task recovery**.\\\\n  - CKA-only: SFT 0% (catastrophic forgetting of code) → GRPO **20.12%** (33/164 final). GRPO unlocks latent code capability that SFT's distribution shift rendered inaccessible. Recovery is partial (~45% of Dense), but the 0→20 jump is unique to CKA-only.\\\\n  - Other methods: SFT ~10-15%, GRPO ~10-15% (old stage2 models). No GRPO benefit. ⚠️ \\\\\\\"CKA-only specific\\\\\\\" claim pending v5 fair GRPO Standard/RASP HumanEval re-eval.\\\\n- **⚠️ SFT CKA-only 0% UNVERIFIED**: The 0/164 result was caused by a PATH bug (subprocess couldn't find python). 3 manual samples showed math reasoning output, but full eval was never executed. Re-run required before any claim about \\\\\\\"CKA-only SFT catastrophic forgetting.\\\\\\\" If re-run confirms ~0%, the mechanism holds (math-focused SFT shifts distribution away from code). If re-run shows 5-10%, D071 \\\\\\\"extreme specialization\\\\\\\" narrative weakens significantly.\\\\n- **Revised C1 framing**: On tasks where SFT partially recovers capability, GRPO adds nothing (decoupling). On tasks where SFT fails entirely, GRPO's exploration can partially activate latent capabilities in CKA-only models (0%→20% HumanEval). This enriches C1 but is **supplementary evidence** (Analysis section), not headline finding. The headline remains C2 (recovery capacity gradient on GSM8K/MATH-500). HumanEval shows a secondary dimension: CKA-only preserves latent cross-task potential that GRPO can partially activate.\\\\n\\\\n## Core Contributions (D065 restructure)\\\\n\\\\n### Contribution 1 (C2, Main): Recovery capacity gradient predicted by representational diversity\\\\nFour pruning methods at 20% sparsity reveal a clean recovery capacity gradient during GRPO (100 steps, identical v5 config — D058 confound fully resolved):\\\\n\\\\n| Method | Best Reward | Mean Reward | Best frac_zero_std | Pattern |\\\\n|--------|------------|-------------|-------------------|---------|\\\\n| CKA-only | 0.354 (s50) | 0.285 | 0.125 (s70) | **Active learning** with self-recovery (dip s90→recovery s100) |\\\\n| Random | 0.190 (s70) | 0.165 | 0.300 (s50/70) | Flat-low: never learns, reward oscillates 0.14-0.19 |\\\\n| Standard | 0.081 (s40) | 0.049 | 0.500 (s10/30/40) | Severe collapse: reward stays <0.08 despite transient grad_norm instability |\\\\n| RASP | 0.061 (s50) | 0.031 | 0.850 | Immediate collapse: 92-96% outputs hit max_length |\\\\n\\\\nThe gradient: **CKA-only >> Random >> Standard ≈ RASP**\\\\n- **Statistical support (E5 v2, per-example bootstrap + McNemar, N=1319)**:\\\\n  - 7B SFT: CKA-only vs Standard **p=0.002** ✅; CKA-only vs RASP p=0.117 ❌; Standard vs RASP p=0.126 ❌\\\\n  - 1.5B GRPO: all CKA-only pairwise comparisons **p<0.001** ✅ (gap 8-13pp)\\\\n  - C1 decoupling: GRPO CKA-only vs SFT CKA-only p=0.566 (confirmed: GRPO ≠ accuracy gain)\\\\n- **Framing**: C2 accuracy evidence leads with 1.5B (strong significance). 7B C2 core evidence = reward dynamics (CKA-only 0.354 vs RASP 0.061 = 5.8x, directly observable). 7B SFT accuracy is directional support. Paper must honestly report CKA-only vs RASP non-significance at 7B.\\\\n- ⚠️ **Gap**: Standard/RASP GRPO GSM8K evals (58.91%/60.65%) may be from pre-fair models, not fair v5. Need verification or redo.\\\\n\\\\nThree distinct failure modes (only CKA-only achieves meaningful learning):\\\\n1. **CKA-only**: Active learning with peak reward 0.354 (step 50), frac_zero_std drops to 0.125 (step 70, below initial 0.175). Transient instability at step 90 (reward dips to 0.242) but **self-recovers to 0.344 at step 100** (frac_zero_std returns to 0.200). This self-recovery from training perturbation is the defining characteristic of high recovery capacity.\\\\n2. **Random**: Never lifts off. Reward 0.14-0.19 throughout, grad_norm unstable (3.5-8.6). Has diversity but lacks coherent optimization direction\\\\n3. **Standard/RASP**: Deep collapse. Standard: reward < 0.08 throughout, grad_norm transiently drops to 0.017 at s90 (recovers to 2.41 at s100 but reward stays low). RASP: reward < 0.01, immediate repetitive output collapse\\\\n\\\\nKey evidence dimensions:\\\\n- **Reward gap**: CKA-only final (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01)\\\\n- **Learning signal**: Only CKA-only achieves frac_zero_std < 0.2 (meaningful per-sample variance); Standard/RASP never below 0.5/0.85\\\\n- **Gradient health**: CKA-only grad_norm stable 1-3; Standard grad_norm exhibits transient instability (0.017 at s90, recovers to 2.41 at s100 but policy already collapsed)\\\\n- **Output diversity**: CKA-only generates diverse completions; RASP 92-96% hit max_length (repetitive)\\\\n\\\\nMechanism (E3 CKA heatmap): CKA-only removes redundant structures (high intra-model CKA overlap), resulting in the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88). This is by design: removing redundancy reduces Dense similarity but preserves internal representational diversity. The relationship between Dense-CKA and recovery is NOT monotonic (Random 0.92 recovers better than RASP 0.88); recovery depends on internal diversity, not Dense fidelity.\\\\n\\\\n**E2 Extended Training Evidence (D063 framing: \\\\\\\"sustained capacity without collapse\\\\\\\")**:\\\\n- Standard 300 steps: reward 0.054±0.002 throughout, zero net improvement. Collapse is permanent and structural.\\\\n- CKA-only 300 steps complete: reward oscillates 0.22-0.44, peak 0.4444 at step 280, final 0.3075. No collapse. frac_zero_std range 0.10-0.28.\\\\n- **Final E2 comparison**: CKA-only 0.3075 vs Standard 0.0562 = **5.5x gap** at step 300.\\\\n- **E2 GSM8K (downstream accuracy)**:\\\\n  - CKA-only 300步: ~64.0% @ 1000/1319 (vs 100步 64.37% — **no improvement, stable**)\\\\n  - Standard 300步: **59.29% (782/1319)** — delta +0.38pp vs 100步 (n.s.)\\\\n  - **Key insight**: Neither method benefits from extended training on ID accuracy. CKA-only: exact 0.00pp delta. Standard: +0.38pp within stderr.\\\\n- **Core E2 claim**: \\\\\\\"Recovery capacity is a structural property of the pruned model, not a function of training duration.\\\\\\\" Standard cannot be rescued by more training; CKA-only sustains capacity without collapse. Extended training for CKA-only maintains but does not improve downstream accuracy.\\\\n- **E2 final GSM8K**: CKA-only 300步 = 100步 = **64.37% (849/1319)**, exact match. Standard 300步 = **59.29% (782/1319)** vs 100步 58.91% = +0.38pp (n.s.).\\\\n- **Do NOT claim**: \\\\\\\"CKA-only continues to learn\\\\\\\" or \\\\\\\"extended training benefits CKA-only\\\\\\\" — reward oscillates (0.22-0.44) but accuracy is precisely unchanged (849/1319 both checkpoints).\\\\n- **Safe claims**: \\\\\\\"Standard collapse is permanent (300 steps)\\\\\\\", \\\\\\\"CKA-only maintains 5.5x reward gap at step 300\\\\\\\", \\\\\\\"CKA-only accuracy is robust under extended training (exact zero degradation)\\\\\\\", \\\\\\\"recovery capacity gap persists under extended training\\\\\\\", \\\\\\\"200 additional GRPO steps with sustained reward learning produce zero accuracy change (C1 decoupling)\\\\\\\".\\\\n\\\\n**Cross-Scale Evidence (E1)**: 1.5B DeepSeek-R1-Distill-Qwen confirms the gradient:\\\\n| Method | 1.5B reward | 7B reward | Ratio |\\\\n|--------|-------------|-----------|-------|\\\\n| CKA-only | 0.238 | 0.354 | 3x vs Standard (both scales) |\\\\n| Standard | 0.084 | 0.054 | — |\\\\n| RASP | 0.099 | 0.010 | Order reversed at 1.5B |\\\\n\\\\nStandard vs RASP order reverses at 1.5B due to different failure modes (truncation vs diversity collapse). The CKA-only advantage is robust across scales.\\\\n\\\\n**D062 Framing Guidance (Reviewer-validated)**:\\\\n- **Cross-scale claim (Abstract/Contribution)**: \\\\\\\"CKA-only pruning consistently enables superior GRPO recovery across model scales, achieving 2.8x (1.5B) to 6.4x (7B) the reward of importance-based methods.\\\\\\\"\\\\n- **Gap widening claim (Results)**: \\\\\\\"The accuracy gap between CKA-only and importance-based methods widens at smaller scale (16pp at 1.5B vs 5pp at 7B), suggesting representational diversity preservation becomes more critical as model capacity decreases.\\\\\\\" (Qualitative until final GSM8K numbers confirm.)\\\\n- **Do NOT claim**: Fixed 4-tier ordering across scales. Fine-grained within-group ordering is scale-dependent noise.\\\\n- **Failure modes (Section-level treatment)**:\\\\n  - Section 4.x Results: 1.5B table + one sentence confirming gradient\\\\n  - Section 5.x Analysis: ~1 paragraph on scale-dependent failure modes (diversity collapse at 7B vs truncation bottleneck at 1.5B; CKA-only avoids both)\\\\n  - Section 6 Discussion: one sentence limitation (\\\\\\\"warrants investigation on a\\\\n\\\\n... [截断: 省略 23632 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 35632, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\", \"content\": \"# Paper Framing — recovery_aware_struct_prune\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight (Recovery Capacity Gradient)\\nStructural pruning criterion determines post-RLVR recovery capacity of reasoning LLMs. Under controlled GRPO training (identical v5 config, D058 resolved), we discover a **recovery capacity gradient**: CKA-only (pure representational diversity preservation) is the only method that achieves meaningful RL learning, while importance-based scoring methods fail.\\n\\nThe gradient: **CKA-only >> importance-based methods (Random/Standard/RASP)**\\n\\n**Extended gradient with unstructured control** (reward range, 100 steps identical v5 config):\\n| Method | Reward Range | Structural Integrity | Pattern |\\n|--------|-------------|---------------------|---------|\\n| Unstructured 20% | 0.73-0.88 | Full (no neuron removal) | Stable, high reward |\\n| CKA-only 20% | 0.22-0.44 | Partial (diversity-preserving) | Active learning + self-recovery |\\n| Random 20% | 0.14-0.19 | Partial (random) | Flat-low, never learns |\\n| Standard 20% | 0.02-0.08 | Partial (importance-based) | Severe collapse |\\n| RASP 20% | 0.01-0.06 | Partial (composite) | Immediate collapse |\\n\\nInterpretation: Reward capacity correlates with structural integrity. Unstructured (no structural damage) >> CKA-only (selective preservation) >> collapsed methods. This confirms GRPO collapse is caused by structural damage from pruning, not GRPO instability. Unstructured is a control, not a competitor (no hardware-agnostic speedup).\\nNote: Starting accuracy confound (unstructured 87.87% vs structured 59-64%) is inherent — structural integrity determines both starting accuracy and GRPO capacity. Paper must acknowledge this explicitly.\\n\\nThis holds across:\\n- **Model scales**: 7B (CKA-only 0.354 vs Standard 0.054) and 1.5B (CKA-only 0.238 vs Standard 0.084)\\n- **Training duration**: E2 extended to 300 steps — Standard shows zero net improvement (0.054→0.056), CKA-only maintains 0.321 at step 110 (3x Standard)\\n- **Statistical tests**: Bootstrap CI confirms all pairwise gaps significant (E5)\\n\\nNote: fine-grained ordering within \\\"low-recovery\\\" methods is scale-dependent (7B: Standard > RASP; 1.5B: RASP > Standard). The robust finding is the CKA-only vs others gap, not the within-group ordering.\\n\\nFailure modes are scale-dependent:\\n- 7B: Standard/RASP collapse via **diversity loss** (frac_zero_std 0.55-0.85, repetitive outputs)\\n- 1.5B: Standard/RASP fail via **truncation bottleneck** (clipped_ratio 0.82-0.95+, can't finish reasoning in token budget)\\n- Both pathways result in failed RL training, suggesting recovery capacity is a general property that surfaces through scale-dependent mechanisms.\\n\\nMechanism (E3 CKA heatmap evidence): CKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity** (inter-layer uniqueness). This makes the model's layer representations LESS similar to Dense (diagonal CKA mean 0.62 vs 0.88-0.92 for others) but MORE internally diverse. \\\"Representational diversity\\\" ≠ \\\"Dense fidelity.\\\" Internal diversity enables diverse policy behaviors during GRPO, producing informative reward variance and gradient signal.\\n\\nGRPO reward-accuracy interaction is **task-dependent** (D071 revision, supersedes D067 \\\"universal decoupling\\\"):\\n- **SFT-recovered tasks (GSM8K, MATH-500)**: GRPO delta ≈ 0 for ALL methods at ALL scales. Decoupling holds.\\n  - GSM8K 7B: CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp (all within stderr)\\n  - GSM8K 1.5B: CKA-only -0.15pp, Standard -0.61pp, RASP -0.75pp (all noise)\\n  - MATH-500 @2048: CKA-only +0.2pp, RASP +1.4pp (all |Δ| < 2pp)\\n- **SFT-failed tasks (HumanEval, CKA-only specific)**: GRPO provides **massive cross-task recovery**.\\n  - CKA-only: SFT 0% (catastrophic forgetting of code) → GRPO **20.12%** (33/164 final). GRPO unlocks latent code capability that SFT's distribution shift rendered inaccessible. Recovery is partial (~45% of Dense), but the 0→20 jump is unique to CKA-only.\\n  - Other methods: SFT ~10-15%, GRPO ~10-15% (old stage2 models). No GRPO benefit. ⚠️ \\\"CKA-only specific\\\" claim pending v5 fair GRPO Standard/RASP HumanEval re-eval.\\n- **⚠️ SFT CKA-only 0% UNVERIFIED**: The 0/164 result was caused by a PATH bug (subprocess couldn't find python). 3 manual samples showed math reasoning output, but full eval was never executed. Re-run required before any claim about \\\"CKA-only SFT catastrophic forgetting.\\\" If re-run confirms ~0%, the mechanism holds (math-focused SFT shifts distribution away from code). If re-run shows 5-10%, D071 \\\"extreme specialization\\\" narrative weakens significantly.\\n- **Revised C1 framing**: On tasks where SFT partially recovers capability, GRPO adds nothing (decoupling). On tasks where SFT fails entirely, GRPO's exploration can partially activate latent capabilities in CKA-only models (0%→20% HumanEval). This enriches C1 but is **supplementary evidence** (Analysis section), not headline finding. The headline remains C2 (recovery capacity gradient on GSM8K/MATH-500). HumanEval shows a secondary dimension: CKA-only preserves latent cross-task potential that GRPO can partially activate.\\n\\n## Core Contributions (D065 restructure)\\n\\n### Contribution 1 (C2, Main): Recovery capacity gradient predicted by representational diversity\\nFour pruning methods at 20% sparsity reveal a clean recovery capacity gradient during GRPO (100 steps, identical v5 config — D058 confound fully resolved):\\n\\n| Method | Best Reward | Mean Reward | Best frac_zero_std | Pattern |\\n|--------|------------|-------------|-------------------|---------|\\n| CKA-only | 0.354 (s50) | 0.285 | 0.125 (s70) | **Active learning** with self-recovery (dip s90→recovery s100) |\\n| Random | 0.190 (s70) | 0.165 | 0.300 (s50/70) | Flat-low: never learns, reward oscillates 0.14-0.19 |\\n| Standard | 0.081 (s40) | 0.049 | 0.500 (s10/30/40) | Severe collapse: reward stays <0.08 despite transient grad_norm instability |\\n| RASP | 0.061 (s50) | 0.031 | 0.850 | Immediate collapse: 92-96% outputs hit max_length |\\n\\nThe gradient: **CKA-only >> Random >> Standard ≈ RASP**\\n- **Statistical support (E5 v2, per-example bootstrap + McNemar, N=1319)**:\\n  - 7B SFT: CKA-only vs Standard **p=0.002** ✅; CKA-only vs RASP p=0.117 ❌; Standard vs RASP p=0.126 ❌\\n  - 1.5B GRPO: all CKA-only pairwise comparisons **p<0.001** ✅ (gap 8-13pp)\\n  - C1 decoupling: GRPO CKA-only vs SFT CKA-only p=0.566 (confirmed: GRPO ≠ accuracy gain)\\n- **Framing**: C2 accuracy evidence leads with 1.5B (strong significance). 7B C2 core evidence = reward dynamics (CKA-only 0.354 vs RASP 0.061 = 5.8x, directly observable). 7B SFT accuracy is directional support. Paper must honestly report CKA-only vs RASP non-significance at 7B.\\n- ⚠️ **Gap**: Standard/RASP GRPO GSM8K evals (58.91%/60.65%) may be from pre-fair models, not fair v5. Need verification or redo.\\n\\nThree distinct failure modes (only CKA-only achieves meaningful learning):\\n1. **CKA-only**: Active learning with peak reward 0.354 (step 50), frac_zero_std drops to 0.125 (step 70, below initial 0.175). Transient instability at step 90 (reward dips to 0.242) but **self-recovers to 0.344 at step 100** (frac_zero_std returns to 0.200). This self-recovery from training perturbation is the defining characteristic of high recovery capacity.\\n2. **Random**: Never lifts off. Reward 0.14-0.19 throughout, grad_norm unstable (3.5-8.6). Has diversity but lacks coherent optimization direction\\n3. **Standard/RASP**: Deep collapse. Standard: reward < 0.08 throughout, grad_norm transiently drops to 0.017 at s90 (recovers to 2.41 at s100 but reward stays low). RASP: reward < 0.01, immediate repetitive output collapse\\n\\nKey evidence dimensions:\\n- **Reward gap**: CKA-only final (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01)\\n- **Learning signal**: Only CKA-only achieves frac_zero_std < 0.2 (meaningful per-sample variance); Standard/RASP never below 0.5/0.85\\n- **Gradient health**: CKA-only grad_norm stable 1-3; Standard grad_norm exhibits transient instability (0.017 at s90, recovers to 2.41 at s100 but policy already collapsed)\\n- **Output diversity**: CKA-only generates diverse completions; RASP 92-96% hit max_length (repetitive)\\n\\nMechanism (E3 CKA heatmap): CKA-only removes redundant structures (high intra-model CKA overlap), resulting in the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88). This is by design: removing redundancy reduces Dense similarity but preserves internal representational diversity. The relationship between Dense-CKA and recovery is NOT monotonic (Random 0.92 recovers better than RASP 0.88); recovery depends on internal diversity, not Dense fidelity.\\n\\n**E2 Extended Training Evidence (D063 framing: \\\"sustained capacity without collapse\\\")**:\\n- Standard 300 steps: reward 0.054±0.002 throughout, zero net improvement. Collapse is permanent and structural.\\n- CKA-only 300 steps complete: reward oscillates 0.22-0.44, peak 0.4444 at step 280, final 0.3075. No collapse. frac_zero_std range 0.10-0.28.\\n- **Final E2 comparison**: CKA-only 0.3075 vs Standard 0.0562 = **5.5x gap** at step 300.\\n- **E2 GSM8K (downstream accuracy)**:\\n  - CKA-only 300步: ~64.0% @ 1000/1319 (vs 100步 64.37% — **no improvement, stable**)\\n  - Standard 300步: **59.29% (782/1319)** — delta +0.38pp vs 100步 (n.s.)\\n  - **Key insight**: Neither method benefits from extended training on ID accuracy. CKA-only: exact 0.00pp delta. Standard: +0.38pp within stderr.\\n- **Core E2 claim**: \\\"Recovery capacity is a structural property of the pruned model, not a function of training duration.\\\" Standard cannot be rescued by more training; CKA-only sustains capacity without collapse. Extended training for CKA-only maintains but does not improve downstream accuracy.\\n- **E2 final GSM8K**: CKA-only 300步 = 100步 = **64.37% (849/1319)**, exact match. Standard 300步 = **59.29% (782/1319)** vs 100步 58.91% = +0.38pp (n.s.).\\n- **Do NOT claim**: \\\"CKA-only continues to learn\\\" or \\\"extended training benefits CKA-only\\\" — reward oscillates (0.22-0.44) but accuracy is precisely unchanged (849/1319 both checkpoints).\\n- **Safe claims**: \\\"Standard collapse is permanent (300 steps)\\\", \\\"CKA-only maintains 5.5x reward gap at step 300\\\", \\\"CKA-only accuracy is robust under extended training (exact zero degradation)\\\", \\\"recovery capacity gap persists under extended training\\\", \\\"200 additional GRPO steps with sustained reward learning produce zero accuracy change (C1 decoupling)\\\".\\n\\n**Cross-Scale Evidence (E1)**: 1.5B DeepSeek-R1-Distill-Qwen confirms the gradient:\\n| Method | 1.5B reward | 7B reward | Ratio |\\n|--------|-------------|-----------|-------|\\n| CKA-only | 0.238 | 0.354 | 3x vs Standard (both scales) |\\n| Standard | 0.084 | 0.054 | — |\\n| RASP | 0.099 | 0.010 | Order reversed at 1.5B |\\n\\nStandard vs RASP order reverses at 1.5B due to different failure modes (truncation vs diversity collapse). The CKA-only advantage is robust across scales.\\n\\n**D062 Framing Guidance (Reviewer-validated)**:\\n- **Cross-scale claim (Abstract/Contribution)**: \\\"CKA-only pruning consistently enables superior GRPO recovery across model scales, achieving 2.8x (1.5B) to 6.4x (7B) the reward of importance-based methods.\\\"\\n- **Gap widening claim (Results)**: \\\"The accuracy gap between CKA-only and importance-based methods widens at smaller scale (16pp at 1.5B vs 5pp at 7B), suggesting representational diversity preservation becomes more critical as model capacity decreases.\\\" (Qualitative until final GSM8K numbers confirm.)\\n- **Do NOT claim**: Fixed 4-tier ordering across scales. Fine-grained within-group ordering is scale-dependent noise.\\n- **Failure modes (Section-level treatment)**:\\n  - Section 4.x Results: 1.5B table + one sentence confirming gradient\\n  - Section 5.x Analysis: ~1 paragraph on scale-dependent failure modes (diversity collapse at 7B vs truncation bottleneck at 1.5B; CKA-only avoids both)\\n  - Section 6 Discussion: one sentence limitation (\\\"warrants investigation on a\\n\\n... [截断: 省略 23632 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 35632, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "838d5ce1-89e1-4787-a0e2-5b4430a9ca35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T12:44:56.959Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017V9dyvG5Q7dkDRkD8kroun`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "decisions.yaml",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e73ab7cc-82f7-435c-ac0b-f0cef67d413f",
+  "isSidechain": false,
+  "requestId": "req_011CbBwzg8sQ2eqZ92Um6YQu",
+  "type": "assistant",
+  "uuid": "2afe94b1-0337-458d-a555-ebc97b7bc6f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UeeY8qu9h4Mh3p74sv5nc4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2328,
+      "cache_read_input_tokens": 32489,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2328,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 32489,
+          "cache_creation_input_tokens": 2328,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2328
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T12:44:56.979Z_
+
+<details><summary>↩ Tool result · `toolu_017V9dyvG5Q7dkDRkD8kroun`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/decisions.yaml\", \"content\": \"_next_id: 76\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 06:10 UTC\\n  summary: MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attention 配额\\n  rationale: 全局统一排序下 attention GQA groups importance 普遍高于 MLP groups，35% sparsity\\n    自然只剪 MLP（367 groups）。这是模型结构特征的正确反映，不应人为干预。MLP-level correlation (N=367) 足以验证 CKA→recoverability\\n    假设。50% sparsity 放 Phase 2 获取 attention-level 数据。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: primary\\n    result: running\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 13:31 UTC\\n  summary: 终止无效 GRPO，改用 SFT warmup → GRPO 两阶段恢复策略\\n  rationale: 35% 结构化剪枝后两个模型 accuracy 仅 0.15%（输出退化），GRPO 150 步 loss=0/grad_norm=0，无学习信号。frac_reward_zero_std\\n    ≈ 1.0 表明几乎所有 completion 得 0 reward，GRPO 无法计算有效 advantage。SFT warmup 用 ground truth\\n    数据先恢复基本能力再转 GRPO 是解决 reward desert 的标准做法。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: motivating_failure\\n    result: GRPO 150 步 loss=0, grad_norm=0; post-prune accuracy 0.15% for both models\\n  depends_on: []\\n- id: D003\\n  date: 2026-05-14 13:53 UTC\\n  summary: 暂缓 SFT warmup，优先审计剪枝实现正确性\\n  rationale: 两个不同剪枝策略产出精确相同的 accuracy（2/1319）统计上极不寻常，35% structured pruning 不应导致 7B\\n    模型完全崩溃。Reviewer 怀疑存在实现 bug（config 不匹配、全零层等）。若根因是代码问题，SFT warmup 是在错误基础上浪费算力。需先排除实现问题再决定恢复策略。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: audit_target\\n    result: both pruned models 0.15% accuracy, identical 2/1319\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 13:59 UTC\\n  summary: 修复 min_keep_mlp=4 导致的 per-layer 过度剪枝，重跑 MVP pipeline v3\\n  rationale: 根因确认：min_keep_mlp=4 允许单层 MLP 被剪至 14.3% capacity，全局排序集中破坏 early layers（0-6），两个模型均崩溃至\\n    0.15%。修复方案：min_keep_mlp 提升到 40% per layer + per-layer capacity floor。RASP scoring\\n    逻辑本身正常（产生了不同剪枝结构），核心假设仍可验证，只需收紧约束后重跑。同时补基线评估。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: root_cause_identified\\n    result: min_keep_mlp=4 causes early layer collapse to 14.3% MLP capacity\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 15:13 UTC\\n  summary: 放弃 35% sparsity 作为 MVP 目标，改用 20%/25% 双 sparsity 快速探测后选优跑 GRPO\\n  rationale: v3 证实 35% structured pruning 对 DeepSeek-R1-Distill-Qwen-7B 太激进（Standard\\n    0%, RASP 1%），即使 per-layer capacity floor ≥40% 也无法挽救。蒸馏模型冗余已被压缩，比 base 模型更脆弱。RASP\\n    hypothesis 未被 falsify——只是当前 sparsity 下无法测试恢复性。策略：先在 20%/25% 快速 prune+eval（~1h），选\\n    post-prune accuracy 最合适的 sparsity 集中投入 GRPO（~15h），避免浪费 GPU 在错误 sparsity 上。35%+SFT\\n    warmup 留待 Phase 2。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v3\\n    role: negative_result\\n    result: Standard 0% / RASP 1% at 33% actual sparsity, per-layer floor working\\n      correctly\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-14 17:06 UTC\\n  summary: 20% sparsity 下 RASP 29% vs Standard 1%，Scenario B 确认，GRPO 双 GPU 并行恢复对比\\n  rationale: RASP 20% post-prune accuracy 29% vs Standard 20% 仅 1%（p<0.0001），MLP 总容量完全相同（74.5%），差异纯粹在剪枝分布。CKA\\n    overlap scoring 保护了 layer 16-22 推理关键层。落入 Scenario B（最强叙事）：RASP 不仅预测 recoverability，pruning\\n    本身就保护推理能力。下一步 GRPO 双 GPU 并行（cuda:0 RASP, cuda:1 Standard），验证 recovery 差异。25% eval\\n    继续跑完收集 sparsity 阈值数据。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v4\\n    role: primary\\n    result: RASP_20=29% vs Standard_20=1%, p<0.0001\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-14 17:37 UTC\\n  summary: Kill 270h GRPO runs，用 max_completion=1024 + 1 epoch + 2000 samples 重启，目标\\n    <10h 完成\\n  rationale: 当前 GRPO 配置 max_completion_length=4096 导致 173s/step、总计 270h，超过 EMNLP deadline。GSM8K\\n    的 R1 推理链通常 200-800 tokens，4096 严重浪费。MVP 只需证明 recovery 趋势（ρ ≥ 0.4），1 epoch + 2000\\n    samples 足够看到信号。Standard 模型 1% 起点大概率触发 RewardDesertCallback，本身就是\\\"不可恢复\\\"的证据。预估新配置\\n    ~625 steps × ~43s/step ≈ 7.5h。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20\\n    role: kill_and_restart\\n    result: running_too_slow\\n  - exp_id: grpo_standard_20\\n    role: kill_and_restart\\n    result: running_too_slow\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-14 18:40 UTC\\n  summary: 正式更新 MVP 判定标准：从 per-group ρ ≥ 0.4 改为 model-level 显著性检验；扩大 eval 到 full GSM8K\\n    (1319 samples)\\n  rationale: 原 ρ ≥ 0.4 需要 per-head/per-group F(h) 与 recoverability 数据点（N≈92），但 v4\\n    实验是 model-level 对比（N=2），无法计算 Spearman ρ。Reviewer 建议改为：RASP-pruned model 在 matched\\n    sparsity + matched param count 下，post-prune accuracy 和/或 post-recovery accuracy\\n    显著优于 Standard-pruned model（p < 0.05）。post-prune 部分（29% vs 1%, p < 0.0001）已 pass。同时当前\\n    N=100 eval CI 太宽（±9pp），需扩到 full test set 1319 samples（CI ±2.4pp）。另：RewardDesertCallback\\n    在当前配置下不会提前终止（patience=500 steps = total steps），不影响实验但需修正论文叙事。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_fast\\n    role: recovery_test\\n    result: running\\n  - exp_id: grpo_standard_20_fast\\n    role: baseline\\n    result: running\\n  - exp_id: mvp_rasp_pipeline_v4\\n    role: pruning_eval\\n    result: post-prune 29% vs 1%\\n  depends_on:\\n  - D006\\n  - D007\\n- id: D009\\n  date: 2026-05-14 21:39 UTC\\n  summary: GRPO 1024-token 截断伪阴性：不接受 negative 结论，诊断性 eval + 准备 2048 重跑\\n  rationale: grpo_rasp_20_fast 和 grpo_standard_20_fast 全程 clipped_ratio=1.0，0 个 completion\\n    自然终止。DeepSeek-R1 的 think 推理链在 sampling (temp=0.7) 下远长于 greedy，剪枝后模型更冗长。1024 tokens\\n    不足以产出完整答案，导致 reward=0、grad_norm=0，GRPO 无学习信号。这是配置问题不是方法问题。需先做诊断性 eval（1024 tokens\\n    + temp=0.7）确认截断假说，再用 max_completion=2048 重跑 GRPO。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_fast\\n    role: recovery_test\\n    result: inconclusive (truncation artifact)\\n  - exp_id: grpo_standard_20_fast\\n    role: baseline\\n    result: inconclusive (truncation artifact)\\n  depends_on:\\n  - D007\\n  - D008\\n- id: D010\\n  date: 2026-05-14 21:40 UTC\\n  summary: 审批 Option A：max_completion_length=4096 重跑 GRPO 双实验，其余参数不变\\n  rationale: RASP 模型 post-prune 29% accuracy 证明它能解题，1024 截断是唯一阻碍。Option A 最快验证（~7h），失败再追加\\n    SFT warmup（Option B）。不需要同时调 lr/epochs 增加变量。2 GPU 空闲中，立即启动。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_fast\\n    role: predecessor\\n    result: inconclusive (truncation)\\n  - exp_id: grpo_standard_20_fast\\n    role: predecessor\\n    result: inconclusive (truncation)\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-14 22:56 UTC\\n  summary: 'D011: Kill standard GRPO 4096 (10步零梯度), 将GPU1转给RASP GRPO 4096立即启动'\\n  rationale: 'grpo_standard_20_4096 前10步: clipped_ratio=0.9938, grad_norm=0, completion_length=4089/4096,\\n    输出为重复数字无结构。Standard pruning 20%已摧毁模型生成连贯文本能力, GRPO无法恢复, 增加token长度无济于事。10步证据充分(与D009\\n    1024截断不同, 这次是能力丧失)。Kill后GPU1立即启动RASP GRPO 4096, 比等GPU0 baseline eval完成提前~2h。Standard\\n    10步数据保留为负对照证据。'\\n  related_experiments:\\n  - exp_id: grpo_standard_20_4096\\n    role: evidence\\n    result: 10步零梯度, clipped_ratio=0.99, 模型不可恢复\\n  - exp_id: grpo_rasp_20_4096\\n    role: next\\n    result: pending - MVP关键实验\\n  depends_on:\\n  - D010\\n  - D009\\n- id: D012\\n  date: 2026-05-14 22:56 UTC\\n  summary: 'D011: Kill grpo_standard_20_4096 early, start grpo_rasp_20_4096 on GPU1\\n    immediately'\\n  rationale: 10步数据确认Standard-pruned模型（1% accuracy）在4096 tokens下仍完全退化：clipped_ratio=0.9938,\\n    grad_norm=0, 输出为重复数字串。这不是截断问题而是模型本质退化，继续跑490步（~23h）不改变结论。Kill后释放GPU1立即启动RASP GRPO，比原计划（等GPU0\\n    baseline eval完成）提前~2h。Standard的失败本身是强力负对照：证明Standard pruning摧毁了GRPO恢复的前提条件。\\n  related_experiments:\\n  - exp_id: grpo_standard_20_4096\\n    role: negative_control\\n    result: 'confirmed unrecoverable at step 10: clipped_ratio=0.9938, grad_norm=0'\\n  - exp_id: grpo_rasp_20_4096\\n    role: mvp_critical\\n    result: pending launch on GPU1\\n  depends_on:\\n  - D009\\n  - D010\\n- id: D013\\n  date: 2026-05-14 23:33 UTC\\n  summary: 'D012: RASP GRPO 4096也零梯度, 根因是sampling下无EOS而非token长度. Kill后转SFT warmup→GRPO两阶段恢复'\\n  rationale: 'RASP模型greedy 29%但sampling(temp=0.7)下clipped_ratio=1.0/grad_norm=0/zero\\n    EOS. 剪枝破坏了概率分布导致sampling下无法收敛到EOS. GRPO依赖自主生成, 对严重剪枝模型先天不适用. SFT用teacher forcing可修复终止行为,\\n    然后GRPO在SFT基础上优化推理. 双GPU并行: RASP SFT + Standard SFT对照. SFT~2-3h, 比继续浪费24h GPU跑零梯度GRPO合理得多.\\n    Standard SFT预期仍然困难(1% accuracy残留能力极低), 将作为负对照.'\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_4096\\n    role: evidence\\n    result: 10步零梯度, clipped_ratio=1.0, sampling下无EOS\\n  - exp_id: grpo_standard_20_4096\\n    role: evidence\\n    result: D011确认不可恢复\\n  depends_on:\\n  - D011\\n  - D010\\n- id: D014\\n  date: 2026-05-14 23:35 UTC\\n  summary: 'D014: MVP PASS — 接受 post-prune 29% vs 1% 作为充分证据，GRPO recovery 降为 Phase\\n    2'\\n  rationale: D008 MVP claim 允许 \\\"post-prune 和/或 post-recovery accuracy 显著优于 Standard\\\"。Post-prune\\n    RASP 29% vs Standard 1%（p<0.0001, matched params/sparsity）远超 p<0.05 门槛。GRPO 4096\\n    双模型均 100% 截断零梯度（D013），根因是 DeepSeek-R1 sampling+temp=0.7 推理链无 EOS，非假设失败。继续追加 token\\n    长度风险高且时间成本大（48h+）。SFT warmup→GRPO 作为 Phase 2 第一个实验继续推进，为 story 增色但不阻塞 MVP。EMNLP\\n    DDL 11 天，必须立即进入 research 阶段。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_4096\\n    role: evidence\\n    result: negative (truncation, but confirms RASP 5x reward vs Standard)\\n  - exp_id: grpo_standard_20_4096\\n    role: negative_control\\n    result: negative (killed D011)\\n  - exp_id: grpo_rasp_20_fast\\n    role: evidence\\n    result: inconclusive (D009 truncation)\\n  - exp_id: grpo_standard_20_fast\\n    role: negative_control\\n    result: inconclusive (D009 truncation)\\n  - exp_id: mvp_rasp_pipeline_v4\\n    role: primary\\n    result: RASP 29% vs Standard 1% post-prune\\n  depends_on:\\n  - D013\\n  - D010\\n  - D009\\n  - D008\\n- id: D015\\n  date: 2026-05-15 00:59 UTC\\n  summary: SFT 结果 Standard>RASP 不改变方向，立即启动 GRPO Stage 2 作为决定性实验\\n  rationale: SFT Standard 64% > RASP 57% 看似威胁核心假设，但：(1) SFT 是 Stage 1 warmup 不是核心测试；(2)\\n    Claim 3 本来就预测 SFT 和 GRPO 对剪枝策略的偏好不同——SFT 偏好 Standard 反而是 Claim 3 的证据；(3) 真正的决定性实验是\\n    GRPO Stage 2。如果 GRPO 也显示 Standard ≥ RASP 则需要 pivot，但在此之前不改变方向。两卡空闲，紧急启动 GRPO Stage\\n    2。\\n  related_experiments:\\n  - exp_id: sft_rasp_20\\n    role: evidence\\n    result: 57% accuracy on 100 samples\\n  - exp_id: sft_standard_20\\n    role: evidence\\n    result: 64% accuracy on 100 samples, exceeds RASP\\n  depends_on: []\\n- id: D016\\n  date: 2026-05-15 01:56 UTC\\n  summary: 'D016: Dream dream_20260514T233950 分析完成。Best=4/6, Median=3/6, Worst=3/6。5\\n    个确认行动项 + 3 个观察项。加入 plan_015(α ablation P0), plan_016(inference speedup P1), plan_017(unstructured\\n    baseline P1)，扩展 plan_006 到 5 seeds。'\\n  rationale: 三档一致的结构性问题：α ablation(Critical×3)、single model、no inference speedup、multi-seed不足、scope\\n    overclaim。两档一致：missing related work(FANG/FuncNet)、CKA justification、unstructured\\n    baseline、per-layer floor confound。数据依赖项(RASP vs GRASPrune ranking、CKA predictivity)等\\n    GRPO 结果决定。Dream best case 可达 Weak Accept，但需要上述修补。不降级 venue 目标。\\n  related_experiments:\\n  - exp_id: grpo_stage2_rasp_20\\n    role: core\\n    result: RUNNING\\n  - exp_id: grpo_stage2_standard_20\\n    role: core\\n    result: RUNNING\\n  depends_on:\\n  - D015\\n- id: D017\\n  date: 2026-05-15 03:18 UTC\\n  summary: 'D017: Kill GRPO Stage 2 并以优化参数重启。max_completion_length 4096→1024, max_samples\\n    2000→1000。当前速度 38 天完成不可行（deadline 10 天），SFT 后 EOS 已修复使缩短 completion 安全。'\\n  rationale: GRPO Stage 2 每 step 1h51m，500 steps 需 38 天，远超 10 天 deadline。根因是 4096\\n    max_completion_length 的 generation 瓶颈。SFT warmup 后 EOS rate 99%、avg completion\\n    176 tokens，4096 是 SFT 前的防御性设置现已不需要。1024 提供 5.8x 平均长度的 headroom。max_samples 从 2000\\n    降到 1000 进一步缩短训练时间，1000 prompts 对 GRPO 足够。num_generations 需 Agent 确认当前值（W&B 显示\\n    4，Agent 说默认 8），如已是 4 则保持。预估加速到 ~2.4 天。\\n  related_experiments:\\n  - exp_id: grpo_stage2_rasp_20\\n    role: target\\n    result: RUNNING - too slow\\n  - exp_id: grpo_stage2_standard_20\\n    role: target\\n    result: RUNNING - too slow\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-15 05:45 UTC\\n  summary: 'D018: Reviewer 发现 Redundancy Paradox 叙事逻辑矛盾 + GQA=0 + Claim 2 scope 限定。intro\\n    说\\\"保留高 overlap\\\"但公式是\\\"剪掉高 overlap\\\"。20% sparsity 下仅 MLP 组被剪(0/112 attention GQA groups)，Claim\\n    2 scope 限定为 MLP groups。'\\n  rationale: Reviewer 深度分析发现：(1) introduction.tex L17 与 method.tex L79 矛盾——intro 称\\n    RASP 保留高 overlap 结构，但公式 S(h)=I(h)×(1-F)^α 明确惩罚高 F（高 overlap → 低 S → 被剪）。method.tex\\n    正确。(2) CKA 数据证实 MLP overlap ∈[0.879,0.997]，(1-F)^α 压缩到 Attn 的 1/5~1/50，使全局排序下\\n    MLP 必然被优先剪。(3) Claim 2 说 F(h) predicts recoverability，但在 20% sparsity 下只有 MLP\\n    groups 验证了这一点。需修正 intro + scope 限定 Claim 2 + 论文诚实交代剪枝分布。\\n  related_experiments:\\n  - exp_id: grpo_stage\\n\\n... [截断: 省略 50392 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 62392, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2afe94b1-0337-458d-a555-ebc97b7bc6f1",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "babec083-fb6c-45b8-9858-6bb50f8db3f0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 76\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 06:10 UTC\\\\n  summary: MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attention 配额\\\\n  rationale: 全局统一排序下 attention GQA groups importance 普遍高于 MLP groups，35% sparsity\\\\n    自然只剪 MLP（367 groups）。这是模型结构特征的正确反映，不应人为干预。MLP-level correlation (N=367) 足以验证 CKA→recoverability\\\\n    假设。50% sparsity 放 Phase 2 获取 attention-level 数据。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v2\\\\n    role: primary\\\\n    result: running\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 13:31 UTC\\\\n  summary: 终止无效 GRPO，改用 SFT warmup → GRPO 两阶段恢复策略\\\\n  rationale: 35% 结构化剪枝后两个模型 accuracy 仅 0.15%（输出退化），GRPO 150 步 loss=0/grad_norm=0，无学习信号。frac_reward_zero_std\\\\n    ≈ 1.0 表明几乎所有 completion 得 0 reward，GRPO 无法计算有效 advantage。SFT warmup 用 ground truth\\\\n    数据先恢复基本能力再转 GRPO 是解决 reward desert 的标准做法。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v2\\\\n    role: motivating_failure\\\\n    result: GRPO 150 步 loss=0, grad_norm=0; post-prune accuracy 0.15% for both models\\\\n  depends_on: []\\\\n- id: D003\\\\n  date: 2026-05-14 13:53 UTC\\\\n  summary: 暂缓 SFT warmup，优先审计剪枝实现正确性\\\\n  rationale: 两个不同剪枝策略产出精确相同的 accuracy（2/1319）统计上极不寻常，35% structured pruning 不应导致 7B\\\\n    模型完全崩溃。Reviewer 怀疑存在实现 bug（config 不匹配、全零层等）。若根因是代码问题，SFT warmup 是在错误基础上浪费算力。需先排除实现问题再决定恢复策略。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v2\\\\n    role: audit_target\\\\n    result: both pruned models 0.15% accuracy, identical 2/1319\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 13:59 UTC\\\\n  summary: 修复 min_keep_mlp=4 导致的 per-layer 过度剪枝，重跑 MVP pipeline v3\\\\n  rationale: 根因确认：min_keep_mlp=4 允许单层 MLP 被剪至 14.3% capacity，全局排序集中破坏 early layers（0-6），两个模型均崩溃至\\\\n    0.15%。修复方案：min_keep_mlp 提升到 40% per layer + per-layer capacity floor。RASP scoring\\\\n    逻辑本身正常（产生了不同剪枝结构），核心假设仍可验证，只需收紧约束后重跑。同时补基线评估。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v2\\\\n    role: root_cause_identified\\\\n    result: min_keep_mlp=4 causes early layer collapse to 14.3% MLP capacity\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 15:13 UTC\\\\n  summary: 放弃 35% sparsity 作为 MVP 目标，改用 20%/25% 双 sparsity 快速探测后选优跑 GRPO\\\\n  rationale: v3 证实 35% structured pruning 对 DeepSeek-R1-Distill-Qwen-7B 太激进（Standard\\\\n    0%, RASP 1%），即使 per-layer capacity floor ≥40% 也无法挽救。蒸馏模型冗余已被压缩，比 base 模型更脆弱。RASP\\\\n    hypothesis 未被 falsify——只是当前 sparsity 下无法测试恢复性。策略：先在 20%/25% 快速 prune+eval（~1h），选\\\\n    post-prune accuracy 最合适的 sparsity 集中投入 GRPO（~15h），避免浪费 GPU 在错误 sparsity 上。35%+SFT\\\\n    warmup 留待 Phase 2。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v3\\\\n    role: negative_result\\\\n    result: Standard 0% / RASP 1% at 33% actual sparsity, per-layer floor working\\\\n      correctly\\\\n  depends_on:\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-14 17:06 UTC\\\\n  summary: 20% sparsity 下 RASP 29% vs Standard 1%，Scenario B 确认，GRPO 双 GPU 并行恢复对比\\\\n  rationale: RASP 20% post-prune accuracy 29% vs Standard 20% 仅 1%（p<0.0001），MLP 总容量完全相同（74.5%），差异纯粹在剪枝分布。CKA\\\\n    overlap scoring 保护了 layer 16-22 推理关键层。落入 Scenario B（最强叙事）：RASP 不仅预测 recoverability，pruning\\\\n    本身就保护推理能力。下一步 GRPO 双 GPU 并行（cuda:0 RASP, cuda:1 Standard），验证 recovery 差异。25% eval\\\\n    继续跑完收集 sparsity 阈值数据。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v4\\\\n    role: primary\\\\n    result: RASP_20=29% vs Standard_20=1%, p<0.0001\\\\n  depends_on:\\\\n  - D005\\\\n- id: D007\\\\n  date: 2026-05-14 17:37 UTC\\\\n  summary: Kill 270h GRPO runs，用 max_completion=1024 + 1 epoch + 2000 samples 重启，目标\\\\n    <10h 完成\\\\n  rationale: 当前 GRPO 配置 max_completion_length=4096 导致 173s/step、总计 270h，超过 EMNLP deadline。GSM8K\\\\n    的 R1 推理链通常 200-800 tokens，4096 严重浪费。MVP 只需证明 recovery 趋势（ρ ≥ 0.4），1 epoch + 2000\\\\n    samples 足够看到信号。Standard 模型 1% 起点大概率触发 RewardDesertCallback，本身就是\\\\\\\"不可恢复\\\\\\\"的证据。预估新配置\\\\n    ~625 steps × ~43s/step ≈ 7.5h。\\\\n  related_experiments:\\\\n  - exp_id: grpo_rasp_20\\\\n    role: kill_and_restart\\\\n    result: running_too_slow\\\\n  - exp_id: grpo_standard_20\\\\n    role: kill_and_restart\\\\n    result: running_too_slow\\\\n  depends_on:\\\\n  - D006\\\\n- id: D008\\\\n  date: 2026-05-14 18:40 UTC\\\\n  summary: 正式更新 MVP 判定标准：从 per-group ρ ≥ 0.4 改为 model-level 显著性检验；扩大 eval 到 full GSM8K\\\\n    (1319 samples)\\\\n  rationale: 原 ρ ≥ 0.4 需要 per-head/per-group F(h) 与 recoverability 数据点（N≈92），但 v4\\\\n    实验是 model-level 对比（N=2），无法计算 Spearman ρ。Reviewer 建议改为：RASP-pruned model 在 matched\\\\n    sparsity + matched param count 下，post-prune accuracy 和/或 post-recovery accuracy\\\\n    显著优于 Standard-pruned model（p < 0.05）。post-prune 部分（29% vs 1%, p < 0.0001）已 pass。同时当前\\\\n    N=100 eval CI 太宽（±9pp），需扩到 full test set 1319 samples（CI ±2.4pp）。另：RewardDesertCallback\\\\n    在当前配置下不会提前终止（patience=500 steps = total steps），不影响实验但需修正论文叙事。\\\\n  related_experiments:\\\\n  - exp_id: grpo_rasp_20_fast\\\\n    role: recovery_test\\\\n    result: running\\\\n  - exp_id: grpo_standard_20_fast\\\\n    role: baseline\\\\n    result: running\\\\n  - exp_id: mvp_rasp_pipeline_v4\\\\n    role: pruning_eval\\\\n    result: post-prune 29% vs 1%\\\\n  depends_on:\\\\n  - D006\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-14 21:39 UTC\\\\n  summary: GRPO 1024-token 截断伪阴性：不接受 negative 结论，诊断性 eval + 准备 2048 重跑\\\\n  rationale: grpo_rasp_20_fast 和 grpo_standard_20_fast 全程 clipped_ratio=1.0，0 个 completion\\\\n    自然终止。DeepSeek-R1 的 think 推理链在 sampling (temp=0.7) 下远长于 greedy，剪枝后模型更冗长。1024 tokens\\\\n    不足以产出完整答案，导致 reward=0、grad_norm=0，GRPO 无学习信号。这是配置问题不是方法问题。需先做诊断性 eval（1024 tokens\\\\n    + temp=0.7）确认截断假说，再用 max_completion=2048 重跑 GRPO。\\\\n  related_experiments:\\\\n  - exp_id: grpo_rasp_20_fast\\\\n    role: recovery_test\\\\n    result: inconclusive (truncation artifact)\\\\n  - exp_id: grpo_standard_20_fast\\\\n    role: baseline\\\\n    result: inconclusive (truncation artifact)\\\\n  depends_on:\\\\n  - D007\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-14 21:40 UTC\\\\n  summary: 审批 Option A：max_completion_length=4096 重跑 GRPO 双实验，其余参数不变\\\\n  rationale: RASP 模型 post-prune 29% accuracy 证明它能解题，1024 截断是唯一阻碍。Option A 最快验证（~7h），失败再追加\\\\n    SFT warmup（Option B）。不需要同时调 lr/epochs 增加变量。2 GPU 空闲中，立即启动。\\\\n  related_experiments:\\\\n  - exp_id: grpo_rasp_20_fast\\\\n    role: predecessor\\\\n    result: inconclusive (truncation)\\\\n  - exp_id: grpo_standard_20_fast\\\\n    role: predecessor\\\\n    result: inconclusive (truncation)\\\\n  depends_on:\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-14 22:56 UTC\\\\n  summary: 'D011: Kill standard GRPO 4096 (10步零梯度), 将GPU1转给RASP GRPO 4096立即启动'\\\\n  rationale: 'grpo_standard_20_4096 前10步: clipped_ratio=0.9938, grad_norm=0, completion_length=4089/4096,\\\\n    输出为重复数字无结构。Standard pruning 20%已摧毁模型生成连贯文本能力, GRPO无法恢复, 增加token长度无济于事。10步证据充分(与D009\\\\n    1024截断不同, 这次是能力丧失)。Kill后GPU1立即启动RASP GRPO 4096, 比等GPU0 baseline eval完成提前~2h。Standard\\\\n    10步数据保留为负对照证据。'\\\\n  related_experiments:\\\\n  - exp_id: grpo_standard_20_4096\\\\n    role: evidence\\\\n    result: 10步零梯度, clipped_ratio=0.99, 模型不可恢复\\\\n  - exp_id: grpo_rasp_20_4096\\\\n    role: next\\\\n    result: pending - MVP关键实验\\\\n  depends_on:\\\\n  - D010\\\\n  - D009\\\\n- id: D012\\\\n  date: 2026-05-14 22:56 UTC\\\\n  summary: 'D011: Kill grpo_standard_20_4096 early, start grpo_rasp_20_4096 on GPU1\\\\n    immediately'\\\\n  rationale: 10步数据确认Standard-pruned模型（1% accuracy）在4096 tokens下仍完全退化：clipped_ratio=0.9938,\\\\n    grad_norm=0, 输出为重复数字串。这不是截断问题而是模型本质退化，继续跑490步（~23h）不改变结论。Kill后释放GPU1立即启动RASP GRPO，比原计划（等GPU0\\\\n    baseline eval完成）提前~2h。Standard的失败本身是强力负对照：证明Standard pruning摧毁了GRPO恢复的前提条件。\\\\n  related_experiments:\\\\n  - exp_id: grpo_standard_20_4096\\\\n    role: negative_control\\\\n    result: 'confirmed unrecoverable at step 10: clipped_ratio=0.9938, grad_norm=0'\\\\n  - exp_id: grpo_rasp_20_4096\\\\n    role: mvp_critical\\\\n    result: pending launch on GPU1\\\\n  depends_on:\\\\n  - D009\\\\n  - D010\\\\n- id: D013\\\\n  date: 2026-05-14 23:33 UTC\\\\n  summary: 'D012: RASP GRPO 4096也零梯度, 根因是sampling下无EOS而非token长度. Kill后转SFT warmup→GRPO两阶段恢复'\\\\n  rationale: 'RASP模型greedy 29%但sampling(temp=0.7)下clipped_ratio=1.0/grad_norm=0/zero\\\\n    EOS. 剪枝破坏了概率分布导致sampling下无法收敛到EOS. GRPO依赖自主生成, 对严重剪枝模型先天不适用. SFT用teacher forcing可修复终止行为,\\\\n    然后GRPO在SFT基础上优化推理. 双GPU并行: RASP SFT + Standard SFT对照. SFT~2-3h, 比继续浪费24h GPU跑零梯度GRPO合理得多.\\\\n    Standard SFT预期仍然困难(1% accuracy残留能力极低), 将作为负对照.'\\\\n  related_experiments:\\\\n  - exp_id: grpo_rasp_20_4096\\\\n    role: evidence\\\\n    result: 10步零梯度, clipped_ratio=1.0, sampling下无EOS\\\\n  - exp_id: grpo_standard_20_4096\\\\n    role: evidence\\\\n    result: D011确认不可恢复\\\\n  depends_on:\\\\n  - D011\\\\n  - D010\\\\n- id: D014\\\\n  date: 2026-05-14 23:35 UTC\\\\n  summary: 'D014: MVP PASS — 接受 post-prune 29% vs 1% 作为充分证据，GRPO recovery 降为 Phase\\\\n    2'\\\\n  rationale: D008 MVP claim 允许 \\\\\\\"post-prune 和/或 post-recovery accuracy 显著优于 Standard\\\\\\\"。Post-prune\\\\n    RASP 29% vs Standard 1%（p<0.0001, matched params/sparsity）远超 p<0.05 门槛。GRPO 4096\\\\n    双模型均 100% 截断零梯度（D013），根因是 DeepSeek-R1 sampling+temp=0.7 推理链无 EOS，非假设失败。继续追加 token\\\\n    长度风险高且时间成本大（48h+）。SFT warmup→GRPO 作为 Phase 2 第一个实验继续推进，为 story 增色但不阻塞 MVP。EMNLP\\\\n    DDL 11 天，必须立即进入 research 阶段。\\\\n  related_experiments:\\\\n  - exp_id: grpo_rasp_20_4096\\\\n    role: evidence\\\\n    result: negative (truncation, but confirms RASP 5x reward vs Standard)\\\\n  - exp_id: grpo_standard_20_4096\\\\n    role: negative_control\\\\n    result: negative (killed D011)\\\\n  - exp_id: grpo_rasp_20_fast\\\\n    role: evidence\\\\n    result: inconclusive (D009 truncation)\\\\n  - exp_id: grpo_standard_20_fast\\\\n    role: negative_control\\\\n    result: inconclusive (D009 truncation)\\\\n  - exp_id: mvp_rasp_pipeline_v4\\\\n    role: primary\\\\n    result: RASP 29% vs Standard 1% post-prune\\\\n  depends_on:\\\\n  - D013\\\\n  - D010\\\\n  - D009\\\\n  - D008\\\\n- id: D015\\\\n  date: 2026-05-15 00:59 UTC\\\\n  summary: SFT 结果 Standard>RASP 不改变方向，立即启动 GRPO Stage 2 作为决定性实验\\\\n  rationale: SFT Standard 64% > RASP 57% 看似威胁核心假设，但：(1) SFT 是 Stage 1 warmup 不是核心测试；(2)\\\\n    Claim 3 本来就预测 SFT 和 GRPO 对剪枝策略的偏好不同——SFT 偏好 Standard 反而是 Claim 3 的证据；(3) 真正的决定性实验是\\\\n    GRPO Stage 2。如果 GRPO 也显示 Standard ≥ RASP 则需要 pivot，但在此之前不改变方向。两卡空闲，紧急启动 GRPO Stage\\\\n    2。\\\\n  related_experiments:\\\\n  - exp_id: sft_rasp_20\\\\n    role: evidence\\\\n    result: 57% accuracy on 100 samples\\\\n  - exp_id: sft_standard_20\\\\n    role: evidence\\\\n    result: 64% accuracy on 100 samples, exceeds RASP\\\\n  depends_on: []\\\\n- id: D016\\\\n  date: 2026-05-15 01:56 UTC\\\\n  summary: 'D016: Dream dream_20260514T233950 分析完成。Best=4/6, Median=3/6, Worst=3/6。5\\\\n    个确认行动项 + 3 个观察项。加入 plan_015(α ablation P0), plan_016(inference speedup P1), plan_017(unstructured\\\\n    baseline P1)，扩展 plan_006 到 5 seeds。'\\\\n  rationale: 三档一致的结构性问题：α ablation(Critical×3)、single model、no inference speedup、multi-seed不足、scope\\\\n    overclaim。两档一致：missing related work(FANG/FuncNet)、CKA justification、unstructured\\\\n    baseline、per-layer floor confound。数据依赖项(RASP vs GRASPrune ranking、CKA predictivity)等\\\\n    GRPO 结果决定。Dream best case 可达 Weak Accept，但需要上述修补。不降级 venue 目标。\\\\n  related_experiments:\\\\n  - exp_id: grpo_stage2_rasp_20\\\\n    role: core\\\\n    result: RUNNING\\\\n  - exp_id: grpo_stage2_standard_20\\\\n    role: core\\\\n    result: RUNNING\\\\n  depends_on:\\\\n  - D015\\\\n- id: D017\\\\n  date: 2026-05-15 03:18 UTC\\\\n  summary: 'D017: Kill GRPO Stage 2 并以优化参数重启。max_completion_length 4096→1024, max_samples\\\\n    2000→1000。当前速度 38 天完成不可行（deadline 10 天），SFT 后 EOS 已修复使缩短 completion 安全。'\\\\n  rationale: GRPO Stage 2 每 step 1h51m，500 steps 需 38 天，远超 10 天 deadline。根因是 4096\\\\n    max_completion_length 的 generation 瓶颈。SFT warmup 后 EOS rate 99%、avg completion\\\\n    176 tokens，4096 是 SFT 前的防御性设置现已不需要。1024 提供 5.8x 平均长度的 headroom。max_samples 从 2000\\\\n    降到 1000 进一步缩短训练时间，1000 prompts 对 GRPO 足够。num_generations 需 Agent 确认当前值（W&B 显示\\\\n    4，Agent 说默认 8），如已是 4 则保持。预估加速到 ~2.4 天。\\\\n  related_experiments:\\\\n  - exp_id: grpo_stage2_rasp_20\\\\n    role: target\\\\n    result: RUNNING - too slow\\\\n  - exp_id: grpo_stage2_standard_20\\\\n    role: target\\\\n    result: RUNNING - too slow\\\\n  depends_on:\\\\n  - D015\\\\n  - D016\\\\n- id: D018\\\\n  date: 2026-05-15 05:45 UTC\\\\n  summary: 'D018: Reviewer 发现 Redundancy Paradox 叙事逻辑矛盾 + GQA=0 + Claim 2 scope 限定。intro\\\\n    说\\\\\\\"保留高 overlap\\\\\\\"但公式是\\\\\\\"剪掉高 overlap\\\\\\\"。20% sparsity 下仅 MLP 组被剪(0/112 attention GQA groups)，Claim\\\\n    2 scope 限定为 MLP groups。'\\\\n  rationale: Reviewer 深度分析发现：(1) introduction.tex L17 与 method.tex L79 矛盾——intro 称\\\\n    RASP 保留高 overlap 结构，但公式 S(h)=I(h)×(1-F)^α 明确惩罚高 F（高 overlap → 低 S → 被剪）。method.tex\\\\n    正确。(2) CKA 数据证实 MLP overlap ∈[0.879,0.997]，(1-F)^α 压缩到 Attn 的 1/5~1/50，使全局排序下\\\\n    MLP 必然被优先剪。(3) Claim 2 说 F(h) predicts recoverability，但在 20% sparsity 下只有 MLP\\\\n    groups 验证了这一点。需修正 intro + scope 限定 Claim 2 + 论文诚实交代剪枝分布。\\\\n  related_experiments:\\\\n  - exp_id: grpo_stage\\\\n\\\\n... [截断: 省略 50392 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 62392, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/decisions.yaml\", \"content\": \"_next_id: 76\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 06:10 UTC\\n  summary: MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attention 配额\\n  rationale: 全局统一排序下 attention GQA groups importance 普遍高于 MLP groups，35% sparsity\\n    自然只剪 MLP（367 groups）。这是模型结构特征的正确反映，不应人为干预。MLP-level correlation (N=367) 足以验证 CKA→recoverability\\n    假设。50% sparsity 放 Phase 2 获取 attention-level 数据。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: primary\\n    result: running\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 13:31 UTC\\n  summary: 终止无效 GRPO，改用 SFT warmup → GRPO 两阶段恢复策略\\n  rationale: 35% 结构化剪枝后两个模型 accuracy 仅 0.15%（输出退化），GRPO 150 步 loss=0/grad_norm=0，无学习信号。frac_reward_zero_std\\n    ≈ 1.0 表明几乎所有 completion 得 0 reward，GRPO 无法计算有效 advantage。SFT warmup 用 ground truth\\n    数据先恢复基本能力再转 GRPO 是解决 reward desert 的标准做法。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: motivating_failure\\n    result: GRPO 150 步 loss=0, grad_norm=0; post-prune accuracy 0.15% for both models\\n  depends_on: []\\n- id: D003\\n  date: 2026-05-14 13:53 UTC\\n  summary: 暂缓 SFT warmup，优先审计剪枝实现正确性\\n  rationale: 两个不同剪枝策略产出精确相同的 accuracy（2/1319）统计上极不寻常，35% structured pruning 不应导致 7B\\n    模型完全崩溃。Reviewer 怀疑存在实现 bug（config 不匹配、全零层等）。若根因是代码问题，SFT warmup 是在错误基础上浪费算力。需先排除实现问题再决定恢复策略。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: audit_target\\n    result: both pruned models 0.15% accuracy, identical 2/1319\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 13:59 UTC\\n  summary: 修复 min_keep_mlp=4 导致的 per-layer 过度剪枝，重跑 MVP pipeline v3\\n  rationale: 根因确认：min_keep_mlp=4 允许单层 MLP 被剪至 14.3% capacity，全局排序集中破坏 early layers（0-6），两个模型均崩溃至\\n    0.15%。修复方案：min_keep_mlp 提升到 40% per layer + per-layer capacity floor。RASP scoring\\n    逻辑本身正常（产生了不同剪枝结构），核心假设仍可验证，只需收紧约束后重跑。同时补基线评估。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: root_cause_identified\\n    result: min_keep_mlp=4 causes early layer collapse to 14.3% MLP capacity\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 15:13 UTC\\n  summary: 放弃 35% sparsity 作为 MVP 目标，改用 20%/25% 双 sparsity 快速探测后选优跑 GRPO\\n  rationale: v3 证实 35% structured pruning 对 DeepSeek-R1-Distill-Qwen-7B 太激进（Standard\\n    0%, RASP 1%），即使 per-layer capacity floor ≥40% 也无法挽救。蒸馏模型冗余已被压缩，比 base 模型更脆弱。RASP\\n    hypothesis 未被 falsify——只是当前 sparsity 下无法测试恢复性。策略：先在 20%/25% 快速 prune+eval（~1h），选\\n    post-prune accuracy 最合适的 sparsity 集中投入 GRPO（~15h），避免浪费 GPU 在错误 sparsity 上。35%+SFT\\n    warmup 留待 Phase 2。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v3\\n    role: negative_result\\n    result: Standard 0% / RASP 1% at 33% actual sparsity, per-layer floor working\\n      correctly\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-14 17:06 UTC\\n  summary: 20% sparsity 下 RASP 29% vs Standard 1%，Scenario B 确认，GRPO 双 GPU 并行恢复对比\\n  rationale: RASP 20% post-prune accuracy 29% vs Standard 20% 仅 1%（p<0.0001），MLP 总容量完全相同（74.5%），差异纯粹在剪枝分布。CKA\\n    overlap scoring 保护了 layer 16-22 推理关键层。落入 Scenario B（最强叙事）：RASP 不仅预测 recoverability，pruning\\n    本身就保护推理能力。下一步 GRPO 双 GPU 并行（cuda:0 RASP, cuda:1 Standard），验证 recovery 差异。25% eval\\n    继续跑完收集 sparsity 阈值数据。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v4\\n    role: primary\\n    result: RASP_20=29% vs Standard_20=1%, p<0.0001\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-14 17:37 UTC\\n  summary: Kill 270h GRPO runs，用 max_completion=1024 + 1 epoch + 2000 samples 重启，目标\\n    <10h 完成\\n  rationale: 当前 GRPO 配置 max_completion_length=4096 导致 173s/step、总计 270h，超过 EMNLP deadline。GSM8K\\n    的 R1 推理链通常 200-800 tokens，4096 严重浪费。MVP 只需证明 recovery 趋势（ρ ≥ 0.4），1 epoch + 2000\\n    samples 足够看到信号。Standard 模型 1% 起点大概率触发 RewardDesertCallback，本身就是\\\"不可恢复\\\"的证据。预估新配置\\n    ~625 steps × ~43s/step ≈ 7.5h。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20\\n    role: kill_and_restart\\n    result: running_too_slow\\n  - exp_id: grpo_standard_20\\n    role: kill_and_restart\\n    result: running_too_slow\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-14 18:40 UTC\\n  summary: 正式更新 MVP 判定标准：从 per-group ρ ≥ 0.4 改为 model-level 显著性检验；扩大 eval 到 full GSM8K\\n    (1319 samples)\\n  rationale: 原 ρ ≥ 0.4 需要 per-head/per-group F(h) 与 recoverability 数据点（N≈92），但 v4\\n    实验是 model-level 对比（N=2），无法计算 Spearman ρ。Reviewer 建议改为：RASP-pruned model 在 matched\\n    sparsity + matched param count 下，post-prune accuracy 和/或 post-recovery accuracy\\n    显著优于 Standard-pruned model（p < 0.05）。post-prune 部分（29% vs 1%, p < 0.0001）已 pass。同时当前\\n    N=100 eval CI 太宽（±9pp），需扩到 full test set 1319 samples（CI ±2.4pp）。另：RewardDesertCallback\\n    在当前配置下不会提前终止（patience=500 steps = total steps），不影响实验但需修正论文叙事。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_fast\\n    role: recovery_test\\n    result: running\\n  - exp_id: grpo_standard_20_fast\\n    role: baseline\\n    result: running\\n  - exp_id: mvp_rasp_pipeline_v4\\n    role: pruning_eval\\n    result: post-prune 29% vs 1%\\n  depends_on:\\n  - D006\\n  - D007\\n- id: D009\\n  date: 2026-05-14 21:39 UTC\\n  summary: GRPO 1024-token 截断伪阴性：不接受 negative 结论，诊断性 eval + 准备 2048 重跑\\n  rationale: grpo_rasp_20_fast 和 grpo_standard_20_fast 全程 clipped_ratio=1.0，0 个 completion\\n    自然终止。DeepSeek-R1 的 think 推理链在 sampling (temp=0.7) 下远长于 greedy，剪枝后模型更冗长。1024 tokens\\n    不足以产出完整答案，导致 reward=0、grad_norm=0，GRPO 无学习信号。这是配置问题不是方法问题。需先做诊断性 eval（1024 tokens\\n    + temp=0.7）确认截断假说，再用 max_completion=2048 重跑 GRPO。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_fast\\n    role: recovery_test\\n    result: inconclusive (truncation artifact)\\n  - exp_id: grpo_standard_20_fast\\n    role: baseline\\n    result: inconclusive (truncation artifact)\\n  depends_on:\\n  - D007\\n  - D008\\n- id: D010\\n  date: 2026-05-14 21:40 UTC\\n  summary: 审批 Option A：max_completion_length=4096 重跑 GRPO 双实验，其余参数不变\\n  rationale: RASP 模型 post-prune 29% accuracy 证明它能解题，1024 截断是唯一阻碍。Option A 最快验证（~7h），失败再追加\\n    SFT warmup（Option B）。不需要同时调 lr/epochs 增加变量。2 GPU 空闲中，立即启动。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_fast\\n    role: predecessor\\n    result: inconclusive (truncation)\\n  - exp_id: grpo_standard_20_fast\\n    role: predecessor\\n    result: inconclusive (truncation)\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-14 22:56 UTC\\n  summary: 'D011: Kill standard GRPO 4096 (10步零梯度), 将GPU1转给RASP GRPO 4096立即启动'\\n  rationale: 'grpo_standard_20_4096 前10步: clipped_ratio=0.9938, grad_norm=0, completion_length=4089/4096,\\n    输出为重复数字无结构。Standard pruning 20%已摧毁模型生成连贯文本能力, GRPO无法恢复, 增加token长度无济于事。10步证据充分(与D009\\n    1024截断不同, 这次是能力丧失)。Kill后GPU1立即启动RASP GRPO 4096, 比等GPU0 baseline eval完成提前~2h。Standard\\n    10步数据保留为负对照证据。'\\n  related_experiments:\\n  - exp_id: grpo_standard_20_4096\\n    role: evidence\\n    result: 10步零梯度, clipped_ratio=0.99, 模型不可恢复\\n  - exp_id: grpo_rasp_20_4096\\n    role: next\\n    result: pending - MVP关键实验\\n  depends_on:\\n  - D010\\n  - D009\\n- id: D012\\n  date: 2026-05-14 22:56 UTC\\n  summary: 'D011: Kill grpo_standard_20_4096 early, start grpo_rasp_20_4096 on GPU1\\n    immediately'\\n  rationale: 10步数据确认Standard-pruned模型（1% accuracy）在4096 tokens下仍完全退化：clipped_ratio=0.9938,\\n    grad_norm=0, 输出为重复数字串。这不是截断问题而是模型本质退化，继续跑490步（~23h）不改变结论。Kill后释放GPU1立即启动RASP GRPO，比原计划（等GPU0\\n    baseline eval完成）提前~2h。Standard的失败本身是强力负对照：证明Standard pruning摧毁了GRPO恢复的前提条件。\\n  related_experiments:\\n  - exp_id: grpo_standard_20_4096\\n    role: negative_control\\n    result: 'confirmed unrecoverable at step 10: clipped_ratio=0.9938, grad_norm=0'\\n  - exp_id: grpo_rasp_20_4096\\n    role: mvp_critical\\n    result: pending launch on GPU1\\n  depends_on:\\n  - D009\\n  - D010\\n- id: D013\\n  date: 2026-05-14 23:33 UTC\\n  summary: 'D012: RASP GRPO 4096也零梯度, 根因是sampling下无EOS而非token长度. Kill后转SFT warmup→GRPO两阶段恢复'\\n  rationale: 'RASP模型greedy 29%但sampling(temp=0.7)下clipped_ratio=1.0/grad_norm=0/zero\\n    EOS. 剪枝破坏了概率分布导致sampling下无法收敛到EOS. GRPO依赖自主生成, 对严重剪枝模型先天不适用. SFT用teacher forcing可修复终止行为,\\n    然后GRPO在SFT基础上优化推理. 双GPU并行: RASP SFT + Standard SFT对照. SFT~2-3h, 比继续浪费24h GPU跑零梯度GRPO合理得多.\\n    Standard SFT预期仍然困难(1% accuracy残留能力极低), 将作为负对照.'\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_4096\\n    role: evidence\\n    result: 10步零梯度, clipped_ratio=1.0, sampling下无EOS\\n  - exp_id: grpo_standard_20_4096\\n    role: evidence\\n    result: D011确认不可恢复\\n  depends_on:\\n  - D011\\n  - D010\\n- id: D014\\n  date: 2026-05-14 23:35 UTC\\n  summary: 'D014: MVP PASS — 接受 post-prune 29% vs 1% 作为充分证据，GRPO recovery 降为 Phase\\n    2'\\n  rationale: D008 MVP claim 允许 \\\"post-prune 和/或 post-recovery accuracy 显著优于 Standard\\\"。Post-prune\\n    RASP 29% vs Standard 1%（p<0.0001, matched params/sparsity）远超 p<0.05 门槛。GRPO 4096\\n    双模型均 100% 截断零梯度（D013），根因是 DeepSeek-R1 sampling+temp=0.7 推理链无 EOS，非假设失败。继续追加 token\\n    长度风险高且时间成本大（48h+）。SFT warmup→GRPO 作为 Phase 2 第一个实验继续推进，为 story 增色但不阻塞 MVP。EMNLP\\n    DDL 11 天，必须立即进入 research 阶段。\\n  related_experiments:\\n  - exp_id: grpo_rasp_20_4096\\n    role: evidence\\n    result: negative (truncation, but confirms RASP 5x reward vs Standard)\\n  - exp_id: grpo_standard_20_4096\\n    role: negative_control\\n    result: negative (killed D011)\\n  - exp_id: grpo_rasp_20_fast\\n    role: evidence\\n    result: inconclusive (D009 truncation)\\n  - exp_id: grpo_standard_20_fast\\n    role: negative_control\\n    result: inconclusive (D009 truncation)\\n  - exp_id: mvp_rasp_pipeline_v4\\n    role: primary\\n    result: RASP 29% vs Standard 1% post-prune\\n  depends_on:\\n  - D013\\n  - D010\\n  - D009\\n  - D008\\n- id: D015\\n  date: 2026-05-15 00:59 UTC\\n  summary: SFT 结果 Standard>RASP 不改变方向，立即启动 GRPO Stage 2 作为决定性实验\\n  rationale: SFT Standard 64% > RASP 57% 看似威胁核心假设，但：(1) SFT 是 Stage 1 warmup 不是核心测试；(2)\\n    Claim 3 本来就预测 SFT 和 GRPO 对剪枝策略的偏好不同——SFT 偏好 Standard 反而是 Claim 3 的证据；(3) 真正的决定性实验是\\n    GRPO Stage 2。如果 GRPO 也显示 Standard ≥ RASP 则需要 pivot，但在此之前不改变方向。两卡空闲，紧急启动 GRPO Stage\\n    2。\\n  related_experiments:\\n  - exp_id: sft_rasp_20\\n    role: evidence\\n    result: 57% accuracy on 100 samples\\n  - exp_id: sft_standard_20\\n    role: evidence\\n    result: 64% accuracy on 100 samples, exceeds RASP\\n  depends_on: []\\n- id: D016\\n  date: 2026-05-15 01:56 UTC\\n  summary: 'D016: Dream dream_20260514T233950 分析完成。Best=4/6, Median=3/6, Worst=3/6。5\\n    个确认行动项 + 3 个观察项。加入 plan_015(α ablation P0), plan_016(inference speedup P1), plan_017(unstructured\\n    baseline P1)，扩展 plan_006 到 5 seeds。'\\n  rationale: 三档一致的结构性问题：α ablation(Critical×3)、single model、no inference speedup、multi-seed不足、scope\\n    overclaim。两档一致：missing related work(FANG/FuncNet)、CKA justification、unstructured\\n    baseline、per-layer floor confound。数据依赖项(RASP vs GRASPrune ranking、CKA predictivity)等\\n    GRPO 结果决定。Dream best case 可达 Weak Accept，但需要上述修补。不降级 venue 目标。\\n  related_experiments:\\n  - exp_id: grpo_stage2_rasp_20\\n    role: core\\n    result: RUNNING\\n  - exp_id: grpo_stage2_standard_20\\n    role: core\\n    result: RUNNING\\n  depends_on:\\n  - D015\\n- id: D017\\n  date: 2026-05-15 03:18 UTC\\n  summary: 'D017: Kill GRPO Stage 2 并以优化参数重启。max_completion_length 4096→1024, max_samples\\n    2000→1000。当前速度 38 天完成不可行（deadline 10 天），SFT 后 EOS 已修复使缩短 completion 安全。'\\n  rationale: GRPO Stage 2 每 step 1h51m，500 steps 需 38 天，远超 10 天 deadline。根因是 4096\\n    max_completion_length 的 generation 瓶颈。SFT warmup 后 EOS rate 99%、avg completion\\n    176 tokens，4096 是 SFT 前的防御性设置现已不需要。1024 提供 5.8x 平均长度的 headroom。max_samples 从 2000\\n    降到 1000 进一步缩短训练时间，1000 prompts 对 GRPO 足够。num_generations 需 Agent 确认当前值（W&B 显示\\n    4，Agent 说默认 8），如已是 4 则保持。预估加速到 ~2.4 天。\\n  related_experiments:\\n  - exp_id: grpo_stage2_rasp_20\\n    role: target\\n    result: RUNNING - too slow\\n  - exp_id: grpo_stage2_standard_20\\n    role: target\\n    result: RUNNING - too slow\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-15 05:45 UTC\\n  summary: 'D018: Reviewer 发现 Redundancy Paradox 叙事逻辑矛盾 + GQA=0 + Claim 2 scope 限定。intro\\n    说\\\"保留高 overlap\\\"但公式是\\\"剪掉高 overlap\\\"。20% sparsity 下仅 MLP 组被剪(0/112 attention GQA groups)，Claim\\n    2 scope 限定为 MLP groups。'\\n  rationale: Reviewer 深度分析发现：(1) introduction.tex L17 与 method.tex L79 矛盾——intro 称\\n    RASP 保留高 overlap 结构，但公式 S(h)=I(h)×(1-F)^α 明确惩罚高 F（高 overlap → 低 S → 被剪）。method.tex\\n    正确。(2) CKA 数据证实 MLP overlap ∈[0.879,0.997]，(1-F)^α 压缩到 Attn 的 1/5~1/50，使全局排序下\\n    MLP 必然被优先剪。(3) Claim 2 说 F(h) predicts recoverability，但在 20% sparsity 下只有 MLP\\n    groups 验证了这一点。需修正 intro + scope 限定 Claim 2 + 论文诚实交代剪枝分布。\\n  related_experiments:\\n  - exp_id: grpo_stage\\n\\n... [截断: 省略 50392 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 62392, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2afe94b1-0337-458d-a555-ebc97b7bc6f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T12:44:57.302Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01TXinpXvkKQQm5tsJ77FPpw`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "babec083-fb6c-45b8-9858-6bb50f8db3f0",
+  "isSidechain": false,
+  "requestId": "req_011CbBwzg8sQ2eqZ92Um6YQu",
+  "type": "assistant",
+  "uuid": "da9a0e56-0919-46c7-94bc-3fbbc5844a2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UeeY8qu9h4Mh3p74sv5nc4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2328,
+      "cache_read_input_tokens": 32489,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2328,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 32489,
+          "cache_creation_input_tokens": 2328,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2328
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。",
+  "leafUuid": "da9a0e56-0919-46c7-94bc-3fbbc5844a2d",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T12:44:59.101Z_
+
+<details><summary>↩ Tool result · `toolu_01TXinpXvkKQQm5tsJ77FPpw`</summary>
+
+```text
+Error: result (156,623 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da9a0e56-0919-46c7-94bc-3fbbc5844a2d",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "dfa36f00-a81e-4bf2-baf5-2bca6f64c8bd",
+  "toolUseResult": "Error: result (156,623 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_gsm8k_grpo_standard_20_fair_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T09:27:09.334Z\", \"updated_at\": \"2026-05-19T12:37:14.980Z\", \"hypothesis\": \"验证 Standard GRPO fair (v5 config: beta=0.01, temp=0.4, maxlen=1024, DAPO, lr=1e-6) 的 GSM8K 准确率。替换 phantom 58.91% (从未被实际验证过的数字)。使用 grpo_stage2_standard_20_fair checkpoint, N=1319。\", \"conclusion\": \"failed\"}, \"eval_humaneval_sft_standard_20_1p5b_2048\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-19T11:35:45.876Z\", \"updated_at\": \"2026-05-19T12:23:32.460Z\", \"hypothesis\": \"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\"}, \"eval_humaneval_grpo_cka_only_20_1p5b_2048\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-19T11:32:50.649Z\", \"updated_at\": \"2026-05-19T11:46:00.780Z\", \"hypothesis\": \"1.5B GRPO CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B result: pass@1=20.12%. If 1.5B CKA-only also shows strong code generation after GRPO (>> Standard/RASP), strengthens cross-scale evidence that CKA-based pruning preserves broader capability spectrum.\"}, \"eval_humaneval_sft_cka_only_20_1p5b_2048\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-19T11:32:47.965Z\", \"updated_at\": \"2026-05-19T11:45:58.520Z\", \"hypothesis\": \"1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B SFT CKA-only result: failed (pass@1=0). Testing whether 1.5B scale shows different pattern, as SFT alone may not activate code generation capability regardless of pruning criterion.\"}, \"eval_humaneval_grpo_rasp_20_1p5b_2048\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T11:35:52.444Z\", \"updated_at\": \"2026-05-19T11:35:52.444Z\", \"hypothesis\": \"1.5B GRPO RASP HumanEval pass@1 @2048. Cross-scale validation. 7B result: pass@1=10.98%. If 1.5B RASP shows intermediate code capability (between Standard and CKA-only) after GRPO, confirms RASP partially preserves capability breadth across scales.\"}, \"eval_humaneval_sft_rasp_20_1p5b_2048\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T11:35:50.597Z\", \"updated_at\": \"2026-05-19T11:35:50.597Z\", \"hypothesis\": \"1.5B SFT RASP HumanEval pass@1 @2048. Cross-scale validation. 7B GRPO RASP: 10.98%. RASP pruning expected between Standard and CKA-only on code generation at 1.5B scale.\"}, \"eval_humaneval_grpo_standard_20_1p5b_2048\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T11:35:48.029Z\", \"updated_at\": \"2026-05-19T11:35:48.029Z\", \"hypothesis\": \"1.5B GRPO Standard HumanEval pass@1 @2048. Cross-scale validation baseline. 7B GRPO Standard HumanEval failed (multiple attempts). If 1.5B Standard also shows weak code generation after GRPO (vs CKA-only), strengthens claim that standard pruning loses broader capabilities.\"}, \"eval_humaneval_grpo_standard_20_fair_2048_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:05:14.343Z\", \"updated_at\": \"2026-05-19T11:24:55.932Z\", \"hypothesis\": \"GRPO stage2 with standard 20% fair pruning recovers meaningful code generation ability on HumanEval, demonstrating that the fair pruning strategy preserves code-critical layers better than CKA-only pruning.\", \"notes\": \"2026-05-19 19:06 progress check: 156/164 (95.1%), interim pass@1 ~0.1143 at problem 140. ~15min remaining.\", \"conclusion\": \"failed\"}, \"eval_humaneval_sft_cka_only_20_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T09:27:07.470Z\", \"updated_at\": \"2026-05-19T11:13:55.007Z\", \"hypothesis\": \"SFT CKA-only HumanEval v2 (PATH bug 修复版重跑)，验证 v1 的 0% 是否为假结果。v1 因 eval_humaneval.py 用裸 python 导致 164 题全部 sandbox 失败。修复后用 sys.executable 重跑。\", \"parent\": \"eval_humaneval_sft_cka_only_20_2048\", \"conclusion\": \"failed\"}, \"eval_humaneval_sft_standard_20_2048_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T10:05:36.497Z\", \"updated_at\": \"2026-05-19T10:06:02.211Z\", \"hypothesis\": \"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same model as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~10% interim) and SFT CKA-only (~24% interim).\"}, \"eval_humaneval_grpo_rasp_20_fair_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:38:59.146Z\", \"updated_at\": \"2026-05-19T09:44:43.320Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO RASP 20% (fair model) with max_new_tokens=2048. Fair model trained with same setup as Standard/CKA-only for unbiased comparison on code generation.\", \"parent\": \"grpo_stage2_rasp_20_fair\", \"conclusion\": \"success\", \"metrics\": {\"pass_at_1\": 0.1098, \"n_correct\": 18, \"n_total\": 164, \"stderr\": 0.0244, \"avg_response_length\": null}}, \"grpo_cka_only_20_seed123\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T09:27:11.294Z\", \"updated_at\": \"2026-05-19T09:28:28.046Z\", \"hypothesis\": \"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\"}, \"eval_math500_sft_standard_20_2048_v2\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-19T01:34:44.782Z\", \"updated_at\": \"2026-05-19T08:54:36.227Z\", \"hypothesis\": \"SFT Standard 20% MATH-500 @2048 with correct GSM8K-trained model (retrained on westd). Fair C1 comparison with GRPO Standard @2048. Previous attempt used wrong model (sft_qwen_math_standard_20).\", \"parent\": \"eval_math500_sft_standard_20\"}, \"eval_gsm8k_grpo_unstructured_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:46:38.286Z\", \"updated_at\": \"2026-05-19T08:05:04.224Z\", \"hypothesis\": \"GSM8K accuracy for GRPO-recovered unstructured 20% pruned model. Pre-GRPO baseline was 87.87%. Compare with structured GRPO results (CKA-only 64.37%, Standard 58.91%, RASP 56.71%) to quantify structured vs unstructured recovery dynamics.\", \"parent\": \"grpo_unstructured_20\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.8764, \"n_correct\": 1156, \"n_total\": 1319, \"stderr\": 0.00906, \"eos_rate\": 0.9818, \"truncated\": 24, \"avg_response_length\": 600}}, \"eval_humaneval_sft_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:01:47.646Z\", \"updated_at\": \"2026-05-19T07:36:57.077Z\", \"metrics\": {\"pass_at_1\": 0, \"n_correct\": 0, \"n_total\": 164}, \"conclusion\": \"failed\", \"hypothesis\": \"SFT with CKA-only importance at 20% pruning ratio destroys code generation ability because CKA alone cannot identify layers critical for structured reasoning, resulting in near-zero HumanEval pass@1.\"}, \"eval_humaneval_grpo_cka_only_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:11:28.637Z\", \"updated_at\": \"2026-05-19T07:36:55.239Z\", \"hypothesis\": \"GRPO recovery training on CKA-only 20% pruned model recovers code generation ability on HumanEval from SFT baseline of 0% pass@1, because CKA-only preserves structural similarity that GRPO can exploit for cross-task recovery\", \"parent\": \"grpo_cka_only_20\", \"metrics\": {\"pass_at_1\": 0.2012, \"n_correct\": 33, \"n_total\": 164, \"stderr\": 0.0313, \"avg_response_length\": 1523.31, \"median_response_length\": 2048, \"wall_clock_seconds\": 11933}, \"conclusion\": \"success\"}, \"eval_humaneval_grpo_standard_20_fair_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:59:46.295Z\", \"updated_at\": \"2026-05-19T07:09:37.173Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% (fair model) with max_new_tokens=2048. Previous eval used non-fair checkpoint (grpo_stage2_standard_20_v8, pass@1=10.37%). Fair model trained with same setup as CKA-only/RASP for unbiased comparison. Compare with SFT Standard @2048 (11.59%) and other pruning methods to verify recovery gradient on code generation.\", \"conclusion\": \"failed\", \"metrics\": {\"error\": \"model path not found: /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_fair — correct path is grpo_stage2_standard_20_fair\"}}, \"eval_humaneval_grpo_standard_20_fair_2048_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:39:01.302Z\", \"updated_at\": \"2026-05-19T06:42:53.032Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% (fair model) with max_new_tokens=2048. Retry of v1 which failed due to wrong path (grpo_standard_20_fair vs grpo_stage2_standard_20_fair). Fair comparison with CKA-only/RASP.\", \"parent\": \"eval_humaneval_grpo_standard_20_fair_2048\", \"conclusion\": \"failed\"}, \"grpo_standard_20_fair\": {\"created_at\": \"2026-05-18T01:05:44.644Z\", \"hypothesis\": \"GRPO recovery training on standard-pruned 20% model (fair v5 config: beta=0.01, dapo loss, format_reward=0.1, temp=0.4, rep_penalty=1.15, adamw_bnb_8bit). Tests whether standard pruning + GRPO can recover GSM8K reasoning. Part of 4-method fair comparison (CKA-only, Standard, RASP, Random) under identical GRPO v4 config.\", \"parent\": \"grpo_rasp_20_fair\", \"status\": \"DONE\", \"updated_at\": \"2026-05-19T06:39:34.930Z\", \"metrics\": {\"wandb_run_id\": \"tyv20u2k\", \"total_steps\": 100, \"runtime_seconds\": 3017, \"reward_trajectory\": [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054], \"frac_zero_std_trajectory\": [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55], \"peak_reward\": 0.081, \"peak_reward_step\": 40, \"final_reward\": 0.054, \"final_frac_zero_std\": 0.55, \"dynamics_pattern\": \"dip_then_partial_recovery\", \"dip_step\": 50, \"dip_reward\": 0.019}, \"conclusion\": \"success\", \"notes\": \"Standard shows stagnation pattern: reward flat 0.03-0.08 全程无上升趋势, frac_zero_std stuck 0.5-0.55. 比 RASP (permanent collapse to 0.01 reward, frac_zero_std→0.85) 略好但也未恢复. 4-way gradient confirmed: CKA-only (active recovery) > Random (plateau) > Standard (stagnation) > RASP (permanent collapse). D058 fair comparison 完成.\"}, \"eval_gsm8k_grpo_standard_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:57:41.667Z\", \"updated_at\": \"2026-05-19T05:58:27.139Z\", \"metrics\": {\"accuracy\": 0.5929, \"n_correct\": 782, \"n_total\": 1319, \"eos_rate\": 0.9795, \"avg_response_length\": 229.57, \"stderr\": 0.01353}, \"conclusion\": \"negative\", \"hypothesis\": \"Standard pruning 20% with extended GRPO training (300 steps) will not recover GSM8K accuracy beyond the 100-step level (~52-53%), because the reward collapse observed during training prevents meaningful downstream improvement regardless of additional training steps.\"}, \"grpo_unstructured_20\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T04:41:30.397Z\", \"updated_at\": \"2026-05-19T04:43:46.698Z\", \"conclusion\": \"failed\", \"notes\": \"失败原因: torch.save optimizer state 时 IOException (RuntimeError: basic_ios::clear: iostream error + enforce fail at inline_container.cc:668, pos mismatch 10100272512 vs 10100272408)。模型 shard 保存成功但 ~9.4GB optimizer state 写入失败。可能是磁盘空间不足或文件系统限制。需检查 westb-23072 /root/autodl-tmp 分区空间，修复后重试。\"}, \"eval_gsm8k_grpo_cka_only_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T01:42:30.325Z\", \"updated_at\": \"2026-05-19T03:49:12.498Z\", \"hypothesis\": \"Extended GRPO training (300 steps vs 100 steps) on CKA-only 20% pruned model will further improve GSM8K in-distribution accuracy beyond the 64.37% achieved at 100 steps\", \"parent\": \"grpo_cka_only_20_extended_300\", \"metrics\": {\"gsm8k_accuracy\": 0.6437, \"correct\": 849, \"total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9924, \"avg_response_length\": 190.45}, \"conclusion\": \"negative\"}, \"eval_gsm8k_sft_standard_20_1p5b\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-18T18:10:55.912Z\", \"updated_at\": \"2026-05-19T03:18:39.236Z\", \"hypothesis\": \"1.5B Standard post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta on Standard pruning at 1.5B scale. Compare with GRPO Standard 1.5B (22.29%) to quantify GRPO benefit. Completes 3-method SFT vs GRPO comparison at 1.5B.\"}, \"eval_math500_grpo_cka_only_20_2048\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-18T22:36:14.421Z\", \"updated_at\": \"2026-05-19T03:07:46.389Z\", \"hypothesis\": \"GRPO CKA-only 20% MATH-500 accuracy with explicit max_new_tokens=2048. Re-eval for fair C1 OOD comparison: previous eval (26.6%) did not specify max_new_tokens. SFT CKA-only @2048 = 29.0%. If GRPO < SFT on MATH-500, C1 decoupling shows GRPO benefit is benchmark-dependent.\", \"parent\": \"eval_math500_grpo_cka_only_20\"}, \"inference_bench_clean_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T01:42:25.421Z\", \"updated_at\": \"2026-05-19T02:44:07.178Z\", \"hypothesis\": \"Clean inference benchmark (Dense + CKA-only 20% + Standard 20%) on isolated GPU. Previous plan_016 benchmark was polluted by GPU contention. Measures per-token throughput and latency for speedup claims. 50 prompts x 256 max_new_tokens, GSM8K test set.\", \"conclusion\": \"success\", \"metrics\": {\"original_tps\": 72.02, \"cka_only_20_tps\": 58.28, \"standard_20_tps\": 58.25, \"cka_only_20_speedup\": 0.809, \"standard_20_speedup\": 0.809, \"original_first_token_ms\": 20.05, \"cka_only_20_first_token_ms\": 16.35, \"standard_20_first_token_ms\": 16.4, \"original_per_token_ms\": 13.89, \"cka_only_20_per_token_ms\": 16.73, \"standard_20_per_token_ms\": 16.71, \"original_params\": 7615616512, \"pruned_params\": 6161946112, \"param_reduction_pct\": 19.1}}, \"eval_gsm8k_sft_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T18:10:57.471Z\", \"updated_at\": \"2026-05-19T02:43:38.445Z\", \"hypothesis\": \"1.5B RASP post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta on RASP pruning at 1.5B. Compare with GRPO RASP 1.5B (26.16%).\", \"parent\": \"sft_rasp_20_1p5b\", \"metrics\": {\"accuracy\": 0.2691, \"n_correct\": 355, \"n_total\": 1319, \"stderr\": 0.0122, \"grpo_delta_pp\": -0.75}, \"conclusion\": \"success\"}, \"eval_math500_grpo_standard_20_fair_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T18:24:25.108Z\", \"updated_at\": \"2026-05-19T01:39:52.608Z\", \"hypothesis\": \"Standard 20% post-GRPO (fair v5) MATH-500 accuracy with max_new_tokens=2048. Restart of slow original. Interim Acc@100=36%. Cross-benchmark validation for C1 decoupling claim.\", \"parent\": \"eval_math500_grpo_standard_20_fair\", \"metrics\": {\"accuracy\": 0.264, \"n_correct\": 132, \"n_total\": 500, \"stderr\": 0.0197}, \"conclusion\": \"success\"}, \"eval_math500_sft_rasp_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:36:16.836Z\", \"updated_at\": \"2026-05-19T01:39:03.294Z\", \"hypothesis\": \"SFT RASP 20% MATH-500 accuracy with max_new_tokens=2048. Fair comparison with GRPO RASP @2048 (24.0%) for C1 decoupling on MATH-500. SFT recovery should show lower reasoning capability than GRPO recovery on structurally pruned model.\", \"parent\": \"eval_math500_sft_rasp_20\", \"metrics\": {\"accuracy\": 0.226, \"n_correct\": 113, \"n_total\": 500, \"stderr\": 0.0187, \"natural_eos\": 314, \"truncated\": 186, \"natural_eos_pct\": 0.628, \"avg_response_length\": 930.58, \"median_response_length\": 274}, \"conclusion\": \"success\"}, \"eval_math500_dense_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:08:58.081Z\", \"updated_at\": \"2026-05-19T01:34:41.598Z\", \"hypothesis\": \"Dense (unpruned) DeepSeek-R1-Distill-Qwen-7B MATH-500 eval with max_new_tokens=2048. Fair comparison baseline for all pruned model MATH-500 evals which also use 2048 max tokens. Previous Dense baseline (73.6%) used 4096 tokens.\", \"parent\": \"eval_math500_dense_unpruned\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.53, \"n_correct\": 265, \"n_total\": 500, \"stderr\": 0.0223, \"natural_eos_pct\": 0.468, \"truncated_pct\": 0.532, \"avg_response_length\": 1724.5, \"median_response_length\": 2048}}, \"eval_math500_grpo_rasp_20_fair\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T18:16:25.616Z\", \"updated_at\": \"2026-05-18T23:53:54.384Z\", \"hypothesis\": \"GRPO RASP 20% pruned model on MATH-500 with max_new_tokens=2048. Fair comparison for C1 decoupling: GRPO recovery on RASP-pruned model should show different accuracy profile compared to SFT recovery, measuring reasoning capability after RL-based fine-tuning on structurally pruned model.\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.24, \"n_correct\": 120, \"n_total\": 500, \"stderr\": 0.0191, \"natural_eos_pct\": 0.64, \"truncated_pct\": 0.36, \"avg_response_length\": 903.5, \"median_response_length\": 272, \"max_new_tokens\": 2048}}, \"eval_gsm8k_sft_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T17:51:20.577Z\", \"updated_at\": \"2026-05-18T23:46:01.152Z\", \"hypothesis\": \"1.5B CKA-only post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta: if GRPO CKA-only 1.5B GSM8K > SFT CKA-only 1.5B GSM8K, GRPO adds value beyond SFT recovery on 1.5B scale. Completes C1 decoupling evidence at 1.5B.\", \"parent\": \"sft_cka_only_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.3563, \"n_correct\": 470, \"n_total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9507, \"avg_response_length\": 336.76}}, \"sft_standard_20_retrain_westd\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:40:50.567Z\", \"updated_at\": \"2026-05-18T23:24:15.076Z\", \"hypothesis\": \"Retrain SFT Standard 20% on westd from pruned_standard_20. Original sft_standard_20 model lost (was on old westd-11672). Needed for eval_math500_sft_standard_20_2048 with correct model.\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.758, \"mean_token_accuracy\": 0.8252, \"train_runtime_sec\": 1688, \"train_samples_per_second\": 8.856, \"epochs\": 2, \"total_steps\": 1870}}, \"eval_math500_sft_standard_20_2048\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:18:30.238Z\", \"updated_at\": \"2026-05-18T23:19:30.781Z\", \"hypothesis\": \"SFT Standard 20% MATH-500 accuracy with max_new_tokens=2048. Fair comparison with GRPO Standard @2048 for C1 decoupling claim on harder benchmark.\", \"parent\": \"eval_math500_sft_standard_20\", \"conclusion\": \"killed\"}, \"eval_gsm8k_grpo_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:59:22.921Z\", \"updated_at\": \"2026-05-18T23:02:00.110Z\", \"hypothesis\": \"1.5B RASP post-GRPO GSM8K accuracy (N=1319). Cross-model generalization: 7B RASP GRPO collapsed (reward 0.01), but 1.5B RASP showed reward=0.099 without collapse. If 1.5B RASP GSM8K is lower than CKA-only but not catastrophically low, confirms scale-dependent recovery dynamics. Completes 3-method 1.5B GSM8K comparison.\", \"parent\": \"grpo_rasp_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.2616, \"n_correct\": 345, \"n_total\": 1319, \"stderr\": 0.0121, \"eos_rate\": 0.9378, \"avg_response_length\": 392.7}}, \"eval_math500_grpo_cka_only_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:41:32.199Z\", \"updated_at\": \"2026-05-18T22:58:51.065Z\", \"hypothesis\": \"CKA-only post-GRPO MATH-500 accuracy. Critical gap: CKA-only is the paper's core method with best GRPO dynamics (peak 0.354), must have post-GRPO MATH-500 data. If GRPO CKA-only > SFT CKA-only on MATH-500, GRPO genuinely helps CKA-only (unlike Standard/RASP). If not, C1 decoupling extends to CKA-only method too.\", \"parent\": \"grpo_cka_only_20\", \"metrics\": {\"accuracy\": 0.266, \"n_correct\": 133, \"n_total\": 500, \"stderr\": 0.0198, \"truncated\": 108, \"truncation_rate\": 0.216, \"avg_response_length\": 1124.24}, \"conclusion\": \"success\"}, \"eval_math500_sft_cka_only_20_v4_restart\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T18:16:24.171Z\", \"updated_at\": \"2026-05-18T22:12:04.614Z\", \"hypothesis\": \"CKA-only 20% post-SFT MATH-500 accuracy (restart of v4 which had cuda:2 conflict). Full 500 samples, max_new_tokens=2048. Core C1 evidence for decoupling claim.\", \"parent\": \"eval_math500_sft_cka_only_20_v4\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.29, \"n_correct\": 145, \"n_total\": 500, \"stderr\": 0.0203, \"natural_eos\": 384, \"truncated\": 116, \"natural_eos_pct\": 0.768, \"avg_response_length\": 673.278, \"median_response_length\": 242.5}}, \"grpo_cka_only_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T14:51:36.423Z\", \"updated_at\": \"2026-05-18T21:43:18.847Z\", \"hypothesis\": \"Extended GRPO CKA-only 7B from step 100 to 300. Paired control for E2 Standard extended: if CKA-only continues improving while Standard enters reward desert, proves CKA-only's structural advantage persists under longer training. Standard showed reward decline after step 260 (0.102→0.056); CKA-only's peak at step 100 was 0.354 — expect continued learning.\", \"parent\": \"grpo_cka_only_20\", \"conclusion\": \"success\", \"metrics\": {\"final_reward\": 0.3075, \"peak_reward\": 0.4444, \"peak_reward_step\": 280, \"reward_step100\": 0.354, \"reward_step300\": 0.3075, \"train_loss_final\": 0.0349, \"global_step\": 300, \"runtime_seconds\": 23004, \"gpu_hours\": 6.5, \"final_frac_zero_std\": 0.275, \"reward_range\": [0.22, 0.44], \"pattern\": \"sustained oscillation, no collapse\", \"wandb_run_id\": \"z9f0z901\"}}, \"eval_gsm8k_grpo_standard_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:38:01.585Z\", \"updated_at\": \"2026-05-18T21:03:21.558Z\", \"hypothesis\": \"Standard GRPO 1.5B (100 steps, reward=0.084) on GSM8K eval: expect low accuracy (~5-10%) given minimal training, serving as baseline for pruned model comparison.\", \"parent\": \"grpo_standard_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.2229, \"n_correct\": 294, \"n_total\": 1319, \"stderr\": 0.0115}}, \"eval_gsm8k_grpo_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:35:29.923Z\", \"updated_at\": \"2026-05-18T20:09:40.771Z\", \"hypothesis\": \"1.5B CKA-only post-GRPO GSM8K accuracy (N=1319). Cross-model generalization: 7B CKA-only GRPO achieved 64.37% GSM8K. If 1.5B CKA-only GRPO also leads among pruning methods, confirms scale-invariant recovery capacity gradient. Parent: grpo_cka_only_20_1p5b (reward=0.2375, highest among 1.5B methods).\", \"parent\": \"grpo_cka_only_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.3548, \"n_correct\": 468, \"n_total\": 1319, \"stderr\": 0.0132}}, \"eval_math500_sft_cka_only_20_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T17:05:46.843Z\", \"updated_at\": \"2026-05-18T18:16:11.156Z\", \"hypothesis\": \"CKA-only 20% post-SFT MATH-500 accuracy (full 500 samples). C1 core evidence: compare with GRPO CKA-only MATH-500 to test decoupling. If post-GRPO > post-SFT on MATH-500, CKA-only uniquely benefits from GRPO on harder benchmarks. v3 timed out at 170/500 (36.67% interim). v4 removes timeout, adds --max_new_tokens 2048.\", \"parent\": \"eval_math500_sft_cka_only_20_v3\", \"conclusion\": \"failed\"}, \"eval_math500_dense_unpruned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:42:10.786Z\", \"updated_at\": \"2026-05-18T18:15:28.383Z\", \"hypothesis\": \"Dense unpruned DeepSeek-R1-Distill-Qwen-7B MATH-500 baseline. Establishes upper bound for all pruned model MATH-500 evaluations. Previous result on westd showed 73.6%; this is a verification run on westd-29022.\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.736, \"stderr\": 0.0197, \"n_correct\": 368, \"n_total\": 500, \"natural_eos_pct\": 0.752}}, \"eval_math500_grpo_standard_20_fair\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:38:06.779Z\", \"updated_at\": \"2026-05-18T18:09:33.985Z\", \"hypothesis\": \"Standard 20% post-GRPO MATH-500 accuracy (fair v5 config). Cross-benchmark validation: if Standard GRPO shows same decoupling pattern on MATH-500 as GSM8K (post-GRPO ≈ post-SFT), confirms C1 decoupling is not benchmark-specific.\", \"parent\": \"grpo_standard_20_fair\", \"notes\": \"v1: 126/500 completed (Acc@100=36.0%), killed SIGHUP after 4h44m. v2: restarted with --max_new_tokens 2048, died silently at 19/500 with no error/Traceback/OOM in log. Cron detected process dead 5× → auto-resolved failed. Need diagnostic: check dmesg for OOM killer, GPU memory, tmux session status. Interim data: Acc@100=36.0% from v1.\", \"conclusion\": \"failed\"}, \"eval_math500_sft_cka_only_20_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:39:24.314Z\", \"updated_at\": \"2026-05-18T17:04:00.609Z\", \"hypothesis\": \"CKA-only 20% post-SFT MATH-500 accuracy. C1 validation: compare with GRPO CKA-only MATH-500 to test if GRPO genuinely helps CKA-only on harder benchmark. If post-GRPO > post-SFT on MATH-500, CKA-only is unique in benefiting from GRPO (unlike Standard/RASP decoupling).\", \"parent\": \"sft_cka_only_20\", \"conclusion\": \"failed\"}, \"grpo_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T15:12:41.395Z\", \"updated_at\": \"2026-05-18T16:32:13.529Z\", \"hypothesis\": \"RASP 20% GRPO on 1.5B model. Cross-model generalization: 7B RASP collapsed to reward 0.01, frac_zero_std 0.85. If 1.5B shows same collapse pattern, confirms scale-invariant recovery capacity gradient bottom tier. Completes 3-method 1.5B comparison: CKA-only (reward ~0.26) >> Standard (0.08) >> RASP (expected collapse).\", \"parent\": \"sft_rasp_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"final_reward\": 0.099, \"frac_zero_std\": 0.175, \"clipped_ratio\": 0.82}}, \"grpo_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:50:08.570Z\", \"updated_at\": \"2026-05-18T16:08:40.491Z\", \"hypothesis\": \"CKA-only 20% GRPO on 1.5B model. Cross-model generalization: if CKA-only's superior GRPO dynamics (peak reward 0.354 on 7B) hold on 1.5B, confirms scale-invariant recovery capacity gradient. Parent: sft_cka_only_20_1p5b.\", \"parent\": \"sft_cka_only_20_1p5b\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean\": 0.2375, \"frac_reward_zero_std\": 0.175, \"loss\": 0.0595, \"kl\": 0.00215, \"grad_norm\": 1.445, \"global_step\": 100, \"note\": \"training completed 100/100 but save_model failed (disk full). checkpoint-100 has complete model.\"}}, \"grpo_standard_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T14:15:13.990Z\", \"updated_at\": \"2026-05-18T15:11:31.870Z\", \"hypothesis\": \"Standard 20% GRPO on 1.5B model. Cross-model generalization: if Standard's dip-then-recovery GRPO dynamics (peak 0.081, dip 0.019 on 7B) hold on 1.5B, confirms scale-invariant recovery capacity gradient. Paired with CKA-only 1.5B GRPO for direct comparison.\", \"parent\": \"sft_standard_20_1p5b\", \"metrics\": {\"reward_mean\": 0.0844, \"frac_reward_zero_std\": 0.15, \"loss\": 0.0151, \"grad_norm\": 4.03125, \"kl\": 0.0044, \"entropy\": 0.4617, \"final_step\": 100, \"max_steps\": 100, \"total_time_min\": 53}, \"conclusion\": \"success\"}, \"grpo_standard_20_extended_300_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:53:41.781Z\", \"updated_at\": \"2026-05-18T14:50:59.377Z\", \"hypothesis\": \"Extended GRPO Standard 7B from step 110 to 300 (resumed after disk-full crash at step 120). Tests whether longer GRPO training changes the recovery capacity gradient. save_steps=50, save_total_limit=3 to prevent disk issues.\", \"parent\": \"grpo_standard_20_extended_300\", \"metrics\": {\"reward_mean_step300\": 0.0562, \"loss_step300\": 0.0367, \"frac_reward_zero_std_step300\": 0.525, \"kl_step300\": 0.00306, \"entropy_step300\": 0.157, \"lr_step300\": 3.33e-09, \"runtime_min\": 48, \"reward_decline_after_step260\": true}, \"conclusion\": \"success\"}, \"grpo_standard_20_extended_300\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:40:13.842Z\", \"updated_at\": \"2026-05-18T14:47:58.809Z\", \"hypothesis\": \"Extended GRPO Standard 7B from step 100 to 300. Tests whether longer GRPO training changes the recovery capacity gradient — does Standard eventually catch up to CKA-only, or does the gap persist/widen? If gap widens, confirms CKA-guided pruning creates a structural advantage that more training cannot compensate.\", \"parent\": \"grpo_standard_20_fair\", \"conclusion\": \"failed\"}, \"grpo_standard_1p5b_100steps\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T14:11:59.512Z\", \"updated_at\": \"2026-05-18T14:11:59.512Z\"}, \"e2_extended_grpo_resume\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T13:47:47.352Z\", \"updated_at\": \"2026-05-18T13:47:47.353Z\"}, \"prune_cka_only_25\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T13:43:54.266Z\", \"updated_at\": \"2026-05-18T13:43:54.266Z\"}, \"math500_dense_unpruned\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T13:19:07.873Z\", \"updated_at\": \"2026-05-18T13:19:07.873Z\"}, \"E2_grpo_standard_7b_extended_300\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T13:02:30.174Z\", \"updated_at\": \"2026-05-18T13:02:30.174Z\"}, \"math500_sft_cka_only_20\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T13:01:43.349Z\", \"updated_at\": \"2026-05-18T13:01:43.349Z\"}, \"math500_standard_grpo_fair\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T13:00:45.510Z\", \"updated_at\": \"2026-05-18T13:00:45.510Z\"}, \"sft_standard_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:09:56.278Z\", \"updated_at\": \"2026-05-18T12:31:29.300Z\", \"hypothesis\": \"Standard 20% SFT recovery on 1.5B model. Cross-model generalization test: if Standard SFT recovery pattern holds on 1.5B as on 7B. Paired with CKA-only and RASP 1.5B SFT for cross-scale comparison of recovery capacity gradient.\", \"conclusion\": \"success\"}, \"sft_cka_only_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T11:29:09.842Z\", \"updated_at\": \"2026-05-18T12:31:27.978Z\", \"hypothesis\": \"CKA-only 20% SFT recovery on 1.5B model. Cross-model generalization test: if CKA-only SFT recovery pattern (high accuracy) holds on 1.5B as on 7B, validates that CKA-guided pruning preserves recovery capacity across model scales.\", \"notes\": \"Training completed 1870/1870 steps. Checkpoint save crashed (RuntimeError at inline_container.cc:668) due to disk 100% full. Model weights rescued from checkpoint-1870 (optimizer.pt truncated but model.safetensors intact). Checkpoints cleaned, model files promoted to output dir. Pending load validation.\", \"conclusion\": \"success\"}, \"sft_rasp_20_1p5b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:09:57.178Z\", \"updated_at\": \"2026-05-18T12:29:19.746Z\", \"hypothesis\": \"RASP 20% SFT recovery on 1.5B model. Cross-model generalization test: if RASP SFT recovery pattern holds on 1.5B as on 7B. Paired with CKA-only and Standard 1.5B SFT for cross-scale comparison of recovery capacity gradient.\", \"conclusion\": \"success\"}, \"inference_bench_cka_only_20_clean\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T09:47:42.247Z\", \"updated_at\": \"2026-05-18T10:07:56.924Z\", \"hypothesis\": \"Clean CKA-only inference benchmark (rerun after GPU contention in v1). Validates CKA-only latency/memory vs dense baseline on clean cuda:0. Dense dummy in rasp slot (rasp model not on westb).\", \"parent\": \"inference_bench_cka_only_20\", \"metrics\": {\"dense\": {\"tokens_per_second\": 75.73, \"avg_latency_sec\": 6.729, \"peak_memory_gb\": 16.22, \"total_tokens\": 25477, \"validation\": \"PASS (75.73 vs expected 76.25, <1% deviation)\"}, \"cka_only_20\": {\"tokens_per_second\": 51.86, \"avg_latency_sec\": 4.078, \"peak_memory_gb\": 11.6, \"total_tokens\": 10574, \"latency_speedup_vs_dense\": \"39.4%\", \"memory_reduction_vs_dense\": \"28.5%\"}, \"rasp_20_dummy\": {\"tokens_per_second\": 75.79, \"avg_latency_sec\": 6.723, \"peak_memory_gb\": 16.23, \"note\": \"Dense model used as dummy (rasp not on westb)\"}}, \"conclusion\": \"success\"}, \"inference_bench_cka_only_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T08:09:24.237Z\", \"updated_at\": \"2026-05-18T08:51:24.419Z\", \"hypothesis\": \"CKA-only inference latency benchmark. Compare CKA-only pruned model vs dense on tokens/s, latency, memory. Uses dense as dummy for rasp slot (rasp model not on westb). CKA-only in standard_20 slot.\", \"metrics\": {\"dense_contaminated\": {\"tokens_per_second\": 35.4, \"avg_latency_sec\": 14.396, \"peak_memory_gb\": 16.22, \"note\": \"GPU contention with GSM8K eval — 2.15x slower than clean baseline (6.682s)\"}, \"cka_only_20\": {\"tokens_per_second\": 51.01, \"avg_latency_sec\": 4.146, \"peak_memory_gb\": 11.6, \"total_tokens\": 10574, \"note\": \"Ran after GSM8K finished, likely clean. Memory reduction 28.5% vs dense.\"}, \"contamination_warning\": \"Dense baseline 14.396s vs clean 6.682s. Benchmark needs rerun with clean GPU for valid dense comparison.\"}, \"conclusion\": \"failed\"}, \"eval_gsm8k_grpo_cka_only_20_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:54:02.634Z\", \"updated_at\": \"2026-05-18T08:50:27.816Z\", \"hypothesis\": \"CKA-only GRPO GSM8K accuracy (v2, on westb). Tab2 critical data point: if CKA-only GRPO > SFT (63.91%), GRPO genuinely helps CKA-only recovery. Re-run after westd outage killed v1.\", \"parent\": \"eval_gsm8k_grpo_cka_only_20\", \"metrics\": {\"accuracy\": 0.6437, \"n_correct\": 849, \"n_total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9886, \"avg_response_length\": 203.43, \"truncated\": 15, \"wall_time_sec\": 8921}, \"conclusion\": \"success\"}, \"eval_math500_grpo_unpruned\": {\"created_at\": \"2026-05-17T18:14:45.810Z\", \"hypothesis\": \"MATH-500 accuracy for unpruned GRPO v2 (step-100). Establishes MATH-500 baseline: if unpruned post-GRPO ≈ 73.6% (pre-GRPO), confirms decoupling pattern holds on harder benchmark. If higher, GRPO genuinely helps unpruned but not pruned = pruning-specific failure.\", \"parent\": \"eval_math500_unpruned\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T08:32:50.722Z\", \"metrics\": {\"accuracy\": 0.69, \"n_correct\": 345, \"n_total\": 500, \"stderr\": 0.0207, \"avg_response_length\": 1768.07, \"median_response_length\": 1420.5, \"natural_eos_pct\": 0.828, \"truncated\": 86, \"wall_time_sec\": 20685}, \"conclusion\": \"negative\"}, \"scoring_ablation_magnitude_20\": {\"created_at\": \"2026-05-17T04:21:41.038Z\", \"hypothesis\": \"Magnitude-only scoring (weight L2 norm per group) at 20% sparsity. Isolates contribution of gradient signal vs weight magnitude. If post-prune accuracy near 0% (as expected from heavy early-layer pruning), confirms magnitude alone is insufficient for structured pruning — CKA/gradient signals are essential.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T05:52:12.799Z\", \"conclusion\": \"failed\"}, \"eval_gsm8k_grpo_cka_only_20\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:06:54.386Z\", \"updated_at\": \"2026-05-18T05:21:38.616Z\", \"hypothesis\": \"GRPO with CKA-only recovery (20 steps) preserves GSM8K math reasoning accuracy compared to unpruned baseline, because CKA alignment guides recovery to restore the most task-critical representations in pruned layers.\", \"conclusion\": \"failed\", \"notes\": \"westd-11672 服务器不可达，实验状态未知。等服务器恢复后检查。\"}, \"eval_math500_grpo_standard_20\": {\"created_at\": \"2026-05-17T09:27:18.869Z\", \"hypothesis\": \"MATH-500 accuracy for grpo_standard_20 vs sft_standard_20. If grpo_standard ≈ sft_standard on MATH-500 (as on GSM8K), C1 decoupling holds across benchmarks. Tests cross-benchmark generalization of C1.\", \"parent\": \"eval_math500_sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T05:21:37.574Z\", \"notes\": \"失败原因: westd-11672 服务器不可达 (SSH connection refused on port 11672) | 进度: ~359/500 before disconnect | 建议: 等 westd 恢复后检查部分结果\", \"conclusion\": \"failed\"}, \"eval_math500_sft_cka_only_20_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:40:23.649Z\", \"updated_at\": \"2026-05-18T05:21:34.598Z\", \"hypothesis\": \"CKA-only SFT MATH-500 baseline (restart from cuda:2→cuda:0 for speed). With SFT Standard=26%, SFT RASP=24.2%, if CKA-only SFT > 26%, CKA-only scoring has OOD advantage.\", \"parent\": \"eval_math500_sft_cka_only_20\", \"conclusion\": \"failed\", \"notes\": \"失败原因: westd-11672 服务器不可达 (SSH connection refused on port 11672) | 非代码问题，基础设施故障 | 已有成果: 无法确认（服务器离线前可能有部分进度） | 建议: 等 westd 恢复后检查 /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20.json 是否有部分结果，有则恢复，无则在可用 GPU 上重跑\"}, \"eval_math500_grpo_rasp_20_v3\": {\"created_at\": \"2026-05-17T14:44:46.855Z\", \"hypothesis\": \"MATH-500 accuracy for grpo_rasp_20 (grpo_stage2_rasp_20_v9). v2 timeout at 193/500 (EXIT_CODE=124, 6h limit). v3 without timeout wrapper. If GRPO RASP outperforms SFT RASP on MATH-500, GRPO adds reasoning. If not, reinforces C1 decoupling.\", \"parent\": \"eval_math500_grpo_rasp_20_v2\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T05:19:01.331Z\", \"conclusion\": \"failed\"}, \"grpo_random_20\": {\"created_at\": \"2026-05-17T13:30:31.016Z\", \"hypothesis\": \"Random pruning 的 GRPO collapse 行为 — 如果 collapse ≈ RASP (step~10)，则所有结构剪枝伤 RL；如果 ≈ Standard (step~60)，则 CKA-aware 选择特别伤 RL（redundancy-stability tradeoff 确认）；如果 stable（无 collapse），则 CKA narrative 需要重构。\", \"parent\": \"scoring_ablation_random_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T02:48:28.187Z\", \"conclusion\": \"success\", \"notes\": \"Dynamics data from steps 10-90 sufficient for C2 gradient analysis. Timeout at step 97 (EXIT_CODE=124), no final checkpoint saved (save_steps=99999). W&B crashed before sync. Pattern confirmed: stable plateau, no collapse. Reclassified from failed. Note: no step 100 data, no checkpoint for downstream eval.\", \"metrics\": {\"reward_mean\": 0.164, \"reward_range\": [0.14, 0.19], \"reward_peak\": 0.19, \"reward_peak_step\": 70, \"frac_zero_std_mean\": 0.333, \"frac_zero_std_range\": [0.3, 0.4], \"entropy_mean\": 0.221, \"entropy_range\": [0.2, 0.24], \"kl_mean\": 0.0045, \"steps_captured\": 9, \"max_step\": 90, \"pattern\": \"stable plateau, no collapse\", \"data_source\": \"log_file (W&B crashed before sync)\"}}, \"eval_math500_sft_cka_only_20\": {\"created_at\": \"2026-05-17T22:59:03.755Z\", \"hypothesis\": \"CKA-only SFT MATH-500 baseline. With SFT Standard=26%, SFT RASP=24.2%, if CKA-only SFT > 26%, CKA-only scoring has OOD advantage. Future comparison with GRPO CKA-only MATH-500 tests C1 decoupling for CKA-only method.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T02:43:18.126Z\", \"conclusion\": \"killed\", \"notes\": \"Intentionally killed per Director instruction: migrated from cuda:2 (shared, 4min/sample) to cuda:0 (dedicated) as eval_math500_sft_cka_only_20_v2. Progress at kill: 43/500.\"}, \"grpo_cka_only_20\": {\"created_at\": \"2026-05-17T14:51:36.653Z\", \"hypothesis\": \"CKA-only pruning removes highest functional overlap first (post-prune 38.5% = least damage). Predicts GRPO collapse faster than RASP due to fewer backup paths. If confirmed, this is direct evidence of Redundancy-Stability Tradeoff: post-prune optimal = GRPO least stable.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T02:21:23.748Z\", \"metrics\": {\"final_step\": 100, \"final_reward\": 0.3444, \"peak_reward\": 0.3544, \"peak_reward_step\": 50, \"final_frac_zero_std\": 0.2, \"final_loss\": 0.23, \"final_kl\": 0.001609, \"final_entropy\": 0.08751, \"final_reward_std\": 0.444, \"runtime_seconds\": 40710}, \"conclusion\": \"success\"}, \"grpo_rasp_20_fair\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T23:50:31.502Z\", \"hypothesis\": \"Fair retrain of GRPO on RASP 20% pruned model using v5 config (same as CKA-only/Random). Resolves D058 confound: if RASP GRPO dynamics under v5 config show similar reward stagnation as original (old config), confirms the recovery capacity gradient is real and not an artifact of config differences.\", \"metrics\": {\"final_completion_length\": 963.0, \"final_frac_zero_std\": 0.85, \"final_reward\": 0.01, \"min_frac_zero_std\": 0.675, \"peak_reward\": 0.061, \"total_steps\": 100, \"training_time_minutes\": 62.5, \"trend\": \"stagnation_then_collapse\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T01:08:19.563Z\"}, \"eval_postprune_standard_30\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T19:08:46.051Z\", \"hypothesis\": \"Standard 30% post-prune GSM8K accuracy (N=200). At 20% Standard post-prune was 17.5%, at 25% was ~15%. 30% should show further degradation. Compared with RASP 30% post-prune (running) to verify RASP advantage persists at higher sparsity. Extends multi-sparsity degradation curve.\", \"metrics\": {\"avg_response_length\": 3907.875, \"correct\": 8, \"eos_rate\": 0.055, \"gsm8k_accuracy\": 0.04, \"natural_eos\": 11, \"total\": 200, \"truncated\": 189}, \"parent\": \"prune_standard_30\", \"status\": \"DONE\", \"updated_at\": \"2026-05-18T00:27:39.362Z\"}, \"eval_sft_cka_only_20_n1319\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T18:20:20.406Z\", \"hypothesis\": \"CKA-only pruning preserves more recoverable structure than RASP/Standard, so post-SFT accuracy should be highest among all 20% pruning methods on full GSM8K (N=1319).\", \"metrics\": {\"avg_response_length\": 198.1, \"correct\": 843, \"eos_rate\": 0.9901, \"gsm8k_accuracy\": 0.6391, \"stderr\": 0.0132, \"total\": 1319}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T23:48:58.392Z\"}, \"eval_postprune_cka_only_30\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-17T21:42:07.999Z\", \"hypothesis\": \"CKA-only 30% post-prune accuracy. If > 0% (vs RASP 30% = 0%), proves representational diversity scoring is more robust at high sparsity than composite scoring (RASP). If also = 0%, cliff is sparsity-universal regardless of scoring method. Supports C2 collapse gradient + sparsity range analysis.\", \"metrics\": {\"gsm8k_accuracy\": 0.0, \"note\": \"Killed by Director: 30% cliff already confirmed 0% in first run. Kill to free cuda:2.\"}, \"notes\": \"失败原因: ValueError - tokenizer.chat_template not set. 剪枝模型目录 pruned_cka_only_30 缺少 tokenizer 文件(已知问题,见 memory.md tokenizer 同步问题). fix_worker_id: worker_fix_eval_postprune_cka_only_30_20260517T215905. 自动修复中：复制 tokenizer 文件后重提交.\", \"parent\": \"prune_cka_only_30\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T22:00:33.735Z\"}, \"prune_cka_only_30\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T21:42:06.467Z\", \"hypothesis\": \"CKA-only pruning at 30% sparsity. CKA-only 20% had highest post-prune accuracy (38.5%). At 30%, if still > 0% (vs RASP 30% = 0%), proves representational diversity scoring is more robust at high sparsity than composite scoring.\", \"metrics\": {\"actual_sparsity\": 0.2892, \"attn_heads_pruned\": \"0\", \"method\": \"dummy_ones_importance + rasp_alpha1 = pure CKA-only\", \"mlp_groups_pruned\": \"303/784\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T21:42:06.467Z\"}, \"eval_postprune_rasp_30\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T18:22:00Z\", \"hypothesis\": \"RASP 30% post-prune GSM8K accuracy (N=200). At 20% RASP post-prune was 29%, at 25% was 21%. 30% should be lower. Establishes degradation curve for multi-sparsity analysis.\", \"metrics\": {\"accuracy\": 0, \"avg_response_length\": 3984.31, \"eos_rate\": 0.03, \"n_correct\": 0, \"n_total\": 200, \"natural_eos\": 6, \"truncated_rate\": 0.97}, \"notes\": \"实际完成全部 200 样本，EXIT_CODE=129 是 SSH 断连（SIGHUP），非真正失败。结果：accuracy=0.0%，97% 样本被截断（avg_len=3984/4096），模型在 30% sparsity 完全崩溃。降级曲线：29%(20%) → 21%(25%) → 0%(30%)，25%-30% 间存在 cliff。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T21:39:43.149Z\"}, \"eval_sft_cka_only_20_full_v2\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-17T19:37:17.403Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319. v1 failed (model not on westd). Model now synced. Post-prune 38.5% highest, if post-SFT also highest then CKA-only scoring has SFT advantage; if converges to ~60% confirms SFT equalizes. N=200 pilot showed 64.0%.\", \"parent\": \"eval_sft_cka_only_20_full\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T19:37:21.325Z\"}, \"eval_humaneval_sft_standard_20_2048_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T16:26:15.836Z\", \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\", \"metrics\": {\"avg_response_length\": 1850.7, \"correct\": 19, \"max_new_tokens\": 2048, \"median_response_length\": 2048, \"pass_at_1\": 0.1159, \"total\": 164}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T19:09:18.456Z\"}, \"eval_sft_cka_only_20_full\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T18:22:00Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K N=1319. post-prune 38.5% highest, if post-SFT also highest then CKA-only scoring has SFT advantage; if converges to ~60% confirms SFT equalizes. N=200 pilot showed 64.0%.\", \"notes\": \"失败原因: EXIT_CODE=1 — AutoTokenizer.from_pretrained 无法加载 /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 的 tokenizer（目录缺少 tokenizer 文件或不存在）。transformers fallback 到 HuggingFace Hub 下载时路径格式无效报错。| 类型: infrastructure | 已派 Worker 诊断修复\", \"parent\": \"eval_sft_cka_only_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T19:04:34.857Z\"}, \"eval_humaneval_grpo_standard_20_2048\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T13:41:03.761Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. 512-token results invalidated due to truncation artifact (RASP shorter outputs biased). Part of complete 4-way HumanEval@2048 comparison: unpruned / SFT RASP / GRPO Standard / GRPO RASP.\", \"metrics\": {\"avg_response_length\": 1843, \"correct\": 17, \"max_new_tokens\": 2048, \"median_response_length\": 2048, \"pass_at_1\": 0.1037, \"total\": 164}, \"parent\": \"eval_humaneval_grpo_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T18:16:11.481Z\"}, \"eval_math500_sft_rasp_25\": {\"created_at\": \"2026-05-17T18:14:47.071Z\", \"hypothesis\": \"MATH-500 accuracy for RASP 25% post-SFT. Extends MATH-500 cross-benchmark data to 25% sparsity. If MATH-500 recovery rate at 25% &lt; 20% (RASP 20% SFT = 24.2%), confirms sparsity gradient on harder benchmark. Parent: sft_rasp_25.\", \"parent\": \"sft_rasp_25\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T18:14:58.996Z\"}, \"grpo_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T08:42:40.256Z\", \"hypothesis\": \"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\", \"metrics\": {\"note\": \"Restored from previous_failure — cron false positive, experiment actually completed 100/100 steps successfully\", \"step_100\": {\"entropy\": 0.04262, \"frac_reward_zero_std\": 0.875, \"grad_norm\": 0.05371, \"kl\": 0.0007035, \"loss\": 0.01275, \"reward\": 0.009375, \"reward_std\": 0.03149}, \"wall_clock_min\": 57.95, \"wandb_run_id\": \"bc4ojqie\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T18:06:56.419Z\"}, \"eval_humaneval_grpo_rasp_20_2048\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T13:41:44.795Z\", \"hypothesis\": \"HumanEval pass@1 for GRPO RASP 20% with max_new_tokens=2048. Completes 4-way HumanEval@2048 matrix. If GRPO RASP > GRPO Standard on code generation, reinforces C3 (RASP preserves transferable structures). Queued for westd cuda:0 after unpruned 2048 completes.\", \"metrics\": {\"correct\": 24, \"max_new_tokens\": 2048, \"pass_at_1\": 0.1463, \"stderr\": 0.0276, \"total\": 164}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T16:24:44.117Z\"}, \"eval_math500_grpo_rasp_20_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T08:34:15.861Z\", \"hypothesis\": \"MATH-500 accuracy for grpo_rasp_20 (grpo_stage2_rasp_20_v9) vs sft_rasp_20. If GRPO adds math reasoning beyond SFT recovery, grpo_rasp should outperform sft_rasp on MATH-500. If not, reinforces C1.\", \"notes\": \"失败原因: EXIT_CODE=124 timeout (~6h)。GRPO RASP 模型生成极长推理链 (~112s/problem vs SFT ~25s)，仅完成 193/500 题。| 已有成果: 前 150 题 partial acc = 30.67% | 建议: D051 已裁定 MATH-500 GRPO 对比不可用于 C3 论证（配置不公平），不建议重跑。partial data 可作为 supplementary evidence 记录 GRPO 生成行为变化。| v1 (eval_math500_grpo_rasp_20) 同样失败。\", \"parent\": \"eval_math500_grpo_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T14:59:30.795Z\"}, \"eval_sft_cka_only_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T14:28:35.380Z\", \"hypothesis\": \"CKA-only 20% post-SFT GSM8K accuracy (N=200). Post-prune was 38.5% (highest among all methods). If post-SFT >> 60%, CKA-only scoring is superior for SFT recovery. If ~60% like RASP/Standard/Random, confirms SFT equalizes all scoring methods regardless of post-prune advantage.\", \"metrics\": {\"avg_response_length\": 182.73, \"eos_rate\": 0.995, \"gsm8k_accuracy\": 0.64, \"gsm8k_stderr\": 0.0339, \"mode\": \"greedy\", \"n_correct\": 128, \"n_total\": 200, \"seed\": 42, \"truncated\": 1}, \"parent\": \"sft_cka_only_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T14:48:17.267Z\"}, \"eval_humaneval_sft_standard_20_2048\": {\"created_at\": \"2026-05-17T13:53:51.297Z\", \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery. Queued for westd cuda:2 after GRPO Standard 2048 completes.\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T14:41:27.370Z\"}, \"sft_cka_only_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T13:43:50.320Z\", \"hypothesis\": \"CKA-only scoring 20% post-SFT accuracy. Post-prune accuracy was 38.5% (N=200), higher than RASP 29% and Random 34%. If post-SFT converges to ~60% like other methods, confirms SFT equalizes different pruning strategies. If significantly higher, CKA-only might be superior scoring for SFT recovery.\", \"metrics\": {\"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\", \"note\": \"Initial loss 1.958 > RASP 1.86 > Standard 1.70 (CKA-only has most initial damage). Final loss 0.62 comparable to baselines. No greedy eval run yet.\", \"token_accuracy\": 0.8362, \"total_steps\": 1870, \"train_loss_final\": 0.6165, \"train_loss_initial\": 1.958, \"train_time_min\": 33.4}, \"parent\": \"scoring_ablation_cka_only_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T14:28:29.688Z\"}, \"eval_humaneval_unpruned_2048\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T12:40:50.255Z\", \"hypothesis\": \"HumanEval pass@1 for unpruned DeepSeek-R1-Distill-Qwen-7B with max_new_tokens=2048 (previous run used 512 which truncated thinking chain). Establishes dense model ceiling for code generation comparison.\", \"metrics\": {\"avg_response_length\": 1771, \"correct\": 74, \"max_new_tokens\": 2048, \"median_response_length\": 2048, \"pass_at_1\": 0.4512, \"stderr\": 0.0389, \"total\": 164, \"wall_time_min\": 67.6}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T13:53:59.636Z\"}, \"eval_humaneval_sft_rasp_20_2048\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T12:40:51.686Z\", \"hypothesis\": \"HumanEval pass@1 for SFT RASP 20% with max_new_tokens=2048 (previous run used 512 which truncated thinking chain). Tests whether longer generation improves code quality for pruned+recovered model.\", \"metrics\": {\"correct\": 17, \"max_new_tokens\": 2048, \"median_response_length\": 2048, \"note\": \"still truncating at median=2048, main failure mode is thinking chain leaking into code output\", \"pass_at_1\": 0.1037, \"stderr\": 0.0238, \"total\": 164, \"wall_time_min\": 42}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T13:42:41.560Z\"}, \"eval_humaneval_grpo_standard_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T10:00:40.683Z\", \"hypothesis\": \"HumanEval pass@1 for grpo_standard_20 vs sft_standard_20 (3.05%). If grpo_standard >> sft_standard on HumanEval, GRPO transfers code generation ability even with Standard pruning. Completes HumanEval comparison matrix.\", \"metrics\": {\"correct\": 3, \"max_new_tokens\": 512, \"note\": \"512-token truncation, low quality\", \"pass_at_1\": 0.0183, \"total\": 164}, \"parent\": \"eval_humaneval_sft_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T13:33:59.897Z\"}, \"eval_math500_unpruned\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T06:23:49.923Z\", \"hypothesis\": \"MATH-500 baseline: unpruned DeepSeek-R1-Distill-Qwen-7B accuracy on MATH-500. Establishes dense model ceiling for cross-benchmark generalization comparison with pruned+recovered models.\", \"metrics\": {\"N\": 500, \"accuracy\": 0.736, \"correct\": 368, \"stderr\": 0.02}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T12:40:26.343Z\"}, \"eval_gradient_postsft\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T10:07:58.644Z\", \"hypothesis\": \"GSM8K accuracy after SFT recovery on gradient-pruned model. Pre-SFT was 25.5%. If post-SFT reaches ~50-60%, gradient scoring is viable but weaker than RASP (~61%). If much lower, gradient scoring causes partially irreversible damage.\", \"metrics\": {\"accuracy\": 0.615, \"avg_response_length\": 167.455, \"correct\": 123, \"eos_rate\": 0.995, \"stderr\": 0.0344, \"total\": 200}, \"parent\": \"gradient_sft_v3\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T11:24:16.260Z\"}, \"scoring_ablation_batch_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T05:45:47.123Z\", \"hypothesis\": \"Scoring ablation with controlled search space (MLP-only, --skip_attention): CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity. Search space restricted to MLP groups only (matching RASP/Standard natural behavior of 0/112 attention groups pruned) for fair comparison.\", \"metrics\": {\"gradient_postprune\": {\"acc\": 0.255, \"n_samples\": 200, \"note\": \"25.5% - significantly better than magnitude (0%), gradient preserves some structure\"}, \"gradient_sft\": {\"disk_issue\": \"/dev/md0 250G 100% full\", \"reason\": \"Disk full at step 935/1870 (50%)\", \"status\": \"FAILED\"}, \"magnitude_postprune\": {\"acc\": 0, \"avg_len\": 4054, \"early_stopped\": true, \"eos_rate\": 0.02, \"n_samples\": 60}, \"magnitude_sft\": {\"reason\": \"Extreme per-layer non-uniformity, unrecoverable\", \"status\": \"FAILED\"}, \"random_postprune\": {\"progress\": \"26/200\", \"status\": \"in_progress\"}}, \"notes\": \"失败原因: westb-23072 /dev/md0 (250G系统盘) 在 gradient_sft step 935/1870 时写满 | 已有成果: magnitude_postprune=0%(60样本,early_stop), magnitude_sft=FAILED(non-uniformity不可恢复), gradient_postprune=25.5%(200样本), random_postprune 仅完成 26/200 | gradient_sft 已由独立实验 gradient_sft_v3 成功完成 | 建议: 清理系统盘后重试，或拆分为独立实验分别跑(scoring_ablation_magnitude_20, scoring_ablation_random_20, scoring_ablation_cka_only_20 已在 PREPARING)\", \"parent\": \"scoring_ablation_batch\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:23:53.103Z\"}, \"eval_gradient_postsft_v2\": {\"created_at\": \"2026-05-17T10:14:25.361Z\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T10:14:25.361Z\"}, \"gradient_sft_v3\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T09:28:21.646Z\", \"hypothesis\": \"SFT recovery on gradient-pruned model (25.5% post-prune acc). If SFT recovers gradient to ~50-60%, gradient scoring is viable but weaker than CKA-aware. If recovery fails or minimal, gradient scoring causes irreversible damage similar to magnitude.\", \"metrics\": {\"epochs\": 2, \"final_loss\": 0.644, \"output_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_gradient_20\", \"steps\": 1870, \"token_accuracy\": 0.825}, \"parent\": \"scoring_ablation_batch_v2\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:08:07.026Z\"}, \"eval_math500_sft_standard_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T06:23:54.283Z\", \"hypothesis\": \"MATH-500 eval for Standard 20% post-SFT model. Comparison point: does Standard pruning preserve MATH-500 capability similarly to its GSM8K performance (64%)? Part of Plan_012 extended eval.\", \"metrics\": {\"correct\": 130, \"eos_rate\": 0.578, \"math500_acc\": 0.26, \"stderr\": 0.0196, \"total\": 500, \"truncated\": 211, \"wall_time_hours\": 3.58}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:00:26.439Z\"}, \"eval_math500_sft_rasp_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T06:23:52.474Z\", \"hypothesis\": \"MATH-500 eval for RASP 20% post-SFT model. Tests whether RASP pruning+recovery generalizes beyond GSM8K to harder math reasoning (MATH-500). Part of Plan_012 extended eval.\", \"metrics\": {\"correct\": 121, \"math500_acc\": 0.242, \"stderr\": 0.0192, \"total\": 500, \"wall_time_hours\": 2.94}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T09:24:16.959Z\"}, \"eval_unstructured_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T05:35:41.205Z\", \"hypothesis\": \"Unstructured magnitude pruning at 20% sparsity should retain more accuracy than structured pruning (RASP/Standard) at same sparsity level, since unstructured preserves model architecture. Serves as calibration baseline for structured vs unstructured gap. Expected post-prune accuracy ~75-80% (mild degradation from 82% dense).\", \"metrics\": {\"avg_response_length\": 641, \"correct\": 1159, \"eos_rate\": 0.9803, \"gsm8k_acc\": 0.8787, \"stderr\": 0.009, \"total\": 1319, \"truncated\": 26, \"wall_time_hours\": 3.23}, \"parent\": \"prune_unstructured_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T08:50:18.688Z\"}, \"eval_math500_grpo_rasp_20\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T08:32:03.101Z\", \"hypothesis\": \"MATH-500 accuracy for grpo_rasp_20 vs sft_rasp_20. If GRPO adds math reasoning beyond SFT recovery, grpo_rasp should outperform sft_rasp on MATH-500. If not, reinforces C1 (GRPO reward improves but harder math accuracy doesn't follow).\", \"parent\": \"eval_math500_sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T08:34:21.781Z\"}, \"eval_humaneval_sft_standard_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T07:56:08.222Z\", \"hypothesis\": \"HumanEval pass@1 for sft_standard_20 compared to sft_rasp_20 (7.32%) and grpo_rasp_20 (10.37%). If sft_standard ≈ sft_rasp → pruning method doesn't affect code generation recovery. If sft_standard << sft_rasp → RASP pruning preserves more code-relevant structure.\", \"metrics\": {\"correct\": 5, \"failure_modes\": \"model generates CoT natural language instead of code, all responses truncated at max_tokens=512\", \"pass_at_1\": 0.0305, \"stderr\": 0.0134, \"total\": 164, \"wall_time_min\": 17}, \"parent\": \"eval_humaneval_sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T08:31:52.684Z\"}, \"eval_humaneval_sft_rasp_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T07:19:22.820Z\", \"hypothesis\": \"If SFT (without GRPO) already produces ~10% HumanEval pass@1 on pruned model, then GRPO adds no HumanEval increment, confirming C1 decoupling (reward improves but code generation ability comes from SFT instruction-following, not GRPO)\", \"metrics\": {\"correct\": 12, \"failure_modes\": \"model outputs natural language thinking instead of code (SyntaxError), parenthesis mismatch\", \"median_response_length\": 512, \"note\": \"max_tokens truncation frequent\", \"pass_at_1\": 0.0732, \"stderr\": 0.0203, \"total\": 164}, \"parent\": \"eval_humaneval_grpo_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T07:55:52.564Z\"}, \"multiseed_serial_westb\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T05:47:08.060Z\", \"hypothesis\": \"Multi-seed variance estimation (westb fallback): 4 serial evals (RASP×2 + Standard×2, seeds 123/456, N=200) to complement seed=42 data. Transferred from failed westd-11672. Results needed for 5-seed statistical significance in Paper Table 1.\", \"metrics\": {\"missing\": \"seed 42 and seed 789 not executed\", \"note\": \"2 seeds x 2 methods (not 4 seeds as planned). Script ran RASP+Standard for seeds 123,456.\", \"rasp_seed123\": {\"acc\": 0.605, \"correct\": 121, \"total\": 200}, \"rasp_seed456\": {\"acc\": 0.6, \"correct\": 120, \"total\": 200}, \"standard_seed123\": {\"acc\": 0.645, \"correct\": 129, \"total\": 200}, \"standard_seed456\": {\"acc\": 0.61, \"correct\": 122, \"total\": 200}}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T07:50:11.807Z\"}, \"eval_humaneval_grpo_rasp_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T06:42:19.044Z\", \"hypothesis\": \"HumanEval eval for RASP 20% post-GRPO model. Verifies C1 on code generation: post-GRPO accuracy should ≈ post-SFT (GRPO doesn't improve non-GSM8K tasks on pruned models). Baseline unpruned = 1.83% pass@1.\", \"metrics\": {\"n_passed\": 17, \"n_total\": 164, \"pass_at_1\": 0.1037, \"stderr\": 0.0238}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T07:15:58.856Z\"}, \"eval_humaneval_unpruned\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-17T06:23:55.527Z\", \"hypothesis\": \"HumanEval baseline: unpruned DeepSeek-R1-Distill-Qwen-7B pass@1 on HumanEval (164 problems). Establishes dense model ceiling for code generation capability comparison.\", \"metrics\": {\"n_passed\": 3, \"n_total\": 164, \"pass_at_1\": 0.0183, \"stderr\": 0.0105}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T06:42:38.578Z\"}, \"eval_sft_standard_20_seed456\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T03:18:19.145Z\", \"hypothesis\": \"Multi-seed variance estimation: Standard 20% post-SFT GSM8K accuracy should show low variance (std<3pp) across seeds, confirming seed=42 result (64%) is representative. Part of 5-seed suite for statistical significance.\", \"notes\": \"westd-11672 服务器不可达 (SSH check failed 5x, Unable to connect to port 11672). 非代码问题，服务器恢复后需重跑。轻量 eval 任务 (n=200)。\", \"parent\": \"sft_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T05:44:27.075Z\"}, \"eval_sft_rasp_20_seed456\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T03:18:18.631Z\", \"hypothesis\": \"Multi-seed variance estimation: RASP 20% post-SFT GSM8K accuracy should show low variance (std<3pp) across seeds, confirming seed=42 result (57%) is representative. Part of 5-seed suite for statistical significance.\", \"notes\": \"westd-11672 服务器不可达 (SSH check failed 5x, Unable to connect to port 11672). 非代码问题，服务器恢复后需重跑。轻量 eval 任务 (n=200)。\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T05:43:40.502Z\"}, \"eval_sft_standard_20_seed123\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T03:18:18.061Z\", \"hypothesis\": \"Multi-seed variance estimation: Standard 20% post-SFT GSM8K accuracy should show low variance (std<3pp) across seeds, confirming seed=42 result (64%) is representative. Part of 5-seed suite for statistical significance.\", \"notes\": \"westd-11672 服务器不可达 (SSH check failed 5x, Unable to connect to port 11672). 非代码问题，服务器恢复后需重跑。轻量 eval 任务 (n=200)。\", \"parent\": \"sft_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T05:43:39.380Z\"}, \"eval_sft_rasp_20_seed123\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T03:18:16.149Z\", \"hypothesis\": \"Multi-seed variance estimation: RASP 20% post-SFT GSM8K accuracy should show low variance (std<3pp) across seeds, confirming seed=42 result (57%) is representative. Part of 5-seed suite for statistical significance.\", \"notes\": \"westd-11672 服务器不可达 (SSH check failed 5x, Unable to connect to port 11672). 非代码问题，服务器恢复后需重跑。轻量 eval 任务 (n=200)。\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T05:43:38.035Z\"}, \"scoring_ablation_batch\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-17T04:49:20.963Z\", \"hypothesis\": \"Scoring ablation: CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity. Isolates CKA's contribution to the composite RASP score S(h)=I(h)×(1-F(h))^α.\", \"notes\": \"Killed: Director 要求加 --skip_attention 参数重跑。旧版本搜索空间包含 attention groups 不公平（RASP/Standard 自然不剪 attention），需控制变量。替代: scoring_ablation_batch_v2\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T05:40:11.318Z\"}, \"eval_grpo_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T20:04:16.057Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B RASP 25% post-GRPO GSM8K eval (N=1319, greedy, seed=42). GRPO frac_zero=0.875 (severe collapse), reward=0.009. C1 25% ��键验证：collapse 后 accuracy 是否 ≈ pre-GRPO (52.99%)。Parent: grpo_rasp_25.\", \"metrics\": {\"accuracy\": 0.5315, \"avg_len\": 433.85, \"eos_rate\": 0.9272, \"max_len\": 4096, \"min_len\": 39, \"n_correct\": 701, \"n_total\": 1319, \"stderr\": 0.0137, \"truncated\": 96}, \"parent\": \"grpo_rasp_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T05:27:33.072Z\"}, \"eval_grpo_standard_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T19:39:31.510Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B Standard 25% post-GRPO GSM8K eval (N=1319, greedy, seed=42). GRPO reward=0.0075(near-collapse)，验证 accuracy 损失程度。对比 pre-GRPO sft_standard_25: 51.25%. Parent: grpo_standard_25.\", \"metrics\": {\"accuracy\": 0.511, \"avg_len\": 292.86, \"eos_rate\": 0.9628, \"n_correct\": 674, \"n_total\": 1319, \"stderr\": 0.01376}, \"notes\": \"Registry 被 cron 误标 DONE(failed)。实际 PID 48540 仍在运行（SSH 确认 2026-05-17T02:00: 1205/1319=91.4%, acc=51.17%, eos=96.5%）。预计 5-10 min 后完成。结果写入 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json。完成后需手动收割。\", \"parent\": \"grpo_standard_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T04:49:07.062Z\"}, \"prune_unstructured_20\": {\"created_at\": \"2026-05-17T04:21:55.112Z\", \"hypothesis\": \"Global magnitude unstructured pruning at 20% sparsity. Structured pruning (RASP/Standard) 应该在 recovery 上优于 unstructured，因为保留完整 attention heads 维持了推理链路的结构完整性。预期 unstructured post-prune accuracy 高于 structured (no head removal) 但 post-SFT recovery gap 更大.\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T04:21:55.112Z\"}, \"eval_extended_math500_rasp_sft\": {\"created_at\": \"2026-05-17T04:21:51.903Z\", \"hypothesis\": \"RASP 20% post-SFT MATH-500 eval. C1 验证: GSM8K 上观察到的 reward-accuracy decoupling 在 MATH-500 上同样成立 (post-GRPO ≈ post-SFT accuracy). 同时验证 SFT 恢复的泛化性 (不只是 GSM8K pattern memorization).\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T04:21:51.903Z\"}, \"scoring_ablation_cka_only_20\": {\"created_at\": \"2026-05-17T04:21:48.906Z\", \"hypothesis\": \"CKA-only scoring (remove highest functional overlap first) at 20% sparsity. Tests whether CKA alone (without importance weighting) is a valid pruning criterion. If worse than RASP but better than random, confirms importance×CKA interaction is key.\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T04:21:48.906Z\"}, \"scoring_ablation_random_20\": {\"created_at\": \"2026-05-17T04:21:46.255Z\", \"hypothesis\": \"Random scoring at 20% sparsity (seed=42). Lower bound baseline — any principled scoring should beat random by significant margin. Expected post-prune accuracy near 0% (like 35% sparsity results), post-SFT should recover but less than all structured methods.\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T04:21:46.256Z\"}, \"scoring_ablation_gradient_20\": {\"created_at\": \"2026-05-17T04:21:43.502Z\", \"hypothesis\": \"Gradient-only scoring (Taylor importance per group) at 20% sparsity. Equivalent to Standard method. Baseline for CKA contribution measurement — difference between this and RASP isolates CKA's additive value.\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T04:21:43.502Z\"}, \"grpo_standard_qwen_math_v3\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-16T14:49:42.896Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.\", \"metrics\": {\"clipped_ratio_final\": 0.856, \"collapse_onset\": \"step1\", \"collapse_pattern\": \"persistent_reward_homogeneity\", \"cross_model_match\": false, \"entropy_mean\": 0.187, \"frac_zero_std_final\": 0.85, \"frac_zero_std_max\": 0.9, \"frac_zero_std_min\": 0.75, \"grad_norm_max\": 172, \"kl_final\": 0.005, \"llama_pattern\": \"transient_dip_recovery\", \"recovery\": false, \"reward_final\": 0.044, \"reward_min\": 0.031, \"reward_peak\": 0.069, \"reward_std_final\": 0.1458, \"total_steps\": 100}, \"notes\": \"Cross-model C2 validation FAILED. Llama Standard showed transient dip (step60) + recovery (step90); Qwen Standard shows persistent high frac_zero_std (0.75-0.90) from step 1 with NO clear recovery arc. Reward flat 0.03-0.07. Entropy healthy (~0.18). Two grad_norm spikes (step60: 172, step80: 130) but no sustained improvement. The collapse mechanism differs: Llama had reward dynamics; Qwen has reward-signal starvation. Pattern is \\\"persistent reward-homogeneity\\\" not \\\"transient dip+recovery\\\".\", \"parent\": \"sft_qwen_math_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:34:38.064Z\", \"wandb_run_id\": \"5n2snh48\"}, \"grpo_rasp_25_qwen_math\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-16T12:51:11.170Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\", \"metrics\": {\"clipped_ratio_final\": 0.719, \"collapse_onset\": \"none\", \"collapse_pattern\": \"no_collapse\", \"comparison_vs_20pct\": \"25pct_better_than_20pct\", \"completion_length_final\": 811.9, \"entropy_final\": 0.09, \"frac_0std_improvement_vs_20pct\": \"0.675->0.350\", \"frac_zero_std_final\": 0.35, \"frac_zero_std_max\": 0.575, \"frac_zero_std_min\": 0.25, \"frac_zero_std_trend\": \"improving\", \"kl_final\": 0.003789, \"kl_spike_recovery\": \"immediate_step70\", \"kl_spike_step60\": 725.1, \"loss_final\": 0.06824, \"max_steps_reached\": true, \"recovery\": \"n/a\", \"reward_final\": 0.2056, \"reward_min\": 0.111, \"reward_peak\": 0.225, \"reward_ratio_vs_20pct\": 3.4, \"reward_std_final\": 0.4003, \"total_steps\": 100}, \"notes\": \"NEGATIVE for sparsity gradient hypothesis: 25% RASP shows NO collapse (frac_zero_std 0.25-0.575, reward 0.11-0.23), dramatically better than 20% RASP (frac_zero_std 0.55-0.70, reward 0.05-0.10). One transient KL spike at step 60 (725) with immediate recovery. Higher sparsity paradoxically produces better GRPO outcomes. Contradicts C3 (more sparsity → worse collapse). See artifacts/analysis_grpo_qwen_math_25.md.\", \"parent\": \"sft_qwen_math_rasp_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:34:37.514Z\", \"wandb_run_id\": \"3vjjzi13\"}, \"grpo_standard_25_qwen_math\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-16T12:51:12.657Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\", \"metrics\": {\"clipped_ratio_final\": 0.338, \"collapse_onset\": \"step20_first_kl_spike\", \"collapse_pattern\": \"kl_explosion_transient_no_reward_collapse\", \"comparison_vs_20pct\": \"25pct_better_than_20pct\", \"completion_length_final\": 527, \"entropy_final\": 0.238, \"frac_0std_improvement_vs_20pct\": \"0.850->0.325\", \"frac_zero_std_final\": 0.325, \"frac_zero_std_max\": 0.425, \"frac_zero_std_min\": 0.225, \"frac_zero_std_trend\": \"improving\", \"kl_final\": 0.2983, \"kl_spike_count\": 3, \"kl_spike_recovery\": \"always_within_10_steps\", \"kl_spike_step20\": 56.08, \"kl_spike_step40\": 7913000000000000, \"kl_spike_step80\": 4096000, \"loss_final\": 0.1651, \"loss_spike_step40\": 369500000000000, \"loss_spike_step80\": 220300, \"max_steps_reached\": true, \"recovery\": true, \"reward_final\": 0.1819, \"reward_min\": 0.106, \"reward_peak\": 0.211, \"reward_ratio_vs_20pct\": 4.1, \"reward_std_final\": 0.3673, \"total_steps\": 100}, \"notes\": \"NEGATIVE for sparsity gradient: 25% Standard shows NO reward collapse (frac_zero_std 0.225-0.425, reward 0.11-0.21) vs 20% Standard permanent collapse (frac_zero_std 0.75-0.90, reward 0.03-0.07). New failure mode: 3 catastrophic KL explosions (steps 20/40/80, peak 7.9e15) with self-recovery each time — DAPO clipping prevents reward collapse despite astronomical KL divergence. Contradicts C3. See artifacts/analysis_grpo_qwen_math_25.md.\", \"parent\": \"sft_qwen_math_standard_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:34:36.509Z\", \"wandb_run_id\": \"16vqw4e6\"}, \"eval_grpo_standard_step50_full\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-15T22:07:43.463Z\", \"hypothesis\": \"D043 plan_004 (Claim 1): Standard GRPO v8 step-50 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 50 是 GRPO peak 前最后可用 checkpoint (step 40 peak reward 0.096, step 60 collapse)。量化 GRPO recovery 的最高水平。Parent: grpo_stage2_standard_20_v8.\", \"metrics\": {\"accuracy\": 0.5891, \"avg_len\": 222.1, \"eos_rate\": 0.981, \"grpo_delta_pp\": -0.38, \"max_response_length\": 4096, \"min_response_length\": 32, \"n_correct\": 777, \"n_total\": 1319, \"natural_eos\": 1294, \"sft_baseline_accuracy\": 0.5929, \"stderr\": 0.0135, \"truncated\": 25}, \"parent\": \"grpo_stage2_standard_20_v8\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:34:35.470Z\"}, \"eval_postprune_standard_25\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-16T08:12:16.403Z\", \"hypothesis\": \"25% Standard post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (27%) 和 RASP 25% (21%). Parent: pruned_standard_25.\", \"metrics\": {\"accuracy\": 0.16, \"n_total\": 100, \"note\": \"Standard 25% post-prune 16% vs RASP 25% post-prune 21%. Standard worse as expected.\"}, \"parent\": \"pruned_standard_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:34:34.548Z\"}, \"sft_standard_20_retrain\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T08:00:22.779Z\", \"hypothesis\": \"Standard 20% SFT retrain with identical hyperparameters reproduces original loss/accuracy, confirming SFT recovery is deterministic and prior result was not anomalous\", \"metrics\": {\"conclusion\": \"Matches original sft_standard_20 (loss 0.64, token_accuracy 83%). Retrain successful.\", \"token_accuracy\": 0.83, \"train_loss_final\": 0.64}, \"notes\": \"SFT Standard retrain 完成. loss 0.64, token_accuracy 83%, 与原始 sft_standard_20 完全一致. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/. 用于 Standard GRPO v5 对照实验.\", \"parent\": \"prune_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:39.616Z\"}, \"eval_sft_grasp_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T15:45:15.051Z\", \"hypothesis\": \"GraSP 20% post-SFT achieves significantly lower accuracy than Standard and RASP, showing gradient-signal pruning damages SFT-recovery capacity more than magnitude-based methods\", \"metrics\": {\"accuracy\": 0.41, \"n_total\": 100, \"note\": \"论文核心数据点: GraSP post-SFT 41% vs Standard 64% (p=0.001) vs RASP 57%\", \"p_value_vs_standard\": 0.001, \"rasp_ref\": 0.57, \"standard_ref\": 0.64}, \"notes\": \"GraSP post-SFT eval 完成: 41% accuracy (N=100, greedy, seed=42). 论文核心数据点。三方对比: Standard 64% > RASP 57% > GraSP 41% (p=0.001 vs Standard). GraSP post-prune ~6% → post-SFT 41% (+35pp recovery), 但仍远低于 RASP/Standard. JSON: results/eval_sft_grasp_20_n100.json\", \"parent\": \"sft_grasp_20_westd\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T03:29:38.882Z\"}, \"eval-sft-alpha-0p0\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T14:26:31.883Z\", \"hypothesis\": \"Alpha=0.0 (no CKA, pure magnitude) post-SFT matches Standard pruning recovery (~64%), establishing that removing CKA collapses RASP to standard behavior (C2 ablation endpoint)\", \"metrics\": {\"accuracy\": 0.64, \"avg_len\": 257.9, \"eos_rate\": 0.97, \"n_correct\": 64, \"n_total\": 100}, \"parent\": \"sft-alpha-0p0\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:37.940Z\"}, \"eval-sft-alpha-1p0\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T14:51:22.694Z\", \"hypothesis\": \"Alpha=1.0 (full CKA weight) post-SFT accuracy matches RASP default (~57%), confirming alpha=1.0 produces identical pruning structure to standard RASP (C2 ablation endpoint)\", \"metrics\": {\"accuracy\": 0.57, \"avg_len\": 224.18, \"eos_rate\": 0.98, \"n_correct\": 57, \"n_total\": 100, \"natural_eos\": 98, \"stderr\": 0.0495, \"truncated\": 2}, \"notes\": \"α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。\", \"parent\": \"sft-alpha-1p0\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:36.910Z\"}, \"eval_sft_unpruned_n100\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T01:40:17.686Z\", \"hypothesis\": \"Unpruned post-SFT achieves ~84% GSM8K on N=100 subset, providing quick baseline confirmation consistent with full eval for three-way pruning method comparison\", \"metrics\": {\"accuracy\": 0.84, \"avg_response_length\": 187.22, \"eos_rate\": 1, \"n_correct\": 84, \"n_total\": 100, \"stderr\": 0.0367}, \"parent\": \"sft_unpruned_baseline\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:35.970Z\"}, \"eval_sft_unpruned_full\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T01:40:17.174Z\", \"hypothesis\": \"Unpruned post-SFT achieves >80% GSM8K on full test set (N=1319), establishing accuracy ceiling for pruned model SFT recovery comparison and confirming SFT effectiveness intact (C1/C3 control)\", \"metrics\": {\"accuracy\": 81.27, \"accuracy_ci\": 1.07, \"avg_response_length\": 207.18, \"correct\": 1072, \"eos_rate\": 99.7, \"total\": 1319, \"truncated\": 4}, \"notes\": \"Unpruned SFT N=1319 full eval on westd cuda:0. PID 74129, ~2.5s/it. Started 09:39 UTC. Progress at 09:46 UTC: 155/1319 (12%), acc=86.67% (at 150), eos_rate=100%, avg_len=188. ETA ~10:35 UTC. Model: /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline. N=100 checkpoint: 84% (84/100). Three-way comparison pending: Standard 59.29%, RASP 61.49%, Unpruned ?%.\", \"parent\": \"sft_unpruned_baseline\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:35.056Z\"}, \"eval_grpo_unpruned_v2_step90\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T03:05:00.333Z\", \"hypothesis\": \"Unpruned model GRPO step-90 shows accuracy tracking reward throughout training, confirming reward-accuracy coupling is intact when no structural pruning damage exists (C1 control)\", \"metrics\": {\"accuracy\": 80.59, \"avg_response_length\": 213, \"correct\": 1063, \"eos_rate\": 99.6, \"seed\": 42, \"total\": 1319}, \"parent\": \"grpo_unpruned_v2\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:34.226Z\"}, \"eval_grpo_unpruned_v2_step100\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T03:04:55.936Z\", \"hypothesis\": \"Unpruned model GRPO step-100 achieves >80% GSM8K accuracy, proving reward-accuracy coupling holds without structural damage and decoupling is pruning-specific (C1 control)\", \"metrics\": {\"accuracy\": 81.27, \"avg_response_length\": 209, \"correct\": 1072, \"eos_rate\": 99.7, \"seed\": 42, \"total\": 1319}, \"parent\": \"grpo_unpruned_v2\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:33.203Z\"}, \"sft_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T05:26:38.517Z\", \"hypothesis\": \"RASP 25% pruned model recovers higher GSM8K accuracy post-SFT than Standard 25% because CKA-preserved functional redundancy enables more efficient gradient-based recovery (C3)\", \"metrics\": {\"runtime_seconds\": 1635, \"token_accuracy\": 0.8073, \"train_loss\": 0.8498}, \"parent\": \"prune_rasp_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:32.685Z\"}, \"sft_standard_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T05:21:16.758Z\", \"hypothesis\": \"Standard 25% pruned DeepSeek-R1-Distill-Qwen-7B recovers partial accuracy via SFT but below RASP 25% because magnitude-only pruning destroys recovery-critical redundancy (C3)\", \"metrics\": {\"model_keys\": 339, \"model_params\": \"5.79B\", \"note\": \"optimizer.pt save failed (RuntimeError) but model.safetensors intact\", \"runtime_seconds\": 2130, \"total_steps\": 1870}, \"parent\": \"prune_standard_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:22.232Z\"}, \"sft_standard_25_westd\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T15:52:30.818Z\", \"hypothesis\": \"Standard 25% pruned DeepSeek-R1-Distill-Qwen-7B SFT recovery yields lower GSM8K accuracy than RASP 25% due to irreversible functional redundancy destruction (C3 25% extension)\", \"metrics\": {\"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/model.safetensors\", \"final_loss\": 0.8381, \"token_acc\": 0.8018}, \"parent\": \"prune_standard_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:21.686Z\"}, \"eval_grpo_rasp_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T15:59:57.504Z\", \"hypothesis\": \"RASP 20% pruned Qwen Math post-GRPO shows accuracy plateau despite reward improvement, confirming C1 decoupling occurs regardless of pruning method on second model\", \"metrics\": {\"accuracy\": 0.725, \"n_samples\": 200, \"seed\": 42}, \"parent\": \"grpo_rasp_qwen_math_v3\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:20.851Z\"}, \"eval_grpo_standard_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T15:59:59.175Z\", \"hypothesis\": \"Standard 20% pruned Qwen Math post-GRPO shows accuracy plateau below unpruned despite reward improvement, confirming reward-accuracy decoupling is cross-model (C1)\", \"metrics\": {\"accuracy\": 0.705, \"n_samples\": 200, \"seed\": 42}, \"parent\": \"grpo_standard_qwen_math_v3\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:19.801Z\"}, \"eval_grpo_rasp_25_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T15:59:53.951Z\", \"hypothesis\": \"RASP 25% pruned Qwen Math post-GRPO shows reward-accuracy decoupling on GSM8K, confirming C1 generalizes to higher sparsity on second model family\", \"metrics\": {\"accuracy\": 0.625, \"n_samples\": 200, \"seed\": 42}, \"parent\": \"grpo_rasp_25_qwen_math\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:18.878Z\"}, \"eval_pass_k8_unpruned_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T16:43:10.425Z\", \"hypothesis\": \"Unpruned Qwen Math post-GRPO achieves near-ceiling pass@8 on GSM8K, establishing that GRPO preserves solution diversity when no structural pruning damage exists (C1 control)\", \"metrics\": {\"accuracy\": 0.965, \"k\": 8, \"n_samples\": 200, \"pass_at_k\": 0.965, \"stderr\": 0.013, \"temperature\": 0.7}, \"parent\": \"grpo_unpruned_v2\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:17.923Z\"}, \"eval_pass_k8_rasp_20_grpo_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T16:43:12.096Z\", \"hypothesis\": \"RASP 20% post-GRPO on Qwen Math shows pass@8 below unpruned baseline, indicating GRPO fails to recover full solution diversity on structurally pruned models (C1 diversity)\", \"metrics\": {\"accuracy\": 0.915, \"k\": 8, \"n_samples\": 200, \"pass_at_k\": 0.915, \"stderr\": 0.0197, \"temperature\": 0.7}, \"parent\": \"grpo_rasp_qwen_math_v3\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:16.961Z\"}, \"eval_sft_rasp_rlvr_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T18:16:58.087Z\", \"hypothesis\": \"RASP-RLVR 20% pruned Qwen Math post-SFT achieves higher GSM8K accuracy than standard 20% because RLVR-aware scoring preserves recovery-critical structures (C3 cross-model)\", \"metrics\": {\"accuracy\": 0.73, \"mode\": \"greedy\", \"n_correct\": 146, \"n_samples\": 200}, \"parent\": \"sft_rasp_rlvr_20_qwen_math\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T03:29:16.019Z\"}, \"eval_grpo_standard_25_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T15:59:55.747Z\", \"hypothesis\": \"Standard 25% pruned Qwen Math post-GRPO exhibits reward-accuracy decoupling on GSM8K, confirming C1 generalizes across sparsity levels on second model family\", \"metrics\": {\"accuracy\": 0.635, \"n_samples\": 200, \"seed\": 42}, \"parent\": \"grpo_standard_25_qwen_math\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:14.637Z\"}, \"eval_pass_k8_rasp_20_sft_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T16:43:11.344Z\", \"hypothesis\": \"RASP 20% pruned Qwen Math post-SFT maintains high pass@8 near unpruned level because preserved functional redundancy supports multiple diverse reasoning paths (C1 diversity)\", \"metrics\": {\"avg_response_length\": 139.86, \"eos_rate\": 0.99625, \"k\": 8, \"n_problems\": 200, \"natural_eos\": 1594, \"pass_at_k\": 0.935, \"stderr\": 0.0174, \"temperature\": 0.7, \"truncated\": 6}, \"parent\": \"sft_rasp_20_qwen_math\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:29:13.689Z\"}, \"sft-alpha-1p0\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T13:53:32.178Z\", \"hypothesis\": \"SFT on alpha=1.0 pruned model (full CKA weight) recovers to level matching RASP default because alpha=1.0 IS the standard RASP scoring function (C2 ablation consistency)\", \"metrics\": {\"post_prune_accuracy\": 0.27, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_time_min\": 28}, \"notes\": \"α=1.0 SFT 完成 (1870/1870 steps, 2 epochs, ~28min). loss=0.64, token_acc=0.83. Post-prune 27% → post-SFT 需 eval 确认 (预期 ~57% 与 sft_rasp_20 一致，因 α=1.0 = RASP default). Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:28:07.214Z\"}, \"prune_rasp_30\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T09:03:45.925Z\", \"hypothesis\": \"RASP scoring at 30% sparsity maintains measurably higher post-prune accuracy than standard, testing whether CKA-preservation delays the structural collapse threshold\", \"metrics\": {\"actual_sparsity\": 0.2873, \"attn_groups_pruned\": \"0/112\", \"mlp_groups_pruned\": \"301/784\", \"model_size_gb\": 11, \"params_pruned\": 5427842560, \"target_sparsity\": 0.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:28:01.089Z\"}, \"prune_standard_30\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T09:06:31.546Z\", \"hypothesis\": \"Standard importance at 30% sparsity crosses structural collapse threshold where post-prune accuracy approaches zero, defining upper bound of viable pruning for DeepSeek-R1-Distill-Qwen-7B\", \"metrics\": {\"actual_sparsity\": 0.2854, \"attn_gqa_groups_pruned\": \"0/112\", \"mlp_groups_pruned\": \"299/784\", \"params_after\": 5442379264, \"target_sparsity\": 0.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:27:59.680Z\"}, \"prune_rasp_25_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T09:30:44.270Z\", \"hypothesis\": \"RASP CKA-weighted scoring at 25% on Qwen2.5-Math-7B preserves functionally redundant groups, maintaining higher post-prune accuracy than standard at same sparsity (C3 cross-model)\", \"metrics\": {\"actual_sparsity\": 0.2405, \"attn_gqa_groups_pruned\": \"0/112\", \"mlp_groups_pruned\": \"252/784\", \"params_after\": 5783991808, \"target_sparsity\": 0.25}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:27:58.263Z\"}, \"prune_standard_25_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T11:00:13.880Z\", \"hypothesis\": \"Standard importance at 25% on Qwen2.5-Math-7B removes groups by magnitude alone, destroying more functional redundancy than RASP at equal sparsity (C3 cross-model baseline)\", \"metrics\": {\"actual_sparsity\": 0.2396, \"attn_gqa_groups_pruned\": \"0/112\", \"mlp_groups_pruned\": \"251/784\", \"target_sparsity\": 0.25}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:27:56.876Z\"}, \"prune_rasp_rlvr_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T17:11:05.915Z\", \"hypothesis\": \"RASP-RLVR scoring on Qwen2.5-Math-7B at 20% sparsity preserves RLVR-relevant functional groups, yielding higher post-prune reasoning accuracy than standard importance (C3 cross-model)\", \"metrics\": {\"actual_sparsity\": 0.1909, \"attn_groups_pruned\": 0, \"attn_groups_total\": 112, \"mlp_groups_pruned\": 200, \"mlp_groups_total\": 784, \"pruned_params\": 6161946112}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:27:55.586Z\"}, \"eval_sft_standard_20_n1319_v2\": {\"created_at\": \"2026-05-17T03:18:09.035Z\", \"hypothesis\": \"Standard 20% post-SFT GSM8K full eval retry (N=1319, greedy, seed=42). 验证 westd 上 sft_standard_20 准确率是否一致 (~59.29% on westb). Retry of failed eval_sft_standard_20_n1319.\", \"parent\": \"sft_standard_20\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T03:19:18.590Z\"}, \"eval_pass_k8_rasp_20_grpo_deepseek\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T23:27:01.192Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B RASP 20% post-GRPO pass@k=8 (N=200, T=0.7, seed=42). C1 diversity 验证：RASP collapse 模型的 sampling diversity。构建 pass@k 2×2 矩阵。Parent: grpo_stage2_rasp_20_v9.\", \"metrics\": {\"n_problems\": 200, \"pass_k8\": 0.89, \"temperature\": 0.7}, \"notes\": \"Cron auto-resolved as failed (5/5 miss on old PID 60022). 实际进程 PID 61473 仍在正常运行（已多次 SSH 确认，GPU 0 占用 12982MiB, 99% util, 进度 32% at 00:42 UTC）。参数已修正为 eval_pass_k.py + max_new_tokens=4096。等完成后手动收割结果更新 conclusion。\", \"parent\": \"grpo_stage2_rasp_20_v9\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:15:54.640Z\"}, \"inference_bench_full\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-17T01:55:16.783Z\", \"hypothesis\": \"Full inference benchmark: Dense vs RASP 20% vs Standard 20%. batch_size=[1,4,16], max_new_tokens=[128,512]. Measures wall-clock latency, tokens/s, peak memory across configs. RASP should maintain similar speedup ratio across batch sizes due to structural pruning.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:23:42.064Z\"}, \"eval_sft_alpha_0p5\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-15T15:44:06.901Z\", \"hypothesis\": \"α=0.5 post-SFT GSM8K eval (N=100, greedy). Post-prune 25%. Completes full α ablation: α=0.0 (64%), α=0.5 (?), α=1.0 (57%), α=2.0 (pending), α=4.0 (62%). Parent: alpha_ablation_westd_cal256.\", \"notes\": \"Director 决定跳过原始 α=0.5 eval。但 Worker 确认完整 alpha sweep 已完成（N=200, greedy, 20% sparsity）: α=0.0→70%, α=0.3→73%, α=0.5→74%, α=0.7→73.5%, α=1.0→75.5%, α=2.0→75.5%。结果路径: /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_*.json。趋势: α从0到1单调递增后饱和，最优α≈1.0-2.0。\", \"parent\": \"alpha_ablation_westd_cal256\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:21:40.166Z\"}, \"eval_pass_k8_standard_20_grpo_deepseek\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T23:31:55.162Z\", \"hypothesis\": \"DeepSeek-R1-Distill-Qwen-7B Standard 20% post-GRPO pass@k=8 (N=200, T=0.7, seed=42). C1 diversity 验证：Standard collapse 模型的 sampling diversity。完成 pass@k 2×2 矩阵。Parent: grpo_stage2_standard_20_v8.\", \"parent\": \"grpo_stage2_standard_20_v8\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T01:56:11.192Z\"}, \"eval_sft_rasp_20_full\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T16:21:29.964Z\", \"hypothesis\": \"RASP post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 57%. Full eval provides statistical significance for RASP vs Standard comparison. Parent: sft_rasp_20.\", \"metrics\": {\"accuracy\": 0.6156, \"avg_response_length\": 210.95, \"eos_rate\": 0.9841, \"n_correct\": 812, \"n_samples\": 1319, \"natural_eos\": 1298, \"stderr\": 0.0134, \"truncated\": 21}, \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T01:29:36.754Z\"}, \"eval_sft_standard_20_n1319\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-16T05:20:21.771Z\", \"hypothesis\": \"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\", \"metrics\": {\"accuracy\": 0.5929, \"do_sample\": false, \"eos_rate\": 0.9803, \"n_correct\": 782, \"n_samples\": 1319, \"stderr\": 0.01353, \"temperature\": 0}, \"parent\": \"sft_standard_20_retrain\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T01:23:00.666Z\"}, \"inference_speedup_plan016_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T21:56:34.646Z\", \"hypothesis\": \"Inference speedup benchmark v2 (code fix applied): Dense vs RASP 20% vs Standard 20%. 测量 wall-clock latency, tokens/s, memory_peak. 50 GSM8K prompts, batch_size=1, greedy, max_new_tokens=512. Parent: inference_speedup_plan016 (failed due to model loading bug, now fixed with load_pruned_model).\", \"metrics\": {\"dense\": {\"avg_latency_sec\": 6.682, \"peak_memory_gb\": 16.22, \"tokens_per_second\": 76.25}, \"rasp_20\": {\"avg_latency_sec\": 4.156, \"latency_speedup_vs_dense\": \"37.8%\", \"memory_reduction_vs_dense\": \"28.5%\", \"peak_memory_gb\": 11.6, \"tokens_per_second\": 52.07}, \"standard_20\": {\"avg_latency_sec\": 6.167, \"latency_speedup_vs_dense\": \"7.7%\", \"memory_reduction_vs_dense\": \"28.4%\", \"peak_memory_gb\": 11.61, \"tokens_per_second\": 49.78}}, \"parent\": \"inference_speedup_plan016\", \"status\": \"DONE\", \"updated_at\": \"2026-05-17T00:49:42.978Z\"}, \"eval_pass_k8_standard_20_grpo_qwen_math_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T21:54:25.214Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% post-GRPO pass@k=8 (N=200, T=0.7, seed=42). C1 diversity 对照：frac_zero=0.85 collapse 模型的 sampling diversity。重跑 v1（僵尸进程被 kill）。Parent: grpo_standard_qwen_math_v3.\", \"parent\": \"grpo_standard_qwen_math_v3\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T23:23:37.778Z\"}, \"inference_speedup_plan016\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-16T20:58:10.584Z\", \"hypothesis\": \"Inference speedup benchmark: Dense vs RASP 20% vs Standard 20%. 测量 wall-clock latency, tokens/s, memory_peak. 50 GSM8K prompts, batch_size=1, greedy, max_new_tokens=512. Plan_016.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T21:50:20.342Z\"}, \"grpo_rasp_rlvr_20\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-16T18:27:09.457Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T20:29:10.704Z\"}, \"eval_grpo_rasp_rlvr_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T19:39:30.069Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP-RLVR 20% post-GRPO GSM8K eval (N=200, greedy, seed=42). GRPO reward=0.090(最高)，验证 accuracy 是否也改善或依然 decoupling (C1)。对比 pre-GRPO: 73%. Parent: grpo_rasp_rlvr_20_qwen_math.\", \"metrics\": {\"accuracy\": 0.71, \"mode\": \"greedy\", \"n_samples\": 200, \"seed\": 42}, \"notes\": \"Cron 误判 (eval 无 W&B 信号)。实际成功完成。Post-GRPO accuracy 71.0% vs pre-GRPO SFT 73%: Δ=-2pp, 确认 C1 universal decoupling (reward=0.090 最高但 accuracy 不升反微降)。EOS=100%, avg_len=128, 生成行为正常。\", \"parent\": \"grpo_rasp_rlvr_20_qwen_math\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T20:25:58.464Z\"}, \"eval_pass_k8_standard_20_grpo_qwen_math\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-16T18:50:49.872Z\", \"hypothesis\": \"Standard 20% post-GRPO pass@k=8 (N=200, T=0.7). C1 diversity 对照：frac_zero=0.85 的更严重 collapse 模型是否仍保持 sampling diversity。Parent: grpo_standard_qwen_math_v3.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T20:18:34.175Z\"}, \"eval_postprune_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T08:07:02.187Z\", \"hypothesis\": \"25% RASP post-prune GSM8K eval (N=100, greedy). 对比 20% post-prune (31%). Parent: pruned_rasp_25.\", \"metrics\": {\"accuracy\": 21, \"avg_response_length\": 2032.9, \"correct\": 21, \"eos_rate\": 56, \"natural_eos\": 56, \"seed\": 42, \"stderr\": 4.07, \"total\": 100, \"truncated\": 44}, \"parent\": \"prune_rasp_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T20:09:54.911Z\"}, \"grpo_rasp_rlvr_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T19:37:40.324Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP-RLVR 20% post-GRPO (100 steps). RLVR 剪枝后 SFT→GRPO 全管线。对比 grpo_rasp_qwen_math_v3 (regular RASP, reward=0.061) 和 grpo_standard_qwen_math_v3 (Standard, reward=0.044)。D050 ablation: RLVR 是否在 Qwen Math 上提供额外 GRPO 恢复能力。Parent: sft_rasp_rlvr_20_qwen_math.\", \"metrics\": {\"clipped_ratio\": 0.54, \"comparison_vs_rasp_20\": \"RLVR reward 0.090 > RASP 0.061 (+48%), entropy 0.275 >> 0.073 (3.8x)\", \"comparison_vs_standard_20\": \"RLVR reward 0.090 >> Standard 0.044 (+105%)\", \"entropy_final\": 0.275, \"frac_zero_std_final\": 0.7, \"grad_norm_final\": 16.125, \"kl_final\": 0.00581, \"kl_spike_recovery\": \"immediate\", \"kl_spike_step70\": 5756.85, \"loss_final\": 0.0793, \"reward_final\": 0.09, \"reward_std_final\": 0.234, \"total_steps\": 100, \"wall_clock_min\": 45.8, \"wandb_run_id\": \"clzm2cy4\"}, \"parent\": \"sft_rasp_rlvr_20_qwen_math\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T20:02:41.614Z\"}, \"grpo_standard_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T08:42:41.240Z\", \"hypothesis\": \"Standard 25% GRPO recovery (100 steps). Negative control for grpo_rasp_25. 预期 collapse 比 RASP 更早/更严重（如 20% 所示）。Parent: sft_standard_25.\", \"metrics\": {\"clipped_ratio\": 0.92, \"collapse_pattern\": \"near_total_collapse\", \"comparison_vs_rasp_25\": \"worse_than_rasp_25(0.009)\", \"kl_final\": 0.0012, \"reward_final\": 0.0075, \"total_steps\": 100, \"wall_clock_min\": 44, \"wandb_run_id\": \"16vqw4e6\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T19:37:31.250Z\"}, \"eval_sft_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T06:17:33.814Z\", \"hypothesis\": \"RASP 25% post-SFT GSM8K eval (N=1319, greedy, seed=42). sft_rasp_25 刚完成 (loss=0.8498, token_acc=0.8073)，对比 sft_standard_25 (待完成) 和 20% sparsity 结果 (RASP 57% vs Standard 64%)。Parent: sft_rasp_25.\", \"metrics\": {\"accuracy\": 0.5299, \"eos_rate\": 0.918, \"n_correct\": 699, \"n_samples\": 1319, \"seed\": 42, \"stderr\": 0.0137, \"truncated\": 108}, \"parent\": \"sft_rasp_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T19:15:43.879Z\"}, \"eval_sft_rasp_rlvr_20\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-16T14:51:38.892Z\", \"hypothesis\": \"RASP-RLVR 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). 验证反向 CKA scoring 的 RLVR 恢复效果。对比 RASP SFT (61.49%) 和 Standard SFT (59.29%)。Parent: sft_rasp_rlvr_20.\", \"parent\": \"sft_rasp_rlvr_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T18:20:27.560Z\"}, \"sft_rasp_rlvr_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T17:11:51.076Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP-RLVR 20% SFT recovery (2 epochs). 验证反向 CKA 剪枝后的恢复质量。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T18:01:41.992Z\"}, \"grpo_rasp_qwen_math_v3\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T14:49:39.708Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C1/C2. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_rasp_20.\", \"metrics\": {\"clipped_ratio_final\": 0.975, \"clipped_ratio_mean\": 0.981, \"collapse_onset\": \"step1\", \"collapse_pattern\": \"entropy_length_collapse\", \"cross_model_match\": \"partial\", \"entropy_mean\": 0.073, \"entropy_vs_standard_ratio\": 0.39, \"frac_zero_std_final\": 0.675, \"frac_zero_std_max\": 0.7, \"frac_zero_std_min\": 0.55, \"kl_final\": 0.009, \"llama_pattern\": \"permanent_reward_collapse\", \"mean_completion_length\": 1010, \"recovery\": false, \"reward_final\": 0.061, \"reward_min\": 0.048, \"reward_peak\": 0.102, \"reward_std_final\": 0.2, \"total_steps\": 100}, \"notes\": \"Cross-model C1/C2 PARTIAL. Expected Llama-like reward collapse + frac_zero_std→0.95; instead got ENTROPY collapse (0.07 vs Standard's 0.18) + length pathology (clipped_ratio 0.97-1.0, mean_len ~1010). Reward actually functional (0.05-0.10), frac_zero_std moderate (0.55-0.70) — LOWER than Standard. Model can still solve problems but generates pathologically repetitive non-terminating outputs. Collapse IS permanent but mechanism completely different from Llama RASP. Interpretation: Qwen-Math-7B has enough capacity to maintain problem-solving under RASP damage; damage manifests as mode collapse in output space rather than inability. Paper should frame as \\\"pruning-method-dependent GRPO fragility\\\" not \\\"universal collapse signature\\\".\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T15:54:29.413Z\", \"wandb_run_id\": \"yyg9ty4u\"}, \"sft_rasp_rlvr_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T09:50:43.369Z\", \"hypothesis\": \"RASP-RLVR 20% post-prune SFT recovery (lr=2e-5, epochs=2). 验证反向 CKA scoring (保留冗余结构) 是否产生更好的 RLVR 恢复基础。对比 RASP SFT 和 Standard SFT。Parent: prune_rasp_rlvr_20.\", \"notes\": \"v1 failed (EXIT_CODE=2): wrong arg names. v2 fixed args but EXIT_CODE=1: 训练完成 2 epochs (1870 steps, 36min), loss ~0.64, token_acc ~0.83。模型 shards 已保存到 checkpoint-1870（6.16B params, 验证可加载，需用 load_pruned_model）。optimizer state 被截断（4.3G vs 预期 23G）不可恢复训练，但模型推理可用。westb 数据盘 250GB 100% 满，需清理 checkpoint-935 (35GB) 后才能跑新实验。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:50:02.686Z\"}, \"grpo_standard_qwen_math\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-16T08:42:44.572Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% GRPO (100 steps, save_steps=5). 跨模型验证 C2: Standard collapse gradient (transient dip+recovery). DeepSeek Standard: transient dip step ~60, recovery step ~90. 参数同 grpo_stage2_standard_20_v8。Parent: sft_standard_20_qwen_math.\", \"notes\": \"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_standard_qwen_math_v2.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:27:51.309Z\", \"wandb_run_id\": \"iq8nkk1p\"}, \"grpo_rasp_qwen_math\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-16T08:42:43.989Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% GRPO (100 steps, save_steps=5). 跨模型验证 C1/C2: GRPO collapse 是否在 Qwen Math 上复现。DeepSeek RASP collapse onset ~step 10 (permanent). 参数同 grpo_stage2_rasp_20_v9。Parent: sft_rasp_20_qwen_math.\", \"notes\": \"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_rasp_qwen_math_v2.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T14:27:50.618Z\", \"wandb_run_id\": \"2sgy2m1a\"}, \"eval_sft_standard_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T07:05:10.825Z\", \"hypothesis\": \"Standard 25% post-SFT GSM8K eval (N=1319, greedy, seed=42). 对比 eval_sft_rasp_25 (同时在 westd 运行)，25% sparsity 下 RASP vs Standard post-SFT recovery 对比。20% 结果: Standard 64% > RASP 57%。Parent: sft_standard_25.\", \"metrics\": {\"accuracy\": 0.5125, \"avg_len\": 326.26, \"eos_rate\": 0.9545, \"n_correct\": 676, \"n_total\": 1319, \"stderr\": 0.0138}, \"parent\": \"sft_standard_25\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T13:23:38.482Z\"}, \"eval_sft_qwen_math_standard_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T12:04:49.969Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 25% post-SFT GSM8K eval (N=200, greedy, seed=42). Control for eval_sft_qwen_math_rasp_25。对比 20% 结果 (Standard 71.0%)。Parent: sft_qwen_math_standard_25.\", \"metrics\": {\"accuracy\": 63, \"correct\": 126, \"eos_rate\": 1, \"total\": 200}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:50:43.619Z\"}, \"eval_sft_qwen_math_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T12:04:49.248Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% post-SFT GSM8K eval (N=200, greedy, seed=42). 验证 25% sparsity 下 RASP SFT 恢复质量。对比 Standard 25% 和 20% 结果 (RASP 72.5% vs Standard 71.0%)。Parent: sft_qwen_math_rasp_25.\", \"metrics\": {\"accuracy\": 64, \"correct\": 128, \"eos_rate\": 0.995, \"total\": 200}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:50:42.647Z\"}, \"sft_qwen_math_standard_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T11:15:20.187Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 25% SFT recovery (lr=2e-5, epochs=2). Control for sft_qwen_math_rasp_25. Parent: prune_standard_25_qwen_math.\", \"metrics\": {\"epochs\": 2, \"final_loss\": 0.6122, \"mean_token_accuracy\": 0.8607, \"throughput_samples_per_sec\": 8.973, \"total_steps\": 1870, \"train_runtime_sec\": 1666}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:04:20.943Z\"}, \"sft_qwen_math_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T11:15:13.431Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% SFT recovery (lr=2e-5, epochs=2). 验证更高稀疏度下 RASP 的跨模型 SFT 恢复。Parent: prune_rasp_25_qwen_math.\", \"metrics\": {\"epochs\": 2, \"final_loss\": 0.6062, \"mean_token_accuracy\": 0.8673, \"throughput_samples_per_sec\": 9.046, \"total_steps\": 1870, \"train_runtime_sec\": 1652}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:03:33.361Z\"}, \"eval_sft_standard_qwen_math_n200\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T11:15:10.910Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% post-SFT GSM8K eval (N=200, greedy, seed=42). EOS fixed. Control for eval_sft_rasp_qwen_math_n200. Parent: sft_standard_20_qwen_math.\", \"metrics\": {\"accuracy\": 0.71, \"avg_len\": 127.7, \"correct\": 142, \"eos_rate\": 1, \"n_total\": 200, \"stderr\": 0.0321}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T11:32:27.012Z\"}, \"eval_sft_rasp_qwen_math_n200\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T11:15:07.028Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% post-SFT GSM8K eval (N=200, greedy, seed=42). EOS fixed (eos_token_id=[151643,151645]). Cross-model validation. Parent: sft_rasp_20_qwen_math.\", \"metrics\": {\"accuracy\": 0.725, \"avg_len\": 121.8, \"correct\": 145, \"eos_rate\": 1, \"n_total\": 200, \"stderr\": 0.0316}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T11:32:23.931Z\"}, \"eval_sft_standard_qwen_math\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-16T08:42:43.023Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). Control for eval_sft_rasp_qwen_math. Parent: sft_standard_20_qwen_math.\", \"notes\": \"Intentionally killed: N=1319 eval too slow (~5min/sample, ETA 4-5 days). Director approved Option A: restart with N=200.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T10:59:06.735Z\"}, \"eval_sft_rasp_qwen_math\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-16T08:42:42.080Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). Cross-model validation of RASP SFT recovery. Parent: sft_rasp_20_qwen_math.\", \"notes\": \"Intentionally killed: N=1319 eval too slow (~5min/sample, ETA 4-5 days). Director approved Option A: restart with N=200. Replacement running as eval_sft_rasp_qwen_math_n200.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T10:58:59.633Z\"}, \"prune_rasp_rlvr_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T09:50:39.656Z\", \"hypothesis\": \"RASP-RLVR 20% pruning: score = importance * cka^alpha. 反转 CKA scoring——剪掉功能独特的结构（低 CKA overlap），保留冗余结构（高 overlap），使 RLVR 更容易通过冗余路径恢复能力。对比 RASP (1-cka)^alpha 和 Standard (importance only)。\", \"metrics\": {\"actual_sparsity\": 0.1909, \"attn_gqa_groups_pruned\": \"0/112\", \"group_selection_diff_vs_rasp\": \"RASP重剪前6层+后段(19,23-25,27)保中间; RLVR重剪前6层+中后段(16-26)保Layer6-7,27\", \"mlp_groups_pruned\": \"200/784\", \"params_after\": \"6.16B\", \"target_sparsity\": 0.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T10:31:42.144Z\"}, \"sft_standard_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T08:11:00.051Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% pruned SFT recovery. 验证 RASP 方法在第二个模型族上的 SFT 恢复效果。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T10:10:19.019Z\"}, \"sft_rasp_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T08:10:59.311Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% pruned SFT recovery. 验证 RASP 方法在第二个模型族上的 SFT 恢复效果。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T10:10:17.852Z\"}, \"prune_standard_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T08:03:56.378Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% structured pruning (negative control). Scope expansion Phase 2 对照组。\", \"metrics\": {\"attn_groups_pruned\": 0, \"mlp_groups_pruned\": 202, \"model_keys\": 339, \"original_params\": 7615616512, \"pruned_params\": 6147409408, \"sparsity_actual\": 0.1928, \"sparsity_target\": 0.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T08:04:22.864Z\"}, \"prune_rasp_20_qwen_math\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T08:01:57.095Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% structured pruning. Scope expansion Phase 2: 验证 RASP 在第二个模型上的有效性（CKA-guided pruning preserves reasoning across model families）。使用已计算的 importance_scores_qwen_math.pt + cka_scores_qwen_math.pt。\", \"metrics\": {\"alpha\": 1, \"attn_groups_pruned\": 0, \"mlp_groups_pruned\": 199, \"model_keys\": 339, \"original_params\": 7615616512, \"pruned_params\": 6169214464, \"sparsity_actual\": 0.1899, \"sparsity_target\": 0.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T08:04:20.185Z\"}, \"eval_grpo_rasp_v9_step10\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T03:40:46.186Z\", \"hypothesis\": \"RASP GRPO v9 step-10 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 10 = collapse onset (reward=0.015, frac_zero_std=0.875). 对比 step-5 eval 和 Standard step-50 eval (58.91%) 量化 collapse 影响。Parent: grpo_stage2_rasp_20_v9.\", \"metrics\": {\"accuracy\": 61.87, \"avg_response_length\": 213.6, \"correct\": 816, \"eos_rate\": 98.33, \"seed\": 42, \"stderr\": 1.34, \"total\": 1319, \"truncated\": 22}, \"parent\": \"grpo_stage2_rasp_20_v9\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T08:01:06.191Z\"}, \"eval_postprune_25\": {\"created_at\": \"2026-05-16T06:17:34.379Z\", \"hypothesis\": \"25% post-prune accuracy eval (N=100, greedy, seed=42) for both pruned_rasp_25 and pruned_standard_25. 补之前失败的数据点，对比 20% sparsity post-prune (RASP 31% vs Standard 27%)。\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-16T06:17:43.424Z\"}, \"eval_sft_standard_20_full\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T16:21:33.865Z\", \"hypothesis\": \"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides statistical significance for RASP vs Standard comparison. Parent: sft_standard_20_retrain.\", \"notes\": \"Replaced by eval_sft_standard_20_n1319 (tmux session conflict). See new exp for results.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T05:35:33.677Z\"}, \"eval_grpo_rasp_v9_step5\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T01:55:35.424Z\", \"hypothesis\": \"RASP GRPO v9 step-5 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 5 是 RASP collapse 前最后可能的 pre-collapse checkpoint（v9 collapse onset ≤step 10, logging_steps=10 无法判断 step 5 状态）。与 Standard step-50 eval (58.91%) 对比，量化 RASP GRPO 短暂训练的效果。Parent: grpo_stage2_rasp_20_v9.\", \"metrics\": {\"accuracy\": 60.65, \"seed\": 42, \"total\": 1319}, \"parent\": \"grpo_stage2_rasp_20_v9\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T05:18:16.131Z\"}, \"prune_standard_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T05:13:52.855Z\", \"hypothesis\": \"Standard importance-only pruning at 25% sparsity (calibration=256). Negative control for RASP 25%. Multi-sparsity extension.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T05:16:41.032Z\"}, \"prune_rasp_25\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T05:13:52.292Z\", \"hypothesis\": \"RASP pruning at 25% sparsity (α=1.0, calibration=256). Multi-sparsity extension: compare with 20% to establish sparsity-collapse relationship.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T05:16:39.998Z\"}, \"grpo_unpruned_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-16T01:45:10.586Z\", \"hypothesis\": \"D043+ Unpruned GRPO v2 (D041 fix) — 修复 v1 设计缺陷（无 SFT 步骤）。使用 sft_unpruned_baseline checkpoint (84% N=100, loss=0.332) → GRPO，与 v8 完全相同参数 (8-bit AdamW, max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, lr=1e-6, max_steps=100, save_steps=5)。三模型 collapse dynamics 最后一块拼图：RASP ~step10, Standard ~step60, Unpruned ?。如果 Unpruned collapse 显著晚于 pruned models → 确立 pruning-specificity (Claim 1/2)。如果 Unpruned 也快速 collapse → GRPO 方法本身问题，需重新 frame。Parent: sft_unpruned_baseline.\", \"metrics\": {\"avg_step_time_sec\": 23, \"checkpoints_available\": [\"checkpoint-90\", \"checkpoint-95\", \"checkpoint-100\"], \"collapse_onset\": \"N/A\", \"final_entropy\": 0.194, \"final_grad_norm\": 6.97, \"final_kl\": 0.0051, \"final_reward\": 0.661, \"max_steps\": 100, \"peak_reward\": 0.669, \"peak_reward_step\": 80, \"reward_range\": \"0.425-0.669\", \"training_seconds\": 2660}, \"notes\": \"Unpruned GRPO 100 步全程未 collapse。Reward 稳定 0.4-0.67，peak 0.669 (step 80)，final 0.661 (step 100)。Grad norm 健康 (2.45-14.94)，entropy 平稳 (0.184-0.214)，KL 极稳定 (0.0046-0.0053)。Step 30 有浅 dip (0.425) 但 step 40 即回升。三模型 severity gradient 确立：RASP collapse step~10 (永久) > Standard step~60 (transient) > Unpruned 无 collapse。save_total_limit 导致仅剩 checkpoint-90/95/100。W&B runs: nhsx0bt2 (首次), hwucjf2n (恢复)。\", \"parent\": \"sft_unpruned_baseline\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T04:43:16.844Z\", \"wandb_run_id\": \"hwucjf2n\"}, \"grpo_stage2_rasp_20_v9\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T22:37:13.593Z\", \"hypothesis\": \"D043 plan_003 (Claim 1 核心对比): RASP GRPO v9 — save_steps=5 捕获 collapse 前 peak checkpoint。v8 全版本零 checkpoint (save_steps=50, kill at step ~28)。v9 用 save_steps=5, save_total_limit=5, max_steps=30。其余参数与 v8 一致 (8-bit AdamW, max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, lr=1e-6)。RASP collapse onset ~step 10, 需要 step 5/10 checkpoint 做 eval 与 Standard step-50 对比。Parent: sft_rasp_20.\", \"metrics\": {\"checkpoints\": [\"checkpoint-10\", \"checkpoint-15\", \"checkpoint-20\", \"checkpoint-25\", \"checkpoint-30\"], \"collapse_note\": \"frac_zero_std peaked at 95% by step 30, reward dropped from peak 0.039 (step 20) to 0.021 (step 30)\", \"collapse_status\": \"COLLAPSED\", \"final_clipped_ratio\": 0.956, \"final_frac_zero_std\": 0.95, \"final_grad_norm\": 1.398, \"final_kl\": 0.00118, \"final_loss\": 0.00686, \"final_mean_length\": 996, \"final_mean_terminated_length\": 176, \"final_reward\": 0.021, \"max_steps\": 30, \"reward_history\": [{\"frac_zero_std\": 0.875, \"reward\": 0.015, \"step\": 10}, {\"frac_zero_std\": 0.8, \"reward\": 0.039, \"step\": 20}, {\"frac_zero_std\": 0.95, \"reward\": 0.021, \"step\": 30}], \"step\": 30, \"step_time_sec\": 418, \"total_time\": \"3h28m25s\", \"wandb_url\": \"https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/mrikafz3\"}, \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T03:38:37.387Z\", \"wandb_run_id\": \"mrikafz3\"}, \"eval_sft_grasp_20_westd\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-15T15:22:44.271Z\", \"hypothesis\": \"GraSP post-SFT eval (N=100, greedy). Three-way comparison final piece: Standard 64%, RASP 57%, GraSP ?%. Tests whether GraSP pruning criterion affects SFT recovery potential. GraSP pre-SFT was ~8%, SFT training completed (loss=0.5857, token_acc=0.8392).\", \"metrics\": {\"avg_response_length\": 225.78, \"eos_rate\": 0.98, \"gsm8k_accuracy\": 0.41, \"gsm8k_accuracy_ci\": 0.0492, \"gsm8k_correct\": 41, \"gsm8k_total\": 100, \"max_response_length\": 4096, \"min_response_length\": 57, \"truncated\": 2}, \"notes\": \"OOM on westd cuda:1: GRPO grpo_unpruned_v2 (PID 75381) occupies 81GB/95GB, eval needs ~14GB additional, only 753MB free. GRPO at step 5/100, will take a long time. Need to wait for GRPO to finish or use another GPU.\", \"parent\": \"sft_grasp_20_westd\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T03:32:41.800Z\"}, \"grpo_stage2_standard_20_v8\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-15T14:32:39.107Z\", \"hypothesis\": \"D031: GRPO v8 Standard (negative control) — v7 disk crash fix + GPU mapping fix. HF cache redirected to data disk, CUDA_VISIBLE_DEVICES=1 + --gpu 0. 8-bit AdamW, max_completion_length=1024, identical params to RASP v8. Parent: sft_standard_20_retrain.\", \"metrics\": {\"checkpoint_50_eval\": {\"accuracy\": 0.5891, \"delta_vs_sft\": -0.0038}, \"checkpoint_50_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50\", \"final_step\": 90, \"key_finding\": \"Standard experienced transient dip at step 60 but RECOVERED by step 90. RASP collapsed permanently by step 10. No step-100 checkpoint available.\", \"max_steps\": 100, \"status\": \"STOPPED_AT_90\", \"step_40_peak\": {\"frac_zero_std\": 0.45, \"grad_norm\": 3.45, \"reward\": 0.096}, \"step_50\": {\"frac_zero_std\": 0.6, \"grad_norm\": 2.09, \"reward\": 0.037}, \"step_60_dip\": {\"frac_zero_std\": 0.525, \"grad_norm\": 0.013, \"note\": \"transient instability\", \"reward\": 0.041}, \"step_90\": {\"frac_zero_std\": 0.475, \"grad_norm\": 2.14, \"note\": \"RECOVERED — healthy (from wandb)\", \"reward\": 0.065}, \"stopped_reason\": \"silent stop at step 90, no crash log, tmux session gone. Only checkpoint-50 on disk (save_steps=50).\"}, \"notes\": \"MAJOR REVISION: Step 60 was a transient instability dip, NOT permanent collapse. Step 90 metrics show full recovery (grad_norm=2.14, reward=0.065, frac_zero_std=0.475). Standard GRPO completed 100/100 steps with healthy final metrics. This contrasts sharply with RASP which collapsed permanently by step 10 (grad_norm=0.007). Three-model dynamics: RASP=permanent collapse (step ≤10), Standard=transient dip+recovery (step 60), Unpruned=TBD. Step-50 checkpoint eval showed 58.91% (Δ=-0.38pp from SFT) — GRPO training metrics recovered but accuracy did not improve. Need step-100 eval to check if recovery translated to accuracy gain.\", \"parent\": \"sft_standard_20_retrain\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T02:14:46.162Z\", \"wandb_run_id\": \"q34vz8j2\"}, \"alpha_ablation_sweep\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T20:15:39.765Z\", \"hypothesis\": \"plan_015 (Claim 2): α sensitivity ablation on westb (cal=512). Sweep α∈{0, 0.25, 0.5, 1, 2} at 20% sparsity. RASP scoring S(h)=I(h)×(1-F(h))^α. Each α: prune + post-prune GSM8K N=100 eval. Tests whether CKA weight α systematically affects post-prune reasoning retention. Prior westd (cal=256) results: α=0.0→30%, α=0.5→25%, α=1.0→27%, α=4.0→40% (non-monotonic). westb cal=512 may show different pattern due to group selection sensitivity at 20% sparsity.\", \"metrics\": {\"alpha_0.0\": {\"accuracy\": 0.27, \"avg_len\": 1192, \"eos_rate\": 0.8, \"n_correct\": 27, \"n_total\": 100}, \"alpha_0.25\": {\"accuracy\": 0.23, \"avg_len\": 1834, \"eos_rate\": 0.63, \"n_correct\": 23, \"n_total\": 100}, \"alpha_0.5\": {\"accuracy\": 0.22, \"avg_len\": 1141, \"eos_rate\": 0.81, \"n_correct\": 22, \"n_total\": 100}, \"alpha_1.0\": {\"accuracy\": 0.31, \"avg_len\": 733, \"eos_rate\": 0.92, \"n_correct\": 31, \"n_total\": 100}, \"alpha_2.0\": {\"accuracy\": 0.36, \"avg_len\": 2130, \"eos_rate\": 0.59, \"n_correct\": 36, \"n_total\": 100}}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T00:18:46.780Z\"}, \"sft_unpruned_baseline\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T22:07:43.929Z\", \"hypothesis\": \"D043 plan_002 (Claim 1): Unpruned DeepSeek-R1-Distill-Qwen-7B SFT baseline。与 RASP/Standard SFT 完全相同配置 (2 epochs, lr=2e-5, batch=1, grad_accum=8, GSM8K train, seed=42)。三方公平对比必要条件：unpruned SFT → 然后才能做 unpruned GRPO baseline (修复 D041 设计缺陷)。\", \"metrics\": {\"epochs\": 2, \"final_loss\": 0.3321, \"final_token_accuracy\": 0.909, \"total_steps\": 1870, \"train_loss_avg\": 0.4253, \"train_runtime_sec\": 1908, \"train_samples_per_second\": 7.833}, \"notes\": \"tmux session: sft_unpruned, westd cuda:1. 1870 steps (2 epochs), ETA ~35-40min from 06:30 UTC. Cleaned sft_ablation/alpha_4.0/checkpoint-1870 (35G) to free disk.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-16T00:18:44.096Z\"}, \"eval_sft_rasp_full_westd\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T20:36:02.786Z\", \"hypothesis\": \"plan_001 (Claim 1): RASP SFT full GSM8K eval (N=1319, greedy, seed=42) on westd. N=100 results: westb 57%, westd 67% (10pp gap, needs full eval to confirm). Full eval resolves whether RASP advantage is real or N=100 noise. Parent: sft_rasp_20_westd_retrain.\", \"metrics\": {\"accuracy\": 0.6149, \"avg_len\": 216.5, \"eos_rate\": 0.9826, \"n_correct\": 811, \"n_total\": 1319, \"stderr\": 0.0134}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T21:42:41.916Z\"}, \"eval_sft_standard_full_westd\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T20:36:01.803Z\", \"hypothesis\": \"plan_001 (Claim 1): Standard SFT full GSM8K eval (N=1319, greedy, seed=42) on westd. N=100 results: westb 64%, westd 63% (cross-server consistent). Full eval for statistical significance. Parent: sft_standard_20_westd_retrain.\", \"metrics\": {\"accuracy\": 0.5929, \"avg_len\": 226.7, \"eos_rate\": 0.9803, \"n_correct\": 782, \"n_total\": 1319, \"stderr\": 0.01353}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T21:42:40.854Z\"}, \"grpo_unpruned_baseline\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T17:29:03.104Z\", \"hypothesis\": \"D032: Unpruned baseline GRPO — 证明 GRPO 本身在未剪枝 DeepSeek-R1-Distill-Qwen-7B 上有效。如果 RASP/Standard 剪枝模型 collapse 而 unpruned 不 collapse，证明 collapse 是剪枝导致的，不是 GRPO 方法问题。Reviewer 关键缺失证据。参数与 v8 完全一致。\", \"metrics\": {\"checkpoint_saved\": false, \"collapse_onset_step\": 80, \"disk_full\": true, \"final_clipped_ratio\": 1, \"final_frac_zero_std\": 1, \"final_mean_terminated_length\": 0, \"final_reward\": 0, \"peak_reward\": 0.044, \"peak_reward_step\": 20, \"runtime_min\": 49, \"steps_completed\": 100}, \"notes\": \"磁盘满崩溃 + 实验设计缺陷（无 SFT 对照）。100/100 steps 但 checkpoint 保存失败 (250G/250G)。Peak reward 0.044 (step 20) → step 80 collapse。W&B: e49c42ha。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T20:35:34.577Z\", \"wandb_run_id\": \"e49c42ha\"}, \"eval_sft_rasp_20_westd_n100_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T19:24:08.437Z\", \"hypothesis\": \"N=100 quick validation of RASP SFT retrain on westd (v2 retry — fixed working directory from autodl-tmp to project root). Expected ~57% (matching westb). Cross-server reproducibility check. Parent: sft_rasp_20_westd_retrain.\", \"metrics\": {\"accuracy\": 0.67, \"avg_len\": 182.39, \"eos_rate\": 0.99, \"n_correct\": 67, \"n_total\": 100}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T20:11:02.033Z\"}, \"eval_sft_standard_20_westd_n100_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T19:24:09.850Z\", \"hypothesis\": \"N=100 quick validation of Standard SFT retrain on westd (v2 retry — fixed working directory + output_path typo). Expected ~64% (matching westb). Cross-server reproducibility check. Parent: sft_standard_20_westd_retrain.\", \"metrics\": {\"accuracy\": 0.63, \"avg_len\": 260.57, \"eos_rate\": 0.97, \"n_correct\": 63, \"n_total\": 100}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T20:11:00.967Z\"}, \"eval_sft_standard_20_westd_n100\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T17:39:03.607Z\", \"hypothesis\": \"N=100 quick validation of Standard SFT retrain on westd. Expected ~64% (matching westb). Cross-server reproducibility check before N=1319 full eval. Parent: sft_standard_20_westd_retrain.\", \"metrics\": {\"accuracy\": 0.63, \"avg_len\": 260.57, \"eos_rate\": 0.97, \"n_correct\": 63, \"n_total\": 100, \"stderr\": 0.048}, \"notes\": \"Standard 63% on westd — matches westb expectation (~64%). Cross-server reproducibility confirmed for Standard. RASP outperforms Standard by 4pp on westd (67% vs 63%), reversed from westb pattern.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:30:00.797Z\"}, \"eval_sft_rasp_20_westd_n100\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T17:35:08.417Z\", \"hypothesis\": \"N=100 quick validation of RASP SFT retrain on westd. Expected ~57% (matching westb). Cross-server reproducibility check before N=1319 full eval. Parent: sft_rasp_20_westd_retrain.\", \"metrics\": {\"accuracy\": 0.67, \"avg_len\": 182.39, \"eos_rate\": 0.99, \"n_correct\": 67, \"n_total\": 100, \"stderr\": 0.047}, \"notes\": \"RASP 67% vs expected ~57% — 10pp higher than westb. Standard 63% matches westb expectation. RASP > Standard by 4pp on westd (reversed from westb where Standard led). Cross-server reproducibility NOT confirmed for RASP — needs investigation with full N=1319 eval.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:29:59.250Z\"}, \"sft_rasp_20_westd_retrain\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T16:59:51.103Z\", \"hypothesis\": \"RASP SFT retrain on westd for cross-server reproducibility + full N=1319 eval. Same params as westb (2 epochs, lr=2e-5, batch=1, grad_accum=8, seed=42). Expected: ~57% post-SFT (matching westb). Parent: reeval_postprune_definitive.\", \"notes\": \"RASP SFT retrain 启动 on westd cuda:0. PID 48946, tmux session sft_rasp_westd. 参数: epochs=2, lr=2e-5, bs=1, grad_accum=8, max_seq_len=2048, seed=42. Output: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd. 预计 ~35-40min。完成后先 N=100 快速验证 (~57% expected)，再 N=1319 full eval。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T18:36:33.103Z\"}, \"sft_standard_20_westd_retrain\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T17:05:52.927Z\", \"hypothesis\": \"Standard SFT retrain on westd for cross-server reproducibility + full N=1319 eval. Same params as westb (2 epochs, lr=2e-5, batch=1, grad_accum=8, seed=42). Expected: ~64% post-SFT (matching westb). Parent: reeval_postprune_definitive.\", \"metrics\": {\"epochs\": 2, \"final_step_loss\": 0.6403, \"final_token_accuracy\": 0.8258, \"total_steps\": 1870, \"train_loss\": 0.7577, \"train_runtime_sec\": 1679, \"train_samples_per_second\": 8.902}, \"notes\": \"Standard SFT retrain 启动 on westd cuda:1. PID 49645. 参数: epochs=2, lr=2e-5, bs=1, grad_accum=8, max_seq_len=2048, seed=42. Output: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd. 模型加载中。预计 ~35-40min。完成后先 N=100 快速验证 (~64% expected)，再 N=1319 full eval。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T18:36:32.558Z\"}, \"grpo_stage2_rasp_20_v8\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-15T14:32:38.536Z\", \"hypothesis\": \"D031: GRPO v8 RASP — v7 disk crash fix. HF cache redirected to data disk. 8-bit AdamW, max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, 100 steps. Parent: sft_rasp_20.\", \"metrics\": {\"clipped_ratio\": 0.963, \"completion_length\": 996, \"entropy\": 0.065, \"est_step30_utc\": \"2026-05-15T18:03:00Z\", \"frac_zero_std\": 0.9, \"grad_norm\": 0.011, \"kill_at_step_30\": true, \"kill_reason\": \"All 3 thresholds met: grad_norm=0.011<0.05, frac_zero_std=0.90>=0.85, reward=0.026<0.03\", \"kl\": 0.001, \"loss\": -0.005, \"reward_mean\": 0.026, \"status\": \"COLLAPSED\", \"step\": 23, \"terminated_length\": 124}, \"notes\": \"NEGATIVE: Killed at ~step 28-30 per Director protocol. All 3 kill thresholds met since step 10: grad_norm=0.011&lt;0.05, frac_zero_std=0.90≥0.85, reward=0.026&lt;0.03. RASP GRPO 三次连续 collapse (v2/v5/v8)——所有配置（lr, temp, rep_penalty, beta, loss_type）均无法阻止 collapse。结论: RASP 剪枝模型的 GRPO 恢复路径在当前框架下失效。cuda:0 已释放给 unpruned baseline GRPO。\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T17:53:21.521Z\", \"wandb_run_id\": \"0wz7xpd5\"}, \"grasp_baseline_westd\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T12:40:34.072Z\", \"hypothesis\": \"D027: GraSP baseline on westd — compare GraSP pruning criterion against RASP at 20% sparsity. If RASP > GraSP post-recovery, confirms CKA-aware scoring advantage over gradient-based saliency. Critical for plan_005 and Dream reviewer concern.\", \"metrics\": {\"avg_len\": 4018, \"eos_rate\": 0.02, \"grasp_20_accuracy_n100\": 0.07, \"json_path\": \"results/eval_pruned_graspune_20_greedy.json\", \"n_correct\": 7, \"n_total\": 100, \"rasp_20_accuracy_ref\": 0.31, \"standard_20_accuracy_ref\": 0.27}, \"notes\": \"GraSP post-prune eval (N=100) 运行中 on westd GPU 0. PID 38120. 71/100 at 15:25 UTC, ~51s/sample, 预计 ~25min 完成。中间结果 (50 samples): accuracy 6%, eos_rate 2%, avg_len 4018. 输出确认安全: seed 默认 42, output_path 默认 results/eval_pruned_graspune_20_greedy.json. 完成后立即启动 GraSP post-SFT eval (cuda:0, model at sft_graspune_20/). Cron 监控中。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T17:12:21.555Z\"}, \"eval_sft_alpha_2p0\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T15:42:36.917Z\", \"hypothesis\": \"α=2.0 post-SFT GSM8K eval (N=100, greedy). Post-prune 29%, post-SFT loss=0.61, token_acc=0.84. Completes α ablation sweep: α=0.0 (64%), α=1.0 (57%), α=4.0 (62%), α=2.0 (?). Parent: sft_alpha2_0_westd.\", \"metrics\": {\"accuracy\": 0.62, \"avg_len\": 277.41, \"eos_rate\": 0.97, \"n_correct\": 62, \"n_total\": 100, \"stderr\": 0.0485}, \"parent\": \"sft_alpha2_0_westd\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T16:41:41.929Z\"}, \"sft_alpha2_0_westd\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T14:32:54.953Z\", \"hypothesis\": \"D027: α=2.0 pruned model SFT recovery on westd. α=2.0 post-prune accuracy 29%. Same SFT params as other α variants (2 epochs, lr=2e-5, batch=1, grad_accum=8). Completes α ablation sweep.\", \"metrics\": {\"epoch\": 2, \"mean_token_accuracy_final\": 0.8354, \"post_prune_accuracy\": 0.29, \"total_steps\": 1870, \"train_loss\": 0.7424, \"train_loss_final\": 0.6114, \"train_runtime_sec\": 2422}, \"notes\": \"α=2.0 SFT 完成 (1870/1870 steps, 2 epochs, ~40min). train_loss=0.7424, final loss=0.6114, token_acc=0.8354. Post-prune 29% → post-SFT 需 eval 确认. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0 (model.safetensors 11.5GB).\", \"parent\": \"alpha_ablation_westd_cal256\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T15:41:31.384Z\"}, \"grpo_standard_20_v8\": {\"created_at\": \"2026-05-15T15:07:46.100Z\", \"notes\": \"[2026-05-15 23:05] Early signal check: step 2/100, ~411s/step, ETA ~11.2h. GPU1 72GB/98GB VRAM, 100% util. Wandb metrics not yet logged (logging_steps=10, first log at step 10 ~55min). Processes alive (PID 534667, 22min uptime, 3.1GB RSS). WARNING: data disk 89% full (29GB free), checkpoint save at step 50 may fail.\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T15:07:46.100Z\"}, \"grpo_rasp_20_v8\": {\"created_at\": \"2026-05-15T15:07:44.307Z\", \"notes\": \"[2026-05-15 23:05] Early signal check: step 3/100, ~400s/step, ETA ~10.8h. GPU0 72GB/98GB VRAM, 100% util. Wandb metrics not yet logged (logging_steps=10, first log at step 10 ~47min). Processes alive (PID 532861, 31min uptime, 3.1GB RSS). WARNING: data disk 89% full (29GB free), checkpoint save at step 50 may fail (~18-24GB per checkpoint).\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T15:07:44.307Z\"}, \"alpha_ablation_westd_cal256\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T09:46:30.119Z\", \"hypothesis\": \"α ablation sweep (calibration=256, N=100). α∈{0.0,0.5,1.0,2.0,4.0} at 20% sparsity. Phase A (prune+eval) complete, Phase B (SFT) in progress. Note: calibration=256 differs from westb original (512), causing ~5% group selection differences.\", \"metrics\": {\"alpha_4_0_accuracy\": 0.4, \"finding\": \"α=4.0 gives 40% post-prune accuracy (highest), non-monotonic relationship between α and accuracy\"}, \"notes\": \"α ablation (calibration=256, N=100) Phase A 完成. Phase B (SFT) 状态: α=0.0 SFT+eval DONE (64%), α=0.5 SFT DONE (checkpoint at /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5/, eval 待做), α=1.0 SFT DONE + eval running, α=2.0 SFT running (240/1870), α=4.0 SFT+eval DONE (62%). α=4.0 达到 40% post-prune accuracy 为最高, α 与 accuracy 呈非单调关系. Note: calibration=256 differs from westb original (512).\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T15:07:37.593Z\"}, \"sft_grasp_20_westd\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T13:50:39.294Z\", \"hypothesis\": \"D028: GraSP pruned model (8% post-prune) SFT recovery. Same params as RASP/Standard SFT (2 epochs, lr=2e-5, batch=1, grad_accum=8). Completes three-way comparison: Standard 27%→64%, RASP 31%→57%, GraSP 8%→?. Tests whether importance metric choice affects recovery potential.\", \"notes\": \"GraSP SFT 完成 (exit_code=0). 1870/1870 steps, 2 epochs, 58.5min. Final loss=0.5857, mean_token_accuracy=0.8392, grad_norm=9.375. train_runtime=3510s, train_loss=0.706. Model saved to /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/ (12.6GB). GraSP eval (N=100) 仍在 GPU 0 运行中 (PID 38120, 41/100, ~1.5h remaining).\", \"parent\": \"grasp_baseline_westd\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T15:01:02.359Z\"}, \"grpo_stage2_standard_20_v7\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T14:06:22.084Z\", \"hypothesis\": \"D030: GRPO v7 — v6 OOM fix. 8-bit AdamW optimizer (bitsandbytes) saves ~50% optimizer memory. max_steps=100 (~756s/step). All other params same as v6: max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, monkey-patch ref_model.\", \"notes\": \"v7 crashed: No space left on device — HF datasets cache 写入根分区导致瞬时磁盘满。GPU 映射 bug (--gpu 1 应为 --gpu 0 with CUDA_VISIBLE_DEVICES=1) 也未修复。v8 修复: HF_DATASETS_CACHE + HF_HOME 重定向到 autodl-tmp + GPU 映射修正。\", \"parent\": \"sft_standard_20_retrain\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T14:32:00.808Z\"}, \"grpo_stage2_rasp_20_v7\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T14:06:21.430Z\", \"hypothesis\": \"D030: GRPO v7 — v6 OOM fix. 8-bit AdamW optimizer (bitsandbytes) saves ~50% optimizer memory. max_steps=100 (~756s/step). All other params same as v6: max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, monkey-patch ref_model.\", \"notes\": \"v7 crashed: RASP 静默死亡（可能 No space left on device 同根因），Standard 报 No space left on device — HF datasets cache 写入根分区导致瞬时磁盘满。双卡空闲 40+ min。v8 修复: HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets + HF_HOME=/root/autodl-tmp/.hf_cache。\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T14:31:57.799Z\"}, \"grpo_stage2_standard_20_v6\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T12:42:36.011Z\", \"hypothesis\": \"D028: GRPO v6 Standard (negative control) — identical params to RASP v6: max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True. Direct comparison with RASP v6. If RASP >> Standard, confirms CKA-aware pruning preserves RLVR-recoverable structures.\", \"notes\": \"OOM at step 9/250. Adam._init_group() 分配 1.02 GiB 失败，GPU 0 仅剩 214 MiB。ref_model + train_model 占满 ~95 GiB。PID 521089 僵尸进程仍占 74318 MiB on GPU 1。同 RASP v6 根因。需要 8-bit optimizer 或 ref_model CPU offload。\", \"parent\": \"sft_standard_20_retrain\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T14:02:45.251Z\"}, \"grpo_stage2_rasp_20_v6\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T12:42:34.281Z\", \"hypothesis\": \"D028: GRPO v6 RASP — v5 truncation fix. max_completion_length 512→1024. All other params same: beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, monkey-patch ref_model. v5 collapsed at step 80 (reward=0, clipped_ratio=97.5%). Expected ~5 min/step, ~21h total.\", \"notes\": \"OOM at step 9/250. Adam._init_group() 分配 130 MiB 失败，GPU 0 仅剩 44 MiB。ref_model + train_model 占满 ~95 GiB。PID 520997 僵尸进程仍占 67430 MiB。max_completion_length=1024, gradient_checkpointing=true, beta=0.01, temp=0.4, lr=1e-6, loss=dapo。需要 8-bit optimizer 或 ref_model CPU offload。\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T14:02:43.049Z\"}, \"sft_alpha4_0_westd_retry\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T12:46:36.918Z\", \"hypothesis\": \"D027: α=4.0 pruned model SFT recovery on westd (retry #3). α=4.0 gave highest post-prune accuracy (40%). Fix: CUDA_VISIBLE_DEVICES=1 + --gpu 0 (prevent GPU 0 collision with GraSP) + --save_strategy no (prevent checkpoint serialization crash). Same SFT params: 2 epochs, lr=2e-5, batch=1, grad_accum=8.\", \"metrics\": {\"accuracy_stderr\": 0.049, \"avg_response_length\": 238.56, \"eos_rate\": 0.98, \"mean_token_accuracy_final\": 0.8368, \"n_correct\": 62, \"n_total\": 100, \"post_prune_accuracy\": 0.4, \"post_sft_accuracy_100\": 0.62, \"sft_recovery_gain_pp\": 22, \"train_loss_final\": 0.7393, \"train_loss_last_logged\": 0.6106}, \"notes\": \"SFT training completed (1870/1870 steps, 2 epochs, ~30 min). GSM8K eval (N=100, greedy): 62% accuracy (62/100, stderr=0.049), EOS rate 98%, avg_len 238.56. Post-prune 40% → post-SFT 62% (+22pp recovery). Compared to α=1.0 RASP post-SFT (57%), α=4.0 is +5pp higher, confirming higher α amplifies recovery. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_4.0. Eval JSON: results/eval_alpha_4.0_greedy.json.\", \"parent\": \"alpha_ablation_westd_cal256\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T13:48:13.666Z\"}, \"sft_alpha4_0_westd\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T12:38:41.395Z\", \"hypothesis\": \"D027: α=4.0 pruned model SFT recovery on westd. α=4.0 gave highest post-prune accuracy (40%), testing if SFT recovery further amplifies the advantage. Same SFT params as other α variants (2 epochs, lr=2e-5, batch=1, grad_accum=8).\", \"notes\": \"第一次运行因 save_strategy=\\\"epoch\\\" 中间 checkpoint 序列化占满磁盘而失败。已修改 sft_recovery.py save_strategy=\\\"no\\\"，通过 sft_alpha4_0_westd_retry 重试。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T12:47:41.297Z\"}, \"grpo_stage2_rasp_20_v5\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-15T09:33:29.974Z\", \"hypothesis\": \"D025: GRPO v5 — v4 speed fix. max_completion_length 2048→512 (4x faster generation). All other params same as v4: beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, gradient_checkpointing=True, monkey-patch ref_model. Expected ~7-10 min/step (vs v4 29min/step).\", \"notes\": \"D027: GRPO v5 RASP 实质性崩溃。Step 40 reward 峰值 0.033，step 80 归零（frac_zero_std=100%）。Grad norm: 2.6→0.01。Clipped ratio 93-97.5%（几乎所有 completion 被截断在 512 tokens）。根因：max_completion_length=512 对 R1 distill 模型不够长，模型无法在 512 token 内完成推理链。Step 89/250, ETA ~5h。建议 kill 并切 v6 (max_completion_length=1024)。\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T12:43:46.085Z\"}, \"grpo_stage2_standard_20_v5\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-15T12:35:49.283Z\", \"hypothesis\": \"D027: GRPO v5 Standard (negative control) — identical params to RASP GRPO v5: beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, max_completion_length=512, gradient_checkpointing=True, monkey-patch ref_model. Direct comparison with grpo_stage2_rasp_20_v5. If RASP >> Standard, confirms CKA-aware pruning preserves RLVR-recoverable structures.\", \"notes\": \"First attempt failed (EXIT_CODE=2, --steps_per_generation not in argparse). Resubmitted without that arg. pid=518903. Model loading in progress.\", \"parent\": \"sft_standard_20_retrain\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-15T12:42:34.945Z\"}, \"reeval_postprune_definitive\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-15T09:46:32.498Z\", \"hypothesis\": \"D023: Definitive re-eval of pruned_standard_20 and pruned_rasp_20 with current eval_gsm8k.py + load_pruned_model. N=100, max_new_tokens=4096, greedy. Validates whether original 1% vs 29% is reproducible with current code.\", \"metrics\": {\"conclusion\": \"Original 29x advantage (29% vs 1%) not reproducible. Actual gap 4pp (31% vs 27% on westb), not statistically significant.\", \"original_claim_rasp\": 0.29, \"original_claim_standard\": 0.01, \"rasp_20_accuracy_westb\": 0.31, \"rasp_20_accuracy_westd\": 0.29, \"rasp_vs_standard_gap_pp\": 4, \"standard_20_accuracy_westb\": 0.27}, \"notes\": \"D023 definitive re-eval complete. westb: RASP 31%, Standard 27% (4pp gap). westd: RASP 29% (2pp delta from westb due to GPU driver 580 vs 595). Original 29% vs 1% claim invalidated — Standard was never 1%, likely eval bug in v4 pipeline. Post-prune gap is ~4pp, not statistically significant at N=100. GRPO Stage 2 is now the sole deterministic experiment for the paper narrative.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T12:30:41.698Z\"}, \"grpo_stage2_rasp_20_v4\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-15T08:23:49.573Z\", \"hypothesis\": \"D021: GRPO v4 — fixes v2/v3 collapse. Ref_model monkey-patch for beta=0.01 KL penalty, temp 0.4 (from 0.7), repetition_penalty 1.15, format_reward +0.1 for \\\\boxed{}, gradient_checkpointing=True, max_completion_length=2048. If reward>0 at step 10, confirms sampling stabilization.\", \"notes\": \"Killed at step ~1/250 due to 29min/step ETA (120h total). vLLM incompatible with per_layer_intermediate_size. Replaced by v5 with max_completion_length=512.\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T09:32:41.159Z\", \"wandb_run_id\": \"75d1o9wa\"}, \"grpo_stage2_rasp_20_v3\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T07:58:52.482Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T09:32:34.875Z\"}, \"grpo_stage2_standard_20_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-15T03:30:01.400Z\", \"hypothesis\": \"D017: GRPO Stage 2 v2 negative control — SFT-warmed Standard-pruned model GRPO recovery with optimized params (max_completion_length=1024, max_samples=1000). Post-SFT: 64% greedy accuracy, EOS 99%, avg_len 176 tokens. Expected: GRPO improvement smaller than RASP counterpart.\", \"notes\": \"D019: GRPO Stage 2 v2 Standard (negative control) — EXIT_CODE=129 (SIGHUP) at step 33/250 (~4h05m, retry_count=1). Confirmed grad_norm=0 collapse: sampling mode (temp=0.7) produces degenerate output (\\\"#### 7248\\\" repeated), reward=0.00, 0 gradient. Despite SFT restoring 64% greedy accuracy and 99% EOS, GRPO sampling destabilizes the pruned model into repetitive loops. Same root cause as RASP counterpart — GRPO method failure, not model-specific.\", \"parent\": \"sft_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T08:15:31.861Z\", \"wandb_run_id\": \"iinlgfqk\"}, \"grpo_stage2_rasp_20_v2\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-15T03:30:00.666Z\", \"hypothesis\": \"D017: GRPO Stage 2 v2 — SFT-warmed RASP-pruned model RLVR recovery with optimized params (max_completion_length=1024, max_samples=1000). Post-SFT: 57% greedy accuracy, EOS 99%, avg_len 180 tokens. Reduced completion length justified by SFT restoring EOS. If GRPO pushes RASP significantly above Standard, confirms CKA-aware pruning preserves RLVR-recoverable structures.\", \"notes\": \"D019: GRPO Stage 2 v2 RASP — killed at step 35/250 (~4h17m). Confirmed grad_norm=0 collapse: sampling mode (temp=0.7) produces degenerate repetitive loops (e.g. \\\"$708033600000\\\" repeated 20+ steps), 0 reward, 0 gradient. Despite SFT restoring 57% greedy accuracy and 99% EOS rate, GRPO sampling destabilizes the pruned model. Same root cause as Standard counterpart. This is a GRPO method failure, not a RASP vs Standard comparison. wandb: e16rbclf.\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T08:15:30.925Z\", \"wandb_run_id\": \"e16rbclf\"}, \"grpo_stage2_standard_20\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-15T01:11:12.341Z\", \"hypothesis\": \"GRPO Stage 2 negative control: SFT-warmed Standard-pruned model GRPO recovery. Post-SFT accuracy 64% (greedy eval N=100), EOS restored. Expected: GRPO improvement smaller than RASP counterpart, confirming standard pruning removes structures less amenable to RLVR recovery.\", \"notes\": \"D017: Killed for parameter optimization restart. max_completion_length 4096→1024 (SFT后EOS 99%, avg 176 tokens, 4096浪费). max_samples 2000→1000. Superseded by grpo_stage2_standard_20_v2.\", \"parent\": \"sft_standard_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T03:33:30.780Z\"}, \"grpo_stage2_rasp_20\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-15T01:11:10.490Z\", \"hypothesis\": \"GRPO Stage 2 (plan_003): SFT-warmed RASP-pruned model recovers reasoning via RLVR. Post-SFT accuracy 57% (greedy eval N=100), EOS restored. If GRPO pushes RASP significantly above Standard, confirms CKA-aware pruning preserves RLVR-recoverable structures.\", \"notes\": \"D017: Killed for parameter optimization restart. max_completion_length 4096→1024 (SFT后EOS 99%, avg 176 tokens, 4096浪费). max_samples 2000→1000. Superseded by grpo_stage2_rasp_20_v2.\", \"parent\": \"sft_rasp_20\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T03:33:11.856Z\"}, \"sft_standard_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-14T23:37:34.863Z\", \"hypothesis\": \"D013 Stage 1: SFT warmup on Standard-pruned model (20%, 1% GSM8K) as negative control. Expected: SFT partially recovers format but reasoning remains limited.\", \"metrics\": {\"eos_rate_greedy_100\": 0.99, \"greedy_accuracy_100\": 0.64, \"greedy_avg_len\": 176.31, \"greedy_correct\": 64, \"greedy_max_len\": 4096, \"greedy_min_len\": 43, \"greedy_total\": 100, \"sampling_eos_rate_5\": 1, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_loss_initial\": 1.7, \"train_time_min\": 37}, \"notes\": \"SFT warmup SUCCESS (负对照). EOS恢复100% (3/3测试). Loss 1.70→0.64, token_accuracy 83%. 但推理准确率有限(2/3, 12+15算成41), 说明standard pruning破坏了关键推理结构, SFT只恢复了格式+EOS, 无法完全恢复数学推理. 平均生成49 tokens, 无重复循环. 训练37min, 1870 steps. Greedy eval N=100: 64% accuracy, avg_len=176.31, eos_rate=99%. N=100 sampling eval was killed (OOM by concurrent GRPO). Eval JSON: /root/recovery_aware_struct_prune/results/eval_sft_standard_20_combined.json. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T02:49:41.141Z\"}, \"sft_rasp_20\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-14T23:37:33.162Z\", \"hypothesis\": \"D013 Stage 1: SFT warmup on RASP-pruned model (20%, 29% GSM8K) to restore EOS generation ability before GRPO Stage 2.\", \"metrics\": {\"eos_rate_greedy_100\": 0.99, \"greedy_accuracy_100\": 0.57, \"greedy_avg_len\": 179.83, \"greedy_correct\": 57, \"greedy_max_len\": 4096, \"greedy_min_len\": 59, \"greedy_total\": 100, \"sampling_eos_rate_5\": 1, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_loss_initial\": 1.86, \"train_time_min\": 37}, \"notes\": \"SFT warmup SUCCESS. EOS恢复100% (5/5测试). Loss 1.86→0.64, token_accuracy 83%. 平均生成77 tokens, 无重复循环, 遵循GSM8K格式. 训练时间37min, 1870 steps (2 epochs). Greedy eval N=100: 57% accuracy, avg_len=179.83, eos_rate=99%. N=100 sampling eval was killed (OOM by concurrent GRPO). Eval JSON: /root/recovery_aware_struct_prune/results/eval_sft_rasp_20_combined.json. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/\", \"status\": \"DONE\", \"updated_at\": \"2026-05-15T02:49:39.222Z\"}, \"grpo_rasp_20_4096\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T22:43:12.378Z\", \"hypothesis\": \"D010: RASP-pruned model (20% sparsity, post-prune 29% GSM8K) GRPO recovery with max_completion_length=4096 (fix D009 truncation). Core MVP experiment — if recovery succeeds, RASP structure selection enables RLVR recovery that standard pruning cannot.\", \"notes\": \"D013: Killed at step 10/500. clipped_ratio=1.0, grad_norm=0, mean_terminated_length=0. RASP model (29% greedy accuracy) completely degrades in sampling mode (temp=0.7): repetitive loops and digit sequences, never produces EOS. 4096 tokens not the issue — pruning destroys sampling-mode generation quality. Same root cause as Standard. Switched to SFT warmup → GRPO two-stage recovery (D013). wandb: ccx0jr0z.\", \"parent\": \"mvp_rasp_pipeline_v4\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T23:54:07.328Z\"}, \"grpo_standard_20_4096\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-14T22:19:37.356Z\", \"hypothesis\": \"D010: Standard-pruned model (20% sparsity, post-prune 1% GSM8K) GRPO recovery with max_completion_length=4096 (fix D009 truncation). Negative control — expected to fail recovery due to non-optimal structure selection, confirming RASP advantage.\", \"notes\": \"D011: Killed at step 10/500. 10步零梯度确认不可恢复——clipped_ratio=0.9938, grad_norm=0, loss≈0, reward=0.00625. 根因不是token长度不足,而是模型能力丧失(1% accuracy → 输出无意义重复数字,无法产出EOS). 即使8192/16384也无济于事. 作为负对照证据保留10步日志+wandb(ou02s4k4). Checkpoint: /root/autodl-tmp/recovered_standard_20_4096/\", \"parent\": \"mvp_rasp_pipeline_v4\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T23:17:13.491Z\"}, \"grpo_standard_20_fast\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-14T17:38:55.838Z\", \"hypothesis\": \"Standard-pruned model (20% sparsity, post-prune 1% GSM8K) expected to fail GRPO recovery (RewardDesertCallback triggers). This is the negative control — confirms RASP's structure selection enables recovery that standard pruning cannot.\", \"notes\": \"[D009 INCONCLUSIVE — truncation artifact, not true negative] Training completed 500/500 steps (3h31m). Zero effective learning — reward stayed ~0.006-0.019 throughout, grad_norm=0, loss=0. All completions clipped at max_length=1024, 0 natural terminations. Root cause: max_completion_length=1024 too short for R1 CoT reasoning (needs 2000-4000 tokens). GRPO never received gradient signal. Hypothesis untested. wandb: ou02s4k4. Checkpoint: /root/autodl-tmp/recovered_standard_20/ (deleted, no value). Superseded by D010 grpo_standard_20_4096.\", \"parent\": \"mvp_rasp_pipeline_v4\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:18:03.971Z\"}, \"grpo_rasp_20_fast\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-14T17:38:53.540Z\", \"hypothesis\": \"RASP-pruned model (20% sparsity, post-prune 29% GSM8K) recovers under GRPO RLVR with fast config (1024 tokens, 1 epoch, 2000 samples). Expected: reward > 0, meaningful recovery within 500 steps.\", \"notes\": \"[D009 INCONCLUSIVE — truncation artifact, not true negative] Training completed 500/500 steps (3h32m). Zero effective learning — reward stayed ~0.006-0.019 throughout, grad_norm=0, loss=0. All completions clipped at max_length=1024, 0 natural terminations. Root cause: max_completion_length=1024 too short for R1 CoT reasoning (needs 2000-4000 tokens). GRPO never received gradient signal. Hypothesis untested. wandb: sz9264sx. Checkpoint: /root/autodl-tmp/recovered_rasp_20/ (deleted, no value). Superseded by D010 grpo_rasp_20_4096.\", \"parent\": \"mvp_rasp_pipeline_v4\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:18:01.563Z\"}, \"mvp_rasp_pipeline_v4\": {\"created_at\": \"2026-05-14T15:14:18.821Z\", \"hypothesis\": \"CKA functional overlap F(h) predicts structured pruning recoverability under RLVR. RASP scoring S(h)=I(h)×(1-F(h))^α selects structures whose removal is more recoverable via GRPO RLVR than standard importance-only pruning. V4: Dual sparsity probe (20% + 25%) to find viable operating point where pruned models retain >5% accuracy, then GRPO recovery comparison.\", \"notes\": \"GSM8K eval (100 samples, max_new_tokens=4096) partial results:\\n- baseline (Qwen2.5-7B): 94% (eval_baseline_7b_quick_fixed.json)\\n- rasp_20: 29% (eval_pruned_rasp_20_quick.json)\\n- standard_20: 1% (eval_pruned_standard_20_quick.json)\\n- standard_25: INCOMPLETE (killed at 72/100 by GRPO training OOM)\\n- rasp_25: NOT STARTED (GRPO training took GPUs)\\nKey finding: RASP 20% pruning retains 29% vs standard 1% — 29x advantage. GRPO recovery training now running on both GPUs (recovered_rasp_20 on GPU0, recovered_standard_20 on GPU1). standard_25 and rasp_25 eval need re-run after training completes.\", \"parent\": \"mvp_rasp_pipeline_v3\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T17:53:39.178Z\"}, \"grpo_standard_20\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T17:11:33.478Z\", \"hypothesis\": \"Baseline: Standard importance-only pruned model (20% sparsity, post-prune 1% GSM8K) recovery via GRPO RLVR. Expected to recover less than RASP counterpart due to non-optimal structure selection.\", \"parent\": \"mvp_rasp_pipeline_v4\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T17:37:57.677Z\"}, \"grpo_rasp_20\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T17:08:34.784Z\", \"hypothesis\": \"RASP-pruned model (20% sparsity, post-prune 29% GSM8K) recovers better under GRPO RLVR than standard-pruned model (20% sparsity, post-prune 1% GSM8K). Both have identical total MLP params (395,232) — difference is purely from distribution strategy (Scenario B).\", \"parent\": \"mvp_rasp_pipeline_v4\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T17:37:57.217Z\"}, \"mvp_rasp_pipeline_v3\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-14T14:00:25.837Z\", \"hypothesis\": \"CKA functional overlap F(h) predicts structured pruning recoverability under RLVR. RASP scoring S(h)=I(h)×(1-F(h))^α selects structures whose removal is more recoverable via GRPO RLVR than standard importance-only pruning. MVP: Spearman ρ(F(h), recoverability) ≥ 0.4 on DeepSeek-R1-Distill-Qwen-7B @ 35% sparsity. V3: Fixed per-layer capacity floor (MLP ≥40% per layer) to prevent early layer collapse.\", \"notes\": \"v3 fix: min_keep_mlp changed from 4 to max(4, int(n_mlp_groups*0.4))=12, ensuring ≥40% MLP capacity per layer. Actual sparsity: Standard=33.02%, RASP=33.21%. MLP range both [8128,18944]. GSM8K@100 results: Standard=0.0% (0/100), RASP=1.0% (1/100). v2 had 0.15% with min_keep_mlp=4. The capacity floor preserved more MLP width but did not rescue reasoning ability. Model outputs remain degenerate (repeated digits, empty strings, repetition loops). 35% structured sparsity fundamentally destroys too much model capacity for this architecture. Next steps: (1) try 20-25% sparsity, (2) add post-prune recovery fine-tuning (the actual RASP hypothesis), or (3) semi-structured pruning.\", \"parent\": \"mvp_rasp_pipeline_v2\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:40:41.424Z\"}, \"mvp_rasp_pipeline_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T06:08:01.844Z\", \"hypothesis\": \"CKA functional overlap F(h) predicts structured pruning recoverability under RLVR. RASP scoring S(h)=I(h)×(1-F(h))^α selects structures whose removal is more recoverable via GRPO RLVR than standard importance-only pruning. MVP: Spearman ρ(F(h), recoverability) ≥ 0.4 on DeepSeek-R1-Distill-Qwen-7B @ 35% sparsity. V2: GQA group granularity + MLP-level correlation.\", \"notes\": \"根因：prune.py min_keep_mlp=4，每层 28 MLP groups 保留仅 4 组(14.3%)。全局贪心排序导致 early layers (0-6) 被集中剪至 14.3% capacity，摧毁初始表征 → 模型崩溃至 0.15% accuracy。RASP scoring 逻辑本身正常（两模型选了不同结构），但都被剪崩了。GRPO 在退化模型上 loss=0/grad_norm=0，无学习信号。\", \"parent\": \"mvp_rasp_pipeline\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:00:06.035Z\"}, \"mvp_rasp_pipeline\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T04:10:10.348Z\", \"hypothesis\": \"CKA functional overlap F(h) 预测结构化剪枝后 RLVR recoverability：高 overlap heads 被剪后 RLVR 更容易恢复其功能（通过调整相似 retained heads）。MVP 验证 Spearman ρ(F(h), recoverability) ≥ 0.4。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T05:26:15.414Z\"}}, \"count\": 239, \"total\": 239, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.234}}"
+    }
+  },
+  "sourceToolAssistantUUID": "da9a0e56-0919-46c7-94bc-3fbbc5844a2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。",
+  "leafUuid": "dfa36f00-a81e-4bf2-baf5-2bca6f64c8bd",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-19T12:45:05.848Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry is too large to read directly. Let me also get the experiment plan with status and coverage matrix. And let me read the paper_framing.md fully and the rest of decisions. Let me also use subagents to analyze the registry.
+
+Let me now:
+1. Get experiment plan with status and coverage matrix
+2. Read the constraints
+3. Have an agent analyze the registry for me
+4. Read the full paper_framing to understand the claims
+
+I have enough from the ROADMAP and decisions to start analysis. Let me get the coverage matrix and experiment plan now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfa36f00-a81e-4bf2-baf5-2bca6f64c8bd",
+  "isSidechain": false,
+  "requestId": "req_011CbBx1wRA5Qoz7Q3tBx7C1",
+  "type": "assistant",
+  "uuid": "7742d78a-9c5b-4a53-b18d-2dbf68e540d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHgQWKteCF9Uuz5SzkNvD3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14397,
+      "cache_read_input_tokens": 34817,
+      "output_tokens": 750,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 750,
+          "cache_read_input_tokens": 34817,
+          "cache_creation_input_tokens": 14397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T12:45:06.755Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01VcKMwdGFeNgiDZ6BhgdQ6D`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7742d78a-9c5b-4a53-b18d-2dbf68e540d3",
+  "isSidechain": false,
+  "requestId": "req_011CbBx1wRA5Qoz7Q3tBx7C1",
+  "type": "assistant",
+  "uuid": "5c8dfb36-41a2-432d-9236-5f1a696bf824",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHgQWKteCF9Uuz5SzkNvD3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14397,
+      "cache_read_input_tokens": 34817,
+      "output_tokens": 750,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 750,
+          "cache_read_input_tokens": 34817,
+          "cache_creation_input_tokens": 14397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T12:45:08.029Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__compute_coverage_matrix · `toolu_01JY4RPtP577C78Jgib34Wo6`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c8dfb36-41a2-432d-9236-5f1a696bf824",
+  "isSidechain": false,
+  "requestId": "req_011CbBx1wRA5Qoz7Q3tBx7C1",
+  "type": "assistant",
+  "uuid": "6a3ade15-382b-4f64-8496-09a311f6f9ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHgQWKteCF9Uuz5SzkNvD3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14397,
+      "cache_read_input_tokens": 34817,
+      "output_tokens": 750,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 750,
+          "cache_read_input_tokens": 34817,
+          "cache_creation_input_tokens": 14397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T12:45:08.170Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016iNEUF7CGHYbhAzHtTJyFe`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a3ade15-382b-4f64-8496-09a311f6f9ab",
+  "isSidechain": false,
+  "requestId": "req_011CbBx1wRA5Qoz7Q3tBx7C1",
+  "type": "assistant",
+  "uuid": "1218a78a-7a38-4e1e-b5a4-8b1f90f343b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHgQWKteCF9Uuz5SzkNvD3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14397,
+      "cache_read_input_tokens": 34817,
+      "output_tokens": 750,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 750,
+          "cache_read_input_tokens": 34817,
+          "cache_creation_input_tokens": 14397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T12:45:09.132Z_
+
+<details><summary>↩ Tool result · `toolu_01VcKMwdGFeNgiDZ6BhgdQ6D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20. Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_n1319_v2\", \"status_note\": \"baseline eval was running on GPU0, may be done\", \"status\": \"PREPARING\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem). Both models in parallel on 2 GPUs.\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [], \"registry_id\": \"sft_rasp_20\", \"status_note\": \"DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eos_rate_greedy_100\": 0.99, \"greedy_accuracy_100\": 0.57, \"greedy_avg_len\": 179.83, \"greedy_correct\": 57, \"greedy_max_len\": 4096, \"greedy_min_len\": 59, \"greedy_total\": 100, \"sampling_eos_rate_5\": 1, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_loss_initial\": 1.86, \"train_time_min\": 37}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel. This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery while Standard cannot recover.\", \"priority\": \"P0\", \"gpu_budget_hours\": 35, \"deps\": [\"plan_002\"], \"registry_id\": \"grpo_stage2_rasp_20_v2\", \"status_note\": \"RUNNING v6→v7 (v6 OOM, v7 8-bit optimizer). cuda:0=RASP, cuda:1=Standard\", \"status\": \"DONE\", \"conclusion\": \"negative\"}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for all recovered models. Final numbers for paper Table 1.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_gsm8k_grpo_cka_only_20_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6437, \"n_correct\": 849, \"n_total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9886, \"avg_response_length\": 203.43, \"truncated\": 15, \"wall_time_sec\": 8921}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"GRASPrune baseline at 20% sparsity. Clone repo, run gate training, eval post-prune, then SFT→GRPO recovery. Primary external baseline (ACL 2026 SOTA).\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [], \"registry_id\": \"eval_sft_grasp_20_westd\", \"status_note\": \"GRASP post-prune 7% vs RASP 31%; GraSP post-SFT 41% vs Standard 64% vs RASP 57%. Data from D033/D034.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"avg_response_length\": 225.78, \"eos_rate\": 0.98, \"gsm8k_accuracy\": 0.41, \"gsm8k_accuracy_ci\": 0.0492, \"gsm8k_correct\": 41, \"gsm8k_total\": 100, \"max_response_length\": 4096, \"min_response_length\": 57, \"truncated\": 2}}, {\"id\": \"plan_006\", \"claim\": 1, \"description\": \"Multi-seed RASP_20 + Standard_20 post-prune eval (5 seeds total incl. seed 42). Dream reviewers flagged 3 seeds as insufficient — need 5+ for robust variance estimation and reliable pairwise significance tests.\", \"priority\": \"P0\", \"gpu_budget_hours\": 9, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_seed456\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"plan_007\", \"claim\": 2, \"description\": \"Scoring ablation at 20% sparsity: magnitude-only, gradient-only, random pruning. Same pipeline as RASP/Standard but different scoring. Compare post-prune accuracy to isolate CKA's contribution.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"scoring_ablation_batch\", \"status\": \"PREPARING\", \"conclusion\": \"killed\"}, {\"id\": \"plan_008\", \"claim\": 2, \"description\": \"Per-structure CKA-recoverability correlation analysis. Extract per-head F(h) from RASP scoring, correlate with per-head activation change after recovery. Mixed-effects regression with layer as random effect, controlling for weight norm / gradient importance / activation magnitude.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status_note\": \"analysis code + GPU compute for activation extraction\", \"status\": \"planned\"}, {\"id\": \"plan_009\", \"claim\": 3, \"description\": \"SFT-only recovery comparison. Same pruned models (RASP_20, Standard_20), same data budget, but SFT only (no GRPO). Tests whether recovery method changes optimal pruning order.\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"25% sparsity RASP + Standard. Prune, eval, SFT→GRPO recovery. Tests robustness across sparsity levels and approaches the 'threshold' where RASP advantage might narrow or widen.\", \"priority\": \"P1\", \"gpu_budget_hours\": 40, \"deps\": [], \"registry_id\": \"eval_grpo_rasp_25\", \"status_note\": \"sft_rasp_25/sft_standard_25 DONE, grpo_rasp_25/grpo_standard_25 DONE, eval_grpo_standard_25 51.1% success, eval_grpo_rasp_25 RUNNING\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5315, \"avg_len\": 433.85, \"eos_rate\": 0.9272, \"max_len\": 4096, \"min_len\": 39, \"n_correct\": 701, \"n_total\": 1319, \"stderr\": 0.0137, \"truncated\": 96}}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"30% sparsity probe. Prune + eval only (no recovery) for RASP and Standard. Maps the sparsity threshold where both methods collapse (expected based on D005 35% result).\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Extended evaluation on best recovered config: MMLU, HumanEval, MATH-500. Shows RASP recovery generalizes beyond GSM8K.\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_humaneval_grpo_standard_20\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"correct\": 3, \"max_new_tokens\": 512, \"note\": \"512-token truncation, low quality\", \"pass_at_1\": 0.0183, \"total\": 164}}, {\"id\": \"plan_013\", \"claim\": 1, \"description\": \"Bonsai baseline at 20% sparsity. Gradient-free structured pruning (ICML 2025). Lower priority than GRASPrune since GRASPrune is more directly comparable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"CKA reliability analysis: split-half consistency (Spearman ρ > 0.9) and calibration size sensitivity (256/512/1024 samples). Shows CKA-based scoring is stable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"α sensitivity ablation: sweep α ∈ {0, 0.25, 0.5, 1, 2} in RASP scoring S(h)=I(h)×(1-F(h))^α at 20% sparsity. Post-prune GSM8K eval for each. Dream reviewers flagged this as Critical across ALL 3 tiers — the single free parameter receives zero analysis without this.\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"alpha_ablation_westd_cal256\", \"status_note\": \"✅ DONE with cal=512, U-shape confirmed (α≥1.0 > α≤0.5). Registry alpha_ablation_westd_cal256 is older cal=256 run.\", \"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"alpha_4_0_accuracy\": 0.4, \"finding\": \"α=4.0 gives 40% post-prune accuracy (highest), non-monotonic relationship between α and accuracy\"}}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"Inference speedup benchmark: wall-clock latency + throughput comparison between dense model, 20% RASP-pruned, 20% Standard-pruned. Structured pruning practical motivation requires efficiency evidence. Dream flagged across all 3 tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_003\"], \"registry_id\": \"inference_bench_cka_only_20\", \"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"dense_contaminated\": {\"tokens_per_second\": 35.4, \"avg_latency_sec\": 14.396, \"peak_memory_gb\": 16.22, \"note\": \"GPU contention with GSM8K eval — 2.15x slower than clean baseline (6.682s)\"}, \"cka_only_20\": {\"tokens_per_second\": 51.01, \"avg_latency_sec\": 4.146, \"peak_memory_gb\": 11.6, \"total_tokens\": 10574, \"note\": \"Ran after GSM8K finished, likely clean. Memory reduction 28.5% vs dense.\"}, \"contamination_warning\": \"Dense baseline 14.396s vs clean 6.682s. Benchmark needs rerun with clean GPU for valid dense comparison.\"}}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Unstructured pruning baseline at 20% on same model (magnitude-based). Calibrates the structured vs unstructured gap and enables fair Self-Healing comparison. Post-prune eval + optionally SFT→GRPO recovery. Dream flagged in median+worst tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_019\", \"claim\": 2, \"description\": \"Fair GRPO recovery on CKA-only pruned model (v5 config). Core C2 evidence: CKA-only shows active recovery pattern (peak reward 0.354, rising trajectory). Part of 4-method fair comparison resolving D058 confound.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_cka_only_20\", \"status_note\": \"✅ DONE/success. Active recovery pattern confirmed. Peak 0.354(s50), final 0.344(s100), frac_zero_std 0.20.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 100, \"final_reward\": 0.3444, \"peak_reward\": 0.3544, \"peak_reward_step\": 50, \"final_frac_zero_std\": 0.2, \"final_loss\": 0.23, \"final_kl\": 0.001609, \"final_entropy\": 0.08751, \"final_reward_std\": 0.444, \"runtime_seconds\": 40710}}, {\"id\": \"plan_020\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Random pruned model (v5 config). Core C2 evidence: Random shows plateau pattern (reward oscillates 0.14-0.19, no collapse, no learning). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_random_20\", \"status_note\": \"✅ DONE/success. Plateau pattern confirmed. Steps 10-90 captured (timeout at step 97). No checkpoint.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean\": 0.164, \"reward_range\": [0.14, 0.19], \"reward_peak\": 0.19, \"reward_peak_step\": 70, \"frac_zero_std_mean\": 0.333, \"frac_zero_std_range\": [0.3, 0.4], \"entropy_mean\": 0.221, \"entropy_range\": [0.2, 0.24], \"kl_mean\": 0.0045, \"steps_captured\": 9, \"max_step\": 90, \"pattern\": \"stable plateau, no collapse\", \"data_source\": \"log_file (W&B crashed before sync)\"}}, {\"id\": \"plan_021\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Standard pruned model (v5 config). Core C2 evidence: Standard shows stagnation pattern (reward flat 0.03-0.08, frac_zero_std stuck 0.55). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_standard_20_fair\", \"status_note\": \"✅ DONE/success. Stagnation confirmed. Step 100 reward=0.054.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wandb_run_id\": \"tyv20u2k\", \"total_steps\": 100, \"runtime_seconds\": 3017, \"reward_trajectory\": [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054], \"frac_zero_std_trajectory\": [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55], \"peak_reward\": 0.081, \"peak_reward_step\": 40, \"final_reward\": 0.054, \"final_frac_zero_std\": 0.55, \"dynamics_pattern\": \"dip_then_partial_recovery\", \"dip_step\": 50, \"dip_reward\": 0.019}}, {\"id\": \"plan_022\", \"claim\": 2, \"description\": \"Fair GRPO recovery on RASP pruned model (v5 config). Core C2 evidence: RASP shows permanent collapse pattern (reward 0.01, frac_zero_std 0.85). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_rasp_20_fair\", \"status_note\": \"✅ DONE/success. Permanent collapse confirmed.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_completion_length\": 963.0, \"final_frac_zero_std\": 0.85, \"final_reward\": 0.01, \"min_frac_zero_std\": 0.675, \"peak_reward\": 0.061, \"total_steps\": 100, \"training_time_minutes\": 62.5, \"trend\": \"stagnation_then_collapse\"}}, {\"id\": \"plan_018\", \"claim\": 3, \"description\": \"SFT OOD eval contingency: evaluate SFT-recovered Standard model (64% GSM8K) on MATH-500 and HumanEval to distinguish genuine reasoning recovery from GSM8K-specific pattern memorization. Standard 1%→64% jump is suspiciously large. Contingency: only needed if GRPO RASP advantage <5pp. Reviewer W1 flagged.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_023\", \"claim\": 2, \"description\": \"E1: Second model validation — DeepSeek-R1-Distill-Qwen-1.5B. 3 methods (CKA-only + Standard + RASP) × prune@20% → SFT → GRPO 100 steps → GSM8K eval. Proves recovery capacity gradient generalizes across model scale. Single biggest improvement for EMNLP Main acceptance (W1 single-model weakness).\", \"priority\": \"P0\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status_note\": \"SFT all 3 DONE. GRPO CKA-only RUNNING westb cuda:0 (step 40/100, reward 0.266, healthy). Standard GRPO launching westb cuda:1. RASP GRPO pending.\", \"status\": \"planned\"}, {\"id\": \"plan_024\", \"claim\": 2, \"description\": \"E2: Extended GRPO 200-300 steps on 7B. CKA-only + Standard resume from step-100 checkpoint. Proves Standard collapse is permanent (not transient 100-step artifact) and CKA-only continues learning. Addresses W3 \\\"100 steps too short\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [\"plan_019\", \"plan_021\"], \"registry_id\": \"grpo_standard_20_extended_300_v2\", \"status_note\": \"Standard DONE 300步: reward 0.054→0.056 (零净提升), frac_zero 0.55→0.525 (仍在collapse区间). CKA-only extended RUNNING on westd cuda:0 as grpo_cka_only_20_extended_300.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean_step300\": 0.0562, \"loss_step300\": 0.0367, \"frac_reward_zero_std_step300\": 0.525, \"kl_step300\": 0.00306, \"entropy_step300\": 0.157, \"lr_step300\": 3.33e-09, \"runtime_min\": 48, \"reward_decline_after_step260\": true}}, {\"id\": \"plan_025\", \"claim\": 2, \"description\": \"E3: CKA heatmap representation analysis. For 4 pruned models + Dense, compute layer-wise CKA matrix (pruned vs Dense) using GSM8K calibration data. Generate 4-panel heatmap figure showing representational diversity preservation differences. Direct mechanism evidence for \\\"diversity determines trainability\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 1. Low GPU cost (forward pass only). Can run on westb cuda:0.\", \"status\": \"planned\"}, {\"id\": \"plan_026\", \"claim\": 2, \"description\": \"E4: 25% sparsity GRPO dynamics. CKA-only + Standard @25% → SFT → GRPO 100 steps. Tests gradient consistency across sparsity levels. 20%→25%→30% forms complete sparsity story.\", \"priority\": \"P1\", \"gpu_budget_hours\": 20, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Needs westd for GPU capacity.\", \"status\": \"planned\"}, {\"id\": \"plan_027\", \"claim\": 2, \"description\": \"E5: Bootstrap CI on reward trajectories. Pure analysis (0 GPU). Resample 100-step reward data with replacement, compute confidence intervals on reward gap between methods. Addresses W4 statistical rigor.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_019\", \"plan_020\", \"plan_021\", \"plan_022\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. CPU only, can run immediately.\", \"status\": \"planned\"}, {\"id\": \"plan_028\", \"claim\": 1, \"description\": \"E6: Integrate existing HumanEval data into paper. Data already in registry (plan_012). Zero cost, broadens benchmark coverage beyond math reasoning.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_012\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Paper writing task only.\", \"status\": \"planned\"}, {\"id\": \"plan_029\", \"claim\": 2, \"description\": \"E7: Unstructured pruning GRPO baseline. Magnitude-based unstructured 20% on same model → SFT → GRPO 100 steps. Current data only has SFT (87.87%). Completes structured vs unstructured comparison under RL.\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 3. If time permits.\", \"status\": \"planned\"}, {\"id\": \"plan_030\", \"claim\": 1, \"description\": \"Inference section fix: honest framing of per-token throughput. Pruned models 31-35% SLOWER per-token; latency reduction (~39%) from shorter outputs. Report both latency and TPS. Paper writing task.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_016\"], \"registry_id\": null, \"status_note\": \"Reviewer finding. Paper patch only.\", \"status\": \"planned\"}], \"total\": 30}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c8dfb36-41a2-432d-9236-5f1a696bf824",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "2c6834c2-d026-4c7f-bdf2-e092cb116d6f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20. Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_sft_standard_20_n1319_v2\\\", \\\"status_note\\\": \\\"baseline eval was running on GPU0, may be done\\\", \\\"status\\\": \\\"PREPARING\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem). Both models in parallel on 2 GPUs.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [], \\\"registry_id\\\": \\\"sft_rasp_20\\\", \\\"status_note\\\": \\\"DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eos_rate_greedy_100\\\": 0.99, \\\"greedy_accuracy_100\\\": 0.57, \\\"greedy_avg_len\\\": 179.83, \\\"greedy_correct\\\": 57, \\\"greedy_max_len\\\": 4096, \\\"greedy_min_len\\\": 59, \\\"greedy_total\\\": 100, \\\"sampling_eos_rate_5\\\": 1, \\\"token_accuracy\\\": 0.83, \\\"total_steps\\\": 1870, \\\"train_loss_final\\\": 0.64, \\\"train_loss_initial\\\": 1.86, \\\"train_time_min\\\": 37}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel. This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery while Standard cannot recover.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 35, \\\"deps\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": \\\"grpo_stage2_rasp_20_v2\\\", \\\"status_note\\\": \\\"RUNNING v6→v7 (v6 OOM, v7 8-bit optimizer). cuda:0=RASP, cuda:1=Standard\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Full GSM8K eval (1319 samples) for all recovered models. Final numbers for paper Table 1.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": \\\"eval_gsm8k_grpo_cka_only_20_v2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.6437, \\\"n_correct\\\": 849, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.0132, \\\"eos_rate\\\": 0.9886, \\\"avg_response_length\\\": 203.43, \\\"truncated\\\": 15, \\\"wall_time_sec\\\": 8921}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GRASPrune baseline at 20% sparsity. Clone repo, run gate training, eval post-prune, then SFT→GRPO recovery. Primary external baseline (ACL 2026 SOTA).\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 30, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_sft_grasp_20_westd\\\", \\\"status_note\\\": \\\"GRASP post-prune 7% vs RASP 31%; GraSP post-SFT 41% vs Standard 64% vs RASP 57%. Data from D033/D034.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"avg_response_length\\\": 225.78, \\\"eos_rate\\\": 0.98, \\\"gsm8k_accuracy\\\": 0.41, \\\"gsm8k_accuracy_ci\\\": 0.0492, \\\"gsm8k_correct\\\": 41, \\\"gsm8k_total\\\": 100, \\\"max_response_length\\\": 4096, \\\"min_response_length\\\": 57, \\\"truncated\\\": 2}}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Multi-seed RASP_20 + Standard_20 post-prune eval (5 seeds total incl. seed 42). Dream reviewers flagged 3 seeds as insufficient — need 5+ for robust variance estimation and reliable pairwise significance tests.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 9, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_sft_standard_20_seed456\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Scoring ablation at 20% sparsity: magnitude-only, gradient-only, random pruning. Same pipeline as RASP/Standard but different scoring. Compare post-prune accuracy to isolate CKA's contribution.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"scoring_ablation_batch\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, {\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Per-structure CKA-recoverability correlation analysis. Extract per-head F(h) from RASP scoring, correlate with per-head activation change after recovery. Mixed-effects regression with layer as random effect, controlling for weight norm / gradient importance / activation magnitude.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"analysis code + GPU compute for activation extraction\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_009\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"SFT-only recovery comparison. Same pruned models (RASP_20, Standard_20), same data budget, but SFT only (no GRPO). Tests whether recovery method changes optimal pruning order.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_010\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"25% sparsity RASP + Standard. Prune, eval, SFT→GRPO recovery. Tests robustness across sparsity levels and approaches the 'threshold' where RASP advantage might narrow or widen.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 40, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_grpo_rasp_25\\\", \\\"status_note\\\": \\\"sft_rasp_25/sft_standard_25 DONE, grpo_rasp_25/grpo_standard_25 DONE, eval_grpo_standard_25 51.1% success, eval_grpo_rasp_25 RUNNING\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5315, \\\"avg_len\\\": 433.85, \\\"eos_rate\\\": 0.9272, \\\"max_len\\\": 4096, \\\"min_len\\\": 39, \\\"n_correct\\\": 701, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.0137, \\\"truncated\\\": 96}}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"30% sparsity probe. Prune + eval only (no recovery) for RASP and Standard. Maps the sparsity threshold where both methods collapse (expected based on D005 35% result).\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_012\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Extended evaluation on best recovered config: MMLU, HumanEval, MATH-500. Shows RASP recovery generalizes beyond GSM8K.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": \\\"eval_humaneval_grpo_standard_20\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"correct\\\": 3, \\\"max_new_tokens\\\": 512, \\\"note\\\": \\\"512-token truncation, low quality\\\", \\\"pass_at_1\\\": 0.0183, \\\"total\\\": 164}}, {\\\"id\\\": \\\"plan_013\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Bonsai baseline at 20% sparsity. Gradient-free structured pruning (ICML 2025). Lower priority than GRASPrune since GRASPrune is more directly comparable.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 25, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CKA reliability analysis: split-half consistency (Spearman ρ > 0.9) and calibration size sensitivity (256/512/1024 samples). Shows CKA-based scoring is stable.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_015\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α sensitivity ablation: sweep α ∈ {0, 0.25, 0.5, 1, 2} in RASP scoring S(h)=I(h)×(1-F(h))^α at 20% sparsity. Post-prune GSM8K eval for each. Dream reviewers flagged this as Critical across ALL 3 tiers — the single free parameter receives zero analysis without this.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [], \\\"registry_id\\\": \\\"alpha_ablation_westd_cal256\\\", \\\"status_note\\\": \\\"✅ DONE with cal=512, U-shape confirmed (α≥1.0 > α≤0.5). Registry alpha_ablation_westd_cal256 is older cal=256 run.\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"alpha_4_0_accuracy\\\": 0.4, \\\"finding\\\": \\\"α=4.0 gives 40% post-prune accuracy (highest), non-monotonic relationship between α and accuracy\\\"}}, {\\\"id\\\": \\\"plan_016\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Inference speedup benchmark: wall-clock latency + throughput comparison between dense model, 20% RASP-pruned, 20% Standard-pruned. Structured pruning practical motivation requires efficiency evidence. Dream flagged across all 3 tiers.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": \\\"inference_bench_cka_only_20\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"dense_contaminated\\\": {\\\"tokens_per_second\\\": 35.4, \\\"avg_latency_sec\\\": 14.396, \\\"peak_memory_gb\\\": 16.22, \\\"note\\\": \\\"GPU contention with GSM8K eval — 2.15x slower than clean baseline (6.682s)\\\"}, \\\"cka_only_20\\\": {\\\"tokens_per_second\\\": 51.01, \\\"avg_latency_sec\\\": 4.146, \\\"peak_memory_gb\\\": 11.6, \\\"total_tokens\\\": 10574, \\\"note\\\": \\\"Ran after GSM8K finished, likely clean. Memory reduction 28.5% vs dense.\\\"}, \\\"contamination_warning\\\": \\\"Dense baseline 14.396s vs clean 6.682s. Benchmark needs rerun with clean GPU for valid dense comparison.\\\"}}, {\\\"id\\\": \\\"plan_017\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Unstructured pruning baseline at 20% on same model (magnitude-based). Calibrates the structured vs unstructured gap and enables fair Self-Healing comparison. Post-prune eval + optionally SFT→GRPO recovery. Dream flagged in median+worst tiers.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_019\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on CKA-only pruned model (v5 config). Core C2 evidence: CKA-only shows active recovery pattern (peak reward 0.354, rising trajectory). Part of 4-method fair comparison resolving D058 confound.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_cka_only_20\\\", \\\"status_note\\\": \\\"✅ DONE/success. Active recovery pattern confirmed. Peak 0.354(s50), final 0.344(s100), frac_zero_std 0.20.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 100, \\\"final_reward\\\": 0.3444, \\\"peak_reward\\\": 0.3544, \\\"peak_reward_step\\\": 50, \\\"final_frac_zero_std\\\": 0.2, \\\"final_loss\\\": 0.23, \\\"final_kl\\\": 0.001609, \\\"final_entropy\\\": 0.08751, \\\"final_reward_std\\\": 0.444, \\\"runtime_seconds\\\": 40710}}, {\\\"id\\\": \\\"plan_020\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on Random pruned model (v5 config). Core C2 evidence: Random shows plateau pattern (reward oscillates 0.14-0.19, no collapse, no learning). Part of 4-method fair comparison.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_random_20\\\", \\\"status_note\\\": \\\"✅ DONE/success. Plateau pattern confirmed. Steps 10-90 captured (timeout at step 97). No checkpoint.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_mean\\\": 0.164, \\\"reward_range\\\": [0.14, 0.19], \\\"reward_peak\\\": 0.19, \\\"reward_peak_step\\\": 70, \\\"frac_zero_std_mean\\\": 0.333, \\\"frac_zero_std_range\\\": [0.3, 0.4], \\\"entropy_mean\\\": 0.221, \\\"entropy_range\\\": [0.2, 0.24], \\\"kl_mean\\\": 0.0045, \\\"steps_captured\\\": 9, \\\"max_step\\\": 90, \\\"pattern\\\": \\\"stable plateau, no collapse\\\", \\\"data_source\\\": \\\"log_file (W&B crashed before sync)\\\"}}, {\\\"id\\\": \\\"plan_021\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on Standard pruned model (v5 config). Core C2 evidence: Standard shows stagnation pattern (reward flat 0.03-0.08, frac_zero_std stuck 0.55). Part of 4-method fair comparison.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_standard_20_fair\\\", \\\"status_note\\\": \\\"✅ DONE/success. Stagnation confirmed. Step 100 reward=0.054.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"wandb_run_id\\\": \\\"tyv20u2k\\\", \\\"total_steps\\\": 100, \\\"runtime_seconds\\\": 3017, \\\"reward_trajectory\\\": [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054], \\\"frac_zero_std_trajectory\\\": [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55], \\\"peak_reward\\\": 0.081, \\\"peak_reward_step\\\": 40, \\\"final_reward\\\": 0.054, \\\"final_frac_zero_std\\\": 0.55, \\\"dynamics_pattern\\\": \\\"dip_then_partial_recovery\\\", \\\"dip_step\\\": 50, \\\"dip_reward\\\": 0.019}}, {\\\"id\\\": \\\"plan_022\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on RASP pruned model (v5 config). Core C2 evidence: RASP shows permanent collapse pattern (reward 0.01, frac_zero_std 0.85). Part of 4-method fair comparison.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_rasp_20_fair\\\", \\\"status_note\\\": \\\"✅ DONE/success. Permanent collapse confirmed.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_completion_length\\\": 963.0, \\\"final_frac_zero_std\\\": 0.85, \\\"final_reward\\\": 0.01, \\\"min_frac_zero_std\\\": 0.675, \\\"peak_reward\\\": 0.061, \\\"total_steps\\\": 100, \\\"training_time_minutes\\\": 62.5, \\\"trend\\\": \\\"stagnation_then_collapse\\\"}}, {\\\"id\\\": \\\"plan_018\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"SFT OOD eval contingency: evaluate SFT-recovered Standard model (64% GSM8K) on MATH-500 and HumanEval to distinguish genuine reasoning recovery from GSM8K-specific pattern memorization. Standard 1%→64% jump is suspiciously large. Contingency: only needed if GRPO RASP advantage <5pp. Reviewer W1 flagged.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_023\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E1: Second model validation — DeepSeek-R1-Distill-Qwen-1.5B. 3 methods (CKA-only + Standard + RASP) × prune@20% → SFT → GRPO 100 steps → GSM8K eval. Proves recovery capacity gradient generalizes across model scale. Single biggest improvement for EMNLP Main acceptance (W1 single-model weakness).\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 25, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"SFT all 3 DONE. GRPO CKA-only RUNNING westb cuda:0 (step 40/100, reward 0.266, healthy). Standard GRPO launching westb cuda:1. RASP GRPO pending.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_024\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E2: Extended GRPO 200-300 steps on 7B. CKA-only + Standard resume from step-100 checkpoint. Proves Standard collapse is permanent (not transient 100-step artifact) and CKA-only continues learning. Addresses W3 \\\\\\\"100 steps too short\\\\\\\".\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 30, \\\"deps\\\": [\\\"plan_019\\\", \\\"plan_021\\\"], \\\"registry_id\\\": \\\"grpo_standard_20_extended_300_v2\\\", \\\"status_note\\\": \\\"Standard DONE 300步: reward 0.054→0.056 (零净提升), frac_zero 0.55→0.525 (仍在collapse区间). CKA-only extended RUNNING on westd cuda:0 as grpo_cka_only_20_extended_300.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_mean_step300\\\": 0.0562, \\\"loss_step300\\\": 0.0367, \\\"frac_reward_zero_std_step300\\\": 0.525, \\\"kl_step300\\\": 0.00306, \\\"entropy_step300\\\": 0.157, \\\"lr_step300\\\": 3.33e-09, \\\"runtime_min\\\": 48, \\\"reward_decline_after_step260\\\": true}}, {\\\"id\\\": \\\"plan_025\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E3: CKA heatmap representation analysis. For 4 pruned models + Dense, compute layer-wise CKA matrix (pruned vs Dense) using GSM8K calibration data. Generate 4-panel heatmap figure showing representational diversity preservation differences. Direct mechanism evidence for \\\\\\\"diversity determines trainability\\\\\\\".\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 1. Low GPU cost (forward pass only). Can run on westb cuda:0.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_026\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E4: 25% sparsity GRPO dynamics. CKA-only + Standard @25% → SFT → GRPO 100 steps. Tests gradient consistency across sparsity levels. 20%→25%→30% forms complete sparsity story.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 2. Needs westd for GPU capacity.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_027\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E5: Bootstrap CI on reward trajectories. Pure analysis (0 GPU). Resample 100-step reward data with replacement, compute confidence intervals on reward gap between methods. Addresses W4 statistical rigor.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_019\\\", \\\"plan_020\\\", \\\"plan_021\\\", \\\"plan_022\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 2. CPU only, can run immediately.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_028\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"E6: Integrate existing HumanEval data into paper. Data already in registry (plan_012). Zero cost, broadens benchmark coverage beyond math reasoning.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_012\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 2. Paper writing task only.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_029\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E7: Unstructured pruning GRPO baseline. Magnitude-based unstructured 20% on same model → SFT → GRPO 100 steps. Current data only has SFT (87.87%). Completes structured vs unstructured comparison under RL.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 3. If time permits.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_030\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Inference section fix: honest framing of per-token throughput. Pruned models 31-35% SLOWER per-token; latency reduction (~39%) from shorter outputs. Report both latency and TPS. Paper writing task.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_016\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"Reviewer finding. Paper patch only.\\\", \\\"status\\\": \\\"planned\\\"}], \\\"total\\\": 30}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20. Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_n1319_v2\", \"status_note\": \"baseline eval was running on GPU0, may be done\", \"status\": \"PREPARING\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem). Both models in parallel on 2 GPUs.\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [], \"registry_id\": \"sft_rasp_20\", \"status_note\": \"DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eos_rate_greedy_100\": 0.99, \"greedy_accuracy_100\": 0.57, \"greedy_avg_len\": 179.83, \"greedy_correct\": 57, \"greedy_max_len\": 4096, \"greedy_min_len\": 59, \"greedy_total\": 100, \"sampling_eos_rate_5\": 1, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_loss_initial\": 1.86, \"train_time_min\": 37}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel. This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery while Standard cannot recover.\", \"priority\": \"P0\", \"gpu_budget_hours\": 35, \"deps\": [\"plan_002\"], \"registry_id\": \"grpo_stage2_rasp_20_v2\", \"status_note\": \"RUNNING v6→v7 (v6 OOM, v7 8-bit optimizer). cuda:0=RASP, cuda:1=Standard\", \"status\": \"DONE\", \"conclusion\": \"negative\"}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for all recovered models. Final numbers for paper Table 1.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_gsm8k_grpo_cka_only_20_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6437, \"n_correct\": 849, \"n_total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9886, \"avg_response_length\": 203.43, \"truncated\": 15, \"wall_time_sec\": 8921}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"GRASPrune baseline at 20% sparsity. Clone repo, run gate training, eval post-prune, then SFT→GRPO recovery. Primary external baseline (ACL 2026 SOTA).\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [], \"registry_id\": \"eval_sft_grasp_20_westd\", \"status_note\": \"GRASP post-prune 7% vs RASP 31%; GraSP post-SFT 41% vs Standard 64% vs RASP 57%. Data from D033/D034.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"avg_response_length\": 225.78, \"eos_rate\": 0.98, \"gsm8k_accuracy\": 0.41, \"gsm8k_accuracy_ci\": 0.0492, \"gsm8k_correct\": 41, \"gsm8k_total\": 100, \"max_response_length\": 4096, \"min_response_length\": 57, \"truncated\": 2}}, {\"id\": \"plan_006\", \"claim\": 1, \"description\": \"Multi-seed RASP_20 + Standard_20 post-prune eval (5 seeds total incl. seed 42). Dream reviewers flagged 3 seeds as insufficient — need 5+ for robust variance estimation and reliable pairwise significance tests.\", \"priority\": \"P0\", \"gpu_budget_hours\": 9, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_seed456\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"plan_007\", \"claim\": 2, \"description\": \"Scoring ablation at 20% sparsity: magnitude-only, gradient-only, random pruning. Same pipeline as RASP/Standard but different scoring. Compare post-prune accuracy to isolate CKA's contribution.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"scoring_ablation_batch\", \"status\": \"PREPARING\", \"conclusion\": \"killed\"}, {\"id\": \"plan_008\", \"claim\": 2, \"description\": \"Per-structure CKA-recoverability correlation analysis. Extract per-head F(h) from RASP scoring, correlate with per-head activation change after recovery. Mixed-effects regression with layer as random effect, controlling for weight norm / gradient importance / activation magnitude.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status_note\": \"analysis code + GPU compute for activation extraction\", \"status\": \"planned\"}, {\"id\": \"plan_009\", \"claim\": 3, \"description\": \"SFT-only recovery comparison. Same pruned models (RASP_20, Standard_20), same data budget, but SFT only (no GRPO). Tests whether recovery method changes optimal pruning order.\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"25% sparsity RASP + Standard. Prune, eval, SFT→GRPO recovery. Tests robustness across sparsity levels and approaches the 'threshold' where RASP advantage might narrow or widen.\", \"priority\": \"P1\", \"gpu_budget_hours\": 40, \"deps\": [], \"registry_id\": \"eval_grpo_rasp_25\", \"status_note\": \"sft_rasp_25/sft_standard_25 DONE, grpo_rasp_25/grpo_standard_25 DONE, eval_grpo_standard_25 51.1% success, eval_grpo_rasp_25 RUNNING\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5315, \"avg_len\": 433.85, \"eos_rate\": 0.9272, \"max_len\": 4096, \"min_len\": 39, \"n_correct\": 701, \"n_total\": 1319, \"stderr\": 0.0137, \"truncated\": 96}}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"30% sparsity probe. Prune + eval only (no recovery) for RASP and Standard. Maps the sparsity threshold where both methods collapse (expected based on D005 35% result).\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Extended evaluation on best recovered config: MMLU, HumanEval, MATH-500. Shows RASP recovery generalizes beyond GSM8K.\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_humaneval_grpo_standard_20\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"correct\": 3, \"max_new_tokens\": 512, \"note\": \"512-token truncation, low quality\", \"pass_at_1\": 0.0183, \"total\": 164}}, {\"id\": \"plan_013\", \"claim\": 1, \"description\": \"Bonsai baseline at 20% sparsity. Gradient-free structured pruning (ICML 2025). Lower priority than GRASPrune since GRASPrune is more directly comparable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"CKA reliability analysis: split-half consistency (Spearman ρ > 0.9) and calibration size sensitivity (256/512/1024 samples). Shows CKA-based scoring is stable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"α sensitivity ablation: sweep α ∈ {0, 0.25, 0.5, 1, 2} in RASP scoring S(h)=I(h)×(1-F(h))^α at 20% sparsity. Post-prune GSM8K eval for each. Dream reviewers flagged this as Critical across ALL 3 tiers — the single free parameter receives zero analysis without this.\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"alpha_ablation_westd_cal256\", \"status_note\": \"✅ DONE with cal=512, U-shape confirmed (α≥1.0 > α≤0.5). Registry alpha_ablation_westd_cal256 is older cal=256 run.\", \"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"alpha_4_0_accuracy\": 0.4, \"finding\": \"α=4.0 gives 40% post-prune accuracy (highest), non-monotonic relationship between α and accuracy\"}}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"Inference speedup benchmark: wall-clock latency + throughput comparison between dense model, 20% RASP-pruned, 20% Standard-pruned. Structured pruning practical motivation requires efficiency evidence. Dream flagged across all 3 tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_003\"], \"registry_id\": \"inference_bench_cka_only_20\", \"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"dense_contaminated\": {\"tokens_per_second\": 35.4, \"avg_latency_sec\": 14.396, \"peak_memory_gb\": 16.22, \"note\": \"GPU contention with GSM8K eval — 2.15x slower than clean baseline (6.682s)\"}, \"cka_only_20\": {\"tokens_per_second\": 51.01, \"avg_latency_sec\": 4.146, \"peak_memory_gb\": 11.6, \"total_tokens\": 10574, \"note\": \"Ran after GSM8K finished, likely clean. Memory reduction 28.5% vs dense.\"}, \"contamination_warning\": \"Dense baseline 14.396s vs clean 6.682s. Benchmark needs rerun with clean GPU for valid dense comparison.\"}}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Unstructured pruning baseline at 20% on same model (magnitude-based). Calibrates the structured vs unstructured gap and enables fair Self-Healing comparison. Post-prune eval + optionally SFT→GRPO recovery. Dream flagged in median+worst tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_019\", \"claim\": 2, \"description\": \"Fair GRPO recovery on CKA-only pruned model (v5 config). Core C2 evidence: CKA-only shows active recovery pattern (peak reward 0.354, rising trajectory). Part of 4-method fair comparison resolving D058 confound.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_cka_only_20\", \"status_note\": \"✅ DONE/success. Active recovery pattern confirmed. Peak 0.354(s50), final 0.344(s100), frac_zero_std 0.20.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 100, \"final_reward\": 0.3444, \"peak_reward\": 0.3544, \"peak_reward_step\": 50, \"final_frac_zero_std\": 0.2, \"final_loss\": 0.23, \"final_kl\": 0.001609, \"final_entropy\": 0.08751, \"final_reward_std\": 0.444, \"runtime_seconds\": 40710}}, {\"id\": \"plan_020\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Random pruned model (v5 config). Core C2 evidence: Random shows plateau pattern (reward oscillates 0.14-0.19, no collapse, no learning). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_random_20\", \"status_note\": \"✅ DONE/success. Plateau pattern confirmed. Steps 10-90 captured (timeout at step 97). No checkpoint.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean\": 0.164, \"reward_range\": [0.14, 0.19], \"reward_peak\": 0.19, \"reward_peak_step\": 70, \"frac_zero_std_mean\": 0.333, \"frac_zero_std_range\": [0.3, 0.4], \"entropy_mean\": 0.221, \"entropy_range\": [0.2, 0.24], \"kl_mean\": 0.0045, \"steps_captured\": 9, \"max_step\": 90, \"pattern\": \"stable plateau, no collapse\", \"data_source\": \"log_file (W&B crashed before sync)\"}}, {\"id\": \"plan_021\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Standard pruned model (v5 config). Core C2 evidence: Standard shows stagnation pattern (reward flat 0.03-0.08, frac_zero_std stuck 0.55). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_standard_20_fair\", \"status_note\": \"✅ DONE/success. Stagnation confirmed. Step 100 reward=0.054.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wandb_run_id\": \"tyv20u2k\", \"total_steps\": 100, \"runtime_seconds\": 3017, \"reward_trajectory\": [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054], \"frac_zero_std_trajectory\": [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55], \"peak_reward\": 0.081, \"peak_reward_step\": 40, \"final_reward\": 0.054, \"final_frac_zero_std\": 0.55, \"dynamics_pattern\": \"dip_then_partial_recovery\", \"dip_step\": 50, \"dip_reward\": 0.019}}, {\"id\": \"plan_022\", \"claim\": 2, \"description\": \"Fair GRPO recovery on RASP pruned model (v5 config). Core C2 evidence: RASP shows permanent collapse pattern (reward 0.01, frac_zero_std 0.85). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_rasp_20_fair\", \"status_note\": \"✅ DONE/success. Permanent collapse confirmed.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_completion_length\": 963.0, \"final_frac_zero_std\": 0.85, \"final_reward\": 0.01, \"min_frac_zero_std\": 0.675, \"peak_reward\": 0.061, \"total_steps\": 100, \"training_time_minutes\": 62.5, \"trend\": \"stagnation_then_collapse\"}}, {\"id\": \"plan_018\", \"claim\": 3, \"description\": \"SFT OOD eval contingency: evaluate SFT-recovered Standard model (64% GSM8K) on MATH-500 and HumanEval to distinguish genuine reasoning recovery from GSM8K-specific pattern memorization. Standard 1%→64% jump is suspiciously large. Contingency: only needed if GRPO RASP advantage <5pp. Reviewer W1 flagged.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_023\", \"claim\": 2, \"description\": \"E1: Second model validation — DeepSeek-R1-Distill-Qwen-1.5B. 3 methods (CKA-only + Standard + RASP) × prune@20% → SFT → GRPO 100 steps → GSM8K eval. Proves recovery capacity gradient generalizes across model scale. Single biggest improvement for EMNLP Main acceptance (W1 single-model weakness).\", \"priority\": \"P0\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status_note\": \"SFT all 3 DONE. GRPO CKA-only RUNNING westb cuda:0 (step 40/100, reward 0.266, healthy). Standard GRPO launching westb cuda:1. RASP GRPO pending.\", \"status\": \"planned\"}, {\"id\": \"plan_024\", \"claim\": 2, \"description\": \"E2: Extended GRPO 200-300 steps on 7B. CKA-only + Standard resume from step-100 checkpoint. Proves Standard collapse is permanent (not transient 100-step artifact) and CKA-only continues learning. Addresses W3 \\\"100 steps too short\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [\"plan_019\", \"plan_021\"], \"registry_id\": \"grpo_standard_20_extended_300_v2\", \"status_note\": \"Standard DONE 300步: reward 0.054→0.056 (零净提升), frac_zero 0.55→0.525 (仍在collapse区间). CKA-only extended RUNNING on westd cuda:0 as grpo_cka_only_20_extended_300.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean_step300\": 0.0562, \"loss_step300\": 0.0367, \"frac_reward_zero_std_step300\": 0.525, \"kl_step300\": 0.00306, \"entropy_step300\": 0.157, \"lr_step300\": 3.33e-09, \"runtime_min\": 48, \"reward_decline_after_step260\": true}}, {\"id\": \"plan_025\", \"claim\": 2, \"description\": \"E3: CKA heatmap representation analysis. For 4 pruned models + Dense, compute layer-wise CKA matrix (pruned vs Dense) using GSM8K calibration data. Generate 4-panel heatmap figure showing representational diversity preservation differences. Direct mechanism evidence for \\\"diversity determines trainability\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 1. Low GPU cost (forward pass only). Can run on westb cuda:0.\", \"status\": \"planned\"}, {\"id\": \"plan_026\", \"claim\": 2, \"description\": \"E4: 25% sparsity GRPO dynamics. CKA-only + Standard @25% → SFT → GRPO 100 steps. Tests gradient consistency across sparsity levels. 20%→25%→30% forms complete sparsity story.\", \"priority\": \"P1\", \"gpu_budget_hours\": 20, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Needs westd for GPU capacity.\", \"status\": \"planned\"}, {\"id\": \"plan_027\", \"claim\": 2, \"description\": \"E5: Bootstrap CI on reward trajectories. Pure analysis (0 GPU). Resample 100-step reward data with replacement, compute confidence intervals on reward gap between methods. Addresses W4 statistical rigor.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_019\", \"plan_020\", \"plan_021\", \"plan_022\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. CPU only, can run immediately.\", \"status\": \"planned\"}, {\"id\": \"plan_028\", \"claim\": 1, \"description\": \"E6: Integrate existing HumanEval data into paper. Data already in registry (plan_012). Zero cost, broadens benchmark coverage beyond math reasoning.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_012\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Paper writing task only.\", \"status\": \"planned\"}, {\"id\": \"plan_029\", \"claim\": 2, \"description\": \"E7: Unstructured pruning GRPO baseline. Magnitude-based unstructured 20% on same model → SFT → GRPO 100 steps. Current data only has SFT (87.87%). Completes structured vs unstructured comparison under RL.\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 3. If time permits.\", \"status\": \"planned\"}, {\"id\": \"plan_030\", \"claim\": 1, \"description\": \"Inference section fix: honest framing of per-token throughput. Pruned models 31-35% SLOWER per-token; latency reduction (~39%) from shorter outputs. Report both latency and TPS. Paper writing task.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_016\"], \"registry_id\": null, \"status_note\": \"Reviewer finding. Paper patch only.\", \"status\": \"planned\"}], \"total\": 30}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5c8dfb36-41a2-432d-9236-5f1a696bf824",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T12:45:10.432Z_
+
+<details><summary>↩ Tool result · `toolu_01JY4RPtP577C78Jgib34Wo6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"claims\": [1, 2, 3], \"matrix\": {\"1\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20. Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_n1319_v2\", \"status_note\": \"baseline eval was running on GPU0, may be done\", \"status\": \"PREPARING\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem). Both models in parallel on 2 GPUs.\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [], \"registry_id\": \"sft_rasp_20\", \"status_note\": \"DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eos_rate_greedy_100\": 0.99, \"greedy_accuracy_100\": 0.57, \"greedy_avg_len\": 179.83, \"greedy_correct\": 57, \"greedy_max_len\": 4096, \"greedy_min_len\": 59, \"greedy_total\": 100, \"sampling_eos_rate_5\": 1, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_loss_initial\": 1.86, \"train_time_min\": 37}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel. This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery while Standard cannot recover.\", \"priority\": \"P0\", \"gpu_budget_hours\": 35, \"deps\": [\"plan_002\"], \"registry_id\": \"grpo_stage2_rasp_20_v2\", \"status_note\": \"RUNNING v6→v7 (v6 OOM, v7 8-bit optimizer). cuda:0=RASP, cuda:1=Standard\", \"status\": \"DONE\", \"conclusion\": \"negative\"}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for all recovered models. Final numbers for paper Table 1.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_gsm8k_grpo_cka_only_20_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6437, \"n_correct\": 849, \"n_total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9886, \"avg_response_length\": 203.43, \"truncated\": 15, \"wall_time_sec\": 8921}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"GRASPrune baseline at 20% sparsity. Clone repo, run gate training, eval post-prune, then SFT→GRPO recovery. Primary external baseline (ACL 2026 SOTA).\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [], \"registry_id\": \"eval_sft_grasp_20_westd\", \"status_note\": \"GRASP post-prune 7% vs RASP 31%; GraSP post-SFT 41% vs Standard 64% vs RASP 57%. Data from D033/D034.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"avg_response_length\": 225.78, \"eos_rate\": 0.98, \"gsm8k_accuracy\": 0.41, \"gsm8k_accuracy_ci\": 0.0492, \"gsm8k_correct\": 41, \"gsm8k_total\": 100, \"max_response_length\": 4096, \"min_response_length\": 57, \"truncated\": 2}}, {\"id\": \"plan_006\", \"claim\": 1, \"description\": \"Multi-seed RASP_20 + Standard_20 post-prune eval (5 seeds total incl. seed 42). Dream reviewers flagged 3 seeds as insufficient — need 5+ for robust variance estimation and reliable pairwise significance tests.\", \"priority\": \"P0\", \"gpu_budget_hours\": 9, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_seed456\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"25% sparsity RASP + Standard. Prune, eval, SFT→GRPO recovery. Tests robustness across sparsity levels and approaches the 'threshold' where RASP advantage might narrow or widen.\", \"priority\": \"P1\", \"gpu_budget_hours\": 40, \"deps\": [], \"registry_id\": \"eval_grpo_rasp_25\", \"status_note\": \"sft_rasp_25/sft_standard_25 DONE, grpo_rasp_25/grpo_standard_25 DONE, eval_grpo_standard_25 51.1% success, eval_grpo_rasp_25 RUNNING\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5315, \"avg_len\": 433.85, \"eos_rate\": 0.9272, \"max_len\": 4096, \"min_len\": 39, \"n_correct\": 701, \"n_total\": 1319, \"stderr\": 0.0137, \"truncated\": 96}}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"30% sparsity probe. Prune + eval only (no recovery) for RASP and Standard. Maps the sparsity threshold where both methods collapse (expected based on D005 35% result).\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Extended evaluation on best recovered config: MMLU, HumanEval, MATH-500. Shows RASP recovery generalizes beyond GSM8K.\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_humaneval_grpo_standard_20\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"correct\": 3, \"max_new_tokens\": 512, \"note\": \"512-token truncation, low quality\", \"pass_at_1\": 0.0183, \"total\": 164}}, {\"id\": \"plan_013\", \"claim\": 1, \"description\": \"Bonsai baseline at 20% sparsity. Gradient-free structured pruning (ICML 2025). Lower priority than GRASPrune since GRASPrune is more directly comparable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"Inference speedup benchmark: wall-clock latency + throughput comparison between dense model, 20% RASP-pruned, 20% Standard-pruned. Structured pruning practical motivation requires efficiency evidence. Dream flagged across all 3 tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_003\"], \"registry_id\": \"inference_bench_cka_only_20\", \"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"dense_contaminated\": {\"tokens_per_second\": 35.4, \"avg_latency_sec\": 14.396, \"peak_memory_gb\": 16.22, \"note\": \"GPU contention with GSM8K eval — 2.15x slower than clean baseline (6.682s)\"}, \"cka_only_20\": {\"tokens_per_second\": 51.01, \"avg_latency_sec\": 4.146, \"peak_memory_gb\": 11.6, \"total_tokens\": 10574, \"note\": \"Ran after GSM8K finished, likely clean. Memory reduction 28.5% vs dense.\"}, \"contamination_warning\": \"Dense baseline 14.396s vs clean 6.682s. Benchmark needs rerun with clean GPU for valid dense comparison.\"}}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Unstructured pruning baseline at 20% on same model (magnitude-based). Calibrates the structured vs unstructured gap and enables fair Self-Healing comparison. Post-prune eval + optionally SFT→GRPO recovery. Dream flagged in median+worst tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_028\", \"claim\": 1, \"description\": \"E6: Integrate existing HumanEval data into paper. Data already in registry (plan_012). Zero cost, broadens benchmark coverage beyond math reasoning.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_012\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Paper writing task only.\", \"status\": \"planned\"}, {\"id\": \"plan_030\", \"claim\": 1, \"description\": \"Inference section fix: honest framing of per-token throughput. Pruned models 31-35% SLOWER per-token; latency reduction (~39%) from shorter outputs. Report both latency and TPS. Paper writing task.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_016\"], \"registry_id\": null, \"status_note\": \"Reviewer finding. Paper patch only.\", \"status\": \"planned\"}], \"counts\": {\"planned\": 5, \"running\": 1, \"done\": 4, \"failed\": 4, \"orphaned\": 0}, \"total\": 14, \"coverage\": \"4/14\", \"coverage_pct\": 28.6}, \"2\": {\"experiments\": [{\"id\": \"plan_007\", \"claim\": 2, \"description\": \"Scoring ablation at 20% sparsity: magnitude-only, gradient-only, random pruning. Same pipeline as RASP/Standard but different scoring. Compare post-prune accuracy to isolate CKA's contribution.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"scoring_ablation_batch\", \"status\": \"PREPARING\", \"conclusion\": \"killed\"}, {\"id\": \"plan_008\", \"claim\": 2, \"description\": \"Per-structure CKA-recoverability correlation analysis. Extract per-head F(h) from RASP scoring, correlate with per-head activation change after recovery. Mixed-effects regression with layer as random effect, controlling for weight norm / gradient importance / activation magnitude.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status_note\": \"analysis code + GPU compute for activation extraction\", \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"CKA reliability analysis: split-half consistency (Spearman ρ > 0.9) and calibration size sensitivity (256/512/1024 samples). Shows CKA-based scoring is stable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"α sensitivity ablation: sweep α ∈ {0, 0.25, 0.5, 1, 2} in RASP scoring S(h)=I(h)×(1-F(h))^α at 20% sparsity. Post-prune GSM8K eval for each. Dream reviewers flagged this as Critical across ALL 3 tiers — the single free parameter receives zero analysis without this.\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"alpha_ablation_westd_cal256\", \"status_note\": \"✅ DONE with cal=512, U-shape confirmed (α≥1.0 > α≤0.5). Registry alpha_ablation_westd_cal256 is older cal=256 run.\", \"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"alpha_4_0_accuracy\": 0.4, \"finding\": \"α=4.0 gives 40% post-prune accuracy (highest), non-monotonic relationship between α and accuracy\"}}, {\"id\": \"plan_019\", \"claim\": 2, \"description\": \"Fair GRPO recovery on CKA-only pruned model (v5 config). Core C2 evidence: CKA-only shows active recovery pattern (peak reward 0.354, rising trajectory). Part of 4-method fair comparison resolving D058 confound.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_cka_only_20\", \"status_note\": \"✅ DONE/success. Active recovery pattern confirmed. Peak 0.354(s50), final 0.344(s100), frac_zero_std 0.20.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 100, \"final_reward\": 0.3444, \"peak_reward\": 0.3544, \"peak_reward_step\": 50, \"final_frac_zero_std\": 0.2, \"final_loss\": 0.23, \"final_kl\": 0.001609, \"final_entropy\": 0.08751, \"final_reward_std\": 0.444, \"runtime_seconds\": 40710}}, {\"id\": \"plan_020\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Random pruned model (v5 config). Core C2 evidence: Random shows plateau pattern (reward oscillates 0.14-0.19, no collapse, no learning). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_random_20\", \"status_note\": \"✅ DONE/success. Plateau pattern confirmed. Steps 10-90 captured (timeout at step 97). No checkpoint.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean\": 0.164, \"reward_range\": [0.14, 0.19], \"reward_peak\": 0.19, \"reward_peak_step\": 70, \"frac_zero_std_mean\": 0.333, \"frac_zero_std_range\": [0.3, 0.4], \"entropy_mean\": 0.221, \"entropy_range\": [0.2, 0.24], \"kl_mean\": 0.0045, \"steps_captured\": 9, \"max_step\": 90, \"pattern\": \"stable plateau, no collapse\", \"data_source\": \"log_file (W&B crashed before sync)\"}}, {\"id\": \"plan_021\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Standard pruned model (v5 config). Core C2 evidence: Standard shows stagnation pattern (reward flat 0.03-0.08, frac_zero_std stuck 0.55). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_standard_20_fair\", \"status_note\": \"✅ DONE/success. Stagnation confirmed. Step 100 reward=0.054.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wandb_run_id\": \"tyv20u2k\", \"total_steps\": 100, \"runtime_seconds\": 3017, \"reward_trajectory\": [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054], \"frac_zero_std_trajectory\": [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55], \"peak_reward\": 0.081, \"peak_reward_step\": 40, \"final_reward\": 0.054, \"final_frac_zero_std\": 0.55, \"dynamics_pattern\": \"dip_then_partial_recovery\", \"dip_step\": 50, \"dip_reward\": 0.019}}, {\"id\": \"plan_022\", \"claim\": 2, \"description\": \"Fair GRPO recovery on RASP pruned model (v5 config). Core C2 evidence: RASP shows permanent collapse pattern (reward 0.01, frac_zero_std 0.85). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_rasp_20_fair\", \"status_note\": \"✅ DONE/success. Permanent collapse confirmed.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_completion_length\": 963.0, \"final_frac_zero_std\": 0.85, \"final_reward\": 0.01, \"min_frac_zero_std\": 0.675, \"peak_reward\": 0.061, \"total_steps\": 100, \"training_time_minutes\": 62.5, \"trend\": \"stagnation_then_collapse\"}}, {\"id\": \"plan_023\", \"claim\": 2, \"description\": \"E1: Second model validation — DeepSeek-R1-Distill-Qwen-1.5B. 3 methods (CKA-only + Standard + RASP) × prune@20% → SFT → GRPO 100 steps → GSM8K eval. Proves recovery capacity gradient generalizes across model scale. Single biggest improvement for EMNLP Main acceptance (W1 single-model weakness).\", \"priority\": \"P0\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status_note\": \"SFT all 3 DONE. GRPO CKA-only RUNNING westb cuda:0 (step 40/100, reward 0.266, healthy). Standard GRPO launching westb cuda:1. RASP GRPO pending.\", \"status\": \"planned\"}, {\"id\": \"plan_024\", \"claim\": 2, \"description\": \"E2: Extended GRPO 200-300 steps on 7B. CKA-only + Standard resume from step-100 checkpoint. Proves Standard collapse is permanent (not transient 100-step artifact) and CKA-only continues learning. Addresses W3 \\\"100 steps too short\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [\"plan_019\", \"plan_021\"], \"registry_id\": \"grpo_standard_20_extended_300_v2\", \"status_note\": \"Standard DONE 300步: reward 0.054→0.056 (零净提升), frac_zero 0.55→0.525 (仍在collapse区间). CKA-only extended RUNNING on westd cuda:0 as grpo_cka_only_20_extended_300.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean_step300\": 0.0562, \"loss_step300\": 0.0367, \"frac_reward_zero_std_step300\": 0.525, \"kl_step300\": 0.00306, \"entropy_step300\": 0.157, \"lr_step300\": 3.33e-09, \"runtime_min\": 48, \"reward_decline_after_step260\": true}}, {\"id\": \"plan_025\", \"claim\": 2, \"description\": \"E3: CKA heatmap representation analysis. For 4 pruned models + Dense, compute layer-wise CKA matrix (pruned vs Dense) using GSM8K calibration data. Generate 4-panel heatmap figure showing representational diversity preservation differences. Direct mechanism evidence for \\\"diversity determines trainability\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 1. Low GPU cost (forward pass only). Can run on westb cuda:0.\", \"status\": \"planned\"}, {\"id\": \"plan_026\", \"claim\": 2, \"description\": \"E4: 25% sparsity GRPO dynamics. CKA-only + Standard @25% → SFT → GRPO 100 steps. Tests gradient consistency across sparsity levels. 20%→25%→30% forms complete sparsity story.\", \"priority\": \"P1\", \"gpu_budget_hours\": 20, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Needs westd for GPU capacity.\", \"status\": \"planned\"}, {\"id\": \"plan_027\", \"claim\": 2, \"description\": \"E5: Bootstrap CI on reward trajectories. Pure analysis (0 GPU). Resample 100-step reward data with replacement, compute confidence intervals on reward gap between methods. Addresses W4 statistical rigor.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_019\", \"plan_020\", \"plan_021\", \"plan_022\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. CPU only, can run immediately.\", \"status\": \"planned\"}, {\"id\": \"plan_029\", \"claim\": 2, \"description\": \"E7: Unstructured pruning GRPO baseline. Magnitude-based unstructured 20% on same model → SFT → GRPO 100 steps. Current data only has SFT (87.87%). Completes structured vs unstructured comparison under RL.\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 3. If time permits.\", \"status\": \"planned\"}], \"counts\": {\"planned\": 7, \"running\": 2, \"done\": 5, \"failed\": 0, \"orphaned\": 0}, \"total\": 14, \"coverage\": \"5/14\", \"coverage_pct\": 35.7}, \"3\": {\"experiments\": [{\"id\": \"plan_009\", \"claim\": 3, \"description\": \"SFT-only recovery comparison. Same pruned models (RASP_20, Standard_20), same data budget, but SFT only (no GRPO). Tests whether recovery method changes optimal pruning order.\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_018\", \"claim\": 3, \"description\": \"SFT OOD eval contingency: evaluate SFT-recovered Standard model (64% GSM8K) on MATH-500 and HumanEval to distinguish genuine reasoning recovery from GSM8K-specific pattern memorization. Standard 1%→64% jump is suspiciously large. Contingency: only needed if GRPO RASP advantage <5pp. Reviewer W1 flagged.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status\": \"planned\"}], \"counts\": {\"planned\": 2, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 2, \"coverage\": \"0/2\", \"coverage_pct\": 0.0}}, \"unassigned\": [], \"summary\": {\"total_experiments\": 30, \"total_claims\": 3, \"counts\": {\"planned\": 14, \"running\": 3, \"done\": 9, \"failed\": 4, \"orphaned\": 0}, \"coverage\": \"9/30\", \"coverage_pct\": 30.0, \"unassigned\": 0}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a3ade15-382b-4f64-8496-09a311f6f9ab",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "ca50b4f7-2f9c-49d5-9d55-d7c6620cd62c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"claims\\\": [1, 2, 3], \\\"matrix\\\": {\\\"1\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20. Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_sft_standard_20_n1319_v2\\\", \\\"status_note\\\": \\\"baseline eval was running on GPU0, may be done\\\", \\\"status\\\": \\\"PREPARING\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem). Both models in parallel on 2 GPUs.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [], \\\"registry_id\\\": \\\"sft_rasp_20\\\", \\\"status_note\\\": \\\"DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eos_rate_greedy_100\\\": 0.99, \\\"greedy_accuracy_100\\\": 0.57, \\\"greedy_avg_len\\\": 179.83, \\\"greedy_correct\\\": 57, \\\"greedy_max_len\\\": 4096, \\\"greedy_min_len\\\": 59, \\\"greedy_total\\\": 100, \\\"sampling_eos_rate_5\\\": 1, \\\"token_accuracy\\\": 0.83, \\\"total_steps\\\": 1870, \\\"train_loss_final\\\": 0.64, \\\"train_loss_initial\\\": 1.86, \\\"train_time_min\\\": 37}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel. This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery while Standard cannot recover.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 35, \\\"deps\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": \\\"grpo_stage2_rasp_20_v2\\\", \\\"status_note\\\": \\\"RUNNING v6→v7 (v6 OOM, v7 8-bit optimizer). cuda:0=RASP, cuda:1=Standard\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Full GSM8K eval (1319 samples) for all recovered models. Final numbers for paper Table 1.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": \\\"eval_gsm8k_grpo_cka_only_20_v2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.6437, \\\"n_correct\\\": 849, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.0132, \\\"eos_rate\\\": 0.9886, \\\"avg_response_length\\\": 203.43, \\\"truncated\\\": 15, \\\"wall_time_sec\\\": 8921}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GRASPrune baseline at 20% sparsity. Clone repo, run gate training, eval post-prune, then SFT→GRPO recovery. Primary external baseline (ACL 2026 SOTA).\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 30, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_sft_grasp_20_westd\\\", \\\"status_note\\\": \\\"GRASP post-prune 7% vs RASP 31%; GraSP post-SFT 41% vs Standard 64% vs RASP 57%. Data from D033/D034.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"avg_response_length\\\": 225.78, \\\"eos_rate\\\": 0.98, \\\"gsm8k_accuracy\\\": 0.41, \\\"gsm8k_accuracy_ci\\\": 0.0492, \\\"gsm8k_correct\\\": 41, \\\"gsm8k_total\\\": 100, \\\"max_response_length\\\": 4096, \\\"min_response_length\\\": 57, \\\"truncated\\\": 2}}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Multi-seed RASP_20 + Standard_20 post-prune eval (5 seeds total incl. seed 42). Dream reviewers flagged 3 seeds as insufficient — need 5+ for robust variance estimation and reliable pairwise significance tests.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 9, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_sft_standard_20_seed456\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, {\\\"id\\\": \\\"plan_010\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"25% sparsity RASP + Standard. Prune, eval, SFT→GRPO recovery. Tests robustness across sparsity levels and approaches the 'threshold' where RASP advantage might narrow or widen.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 40, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval_grpo_rasp_25\\\", \\\"status_note\\\": \\\"sft_rasp_25/sft_standard_25 DONE, grpo_rasp_25/grpo_standard_25 DONE, eval_grpo_standard_25 51.1% success, eval_grpo_rasp_25 RUNNING\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5315, \\\"avg_len\\\": 433.85, \\\"eos_rate\\\": 0.9272, \\\"max_len\\\": 4096, \\\"min_len\\\": 39, \\\"n_correct\\\": 701, \\\"n_total\\\": 1319, \\\"stderr\\\": 0.0137, \\\"truncated\\\": 96}}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"30% sparsity probe. Prune + eval only (no recovery) for RASP and Standard. Maps the sparsity threshold where both methods collapse (expected based on D005 35% result).\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_012\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Extended evaluation on best recovered config: MMLU, HumanEval, MATH-500. Shows RASP recovery generalizes beyond GSM8K.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": \\\"eval_humaneval_grpo_standard_20\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"correct\\\": 3, \\\"max_new_tokens\\\": 512, \\\"note\\\": \\\"512-token truncation, low quality\\\", \\\"pass_at_1\\\": 0.0183, \\\"total\\\": 164}}, {\\\"id\\\": \\\"plan_013\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Bonsai baseline at 20% sparsity. Gradient-free structured pruning (ICML 2025). Lower priority than GRASPrune since GRASPrune is more directly comparable.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 25, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_016\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Inference speedup benchmark: wall-clock latency + throughput comparison between dense model, 20% RASP-pruned, 20% Standard-pruned. Structured pruning practical motivation requires efficiency evidence. Dream flagged across all 3 tiers.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": \\\"inference_bench_cka_only_20\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"dense_contaminated\\\": {\\\"tokens_per_second\\\": 35.4, \\\"avg_latency_sec\\\": 14.396, \\\"peak_memory_gb\\\": 16.22, \\\"note\\\": \\\"GPU contention with GSM8K eval — 2.15x slower than clean baseline (6.682s)\\\"}, \\\"cka_only_20\\\": {\\\"tokens_per_second\\\": 51.01, \\\"avg_latency_sec\\\": 4.146, \\\"peak_memory_gb\\\": 11.6, \\\"total_tokens\\\": 10574, \\\"note\\\": \\\"Ran after GSM8K finished, likely clean. Memory reduction 28.5% vs dense.\\\"}, \\\"contamination_warning\\\": \\\"Dense baseline 14.396s vs clean 6.682s. Benchmark needs rerun with clean GPU for valid dense comparison.\\\"}}, {\\\"id\\\": \\\"plan_017\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Unstructured pruning baseline at 20% on same model (magnitude-based). Calibrates the structured vs unstructured gap and enables fair Self-Healing comparison. Post-prune eval + optionally SFT→GRPO recovery. Dream flagged in median+worst tiers.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_028\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"E6: Integrate existing HumanEval data into paper. Data already in registry (plan_012). Zero cost, broadens benchmark coverage beyond math reasoning.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_012\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 2. Paper writing task only.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_030\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Inference section fix: honest framing of per-token throughput. Pruned models 31-35% SLOWER per-token; latency reduction (~39%) from shorter outputs. Report both latency and TPS. Paper writing task.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_016\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"Reviewer finding. Paper patch only.\\\", \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 5, \\\"running\\\": 1, \\\"done\\\": 4, \\\"failed\\\": 4, \\\"orphaned\\\": 0}, \\\"total\\\": 14, \\\"coverage\\\": \\\"4/14\\\", \\\"coverage_pct\\\": 28.6}, \\\"2\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Scoring ablation at 20% sparsity: magnitude-only, gradient-only, random pruning. Same pipeline as RASP/Standard but different scoring. Compare post-prune accuracy to isolate CKA's contribution.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"scoring_ablation_batch\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, {\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Per-structure CKA-recoverability correlation analysis. Extract per-head F(h) from RASP scoring, correlate with per-head activation change after recovery. Mixed-effects regression with layer as random effect, controlling for weight norm / gradient importance / activation magnitude.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"analysis code + GPU compute for activation extraction\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"CKA reliability analysis: split-half consistency (Spearman ρ > 0.9) and calibration size sensitivity (256/512/1024 samples). Shows CKA-based scoring is stable.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_015\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"α sensitivity ablation: sweep α ∈ {0, 0.25, 0.5, 1, 2} in RASP scoring S(h)=I(h)×(1-F(h))^α at 20% sparsity. Post-prune GSM8K eval for each. Dream reviewers flagged this as Critical across ALL 3 tiers — the single free parameter receives zero analysis without this.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [], \\\"registry_id\\\": \\\"alpha_ablation_westd_cal256\\\", \\\"status_note\\\": \\\"✅ DONE with cal=512, U-shape confirmed (α≥1.0 > α≤0.5). Registry alpha_ablation_westd_cal256 is older cal=256 run.\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"alpha_4_0_accuracy\\\": 0.4, \\\"finding\\\": \\\"α=4.0 gives 40% post-prune accuracy (highest), non-monotonic relationship between α and accuracy\\\"}}, {\\\"id\\\": \\\"plan_019\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on CKA-only pruned model (v5 config). Core C2 evidence: CKA-only shows active recovery pattern (peak reward 0.354, rising trajectory). Part of 4-method fair comparison resolving D058 confound.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_cka_only_20\\\", \\\"status_note\\\": \\\"✅ DONE/success. Active recovery pattern confirmed. Peak 0.354(s50), final 0.344(s100), frac_zero_std 0.20.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 100, \\\"final_reward\\\": 0.3444, \\\"peak_reward\\\": 0.3544, \\\"peak_reward_step\\\": 50, \\\"final_frac_zero_std\\\": 0.2, \\\"final_loss\\\": 0.23, \\\"final_kl\\\": 0.001609, \\\"final_entropy\\\": 0.08751, \\\"final_reward_std\\\": 0.444, \\\"runtime_seconds\\\": 40710}}, {\\\"id\\\": \\\"plan_020\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on Random pruned model (v5 config). Core C2 evidence: Random shows plateau pattern (reward oscillates 0.14-0.19, no collapse, no learning). Part of 4-method fair comparison.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_random_20\\\", \\\"status_note\\\": \\\"✅ DONE/success. Plateau pattern confirmed. Steps 10-90 captured (timeout at step 97). No checkpoint.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_mean\\\": 0.164, \\\"reward_range\\\": [0.14, 0.19], \\\"reward_peak\\\": 0.19, \\\"reward_peak_step\\\": 70, \\\"frac_zero_std_mean\\\": 0.333, \\\"frac_zero_std_range\\\": [0.3, 0.4], \\\"entropy_mean\\\": 0.221, \\\"entropy_range\\\": [0.2, 0.24], \\\"kl_mean\\\": 0.0045, \\\"steps_captured\\\": 9, \\\"max_step\\\": 90, \\\"pattern\\\": \\\"stable plateau, no collapse\\\", \\\"data_source\\\": \\\"log_file (W&B crashed before sync)\\\"}}, {\\\"id\\\": \\\"plan_021\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on Standard pruned model (v5 config). Core C2 evidence: Standard shows stagnation pattern (reward flat 0.03-0.08, frac_zero_std stuck 0.55). Part of 4-method fair comparison.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_standard_20_fair\\\", \\\"status_note\\\": \\\"✅ DONE/success. Stagnation confirmed. Step 100 reward=0.054.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"wandb_run_id\\\": \\\"tyv20u2k\\\", \\\"total_steps\\\": 100, \\\"runtime_seconds\\\": 3017, \\\"reward_trajectory\\\": [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054], \\\"frac_zero_std_trajectory\\\": [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55], \\\"peak_reward\\\": 0.081, \\\"peak_reward_step\\\": 40, \\\"final_reward\\\": 0.054, \\\"final_frac_zero_std\\\": 0.55, \\\"dynamics_pattern\\\": \\\"dip_then_partial_recovery\\\", \\\"dip_step\\\": 50, \\\"dip_reward\\\": 0.019}}, {\\\"id\\\": \\\"plan_022\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Fair GRPO recovery on RASP pruned model (v5 config). Core C2 evidence: RASP shows permanent collapse pattern (reward 0.01, frac_zero_std 0.85). Part of 4-method fair comparison.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 12, \\\"deps\\\": [], \\\"registry_id\\\": \\\"grpo_rasp_20_fair\\\", \\\"status_note\\\": \\\"✅ DONE/success. Permanent collapse confirmed.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_completion_length\\\": 963.0, \\\"final_frac_zero_std\\\": 0.85, \\\"final_reward\\\": 0.01, \\\"min_frac_zero_std\\\": 0.675, \\\"peak_reward\\\": 0.061, \\\"total_steps\\\": 100, \\\"training_time_minutes\\\": 62.5, \\\"trend\\\": \\\"stagnation_then_collapse\\\"}}, {\\\"id\\\": \\\"plan_023\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E1: Second model validation — DeepSeek-R1-Distill-Qwen-1.5B. 3 methods (CKA-only + Standard + RASP) × prune@20% → SFT → GRPO 100 steps → GSM8K eval. Proves recovery capacity gradient generalizes across model scale. Single biggest improvement for EMNLP Main acceptance (W1 single-model weakness).\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 25, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"SFT all 3 DONE. GRPO CKA-only RUNNING westb cuda:0 (step 40/100, reward 0.266, healthy). Standard GRPO launching westb cuda:1. RASP GRPO pending.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_024\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E2: Extended GRPO 200-300 steps on 7B. CKA-only + Standard resume from step-100 checkpoint. Proves Standard collapse is permanent (not transient 100-step artifact) and CKA-only continues learning. Addresses W3 \\\\\\\"100 steps too short\\\\\\\".\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 30, \\\"deps\\\": [\\\"plan_019\\\", \\\"plan_021\\\"], \\\"registry_id\\\": \\\"grpo_standard_20_extended_300_v2\\\", \\\"status_note\\\": \\\"Standard DONE 300步: reward 0.054→0.056 (零净提升), frac_zero 0.55→0.525 (仍在collapse区间). CKA-only extended RUNNING on westd cuda:0 as grpo_cka_only_20_extended_300.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_mean_step300\\\": 0.0562, \\\"loss_step300\\\": 0.0367, \\\"frac_reward_zero_std_step300\\\": 0.525, \\\"kl_step300\\\": 0.00306, \\\"entropy_step300\\\": 0.157, \\\"lr_step300\\\": 3.33e-09, \\\"runtime_min\\\": 48, \\\"reward_decline_after_step260\\\": true}}, {\\\"id\\\": \\\"plan_025\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E3: CKA heatmap representation analysis. For 4 pruned models + Dense, compute layer-wise CKA matrix (pruned vs Dense) using GSM8K calibration data. Generate 4-panel heatmap figure showing representational diversity preservation differences. Direct mechanism evidence for \\\\\\\"diversity determines trainability\\\\\\\".\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 1. Low GPU cost (forward pass only). Can run on westb cuda:0.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_026\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E4: 25% sparsity GRPO dynamics. CKA-only + Standard @25% → SFT → GRPO 100 steps. Tests gradient consistency across sparsity levels. 20%→25%→30% forms complete sparsity story.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 2. Needs westd for GPU capacity.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_027\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E5: Bootstrap CI on reward trajectories. Pure analysis (0 GPU). Resample 100-step reward data with replacement, compute confidence intervals on reward gap between methods. Addresses W4 statistical rigor.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"plan_019\\\", \\\"plan_020\\\", \\\"plan_021\\\", \\\"plan_022\\\"], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 2. CPU only, can run immediately.\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_029\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"E7: Unstructured pruning GRPO baseline. Magnitude-based unstructured 20% on same model → SFT → GRPO 100 steps. Current data only has SFT (87.87%). Completes structured vs unstructured comparison under RL.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [], \\\"registry_id\\\": null, \\\"status_note\\\": \\\"D061 Tier 3. If time permits.\\\", \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 7, \\\"running\\\": 2, \\\"done\\\": 5, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 14, \\\"coverage\\\": \\\"5/14\\\", \\\"coverage_pct\\\": 35.7}, \\\"3\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_009\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"SFT-only recovery comparison. Same pruned models (RASP_20, Standard_20), same data budget, but SFT only (no GRPO). Tests whether recovery method changes optimal pruning order.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_018\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"SFT OOD eval contingency: evaluate SFT-recovered Standard model (64% GSM8K) on MATH-500 and HumanEval to distinguish genuine reasoning recovery from GSM8K-specific pattern memorization. Standard 1%→64% jump is suspiciously large. Contingency: only needed if GRPO RASP advantage <5pp. Reviewer W1 flagged.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_003\\\"], \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 2, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 2, \\\"coverage\\\": \\\"0/2\\\", \\\"coverage_pct\\\": 0.0}}, \\\"unassigned\\\": [], \\\"summary\\\": {\\\"total_experiments\\\": 30, \\\"total_claims\\\": 3, \\\"counts\\\": {\\\"planned\\\": 14, \\\"running\\\": 3, \\\"done\\\": 9, \\\"failed\\\": 4, \\\"orphaned\\\": 0}, \\\"coverage\\\": \\\"9/30\\\", \\\"coverage_pct\\\": 30.0, \\\"unassigned\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"claims\": [1, 2, 3], \"matrix\": {\"1\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20. Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_n1319_v2\", \"status_note\": \"baseline eval was running on GPU0, may be done\", \"status\": \"PREPARING\"}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem). Both models in parallel on 2 GPUs.\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [], \"registry_id\": \"sft_rasp_20\", \"status_note\": \"DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eos_rate_greedy_100\": 0.99, \"greedy_accuracy_100\": 0.57, \"greedy_avg_len\": 179.83, \"greedy_correct\": 57, \"greedy_max_len\": 4096, \"greedy_min_len\": 59, \"greedy_total\": 100, \"sampling_eos_rate_5\": 1, \"token_accuracy\": 0.83, \"total_steps\": 1870, \"train_loss_final\": 0.64, \"train_loss_initial\": 1.86, \"train_time_min\": 37}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel. This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery while Standard cannot recover.\", \"priority\": \"P0\", \"gpu_budget_hours\": 35, \"deps\": [\"plan_002\"], \"registry_id\": \"grpo_stage2_rasp_20_v2\", \"status_note\": \"RUNNING v6→v7 (v6 OOM, v7 8-bit optimizer). cuda:0=RASP, cuda:1=Standard\", \"status\": \"DONE\", \"conclusion\": \"negative\"}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"Full GSM8K eval (1319 samples) for all recovered models. Final numbers for paper Table 1.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_gsm8k_grpo_cka_only_20_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6437, \"n_correct\": 849, \"n_total\": 1319, \"stderr\": 0.0132, \"eos_rate\": 0.9886, \"avg_response_length\": 203.43, \"truncated\": 15, \"wall_time_sec\": 8921}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"GRASPrune baseline at 20% sparsity. Clone repo, run gate training, eval post-prune, then SFT→GRPO recovery. Primary external baseline (ACL 2026 SOTA).\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [], \"registry_id\": \"eval_sft_grasp_20_westd\", \"status_note\": \"GRASP post-prune 7% vs RASP 31%; GraSP post-SFT 41% vs Standard 64% vs RASP 57%. Data from D033/D034.\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"avg_response_length\": 225.78, \"eos_rate\": 0.98, \"gsm8k_accuracy\": 0.41, \"gsm8k_accuracy_ci\": 0.0492, \"gsm8k_correct\": 41, \"gsm8k_total\": 100, \"max_response_length\": 4096, \"min_response_length\": 57, \"truncated\": 2}}, {\"id\": \"plan_006\", \"claim\": 1, \"description\": \"Multi-seed RASP_20 + Standard_20 post-prune eval (5 seeds total incl. seed 42). Dream reviewers flagged 3 seeds as insufficient — need 5+ for robust variance estimation and reliable pairwise significance tests.\", \"priority\": \"P0\", \"gpu_budget_hours\": 9, \"deps\": [], \"registry_id\": \"eval_sft_standard_20_seed456\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"25% sparsity RASP + Standard. Prune, eval, SFT→GRPO recovery. Tests robustness across sparsity levels and approaches the 'threshold' where RASP advantage might narrow or widen.\", \"priority\": \"P1\", \"gpu_budget_hours\": 40, \"deps\": [], \"registry_id\": \"eval_grpo_rasp_25\", \"status_note\": \"sft_rasp_25/sft_standard_25 DONE, grpo_rasp_25/grpo_standard_25 DONE, eval_grpo_standard_25 51.1% success, eval_grpo_rasp_25 RUNNING\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5315, \"avg_len\": 433.85, \"eos_rate\": 0.9272, \"max_len\": 4096, \"min_len\": 39, \"n_correct\": 701, \"n_total\": 1319, \"stderr\": 0.0137, \"truncated\": 96}}, {\"id\": \"plan_011\", \"claim\": 1, \"description\": \"30% sparsity probe. Prune + eval only (no recovery) for RASP and Standard. Maps the sparsity threshold where both methods collapse (expected based on D005 35% result).\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Extended evaluation on best recovered config: MMLU, HumanEval, MATH-500. Shows RASP recovery generalizes beyond GSM8K.\", \"priority\": \"P2\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_003\"], \"registry_id\": \"eval_humaneval_grpo_standard_20\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"correct\": 3, \"max_new_tokens\": 512, \"note\": \"512-token truncation, low quality\", \"pass_at_1\": 0.0183, \"total\": 164}}, {\"id\": \"plan_013\", \"claim\": 1, \"description\": \"Bonsai baseline at 20% sparsity. Gradient-free structured pruning (ICML 2025). Lower priority than GRASPrune since GRASPrune is more directly comparable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_016\", \"claim\": 1, \"description\": \"Inference speedup benchmark: wall-clock latency + throughput comparison between dense model, 20% RASP-pruned, 20% Standard-pruned. Structured pruning practical motivation requires efficiency evidence. Dream flagged across all 3 tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_003\"], \"registry_id\": \"inference_bench_cka_only_20\", \"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"dense_contaminated\": {\"tokens_per_second\": 35.4, \"avg_latency_sec\": 14.396, \"peak_memory_gb\": 16.22, \"note\": \"GPU contention with GSM8K eval — 2.15x slower than clean baseline (6.682s)\"}, \"cka_only_20\": {\"tokens_per_second\": 51.01, \"avg_latency_sec\": 4.146, \"peak_memory_gb\": 11.6, \"total_tokens\": 10574, \"note\": \"Ran after GSM8K finished, likely clean. Memory reduction 28.5% vs dense.\"}, \"contamination_warning\": \"Dense baseline 14.396s vs clean 6.682s. Benchmark needs rerun with clean GPU for valid dense comparison.\"}}, {\"id\": \"plan_017\", \"claim\": 1, \"description\": \"Unstructured pruning baseline at 20% on same model (magnitude-based). Calibrates the structured vs unstructured gap and enables fair Self-Healing comparison. Post-prune eval + optionally SFT→GRPO recovery. Dream flagged in median+worst tiers.\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_028\", \"claim\": 1, \"description\": \"E6: Integrate existing HumanEval data into paper. Data already in registry (plan_012). Zero cost, broadens benchmark coverage beyond math reasoning.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_012\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Paper writing task only.\", \"status\": \"planned\"}, {\"id\": \"plan_030\", \"claim\": 1, \"description\": \"Inference section fix: honest framing of per-token throughput. Pruned models 31-35% SLOWER per-token; latency reduction (~39%) from shorter outputs. Report both latency and TPS. Paper writing task.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_016\"], \"registry_id\": null, \"status_note\": \"Reviewer finding. Paper patch only.\", \"status\": \"planned\"}], \"counts\": {\"planned\": 5, \"running\": 1, \"done\": 4, \"failed\": 4, \"orphaned\": 0}, \"total\": 14, \"coverage\": \"4/14\", \"coverage_pct\": 28.6}, \"2\": {\"experiments\": [{\"id\": \"plan_007\", \"claim\": 2, \"description\": \"Scoring ablation at 20% sparsity: magnitude-only, gradient-only, random pruning. Same pipeline as RASP/Standard but different scoring. Compare post-prune accuracy to isolate CKA's contribution.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"scoring_ablation_batch\", \"status\": \"PREPARING\", \"conclusion\": \"killed\"}, {\"id\": \"plan_008\", \"claim\": 2, \"description\": \"Per-structure CKA-recoverability correlation analysis. Extract per-head F(h) from RASP scoring, correlate with per-head activation change after recovery. Mixed-effects regression with layer as random effect, controlling for weight norm / gradient importance / activation magnitude.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status_note\": \"analysis code + GPU compute for activation extraction\", \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"CKA reliability analysis: split-half consistency (Spearman ρ > 0.9) and calibration size sensitivity (256/512/1024 samples). Shows CKA-based scoring is stable.\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"α sensitivity ablation: sweep α ∈ {0, 0.25, 0.5, 1, 2} in RASP scoring S(h)=I(h)×(1-F(h))^α at 20% sparsity. Post-prune GSM8K eval for each. Dream reviewers flagged this as Critical across ALL 3 tiers — the single free parameter receives zero analysis without this.\", \"priority\": \"P0\", \"gpu_budget_hours\": 5, \"deps\": [], \"registry_id\": \"alpha_ablation_westd_cal256\", \"status_note\": \"✅ DONE with cal=512, U-shape confirmed (α≥1.0 > α≤0.5). Registry alpha_ablation_westd_cal256 is older cal=256 run.\", \"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"alpha_4_0_accuracy\": 0.4, \"finding\": \"α=4.0 gives 40% post-prune accuracy (highest), non-monotonic relationship between α and accuracy\"}}, {\"id\": \"plan_019\", \"claim\": 2, \"description\": \"Fair GRPO recovery on CKA-only pruned model (v5 config). Core C2 evidence: CKA-only shows active recovery pattern (peak reward 0.354, rising trajectory). Part of 4-method fair comparison resolving D058 confound.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_cka_only_20\", \"status_note\": \"✅ DONE/success. Active recovery pattern confirmed. Peak 0.354(s50), final 0.344(s100), frac_zero_std 0.20.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 100, \"final_reward\": 0.3444, \"peak_reward\": 0.3544, \"peak_reward_step\": 50, \"final_frac_zero_std\": 0.2, \"final_loss\": 0.23, \"final_kl\": 0.001609, \"final_entropy\": 0.08751, \"final_reward_std\": 0.444, \"runtime_seconds\": 40710}}, {\"id\": \"plan_020\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Random pruned model (v5 config). Core C2 evidence: Random shows plateau pattern (reward oscillates 0.14-0.19, no collapse, no learning). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_random_20\", \"status_note\": \"✅ DONE/success. Plateau pattern confirmed. Steps 10-90 captured (timeout at step 97). No checkpoint.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean\": 0.164, \"reward_range\": [0.14, 0.19], \"reward_peak\": 0.19, \"reward_peak_step\": 70, \"frac_zero_std_mean\": 0.333, \"frac_zero_std_range\": [0.3, 0.4], \"entropy_mean\": 0.221, \"entropy_range\": [0.2, 0.24], \"kl_mean\": 0.0045, \"steps_captured\": 9, \"max_step\": 90, \"pattern\": \"stable plateau, no collapse\", \"data_source\": \"log_file (W&B crashed before sync)\"}}, {\"id\": \"plan_021\", \"claim\": 2, \"description\": \"Fair GRPO recovery on Standard pruned model (v5 config). Core C2 evidence: Standard shows stagnation pattern (reward flat 0.03-0.08, frac_zero_std stuck 0.55). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_standard_20_fair\", \"status_note\": \"✅ DONE/success. Stagnation confirmed. Step 100 reward=0.054.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"wandb_run_id\": \"tyv20u2k\", \"total_steps\": 100, \"runtime_seconds\": 3017, \"reward_trajectory\": [0.051, 0.056, 0.067, 0.081, 0.019, 0.043, 0.047, 0.046, 0.031, 0.054], \"frac_zero_std_trajectory\": [0.5, 0.625, 0.5, 0.5, 0.575, 0.55, 0.575, 0.55, 0.55, 0.55], \"peak_reward\": 0.081, \"peak_reward_step\": 40, \"final_reward\": 0.054, \"final_frac_zero_std\": 0.55, \"dynamics_pattern\": \"dip_then_partial_recovery\", \"dip_step\": 50, \"dip_reward\": 0.019}}, {\"id\": \"plan_022\", \"claim\": 2, \"description\": \"Fair GRPO recovery on RASP pruned model (v5 config). Core C2 evidence: RASP shows permanent collapse pattern (reward 0.01, frac_zero_std 0.85). Part of 4-method fair comparison.\", \"priority\": \"P0\", \"gpu_budget_hours\": 12, \"deps\": [], \"registry_id\": \"grpo_rasp_20_fair\", \"status_note\": \"✅ DONE/success. Permanent collapse confirmed.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_completion_length\": 963.0, \"final_frac_zero_std\": 0.85, \"final_reward\": 0.01, \"min_frac_zero_std\": 0.675, \"peak_reward\": 0.061, \"total_steps\": 100, \"training_time_minutes\": 62.5, \"trend\": \"stagnation_then_collapse\"}}, {\"id\": \"plan_023\", \"claim\": 2, \"description\": \"E1: Second model validation — DeepSeek-R1-Distill-Qwen-1.5B. 3 methods (CKA-only + Standard + RASP) × prune@20% → SFT → GRPO 100 steps → GSM8K eval. Proves recovery capacity gradient generalizes across model scale. Single biggest improvement for EMNLP Main acceptance (W1 single-model weakness).\", \"priority\": \"P0\", \"gpu_budget_hours\": 25, \"deps\": [], \"registry_id\": null, \"status_note\": \"SFT all 3 DONE. GRPO CKA-only RUNNING westb cuda:0 (step 40/100, reward 0.266, healthy). Standard GRPO launching westb cuda:1. RASP GRPO pending.\", \"status\": \"planned\"}, {\"id\": \"plan_024\", \"claim\": 2, \"description\": \"E2: Extended GRPO 200-300 steps on 7B. CKA-only + Standard resume from step-100 checkpoint. Proves Standard collapse is permanent (not transient 100-step artifact) and CKA-only continues learning. Addresses W3 \\\"100 steps too short\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 30, \"deps\": [\"plan_019\", \"plan_021\"], \"registry_id\": \"grpo_standard_20_extended_300_v2\", \"status_note\": \"Standard DONE 300步: reward 0.054→0.056 (零净提升), frac_zero 0.55→0.525 (仍在collapse区间). CKA-only extended RUNNING on westd cuda:0 as grpo_cka_only_20_extended_300.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"reward_mean_step300\": 0.0562, \"loss_step300\": 0.0367, \"frac_reward_zero_std_step300\": 0.525, \"kl_step300\": 0.00306, \"entropy_step300\": 0.157, \"lr_step300\": 3.33e-09, \"runtime_min\": 48, \"reward_decline_after_step260\": true}}, {\"id\": \"plan_025\", \"claim\": 2, \"description\": \"E3: CKA heatmap representation analysis. For 4 pruned models + Dense, compute layer-wise CKA matrix (pruned vs Dense) using GSM8K calibration data. Generate 4-panel heatmap figure showing representational diversity preservation differences. Direct mechanism evidence for \\\"diversity determines trainability\\\".\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 1. Low GPU cost (forward pass only). Can run on westb cuda:0.\", \"status\": \"planned\"}, {\"id\": \"plan_026\", \"claim\": 2, \"description\": \"E4: 25% sparsity GRPO dynamics. CKA-only + Standard @25% → SFT → GRPO 100 steps. Tests gradient consistency across sparsity levels. 20%→25%→30% forms complete sparsity story.\", \"priority\": \"P1\", \"gpu_budget_hours\": 20, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 2. Needs westd for GPU capacity.\", \"status\": \"planned\"}, {\"id\": \"plan_027\", \"claim\": 2, \"description\": \"E5: Bootstrap CI on reward trajectories. Pure analysis (0 GPU). Resample 100-step reward data with replacement, compute confidence intervals on reward gap between methods. Addresses W4 statistical rigor.\", \"priority\": \"P1\", \"gpu_budget_hours\": 0, \"deps\": [\"plan_019\", \"plan_020\", \"plan_021\", \"plan_022\"], \"registry_id\": null, \"status_note\": \"D061 Tier 2. CPU only, can run immediately.\", \"status\": \"planned\"}, {\"id\": \"plan_029\", \"claim\": 2, \"description\": \"E7: Unstructured pruning GRPO baseline. Magnitude-based unstructured 20% on same model → SFT → GRPO 100 steps. Current data only has SFT (87.87%). Completes structured vs unstructured comparison under RL.\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [], \"registry_id\": null, \"status_note\": \"D061 Tier 3. If time permits.\", \"status\": \"planned\"}], \"counts\": {\"planned\": 7, \"running\": 2, \"done\": 5, \"failed\": 0, \"orphaned\": 0}, \"total\": 14, \"coverage\": \"5/14\", \"coverage_pct\": 35.7}, \"3\": {\"experiments\": [{\"id\": \"plan_009\", \"claim\": 3, \"description\": \"SFT-only recovery comparison. Same pruned models (RASP_20, Standard_20), same data budget, but SFT only (no GRPO). Tests whether recovery method changes optimal pruning order.\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001\"], \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_018\", \"claim\": 3, \"description\": \"SFT OOD eval contingency: evaluate SFT-recovered Standard model (64% GSM8K) on MATH-500 and HumanEval to distinguish genuine reasoning recovery from GSM8K-specific pattern memorization. Standard 1%→64% jump is suspiciously large. Contingency: only needed if GRPO RASP advantage <5pp. Reviewer W1 flagged.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_003\"], \"registry_id\": null, \"status\": \"planned\"}], \"counts\": {\"planned\": 2, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 2, \"coverage\": \"0/2\", \"coverage_pct\": 0.0}}, \"unassigned\": [], \"summary\": {\"total_experiments\": 30, \"total_claims\": 3, \"counts\": {\"planned\": 14, \"running\": 3, \"done\": 9, \"failed\": 4, \"orphaned\": 0}, \"coverage\": \"9/30\", \"coverage_pct\": 30.0, \"unassigned\": 0}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6a3ade15-382b-4f64-8496-09a311f6f9ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T12:45:10.441Z_
+
+<details><summary>↩ Tool result · `toolu_016iNEUF7CGHYbhAzHtTJyFe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\", \"content\": \"# Paper Framing — recovery_aware_struct_prune\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight (Recovery Capacity Gradient)\\nStructural pruning criterion determines post-RLVR recovery capacity of reasoning LLMs. Under controlled GRPO training (identical v5 config, D058 resolved), we discover a **recovery capacity gradient**: CKA-only (pure representational diversity preservation) is the only method that achieves meaningful RL learning, while importance-based scoring methods fail.\\n\\nThe gradient: **CKA-only >> importance-based methods (Random/Standard/RASP)**\\n\\n**Extended gradient with unstructured control** (reward range, 100 steps identical v5 config):\\n| Method | Reward Range | Structural Integrity | Pattern |\\n|--------|-------------|---------------------|---------|\\n| Unstructured 20% | 0.73-0.88 | Full (no neuron removal) | Stable, high reward |\\n| CKA-only 20% | 0.22-0.44 | Partial (diversity-preserving) | Active learning + self-recovery |\\n| Random 20% | 0.14-0.19 | Partial (random) | Flat-low, never learns |\\n| Standard 20% | 0.02-0.08 | Partial (importance-based) | Severe collapse |\\n| RASP 20% | 0.01-0.06 | Partial (composite) | Immediate collapse |\\n\\nInterpretation: Reward capacity correlates with structural integrity. Unstructured (no structural damage) >> CKA-only (selective preservation) >> collapsed methods. This confirms GRPO collapse is caused by structural damage from pruning, not GRPO instability. Unstructured is a control, not a competitor (no hardware-agnostic speedup).\\nNote: Starting accuracy confound (unstructured 87.87% vs structured 59-64%) is inherent — structural integrity determines both starting accuracy and GRPO capacity. Paper must acknowledge this explicitly.\\n\\nThis holds across:\\n- **Model scales**: 7B (CKA-only 0.354 vs Standard 0.054) and 1.5B (CKA-only 0.238 vs Standard 0.084)\\n- **Training duration**: E2 extended to 300 steps — Standard shows zero net improvement (0.054→0.056), CKA-only maintains 0.321 at step 110 (3x Standard)\\n- **Statistical tests**: Bootstrap CI confirms all pairwise gaps significant (E5)\\n\\nNote: fine-grained ordering within \\\"low-recovery\\\" methods is scale-dependent (7B: Standard > RASP; 1.5B: RASP > Standard). The robust finding is the CKA-only vs others gap, not the within-group ordering.\\n\\nFailure modes are scale-dependent:\\n- 7B: Standard/RASP collapse via **diversity loss** (frac_zero_std 0.55-0.85, repetitive outputs)\\n- 1.5B: Standard/RASP fail via **truncation bottleneck** (clipped_ratio 0.82-0.95+, can't finish reasoning in token budget)\\n- Both pathways result in failed RL training, suggesting recovery capacity is a general property that surfaces through scale-dependent mechanisms.\\n\\nMechanism (E3 CKA heatmap evidence): CKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity** (inter-layer uniqueness). This makes the model's layer representations LESS similar to Dense (diagonal CKA mean 0.62 vs 0.88-0.92 for others) but MORE internally diverse. \\\"Representational diversity\\\" ≠ \\\"Dense fidelity.\\\" Internal diversity enables diverse policy behaviors during GRPO, producing informative reward variance and gradient signal.\\n\\nGRPO reward-accuracy interaction is **task-dependent** (D071 revision, supersedes D067 \\\"universal decoupling\\\"):\\n- **SFT-recovered tasks (GSM8K, MATH-500)**: GRPO delta ≈ 0 for ALL methods at ALL scales. Decoupling holds.\\n  - GSM8K 7B: CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp (all within stderr)\\n  - GSM8K 1.5B: CKA-only -0.15pp, Standard -0.61pp, RASP -0.75pp (all noise)\\n  - MATH-500 @2048: CKA-only +0.2pp, RASP +1.4pp (all |Δ| < 2pp)\\n- **SFT-failed tasks (HumanEval, CKA-only specific)**: GRPO provides **massive cross-task recovery**.\\n  - CKA-only: SFT 0% (catastrophic forgetting of code) → GRPO **20.12%** (33/164 final). GRPO unlocks latent code capability that SFT's distribution shift rendered inaccessible. Recovery is partial (~45% of Dense), but the 0→20 jump is unique to CKA-only.\\n  - Other methods: SFT ~10-15%, GRPO ~10-15% (old stage2 models). No GRPO benefit. ⚠️ \\\"CKA-only specific\\\" claim pending v5 fair GRPO Standard/RASP HumanEval re-eval.\\n- **⚠️ SFT CKA-only 0% UNVERIFIED**: The 0/164 result was caused by a PATH bug (subprocess couldn't find python). 3 manual samples showed math reasoning output, but full eval was never executed. Re-run required before any claim about \\\"CKA-only SFT catastrophic forgetting.\\\" If re-run confirms ~0%, the mechanism holds (math-focused SFT shifts distribution away from code). If re-run shows 5-10%, D071 \\\"extreme specialization\\\" narrative weakens significantly.\\n- **Revised C1 framing**: On tasks where SFT partially recovers capability, GRPO adds nothing (decoupling). On tasks where SFT fails entirely, GRPO's exploration can partially activate latent capabilities in CKA-only models (0%→20% HumanEval). This enriches C1 but is **supplementary evidence** (Analysis section), not headline finding. The headline remains C2 (recovery capacity gradient on GSM8K/MATH-500). HumanEval shows a secondary dimension: CKA-only preserves latent cross-task potential that GRPO can partially activate.\\n\\n## Core Contributions (D065 restructure)\\n\\n### Contribution 1 (C2, Main): Recovery capacity gradient predicted by representational diversity\\nFour pruning methods at 20% sparsity reveal a clean recovery capacity gradient during GRPO (100 steps, identical v5 config — D058 confound fully resolved):\\n\\n| Method | Best Reward | Mean Reward | Best frac_zero_std | Pattern |\\n|--------|------------|-------------|-------------------|---------|\\n| CKA-only | 0.354 (s50) | 0.285 | 0.125 (s70) | **Active learning** with self-recovery (dip s90→recovery s100) |\\n| Random | 0.190 (s70) | 0.165 | 0.300 (s50/70) | Flat-low: never learns, reward oscillates 0.14-0.19 |\\n| Standard | 0.081 (s40) | 0.049 | 0.500 (s10/30/40) | Severe collapse: reward stays <0.08 despite transient grad_norm instability |\\n| RASP | 0.061 (s50) | 0.031 | 0.850 | Immediate collapse: 92-96% outputs hit max_length |\\n\\nThe gradient: **CKA-only >> Random >> Standard ≈ RASP**\\n- **Statistical support (E5 v2, per-example bootstrap + McNemar, N=1319)**:\\n  - 7B SFT: CKA-only vs Standard **p=0.002** ✅; CKA-only vs RASP p=0.117 ❌; Standard vs RASP p=0.126 ❌\\n  - 1.5B GRPO: all CKA-only pairwise comparisons **p<0.001** ✅ (gap 8-13pp)\\n  - C1 decoupling: GRPO CKA-only vs SFT CKA-only p=0.566 (confirmed: GRPO ≠ accuracy gain)\\n- **Framing**: C2 accuracy evidence leads with 1.5B (strong significance). 7B C2 core evidence = reward dynamics (CKA-only 0.354 vs RASP 0.061 = 5.8x, directly observable). 7B SFT accuracy is directional support. Paper must honestly report CKA-only vs RASP non-significance at 7B.\\n- ⚠️ **Gap**: Standard/RASP GRPO GSM8K evals (58.91%/60.65%) may be from pre-fair models, not fair v5. Need verification or redo.\\n\\nThree distinct failure modes (only CKA-only achieves meaningful learning):\\n1. **CKA-only**: Active learning with peak reward 0.354 (step 50), frac_zero_std drops to 0.125 (step 70, below initial 0.175). Transient instability at step 90 (reward dips to 0.242) but **self-recovers to 0.344 at step 100** (frac_zero_std returns to 0.200). This self-recovery from training perturbation is the defining characteristic of high recovery capacity.\\n2. **Random**: Never lifts off. Reward 0.14-0.19 throughout, grad_norm unstable (3.5-8.6). Has diversity but lacks coherent optimization direction\\n3. **Standard/RASP**: Deep collapse. Standard: reward < 0.08 throughout, grad_norm transiently drops to 0.017 at s90 (recovers to 2.41 at s100 but reward stays low). RASP: reward < 0.01, immediate repetitive output collapse\\n\\nKey evidence dimensions:\\n- **Reward gap**: CKA-only final (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01)\\n- **Learning signal**: Only CKA-only achieves frac_zero_std < 0.2 (meaningful per-sample variance); Standard/RASP never below 0.5/0.85\\n- **Gradient health**: CKA-only grad_norm stable 1-3; Standard grad_norm exhibits transient instability (0.017 at s90, recovers to 2.41 at s100 but policy already collapsed)\\n- **Output diversity**: CKA-only generates diverse completions; RASP 92-96% hit max_length (repetitive)\\n\\nMechanism (E3 CKA heatmap): CKA-only removes redundant structures (high intra-model CKA overlap), resulting in the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88). This is by design: removing redundancy reduces Dense similarity but preserves internal representational diversity. The relationship between Dense-CKA and recovery is NOT monotonic (Random 0.92 recovers better than RASP 0.88); recovery depends on internal diversity, not Dense fidelity.\\n\\n**E2 Extended Training Evidence (D063 framing: \\\"sustained capacity without collapse\\\")**:\\n- Standard 300 steps: reward 0.054±0.002 throughout, zero net improvement. Collapse is permanent and structural.\\n- CKA-only 300 steps complete: reward oscillates 0.22-0.44, peak 0.4444 at step 280, final 0.3075. No collapse. frac_zero_std range 0.10-0.28.\\n- **Final E2 comparison**: CKA-only 0.3075 vs Standard 0.0562 = **5.5x gap** at step 300.\\n- **E2 GSM8K (downstream accuracy)**:\\n  - CKA-only 300步: ~64.0% @ 1000/1319 (vs 100步 64.37% — **no improvement, stable**)\\n  - Standard 300步: **59.29% (782/1319)** — delta +0.38pp vs 100步 (n.s.)\\n  - **Key insight**: Neither method benefits from extended training on ID accuracy. CKA-only: exact 0.00pp delta. Standard: +0.38pp within stderr.\\n- **Core E2 claim**: \\\"Recovery capacity is a structural property of the pruned model, not a function of training duration.\\\" Standard cannot be rescued by more training; CKA-only sustains capacity without collapse. Extended training for CKA-only maintains but does not improve downstream accuracy.\\n- **E2 final GSM8K**: CKA-only 300步 = 100步 = **64.37% (849/1319)**, exact match. Standard 300步 = **59.29% (782/1319)** vs 100步 58.91% = +0.38pp (n.s.).\\n- **Do NOT claim**: \\\"CKA-only continues to learn\\\" or \\\"extended training benefits CKA-only\\\" — reward oscillates (0.22-0.44) but accuracy is precisely unchanged (849/1319 both checkpoints).\\n- **Safe claims**: \\\"Standard collapse is permanent (300 steps)\\\", \\\"CKA-only maintains 5.5x reward gap at step 300\\\", \\\"CKA-only accuracy is robust under extended training (exact zero degradation)\\\", \\\"recovery capacity gap persists under extended training\\\", \\\"200 additional GRPO steps with sustained reward learning produce zero accuracy change (C1 decoupling)\\\".\\n\\n**Cross-Scale Evidence (E1)**: 1.5B DeepSeek-R1-Distill-Qwen confirms the gradient:\\n| Method | 1.5B reward | 7B reward | Ratio |\\n|--------|-------------|-----------|-------|\\n| CKA-only | 0.238 | 0.354 | 3x vs Standard (both scales) |\\n| Standard | 0.084 | 0.054 | — |\\n| RASP | 0.099 | 0.010 | Order reversed at 1.5B |\\n\\nStandard vs RASP order reverses at 1.5B due to different failure modes (truncation vs diversity collapse). The CKA-only advantage is robust across scales.\\n\\n**D062 Framing Guidance (Reviewer-validated)**:\\n- **Cross-scale claim (Abstract/Contribution)**: \\\"CKA-only pruning consistently enables superior GRPO recovery across model scales, achieving 2.8x (1.5B) to 6.4x (7B) the reward of importance-based methods.\\\"\\n- **Gap widening claim (Results)**: \\\"The accuracy gap between CKA-only and importance-based methods widens at smaller scale (16pp at 1.5B vs 5pp at 7B), suggesting representational diversity preservation becomes more critical as model capacity decreases.\\\" (Qualitative until final GSM8K numbers confirm.)\\n- **Do NOT claim**: Fixed 4-tier ordering across scales. Fine-grained within-group ordering is scale-dependent noise.\\n- **Failure modes (Section-level treatment)**:\\n  - Section 4.x Results: 1.5B table + one sentence confirming gradient\\n  - Section 5.x Analysis: ~1 paragraph on scale-dependent failure modes (diversity collapse at 7B vs truncation bottleneck at 1.5B; CKA-only avoids both)\\n  - Section 6 Discussion: one sentence limitation (\\\"warrants investigation on additional architectures\\\")\\n\\nNote on CKA-only self-recovery: Transient dip at step 90 (reward 0.242, frac_zero_std 0.300) followed by full recovery at step 100 (reward 0.344, frac_zero_std 0.200). This demonstrates ongoing **resilience** to training perturbations. No other method shows this property.\\n\\n### Contribution 2: Representational diversity as mechanistic explanation (E3 CKA heatmap)\\nCKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity**. E3 CKA heatmap shows CKA-only pruned model has the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88) — yet achieves the BEST recovery. This proves the mechanism: **\\\"internal diversity, not Dense fidelity, determines RL trainability.\\\"** The relationship is NOT monotonic (Random 0.92 recovers better than RASP 0.88), ruling out simplistic \\\"similarity preservation\\\" explanations.\\n\\nThis elevates the paper from pure empirical observation (C2: \\\"CKA-only works best\\\") to mechanistic understanding (\\\"WHY it works: diversity preservation\\\").\\n\\n### Supporting Analysis: GRPO-Scale Interaction (former C1, D065 downgrade)\\n\\n**7B GSM8K (ID)**: GRPO reward-accuracy decoupling — reward rises but accuracy changes are minimal (CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp). The direction follows recovery capacity gradient.\\n\\n**7B MATH-500 (OOD, D067 revision)**: Recovery gradient persists on OOD (MATH-500 @2048): CKA-only 29.0% (SFT) / **29.2% (GRPO, final)** >> Standard 26.4% (GRPO) >> RASP 22.6% (SFT) / 24.0% (GRPO). Dense 53.0%. GRPO deltas negligible (CKA-only +0.2pp, all |Δ| < 2pp, within stderr). The recovery gradient generalizes from ID to OOD, though absolute gap is compressed (6pp on MATH-500 vs 11pp on GSM8K for CKA-only vs others).\\n\\n**1.5B GSM8K (D065 new data)**: GRPO provides NO benefit at 1.5B scale for ANY method:\\n\\n| Method | SFT | GRPO | GRPO-SFT |\\n|--------|-----|------|----------|\\n| CKA-only | 35.63% | 35.48% | -0.15pp |\\n| Standard | **22.90%** | 22.29% | **-0.61pp** |\\n| RASP | **26.91%** | 26.16% | **-0.75pp** |\\n\\n**Revised C1 Framing (D071, supersedes D067)**: GRPO-accuracy interaction is task-dependent:\\n- **SFT-recovered tasks** (GSM8K, MATH-500): GRPO delta ≈ 0 across all methods and scales. Decoupling holds. Recovery capacity is set at pruning time; RL training cannot further improve it.\\n- **SFT-failed tasks** (HumanEval code generation): CKA-only shows **massive GRPO benefit** (0% → ~22% interim), while other methods show none (~10-15% both SFT and GRPO). GRPO's exploratory search activates latent code generation capability that exists in CKA-only's diverse representations but that supervised math-focused SFT cannot reach.\\n- **Mechanism**: CKA-only + math SFT shifts generation distribution so completely to reasoning mode that code prompts trigger `&lt;think>` natural language analysis instead of Python output. Importance-based methods retain partial code ability (11-12%) because they lack CKA-only's extreme task specialization under SFT. GRPO avoids this mode collapse via exploratory RL.\\n\\n**Implication for paper story**: This enriches C1 from a flat \\\"decoupling\\\" observation to a conditional finding with mechanistic depth. CKA-only pruning preserves latent multi-task potential in the pruned model's parameters. Math-focused SFT causes catastrophic forgetting of code ability (0% HumanEval), but this damage is reversible: GRPO's exploratory RL re-activates the latent code capability (~27.5%). Importance-based pruning destroys this latent potential at the pruning stage (no amount of GRPO recovers it). The recovery capacity gradient thus has a **hidden dimension**: it determines not just RL trainability but the breadth of recoverable capabilities. Note: \\\"latent potential\\\" describes the pruned model pre-SFT; SFT can suppress it, but GRPO can re-activate it if the pruned structure preserved sufficient diversity.\\n\\n**HumanEval baselines**: Unpruned 45.12%, Standard SFT 11.59%, RASP SFT 10.37%, CKA-only SFT 0%, CKA-only GRPO 20.12% (33/164 final). GRPO Standard fair + RASP fair running.\\n\\n**Paper placement**: 1.5B GRPO delta table in main text (Tab5). HumanEval cross-task GRPO recovery as a key finding in Results (new table or merged into existing). MATH-500 @2048 full table in appendix with one sentence in main text: \\\"The recovery capacity gradient persists on the more challenging MATH-500 benchmark, with CKA-only maintaining a ~6pp advantage over importance-based methods.\\\"\\n\\n### Observation: SFT partially differentiates scoring methods; 30% sparsity cliff is universal\\n- Post-SFT accuracy shows gradient (CKA-only 63.9% > RASP 61.5% > Standard 59.3%), range is 4.6pp vs massive RL gradient\\n- CKA-only SFT advantage is statistically significant vs Standard (Δ=4.6pp, p≈0.015, N=1319), suggesting diversity preservation helps SFT too — but the RL gradient (collapse vs super-recovery) is qualitatively larger\\n- At 30% sparsity, ALL methods collapse: RASP 0%, CKA-only 0%, Standard 3-4%\\n- The recovery capacity gradient is meaningful in the 20-25% operating range\\n\\n### Additional contribution: Inference speedup asymmetry\\n- RASP 20%: 37.8% latency reduction, 28.5% memory reduction\\n- Standard 20%: 7.7% latency reduction, 28.4% memory reduction\\n- Same parameter count, vastly different inference efficiency due to pruning distribution\\n\\n## Evidence Status (as of 2026-05-19 05:30 UTC)\\n\\n| Evidence | Status | Result |\\n|----------|--------|--------|\\n| Unpruned SFT eval (N=1319) | ✅ | 81.27% |\\n| Unpruned GRPO step-100 eval (N=1319) | ✅ | 81.27% (Δ=0.00pp) |\\n| Standard SFT eval (N=1319) | ✅ | 59.29% |\\n| Standard GRPO step-50 eval (N=1319) | ⚠️ | 58.91% — **来源不可追溯**（无结果 JSON，bootstrap CI 记录 \\\"no n=1319 eval\\\"）。替代：300步 59.29% (782/1319) vs SFT 59.29% = Δ=0.00pp（更强的 decoupling 证据，完整溯源）。需要用 `grpo_stage2_standard_20_fair/checkpoint-50` 重跑 N=1319 验证。 |\\n| RASP SFT eval (N=1319) | ✅ | 61.49% |\\n| RASP GRPO step-5 eval (N=1319) | ✅ | 60.65% (Δ=-0.84pp) |\\n| CKA-only SFT eval (N=1319) | ✅ | 63.91% (843/1319) — highest among all pruned methods |\\n| **CKA-only GRPO eval (N=1319)** | ✅ | **64.37% (849/1319), Δ=+0.46pp vs SFT** — only pruned method with positive GRPO delta |\\n| **GRPO CKA-only fair (v5)** | ✅ | Active learning: peak 0.354(s50), best frac_zero 0.125(s70), transient dip 0.242(s90), **self-recovery to 0.344(s100)**. frac_zero_std=0.200 at final. |\\n| **GRPO Random fair (v5)** | ✅ | Flat-low: reward 0.14-0.19 oscillation, never learns. Timeout at step 97 (no checkpoint) |\\n| **GRPO Standard fair (v5)** | ✅ | Severe collapse: reward 0.02-0.08, grad_norm→0.017(s90), model stops learning |\\n| **GRPO RASP fair (v5)** | ✅ | Immediate collapse: reward ~0.01, frac_zero_std 0.85, 92-96% max-length outputs |\\n| Unpruned GRPO v2 dynamics | ✅ | 100 steps stable, reward 0.661 |\\n| D058 fair 4-way comparison | ✅ | **Gradient confirmed: CKA-only >> Random >> Standard > RASP (all v5 config)** |\\n| **MATH-500 @2048 Dense** | ✅ | 53.0% (265/500, truncated 53.2%). Fair baseline for @2048 comparison |\\n| **MATH-500 @2048 SFT CKA-only** | ✅ | 29.0% (145/500, truncated 23.2%) |\\n| **MATH-500 @2048 GRPO CKA-only** | ✅ | **29.2% (146/500)**. GRPO delta = +0.2pp vs SFT 29.0% (negligible, consistent with decoupling) |\\n| **MATH-500 @2048 SFT Standard** | ✅ | **25.8% (129/500) ±1.96%**. GRPO Standard 26.4% vs SFT 25.8% = +0.6pp (noise, C1 decoupling). CKA-only SFT 29.0% > Standard SFT 25.8% = 3.2pp gradient on OOD. |\\n| **MATH-500 @2048 GRPO Standard** | ✅ | 26.4% (132/500) |\\n| **MATH-500 @2048 SFT RASP** | ✅ | 22.6% (113/500, truncated 37.2%) |\\n| **MATH-500 @2048 GRPO RASP** | ✅ | 24.0% (120/500, truncated 36.0%) |\\n| MATH-500 @4096 legacy | ⚠️ | Old evals used 4096 default (D064 confound). Not directly comparable to @2048. |\\n| 30% sparsity cliff | ✅ | RASP 0%, Standard 4%, CKA-only 0% — universal collapse |\\n| Alpha ablation (cal=512) | ✅ | U-shape: α≥1.0 > α≤0.5 post-prune |\\n| Inference speedup | ✅ | RASP 37.8% vs Standard 7.7% latency reduction |\\n| Magnitude-only ablation | ✅ | Post-prune 0% accuracy, 2% EOS rate, avg_len=4054. Worst scoring method. |\\n| **E2 Standard Extended 300 steps** | ✅ | Reward 0.054→0.056 (zero net improvement), frac_zero 0.55→0.525. Collapse permanent. |\\n| **E2 CKA-only Extended 300 steps** | ✅ | Reward 0.22-0.44 range, peak 0.4444@s280, final 0.3075. 5.5x Standard. Sustained oscillation, no collapse. |\\n| **1.5B CKA-only GRPO** | ✅ | Reward 0.238, frac_zero_std 0.175. Active learning confirmed at 1.5B scale |\\n| **1.5B Standard GRPO** | ✅ | Reward 0.084, frac_zero_std 0.15, clipped_ratio >0.95. Truncation bottleneck |\\n| **1.5B RASP GRPO** | ✅ | Reward 0.099, frac_zero_std 0.175, clipped_ratio 0.82. Low reward + truncation |\\n| **E3 CKA Heatmap** | ✅ 4/4 | CKA-only diag mean 0.62, Standard 0.90, Random 0.92, RASP 0.88. CKA-only least similar to Dense but best recovery. PDF generated. |\\n| **1.5B CKA-only GSM8K eval** | ✅ | **35.48% (468/1319) ±1.32%** (interim was 41.7%, converged down) |\\n| **1.5B Standard GSM8K eval** | ✅ | **22.29% (294/1319) ±1.15%**. Gap vs CKA-only = 13.2pp (7B gap = 5.5pp, 2.4x amplification at smaller scale). |\\n| **1.5B RASP GSM8K GRPO eval** | ✅ | **26.16% (345/1319) ±1.21%**. Three-method ordering consistent: CKA-only >> RASP > Standard |\\n| **1.5B SFT CKA-only GSM8K** | ✅ | **35.63% (470/1319) ±1.32%**. GRPO delta = -0.15pp (noise) |\\n| **1.5B SFT Standard GSM8K** | ✅ | **22.90% (302/1319) ±1.16%**. GRPO delta = -0.61pp (noise) |\\n| **1.5B SFT RASP GSM8K** | ✅ | **26.91% (355/1319)**. GRPO delta = -0.75pp (noise) |\\n| **E5 Bootstrap CI (reward)** | ❌ INVALID | Reward-trajectory bootstrap violates i.i.d. See M008. |\\n| **E5 Bootstrap CI (accuracy) v2** | ✅ | Per-example bootstrap + McNemar (N=1319). 7B SFT: CKA vs Std **p=0.002**; CKA vs RASP p=0.117 (NS); Std vs RASP p=0.126 (NS). 1.5B: all CKA-only gaps **p<0.001**. C1: GRPO vs SFT CKA-only p=0.566 (decoupling confirmed). |\\n| **E2 CKA-only 300步 GSM8K** | ✅ | **64.37% (849/1319)** — identical to 100步 (849/1319). 200 extra GRPO steps (reward 0.22→0.44 oscillation) = exact zero accuracy change. Perfect C1 decoupling evidence. Per-example comparison pending (same examples or different-but-equal-count?). |\\n| **E2 Standard 300步 GSM8K** | ✅ | **59.29% (782/1319) ±1.35%**. Delta vs 100步 (58.91%) = +0.38pp (within stderr, not significant). Extended training provides zero meaningful improvement for Standard. |\\n| **CKA-only SFT HumanEval @2048** | ❌ INVALID | **0/164 报告值是 PATH bug 导致的假结果**。eval 进程未激活 conda，`subprocess.run([\\\"python\\\", ...])` 全部 `No such file or directory`。代码从未被实际执行。需要在 conda-activated 环境中重跑。3 个手动样本显示模型生成数学推理而非代码，但 164 题整体结果未验证。 |\\n| **CKA-only GRPO HumanEval @2048** | ✅ | **20.12% (33/164) ±3.13%**. SFT 0% → GRPO 20% = +20pp recovery. Dense 45.12%. Importance-based SFT ~11%. ⚠️ Gap vs GRPO RASP fair (~15% interim) only ~5pp — \\\"CKA-only specific\\\" claim applies to SFT→GRPO recovery angle (0→20), not absolute GRPO performance. Pending Standard/RASP fair finals. |\\n| **Unstructured 20% SFT GSM8K** | ✅ | 87.87% (1159/1319). No structural damage → no recovery needed. |\\n| **Unstructured 20% GRPO 100步** | ✅ | Reward **0.73-0.88** (peak 0.883@s100), NO collapse. GSM8K: **87.64% (1156/1319) ±0.91%** — pre-GRPO 87.87%, Δ=-0.23% (noise). GRPO adds nothing to unstructured (already at ceiling). vs structured best (CKA-only) 64.37% = 23pp gap. Confirms \\\"structural damage is the recovery bottleneck, not GRPO.\\\" |\\n\\n## Story Spine\\n\\n- **Problem**: The reasoning model compression pipeline (prune → SFT → GRPO align) treats pruning decisions as independent of downstream RL alignment. We show this assumption is wrong: pruning criterion fundamentally determines whether the model can sustain RL training, through a mechanism we call **recovery capacity**.\\n\\n- **Key insight**: Not all pruning criteria create equal RL trainability. The standard practice of gradient-based importance scoring removes structures that, while individually \\\"unimportant\\\" by gradient metrics, collectively provide the representational diversity that RL exploration requires. CKA-based scoring identifies and preserves this diversity.\\n\\n- **Existing approaches & gaps**: Self-Healing (2025) claims RLVR recovers pruned reasoning models to 95%+ but uses a single pruning method and does not report training dynamics. GRASPrune (ACL 2026) provides SOTA structural pruning without studying recovery or alignment. No work has (1) compared multiple pruning criteria under RL alignment, (2) documented the recovery capacity gradient, or (3) identified representational diversity as the causal factor.\\n\\n- **Our framing**: Through controlled comparison of four pruning criteria (CKA-only, Random, Standard importance, RASP composite) under identical GRPO training, we discover a recovery capacity gradient that reveals the critical role of representational diversity in RL trainability. CKA-only pruning — which preserves all representationally unique structures — enables active super-recovery from training perturbations, while gradient-based methods progressively destroy this capacity.\\n\\n- **Headline result**: \\\"Pruning criterion determines RL recovery capacity: CKA-only pruning enables active super-recovery from GRPO training instability (frac_zero_std drops 29% below initial baseline), while gradient-based RASP collapses permanently at step 10. The recovery capacity gradient (CKA-only > Random > Standard > RASP) is predicted by preserved representational diversity, revealing that gradient importance scoring — the industry standard — is actively harmful for post-pruning RL alignment.\\\"\\n\\n## Venue Fit\\n- EMNLP Efficient Methods track: structured pruning + reasoning model RL alignment interaction\\n- Counter-intuitive finding (gradient importance harms RL) is high-impact\\n- Reasoning model compression pipeline is immediately practical (DeepSeek-R1, QwQ, Kimi-K1.5)\\n- Mechanistic analysis (recovery capacity, representational diversity) aligns with EMNLP empirical rigor\\n- Challenges published claims (Self-Healing 2025) with controlled evidence\\n\\n## Venue Fit Risks\\n- **\\\"Just a diagnostic without solution\\\"**: Mitigate with (1) CKA-only scoring as actionable recommendation for RL-intended pruning, (2) recovery capacity gradient as zero-cost quality predictor, (3) inference speedup asymmetry as practical bonus\\n- **\\\"Single model\\\"**: Now validated on 2 scales (7B + 1.5B, same DeepSeek-R1-Distill-Qwen family). 4 methods × 3 sparsity levels × 2 scales = 24 configurations. Same family is a limitation but canonical reasoning model. 1.5B failure mode differs (truncation vs diversity collapse) adding depth.\\n- **\\\"GRPO config might be wrong\\\"**: ✅ **RESOLVED (D058)**. All 4 methods now retrained under identical v5 config (beta=0.01, temp=0.4, maxlen=1024, DAPO). Gradient CKA-only >> Random >> Standard > RASP confirmed. Original confound eliminated.\\n- **\\\"CKA-only advantage might be trivial\\\"**: CKA-only final reward (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01). Only method achieving meaningful learning + self-recovery from perturbation. Not marginal.\\n- **\\\"CKA-only instability undermines claim\\\"**: Transient dip at step 90, but **self-recovers to 0.344 at step 100** (near peak 0.354). This self-recovery IS the core evidence for \\\"recovery capacity\\\" — the model demonstrates resilience to training perturbations that other methods lack.\\n- **\\\"Why not just use unpruned model?\\\"**: Inference speedup (37.8% latency, 28.5% memory) justifies pruning; question is how to prune for RL compatibility\\n- **\\\"D051/D058 confound\\\"**: ✅ RESOLVED. grpo_rasp_20_fair + grpo_standard_20_fair completed under v5 config. Both confirm collapse pattern.\\n\\n## Anticipated Reviewer Concerns & Experimental Responses\\n\\n| Concern | Response | Supporting Experiment |\\n|---------|----------|----------------------|\\n| Gradient direction in 4-method comparison might be config-dependent | All 4 methods retrained under identical v5 config (D058 resolved); gradient CKA-only >> Random >> Standard > RASP confirmed | grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair |\\n| CKA-only scoring is just \\\"remove least similar\\\" = trivial | CKA-only implements pure functional diversity preservation (remove highest pairwise overlap); its super-recovery is the evidence for the mechanism | grpo_cka_only_20 |\\n| Need fair RASP vs Standard comparison (D051 confound) | Fair retrain with identical config planned; CKA-only vs Random pair is already confound-free | grpo_rasp_20_fair, grpo_standard_20_fair (blocked on westb) |\\n| MATH-500 pattern differs from GSM8K | GRPO deltas are negligible on BOTH ID and OOD (|Δ| < 2pp, within stderr). Unified C1: \\\"reward-accuracy decoupling across all conditions.\\\" Recovery gradient persists on OOD (CKA-only 29% >> RASP 23%, 6pp gap). | eval_math500_*_2048 series (D067) |\\n| SFT equalizes all methods — pruning criterion doesn't matter | CKA-only vs Standard: Δ=4.6pp, p≈0.015 (significant); adjacent pairs (CKA vs RASP, RASP vs Standard) p>0.1 (not significant). SFT partially differentiates but the RL gradient is qualitatively larger (super-recovery vs collapse). Under RL, pruning criterion is decisive. | All SFT evals + GRPO dynamics |\\n| How does this relate to Self-Healing claims? | Self-Healing uses unstructured pruning + single method; our controlled multi-method structured pruning reveals the gradient they missed | Discussion section |\\n| Why not use unstructured pruning instead? | Unstructured 20% preserves 87.87% accuracy (no structural damage) but provides NO hardware-agnostic speedup (sparse matrices need special support). Structured pruning gives real speedup (37.8% latency, 28.5% memory) but causes structural damage requiring recovery. Our work addresses the structured regime where recovery is critical. Unstructured GRPO serves as control: if GRPO works fine on unstructured → collapse on structured is caused by structural damage, not GRPO instability. | grpo_unstructured_20 (running) |\\n| Pipeline asymmetry: unstructured skips SFT | By design. Unstructured 87.87% needs no SFT recovery; structured methods start at 5-30% and REQUIRE SFT. The GRPO comparison tests \\\"does GRPO collapse given different levels of structural damage?\\\", not \\\"fair pipeline comparison.\\\" Paper must acknowledge this explicitly. | N/A (framing) |\\n| CKA-only SFT 0% on HumanEval — is it broken? | CKA-only + math SFT causes catastrophic forgetting of code generation (0% HumanEval). The model enters reasoning mode on all prompts, generating natural language analysis instead of code. However, GRPO partially recovers code ability (20.12% vs unpruned 45%), demonstrating that latent code capability was preserved in the pruned model's parameters but rendered inaccessible by SFT's distribution shift. This recovery is CKA-only specific — importance-based methods (Standard 11.59%, RASP 10.37% SFT) retain partial code ability but show no GRPO benefit. | eval_humaneval_sft_cka_only_20, eval_humaneval_grpo_cka_only_20 |\\n| GRPO breaks C1 decoupling on HumanEval | C1 is task-dependent (D071). On SFT-recovered tasks, decoupling holds. On SFT-failed tasks, GRPO provides recovery through exploratory RL. Preliminary evidence suggests this is CKA-only specific (other methods show no GRPO benefit), but ⚠️ GRPO Standard/RASP HumanEval evals used old stage2 models (v8/v9), not fair v5. Need v5 fair re-eval to confirm \\\"CKA-only specific\\\" claim, or caveat this limitation in paper. | All HumanEval evals (⚠️ Standard/RASP GRPO = old models) |\\n| What's the practical recommendation? | For RL-intended pruned models: use CKA-only scoring (pure diversity preservation). CKA-only + GRPO provides broadest capability recovery (math + code). For SFT-only on a single task: importance-based methods may suffice. | Full evidence table |\\n\\n## Key Differentiations\\n- **vs Self-Healing (2025)**: Claims RLVR recovers pruned models; we show recovery capacity depends critically on pruning criterion, with gradient-based methods causing collapse\\n- **vs MPruner (2024)**: inter-layer CKA for depth pruning in CNNs; we use intra-layer CKA to reveal recovery capacity mechanism in reasoning LLMs\\n- **vs GRASPrune (ACL 2026)**: SOTA budgeted pruning without recovery/alignment study; we show pruning quality for RL cannot be evaluated without training dynamics\\n- **vs RESP (Dec 2025)**: reasoning-trace calibration without recovery; we study how pruning interacts with RL alignment\\n- **vs PASER (2025)**: optimizes recovery DATA; we show pruning STRUCTURE determines RL trainability\\n\\n## D061 Experiment Expansion (EMNLP Main upgrade plan)\\n\\n### Tier 1 (must-do, ~50 GPU-hours, target 6/10 → 7.5/10)\\n1. **E1: Second model validation** — DeepSeek-R1-Distill-Qwen-1.5B, 3 methods (CKA-only/Standard/RASP) × prune→SFT→GRPO→GSM8K eval. Proves gradient generalizes across scale.\\n2. **E2: Extended GRPO 200-300 steps** — 7B CKA-only + Standard. Proves collapse is permanent, not transient.\\n3. **E3: CKA heatmap representation analysis** — 4 methods vs Dense, layer-wise CKA matrix. Direct mechanism evidence for \\\"representational diversity\\\" claim.\\n\\n### Tier 2 (strongly recommended, ~20 GPU-hours)\\n4. **E4: 25% sparsity GRPO dynamics** — CKA-only + Standard @25%. Cross-sparsity gradient consistency.\\n5. **E5: Bootstrap CI on reward trajectories** — Pure analysis, 0 GPU. Statistical rigor.\\n6. **E6: Integrate HumanEval data** — Already in registry, 0 cost. Broadens benchmark coverage.\\n\\n### Framing upgrade potential\\n- If 1.5B confirms gradient → upgrade from \\\"observation on one model\\\" to \\\"general principle across scales\\\"\\n- If CKA heatmap confirms → upgrade from \\\"we claim diversity matters\\\" to \\\"Diversity-Trainability Hypothesis\\\" with visual evidence\\n- If extended GRPO confirms → \\\"permanent collapse\\\" becomes unassailable\\n\\n### Inference section fix needed\\n- Per-token throughput: pruned models are 31-35% SLOWER per-token than Dense\\n- Latency reduction (~39%) comes from shorter outputs (~211 vs ~510 tokens), not computation speedup\\n- Memory reduction 28.5% is genuine structural savings\\n- Paper needs honest framing: report both latency and TPS, explain output length effect\\n\\n## Open Questions (pending data)\\n1. ✅ ~~GRPO 100-step final data~~ — completed (D060)\\n2. ✅ ~~Fair GRPO retrain (D051 fix)~~ — resolved (D058/D060)\\n3. ✅ **MATH-500 @2048 unified comparison complete** — Dense 53.0%, CKA-only SFT 29.0%, CKA-only GRPO 29.2%, GRPO Standard 26.4%, **SFT Standard 25.8%**, RASP SFT 22.6%, RASP GRPO 24.0%. Recovery gradient holds on OOD. All |GRPO-SFT| < 2pp.\\n4. ✅ **E1: 1.5B gradient confirmed** — GRPO: CKA-only 35.48% >> RASP 26.16% > Standard 22.29%. SFT CKA-only 35.63% (GRPO delta -0.15pp). Standard/RASP SFT running.\\n5. ✅ **E2: Both 300 steps complete** — Standard collapse permanent (0.056). CKA-only sustained oscillation 0.22-0.44, 5.5x gap.\\n6. ✅ **E3: CKA heatmap complete** — Elevated to Contribution 2 (mechanistic explanation).\\n7. 🆕 Does 25% sparsity show same gradient? (E4, waiting for GPU)\\n8. 🆕 **D065: C1 → supporting analysis, C2 + E3 = dual core contributions.** 1.5B data shows GRPO delta ≤ 0 for all methods → GRPO effectiveness is scale-dependent.\\n9. 🔄 **Unstructured GRPO control**: If GRPO stable on unstructured (expected) → confirms collapse is structural-damage-driven. Framing: \\\"unstructured = no structural damage control; structured + CKA-only = best recovery path when structural damage is unavoidable.\\\" Pipeline asymmetry (no SFT for unstructured) is intentional and must be acknowledged in paper.\\n10. 🔄 **HumanEval cross-task GRPO recovery (D071)**: CKA-only GRPO 20.12% (33/164 final) vs SFT 0% (0/164 confirmed). Supplementary evidence for C1 (Analysis section). Awaiting v5 fair Standard/RASP HumanEval to calibrate \\\"CKA-only specific\\\" claim strength.\\n\", \"total_chars\": 35632, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1218a78a-7a38-4e1e-b5a4-8b1f90f343b0",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "898c250f-d73b-4d1c-8e0e-aa3e9393679e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — recovery_aware_struct_prune\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Insight (Recovery Capacity Gradient)\\\\nStructural pruning criterion determines post-RLVR recovery capacity of reasoning LLMs. Under controlled GRPO training (identical v5 config, D058 resolved), we discover a **recovery capacity gradient**: CKA-only (pure representational diversity preservation) is the only method that achieves meaningful RL learning, while importance-based scoring methods fail.\\\\n\\\\nThe gradient: **CKA-only >> importance-based methods (Random/Standard/RASP)**\\\\n\\\\n**Extended gradient with unstructured control** (reward range, 100 steps identical v5 config):\\\\n| Method | Reward Range | Structural Integrity | Pattern |\\\\n|--------|-------------|---------------------|---------|\\\\n| Unstructured 20% | 0.73-0.88 | Full (no neuron removal) | Stable, high reward |\\\\n| CKA-only 20% | 0.22-0.44 | Partial (diversity-preserving) | Active learning + self-recovery |\\\\n| Random 20% | 0.14-0.19 | Partial (random) | Flat-low, never learns |\\\\n| Standard 20% | 0.02-0.08 | Partial (importance-based) | Severe collapse |\\\\n| RASP 20% | 0.01-0.06 | Partial (composite) | Immediate collapse |\\\\n\\\\nInterpretation: Reward capacity correlates with structural integrity. Unstructured (no structural damage) >> CKA-only (selective preservation) >> collapsed methods. This confirms GRPO collapse is caused by structural damage from pruning, not GRPO instability. Unstructured is a control, not a competitor (no hardware-agnostic speedup).\\\\nNote: Starting accuracy confound (unstructured 87.87% vs structured 59-64%) is inherent — structural integrity determines both starting accuracy and GRPO capacity. Paper must acknowledge this explicitly.\\\\n\\\\nThis holds across:\\\\n- **Model scales**: 7B (CKA-only 0.354 vs Standard 0.054) and 1.5B (CKA-only 0.238 vs Standard 0.084)\\\\n- **Training duration**: E2 extended to 300 steps — Standard shows zero net improvement (0.054→0.056), CKA-only maintains 0.321 at step 110 (3x Standard)\\\\n- **Statistical tests**: Bootstrap CI confirms all pairwise gaps significant (E5)\\\\n\\\\nNote: fine-grained ordering within \\\\\\\"low-recovery\\\\\\\" methods is scale-dependent (7B: Standard > RASP; 1.5B: RASP > Standard). The robust finding is the CKA-only vs others gap, not the within-group ordering.\\\\n\\\\nFailure modes are scale-dependent:\\\\n- 7B: Standard/RASP collapse via **diversity loss** (frac_zero_std 0.55-0.85, repetitive outputs)\\\\n- 1.5B: Standard/RASP fail via **truncation bottleneck** (clipped_ratio 0.82-0.95+, can't finish reasoning in token budget)\\\\n- Both pathways result in failed RL training, suggesting recovery capacity is a general property that surfaces through scale-dependent mechanisms.\\\\n\\\\nMechanism (E3 CKA heatmap evidence): CKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity** (inter-layer uniqueness). This makes the model's layer representations LESS similar to Dense (diagonal CKA mean 0.62 vs 0.88-0.92 for others) but MORE internally diverse. \\\\\\\"Representational diversity\\\\\\\" ≠ \\\\\\\"Dense fidelity.\\\\\\\" Internal diversity enables diverse policy behaviors during GRPO, producing informative reward variance and gradient signal.\\\\n\\\\nGRPO reward-accuracy interaction is **task-dependent** (D071 revision, supersedes D067 \\\\\\\"universal decoupling\\\\\\\"):\\\\n- **SFT-recovered tasks (GSM8K, MATH-500)**: GRPO delta ≈ 0 for ALL methods at ALL scales. Decoupling holds.\\\\n  - GSM8K 7B: CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp (all within stderr)\\\\n  - GSM8K 1.5B: CKA-only -0.15pp, Standard -0.61pp, RASP -0.75pp (all noise)\\\\n  - MATH-500 @2048: CKA-only +0.2pp, RASP +1.4pp (all |Δ| < 2pp)\\\\n- **SFT-failed tasks (HumanEval, CKA-only specific)**: GRPO provides **massive cross-task recovery**.\\\\n  - CKA-only: SFT 0% (catastrophic forgetting of code) → GRPO **20.12%** (33/164 final). GRPO unlocks latent code capability that SFT's distribution shift rendered inaccessible. Recovery is partial (~45% of Dense), but the 0→20 jump is unique to CKA-only.\\\\n  - Other methods: SFT ~10-15%, GRPO ~10-15% (old stage2 models). No GRPO benefit. ⚠️ \\\\\\\"CKA-only specific\\\\\\\" claim pending v5 fair GRPO Standard/RASP HumanEval re-eval.\\\\n- **⚠️ SFT CKA-only 0% UNVERIFIED**: The 0/164 result was caused by a PATH bug (subprocess couldn't find python). 3 manual samples showed math reasoning output, but full eval was never executed. Re-run required before any claim about \\\\\\\"CKA-only SFT catastrophic forgetting.\\\\\\\" If re-run confirms ~0%, the mechanism holds (math-focused SFT shifts distribution away from code). If re-run shows 5-10%, D071 \\\\\\\"extreme specialization\\\\\\\" narrative weakens significantly.\\\\n- **Revised C1 framing**: On tasks where SFT partially recovers capability, GRPO adds nothing (decoupling). On tasks where SFT fails entirely, GRPO's exploration can partially activate latent capabilities in CKA-only models (0%→20% HumanEval). This enriches C1 but is **supplementary evidence** (Analysis section), not headline finding. The headline remains C2 (recovery capacity gradient on GSM8K/MATH-500). HumanEval shows a secondary dimension: CKA-only preserves latent cross-task potential that GRPO can partially activate.\\\\n\\\\n## Core Contributions (D065 restructure)\\\\n\\\\n### Contribution 1 (C2, Main): Recovery capacity gradient predicted by representational diversity\\\\nFour pruning methods at 20% sparsity reveal a clean recovery capacity gradient during GRPO (100 steps, identical v5 config — D058 confound fully resolved):\\\\n\\\\n| Method | Best Reward | Mean Reward | Best frac_zero_std | Pattern |\\\\n|--------|------------|-------------|-------------------|---------|\\\\n| CKA-only | 0.354 (s50) | 0.285 | 0.125 (s70) | **Active learning** with self-recovery (dip s90→recovery s100) |\\\\n| Random | 0.190 (s70) | 0.165 | 0.300 (s50/70) | Flat-low: never learns, reward oscillates 0.14-0.19 |\\\\n| Standard | 0.081 (s40) | 0.049 | 0.500 (s10/30/40) | Severe collapse: reward stays <0.08 despite transient grad_norm instability |\\\\n| RASP | 0.061 (s50) | 0.031 | 0.850 | Immediate collapse: 92-96% outputs hit max_length |\\\\n\\\\nThe gradient: **CKA-only >> Random >> Standard ≈ RASP**\\\\n- **Statistical support (E5 v2, per-example bootstrap + McNemar, N=1319)**:\\\\n  - 7B SFT: CKA-only vs Standard **p=0.002** ✅; CKA-only vs RASP p=0.117 ❌; Standard vs RASP p=0.126 ❌\\\\n  - 1.5B GRPO: all CKA-only pairwise comparisons **p<0.001** ✅ (gap 8-13pp)\\\\n  - C1 decoupling: GRPO CKA-only vs SFT CKA-only p=0.566 (confirmed: GRPO ≠ accuracy gain)\\\\n- **Framing**: C2 accuracy evidence leads with 1.5B (strong significance). 7B C2 core evidence = reward dynamics (CKA-only 0.354 vs RASP 0.061 = 5.8x, directly observable). 7B SFT accuracy is directional support. Paper must honestly report CKA-only vs RASP non-significance at 7B.\\\\n- ⚠️ **Gap**: Standard/RASP GRPO GSM8K evals (58.91%/60.65%) may be from pre-fair models, not fair v5. Need verification or redo.\\\\n\\\\nThree distinct failure modes (only CKA-only achieves meaningful learning):\\\\n1. **CKA-only**: Active learning with peak reward 0.354 (step 50), frac_zero_std drops to 0.125 (step 70, below initial 0.175). Transient instability at step 90 (reward dips to 0.242) but **self-recovers to 0.344 at step 100** (frac_zero_std returns to 0.200). This self-recovery from training perturbation is the defining characteristic of high recovery capacity.\\\\n2. **Random**: Never lifts off. Reward 0.14-0.19 throughout, grad_norm unstable (3.5-8.6). Has diversity but lacks coherent optimization direction\\\\n3. **Standard/RASP**: Deep collapse. Standard: reward < 0.08 throughout, grad_norm transiently drops to 0.017 at s90 (recovers to 2.41 at s100 but reward stays low). RASP: reward < 0.01, immediate repetitive output collapse\\\\n\\\\nKey evidence dimensions:\\\\n- **Reward gap**: CKA-only final (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01)\\\\n- **Learning signal**: Only CKA-only achieves frac_zero_std < 0.2 (meaningful per-sample variance); Standard/RASP never below 0.5/0.85\\\\n- **Gradient health**: CKA-only grad_norm stable 1-3; Standard grad_norm exhibits transient instability (0.017 at s90, recovers to 2.41 at s100 but policy already collapsed)\\\\n- **Output diversity**: CKA-only generates diverse completions; RASP 92-96% hit max_length (repetitive)\\\\n\\\\nMechanism (E3 CKA heatmap): CKA-only removes redundant structures (high intra-model CKA overlap), resulting in the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88). This is by design: removing redundancy reduces Dense similarity but preserves internal representational diversity. The relationship between Dense-CKA and recovery is NOT monotonic (Random 0.92 recovers better than RASP 0.88); recovery depends on internal diversity, not Dense fidelity.\\\\n\\\\n**E2 Extended Training Evidence (D063 framing: \\\\\\\"sustained capacity without collapse\\\\\\\")**:\\\\n- Standard 300 steps: reward 0.054±0.002 throughout, zero net improvement. Collapse is permanent and structural.\\\\n- CKA-only 300 steps complete: reward oscillates 0.22-0.44, peak 0.4444 at step 280, final 0.3075. No collapse. frac_zero_std range 0.10-0.28.\\\\n- **Final E2 comparison**: CKA-only 0.3075 vs Standard 0.0562 = **5.5x gap** at step 300.\\\\n- **E2 GSM8K (downstream accuracy)**:\\\\n  - CKA-only 300步: ~64.0% @ 1000/1319 (vs 100步 64.37% — **no improvement, stable**)\\\\n  - Standard 300步: **59.29% (782/1319)** — delta +0.38pp vs 100步 (n.s.)\\\\n  - **Key insight**: Neither method benefits from extended training on ID accuracy. CKA-only: exact 0.00pp delta. Standard: +0.38pp within stderr.\\\\n- **Core E2 claim**: \\\\\\\"Recovery capacity is a structural property of the pruned model, not a function of training duration.\\\\\\\" Standard cannot be rescued by more training; CKA-only sustains capacity without collapse. Extended training for CKA-only maintains but does not improve downstream accuracy.\\\\n- **E2 final GSM8K**: CKA-only 300步 = 100步 = **64.37% (849/1319)**, exact match. Standard 300步 = **59.29% (782/1319)** vs 100步 58.91% = +0.38pp (n.s.).\\\\n- **Do NOT claim**: \\\\\\\"CKA-only continues to learn\\\\\\\" or \\\\\\\"extended training benefits CKA-only\\\\\\\" — reward oscillates (0.22-0.44) but accuracy is precisely unchanged (849/1319 both checkpoints).\\\\n- **Safe claims**: \\\\\\\"Standard collapse is permanent (300 steps)\\\\\\\", \\\\\\\"CKA-only maintains 5.5x reward gap at step 300\\\\\\\", \\\\\\\"CKA-only accuracy is robust under extended training (exact zero degradation)\\\\\\\", \\\\\\\"recovery capacity gap persists under extended training\\\\\\\", \\\\\\\"200 additional GRPO steps with sustained reward learning produce zero accuracy change (C1 decoupling)\\\\\\\".\\\\n\\\\n**Cross-Scale Evidence (E1)**: 1.5B DeepSeek-R1-Distill-Qwen confirms the gradient:\\\\n| Method | 1.5B reward | 7B reward | Ratio |\\\\n|--------|-------------|-----------|-------|\\\\n| CKA-only | 0.238 | 0.354 | 3x vs Standard (both scales) |\\\\n| Standard | 0.084 | 0.054 | — |\\\\n| RASP | 0.099 | 0.010 | Order reversed at 1.5B |\\\\n\\\\nStandard vs RASP order reverses at 1.5B due to different failure modes (truncation vs diversity collapse). The CKA-only advantage is robust across scales.\\\\n\\\\n**D062 Framing Guidance (Reviewer-validated)**:\\\\n- **Cross-scale claim (Abstract/Contribution)**: \\\\\\\"CKA-only pruning consistently enables superior GRPO recovery across model scales, achieving 2.8x (1.5B) to 6.4x (7B) the reward of importance-based methods.\\\\\\\"\\\\n- **Gap widening claim (Results)**: \\\\\\\"The accuracy gap between CKA-only and importance-based methods widens at smaller scale (16pp at 1.5B vs 5pp at 7B), suggesting representational diversity preservation becomes more critical as model capacity decreases.\\\\\\\" (Qualitative until final GSM8K numbers confirm.)\\\\n- **Do NOT claim**: Fixed 4-tier ordering across scales. Fine-grained within-group ordering is scale-dependent noise.\\\\n- **Failure modes (Section-level treatment)**:\\\\n  - Section 4.x Results: 1.5B table + one sentence confirming gradient\\\\n  - Section 5.x Analysis: ~1 paragraph on scale-dependent failure modes (diversity collapse at 7B vs truncation bottleneck at 1.5B; CKA-only avoids both)\\\\n  - Section 6 Discussion: one sentence limitation (\\\\\\\"warrants investigation on additional architectures\\\\\\\")\\\\n\\\\nNote on CKA-only self-recovery: Transient dip at step 90 (reward 0.242, frac_zero_std 0.300) followed by full recovery at step 100 (reward 0.344, frac_zero_std 0.200). This demonstrates ongoing **resilience** to training perturbations. No other method shows this property.\\\\n\\\\n### Contribution 2: Representational diversity as mechanistic explanation (E3 CKA heatmap)\\\\nCKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity**. E3 CKA heatmap shows CKA-only pruned model has the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88) — yet achieves the BEST recovery. This proves the mechanism: **\\\\\\\"internal diversity, not Dense fidelity, determines RL trainability.\\\\\\\"** The relationship is NOT monotonic (Random 0.92 recovers better than RASP 0.88), ruling out simplistic \\\\\\\"similarity preservation\\\\\\\" explanations.\\\\n\\\\nThis elevates the paper from pure empirical observation (C2: \\\\\\\"CKA-only works best\\\\\\\") to mechanistic understanding (\\\\\\\"WHY it works: diversity preservation\\\\\\\").\\\\n\\\\n### Supporting Analysis: GRPO-Scale Interaction (former C1, D065 downgrade)\\\\n\\\\n**7B GSM8K (ID)**: GRPO reward-accuracy decoupling — reward rises but accuracy changes are minimal (CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp). The direction follows recovery capacity gradient.\\\\n\\\\n**7B MATH-500 (OOD, D067 revision)**: Recovery gradient persists on OOD (MATH-500 @2048): CKA-only 29.0% (SFT) / **29.2% (GRPO, final)** >> Standard 26.4% (GRPO) >> RASP 22.6% (SFT) / 24.0% (GRPO). Dense 53.0%. GRPO deltas negligible (CKA-only +0.2pp, all |Δ| < 2pp, within stderr). The recovery gradient generalizes from ID to OOD, though absolute gap is compressed (6pp on MATH-500 vs 11pp on GSM8K for CKA-only vs others).\\\\n\\\\n**1.5B GSM8K (D065 new data)**: GRPO provides NO benefit at 1.5B scale for ANY method:\\\\n\\\\n| Method | SFT | GRPO | GRPO-SFT |\\\\n|--------|-----|------|----------|\\\\n| CKA-only | 35.63% | 35.48% | -0.15pp |\\\\n| Standard | **22.90%** | 22.29% | **-0.61pp** |\\\\n| RASP | **26.91%** | 26.16% | **-0.75pp** |\\\\n\\\\n**Revised C1 Framing (D071, supersedes D067)**: GRPO-accuracy interaction is task-dependent:\\\\n- **SFT-recovered tasks** (GSM8K, MATH-500): GRPO delta ≈ 0 across all methods and scales. Decoupling holds. Recovery capacity is set at pruning time; RL training cannot further improve it.\\\\n- **SFT-failed tasks** (HumanEval code generation): CKA-only shows **massive GRPO benefit** (0% → ~22% interim), while other methods show none (~10-15% both SFT and GRPO). GRPO's exploratory search activates latent code generation capability that exists in CKA-only's diverse representations but that supervised math-focused SFT cannot reach.\\\\n- **Mechanism**: CKA-only + math SFT shifts generation distribution so completely to reasoning mode that code prompts trigger `&lt;think>` natural language analysis instead of Python output. Importance-based methods retain partial code ability (11-12%) because they lack CKA-only's extreme task specialization under SFT. GRPO avoids this mode collapse via exploratory RL.\\\\n\\\\n**Implication for paper story**: This enriches C1 from a flat \\\\\\\"decoupling\\\\\\\" observation to a conditional finding with mechanistic depth. CKA-only pruning preserves latent multi-task potential in the pruned model's parameters. Math-focused SFT causes catastrophic forgetting of code ability (0% HumanEval), but this damage is reversible: GRPO's exploratory RL re-activates the latent code capability (~27.5%). Importance-based pruning destroys this latent potential at the pruning stage (no amount of GRPO recovers it). The recovery capacity gradient thus has a **hidden dimension**: it determines not just RL trainability but the breadth of recoverable capabilities. Note: \\\\\\\"latent potential\\\\\\\" describes the pruned model pre-SFT; SFT can suppress it, but GRPO can re-activate it if the pruned structure preserved sufficient diversity.\\\\n\\\\n**HumanEval baselines**: Unpruned 45.12%, Standard SFT 11.59%, RASP SFT 10.37%, CKA-only SFT 0%, CKA-only GRPO 20.12% (33/164 final). GRPO Standard fair + RASP fair running.\\\\n\\\\n**Paper placement**: 1.5B GRPO delta table in main text (Tab5). HumanEval cross-task GRPO recovery as a key finding in Results (new table or merged into existing). MATH-500 @2048 full table in appendix with one sentence in main text: \\\\\\\"The recovery capacity gradient persists on the more challenging MATH-500 benchmark, with CKA-only maintaining a ~6pp advantage over importance-based methods.\\\\\\\"\\\\n\\\\n### Observation: SFT partially differentiates scoring methods; 30% sparsity cliff is universal\\\\n- Post-SFT accuracy shows gradient (CKA-only 63.9% > RASP 61.5% > Standard 59.3%), range is 4.6pp vs massive RL gradient\\\\n- CKA-only SFT advantage is statistically significant vs Standard (Δ=4.6pp, p≈0.015, N=1319), suggesting diversity preservation helps SFT too — but the RL gradient (collapse vs super-recovery) is qualitatively larger\\\\n- At 30% sparsity, ALL methods collapse: RASP 0%, CKA-only 0%, Standard 3-4%\\\\n- The recovery capacity gradient is meaningful in the 20-25% operating range\\\\n\\\\n### Additional contribution: Inference speedup asymmetry\\\\n- RASP 20%: 37.8% latency reduction, 28.5% memory reduction\\\\n- Standard 20%: 7.7% latency reduction, 28.4% memory reduction\\\\n- Same parameter count, vastly different inference efficiency due to pruning distribution\\\\n\\\\n## Evidence Status (as of 2026-05-19 05:30 UTC)\\\\n\\\\n| Evidence | Status | Result |\\\\n|----------|--------|--------|\\\\n| Unpruned SFT eval (N=1319) | ✅ | 81.27% |\\\\n| Unpruned GRPO step-100 eval (N=1319) | ✅ | 81.27% (Δ=0.00pp) |\\\\n| Standard SFT eval (N=1319) | ✅ | 59.29% |\\\\n| Standard GRPO step-50 eval (N=1319) | ⚠️ | 58.91% — **来源不可追溯**（无结果 JSON，bootstrap CI 记录 \\\\\\\"no n=1319 eval\\\\\\\"）。替代：300步 59.29% (782/1319) vs SFT 59.29% = Δ=0.00pp（更强的 decoupling 证据，完整溯源）。需要用 `grpo_stage2_standard_20_fair/checkpoint-50` 重跑 N=1319 验证。 |\\\\n| RASP SFT eval (N=1319) | ✅ | 61.49% |\\\\n| RASP GRPO step-5 eval (N=1319) | ✅ | 60.65% (Δ=-0.84pp) |\\\\n| CKA-only SFT eval (N=1319) | ✅ | 63.91% (843/1319) — highest among all pruned methods |\\\\n| **CKA-only GRPO eval (N=1319)** | ✅ | **64.37% (849/1319), Δ=+0.46pp vs SFT** — only pruned method with positive GRPO delta |\\\\n| **GRPO CKA-only fair (v5)** | ✅ | Active learning: peak 0.354(s50), best frac_zero 0.125(s70), transient dip 0.242(s90), **self-recovery to 0.344(s100)**. frac_zero_std=0.200 at final. |\\\\n| **GRPO Random fair (v5)** | ✅ | Flat-low: reward 0.14-0.19 oscillation, never learns. Timeout at step 97 (no checkpoint) |\\\\n| **GRPO Standard fair (v5)** | ✅ | Severe collapse: reward 0.02-0.08, grad_norm→0.017(s90), model stops learning |\\\\n| **GRPO RASP fair (v5)** | ✅ | Immediate collapse: reward ~0.01, frac_zero_std 0.85, 92-96% max-length outputs |\\\\n| Unpruned GRPO v2 dynamics | ✅ | 100 steps stable, reward 0.661 |\\\\n| D058 fair 4-way comparison | ✅ | **Gradient confirmed: CKA-only >> Random >> Standard > RASP (all v5 config)** |\\\\n| **MATH-500 @2048 Dense** | ✅ | 53.0% (265/500, truncated 53.2%). Fair baseline for @2048 comparison |\\\\n| **MATH-500 @2048 SFT CKA-only** | ✅ | 29.0% (145/500, truncated 23.2%) |\\\\n| **MATH-500 @2048 GRPO CKA-only** | ✅ | **29.2% (146/500)**. GRPO delta = +0.2pp vs SFT 29.0% (negligible, consistent with decoupling) |\\\\n| **MATH-500 @2048 SFT Standard** | ✅ | **25.8% (129/500) ±1.96%**. GRPO Standard 26.4% vs SFT 25.8% = +0.6pp (noise, C1 decoupling). CKA-only SFT 29.0% > Standard SFT 25.8% = 3.2pp gradient on OOD. |\\\\n| **MATH-500 @2048 GRPO Standard** | ✅ | 26.4% (132/500) |\\\\n| **MATH-500 @2048 SFT RASP** | ✅ | 22.6% (113/500, truncated 37.2%) |\\\\n| **MATH-500 @2048 GRPO RASP** | ✅ | 24.0% (120/500, truncated 36.0%) |\\\\n| MATH-500 @4096 legacy | ⚠️ | Old evals used 4096 default (D064 confound). Not directly comparable to @2048. |\\\\n| 30% sparsity cliff | ✅ | RASP 0%, Standard 4%, CKA-only 0% — universal collapse |\\\\n| Alpha ablation (cal=512) | ✅ | U-shape: α≥1.0 > α≤0.5 post-prune |\\\\n| Inference speedup | ✅ | RASP 37.8% vs Standard 7.7% latency reduction |\\\\n| Magnitude-only ablation | ✅ | Post-prune 0% accuracy, 2% EOS rate, avg_len=4054. Worst scoring method. |\\\\n| **E2 Standard Extended 300 steps** | ✅ | Reward 0.054→0.056 (zero net improvement), frac_zero 0.55→0.525. Collapse permanent. |\\\\n| **E2 CKA-only Extended 300 steps** | ✅ | Reward 0.22-0.44 range, peak 0.4444@s280, final 0.3075. 5.5x Standard. Sustained oscillation, no collapse. |\\\\n| **1.5B CKA-only GRPO** | ✅ | Reward 0.238, frac_zero_std 0.175. Active learning confirmed at 1.5B scale |\\\\n| **1.5B Standard GRPO** | ✅ | Reward 0.084, frac_zero_std 0.15, clipped_ratio >0.95. Truncation bottleneck |\\\\n| **1.5B RASP GRPO** | ✅ | Reward 0.099, frac_zero_std 0.175, clipped_ratio 0.82. Low reward + truncation |\\\\n| **E3 CKA Heatmap** | ✅ 4/4 | CKA-only diag mean 0.62, Standard 0.90, Random 0.92, RASP 0.88. CKA-only least similar to Dense but best recovery. PDF generated. |\\\\n| **1.5B CKA-only GSM8K eval** | ✅ | **35.48% (468/1319) ±1.32%** (interim was 41.7%, converged down) |\\\\n| **1.5B Standard GSM8K eval** | ✅ | **22.29% (294/1319) ±1.15%**. Gap vs CKA-only = 13.2pp (7B gap = 5.5pp, 2.4x amplification at smaller scale). |\\\\n| **1.5B RASP GSM8K GRPO eval** | ✅ | **26.16% (345/1319) ±1.21%**. Three-method ordering consistent: CKA-only >> RASP > Standard |\\\\n| **1.5B SFT CKA-only GSM8K** | ✅ | **35.63% (470/1319) ±1.32%**. GRPO delta = -0.15pp (noise) |\\\\n| **1.5B SFT Standard GSM8K** | ✅ | **22.90% (302/1319) ±1.16%**. GRPO delta = -0.61pp (noise) |\\\\n| **1.5B SFT RASP GSM8K** | ✅ | **26.91% (355/1319)**. GRPO delta = -0.75pp (noise) |\\\\n| **E5 Bootstrap CI (reward)** | ❌ INVALID | Reward-trajectory bootstrap violates i.i.d. See M008. |\\\\n| **E5 Bootstrap CI (accuracy) v2** | ✅ | Per-example bootstrap + McNemar (N=1319). 7B SFT: CKA vs Std **p=0.002**; CKA vs RASP p=0.117 (NS); Std vs RASP p=0.126 (NS). 1.5B: all CKA-only gaps **p<0.001**. C1: GRPO vs SFT CKA-only p=0.566 (decoupling confirmed). |\\\\n| **E2 CKA-only 300步 GSM8K** | ✅ | **64.37% (849/1319)** — identical to 100步 (849/1319). 200 extra GRPO steps (reward 0.22→0.44 oscillation) = exact zero accuracy change. Perfect C1 decoupling evidence. Per-example comparison pending (same examples or different-but-equal-count?). |\\\\n| **E2 Standard 300步 GSM8K** | ✅ | **59.29% (782/1319) ±1.35%**. Delta vs 100步 (58.91%) = +0.38pp (within stderr, not significant). Extended training provides zero meaningful improvement for Standard. |\\\\n| **CKA-only SFT HumanEval @2048** | ❌ INVALID | **0/164 报告值是 PATH bug 导致的假结果**。eval 进程未激活 conda，`subprocess.run([\\\\\\\"python\\\\\\\", ...])` 全部 `No such file or directory`。代码从未被实际执行。需要在 conda-activated 环境中重跑。3 个手动样本显示模型生成数学推理而非代码，但 164 题整体结果未验证。 |\\\\n| **CKA-only GRPO HumanEval @2048** | ✅ | **20.12% (33/164) ±3.13%**. SFT 0% → GRPO 20% = +20pp recovery. Dense 45.12%. Importance-based SFT ~11%. ⚠️ Gap vs GRPO RASP fair (~15% interim) only ~5pp — \\\\\\\"CKA-only specific\\\\\\\" claim applies to SFT→GRPO recovery angle (0→20), not absolute GRPO performance. Pending Standard/RASP fair finals. |\\\\n| **Unstructured 20% SFT GSM8K** | ✅ | 87.87% (1159/1319). No structural damage → no recovery needed. |\\\\n| **Unstructured 20% GRPO 100步** | ✅ | Reward **0.73-0.88** (peak 0.883@s100), NO collapse. GSM8K: **87.64% (1156/1319) ±0.91%** — pre-GRPO 87.87%, Δ=-0.23% (noise). GRPO adds nothing to unstructured (already at ceiling). vs structured best (CKA-only) 64.37% = 23pp gap. Confirms \\\\\\\"structural damage is the recovery bottleneck, not GRPO.\\\\\\\" |\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: The reasoning model compression pipeline (prune → SFT → GRPO align) treats pruning decisions as independent of downstream RL alignment. We show this assumption is wrong: pruning criterion fundamentally determines whether the model can sustain RL training, through a mechanism we call **recovery capacity**.\\\\n\\\\n- **Key insight**: Not all pruning criteria create equal RL trainability. The standard practice of gradient-based importance scoring removes structures that, while individually \\\\\\\"unimportant\\\\\\\" by gradient metrics, collectively provide the representational diversity that RL exploration requires. CKA-based scoring identifies and preserves this diversity.\\\\n\\\\n- **Existing approaches & gaps**: Self-Healing (2025) claims RLVR recovers pruned reasoning models to 95%+ but uses a single pruning method and does not report training dynamics. GRASPrune (ACL 2026) provides SOTA structural pruning without studying recovery or alignment. No work has (1) compared multiple pruning criteria under RL alignment, (2) documented the recovery capacity gradient, or (3) identified representational diversity as the causal factor.\\\\n\\\\n- **Our framing**: Through controlled comparison of four pruning criteria (CKA-only, Random, Standard importance, RASP composite) under identical GRPO training, we discover a recovery capacity gradient that reveals the critical role of representational diversity in RL trainability. CKA-only pruning — which preserves all representationally unique structures — enables active super-recovery from training perturbations, while gradient-based methods progressively destroy this capacity.\\\\n\\\\n- **Headline result**: \\\\\\\"Pruning criterion determines RL recovery capacity: CKA-only pruning enables active super-recovery from GRPO training instability (frac_zero_std drops 29% below initial baseline), while gradient-based RASP collapses permanently at step 10. The recovery capacity gradient (CKA-only > Random > Standard > RASP) is predicted by preserved representational diversity, revealing that gradient importance scoring — the industry standard — is actively harmful for post-pruning RL alignment.\\\\\\\"\\\\n\\\\n## Venue Fit\\\\n- EMNLP Efficient Methods track: structured pruning + reasoning model RL alignment interaction\\\\n- Counter-intuitive finding (gradient importance harms RL) is high-impact\\\\n- Reasoning model compression pipeline is immediately practical (DeepSeek-R1, QwQ, Kimi-K1.5)\\\\n- Mechanistic analysis (recovery capacity, representational diversity) aligns with EMNLP empirical rigor\\\\n- Challenges published claims (Self-Healing 2025) with controlled evidence\\\\n\\\\n## Venue Fit Risks\\\\n- **\\\\\\\"Just a diagnostic without solution\\\\\\\"**: Mitigate with (1) CKA-only scoring as actionable recommendation for RL-intended pruning, (2) recovery capacity gradient as zero-cost quality predictor, (3) inference speedup asymmetry as practical bonus\\\\n- **\\\\\\\"Single model\\\\\\\"**: Now validated on 2 scales (7B + 1.5B, same DeepSeek-R1-Distill-Qwen family). 4 methods × 3 sparsity levels × 2 scales = 24 configurations. Same family is a limitation but canonical reasoning model. 1.5B failure mode differs (truncation vs diversity collapse) adding depth.\\\\n- **\\\\\\\"GRPO config might be wrong\\\\\\\"**: ✅ **RESOLVED (D058)**. All 4 methods now retrained under identical v5 config (beta=0.01, temp=0.4, maxlen=1024, DAPO). Gradient CKA-only >> Random >> Standard > RASP confirmed. Original confound eliminated.\\\\n- **\\\\\\\"CKA-only advantage might be trivial\\\\\\\"**: CKA-only final reward (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01). Only method achieving meaningful learning + self-recovery from perturbation. Not marginal.\\\\n- **\\\\\\\"CKA-only instability undermines claim\\\\\\\"**: Transient dip at step 90, but **self-recovers to 0.344 at step 100** (near peak 0.354). This self-recovery IS the core evidence for \\\\\\\"recovery capacity\\\\\\\" — the model demonstrates resilience to training perturbations that other methods lack.\\\\n- **\\\\\\\"Why not just use unpruned model?\\\\\\\"**: Inference speedup (37.8% latency, 28.5% memory) justifies pruning; question is how to prune for RL compatibility\\\\n- **\\\\\\\"D051/D058 confound\\\\\\\"**: ✅ RESOLVED. grpo_rasp_20_fair + grpo_standard_20_fair completed under v5 config. Both confirm collapse pattern.\\\\n\\\\n## Anticipated Reviewer Concerns & Experimental Responses\\\\n\\\\n| Concern | Response | Supporting Experiment |\\\\n|---------|----------|----------------------|\\\\n| Gradient direction in 4-method comparison might be config-dependent | All 4 methods retrained under identical v5 config (D058 resolved); gradient CKA-only >> Random >> Standard > RASP confirmed | grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair |\\\\n| CKA-only scoring is just \\\\\\\"remove least similar\\\\\\\" = trivial | CKA-only implements pure functional diversity preservation (remove highest pairwise overlap); its super-recovery is the evidence for the mechanism | grpo_cka_only_20 |\\\\n| Need fair RASP vs Standard comparison (D051 confound) | Fair retrain with identical config planned; CKA-only vs Random pair is already confound-free | grpo_rasp_20_fair, grpo_standard_20_fair (blocked on westb) |\\\\n| MATH-500 pattern differs from GSM8K | GRPO deltas are negligible on BOTH ID and OOD (|Δ| < 2pp, within stderr). Unified C1: \\\\\\\"reward-accuracy decoupling across all conditions.\\\\\\\" Recovery gradient persists on OOD (CKA-only 29% >> RASP 23%, 6pp gap). | eval_math500_*_2048 series (D067) |\\\\n| SFT equalizes all methods — pruning criterion doesn't matter | CKA-only vs Standard: Δ=4.6pp, p≈0.015 (significant); adjacent pairs (CKA vs RASP, RASP vs Standard) p>0.1 (not significant). SFT partially differentiates but the RL gradient is qualitatively larger (super-recovery vs collapse). Under RL, pruning criterion is decisive. | All SFT evals + GRPO dynamics |\\\\n| How does this relate to Self-Healing claims? | Self-Healing uses unstructured pruning + single method; our controlled multi-method structured pruning reveals the gradient they missed | Discussion section |\\\\n| Why not use unstructured pruning instead? | Unstructured 20% preserves 87.87% accuracy (no structural damage) but provides NO hardware-agnostic speedup (sparse matrices need special support). Structured pruning gives real speedup (37.8% latency, 28.5% memory) but causes structural damage requiring recovery. Our work addresses the structured regime where recovery is critical. Unstructured GRPO serves as control: if GRPO works fine on unstructured → collapse on structured is caused by structural damage, not GRPO instability. | grpo_unstructured_20 (running) |\\\\n| Pipeline asymmetry: unstructured skips SFT | By design. Unstructured 87.87% needs no SFT recovery; structured methods start at 5-30% and REQUIRE SFT. The GRPO comparison tests \\\\\\\"does GRPO collapse given different levels of structural damage?\\\\\\\", not \\\\\\\"fair pipeline comparison.\\\\\\\" Paper must acknowledge this explicitly. | N/A (framing) |\\\\n| CKA-only SFT 0% on HumanEval — is it broken? | CKA-only + math SFT causes catastrophic forgetting of code generation (0% HumanEval). The model enters reasoning mode on all prompts, generating natural language analysis instead of code. However, GRPO partially recovers code ability (20.12% vs unpruned 45%), demonstrating that latent code capability was preserved in the pruned model's parameters but rendered inaccessible by SFT's distribution shift. This recovery is CKA-only specific — importance-based methods (Standard 11.59%, RASP 10.37% SFT) retain partial code ability but show no GRPO benefit. | eval_humaneval_sft_cka_only_20, eval_humaneval_grpo_cka_only_20 |\\\\n| GRPO breaks C1 decoupling on HumanEval | C1 is task-dependent (D071). On SFT-recovered tasks, decoupling holds. On SFT-failed tasks, GRPO provides recovery through exploratory RL. Preliminary evidence suggests this is CKA-only specific (other methods show no GRPO benefit), but ⚠️ GRPO Standard/RASP HumanEval evals used old stage2 models (v8/v9), not fair v5. Need v5 fair re-eval to confirm \\\\\\\"CKA-only specific\\\\\\\" claim, or caveat this limitation in paper. | All HumanEval evals (⚠️ Standard/RASP GRPO = old models) |\\\\n| What's the practical recommendation? | For RL-intended pruned models: use CKA-only scoring (pure diversity preservation). CKA-only + GRPO provides broadest capability recovery (math + code). For SFT-only on a single task: importance-based methods may suffice. | Full evidence table |\\\\n\\\\n## Key Differentiations\\\\n- **vs Self-Healing (2025)**: Claims RLVR recovers pruned models; we show recovery capacity depends critically on pruning criterion, with gradient-based methods causing collapse\\\\n- **vs MPruner (2024)**: inter-layer CKA for depth pruning in CNNs; we use intra-layer CKA to reveal recovery capacity mechanism in reasoning LLMs\\\\n- **vs GRASPrune (ACL 2026)**: SOTA budgeted pruning without recovery/alignment study; we show pruning quality for RL cannot be evaluated without training dynamics\\\\n- **vs RESP (Dec 2025)**: reasoning-trace calibration without recovery; we study how pruning interacts with RL alignment\\\\n- **vs PASER (2025)**: optimizes recovery DATA; we show pruning STRUCTURE determines RL trainability\\\\n\\\\n## D061 Experiment Expansion (EMNLP Main upgrade plan)\\\\n\\\\n### Tier 1 (must-do, ~50 GPU-hours, target 6/10 → 7.5/10)\\\\n1. **E1: Second model validation** — DeepSeek-R1-Distill-Qwen-1.5B, 3 methods (CKA-only/Standard/RASP) × prune→SFT→GRPO→GSM8K eval. Proves gradient generalizes across scale.\\\\n2. **E2: Extended GRPO 200-300 steps** — 7B CKA-only + Standard. Proves collapse is permanent, not transient.\\\\n3. **E3: CKA heatmap representation analysis** — 4 methods vs Dense, layer-wise CKA matrix. Direct mechanism evidence for \\\\\\\"representational diversity\\\\\\\" claim.\\\\n\\\\n### Tier 2 (strongly recommended, ~20 GPU-hours)\\\\n4. **E4: 25% sparsity GRPO dynamics** — CKA-only + Standard @25%. Cross-sparsity gradient consistency.\\\\n5. **E5: Bootstrap CI on reward trajectories** — Pure analysis, 0 GPU. Statistical rigor.\\\\n6. **E6: Integrate HumanEval data** — Already in registry, 0 cost. Broadens benchmark coverage.\\\\n\\\\n### Framing upgrade potential\\\\n- If 1.5B confirms gradient → upgrade from \\\\\\\"observation on one model\\\\\\\" to \\\\\\\"general principle across scales\\\\\\\"\\\\n- If CKA heatmap confirms → upgrade from \\\\\\\"we claim diversity matters\\\\\\\" to \\\\\\\"Diversity-Trainability Hypothesis\\\\\\\" with visual evidence\\\\n- If extended GRPO confirms → \\\\\\\"permanent collapse\\\\\\\" becomes unassailable\\\\n\\\\n### Inference section fix needed\\\\n- Per-token throughput: pruned models are 31-35% SLOWER per-token than Dense\\\\n- Latency reduction (~39%) comes from shorter outputs (~211 vs ~510 tokens), not computation speedup\\\\n- Memory reduction 28.5% is genuine structural savings\\\\n- Paper needs honest framing: report both latency and TPS, explain output length effect\\\\n\\\\n## Open Questions (pending data)\\\\n1. ✅ ~~GRPO 100-step final data~~ — completed (D060)\\\\n2. ✅ ~~Fair GRPO retrain (D051 fix)~~ — resolved (D058/D060)\\\\n3. ✅ **MATH-500 @2048 unified comparison complete** — Dense 53.0%, CKA-only SFT 29.0%, CKA-only GRPO 29.2%, GRPO Standard 26.4%, **SFT Standard 25.8%**, RASP SFT 22.6%, RASP GRPO 24.0%. Recovery gradient holds on OOD. All |GRPO-SFT| < 2pp.\\\\n4. ✅ **E1: 1.5B gradient confirmed** — GRPO: CKA-only 35.48% >> RASP 26.16% > Standard 22.29%. SFT CKA-only 35.63% (GRPO delta -0.15pp). Standard/RASP SFT running.\\\\n5. ✅ **E2: Both 300 steps complete** — Standard collapse permanent (0.056). CKA-only sustained oscillation 0.22-0.44, 5.5x gap.\\\\n6. ✅ **E3: CKA heatmap complete** — Elevated to Contribution 2 (mechanistic explanation).\\\\n7. 🆕 Does 25% sparsity show same gradient? (E4, waiting for GPU)\\\\n8. 🆕 **D065: C1 → supporting analysis, C2 + E3 = dual core contributions.** 1.5B data shows GRPO delta ≤ 0 for all methods → GRPO effectiveness is scale-dependent.\\\\n9. 🔄 **Unstructured GRPO control**: If GRPO stable on unstructured (expected) → confirms collapse is structural-damage-driven. Framing: \\\\\\\"unstructured = no structural damage control; structured + CKA-only = best recovery path when structural damage is unavoidable.\\\\\\\" Pipeline asymmetry (no SFT for unstructured) is intentional and must be acknowledged in paper.\\\\n10. 🔄 **HumanEval cross-task GRPO recovery (D071)**: CKA-only GRPO 20.12% (33/164 final) vs SFT 0% (0/164 confirmed). Supplementary evidence for C1 (Analysis section). Awaiting v5 fair Standard/RASP HumanEval to calibrate \\\\\\\"CKA-only specific\\\\\\\" claim strength.\\\\n\\\", \\\"total_chars\\\": 35632, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\", \"content\": \"# Paper Framing — recovery_aware_struct_prune\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\n- Deadline: ARR May 25, 2026\\n\\n## Core Insight (Recovery Capacity Gradient)\\nStructural pruning criterion determines post-RLVR recovery capacity of reasoning LLMs. Under controlled GRPO training (identical v5 config, D058 resolved), we discover a **recovery capacity gradient**: CKA-only (pure representational diversity preservation) is the only method that achieves meaningful RL learning, while importance-based scoring methods fail.\\n\\nThe gradient: **CKA-only >> importance-based methods (Random/Standard/RASP)**\\n\\n**Extended gradient with unstructured control** (reward range, 100 steps identical v5 config):\\n| Method | Reward Range | Structural Integrity | Pattern |\\n|--------|-------------|---------------------|---------|\\n| Unstructured 20% | 0.73-0.88 | Full (no neuron removal) | Stable, high reward |\\n| CKA-only 20% | 0.22-0.44 | Partial (diversity-preserving) | Active learning + self-recovery |\\n| Random 20% | 0.14-0.19 | Partial (random) | Flat-low, never learns |\\n| Standard 20% | 0.02-0.08 | Partial (importance-based) | Severe collapse |\\n| RASP 20% | 0.01-0.06 | Partial (composite) | Immediate collapse |\\n\\nInterpretation: Reward capacity correlates with structural integrity. Unstructured (no structural damage) >> CKA-only (selective preservation) >> collapsed methods. This confirms GRPO collapse is caused by structural damage from pruning, not GRPO instability. Unstructured is a control, not a competitor (no hardware-agnostic speedup).\\nNote: Starting accuracy confound (unstructured 87.87% vs structured 59-64%) is inherent — structural integrity determines both starting accuracy and GRPO capacity. Paper must acknowledge this explicitly.\\n\\nThis holds across:\\n- **Model scales**: 7B (CKA-only 0.354 vs Standard 0.054) and 1.5B (CKA-only 0.238 vs Standard 0.084)\\n- **Training duration**: E2 extended to 300 steps — Standard shows zero net improvement (0.054→0.056), CKA-only maintains 0.321 at step 110 (3x Standard)\\n- **Statistical tests**: Bootstrap CI confirms all pairwise gaps significant (E5)\\n\\nNote: fine-grained ordering within \\\"low-recovery\\\" methods is scale-dependent (7B: Standard > RASP; 1.5B: RASP > Standard). The robust finding is the CKA-only vs others gap, not the within-group ordering.\\n\\nFailure modes are scale-dependent:\\n- 7B: Standard/RASP collapse via **diversity loss** (frac_zero_std 0.55-0.85, repetitive outputs)\\n- 1.5B: Standard/RASP fail via **truncation bottleneck** (clipped_ratio 0.82-0.95+, can't finish reasoning in token budget)\\n- Both pathways result in failed RL training, suggesting recovery capacity is a general property that surfaces through scale-dependent mechanisms.\\n\\nMechanism (E3 CKA heatmap evidence): CKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity** (inter-layer uniqueness). This makes the model's layer representations LESS similar to Dense (diagonal CKA mean 0.62 vs 0.88-0.92 for others) but MORE internally diverse. \\\"Representational diversity\\\" ≠ \\\"Dense fidelity.\\\" Internal diversity enables diverse policy behaviors during GRPO, producing informative reward variance and gradient signal.\\n\\nGRPO reward-accuracy interaction is **task-dependent** (D071 revision, supersedes D067 \\\"universal decoupling\\\"):\\n- **SFT-recovered tasks (GSM8K, MATH-500)**: GRPO delta ≈ 0 for ALL methods at ALL scales. Decoupling holds.\\n  - GSM8K 7B: CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp (all within stderr)\\n  - GSM8K 1.5B: CKA-only -0.15pp, Standard -0.61pp, RASP -0.75pp (all noise)\\n  - MATH-500 @2048: CKA-only +0.2pp, RASP +1.4pp (all |Δ| < 2pp)\\n- **SFT-failed tasks (HumanEval, CKA-only specific)**: GRPO provides **massive cross-task recovery**.\\n  - CKA-only: SFT 0% (catastrophic forgetting of code) → GRPO **20.12%** (33/164 final). GRPO unlocks latent code capability that SFT's distribution shift rendered inaccessible. Recovery is partial (~45% of Dense), but the 0→20 jump is unique to CKA-only.\\n  - Other methods: SFT ~10-15%, GRPO ~10-15% (old stage2 models). No GRPO benefit. ⚠️ \\\"CKA-only specific\\\" claim pending v5 fair GRPO Standard/RASP HumanEval re-eval.\\n- **⚠️ SFT CKA-only 0% UNVERIFIED**: The 0/164 result was caused by a PATH bug (subprocess couldn't find python). 3 manual samples showed math reasoning output, but full eval was never executed. Re-run required before any claim about \\\"CKA-only SFT catastrophic forgetting.\\\" If re-run confirms ~0%, the mechanism holds (math-focused SFT shifts distribution away from code). If re-run shows 5-10%, D071 \\\"extreme specialization\\\" narrative weakens significantly.\\n- **Revised C1 framing**: On tasks where SFT partially recovers capability, GRPO adds nothing (decoupling). On tasks where SFT fails entirely, GRPO's exploration can partially activate latent capabilities in CKA-only models (0%→20% HumanEval). This enriches C1 but is **supplementary evidence** (Analysis section), not headline finding. The headline remains C2 (recovery capacity gradient on GSM8K/MATH-500). HumanEval shows a secondary dimension: CKA-only preserves latent cross-task potential that GRPO can partially activate.\\n\\n## Core Contributions (D065 restructure)\\n\\n### Contribution 1 (C2, Main): Recovery capacity gradient predicted by representational diversity\\nFour pruning methods at 20% sparsity reveal a clean recovery capacity gradient during GRPO (100 steps, identical v5 config — D058 confound fully resolved):\\n\\n| Method | Best Reward | Mean Reward | Best frac_zero_std | Pattern |\\n|--------|------------|-------------|-------------------|---------|\\n| CKA-only | 0.354 (s50) | 0.285 | 0.125 (s70) | **Active learning** with self-recovery (dip s90→recovery s100) |\\n| Random | 0.190 (s70) | 0.165 | 0.300 (s50/70) | Flat-low: never learns, reward oscillates 0.14-0.19 |\\n| Standard | 0.081 (s40) | 0.049 | 0.500 (s10/30/40) | Severe collapse: reward stays <0.08 despite transient grad_norm instability |\\n| RASP | 0.061 (s50) | 0.031 | 0.850 | Immediate collapse: 92-96% outputs hit max_length |\\n\\nThe gradient: **CKA-only >> Random >> Standard ≈ RASP**\\n- **Statistical support (E5 v2, per-example bootstrap + McNemar, N=1319)**:\\n  - 7B SFT: CKA-only vs Standard **p=0.002** ✅; CKA-only vs RASP p=0.117 ❌; Standard vs RASP p=0.126 ❌\\n  - 1.5B GRPO: all CKA-only pairwise comparisons **p<0.001** ✅ (gap 8-13pp)\\n  - C1 decoupling: GRPO CKA-only vs SFT CKA-only p=0.566 (confirmed: GRPO ≠ accuracy gain)\\n- **Framing**: C2 accuracy evidence leads with 1.5B (strong significance). 7B C2 core evidence = reward dynamics (CKA-only 0.354 vs RASP 0.061 = 5.8x, directly observable). 7B SFT accuracy is directional support. Paper must honestly report CKA-only vs RASP non-significance at 7B.\\n- ⚠️ **Gap**: Standard/RASP GRPO GSM8K evals (58.91%/60.65%) may be from pre-fair models, not fair v5. Need verification or redo.\\n\\nThree distinct failure modes (only CKA-only achieves meaningful learning):\\n1. **CKA-only**: Active learning with peak reward 0.354 (step 50), frac_zero_std drops to 0.125 (step 70, below initial 0.175). Transient instability at step 90 (reward dips to 0.242) but **self-recovers to 0.344 at step 100** (frac_zero_std returns to 0.200). This self-recovery from training perturbation is the defining characteristic of high recovery capacity.\\n2. **Random**: Never lifts off. Reward 0.14-0.19 throughout, grad_norm unstable (3.5-8.6). Has diversity but lacks coherent optimization direction\\n3. **Standard/RASP**: Deep collapse. Standard: reward < 0.08 throughout, grad_norm transiently drops to 0.017 at s90 (recovers to 2.41 at s100 but reward stays low). RASP: reward < 0.01, immediate repetitive output collapse\\n\\nKey evidence dimensions:\\n- **Reward gap**: CKA-only final (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01)\\n- **Learning signal**: Only CKA-only achieves frac_zero_std < 0.2 (meaningful per-sample variance); Standard/RASP never below 0.5/0.85\\n- **Gradient health**: CKA-only grad_norm stable 1-3; Standard grad_norm exhibits transient instability (0.017 at s90, recovers to 2.41 at s100 but policy already collapsed)\\n- **Output diversity**: CKA-only generates diverse completions; RASP 92-96% hit max_length (repetitive)\\n\\nMechanism (E3 CKA heatmap): CKA-only removes redundant structures (high intra-model CKA overlap), resulting in the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88). This is by design: removing redundancy reduces Dense similarity but preserves internal representational diversity. The relationship between Dense-CKA and recovery is NOT monotonic (Random 0.92 recovers better than RASP 0.88); recovery depends on internal diversity, not Dense fidelity.\\n\\n**E2 Extended Training Evidence (D063 framing: \\\"sustained capacity without collapse\\\")**:\\n- Standard 300 steps: reward 0.054±0.002 throughout, zero net improvement. Collapse is permanent and structural.\\n- CKA-only 300 steps complete: reward oscillates 0.22-0.44, peak 0.4444 at step 280, final 0.3075. No collapse. frac_zero_std range 0.10-0.28.\\n- **Final E2 comparison**: CKA-only 0.3075 vs Standard 0.0562 = **5.5x gap** at step 300.\\n- **E2 GSM8K (downstream accuracy)**:\\n  - CKA-only 300步: ~64.0% @ 1000/1319 (vs 100步 64.37% — **no improvement, stable**)\\n  - Standard 300步: **59.29% (782/1319)** — delta +0.38pp vs 100步 (n.s.)\\n  - **Key insight**: Neither method benefits from extended training on ID accuracy. CKA-only: exact 0.00pp delta. Standard: +0.38pp within stderr.\\n- **Core E2 claim**: \\\"Recovery capacity is a structural property of the pruned model, not a function of training duration.\\\" Standard cannot be rescued by more training; CKA-only sustains capacity without collapse. Extended training for CKA-only maintains but does not improve downstream accuracy.\\n- **E2 final GSM8K**: CKA-only 300步 = 100步 = **64.37% (849/1319)**, exact match. Standard 300步 = **59.29% (782/1319)** vs 100步 58.91% = +0.38pp (n.s.).\\n- **Do NOT claim**: \\\"CKA-only continues to learn\\\" or \\\"extended training benefits CKA-only\\\" — reward oscillates (0.22-0.44) but accuracy is precisely unchanged (849/1319 both checkpoints).\\n- **Safe claims**: \\\"Standard collapse is permanent (300 steps)\\\", \\\"CKA-only maintains 5.5x reward gap at step 300\\\", \\\"CKA-only accuracy is robust under extended training (exact zero degradation)\\\", \\\"recovery capacity gap persists under extended training\\\", \\\"200 additional GRPO steps with sustained reward learning produce zero accuracy change (C1 decoupling)\\\".\\n\\n**Cross-Scale Evidence (E1)**: 1.5B DeepSeek-R1-Distill-Qwen confirms the gradient:\\n| Method | 1.5B reward | 7B reward | Ratio |\\n|--------|-------------|-----------|-------|\\n| CKA-only | 0.238 | 0.354 | 3x vs Standard (both scales) |\\n| Standard | 0.084 | 0.054 | — |\\n| RASP | 0.099 | 0.010 | Order reversed at 1.5B |\\n\\nStandard vs RASP order reverses at 1.5B due to different failure modes (truncation vs diversity collapse). The CKA-only advantage is robust across scales.\\n\\n**D062 Framing Guidance (Reviewer-validated)**:\\n- **Cross-scale claim (Abstract/Contribution)**: \\\"CKA-only pruning consistently enables superior GRPO recovery across model scales, achieving 2.8x (1.5B) to 6.4x (7B) the reward of importance-based methods.\\\"\\n- **Gap widening claim (Results)**: \\\"The accuracy gap between CKA-only and importance-based methods widens at smaller scale (16pp at 1.5B vs 5pp at 7B), suggesting representational diversity preservation becomes more critical as model capacity decreases.\\\" (Qualitative until final GSM8K numbers confirm.)\\n- **Do NOT claim**: Fixed 4-tier ordering across scales. Fine-grained within-group ordering is scale-dependent noise.\\n- **Failure modes (Section-level treatment)**:\\n  - Section 4.x Results: 1.5B table + one sentence confirming gradient\\n  - Section 5.x Analysis: ~1 paragraph on scale-dependent failure modes (diversity collapse at 7B vs truncation bottleneck at 1.5B; CKA-only avoids both)\\n  - Section 6 Discussion: one sentence limitation (\\\"warrants investigation on additional architectures\\\")\\n\\nNote on CKA-only self-recovery: Transient dip at step 90 (reward 0.242, frac_zero_std 0.300) followed by full recovery at step 100 (reward 0.344, frac_zero_std 0.200). This demonstrates ongoing **resilience** to training perturbations. No other method shows this property.\\n\\n### Contribution 2: Representational diversity as mechanistic explanation (E3 CKA heatmap)\\nCKA-only scoring removes high-overlap (redundant) structures, preserving **internal representational diversity**. E3 CKA heatmap shows CKA-only pruned model has the LOWEST layer-wise CKA with Dense (diagonal mean 0.62 vs Standard 0.90, Random 0.92, RASP 0.88) — yet achieves the BEST recovery. This proves the mechanism: **\\\"internal diversity, not Dense fidelity, determines RL trainability.\\\"** The relationship is NOT monotonic (Random 0.92 recovers better than RASP 0.88), ruling out simplistic \\\"similarity preservation\\\" explanations.\\n\\nThis elevates the paper from pure empirical observation (C2: \\\"CKA-only works best\\\") to mechanistic understanding (\\\"WHY it works: diversity preservation\\\").\\n\\n### Supporting Analysis: GRPO-Scale Interaction (former C1, D065 downgrade)\\n\\n**7B GSM8K (ID)**: GRPO reward-accuracy decoupling — reward rises but accuracy changes are minimal (CKA-only +0.46pp, Standard -0.38pp, RASP -0.84pp). The direction follows recovery capacity gradient.\\n\\n**7B MATH-500 (OOD, D067 revision)**: Recovery gradient persists on OOD (MATH-500 @2048): CKA-only 29.0% (SFT) / **29.2% (GRPO, final)** >> Standard 26.4% (GRPO) >> RASP 22.6% (SFT) / 24.0% (GRPO). Dense 53.0%. GRPO deltas negligible (CKA-only +0.2pp, all |Δ| < 2pp, within stderr). The recovery gradient generalizes from ID to OOD, though absolute gap is compressed (6pp on MATH-500 vs 11pp on GSM8K for CKA-only vs others).\\n\\n**1.5B GSM8K (D065 new data)**: GRPO provides NO benefit at 1.5B scale for ANY method:\\n\\n| Method | SFT | GRPO | GRPO-SFT |\\n|--------|-----|------|----------|\\n| CKA-only | 35.63% | 35.48% | -0.15pp |\\n| Standard | **22.90%** | 22.29% | **-0.61pp** |\\n| RASP | **26.91%** | 26.16% | **-0.75pp** |\\n\\n**Revised C1 Framing (D071, supersedes D067)**: GRPO-accuracy interaction is task-dependent:\\n- **SFT-recovered tasks** (GSM8K, MATH-500): GRPO delta ≈ 0 across all methods and scales. Decoupling holds. Recovery capacity is set at pruning time; RL training cannot further improve it.\\n- **SFT-failed tasks** (HumanEval code generation): CKA-only shows **massive GRPO benefit** (0% → ~22% interim), while other methods show none (~10-15% both SFT and GRPO). GRPO's exploratory search activates latent code generation capability that exists in CKA-only's diverse representations but that supervised math-focused SFT cannot reach.\\n- **Mechanism**: CKA-only + math SFT shifts generation distribution so completely to reasoning mode that code prompts trigger `&lt;think>` natural language analysis instead of Python output. Importance-based methods retain partial code ability (11-12%) because they lack CKA-only's extreme task specialization under SFT. GRPO avoids this mode collapse via exploratory RL.\\n\\n**Implication for paper story**: This enriches C1 from a flat \\\"decoupling\\\" observation to a conditional finding with mechanistic depth. CKA-only pruning preserves latent multi-task potential in the pruned model's parameters. Math-focused SFT causes catastrophic forgetting of code ability (0% HumanEval), but this damage is reversible: GRPO's exploratory RL re-activates the latent code capability (~27.5%). Importance-based pruning destroys this latent potential at the pruning stage (no amount of GRPO recovers it). The recovery capacity gradient thus has a **hidden dimension**: it determines not just RL trainability but the breadth of recoverable capabilities. Note: \\\"latent potential\\\" describes the pruned model pre-SFT; SFT can suppress it, but GRPO can re-activate it if the pruned structure preserved sufficient diversity.\\n\\n**HumanEval baselines**: Unpruned 45.12%, Standard SFT 11.59%, RASP SFT 10.37%, CKA-only SFT 0%, CKA-only GRPO 20.12% (33/164 final). GRPO Standard fair + RASP fair running.\\n\\n**Paper placement**: 1.5B GRPO delta table in main text (Tab5). HumanEval cross-task GRPO recovery as a key finding in Results (new table or merged into existing). MATH-500 @2048 full table in appendix with one sentence in main text: \\\"The recovery capacity gradient persists on the more challenging MATH-500 benchmark, with CKA-only maintaining a ~6pp advantage over importance-based methods.\\\"\\n\\n### Observation: SFT partially differentiates scoring methods; 30% sparsity cliff is universal\\n- Post-SFT accuracy shows gradient (CKA-only 63.9% > RASP 61.5% > Standard 59.3%), range is 4.6pp vs massive RL gradient\\n- CKA-only SFT advantage is statistically significant vs Standard (Δ=4.6pp, p≈0.015, N=1319), suggesting diversity preservation helps SFT too — but the RL gradient (collapse vs super-recovery) is qualitatively larger\\n- At 30% sparsity, ALL methods collapse: RASP 0%, CKA-only 0%, Standard 3-4%\\n- The recovery capacity gradient is meaningful in the 20-25% operating range\\n\\n### Additional contribution: Inference speedup asymmetry\\n- RASP 20%: 37.8% latency reduction, 28.5% memory reduction\\n- Standard 20%: 7.7% latency reduction, 28.4% memory reduction\\n- Same parameter count, vastly different inference efficiency due to pruning distribution\\n\\n## Evidence Status (as of 2026-05-19 05:30 UTC)\\n\\n| Evidence | Status | Result |\\n|----------|--------|--------|\\n| Unpruned SFT eval (N=1319) | ✅ | 81.27% |\\n| Unpruned GRPO step-100 eval (N=1319) | ✅ | 81.27% (Δ=0.00pp) |\\n| Standard SFT eval (N=1319) | ✅ | 59.29% |\\n| Standard GRPO step-50 eval (N=1319) | ⚠️ | 58.91% — **来源不可追溯**（无结果 JSON，bootstrap CI 记录 \\\"no n=1319 eval\\\"）。替代：300步 59.29% (782/1319) vs SFT 59.29% = Δ=0.00pp（更强的 decoupling 证据，完整溯源）。需要用 `grpo_stage2_standard_20_fair/checkpoint-50` 重跑 N=1319 验证。 |\\n| RASP SFT eval (N=1319) | ✅ | 61.49% |\\n| RASP GRPO step-5 eval (N=1319) | ✅ | 60.65% (Δ=-0.84pp) |\\n| CKA-only SFT eval (N=1319) | ✅ | 63.91% (843/1319) — highest among all pruned methods |\\n| **CKA-only GRPO eval (N=1319)** | ✅ | **64.37% (849/1319), Δ=+0.46pp vs SFT** — only pruned method with positive GRPO delta |\\n| **GRPO CKA-only fair (v5)** | ✅ | Active learning: peak 0.354(s50), best frac_zero 0.125(s70), transient dip 0.242(s90), **self-recovery to 0.344(s100)**. frac_zero_std=0.200 at final. |\\n| **GRPO Random fair (v5)** | ✅ | Flat-low: reward 0.14-0.19 oscillation, never learns. Timeout at step 97 (no checkpoint) |\\n| **GRPO Standard fair (v5)** | ✅ | Severe collapse: reward 0.02-0.08, grad_norm→0.017(s90), model stops learning |\\n| **GRPO RASP fair (v5)** | ✅ | Immediate collapse: reward ~0.01, frac_zero_std 0.85, 92-96% max-length outputs |\\n| Unpruned GRPO v2 dynamics | ✅ | 100 steps stable, reward 0.661 |\\n| D058 fair 4-way comparison | ✅ | **Gradient confirmed: CKA-only >> Random >> Standard > RASP (all v5 config)** |\\n| **MATH-500 @2048 Dense** | ✅ | 53.0% (265/500, truncated 53.2%). Fair baseline for @2048 comparison |\\n| **MATH-500 @2048 SFT CKA-only** | ✅ | 29.0% (145/500, truncated 23.2%) |\\n| **MATH-500 @2048 GRPO CKA-only** | ✅ | **29.2% (146/500)**. GRPO delta = +0.2pp vs SFT 29.0% (negligible, consistent with decoupling) |\\n| **MATH-500 @2048 SFT Standard** | ✅ | **25.8% (129/500) ±1.96%**. GRPO Standard 26.4% vs SFT 25.8% = +0.6pp (noise, C1 decoupling). CKA-only SFT 29.0% > Standard SFT 25.8% = 3.2pp gradient on OOD. |\\n| **MATH-500 @2048 GRPO Standard** | ✅ | 26.4% (132/500) |\\n| **MATH-500 @2048 SFT RASP** | ✅ | 22.6% (113/500, truncated 37.2%) |\\n| **MATH-500 @2048 GRPO RASP** | ✅ | 24.0% (120/500, truncated 36.0%) |\\n| MATH-500 @4096 legacy | ⚠️ | Old evals used 4096 default (D064 confound). Not directly comparable to @2048. |\\n| 30% sparsity cliff | ✅ | RASP 0%, Standard 4%, CKA-only 0% — universal collapse |\\n| Alpha ablation (cal=512) | ✅ | U-shape: α≥1.0 > α≤0.5 post-prune |\\n| Inference speedup | ✅ | RASP 37.8% vs Standard 7.7% latency reduction |\\n| Magnitude-only ablation | ✅ | Post-prune 0% accuracy, 2% EOS rate, avg_len=4054. Worst scoring method. |\\n| **E2 Standard Extended 300 steps** | ✅ | Reward 0.054→0.056 (zero net improvement), frac_zero 0.55→0.525. Collapse permanent. |\\n| **E2 CKA-only Extended 300 steps** | ✅ | Reward 0.22-0.44 range, peak 0.4444@s280, final 0.3075. 5.5x Standard. Sustained oscillation, no collapse. |\\n| **1.5B CKA-only GRPO** | ✅ | Reward 0.238, frac_zero_std 0.175. Active learning confirmed at 1.5B scale |\\n| **1.5B Standard GRPO** | ✅ | Reward 0.084, frac_zero_std 0.15, clipped_ratio >0.95. Truncation bottleneck |\\n| **1.5B RASP GRPO** | ✅ | Reward 0.099, frac_zero_std 0.175, clipped_ratio 0.82. Low reward + truncation |\\n| **E3 CKA Heatmap** | ✅ 4/4 | CKA-only diag mean 0.62, Standard 0.90, Random 0.92, RASP 0.88. CKA-only least similar to Dense but best recovery. PDF generated. |\\n| **1.5B CKA-only GSM8K eval** | ✅ | **35.48% (468/1319) ±1.32%** (interim was 41.7%, converged down) |\\n| **1.5B Standard GSM8K eval** | ✅ | **22.29% (294/1319) ±1.15%**. Gap vs CKA-only = 13.2pp (7B gap = 5.5pp, 2.4x amplification at smaller scale). |\\n| **1.5B RASP GSM8K GRPO eval** | ✅ | **26.16% (345/1319) ±1.21%**. Three-method ordering consistent: CKA-only >> RASP > Standard |\\n| **1.5B SFT CKA-only GSM8K** | ✅ | **35.63% (470/1319) ±1.32%**. GRPO delta = -0.15pp (noise) |\\n| **1.5B SFT Standard GSM8K** | ✅ | **22.90% (302/1319) ±1.16%**. GRPO delta = -0.61pp (noise) |\\n| **1.5B SFT RASP GSM8K** | ✅ | **26.91% (355/1319)**. GRPO delta = -0.75pp (noise) |\\n| **E5 Bootstrap CI (reward)** | ❌ INVALID | Reward-trajectory bootstrap violates i.i.d. See M008. |\\n| **E5 Bootstrap CI (accuracy) v2** | ✅ | Per-example bootstrap + McNemar (N=1319). 7B SFT: CKA vs Std **p=0.002**; CKA vs RASP p=0.117 (NS); Std vs RASP p=0.126 (NS). 1.5B: all CKA-only gaps **p<0.001**. C1: GRPO vs SFT CKA-only p=0.566 (decoupling confirmed). |\\n| **E2 CKA-only 300步 GSM8K** | ✅ | **64.37% (849/1319)** — identical to 100步 (849/1319). 200 extra GRPO steps (reward 0.22→0.44 oscillation) = exact zero accuracy change. Perfect C1 decoupling evidence. Per-example comparison pending (same examples or different-but-equal-count?). |\\n| **E2 Standard 300步 GSM8K** | ✅ | **59.29% (782/1319) ±1.35%**. Delta vs 100步 (58.91%) = +0.38pp (within stderr, not significant). Extended training provides zero meaningful improvement for Standard. |\\n| **CKA-only SFT HumanEval @2048** | ❌ INVALID | **0/164 报告值是 PATH bug 导致的假结果**。eval 进程未激活 conda，`subprocess.run([\\\"python\\\", ...])` 全部 `No such file or directory`。代码从未被实际执行。需要在 conda-activated 环境中重跑。3 个手动样本显示模型生成数学推理而非代码，但 164 题整体结果未验证。 |\\n| **CKA-only GRPO HumanEval @2048** | ✅ | **20.12% (33/164) ±3.13%**. SFT 0% → GRPO 20% = +20pp recovery. Dense 45.12%. Importance-based SFT ~11%. ⚠️ Gap vs GRPO RASP fair (~15% interim) only ~5pp — \\\"CKA-only specific\\\" claim applies to SFT→GRPO recovery angle (0→20), not absolute GRPO performance. Pending Standard/RASP fair finals. |\\n| **Unstructured 20% SFT GSM8K** | ✅ | 87.87% (1159/1319). No structural damage → no recovery needed. |\\n| **Unstructured 20% GRPO 100步** | ✅ | Reward **0.73-0.88** (peak 0.883@s100), NO collapse. GSM8K: **87.64% (1156/1319) ±0.91%** — pre-GRPO 87.87%, Δ=-0.23% (noise). GRPO adds nothing to unstructured (already at ceiling). vs structured best (CKA-only) 64.37% = 23pp gap. Confirms \\\"structural damage is the recovery bottleneck, not GRPO.\\\" |\\n\\n## Story Spine\\n\\n- **Problem**: The reasoning model compression pipeline (prune → SFT → GRPO align) treats pruning decisions as independent of downstream RL alignment. We show this assumption is wrong: pruning criterion fundamentally determines whether the model can sustain RL training, through a mechanism we call **recovery capacity**.\\n\\n- **Key insight**: Not all pruning criteria create equal RL trainability. The standard practice of gradient-based importance scoring removes structures that, while individually \\\"unimportant\\\" by gradient metrics, collectively provide the representational diversity that RL exploration requires. CKA-based scoring identifies and preserves this diversity.\\n\\n- **Existing approaches & gaps**: Self-Healing (2025) claims RLVR recovers pruned reasoning models to 95%+ but uses a single pruning method and does not report training dynamics. GRASPrune (ACL 2026) provides SOTA structural pruning without studying recovery or alignment. No work has (1) compared multiple pruning criteria under RL alignment, (2) documented the recovery capacity gradient, or (3) identified representational diversity as the causal factor.\\n\\n- **Our framing**: Through controlled comparison of four pruning criteria (CKA-only, Random, Standard importance, RASP composite) under identical GRPO training, we discover a recovery capacity gradient that reveals the critical role of representational diversity in RL trainability. CKA-only pruning — which preserves all representationally unique structures — enables active super-recovery from training perturbations, while gradient-based methods progressively destroy this capacity.\\n\\n- **Headline result**: \\\"Pruning criterion determines RL recovery capacity: CKA-only pruning enables active super-recovery from GRPO training instability (frac_zero_std drops 29% below initial baseline), while gradient-based RASP collapses permanently at step 10. The recovery capacity gradient (CKA-only > Random > Standard > RASP) is predicted by preserved representational diversity, revealing that gradient importance scoring — the industry standard — is actively harmful for post-pruning RL alignment.\\\"\\n\\n## Venue Fit\\n- EMNLP Efficient Methods track: structured pruning + reasoning model RL alignment interaction\\n- Counter-intuitive finding (gradient importance harms RL) is high-impact\\n- Reasoning model compression pipeline is immediately practical (DeepSeek-R1, QwQ, Kimi-K1.5)\\n- Mechanistic analysis (recovery capacity, representational diversity) aligns with EMNLP empirical rigor\\n- Challenges published claims (Self-Healing 2025) with controlled evidence\\n\\n## Venue Fit Risks\\n- **\\\"Just a diagnostic without solution\\\"**: Mitigate with (1) CKA-only scoring as actionable recommendation for RL-intended pruning, (2) recovery capacity gradient as zero-cost quality predictor, (3) inference speedup asymmetry as practical bonus\\n- **\\\"Single model\\\"**: Now validated on 2 scales (7B + 1.5B, same DeepSeek-R1-Distill-Qwen family). 4 methods × 3 sparsity levels × 2 scales = 24 configurations. Same family is a limitation but canonical reasoning model. 1.5B failure mode differs (truncation vs diversity collapse) adding depth.\\n- **\\\"GRPO config might be wrong\\\"**: ✅ **RESOLVED (D058)**. All 4 methods now retrained under identical v5 config (beta=0.01, temp=0.4, maxlen=1024, DAPO). Gradient CKA-only >> Random >> Standard > RASP confirmed. Original confound eliminated.\\n- **\\\"CKA-only advantage might be trivial\\\"**: CKA-only final reward (0.344) is 6.4x Standard (0.054) and 34x RASP (0.01). Only method achieving meaningful learning + self-recovery from perturbation. Not marginal.\\n- **\\\"CKA-only instability undermines claim\\\"**: Transient dip at step 90, but **self-recovers to 0.344 at step 100** (near peak 0.354). This self-recovery IS the core evidence for \\\"recovery capacity\\\" — the model demonstrates resilience to training perturbations that other methods lack.\\n- **\\\"Why not just use unpruned model?\\\"**: Inference speedup (37.8% latency, 28.5% memory) justifies pruning; question is how to prune for RL compatibility\\n- **\\\"D051/D058 confound\\\"**: ✅ RESOLVED. grpo_rasp_20_fair + grpo_standard_20_fair completed under v5 config. Both confirm collapse pattern.\\n\\n## Anticipated Reviewer Concerns & Experimental Responses\\n\\n| Concern | Response | Supporting Experiment |\\n|---------|----------|----------------------|\\n| Gradient direction in 4-method comparison might be config-dependent | All 4 methods retrained under identical v5 config (D058 resolved); gradient CKA-only >> Random >> Standard > RASP confirmed | grpo_cka_only_20, grpo_random_20, grpo_standard_20_fair, grpo_rasp_20_fair |\\n| CKA-only scoring is just \\\"remove least similar\\\" = trivial | CKA-only implements pure functional diversity preservation (remove highest pairwise overlap); its super-recovery is the evidence for the mechanism | grpo_cka_only_20 |\\n| Need fair RASP vs Standard comparison (D051 confound) | Fair retrain with identical config planned; CKA-only vs Random pair is already confound-free | grpo_rasp_20_fair, grpo_standard_20_fair (blocked on westb) |\\n| MATH-500 pattern differs from GSM8K | GRPO deltas are negligible on BOTH ID and OOD (|Δ| < 2pp, within stderr). Unified C1: \\\"reward-accuracy decoupling across all conditions.\\\" Recovery gradient persists on OOD (CKA-only 29% >> RASP 23%, 6pp gap). | eval_math500_*_2048 series (D067) |\\n| SFT equalizes all methods — pruning criterion doesn't matter | CKA-only vs Standard: Δ=4.6pp, p≈0.015 (significant); adjacent pairs (CKA vs RASP, RASP vs Standard) p>0.1 (not significant). SFT partially differentiates but the RL gradient is qualitatively larger (super-recovery vs collapse). Under RL, pruning criterion is decisive. | All SFT evals + GRPO dynamics |\\n| How does this relate to Self-Healing claims? | Self-Healing uses unstructured pruning + single method; our controlled multi-method structured pruning reveals the gradient they missed | Discussion section |\\n| Why not use unstructured pruning instead? | Unstructured 20% preserves 87.87% accuracy (no structural damage) but provides NO hardware-agnostic speedup (sparse matrices need special support). Structured pruning gives real speedup (37.8% latency, 28.5% memory) but causes structural damage requiring recovery. Our work addresses the structured regime where recovery is critical. Unstructured GRPO serves as control: if GRPO works fine on unstructured → collapse on structured is caused by structural damage, not GRPO instability. | grpo_unstructured_20 (running) |\\n| Pipeline asymmetry: unstructured skips SFT | By design. Unstructured 87.87% needs no SFT recovery; structured methods start at 5-30% and REQUIRE SFT. The GRPO comparison tests \\\"does GRPO collapse given different levels of structural damage?\\\", not \\\"fair pipeline comparison.\\\" Paper must acknowledge this explicitly. | N/A (framing) |\\n| CKA-only SFT 0% on HumanEval — is it broken? | CKA-only + math SFT causes catastrophic forgetting of code generation (0% HumanEval). The model enters reasoning mode on all prompts, generating natural language analysis instead of code. However, GRPO partially recovers code ability (20.12% vs unpruned 45%), demonstrating that latent code capability was preserved in the pruned model's parameters but rendered inaccessible by SFT's distribution shift. This recovery is CKA-only specific — importance-based methods (Standard 11.59%, RASP 10.37% SFT) retain partial code ability but show no GRPO benefit. | eval_humaneval_sft_cka_only_20, eval_humaneval_grpo_cka_only_20 |\\n| GRPO breaks C1 decoupling on HumanEval | C1 is task-dependent (D071). On SFT-recovered tasks, decoupling holds. On SFT-failed tasks, GRPO provides recovery through exploratory RL. Preliminary evidence suggests this is CKA-only specific (other methods show no GRPO benefit), but ⚠️ GRPO Standard/RASP HumanEval evals used old stage2 models (v8/v9), not fair v5. Need v5 fair re-eval to confirm \\\"CKA-only specific\\\" claim, or caveat this limitation in paper. | All HumanEval evals (⚠️ Standard/RASP GRPO = old models) |\\n| What's the practical recommendation? | For RL-intended pruned models: use CKA-only scoring (pure diversity preservation). CKA-only + GRPO provides broadest capability recovery (math + code). For SFT-only on a single task: importance-based methods may suffice. | Full evidence table |\\n\\n## Key Differentiations\\n- **vs Self-Healing (2025)**: Claims RLVR recovers pruned models; we show recovery capacity depends critically on pruning criterion, with gradient-based methods causing collapse\\n- **vs MPruner (2024)**: inter-layer CKA for depth pruning in CNNs; we use intra-layer CKA to reveal recovery capacity mechanism in reasoning LLMs\\n- **vs GRASPrune (ACL 2026)**: SOTA budgeted pruning without recovery/alignment study; we show pruning quality for RL cannot be evaluated without training dynamics\\n- **vs RESP (Dec 2025)**: reasoning-trace calibration without recovery; we study how pruning interacts with RL alignment\\n- **vs PASER (2025)**: optimizes recovery DATA; we show pruning STRUCTURE determines RL trainability\\n\\n## D061 Experiment Expansion (EMNLP Main upgrade plan)\\n\\n### Tier 1 (must-do, ~50 GPU-hours, target 6/10 → 7.5/10)\\n1. **E1: Second model validation** — DeepSeek-R1-Distill-Qwen-1.5B, 3 methods (CKA-only/Standard/RASP) × prune→SFT→GRPO→GSM8K eval. Proves gradient generalizes across scale.\\n2. **E2: Extended GRPO 200-300 steps** — 7B CKA-only + Standard. Proves collapse is permanent, not transient.\\n3. **E3: CKA heatmap representation analysis** — 4 methods vs Dense, layer-wise CKA matrix. Direct mechanism evidence for \\\"representational diversity\\\" claim.\\n\\n### Tier 2 (strongly recommended, ~20 GPU-hours)\\n4. **E4: 25% sparsity GRPO dynamics** — CKA-only + Standard @25%. Cross-sparsity gradient consistency.\\n5. **E5: Bootstrap CI on reward trajectories** — Pure analysis, 0 GPU. Statistical rigor.\\n6. **E6: Integrate HumanEval data** — Already in registry, 0 cost. Broadens benchmark coverage.\\n\\n### Framing upgrade potential\\n- If 1.5B confirms gradient → upgrade from \\\"observation on one model\\\" to \\\"general principle across scales\\\"\\n- If CKA heatmap confirms → upgrade from \\\"we claim diversity matters\\\" to \\\"Diversity-Trainability Hypothesis\\\" with visual evidence\\n- If extended GRPO confirms → \\\"permanent collapse\\\" becomes unassailable\\n\\n### Inference section fix needed\\n- Per-token throughput: pruned models are 31-35% SLOWER per-token than Dense\\n- Latency reduction (~39%) comes from shorter outputs (~211 vs ~510 tokens), not computation speedup\\n- Memory reduction 28.5% is genuine structural savings\\n- Paper needs honest framing: report both latency and TPS, explain output length effect\\n\\n## Open Questions (pending data)\\n1. ✅ ~~GRPO 100-step final data~~ — completed (D060)\\n2. ✅ ~~Fair GRPO retrain (D051 fix)~~ — resolved (D058/D060)\\n3. ✅ **MATH-500 @2048 unified comparison complete** — Dense 53.0%, CKA-only SFT 29.0%, CKA-only GRPO 29.2%, GRPO Standard 26.4%, **SFT Standard 25.8%**, RASP SFT 22.6%, RASP GRPO 24.0%. Recovery gradient holds on OOD. All |GRPO-SFT| < 2pp.\\n4. ✅ **E1: 1.5B gradient confirmed** — GRPO: CKA-only 35.48% >> RASP 26.16% > Standard 22.29%. SFT CKA-only 35.63% (GRPO delta -0.15pp). Standard/RASP SFT running.\\n5. ✅ **E2: Both 300 steps complete** — Standard collapse permanent (0.056). CKA-only sustained oscillation 0.22-0.44, 5.5x gap.\\n6. ✅ **E3: CKA heatmap complete** — Elevated to Contribution 2 (mechanistic explanation).\\n7. 🆕 Does 25% sparsity show same gradient? (E4, waiting for GPU)\\n8. 🆕 **D065: C1 → supporting analysis, C2 + E3 = dual core contributions.** 1.5B data shows GRPO delta ≤ 0 for all methods → GRPO effectiveness is scale-dependent.\\n9. 🔄 **Unstructured GRPO control**: If GRPO stable on unstructured (expected) → confirms collapse is structural-damage-driven. Framing: \\\"unstructured = no structural damage control; structured + CKA-only = best recovery path when structural damage is unavoidable.\\\" Pipeline asymmetry (no SFT for unstructured) is intentional and must be acknowledged in paper.\\n10. 🔄 **HumanEval cross-task GRPO recovery (D071)**: CKA-only GRPO 20.12% (33/164 final) vs SFT 0% (0/164 confirmed). Supplementary evidence for C1 (Analysis section). Awaiting v5 fair Standard/RASP HumanEval to calibrate \\\"CKA-only specific\\\" claim strength.\\n\", \"total_chars\": 35632, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1218a78a-7a38-4e1e-b5a4-8b1f90f343b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T12:45:15.918Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01QSAwdR8uWQe7W3fJNFcfuS`</summary>
+
+```json
+{
+  "description": "Registry analysis for ROADMAP review",
+  "prompt": "Analyze the registry JSON file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt\n\nThis is a JSON file with schema: {result: string}. The inner string is also JSON (the actual registry data).\n\nI need you to extract and report:\n1. Total number of experiments\n2. Count by status (RUNNING, DONE, FAILED, INVALIDATED, etc.)\n3. List ALL experiments with status=RUNNING — for each give: exp_id, server, GPU, what it's doing (from description or conclusion), and when it started (created_at or updated_at)\n4. For experiments completed today (2026-05-19), list exp_id, status, conclusion summary (first 100 chars), metrics if any\n5. Any experiments that seem to have GPU assignments outside of the expected range (the project uses westb and westd servers)\n\nUse jq or python to parse the file. Report findings in full detail — I need specific exp_ids and numbers.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "898c250f-d73b-4d1c-8e0e-aa3e9393679e",
+  "isSidechain": false,
+  "requestId": "req_011CbBx1wRA5Qoz7Q3tBx7C1",
+  "type": "assistant",
+  "uuid": "2421530f-2329-4343-8c7d-18c6e2163d96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHgQWKteCF9Uuz5SzkNvD3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14397,
+      "cache_read_input_tokens": 34817,
+      "output_tokens": 750,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 750,
+          "cache_read_input_tokens": 34817,
+          "cache_creation_input_tokens": 14397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。",
+  "leafUuid": "2421530f-2329-4343-8c7d-18c6e2163d96",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T12:48:04.877Z_
+
+<details><summary>↩ Tool result · `toolu_01QSAwdR8uWQe7W3fJNFcfuS`</summary>
+
+```text
+Here is the complete analysis of the registry:
+
+---
+
+## 1. Total Experiments
+
+**239 experiments** registered.
+
+## 2. Count by Status
+
+| Status | Count |
+|--------|-------|
+| DONE | 202 |
+| PREPARING | 29 |
+| ANALYZING | 3 |
+| ALLOCATED | 2 |
+| RUNNING | 2 |
+| QUEUED | 1 |
+
+No experiments have status `FAILED` or `INVALIDATED` as distinct statuses. Among the 202 DONE experiments, conclusions break down as:
+- **success**: 129
+- **failed**: 41
+- **negative**: 17
+- **killed**: 15
+
+## 3. RUNNING Experiments (2)
+
+| exp_id | Server | GPU | What it's doing | Timestamps |
+|--------|--------|-----|-----------------|------------|
+| `eval_humaneval_sft_standard_20_2048_v3` | westd-29022 (from hypothesis) | Not explicitly recorded | SFT Standard 20% HumanEval pass@1 evaluation with max_new_tokens=2048 | created: 2026-05-19T10:05:36Z, updated: 2026-05-19T10:06:02Z |
+| `grpo_cka_only_20_seed123` | Not recorded in structured field | Not recorded | Multi-seed validation (seed=123) of CKA-only 20% GRPO training, testing if CKA-only advantage holds across seeds to strengthen C1 claim | created: 2026-05-19T09:27:11Z, updated: 2026-05-19T09:28:28Z |
+
+**Note**: The registry does not have structured `server` or `gpu` fields -- these are only mentioned in free-text hypothesis/notes. Neither RUNNING experiment has `spec` data.
+
+Additionally active (not yet running):
+- **ALLOCATED (2)**: `eval_humaneval_grpo_cka_only_20_1p5b_2048`, `eval_humaneval_sft_cka_only_20_1p5b_2048` (1.5B cross-scale HumanEval evals)
+- **QUEUED (1)**: `eval_humaneval_sft_standard_20_1p5b_2048`
+- **ANALYZING (3)**: `eval_math500_sft_standard_20_2048_v2`, `eval_gsm8k_sft_standard_20_1p5b`, `eval_math500_grpo_cka_only_20_2048`
+- **PREPARING (29)**: Mix of 1.5B HumanEval evals, unstructured pruning GRPO, scoring ablations, and older experiments that never progressed
+
+## 4. Experiments Completed Today (2026-05-19) — 17 DONE
+
+### Successful (with metrics)
+
+| exp_id | Metrics | Conclusion (first 100 chars) |
+|--------|---------|------------------------------|
+| `eval_math500_dense_2048` | acc=53.0%, 265/500, stderr=0.0223 | success |
+| `eval_math500_sft_rasp_20_2048` | acc=22.6%, 113/500, stderr=0.0187 | success |
+| `eval_math500_grpo_standard_20_fair_v2` | acc=26.4%, 132/500, stderr=0.0197 | success |
+| `eval_gsm8k_sft_rasp_20_1p5b` | acc=26.91%, 355/1319, stderr=0.0122, grpo_delta_pp=-0.75 | success |
+| `inference_bench_clean_v2` | dense=72.02 tps, CKA-only=58.28 tps, Standard=58.25 tps, 19.1% param reduction, first_token: 16.35ms pruned vs 20.05ms dense | success |
+| `eval_gsm8k_grpo_unstructured_20` | acc=87.64%, 1156/1319, stderr=0.0091 | success |
+| `eval_humaneval_grpo_cka_only_20_2048` | pass@1=20.12%, 33/164, stderr=0.0313 | success |
+| `eval_humaneval_grpo_rasp_20_fair_2048` | pass@1=10.98%, 18/164, stderr=0.0244 | success |
+| `grpo_standard_20_fair` | 100 steps, peak_reward=0.081 at step 4 | success |
+
+### Negative (experiment ran but hypothesis not confirmed)
+
+| exp_id | Metrics | Conclusion |
+|--------|---------|------------|
+| `eval_gsm8k_grpo_cka_only_20_extended_300` | acc=64.37% (same as 100-step), 849/1319 | negative — extending to 300 steps did not improve beyond 100-step baseline |
+| `eval_gsm8k_grpo_standard_20_extended_300` | acc=59.29%, 782/1319 | negative — extended training did not help Standard either |
+
+### Failed (errors or invalid results)
+
+| exp_id | Issue |
+|--------|-------|
+| `eval_humaneval_grpo_standard_20_fair_2048` | Wrong model path (grpo_standard_20_fair vs grpo_stage2_standard_20_fair) |
+| `eval_humaneval_grpo_standard_20_fair_2048_v2` | Failed (no metrics recorded) |
+| `eval_humaneval_grpo_standard_20_fair_2048_v3` | Failed (no metrics recorded) |
+| `eval_humaneval_sft_cka_only_20_2048` | pass@1=0%, 0/164 — SFT CKA-only has no code generation |
+| `eval_humaneval_sft_cka_only_20_2048_v2` | Failed (PATH bug fix retry, no metrics recorded) |
+| `eval_gsm8k_grpo_standard_20_fair_v2` | Failed (no metrics recorded) |
+
+## 5. GPU Assignment Anomalies
+
+**No out-of-bounds server references found.** All experiments reference `westb-23072` and/or `westd-29022`, which match the project configuration.
+
+CUDA device references found in experiment text:
+- `cuda:0` — used on westb and westd (normal)
+- `cuda:1` — used on westd (normal, per notes about dual-GPU training)
+- `cuda:2` — referenced in `eval_math500_sft_cka_only_20_v4_restart` (had cuda:2 conflict, was restarted) and `eval_humaneval_sft_standard_20_2048` (queued for westd cuda:2)
+
+**Notable concern**: `cuda:2` references could be anomalous depending on the project's `execution.gpu_ids` whitelist. The registry itself does not store the whitelist, but `eval_math500_sft_cka_only_20_v4_restart` explicitly mentions a "cuda:2 conflict" that required restart, suggesting cuda:2 may have been outside expected allocation. Without seeing the `constraints.yaml` or project config `gpu_ids`, this cannot be definitively flagged but warrants verification.
+
+One AutoDL reference exists in `eval_sft_rasp_20_westd_n100_v2` (mentioning `autodl-tmp` directory path fix), but this is just a directory name on the westd server, not a separate server.
+
+agentId: a5d10e546ebdda538 (use SendMessage with to: 'a5d10e546ebdda538' to continue this agent)
+&lt;usage>total_tokens: 51602
+tool_uses: 9
+duration_ms: 168953&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2421530f-2329-4343-8c7d-18c6e2163d96",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "5906fe70-9cf6-4005-b305-3cc2a912763d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Analyze the registry JSON file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt\n\nThis is a JSON file with schema: {result: string}. The inner string is also JSON (the actual registry data).\n\nI need you to extract and report:\n1. Total number of experiments\n2. Count by status (RUNNING, DONE, FAILED, INVALIDATED, etc.)\n3. List ALL experiments with status=RUNNING — for each give: exp_id, server, GPU, what it's doing (from description or conclusion), and when it started (created_at or updated_at)\n4. For experiments completed today (2026-05-19), list exp_id, status, conclusion summary (first 100 chars), metrics if any\n5. Any experiments that seem to have GPU assignments outside of the expected range (the project uses westb and westd servers)\n\nUse jq or python to parse the file. Report findings in full detail — I need specific exp_ids and numbers.",
+    "agentId": "a5d10e546ebdda538",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the complete analysis of the registry:\n\n---\n\n## 1. Total Experiments\n\n**239 experiments** registered.\n\n## 2. Count by Status\n\n| Status | Count |\n|--------|-------|\n| DONE | 202 |\n| PREPARING | 29 |\n| ANALYZING | 3 |\n| ALLOCATED | 2 |\n| RUNNING | 2 |\n| QUEUED | 1 |\n\nNo experiments have status `FAILED` or `INVALIDATED` as distinct statuses. Among the 202 DONE experiments, conclusions break down as:\n- **success**: 129\n- **failed**: 41\n- **negative**: 17\n- **killed**: 15\n\n## 3. RUNNING Experiments (2)\n\n| exp_id | Server | GPU | What it's doing | Timestamps |\n|--------|--------|-----|-----------------|------------|\n| `eval_humaneval_sft_standard_20_2048_v3` | westd-29022 (from hypothesis) | Not explicitly recorded | SFT Standard 20% HumanEval pass@1 evaluation with max_new_tokens=2048 | created: 2026-05-19T10:05:36Z, updated: 2026-05-19T10:06:02Z |\n| `grpo_cka_only_20_seed123` | Not recorded in structured field | Not recorded | Multi-seed validation (seed=123) of CKA-only 20% GRPO training, testing if CKA-only advantage holds across seeds to strengthen C1 claim | created: 2026-05-19T09:27:11Z, updated: 2026-05-19T09:28:28Z |\n\n**Note**: The registry does not have structured `server` or `gpu` fields -- these are only mentioned in free-text hypothesis/notes. Neither RUNNING experiment has `spec` data.\n\nAdditionally active (not yet running):\n- **ALLOCATED (2)**: `eval_humaneval_grpo_cka_only_20_1p5b_2048`, `eval_humaneval_sft_cka_only_20_1p5b_2048` (1.5B cross-scale HumanEval evals)\n- **QUEUED (1)**: `eval_humaneval_sft_standard_20_1p5b_2048`\n- **ANALYZING (3)**: `eval_math500_sft_standard_20_2048_v2`, `eval_gsm8k_sft_standard_20_1p5b`, `eval_math500_grpo_cka_only_20_2048`\n- **PREPARING (29)**: Mix of 1.5B HumanEval evals, unstructured pruning GRPO, scoring ablations, and older experiments that never progressed\n\n## 4. Experiments Completed Today (2026-05-19) — 17 DONE\n\n### Successful (with metrics)\n\n| exp_id | Metrics | Conclusion (first 100 chars) |\n|--------|---------|------------------------------|\n| `eval_math500_dense_2048` | acc=53.0%, 265/500, stderr=0.0223 | success |\n| `eval_math500_sft_rasp_20_2048` | acc=22.6%, 113/500, stderr=0.0187 | success |\n| `eval_math500_grpo_standard_20_fair_v2` | acc=26.4%, 132/500, stderr=0.0197 | success |\n| `eval_gsm8k_sft_rasp_20_1p5b` | acc=26.91%, 355/1319, stderr=0.0122, grpo_delta_pp=-0.75 | success |\n| `inference_bench_clean_v2` | dense=72.02 tps, CKA-only=58.28 tps, Standard=58.25 tps, 19.1% param reduction, first_token: 16.35ms pruned vs 20.05ms dense | success |\n| `eval_gsm8k_grpo_unstructured_20` | acc=87.64%, 1156/1319, stderr=0.0091 | success |\n| `eval_humaneval_grpo_cka_only_20_2048` | pass@1=20.12%, 33/164, stderr=0.0313 | success |\n| `eval_humaneval_grpo_rasp_20_fair_2048` | pass@1=10.98%, 18/164, stderr=0.0244 | success |\n| `grpo_standard_20_fair` | 100 steps, peak_reward=0.081 at step 4 | success |\n\n### Negative (experiment ran but hypothesis not confirmed)\n\n| exp_id | Metrics | Conclusion |\n|--------|---------|------------|\n| `eval_gsm8k_grpo_cka_only_20_extended_300` | acc=64.37% (same as 100-step), 849/1319 | negative — extending to 300 steps did not improve beyond 100-step baseline |\n| `eval_gsm8k_grpo_standard_20_extended_300` | acc=59.29%, 782/1319 | negative — extended training did not help Standard either |\n\n### Failed (errors or invalid results)\n\n| exp_id | Issue |\n|--------|-------|\n| `eval_humaneval_grpo_standard_20_fair_2048` | Wrong model path (grpo_standard_20_fair vs grpo_stage2_standard_20_fair) |\n| `eval_humaneval_grpo_standard_20_fair_2048_v2` | Failed (no metrics recorded) |\n| `eval_humaneval_grpo_standard_20_fair_2048_v3` | Failed (no metrics recorded) |\n| `eval_humaneval_sft_cka_only_20_2048` | pass@1=0%, 0/164 — SFT CKA-only has no code generation |\n| `eval_humaneval_sft_cka_only_20_2048_v2` | Failed (PATH bug fix retry, no metrics recorded) |\n| `eval_gsm8k_grpo_standard_20_fair_v2` | Failed (no metrics recorded) |\n\n## 5. GPU Assignment Anomalies\n\n**No out-of-bounds server references found.** All experiments reference `westb-23072` and/or `westd-29022`, which match the project configuration.\n\nCUDA device references found in experiment text:\n- `cuda:0` — used on westb and westd (normal)\n- `cuda:1` — used on westd (normal, per notes about dual-GPU training)\n- `cuda:2` — referenced in `eval_math500_sft_cka_only_20_v4_restart` (had cuda:2 conflict, was restarted) and `eval_humaneval_sft_standard_20_2048` (queued for westd cuda:2)\n\n**Notable concern**: `cuda:2` references could be anomalous depending on the project's `execution.gpu_ids` whitelist. The registry itself does not store the whitelist, but `eval_math500_sft_cka_only_20_v4_restart` explicitly mentions a \"cuda:2 conflict\" that required restart, suggesting cuda:2 may have been outside expected allocation. Without seeing the `constraints.yaml` or project config `gpu_ids`, this cannot be definitively flagged but warrants verification.\n\nOne AutoDL reference exists in `eval_sft_rasp_20_westd_n100_v2` (mentioning `autodl-tmp` directory path fix), but this is just a directory name on the westd server, not a separate server."
+      }
+    ],
+    "totalDurationMs": 168953,
+    "totalTokens": 51602,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1033,
+      "cache_read_input_tokens": 48685,
+      "output_tokens": 1883,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1033
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1883,
+          "cache_read_input_tokens": 48685,
+          "cache_creation_input_tokens": 1033,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1033,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 1,
+      "searchCount": 0,
+      "bashCount": 8,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "2421530f-2329-4343-8c7d-18c6e2163d96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-19T12:48:04.884Z_
+
+```json
+{
+  "parentUuid": "5906fe70-9cf6-4005-b305-3cc2a912763d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6065bef2-8415-4c4d-bc48-2f193ccf2600",
+  "timestamp": "2026-05-19T12:48:04.884Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-19T12:49:21.844Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me analyze the ROADMAP update (D075) systematically:
+
+Key facts from the data:
+
+**ROADMAP Overview:**
+- D075: Full expansion plan, user gives full backing for EMNLP Main push
+- Deadline: ARR May 25, 2026 — that's **6 days** from today (May 19)
+- 6 GPU × 5 days = 720 GPU-hours, ~100h used, ~620h remaining
+- 4 Waves planned across 5 days
+
+
+- Coverage is at 30% overall (9/30), with C2 performing best at 35.7% and C3 still untouched
+- Two experiments are currently running: one standard evaluation on westd and another multi-seed validation at step 60/100
+- Wave 1 kicks off today with multiple experiments distributed across westd and westb GPUs
+- Looking ahead, Wave 2 tomorrow focuses on ShortGPT baseline and MBPP evaluation, Wave 3 adds cross-architecture testing and pruning analysis, and Wave 4 is reserved for paper writing and submission
+- With 620 GPU hours remaining across 6 GPUs over 5 days, the budget looks tight but workable for the planned experiments
+- The low coverage percentage is less concerning since many "planned" items predate the project pivot—the core evidence around gradient recovery and the main experiments is largely done
+
+Now I'm checking some discrepancies in the experiment tracking: the HumanEval eval showing as RUNNING might be mislabeled, the ShortGPT baseline timeline is aggressive for a single day, and the Qwen2.5-Math cross-architecture test introduces new risk. I also need to verify the CKA-only training progress on the server and resolve whether the SFT HumanEval results are actually valid or still affected by that PATH bug.
+
+There's a contradiction I'm noticing between what the ROADMAP matrix shows for CKA-only SFT performance (20.12%) and what the paper framing notes as unverified (0%), so I need to trace through which result is actually correct and whether the re-run resolved the original issue. I'm noticing a major discrepancy — the experiment log shows the SFT CKA-only HumanEval v2 test failed with no metrics recorded, yet the roadmap claims it achieved 20.12%, matching GRPO's result exactly. That's either a data sync issue or something went wrong with how the results were reported, especially since SFT was previously at 0% on this benchmark. the paper_framing.md has outdated documentation about the PATH bug result, marking it as "0% UNVERIFIED", but the ROADMAP shows the corrected v2 run achieved 20.12% — so the documentation hasn't caught up with the actual fixed results yet.
+
+I need to verify whether this v2 result is properly recorded in the registry, since the agent mentioned the retry had "no metrics recorded" despite D073 citing it as evidence for the GRPO delta calculation.
+
+There's also a broader alignment problem between the ROADMAP and the actual experiment plan—several Wave 2-3 experiments like ShortGPT baseline, MBPP evaluation, and gradient flow analysis don't appear in the documented plan, though a few might map to existing plan IDs. I should check the GPU resource allocation to see what's actually being executed, and I'm noticing the project narrative has shifted from RASP scoring as the core method to positioning CKA-only as the primary approach.
+
+Looking at the coverage gaps, Claim 3 appears to have zero experimental support, though it may have been deprioritized in the paper framing. The statistical significance is also concerning—at the 7B scale, neither the CKA-only versus RASP comparison nor the standard versus RASP comparison reaches significance, which undermines the gradient narrative. With only 6 days until the EMNLP deadline, Wave 1 should wrap up today with 5-6 short evaluations, and Wave 2 starting tomorrow includes the ShortGPT baseline, but I need to assess whether the timeline is actually feasible.
+
+Let me check the GPU utilization to see what's currently running, then flag the key inconsistencies—particularly the mismatch between what ROADMAP reports for the SFT CKA-only HumanEval v2 result and what's still showing in paper_framing.
+
+md, plus the fact that we're only at 30% coverage on planned experiments with several new additions from recent work not yet formalized in the experiment plan. Claim 3 also has zero coverage, which is concerning if it's staying in the paper.
+
+The statistical picture is mixed — the 7B results show a p-value of 0.117 for CKA-only versus RASP, which isn't significant, so I need to be honest about that in the paper while leading with the stronger 1.5B findings where all pairwise comparisons are highly significant. GPU-wise we're in decent shape with about 620 hours remaining and only 100-150 hours needed for the remaining waves, but introducing Qwen2.5-Math-7B as a cross-architecture test this late is risky since it requires new pruning infrastructure and could muddy the narrative if results diverge from the main findings.
+
+Now I'm checking the server status and verifying that the SFT CKA-only HumanEval v2 result is actually running as expected.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6065bef2-8415-4c4d-bc48-2f193ccf2600",
+  "isSidechain": false,
+  "requestId": "req_011CbBxFdfhvo2PW313Lr9gz",
+  "type": "assistant",
+  "uuid": "e5228bed-006e-43c3-91e1-dcd88ebc93de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUZvvAotPxcaa7etAArsmE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28931,
+      "cache_read_input_tokens": 49214,
+      "output_tokens": 3648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3648,
+          "cache_read_input_tokens": 49214,
+          "cache_creation_input_tokens": 28931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-19T12:49:22.010Z_
+
+正在核实 GPU 状态和几个关键数据点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5228bed-006e-43c3-91e1-dcd88ebc93de",
+  "isSidechain": false,
+  "requestId": "req_011CbBxFdfhvo2PW313Lr9gz",
+  "type": "assistant",
+  "uuid": "f826356b-5418-4dd9-b26e-0d8c3e1f33c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUZvvAotPxcaa7etAArsmE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28931,
+      "cache_read_input_tokens": 49214,
+      "output_tokens": 3648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3648,
+          "cache_read_input_tokens": 49214,
+          "cache_creation_input_tokens": 28931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T12:49:23.106Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ntTgMReMMvipHNrSpTJjn`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,utilization.memory,memory.used,memory.total --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f826356b-5418-4dd9-b26e-0d8c3e1f33c2",
+  "isSidechain": false,
+  "requestId": "req_011CbBxFdfhvo2PW313Lr9gz",
+  "type": "assistant",
+  "uuid": "299d81eb-af58-4c3e-b0e5-573e838dc406",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUZvvAotPxcaa7etAArsmE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28931,
+      "cache_read_input_tokens": 49214,
+      "output_tokens": 3648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3648,
+          "cache_read_input_tokens": 49214,
+          "cache_creation_input_tokens": 28931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T12:49:23.940Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VAmMRByQctS47fY7ypgccu`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,utilization.memory,memory.used,memory.total --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "299d81eb-af58-4c3e-b0e5-573e838dc406",
+  "isSidechain": false,
+  "requestId": "req_011CbBxFdfhvo2PW313Lr9gz",
+  "type": "assistant",
+  "uuid": "f88a3be7-a8b6-4c57-b392-a21dd77af5db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUZvvAotPxcaa7etAArsmE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28931,
+      "cache_read_input_tokens": 49214,
+      "output_tokens": 3648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3648,
+          "cache_read_input_tokens": 49214,
+          "cache_creation_input_tokens": 28931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T12:49:24.333Z_
+
+<details><summary>↩ Tool result · `toolu_019ntTgMReMMvipHNrSpTJjn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 %, 0 MiB, 97887 MiB\\n1, 89 %, 17 %, 4225 MiB, 97887 MiB\\n2, 93 %, 24 %, 4223 MiB, 97887 MiB\\n3, 98 %, 26 %, 17811 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "299d81eb-af58-4c3e-b0e5-573e838dc406",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "3aa03a74-cd39-4207-b878-2412015dcf26",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 %, 0 MiB, 97887 MiB\\\\n1, 89 %, 17 %, 4225 MiB, 97887 MiB\\\\n2, 93 %, 24 %, 4223 MiB, 97887 MiB\\\\n3, 98 %, 26 %, 17811 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 %, 0 MiB, 97887 MiB\\n1, 89 %, 17 %, 4225 MiB, 97887 MiB\\n2, 93 %, 24 %, 4223 MiB, 97887 MiB\\n3, 98 %, 26 %, 17811 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  },
+  "sourceToolAssistantUUID": "299d81eb-af58-4c3e-b0e5-573e838dc406",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T12:49:24.897Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01LyWSzeB8g4yc1QVTVR2A5W`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "file": "constraints.yaml",
+  "max_chars": 5000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3aa03a74-cd39-4207-b878-2412015dcf26",
+  "isSidechain": false,
+  "requestId": "req_011CbBxFdfhvo2PW313Lr9gz",
+  "type": "assistant",
+  "uuid": "8dc913c3-a697-49d9-8296-0b549e88c467",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUZvvAotPxcaa7etAArsmE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28931,
+      "cache_read_input_tokens": 49214,
+      "output_tokens": 3648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3648,
+          "cache_read_input_tokens": 49214,
+          "cache_creation_input_tokens": 28931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T12:49:26.114Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015TiLK2ihfkCHsw2PpuDbQX`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": 5,
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "eval_humaneval_sft_cka_only_20_2048_v2"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8dc913c3-a697-49d9-8296-0b549e88c467",
+  "isSidechain": false,
+  "requestId": "req_011CbBxFdfhvo2PW313Lr9gz",
+  "type": "assistant",
+  "uuid": "b61b442d-2a8b-49e7-ab6f-6d2d1d4c800e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUZvvAotPxcaa7etAArsmE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28931,
+      "cache_read_input_tokens": 49214,
+      "output_tokens": 3648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3648,
+          "cache_read_input_tokens": 49214,
+          "cache_creation_input_tokens": 28931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。",
+  "leafUuid": "b61b442d-2a8b-49e7-ab6f-6d2d1d4c800e",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T12:49:28.486Z_
+
+<details><summary>↩ Tool result · `toolu_01VAmMRByQctS47fY7ypgccu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 63 %, 13 %, 4195 MiB, 97887 MiB\\n1, 100 %, 41 %, 67949 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f88a3be7-a8b6-4c57-b392-a21dd77af5db",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "44e7c70f-9709-4999-8c3f-e394cdf34e7f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 63 %, 13 %, 4195 MiB, 97887 MiB\\\\n1, 100 %, 41 %, 67949 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.14}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 63 %, 13 %, 4195 MiB, 97887 MiB\\n1, 100 %, 41 %, 67949 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.14}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f88a3be7-a8b6-4c57-b392-a21dd77af5db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T12:49:28.504Z_
+
+<details><summary>↩ Tool result · `toolu_01LyWSzeB8g4yc1QVTVR2A5W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/constraints.yaml\", \"content\": \"_next_id: 6\\nconstraints:\\n- id: C002\\n  added: 2026-05-14 15:19 UTC\\n  summary: 所有模型/checkpoint/大文件只写 /root/autodl-tmp/recovery_aware_struct_prune/，禁止写根分区（根分区仅\\n    30GB）\\n  scope: worker\\n  reason: 根分区 100% 满导致 v4 剪枝失败。AutoDL 根分区只有 30GB，模型文件 10GB+ 必须写数据盘。\\n  decision_id: D005\\n- id: C003\\n  added: 2026-05-15 06:31 UTC\\n  summary: westd-11672 GPU 分配：cuda:0 和 cuda:1 均属本项目独占，可用于 α ablation、baseline 实验等。与\\n    westb-23072 (C001) 同等管理。\\n  scope: all\\n  reason: Manager 新分配 westd-11672 (2×RTX PRO 6000) 给本项目，需明确 GPU 归属边界供 Reviewer 审查。\\n- id: C005\\n  added: 2026-05-18 13:00 UTC\\n  summary: GPU 白名单：westb-23072 cuda:0/1 + westd-29022 cuda:0/1/2/3（共 6 张）。westd-11672\\n    已宕机，由 westd-29022（克隆机）替代。严禁在白名单外的 GPU 上启动实验。\\n  scope: all\\n  reason: Manager 分配 westd-29022 替代宕机的 westd-11672。4 GPU 白名单转移到新服务器。\\n  decision_id: D061\\n\", \"total_chars\": 799, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8dc913c3-a697-49d9-8296-0b549e88c467",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "a6b5402e-8520-4104-b13f-694e23ab306a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/constraints.yaml\\\", \\\"content\\\": \\\"_next_id: 6\\\\nconstraints:\\\\n- id: C002\\\\n  added: 2026-05-14 15:19 UTC\\\\n  summary: 所有模型/checkpoint/大文件只写 /root/autodl-tmp/recovery_aware_struct_prune/，禁止写根分区（根分区仅\\\\n    30GB）\\\\n  scope: worker\\\\n  reason: 根分区 100% 满导致 v4 剪枝失败。AutoDL 根分区只有 30GB，模型文件 10GB+ 必须写数据盘。\\\\n  decision_id: D005\\\\n- id: C003\\\\n  added: 2026-05-15 06:31 UTC\\\\n  summary: westd-11672 GPU 分配：cuda:0 和 cuda:1 均属本项目独占，可用于 α ablation、baseline 实验等。与\\\\n    westb-23072 (C001) 同等管理。\\\\n  scope: all\\\\n  reason: Manager 新分配 westd-11672 (2×RTX PRO 6000) 给本项目，需明确 GPU 归属边界供 Reviewer 审查。\\\\n- id: C005\\\\n  added: 2026-05-18 13:00 UTC\\\\n  summary: GPU 白名单：westb-23072 cuda:0/1 + westd-29022 cuda:0/1/2/3（共 6 张）。westd-11672\\\\n    已宕机，由 westd-29022（克隆机）替代。严禁在白名单外的 GPU 上启动实验。\\\\n  scope: all\\\\n  reason: Manager 分配 westd-29022 替代宕机的 westd-11672。4 GPU 白名单转移到新服务器。\\\\n  decision_id: D061\\\\n\\\", \\\"total_chars\\\": 799, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/constraints.yaml\", \"content\": \"_next_id: 6\\nconstraints:\\n- id: C002\\n  added: 2026-05-14 15:19 UTC\\n  summary: 所有模型/checkpoint/大文件只写 /root/autodl-tmp/recovery_aware_struct_prune/，禁止写根分区（根分区仅\\n    30GB）\\n  scope: worker\\n  reason: 根分区 100% 满导致 v4 剪枝失败。AutoDL 根分区只有 30GB，模型文件 10GB+ 必须写数据盘。\\n  decision_id: D005\\n- id: C003\\n  added: 2026-05-15 06:31 UTC\\n  summary: westd-11672 GPU 分配：cuda:0 和 cuda:1 均属本项目独占，可用于 α ablation、baseline 实验等。与\\n    westb-23072 (C001) 同等管理。\\n  scope: all\\n  reason: Manager 新分配 westd-11672 (2×RTX PRO 6000) 给本项目，需明确 GPU 归属边界供 Reviewer 审查。\\n- id: C005\\n  added: 2026-05-18 13:00 UTC\\n  summary: GPU 白名单：westb-23072 cuda:0/1 + westd-29022 cuda:0/1/2/3（共 6 张）。westd-11672\\n    已宕机，由 westd-29022（克隆机）替代。严禁在白名单外的 GPU 上启动实验。\\n  scope: all\\n  reason: Manager 分配 westd-29022 替代宕机的 westd-11672。4 GPU 白名单转移到新服务器。\\n  decision_id: D061\\n\", \"total_chars\": 799, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8dc913c3-a697-49d9-8296-0b549e88c467",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T12:49:29.670Z_
+
+<details><summary>↩ Tool result · `toolu_015TiLK2ihfkCHsw2PpuDbQX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1457}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b61b442d-2a8b-49e7-ab6f-6d2d1d4c800e",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "67dfda6a-25f6-4760-91ce-b7cef731aa1a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1457}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1457}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b61b442d-2a8b-49e7-ab6f-6d2d1d4c800e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-19T12:49:52.333Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting findings:
+
+1. **GPU status**:
+   - **westd-29022**: cuda:0 = 0% GPU, 0 MiB used (IDLE!), cuda:1-3 active
+   - **westb-23072**: cuda:0 = 63%, 4195 MiB; cuda:1 = 100%, 67949 MiB
+
+2. **GPU whitelist (C005)**: westb cuda:0/1 + westd cuda:0/1/2/3 — 6 GPUs total.
+
+3. **westd cuda:0 is completely idle** — 0% utilization, 0 MiB memory. 
+
+According to the ROADMAP, westd cuda:0 is idle because it's waiting for the next job to start (GSM8K RASP fair → SFT RASP HumanEval v2), not because it's wasted. But when I look up the eval_humaneval_sft_cka_only_20_2048_v2 experiment in the registry, it doesn't exist—yet the ROADMAP claims it achieved 20.12% (33/164) with GRPO. There's a clear inconsistency here between what the registry shows and what the ROADMAP documents.
+
+Let me try searching with different filter combinations for humaneval, sft, and cka experiments to see if the data is stored under a different ID. The agent analysis marked this experiment as done/failed with no metrics, but my exact registry query returned zero results, which doesn't add up. Looking at the ROADMAP more carefully, it explicitly states the CKA-only SFT result at 20.12% with D073 confirmed, and the HumanEval matrix also shows this same percentage—so the data exists somewhere, just not where I'm querying for it.
+
+But paper_framing.md contradicts this, marking the same experiment as invalid with a path bug and 0% unverified, while D073 treats 20.12% as the actual SFT result. If D073 is using incorrect data, then both D073 and D074 are built on a faulty foundation, which would undermine the entire HumanEval narrative. I need to track down the actual experiment data with the correct ID format and also check what's currently running on the GPUs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "67dfda6a-25f6-4760-91ce-b7cef731aa1a",
+  "isSidechain": false,
+  "requestId": "req_011CbBxMtHhLNtVTdNNEKJ1K",
+  "type": "assistant",
+  "uuid": "b70ce4c7-435f-43e6-8ef3-02b53b338b1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5g6fE3vtUqQxxCLVGppoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4739,
+      "cache_read_input_tokens": 78145,
+      "output_tokens": 1078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1078,
+          "cache_read_input_tokens": 78145,
+          "cache_creation_input_tokens": 4739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-19T12:49:52.334Z_
+
+需要核实 HumanEval SFT CKA-only v2 数据和当前进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b70ce4c7-435f-43e6-8ef3-02b53b338b1d",
+  "isSidechain": false,
+  "requestId": "req_011CbBxMtHhLNtVTdNNEKJ1K",
+  "type": "assistant",
+  "uuid": "85dbe751-776e-427f-998a-26bf501d861a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5g6fE3vtUqQxxCLVGppoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4739,
+      "cache_read_input_tokens": 78145,
+      "output_tokens": 1078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1078,
+          "cache_read_input_tokens": 78145,
+          "cache_creation_input_tokens": 4739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-19T12:49:52.890Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PoTTKLDmHb8S84FKcVDpgw`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85dbe751-776e-427f-998a-26bf501d861a",
+  "isSidechain": false,
+  "requestId": "req_011CbBxMtHhLNtVTdNNEKJ1K",
+  "type": "assistant",
+  "uuid": "756a24e6-63ed-495a-a800-820044379d45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5g6fE3vtUqQxxCLVGppoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4739,
+      "cache_read_input_tokens": 78145,
+      "output_tokens": 1078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1078,
+          "cache_read_input_tokens": 78145,
+          "cache_creation_input_tokens": 4739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-19T12:49:53.430Z_
+
+<details><summary>↩ Tool result · `toolu_01PoTTKLDmHb8S84FKcVDpgw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"95945, GPU-ce0f2777-60eb-9e2d-8a71-b291f0fd9862, 4216 MiB, /root/miniconda3/bin/python\\n96023, GPU-fd1974e9-1073-6c9d-ef0e-b4517a1bd1ac, 4214 MiB, /root/miniconda3/bin/python\\n86171, GPU-893d671d-d57f-55be-2df8-686a356756ee, 17802 MiB, /root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "756a24e6-63ed-495a-a800-820044379d45",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "f8d0d55a-9509-44b3-9ebb-1908446612b8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"95945, GPU-ce0f2777-60eb-9e2d-8a71-b291f0fd9862, 4216 MiB, /root/miniconda3/bin/python\\\\n96023, GPU-fd1974e9-1073-6c9d-ef0e-b4517a1bd1ac, 4214 MiB, /root/miniconda3/bin/python\\\\n86171, GPU-893d671d-d57f-55be-2df8-686a356756ee, 17802 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"95945, GPU-ce0f2777-60eb-9e2d-8a71-b291f0fd9862, 4216 MiB, /root/miniconda3/bin/python\\n96023, GPU-fd1974e9-1073-6c9d-ef0e-b4517a1bd1ac, 4214 MiB, /root/miniconda3/bin/python\\n86171, GPU-893d671d-d57f-55be-2df8-686a356756ee, 17802 MiB, /root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "756a24e6-63ed-495a-a800-820044379d45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-19T12:49:53.840Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V2AWXAQGaGsa1xmgtvEJWf`</summary>
+
+```json
+{
+  "server": "westb-23072",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8d0d55a-9509-44b3-9ebb-1908446612b8",
+  "isSidechain": false,
+  "requestId": "req_011CbBxMtHhLNtVTdNNEKJ1K",
+  "type": "assistant",
+  "uuid": "f1772986-5d6a-4790-810f-9c3f86787d4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5g6fE3vtUqQxxCLVGppoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4739,
+      "cache_read_input_tokens": 78145,
+      "output_tokens": 1078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1078,
+          "cache_read_input_tokens": 78145,
+          "cache_creation_input_tokens": 4739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T12:49:54.385Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LbkV1YcpcAkmbJfhS7at3r`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": 10,
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "status": "RUNNING"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1772986-5d6a-4790-810f-9c3f86787d4f",
+  "isSidechain": false,
+  "requestId": "req_011CbBxMtHhLNtVTdNNEKJ1K",
+  "type": "assistant",
+  "uuid": "94d2a5ae-2c4c-4216-821c-da1b8ea95cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5g6fE3vtUqQxxCLVGppoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4739,
+      "cache_read_input_tokens": 78145,
+      "output_tokens": 1078,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1078,
+          "cache_read_input_tokens": 78145,
+          "cache_creation_input_tokens": 4739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T12:49:55.442Z_
+
+<details><summary>↩ Tool result · `toolu_01V2AWXAQGaGsa1xmgtvEJWf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"890564, GPU-549a7198-85c3-248c-9f75-5b8d5ff146f4, 4186 MiB, /root/miniconda3/bin/python\\n857962, GPU-7b195135-ddad-2206-ed75-0d99e677e086, 67940 MiB, python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1772986-5d6a-4790-810f-9c3f86787d4f",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "40053212-b75f-4278-9723-9ae77a614a00",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"890564, GPU-549a7198-85c3-248c-9f75-5b8d5ff146f4, 4186 MiB, /root/miniconda3/bin/python\\\\n857962, GPU-7b195135-ddad-2206-ed75-0d99e677e086, 67940 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"890564, GPU-549a7198-85c3-248c-9f75-5b8d5ff146f4, 4186 MiB, /root/miniconda3/bin/python\\n857962, GPU-7b195135-ddad-2206-ed75-0d99e677e086, 67940 MiB, python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f1772986-5d6a-4790-810f-9c3f86787d4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T12:49:56.046Z_
+
+<details><summary>↩ Tool result · `toolu_01LbkV1YcpcAkmbJfhS7at3r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_humaneval_sft_standard_20_1p5b_2048\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:35:45.876Z\", \"updated_at\": \"2026-05-19T12:49:52.946Z\", \"hypothesis\": \"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"890564\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\", \"submitted_at\": \"2026-05-19T12:23:31.889Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\", \"eval_data\": \"HumanEval (164 problems, pass@1, max_new_tokens=2048)\", \"data_path\": \"HumanEval\", \"data_count\": 164, \"model_name\": \"sft_standard_20_1p5b\", \"seed\": 42}}, \"eval_gsm8k_grpo_rasp_20_fair\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T12:47:37.399Z\", \"updated_at\": \"2026-05-19T12:49:41.897Z\", \"hypothesis\": \"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\", \"parent\": \"eval_gsm8k_grpo_standard_20_fair_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\", \"server\": \"westd-29022\", \"data_path\": \"GSM8K\", \"data_count\": 1319, \"model_name\": \"grpo_stage2_rasp_20_fair\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\", \"eval_data\": \"GSM8K (1319 samples)\"}}, \"eval_humaneval_sft_standard_20_2048_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T10:05:36.497Z\", \"updated_at\": \"2026-05-19T10:06:02.211Z\", \"hypothesis\": \"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same model as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~10% interim) and SFT CKA-only (~24% interim).\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_2048_v3.json'\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:3\"], \"pid\": \"86171\", \"data_path\": \"HumanEval\", \"data_count\": 164, \"model_name\": \"sft_standard_20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\", \"eval_data\": \"HumanEval (164 problems, pass@1, max_new_tokens=2048)\"}}, \"grpo_cka_only_20_seed123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:27:11.294Z\", \"updated_at\": \"2026-05-19T09:28:28.046Z\", \"hypothesis\": \"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/grpo_train.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123 --num_train_steps 100 --seed 123'\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"pid\": \"857962\", \"data_path\": \"gsm8k\", \"data_count\": 7473, \"model_name\": \"pruned_cka_only_20\", \"seed\": 123}}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5864}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94d2a5ae-2c4c-4216-821c-da1b8ea95cef",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "0f43377c-04d8-4972-bec3-6b69bc1a5f2f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_humaneval_sft_standard_20_1p5b_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:35:45.876Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:49:52.946Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"890564\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T12:23:31.889Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"HumanEval (164 problems, pass@1, max_new_tokens=2048)\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"seed\\\": 42}}, \\\"eval_gsm8k_grpo_rasp_20_fair\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T12:47:37.399Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:49:41.897Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\\\", \\\"parent\\\": \\\"eval_gsm8k_grpo_standard_20_fair_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"grpo_stage2_rasp_20_fair\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\\\", \\\"eval_data\\\": \\\"GSM8K (1319 samples)\\\"}}, \\\"eval_humaneval_sft_standard_20_2048_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T10:05:36.497Z\\\", \\\"updated_at\\\": \\\"2026-05-19T10:06:02.211Z\\\", \\\"hypothesis\\\": \\\"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same model as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~10% interim) and SFT CKA-only (~24% interim).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_2048_v3.json'\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"86171\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"sft_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"eval_data\\\": \\\"HumanEval (164 problems, pass@1, max_new_tokens=2048)\\\"}}, \\\"grpo_cka_only_20_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T09:27:11.294Z\\\", \\\"updated_at\\\": \\\"2026-05-19T09:28:28.046Z\\\", \\\"hypothesis\\\": \\\"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/grpo_train.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123 --num_train_steps 100 --seed 123'\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"857962\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_cka_only_20\\\", \\\"seed\\\": 123}}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5864}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_humaneval_sft_standard_20_1p5b_2048\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:35:45.876Z\", \"updated_at\": \"2026-05-19T12:49:52.946Z\", \"hypothesis\": \"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"890564\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\", \"submitted_at\": \"2026-05-19T12:23:31.889Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\", \"eval_data\": \"HumanEval (164 problems, pass@1, max_new_tokens=2048)\", \"data_path\": \"HumanEval\", \"data_count\": 164, \"model_name\": \"sft_standard_20_1p5b\", \"seed\": 42}}, \"eval_gsm8k_grpo_rasp_20_fair\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T12:47:37.399Z\", \"updated_at\": \"2026-05-19T12:49:41.897Z\", \"hypothesis\": \"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\", \"parent\": \"eval_gsm8k_grpo_standard_20_fair_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\", \"server\": \"westd-29022\", \"data_path\": \"GSM8K\", \"data_count\": 1319, \"model_name\": \"grpo_stage2_rasp_20_fair\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\", \"eval_data\": \"GSM8K (1319 samples)\"}}, \"eval_humaneval_sft_standard_20_2048_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T10:05:36.497Z\", \"updated_at\": \"2026-05-19T10:06:02.211Z\", \"hypothesis\": \"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same model as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~10% interim) and SFT CKA-only (~24% interim).\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_2048_v3.json'\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:3\"], \"pid\": \"86171\", \"data_path\": \"HumanEval\", \"data_count\": 164, \"model_name\": \"sft_standard_20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\", \"eval_data\": \"HumanEval (164 problems, pass@1, max_new_tokens=2048)\"}}, \"grpo_cka_only_20_seed123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:27:11.294Z\", \"updated_at\": \"2026-05-19T09:28:28.046Z\", \"hypothesis\": \"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/grpo_train.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123 --num_train_steps 100 --seed 123'\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"pid\": \"857962\", \"data_path\": \"gsm8k\", \"data_count\": 7473, \"model_name\": \"pruned_cka_only_20\", \"seed\": 123}}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5864}}"
+    }
+  },
+  "sourceToolAssistantUUID": "94d2a5ae-2c4c-4216-821c-da1b8ea95cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。",
+  "leafUuid": "0f43377c-04d8-4972-bec3-6b69bc1a5f2f",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-19T12:50:24.367Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clearer picture. There are actually 4 RUNNING experiments, not 2 as the agent earlier found:
+
+1. `eval_humaneval_sft_standard_20_1p5b_2048` — westb cuda:0, PID 890564 (1.5B SFT Standard HumanEval)
+2. `eval_gsm8k_grpo_rasp_20_fair` — westd cuda:0, GSM8K eval for GRPO RASP fair v5
+
+
+3. `eval_humaneval_sft_standard_20_2048_v3` — westd cuda:3, PID 86171 (SFT Standard HumanEval)
+4. `grpo_cka_only_20_seed123` — westb cuda:1, PID 857962 (GRPO seed 123)
+
+But there's a discrepancy on westd — nvidia-smi shows cuda:0 idle at 0% with no memory usage, yet the GSM8K eval should be running there. Meanwhile cuda:1 is at 89% utilization with 4225 MiB allocated.
+
+Looking at the GPU metrics more closely, cuda:2 and cuda:3 are heavily loaded at 93% and 98% respectively, with cuda:3 matching the HumanEval process. The GSM8K spec was just created with CUDA_VISIBLE_DEVICES=0 in the command but hasn't actually been submitted yet — there's no PID or GPU assignment recorded, which explains why cuda:0 appears completely idle despite the configuration. I'm seeing the same whitelist compliance across both machines, but those two mystery processes on westd are concerning—I need to figure out what experiments they're actually running. The roadmap shows westd cuda:0 should be transitioning to a new HumanEval task, but the details for cuda:1 seem cut off.
+
+Looking at the registry, I can see the CKA-only variants are allocated but the running processes don't quite match what's registered—the cuda:1 and cuda:2 processes on westd are likely those 1.5B HumanEval evaluations mentioned in the roadmap, even though they're not showing up clearly in the registry yet.
+
+I need to dig into what those PIDs are actually executing and track down the SFT CKA-only HumanEval v2 result that supposedly hit 20.12%—the registry didn't return anything for that experiment ID, so I'll need to search differently. Let me focus on verifying the processes running on cuda:1 and cuda:2 and pulling the actual HumanEval performance data for my audit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f43377c-04d8-4972-bec3-6b69bc1a5f2f",
+  "isSidechain": false,
+  "requestId": "req_011CbBxPq23kfj63W4a3nDug",
+  "type": "assistant",
+  "uuid": "241a6d79-6d5d-4a9a-8f8c-037601d26cd2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfXgQLsx248m9SGofjtMTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1698,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-19T12:50:25.250Z_
+
+发现 westd cuda:1/2 有未识别进程，且 eval_gsm8k_grpo_rasp_20_fair 注册了但 cuda:0 空闲。进一步核实。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "241a6d79-6d5d-4a9a-8f8c-037601d26cd2",
+  "isSidechain": false,
+  "requestId": "req_011CbBxPq23kfj63W4a3nDug",
+  "type": "assistant",
+  "uuid": "39def73c-f1a5-48b7-9138-ebe68b23993c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfXgQLsx248m9SGofjtMTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1698,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-19T12:50:26.202Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HzDmhoiPWZdtqM21oqkZVg`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "ls -la /proc/95945/cmdline /proc/96023/cmdline 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39def73c-f1a5-48b7-9138-ebe68b23993c",
+  "isSidechain": false,
+  "requestId": "req_011CbBxPq23kfj63W4a3nDug",
+  "type": "assistant",
+  "uuid": "9ab8d897-de9f-41da-b249-34e64a37fe8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfXgQLsx248m9SGofjtMTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1698,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T12:50:26.224Z_
+
+<details><summary>↩ Tool result · `toolu_01HzDmhoiPWZdtqM21oqkZVg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9ab8d897-de9f-41da-b249-34e64a37fe8d",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "7db5a77a-cf44-47e8-ae0a-908d934dc18f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9ab8d897-de9f-41da-b249-34e64a37fe8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-19T12:50:26.676Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RWgtBGRNKopnoGTdW3ZBED`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cat /proc/95945/cmdline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7db5a77a-cf44-47e8-ae0a-908d934dc18f",
+  "isSidechain": false,
+  "requestId": "req_011CbBxPq23kfj63W4a3nDug",
+  "type": "assistant",
+  "uuid": "a66f8605-7a12-411e-a733-0a99524aa72b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfXgQLsx248m9SGofjtMTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1698,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-19T12:50:27.128Z_
+
+<details><summary>↩ Tool result · `toolu_01RWgtBGRNKopnoGTdW3ZBED`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\u0000src/eval_humaneval.py\\u0000--model_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\u0000--max_new_tokens\\u00002048\\u0000--output_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_1p5b_2048.json\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a66f8605-7a12-411e-a733-0a99524aa72b",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "2fc2afa2-f766-4603-92ae-f1d75e5608e1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000src/eval_humaneval.py\\\\u0000--model_path\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\\\u0000--max_new_tokens\\\\u00002048\\\\u0000--output_path\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_1p5b_2048.json\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\u0000src/eval_humaneval.py\\u0000--model_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\u0000--max_new_tokens\\u00002048\\u0000--output_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_1p5b_2048.json\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a66f8605-7a12-411e-a733-0a99524aa72b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-19T12:50:27.148Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QPBuufqJuFAePFVwqvVMWH`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cat /proc/96023/cmdline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fc2afa2-f766-4603-92ae-f1d75e5608e1",
+  "isSidechain": false,
+  "requestId": "req_011CbBxPq23kfj63W4a3nDug",
+  "type": "assistant",
+  "uuid": "762c145f-3c7d-4e54-990a-cf15d1ecaf28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfXgQLsx248m9SGofjtMTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1698,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-19T12:50:27.659Z_
+
+<details><summary>↩ Tool result · `toolu_01QPBuufqJuFAePFVwqvVMWH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\u0000src/eval_humaneval.py\\u0000--model_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b\\u0000--max_new_tokens\\u00002048\\u0000--output_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "762c145f-3c7d-4e54-990a-cf15d1ecaf28",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "c081b780-20c2-48ea-9cab-eff292ed6620",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000src/eval_humaneval.py\\\\u0000--model_path\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b\\\\u0000--max_new_tokens\\\\u00002048\\\\u0000--output_path\\\\u0000/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\u0000src/eval_humaneval.py\\u0000--model_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b\\u0000--max_new_tokens\\u00002048\\u0000--output_path\\u0000/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "762c145f-3c7d-4e54-990a-cf15d1ecaf28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-19T12:50:28.191Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LtSt1MNfdG9nRVhStUfjfc`</summary>
+
+```json
+{
+  "project": "recovery_aware_struct_prune",
+  "limit": 5,
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "status": "ALLOCATED"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c081b780-20c2-48ea-9cab-eff292ed6620",
+  "isSidechain": false,
+  "requestId": "req_011CbBxPq23kfj63W4a3nDug",
+  "type": "assistant",
+  "uuid": "1ffcc5cd-7ba5-4d49-82a7-e2faa84b46f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfXgQLsx248m9SGofjtMTh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1698,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1698,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-19T12:50:28.747Z_
+
+<details><summary>↩ Tool result · `toolu_01LtSt1MNfdG9nRVhStUfjfc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_humaneval_grpo_cka_only_20_1p5b_2048\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:32:50.649Z\", \"updated_at\": \"2026-05-19T11:46:00.780Z\", \"hypothesis\": \"1.5B GRPO CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B result: pass@1=20.12%. If 1.5B CKA-only also shows strong code generation after GRPO (>> Standard/RASP), strengthens cross-scale evidence that CKA-based pruning preserves broader capability spectrum.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json\\\"\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"pid\": \"96018\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_cka_only_20_1p5b_2048.log\", \"submitted_at\": \"2026-05-19T11:46:00.256Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_humaneval_sft_cka_only_20_1p5b_2048\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:32:47.965Z\", \"updated_at\": \"2026-05-19T11:45:58.520Z\", \"hypothesis\": \"1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B SFT CKA-only result: failed (pass@1=0). Testing whether 1.5B scale shows different pattern, as SFT alone may not activate code generation capability regardless of pruning criterion.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_1p5b_2048.json\\\"\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:1\"], \"pid\": \"95940\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_cka_only_20_1p5b_2048.log\", \"submitted_at\": \"2026-05-19T11:45:57.991Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5471}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ffcc5cd-7ba5-4d49-82a7-e2faa84b46f8",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "a3257805-ee60-43f1-99c4-9367de46d6d4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_humaneval_grpo_cka_only_20_1p5b_2048\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:32:50.649Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:46:00.780Z\\\", \\\"hypothesis\\\": \\\"1.5B GRPO CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B result: pass@1=20.12%. If 1.5B CKA-only also shows strong code generation after GRPO (>> Standard/RASP), strengthens cross-scale evidence that CKA-based pruning preserves broader capability spectrum.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"96018\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_cka_only_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:46:00.256Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_humaneval_sft_cka_only_20_1p5b_2048\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:32:47.965Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:45:58.520Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B SFT CKA-only result: failed (pass@1=0). Testing whether 1.5B scale shows different pattern, as SFT alone may not activate code generation capability regardless of pruning criterion.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"95940\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_cka_only_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:45:57.991Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5471}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_humaneval_grpo_cka_only_20_1p5b_2048\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:32:50.649Z\", \"updated_at\": \"2026-05-19T11:46:00.780Z\", \"hypothesis\": \"1.5B GRPO CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B result: pass@1=20.12%. If 1.5B CKA-only also shows strong code generation after GRPO (>> Standard/RASP), strengthens cross-scale evidence that CKA-based pruning preserves broader capability spectrum.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json\\\"\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:2\"], \"pid\": \"96018\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_cka_only_20_1p5b_2048.log\", \"submitted_at\": \"2026-05-19T11:46:00.256Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_humaneval_sft_cka_only_20_1p5b_2048\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:32:47.965Z\", \"updated_at\": \"2026-05-19T11:45:58.520Z\", \"hypothesis\": \"1.5B SFT CKA-only HumanEval pass@1 @2048. Cross-scale validation of capability breadth claim. 7B SFT CKA-only result: failed (pass@1=0). Testing whether 1.5B scale shows different pattern, as SFT alone may not activate code generation capability regardless of pruning criterion.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_1p5b_2048.json\\\"\", \"server\": \"westd-29022\", \"gpu\": [\"cuda:1\"], \"pid\": \"95940\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_cka_only_20_1p5b_2048.log\", \"submitted_at\": \"2026-05-19T11:45:57.991Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5471}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1ffcc5cd-7ba5-4d49-82a7-e2faa84b46f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68 · 2026-05-19T12:50:28.752Z_
+
+```json
+{
+  "parentUuid": "a3257805-ee60-43f1-99c4-9367de46d6d4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "17feef00-503a-4b87-94ff-88e92f25ab02",
+  "timestamp": "2026-05-19T12:50:28.752Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-19T12:50:47.068Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I have a clearer picture:
+
+**westd-29022 processes confirmed:**
+- cuda:1 (PID 95945): `eval_humaneval_sft_cka_only_20_1p5b_2048` — 1.5B SFT CKA-only HumanEval eval. Registry status: ALLOCATED (should be RUNNING)
+- cuda:2 (PID 96023): `eval_humaneval_grpo_cka_only_20_1p5b_2048` — 1.5B GRPO CKA-only HumanEval eval. 
+- cuda:3 (PID 86171): `eval_humaneval_sft_standard_20_2048_v3` — RUNNING
+
+The PID discrepancies between the registry and actual processes are minor—likely child processes spawned by the parent submission, which is typical for tmux-based jobs. Everything's within the whitelist with no GPU violations.
+
+But cuda:0 is sitting idle while `eval_gsm8k_grpo_rasp_20_fair` just got registered, so it probably hasn't been submitted yet. I need to track down the SFT CKA-only HumanEval v2 result to verify that 20.12% claim—the paper_framing marks it as INVALID due to a PATH bug, but the ROADMAP and HumanEval matrix both show 20.12% with a checkmark, and D073 apparently confirmed it.
+
+D073 notes that C1 simplified cleanly with zero GRPO delta for `eval_humaneval_sft_cka_only_20_2048_v2`, so I should check if there's a results file on the server to confirm.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17feef00-503a-4b87-94ff-88e92f25ab02",
+  "isSidechain": false,
+  "requestId": "req_011CbBxSEmMjgUCtdmn97Tas",
+  "type": "assistant",
+  "uuid": "b5799289-3223-4e86-ab8a-f6ba8668f4c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEsET5UsPQT8siHFAYKvQw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6983,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1111,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 6983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-19T12:50:47.103Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S8ywWN6dqnT1F4ZC3NcLuB`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5799289-3223-4e86-ab8a-f6ba8668f4c3",
+  "isSidechain": false,
+  "requestId": "req_011CbBxSEmMjgUCtdmn97Tas",
+  "type": "assistant",
+  "uuid": "0d148d97-bde6-4969-a034-b49ad03e4fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEsET5UsPQT8siHFAYKvQw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6983,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1111,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 6983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-19T12:50:47.687Z_
+
+<details><summary>↩ Tool result · `toolu_01S8ywWN6dqnT1F4ZC3NcLuB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\",\\n  \\\"benchmark\\\": \\\"HumanEval\\\",\\n  \\\"pass_at_1\\\": 0.20121951219512196,\\n  \\\"stderr\\\": 0.03130594700254398,\\n  \\\"n_correct\\\": 33,\\n  \\\"n_total\\\": 164,\\n  \\\"eos_stats\\\": {\\n    \\\"avg_response_length\\\": 1553.4573170731708,\\n    \\\"median_response_length\\\": 2048.0\\n  },\\n  \\\"examples\\\": [\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/0\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpruozjf_9.py\\\\\\\", line 12\\\\n    Okay, I need to write a Python function that checks if any two numbers in a list are closer to each other than a given threshold. Let's see how I can approach this.\\\\n                                                                                                                                         ^\\\\nSyntaxError: unterminated string literal (detected at line 12)\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/1\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpe19zt_ta.py\\\\\\\", line 7\\\\n    So, I'll need to process the input string character by character. I'll ignore any spaces in the string before starting to process it. Once I have the processed string without spaces, I'll go through each character one by one.\\\\n                                                                                                                                                                                            ^\\\\nSyntaxError: unterminated string literal (d\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/2\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 233\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/3\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 367\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/4\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpvsxye0hq.py\\\\\\\", line 14\\\\n    return sum deviations) / len(numbers)\\\\n                         ^\\\\nSyntaxError: unmatched ')'\\\\n\\\",\\n      \\\"response_length\\\": 681\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/5\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/6\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp3zrljheu.py\\\\\\\", line 14\\\\n    First, I'll think about how to process each group. Each group is a string of nested parentheses, like '(()())' or '((()))'. The nesting level is the highest number of nested parentheses. For example, '()' has 1 level, '()' inside another is 2 levels, and so on.\\\\n                                                                                                                                                                                                    \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/7\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 701\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/8\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/9\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 1808\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/10\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpst532eo6.py\\\\\\\", line 1\\\\n    Okay, so I need to complete this Python function for the make_palindrome function. The function should take a string and return the shortest palindrome that begins with that string. A palindrome is a string that is the same when reversed, like \\\\\\\"cata\\\\\\\" is a palindrome because it's the same as \\\\\\\"cata\\\\\\\" reversed.\\\\n                                                                                                                                                      \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/11\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp1byrobps.py\\\\\\\", line 9\\\\n    return ''.join([1 if x != y else 0 for x, y in zip(int(k) for k in zip(a, b, 0)](1 << x or 0 for x in (a, b))\\\\n                                                                               \\n\\n... [截断: 输出过长，省略 62633 字符] ...\\n\\n \\\"task_id\\\": \\\"HumanEval/155\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 289\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/156\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp0g06u5dn.py\\\\\\\", line 7\\\\n    I'll start by creating a list of tuples that represent the Roman numeral values and their corresponding symbols. The list should include the high values first to handle the largest possible numerals first. For example, 1000 is M, 900 is CM (1000-100=900), 500 is D, 400 is CD (500-100=400), 100 is C, 90 is XC (100-10=90), 50 is L, 40 is XL (50-10=40), 10 is X, 9 is IX (10-1=9), 5 is V, 4 is IV (5-1=4), and 1 is I.\\\\n     ^\\\\nSyntaxError: unterminated string li\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/157\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/158\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpzs8fnloh.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called find_max that takes a list of words and returns the word with the most unique characters. If there's a tie, I have to choose the lexicographically smallest one. Let me think about how to approach this.\\\\n                                                                                                                                                     ^\\\\nSyntaxError: unterminated string literal (detected at line \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/159\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 1301\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/160\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpfkhboe53.py\\\\\\\", line 3\\\\n    First, I'll look at the example provided. The operator list is ['+', '*', '-'], and the operand list is [2,3,4,5]. The result is 2 + 3*4 -5 = 9. So the operators are applied in the order they appear in the operator list, and the operands are used in sequence as well.\\\\n                                                                                ^\\\\nSyntaxError: unterminated string literal (detected at line 3)\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/161\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpcxv6klm6.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called solve that takes a string s and returns a new string based on some rules. Let me look at the examples to understand what's going on.\\\\n                                                                                                                                                                           ^\\\\nSyntaxError: unterminated string literal (detected at line 1)\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/162\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpv3ghxows.py\\\\\\\", line 3\\\\n    First, I need to figure out how the md5 hash works. I remember that MD5 is a format for storing data in a way that's resistant to physical damage. The hash is created by taking the data and applying a series of transformations to it. For strings, the process involves converting the string into a binary representation and then applying a series of operations to it.\\\\n                                                                                            \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/163\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpghxov4mm.py\\\\\\\", line 5\\\\n    Next, I need to generate all integers from start to end, inclusive. For each number in this range, I'll check if it's even. How do I do that? Well, I can use the modulus operator: if number % 2 == 0, then it's even.\\\\n                                                                                                                                                                                                                   ^\\\\nSyntaxError: unterminated stri\\\",\\n      \\\"response_length\\\": 2048\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d148d97-bde6-4969-a034-b49ad03e4fc6",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "ea529564-622f-41ff-bacd-1fddb123b480",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"HumanEval\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.20121951219512196,\\\\n  \\\\\\\"stderr\\\\\\\": 0.03130594700254398,\\\\n  \\\\\\\"n_correct\\\\\\\": 33,\\\\n  \\\\\\\"n_total\\\\\\\": 164,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"avg_response_length\\\\\\\": 1553.4573170731708,\\\\n    \\\\\\\"median_response_length\\\\\\\": 2048.0\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpruozjf_9.py\\\\\\\\\\\\\\\", line 12\\\\\\\\n    Okay, I need to write a Python function that checks if any two numbers in a list are closer to each other than a given threshold. Let's see how I can approach this.\\\\\\\\n                                                                                                                                         ^\\\\\\\\nSyntaxError: unterminated string literal (detected at line 12)\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/1\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpe19zt_ta.py\\\\\\\\\\\\\\\", line 7\\\\\\\\n    So, I'll need to process the input string character by character. I'll ignore any spaces in the string before starting to process it. Once I have the processed string without spaces, I'll go through each character one by one.\\\\\\\\n                                                                                                                                                                                            ^\\\\\\\\nSyntaxError: unterminated string literal (d\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/2\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 233\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/3\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 367\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/4\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpvsxye0hq.py\\\\\\\\\\\\\\\", line 14\\\\\\\\n    return sum deviations) / len(numbers)\\\\\\\\n                         ^\\\\\\\\nSyntaxError: unmatched ')'\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 681\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/5\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/6\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp3zrljheu.py\\\\\\\\\\\\\\\", line 14\\\\\\\\n    First, I'll think about how to process each group. Each group is a string of nested parentheses, like '(()())' or '((()))'. The nesting level is the highest number of nested parentheses. For example, '()' has 1 level, '()' inside another is 2 levels, and so on.\\\\\\\\n                                                                                                                                                                                                    \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/7\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 701\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/8\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/9\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1808\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/10\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpst532eo6.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, so I need to complete this Python function for the make_palindrome function. The function should take a string and return the shortest palindrome that begins with that string. A palindrome is a string that is the same when reversed, like \\\\\\\\\\\\\\\"cata\\\\\\\\\\\\\\\" is a palindrome because it's the same as \\\\\\\\\\\\\\\"cata\\\\\\\\\\\\\\\" reversed.\\\\\\\\n                                                                                                                                                      \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/11\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp1byrobps.py\\\\\\\\\\\\\\\", line 9\\\\\\\\n    return ''.join([1 if x != y else 0 for x, y in zip(int(k) for k in zip(a, b, 0)](1 << x or 0 for x in (a, b))\\\\\\\\n                                                                               \\\\n\\\\n... [截断: 输出过长，省略 62633 字符] ...\\\\n\\\\n \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/155\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 289\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/156\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp0g06u5dn.py\\\\\\\\\\\\\\\", line 7\\\\\\\\n    I'll start by creating a list of tuples that represent the Roman numeral values and their corresponding symbols. The list should include the high values first to handle the largest possible numerals first. For example, 1000 is M, 900 is CM (1000-100=900), 500 is D, 400 is CD (500-100=400), 100 is C, 90 is XC (100-10=90), 50 is L, 40 is XL (50-10=40), 10 is X, 9 is IX (10-1=9), 5 is V, 4 is IV (5-1=4), and 1 is I.\\\\\\\\n     ^\\\\\\\\nSyntaxError: unterminated string li\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/157\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/158\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpzs8fnloh.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called find_max that takes a list of words and returns the word with the most unique characters. If there's a tie, I have to choose the lexicographically smallest one. Let me think about how to approach this.\\\\\\\\n                                                                                                                                                     ^\\\\\\\\nSyntaxError: unterminated string literal (detected at line \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/159\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1301\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/160\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpfkhboe53.py\\\\\\\\\\\\\\\", line 3\\\\\\\\n    First, I'll look at the example provided. The operator list is ['+', '*', '-'], and the operand list is [2,3,4,5]. The result is 2 + 3*4 -5 = 9. So the operators are applied in the order they appear in the operator list, and the operands are used in sequence as well.\\\\\\\\n                                                                                ^\\\\\\\\nSyntaxError: unterminated string literal (detected at line 3)\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/161\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpcxv6klm6.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called solve that takes a string s and returns a new string based on some rules. Let me look at the examples to understand what's going on.\\\\\\\\n                                                                                                                                                                           ^\\\\\\\\nSyntaxError: unterminated string literal (detected at line 1)\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/162\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpv3ghxows.py\\\\\\\\\\\\\\\", line 3\\\\\\\\n    First, I need to figure out how the md5 hash works. I remember that MD5 is a format for storing data in a way that's resistant to physical damage. The hash is created by taking the data and applying a series of transformations to it. For strings, the process involves converting the string into a binary representation and then applying a series of operations to it.\\\\\\\\n                                                                                            \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/163\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpghxov4mm.py\\\\\\\\\\\\\\\", line 5\\\\\\\\n    Next, I need to generate all integers from start to end, inclusive. For each number in this range, I'll check if it's even. How do I do that? Well, I can use the modulus operator: if number % 2 == 0, then it's even.\\\\\\\\n                                                                                                                                                                                                                   ^\\\\\\\\nSyntaxError: unterminated stri\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\",\\n  \\\"benchmark\\\": \\\"HumanEval\\\",\\n  \\\"pass_at_1\\\": 0.20121951219512196,\\n  \\\"stderr\\\": 0.03130594700254398,\\n  \\\"n_correct\\\": 33,\\n  \\\"n_total\\\": 164,\\n  \\\"eos_stats\\\": {\\n    \\\"avg_response_length\\\": 1553.4573170731708,\\n    \\\"median_response_length\\\": 2048.0\\n  },\\n  \\\"examples\\\": [\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/0\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpruozjf_9.py\\\\\\\", line 12\\\\n    Okay, I need to write a Python function that checks if any two numbers in a list are closer to each other than a given threshold. Let's see how I can approach this.\\\\n                                                                                                                                         ^\\\\nSyntaxError: unterminated string literal (detected at line 12)\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/1\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpe19zt_ta.py\\\\\\\", line 7\\\\n    So, I'll need to process the input string character by character. I'll ignore any spaces in the string before starting to process it. Once I have the processed string without spaces, I'll go through each character one by one.\\\\n                                                                                                                                                                                            ^\\\\nSyntaxError: unterminated string literal (d\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/2\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 233\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/3\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 367\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/4\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpvsxye0hq.py\\\\\\\", line 14\\\\n    return sum deviations) / len(numbers)\\\\n                         ^\\\\nSyntaxError: unmatched ')'\\\\n\\\",\\n      \\\"response_length\\\": 681\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/5\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/6\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp3zrljheu.py\\\\\\\", line 14\\\\n    First, I'll think about how to process each group. Each group is a string of nested parentheses, like '(()())' or '((()))'. The nesting level is the highest number of nested parentheses. For example, '()' has 1 level, '()' inside another is 2 levels, and so on.\\\\n                                                                                                                                                                                                    \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/7\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 701\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/8\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/9\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 1808\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/10\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpst532eo6.py\\\\\\\", line 1\\\\n    Okay, so I need to complete this Python function for the make_palindrome function. The function should take a string and return the shortest palindrome that begins with that string. A palindrome is a string that is the same when reversed, like \\\\\\\"cata\\\\\\\" is a palindrome because it's the same as \\\\\\\"cata\\\\\\\" reversed.\\\\n                                                                                                                                                      \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/11\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp1byrobps.py\\\\\\\", line 9\\\\n    return ''.join([1 if x != y else 0 for x, y in zip(int(k) for k in zip(a, b, 0)](1 << x or 0 for x in (a, b))\\\\n                                                                               \\n\\n... [截断: 输出过长，省略 62633 字符] ...\\n\\n \\\"task_id\\\": \\\"HumanEval/155\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 289\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/156\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp0g06u5dn.py\\\\\\\", line 7\\\\n    I'll start by creating a list of tuples that represent the Roman numeral values and their corresponding symbols. The list should include the high values first to handle the largest possible numerals first. For example, 1000 is M, 900 is CM (1000-100=900), 500 is D, 400 is CD (500-100=400), 100 is C, 90 is XC (100-10=90), 50 is L, 40 is XL (50-10=40), 10 is X, 9 is IX (10-1=9), 5 is V, 4 is IV (5-1=4), and 1 is I.\\\\n     ^\\\\nSyntaxError: unterminated string li\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/157\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/158\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpzs8fnloh.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called find_max that takes a list of words and returns the word with the most unique characters. If there's a tie, I have to choose the lexicographically smallest one. Let me think about how to approach this.\\\\n                                                                                                                                                     ^\\\\nSyntaxError: unterminated string literal (detected at line \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/159\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 1301\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/160\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpfkhboe53.py\\\\\\\", line 3\\\\n    First, I'll look at the example provided. The operator list is ['+', '*', '-'], and the operand list is [2,3,4,5]. The result is 2 + 3*4 -5 = 9. So the operators are applied in the order they appear in the operator list, and the operands are used in sequence as well.\\\\n                                                                                ^\\\\nSyntaxError: unterminated string literal (detected at line 3)\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/161\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpcxv6klm6.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called solve that takes a string s and returns a new string based on some rules. Let me look at the examples to understand what's going on.\\\\n                                                                                                                                                                           ^\\\\nSyntaxError: unterminated string literal (detected at line 1)\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/162\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpv3ghxows.py\\\\\\\", line 3\\\\n    First, I need to figure out how the md5 hash works. I remember that MD5 is a format for storing data in a way that's resistant to physical damage. The hash is created by taking the data and applying a series of transformations to it. For strings, the process involves converting the string into a binary representation and then applying a series of operations to it.\\\\n                                                                                            \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/163\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpghxov4mm.py\\\\\\\", line 5\\\\n    Next, I need to generate all integers from start to end, inclusive. For each number in this range, I'll check if it's even. How do I do that? Well, I can use the modulus operator: if number % 2 == 0, then it's even.\\\\n                                                                                                                                                                                                                   ^\\\\nSyntaxError: unterminated stri\\\",\\n      \\\"response_length\\\": 2048\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0d148d97-bde6-4969-a034-b49ad03e4fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-19T12:50:47.967Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013CTE91gjY7qUYMYaoPSaZA`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea529564-622f-41ff-bacd-1fddb123b480",
+  "isSidechain": false,
+  "requestId": "req_011CbBxSEmMjgUCtdmn97Tas",
+  "type": "assistant",
+  "uuid": "3b2554e1-1647-4457-8053-5f8fa6b10cc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEsET5UsPQT8siHFAYKvQw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6983,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1111,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 6983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-19T12:50:48.419Z_
+
+<details><summary>↩ Tool result · `toolu_013CTE91gjY7qUYMYaoPSaZA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 27049 May 19 15:00 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048.json\\n-rw-r--r-- 1 root root 14601 May 19 15:00 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048.log\\n-rw-r--r-- 1 root root 70636 May 19 19:05 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b2554e1-1647-4457-8053-5f8fa6b10cc8",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "f5e53165-afb4-4be1-8191-539a7aebd4cd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 27049 May 19 15:00 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048.json\\\\n-rw-r--r-- 1 root root 14601 May 19 15:00 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048.log\\\\n-rw-r--r-- 1 root root 70636 May 19 19:05 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 27049 May 19 15:00 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048.json\\n-rw-r--r-- 1 root root 14601 May 19 15:00 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048.log\\n-rw-r--r-- 1 root root 70636 May 19 19:05 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3b2554e1-1647-4457-8053-5f8fa6b10cc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-19T12:50:54.884Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0165fu6bg7V3m5bY2jPTokvM`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n# Find all humaneval sft cka experiments\nfor eid, exp in exps.items():\n    if 'humaneval' in eid.lower() and 'sft' in eid.lower() and 'cka' in eid.lower():\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}, metrics={json.dumps(exp.get(\\\"metrics\\\",{}))[:200]}')\n\"",
+  "description": "Find all humaneval SFT CKA experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5e53165-afb4-4be1-8191-539a7aebd4cd",
+  "isSidechain": false,
+  "requestId": "req_011CbBxSEmMjgUCtdmn97Tas",
+  "type": "assistant",
+  "uuid": "86540302-6d2a-40cf-82a9-d79d238cc8db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEsET5UsPQT8siHFAYKvQw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6983,
+      "cache_read_input_tokens": 82884,
+      "output_tokens": 1111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1111,
+          "cache_read_input_tokens": 82884,
+          "cache_creation_input_tokens": 6983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-19T12:50:54.975Z_
+
+<details><summary>↩ Tool result · `toolu_0165fu6bg7V3m5bY2jPTokvM`</summary>
+
+```text
+eval_humaneval_sft_cka_only_20_1p5b_2048: status=ALLOCATED, conclusion=None, metrics={}
+eval_humaneval_sft_cka_only_20_2048_v2: status=DONE, conclusion=failed, metrics={}
+eval_humaneval_sft_cka_only_20_2048: status=DONE, conclusion=failed, metrics={"pass_at_1": 0, "n_correct": 0, "n_total": 164}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86540302-6d2a-40cf-82a9-d79d238cc8db",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "73dce6bc-25ce-4d36-9588-ab84c8f24502",
+  "toolUseResult": {
+    "stdout": "eval_humaneval_sft_cka_only_20_1p5b_2048: status=ALLOCATED, conclusion=None, metrics={}\neval_humaneval_sft_cka_only_20_2048_v2: status=DONE, conclusion=failed, metrics={}\neval_humaneval_sft_cka_only_20_2048: status=DONE, conclusion=failed, metrics={\"pass_at_1\": 0, \"n_correct\": 0, \"n_total\": 164}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "86540302-6d2a-40cf-82a9-d79d238cc8db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。",
+  "leafUuid": "73dce6bc-25ce-4d36-9588-ab84c8f24502",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-19T12:52:02.905Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have clear data:
+
+1. **`eval_humaneval_sft_cka_only_20_2048_v2`**: Registry says status=DONE, conclusion=**failed**, metrics=**{}** (empty).
+
+2. But the **actual results file** exists on the server: `humaneval_sft_cka_only_20_2048_v2.json` (70636 bytes, created today May 19 19:05 UTC). And its content shows:
+   - pass_at_1 = 0.20121951219512196 (20.12%)
+   - n_correct = 33
+   - n_total = 164
+
+3. The model generates reasoning text instead of code for many problems (truncated at 2048, SyntaxError from natural language), but still passes 33/164.
+
+So there's a clear mismatch: the registry marked this as failed with no metrics, yet the actual results file contains real data showing 20.12% pass rate. The ROADMAP was updated with the actual result, but the registry wasn't synced to reflect it.
+
+Now I'm noticing that paper_framing.md still shows the old "❌ INVALID" status, which means this data inconsistency spans multiple places. The fact that both SFT and GRPO checkpoints hit exactly 33/164 correct is striking—it suggests the GRPO delta is literally zero, though I need to verify whether they're solving the same 33 problems or different ones.
+
+Looking at the overlap analysis, only 17 of the 33 problems are solved by both approaches, with the remaining 16 differing between them. This reframes the entire narrative: if SFT already achieves 20.12% on HumanEval, then there's no "massive GRPO recovery" to speak of—both methods plateau at the same performance, pointing to universal decoupling rather than GRPO rescue. The "catastrophic forgetting of code" claim also needs reconsideration since the model does retain some HumanEval capability through SFT, though many failures stem from the model generating reasoning text instead of actual code before hitting the token limit.
+
+Now I'm compiling the key inconsistencies I've found: the Registry marks SFT CKA-only HumanEval v2 as failed with empty metrics, but the actual results file shows 20.12% (33/164), which matches what the ROADMAP correctly reports. The paper_framing.md still flags this as invalid and unverified, so that documentation is stale and needs to be cleaned up.
+
+The narrative about SFT causing catastrophic forgetting versus GRPO enabling recovery doesn't hold up either — both approaches yield the same 20.12% result, which actually supports the universal decoupling hypothesis instead. On the infrastructure side, GPU allocation looks fine with no whitelist violations detected.
+
+I'm seeing 6 experiments currently active across the cluster: four are in RUNNING state while two more have allocated processes spinning up. The workload is distributed between westd and westb nodes, with a mix of HumanEval and GSM8K evaluations running in parallel.
+
+Looking at the overall progress, we're at 30% coverage of the experiment plan with 9 out of 30 experiments complete. C3 coverage is still at zero, though it's been deprioritized in the paper's framing so it's less critical now. For the roadmap ahead, Wave 2 looks achievable with the right automation, but Wave 3 introduces significant risk with the new Qwen model and pruning infrastructure. We've got about 620 hours of GPU budget remaining to work with.
+
+There's a gap where the ShortGPT baseline for Wave 2 was added without a formal entry in the experiment plan, and the same issue affects other Wave 2-3 experiments, which means our coverage tracking will be incomplete. The statistical significance issue with the 7B CKA-only versus RASP comparison is already acknowledged in the paper framing, so that's handled. I need to verify today whether the current GSM8K RASP number reflects the fair v5 evaluation or an older version, since that eval just got registered and the paper flags this as needing confirmation.
+
+Now I'm noticing the RASP SFT HumanEval v2 hasn't started yet despite the roadmap saying it's about to launch on westd cuda:0, but that GPU is still sitting idle. I'm also cross-checking the GSM8K Standard fair v5 result—the roadmap shows 59.44% with a 4.93 percentage point gap versus CKA-only, but the paper framing evidence table lists 59.29% for the standard SFT eval, so I need to figure out which number is current and whether these are different evaluations or if one has been updated. I'm getting caught up in the weeds here — I need to step back and focus on the main issues: the registry inconsistency with HumanEval SFT CKA-only v2, the stale documentation in paper_framing.md, and resolving which GSM8K Standard result is actually correct for the fair v5 GRPO run. The coverage is adequate for the core claims, GPU status is clean, and the ROADMAP looks feasible, so let me prioritize documenting these key discrepancies rather than chasing every data point. I'm looking at the Standard fair v5 GSM8K result to verify the 59.44% claim against what's actually in the registry, since there's a mismatch between the roadmap and the experiment records.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73dce6bc-25ce-4d36-9588-ab84c8f24502",
+  "isSidechain": false,
+  "requestId": "req_011CbBxUAuzNhiUTSBcXc8Mi",
+  "type": "assistant",
+  "uuid": "df5985a8-6c82-4573-a8f9-acbcdda7b6b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URnd8oH19mcWMExwkpzTsR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4882,
+      "cache_read_input_tokens": 89867,
+      "output_tokens": 3164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3164,
+          "cache_read_input_tokens": 89867,
+          "cache_creation_input_tokens": 4882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-19T12:52:02.970Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JbHDyiCKf7cjvczS17ZErR`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df5985a8-6c82-4573-a8f9-acbcdda7b6b0",
+  "isSidechain": false,
+  "requestId": "req_011CbBxUAuzNhiUTSBcXc8Mi",
+  "type": "assistant",
+  "uuid": "a19e4fa4-e799-4564-ada6-c7cbc8e8a24c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URnd8oH19mcWMExwkpzTsR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4882,
+      "cache_read_input_tokens": 89867,
+      "output_tokens": 3164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3164,
+          "cache_read_input_tokens": 89867,
+          "cache_creation_input_tokens": 4882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-19T12:52:03.212Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BtYpHf4vqjrPdbjCBHYqqc`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v5.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a19e4fa4-e799-4564-ada6-c7cbc8e8a24c",
+  "isSidechain": false,
+  "requestId": "req_011CbBxUAuzNhiUTSBcXc8Mi",
+  "type": "assistant",
+  "uuid": "a4966c80-3d61-4b2c-80b9-dcb1438d6d99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URnd8oH19mcWMExwkpzTsR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4882,
+      "cache_read_input_tokens": 89867,
+      "output_tokens": 3164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3164,
+          "cache_read_input_tokens": 89867,
+          "cache_creation_input_tokens": 4882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-19T12:52:03.445Z_
+
+<details><summary>↩ Tool result · `toolu_01JbHDyiCKf7cjvczS17ZErR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1000768 May 19 13:54 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\n-rw-r--r-- 1 root root 1001253 May 19 20:28 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json\\n-rw-r--r-- 1 root root  104728 May 19 20:28 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a19e4fa4-e799-4564-ada6-c7cbc8e8a24c",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "5f3fee27-8a45-4394-a2bc-820895a64dd1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1000768 May 19 13:54 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\\\n-rw-r--r-- 1 root root 1001253 May 19 20:28 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json\\\\n-rw-r--r-- 1 root root  104728 May 19 20:28 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1000768 May 19 13:54 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\n-rw-r--r-- 1 root root 1001253 May 19 20:28 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json\\n-rw-r--r-- 1 root root  104728 May 19 20:28 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a19e4fa4-e799-4564-ada6-c7cbc8e8a24c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T12:52:03.971Z_
+
+<details><summary>↩ Tool result · `toolu_01BtYpHf4vqjrPdbjCBHYqqc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v5.json' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4966c80-3d61-4b2c-80b9-dcb1438d6d99",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "2ccbba1e-1761-4bdf-8983-dd74e6811a2b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v5.json' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v5.json' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a4966c80-3d61-4b2c-80b9-dcb1438d6d99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T12:52:10.196Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ViHGWvPiverzVwsDaxVvYg`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-reviewer-c389d6f8/43482df1-9972-496d-b468-2a49656efa12/tool-results/mcp-agent-ml-research-read_registry-1779194699075.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n# Find all GSM8K standard fair experiments\nfor eid, exp in exps.items():\n    if 'gsm8k' in eid.lower() and 'standard' in eid.lower() and 'fair' in eid.lower():\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}, metrics={json.dumps(exp.get(\\\"metrics\\\",{}))[:300]}')\n\"",
+  "description": "Find GSM8K Standard fair experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ccbba1e-1761-4bdf-8983-dd74e6811a2b",
+  "isSidechain": false,
+  "requestId": "req_011CbBxUAuzNhiUTSBcXc8Mi",
+  "type": "assistant",
+  "uuid": "12e3ea07-0e32-4ec3-87ad-976dacc07f05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URnd8oH19mcWMExwkpzTsR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4882,
+      "cache_read_input_tokens": 89867,
+      "output_tokens": 3164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3164,
+          "cache_read_input_tokens": 89867,
+          "cache_creation_input_tokens": 4882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T12:52:10.296Z_
+
+<details><summary>↩ Tool result · `toolu_01ViHGWvPiverzVwsDaxVvYg`</summary>
+
+```text
+eval_gsm8k_grpo_standard_20_fair_v2: status=DONE, conclusion=failed, metrics={}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12e3ea07-0e32-4ec3-87ad-976dacc07f05",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "270b2330-3b45-40e7-8103-eced1eb2deee",
+  "toolUseResult": {
+    "stdout": "eval_gsm8k_grpo_standard_20_fair_v2: status=DONE, conclusion=failed, metrics={}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "12e3ea07-0e32-4ec3-87ad-976dacc07f05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-19T12:52:19.782Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Another data inconsistency:
+
+1. `eval_gsm8k_grpo_standard_20_fair_v2` — Registry: status=DONE, conclusion=**failed**, metrics=**{}** (empty)
+2. But the results file exists on server: `eval_gsm8k_grpo_standard_20_fair_v2.json` (1MB, created today May 19 20:28 UTC)
+3. No "v5" file exists — the ROADMAP mentions "fair v5" but the actual experiment is "fair_v2"
+
+
+4. The ROADMAP also claims "GSM8K Standard fair v5: ✅ 59.44% (784/1319)" — I need to check what's actually in the results file to see if those numbers match.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "270b2330-3b45-40e7-8103-eced1eb2deee",
+  "isSidechain": false,
+  "requestId": "req_011CbBxZiwDFsBoVaodMVduo",
+  "type": "assistant",
+  "uuid": "9e0fbf8e-5e1e-4177-85d1-fce67458a730",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkTXitDiBVvsQrkc2bAqTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3678,
+      "cache_read_input_tokens": 94749,
+      "output_tokens": 381,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3678,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 381,
+          "cache_read_input_tokens": 94749,
+          "cache_creation_input_tokens": 3678,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3678
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-19T12:52:20.444Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KaN7Ka4RcR2xPM19UQV57w`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json')); print(f'accuracy={d.get(\\\"accuracy\\\")}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e0fbf8e-5e1e-4177-85d1-fce67458a730",
+  "isSidechain": false,
+  "requestId": "req_011CbBxZiwDFsBoVaodMVduo",
+  "type": "assistant",
+  "uuid": "112285b8-b51c-4c32-b749-7a4e3b22ac2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkTXitDiBVvsQrkc2bAqTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3678,
+      "cache_read_input_tokens": 94749,
+      "output_tokens": 381,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3678,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 381,
+          "cache_read_input_tokens": 94749,
+          "cache_creation_input_tokens": 3678,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3678
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-19T12:52:20.457Z_
+
+<details><summary>↩ Tool result · `toolu_01KaN7Ka4RcR2xPM19UQV57w`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "112285b8-b51c-4c32-b749-7a4e3b22ac2e",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "cf686cdb-a151-4d80-8669-370ae60fe9c3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "112285b8-b51c-4c32-b749-7a4e3b22ac2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：D075 full expansion plan — user gives full backing for EMNLP Main push），请审查研究方向和计划的合理性。",
+  "leafUuid": "cf686cdb-a151-4d80-8669-370ae60fe9c3",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap update for EMNLP expansion",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12"
+}
+```
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-19T12:52:24.390Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0134XaQZjkti6CMuMNmfm8og`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "grep -o '\"accuracy\":[0-9.]*' /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf686cdb-a151-4d80-8669-370ae60fe9c3",
+  "isSidechain": false,
+  "requestId": "req_011CbBxaUQsRXUSLuEZD6fsq",
+  "type": "assistant",
+  "uuid": "a42b537d-c171-4afc-96a1-69459b8e7404",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2aQ2yA2UqEMFKxYfysFtE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 474,
+      "cache_read_input_tokens": 98427,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 98427,
+          "cache_creation_input_tokens": 474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-19T12:52:24.863Z_
+
+<details><summary>↩ Tool result · `toolu_0134XaQZjkti6CMuMNmfm8og`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"accuracy\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a42b537d-c171-4afc-96a1-69459b8e7404",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "1b9b7318-4579-4c1d-86e0-5fac37c3b050",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"accuracy\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"accuracy\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a42b537d-c171-4afc-96a1-69459b8e7404",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-19T12:52:24.942Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q5pTJar68PS2G6t2MtEcqE`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "grep -o '\"n_correct\":[0-9]*' /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b9b7318-4579-4c1d-86e0-5fac37c3b050",
+  "isSidechain": false,
+  "requestId": "req_011CbBxaUQsRXUSLuEZD6fsq",
+  "type": "assistant",
+  "uuid": "6ff37d9e-570a-432b-bf4f-b0ab74abbe5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2aQ2yA2UqEMFKxYfysFtE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 474,
+      "cache_read_input_tokens": 98427,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 98427,
+          "cache_creation_input_tokens": 474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-19T12:52:25.451Z_
+
+<details><summary>↩ Tool result · `toolu_01Q5pTJar68PS2G6t2MtEcqE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"n_correct\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ff37d9e-570a-432b-bf4f-b0ab74abbe5a",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "cef712d0-5bf7-466c-a098-5668bb3d0aa5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"n_correct\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"n_correct\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6ff37d9e-570a-432b-bf4f-b0ab74abbe5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-19T12:52:32.198Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The grep isn't finding the accuracy/n_correct fields directly — maybe the JSON structure is different. Let me try a different approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cef712d0-5bf7-466c-a098-5668bb3d0aa5",
+  "isSidechain": false,
+  "requestId": "req_011CbBxarNDeHq4a4UEtvxTT",
+  "type": "assistant",
+  "uuid": "2f68b0ac-e0de-46c3-bddd-df88d53ec943",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWXzDCad459bxBgu1G4qUk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 98901,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 98901,
+          "cache_creation_input_tokens": 479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-19T12:52:32.397Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PD2yroTpQQsahr1eYAqz1n`</summary>
+
+```json
+{
+  "server": "westd-29022",
+  "command": "head -20 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f68b0ac-e0de-46c3-bddd-df88d53ec943",
+  "isSidechain": false,
+  "requestId": "req_011CbBxarNDeHq4a4UEtvxTT",
+  "type": "assistant",
+  "uuid": "011f9be4-7a34-4bcf-883b-f1dc3b0007b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWXzDCad459bxBgu1G4qUk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 98901,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 98901,
+          "cache_creation_input_tokens": 479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-19T12:52:32.856Z_
+
+<details><summary>↩ Tool result · `toolu_01PD2yroTpQQsahr1eYAqz1n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.5943896891584534,\\n  \\\"stderr\\\": 0.013519720989483766,\\n  \\\"n_correct\\\": 784,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1293,\\n    \\\"truncated\\\": 26,\\n    \\\"eos_rate\\\": 0.9802880970432145,\\n    \\\"avg_response_length\\\": 227.13040181956026,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n  \\\"temperature\\\": 0.0,\\n  \\\"do_sample\\\": false,\\n  \\\"examples\\\": [\\n    {\\n      \\\"question\\\": \\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "011f9be4-7a34-4bcf-883b-f1dc3b0007b3",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "8176f202-8d53-4920-a203-a49235f75663",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5943896891584534,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013519720989483766,\\\\n  \\\\\\\"n_correct\\\\\\\": 784,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 1293,\\\\n    \\\\\\\"truncated\\\\\\\": 26,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.9802880970432145,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 227.13040181956026,\\\\n    \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n    \\\\\\\"min_response_length\\\\\\\": 32\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\",\\n  \\\"mode\\\": \\\"greedy\\\",\\n  \\\"accuracy\\\": 0.5943896891584534,\\n  \\\"stderr\\\": 0.013519720989483766,\\n  \\\"n_correct\\\": 784,\\n  \\\"n_total\\\": 1319,\\n  \\\"eos_stats\\\": {\\n    \\\"natural_eos\\\": 1293,\\n    \\\"truncated\\\": 26,\\n    \\\"eos_rate\\\": 0.9802880970432145,\\n    \\\"avg_response_length\\\": 227.13040181956026,\\n    \\\"max_response_length\\\": 4096,\\n    \\\"min_response_length\\\": 32\\n  },\\n  \\\"temperature\\\": 0.0,\\n  \\\"do_sample\\\": false,\\n  \\\"examples\\\": [\\n    {\\n      \\\"question\\\": \\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "011f9be4-7a34-4bcf-883b-f1dc3b0007b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97 · 2026-05-19T12:52:32.859Z_
+
+```json
+{
+  "parentUuid": "8176f202-8d53-4920-a203-a49235f75663",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3b13f06f-e2d2-4d52-9e72-867392d2fcc0",
+  "timestamp": "2026-05-19T12:52:32.859Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-19T12:53:07.837Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the data confirmed:
+
+`eval_gsm8k_grpo_standard_20_fair_v2`:
+- accuracy = 0.5944 (59.44%)
+- n_correct = 784
+- n_total = 1319
+
+This matches the ROADMAP claim of "59.44% (784/1319)". The result is real and verified on server.
+
+But the **registry** has conclusion=failed and metrics={}. Another case where actual results exist but registry wasn't updated.
+
+Summary of data integrity issues:
+
+1. **eval_humaneval_sft_cka_only_20_2048_v2**: Real result = 20.12% (33/164). 
+
+2. **eval_gsm8k_grpo_standard_20_fair_v2**: Real result = 59.44% (784/1319). 
+
+Both show the same pattern — registry marked as failed with no metrics, while the ROADMAP has the correct numbers. This points to a systematic gap where evaluations completed and results were recorded in the ROADMAP, but the registry never got backfilled with the actual metrics. That's a traceability problem since the paper's claims can only be verified against raw server files rather than the official registry.
+
+Looking at the critical issues in my full review, I'm not finding any fundamental flaws in the ROADMAP plan itself.
+
+On the warning side, there are two main concerns. First, these two experiments have real results sitting on the server but the registry shows them as failed — that's the traceability gap I mentioned. The Agent needs to backfill those metrics into the registry. Second, the paper_framing.md file is outdated on the HumanEval SFT CKA-only results — it still flags them as invalid and unverified, but the actual result of 20.12% is verified on the server. The narrative about catastrophic forgetting needs updating too.
+
+Beyond that, I'm seeing coverage is only at 30% overall with 9 out of 30 experiments complete, and C3 hasn't started yet. Many of the remaining planned experiments might not even be necessary for the current paper direction. The ROADMAP is introducing new experiments that aren't in the formal experiment_plan.yaml, which makes tracking incomplete. There are also a couple of experiments with active processes on the server that still show as ALLOCATED in the registry instead of RUNNING. And there's a cross-architecture risk emerging in Wave 3 with Qwen2 that I need to think through.
+
+The Qwen2.5-Math-7B experiment on day 3 introduces a new model family and requires new pruning infrastructure, which could create real problems if it fails or contradicts what we've found so far. Given how close we are to the deadline, I should probably treat this as an optional stretch goal rather than something blocking the paper.
+
+On the positive side, GPU allocation is clean across all 6 GPUs in the C005 whitelist with no violations, and I have 620 hours of budget remaining which should be enough for Waves 1-4 across the 5-day window. I've also clarified the GSM8K Standard numbers—59.44% from fair v5 GRPO is the definitive result to use in the paper, not the older 59.29% or 58.91% figures.
+
+The multi-seed validation for GRPO CKA is running on westb, and I just kicked off the RASP GRPO GSM8K fair v5 evaluation to check whether that 60.65% number came from the pre-fair model. Once I have these results, I can compile everything into the review report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b13f06f-e2d2-4d52-9e72-867392d2fcc0",
+  "isSidechain": false,
+  "requestId": "req_011CbBxbPP2mNMKz5nBjqDGM",
+  "type": "assistant",
+  "uuid": "da5454f9-c193-45f8-a8aa-6311d9727ad7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhRPNn6d7UVUrwXCnHQ9xq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 99380,
+      "output_tokens": 3179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3179,
+          "cache_read_input_tokens": 99380,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-19T12:53:07.979Z_
+
+数据核实完成。发现若干关键数据一致性问题。准备提交审查报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da5454f9-c193-45f8-a8aa-6311d9727ad7",
+  "isSidechain": false,
+  "requestId": "req_011CbBxbPP2mNMKz5nBjqDGM",
+  "type": "assistant",
+  "uuid": "d65cb211-667f-4cd8-87b2-b3f72ab9489a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhRPNn6d7UVUrwXCnHQ9xq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 99380,
+      "output_tokens": 3179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3179,
+          "cache_read_input_tokens": 99380,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-19T12:53:46.553Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01K73wNsubTfbLYUn79CuJzN`</summary>
+
+```json
+{
+  "text": "## 审查报告 — ROADMAP D075 更新审查\n\n**触发**: roadmap_updated (D075 full expansion plan, EMNLP Main push)\n**结论**: WARNING — 计划可行，但存在系统性 registry 更新遗漏和 paper_framing 过期问题\n\n---\n\n### 发现\n\n**[severity: warning] Registry 系统性未更新（2 个关键实验）**\n\n独立核实发现，以下实验在服务器上有完整结果文件，但 registry 中 conclusion=failed、metrics={}（空）：\n\n1. `eval_humaneval_sft_cka_only_20_2048_v2`：\n   - 服务器实际结果：**pass@1=20.12% (33/164)**，文件 `/root/autodl-tmp/.../humaneval_sft_cka_only_20_2048_v2.json`（70KB，May 19 19:05 UTC）\n   - Registry：conclusion=failed, metrics={}\n   - ROADMAP：✅ 20.12%（正确）\n\n2. `eval_gsm8k_grpo_standard_20_fair_v2`：\n   - 服务器实际结果：**accuracy=59.44% (784/1319)**，文件 `eval_gsm8k_grpo_standard_20_fair_v2.json`（1MB，May 19 20:28 UTC）\n   - Registry：conclusion=failed, metrics={}\n   - ROADMAP：✅ 59.44%（正确）\n\n**影响**：paper_provenance 无法将 claim 追溯到 registry。Agent 需要回填这两个实验的 metrics 和更正 conclusion。\n\n---\n\n**[severity: warning] paper_framing.md 过期 — HumanEval SFT CKA-only 叙事已失效**\n\npaper_framing.md 仍然显示：\n- \"⚠️ SFT CKA-only 0% UNVERIFIED\"\n- \"CKA-only SFT HumanEval @2048 | ❌ INVALID | 0/164 PATH bug\"\n- 基于 0% SFT → 20% GRPO 的\"catastrophic forgetting → GRPO cross-task recovery\"叙事\n\n**实际情况**（已在服务器验证）：SFT CKA-only HumanEval = **20.12% (33/164)**，与 GRPO 完全相同。D073 正确识别了这一点，但 paper_framing 未同步更新。需要：\n- 更新 Evidence Status 表中的对应行\n- 删除 \"⚠️ SFT CKA-only 0% UNVERIFIED\" 警告\n- 更新 C1 framing 中关于 HumanEval 的叙述（从\"SFT 失败→GRPO 恢复\"改为\"SFT/GRPO 均 20.12%，支持 universal decoupling\"）\n\n---\n\n**[severity: warning] ALLOCATED 实验已在跑但 registry 未更新为 RUNNING**\n\n两个实验在 westd 上有活跃进程，但 registry 仍为 ALLOCATED：\n- `eval_humaneval_sft_cka_only_20_1p5b_2048`：westd cuda:1, PID 95945（实际在跑 eval_humaneval.py）\n- `eval_humaneval_grpo_cka_only_20_1p5b_2048`：westd cuda:2, PID 96023（实际在跑 eval_humaneval.py）\n\n---\n\n**[severity: warning] 覆盖率 30%，C3=0%**\n\nexperiment_plan 总覆盖率 9/30 = 30%。Claim 3（SFT-only recovery comparison）覆盖率 0/2 = 0%。但 C3 在当前 paper framing 中已降级为 \"Supporting Analysis\"，非核心 contribution。若论文不再独立声称 C3，可接受。若论文仍提及，需补实验或明确标注为\"初步观察\"。\n\nWave 2-3 的多个新实验（ShortGPT、MBPP、gradient flow、cross-architecture Qwen2.5-Math-7B、RCI）未在 experiment_plan.yaml 中注册，无法通过 coverage matrix 追踪。\n\n---\n\n**[severity: warning] Wave 3 跨架构风险**\n\nQwen2.5-Math-7B（第3天）是新模型家族，需要新的剪枝基础设施。若结果与 DeepSeek-R1 不一致，可能在截稿前制造叙事混乱。建议定位为可选 stretch goal，不阻塞论文。\n\n---\n\n**[severity: info] GPU 资源审查 — 无违规**\n\n6 张 GPU 全部在 C005 白名单内运行：\n- westd cuda:0: 空闲（eval_gsm8k_grpo_rasp_20_fair 刚注册，尚未启动）\n- westd cuda:1: 89%, 4225 MiB — 1.5B SFT CKA-only HumanEval eval\n- westd cuda:2: 93%, 4224 MiB — 1.5B GRPO CKA-only HumanEval eval\n- westd cuda:3: 98%, 17811 MiB — SFT Standard HumanEval v3\n- westb cuda:0: 63%, 4195 MiB — 1.5B SFT Standard HumanEval\n- westb cuda:1: 100%, 67949 MiB — GRPO CKA-only seed123\n\n无越界。\n\n---\n\n**[severity: info] GPU 预算充裕**\n\n已用 ~100h，剩余 ~620h（6 GPU × 5 天）。Wave 1-3 估算总 GPU 需求 ~200-250h，远低于可用预算。瓶颈在代码准备和调试，不在算力。\n\n---\n\n**[severity: info] GSM8K Standard 数字澄清**\n\n项目中存在三个 Standard GSM8K 数字：\n- **59.44% (784/1319)**：fair v5 GRPO 结果（eval_gsm8k_grpo_standard_20_fair_v2），已在服务器验证 → 论文应使用此数\n- 59.29% (782/1319)：E2 300步结果\n- 58.91%：来源不可追溯的旧数字\n论文引用 Standard GRPO GSM8K 时应统一使用 59.44%。\n\n---\n\n### 建议\n\n1. **紧急**：回填 registry（eval_humaneval_sft_cka_only_20_2048_v2 和 eval_gsm8k_grpo_standard_20_fair_v2），更正 conclusion 和 metrics\n2. **紧急**：更新 paper_framing.md 的 HumanEval 部分，删除过期的 \"0% UNVERIFIED\" 警告\n3. **今天**：将 2 个 ALLOCATED 实验更新为 RUNNING\n4. **Wave 2 前**：将新实验注册到 experiment_plan.yaml\n5. **Wave 3 前**：评估 Qwen2.5-Math-7B 的必要性 vs 风险，考虑是否推迟到 rebuttal 阶段",
+  "project": "recovery_aware_struct_prune"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d65cb211-667f-4cd8-87b2-b3f72ab9489a",
+  "isSidechain": false,
+  "requestId": "req_011CbBxbPP2mNMKz5nBjqDGM",
+  "type": "assistant",
+  "uuid": "e8a22108-5315-4f3f-8ff6-8ad3e7968a5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhRPNn6d7UVUrwXCnHQ9xq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 99380,
+      "output_tokens": 3179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3179,
+          "cache_read_input_tokens": 99380,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-19T12:53:50.866Z_
+
+<details><summary>↩ Tool result · `toolu_01K73wNsubTfbLYUn79CuJzN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8a22108-5315-4f3f-8ff6-8ad3e7968a5e",
+  "isSidechain": false,
+  "promptId": "2b27b912-a367-431f-803a-f67693af9fcb",
+  "type": "user",
+  "uuid": "c04b2c0b-af8c-493f-81b3-444201b68b99",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "e8a22108-5315-4f3f-8ff6-8ad3e7968a5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/reviewer_c389d6f8",
+  "sessionId": "43482df1-9972-496d-b468-2a49656efa12",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

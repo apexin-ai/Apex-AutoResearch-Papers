@@ -1,0 +1,516 @@
+{
+  "schema_version": "1.0",
+  "id": "fb2013e473c06bd67cb9",
+  "project": "recovery_aware_struct_prune--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to extract details for 25 specific experiments from a large registry JSON file. The file is at: /home/ubuntu/.cla",
+  "task_key": "agent-a73d12ff5140964a5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a73d12ff5140964a5.jsonl",
+    "occurrence": 1,
+    "bytes": 80663,
+    "sha256": "248ddaa3347df27f9cb20a0ee949dd097b7d2fc669e56fdb8f4f683e920a864a"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T03:23:24.185Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to extract details for 25 specific experiments from a large registry JSON file. The file is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/4c77ad5c-8edc-435c-896e-b2aec707bdd2/tool-results/mcp-agent-ml-research-read_registry-1778988192555.txt\n\nThe file has schema: {result: string} where result is a JSON string containing experiment data.\n\nTarget experiment IDs:\n1. prune_rasp_rlvr_20_qwen_math\n2. prune_standard_25_qwen_math\n3. prune_rasp_25_qwen_math\n4. eval_pass_k8_rasp_20_sft_qwen_math\n5. eval_grpo_standard_25_qwen_math\n6. eval_sft_rasp_rlvr_20_qwen_math\n7. eval_pass_k8_rasp_20_grpo_qwen_math\n8. eval_pass_k8_unpruned_qwen_math\n9. eval_grpo_rasp_25_qwen_math\n10. eval_grpo_standard_20_qwen_math\n11. eval_grpo_rasp_20_qwen_math\n12. sft_standard_25_westd\n13. sft_standard_25\n14. sft_rasp_25\n15. prune_standard_30\n16. prune_rasp_30\n17. eval_grpo_unpruned_v2_step100\n18. eval_grpo_unpruned_v2_step90\n19. eval_sft_unpruned_full\n20. eval_sft_unpruned_n100\n21. eval-sft-alpha-1p0\n22. eval-sft-alpha-0p0\n23. sft-alpha-1p0\n24. eval_sft_grasp_20\n25. sft_standard_20_retrain\n\nFor each experiment, I need: exp_id, status, conclusion, hypothesis (current value if any), parent (current value if any), metrics, spec (especially checkpoint_source, model_path, command), notes.\n\nUse python or jq to parse the file. First probe structure, then extract data for those 25 experiments. Return the full details for all 25 in a structured format so I can write hypotheses and parent fields."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "bde70742-cefe-4ca4-94c6-e70cef09d4ab",
+            "agentId": "a73d12ff5140964a5",
+            "type": "user",
+            "uuid": "42d07880-f808-4bea-908f-c8c86d6d8b71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T03:23:24.188Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "42d07880-f808-4bea-908f-c8c86d6d8b71",
+                "isSidechain": true,
+                "agentId": "a73d12ff5140964a5",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "721b25a2-d37a-4b67-aa95-a2c7d312cbf4",
+                "timestamp": "2026-05-17T03:23:24.188Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T03:23:28.774Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018iMUa7Zd3xnHMSubaJade6",
+              "name": "Bash",
+              "input": {
+                "command": "head -c 2000 \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/4c77ad5c-8edc-435c-896e-b2aec707bdd2/tool-results/mcp-agent-ml-research-read_registry-1778988192555.txt\"",
+                "description": "Probe the beginning of the registry file to understand structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "721b25a2-d37a-4b67-aa95-a2c7d312cbf4",
+            "isSidechain": true,
+            "agentId": "a73d12ff5140964a5",
+            "requestId": "req_011Cb7RaJtkfUkYMaT2NJsUK",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3b899e62-3b72-4e91-98f0-cd158f2795a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017NHEFSbUBEqbjEErRSLwKM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15926,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15926
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 180,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 15926,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15926,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T03:23:28.939Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018iMUa7Zd3xnHMSubaJade6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_sft_standard_20_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T03:18:19.145Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:19:27.900Z\\\", \\\"hypothesis\\\": \\\"Multi-seed variance: Standard 20% post-SFT GSM8K eval (N=200, greedy, seed=456). Plan_006 paired comparison with RASP seed=456. 验证 RASP advantage 在不同问题子集上的鲁棒性.\\\", \\\"parent\\\": \\\"sft_standard_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/recovery_aware_struct_prune && python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_samples 200 --max_new_tokens 4096 --seed 456 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_seed456.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_sft_standard_20_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T03:19:27.593Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_sft_rasp_20_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T03:18:18.631Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:19:24.653Z\\\", \\\"hypothesis\\\": \\\"Multi-seed variance: RASP 20% post-SFT GSM8K eval (N=200, greedy, seed=456). Plan_006 第三个 seed 点. Paired with eval_sft_standard_20_seed456 验证 gap 稳定性.\\\", \\\"parent\\\": \\\"sft_rasp_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/recovery_aware_struct_prune && python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_samples 200 --max_new_tokens 4096 --seed 456 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_seed456.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_sft_rasp_20_seed456.log\\\", \\",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b899e62-3b72-4e91-98f0-cd158f2795a6",
+            "isSidechain": true,
+            "promptId": "bde70742-cefe-4ca4-94c6-e70cef09d4ab",
+            "agentId": "a73d12ff5140964a5",
+            "type": "user",
+            "uuid": "3613a78d-6eea-4f27-838e-c2a6c89208b8",
+            "sourceToolAssistantUUID": "3b899e62-3b72-4e91-98f0-cd158f2795a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T03:23:39.091Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011EgG4g1bhdzWUxysqsLqJs",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/4c77ad5c-8edc-435c-896e-b2aec707bdd2/tool-results/mcp-agent-ml-research-read_registry-1778988192555.txt', 'r') as f:\n    raw = json.load(f)\n\n# Parse the nested JSON string\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\ntarget_ids = [\n    'prune_rasp_rlvr_20_qwen_math',\n    'prune_standard_25_qwen_math',\n    'prune_rasp_25_qwen_math',\n    'eval_pass_k8_rasp_20_sft_qwen_math',\n    'eval_grpo_standard_25_qwen_math',\n    'eval_sft_rasp_rlvr_20_qwen_math',\n    'eval_pass_k8_rasp_20_grpo_qwen_math',\n    'eval_pass_k8_unpruned_qwen_math',\n    'eval_grpo_rasp_25_qwen_math',\n    'eval_grpo_standard_20_qwen_math',\n    'eval_grpo_rasp_20_qwen_math',\n    'sft_standard_25_westd',\n    'sft_standard_25',\n    'sft_rasp_25',\n    'prune_standard_30',\n    'prune_rasp_30',\n    'eval_grpo_unpruned_v2_step100',\n    'eval_grpo_unpruned_v2_step90',\n    'eval_sft_unpruned_full',\n    'eval_sft_unpruned_n100',\n    'eval-sft-alpha-1p0',\n    'eval-sft-alpha-0p0',\n    'sft-alpha-1p0',\n    'eval_sft_grasp_20',\n    'sft_standard_20_retrain',\n]\n\nresults = {}\nmissing = []\nfor eid in target_ids:\n    if eid in experiments:\n        results[eid] = experiments[eid]\n    else:\n        missing.append(eid)\n\nprint(f'Found: {len(results)}, Missing: {len(missing)}')\nif missing:\n    print(f'Missing IDs: {missing}')\n\n# Print full details\nprint(json.dumps(results, indent=2, ensure_ascii=False))\n\" 2>&1 | head -5000",
+                "description": "Parse registry JSON and extract 25 target experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3613a78d-6eea-4f27-838e-c2a6c89208b8",
+            "isSidechain": true,
+            "agentId": "a73d12ff5140964a5",
+            "requestId": "req_011Cb7RafBeEEzyjB1xXXFjS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "18e387a5-532a-4346-bb6a-d909b43f9046",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4fQoKN5om7GtMrmV9Yhnf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1849,
+                "cache_read_input_tokens": 15926,
+                "output_tokens": 775,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1849
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 775,
+                    "cache_read_input_tokens": 15926,
+                    "cache_creation_input_tokens": 1849,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1849,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T03:23:39.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011EgG4g1bhdzWUxysqsLqJs",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (33.8KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/4c77ad5c-8edc-435c-896e-b2aec707bdd2/tool-results/b3qdmw5ku.txt\n\nPreview (first 2KB):\nFound: 25, Missing: 0\n{\n  \"prune_rasp_rlvr_20_qwen_math\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-16T17:11:05.915Z\",\n    \"updated_at\": \"2026-05-16T17:11:26.262Z\",\n    \"spec\": {\n      \"command\": \"python src/prune.py --mode rasp-rlvr --sparsity 0.20\",\n      \"server\": \"westd-11672\",\n      \"model_name\": \"Qwen2.5-Math-7B\",\n      \"seed\": 42,\n      \"data_path\": \"N/A\",\n      \"data_count\": 0,\n      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20_qwen_math\",\n      \"log_path\": \"/tmp/prune_rasp_rlvr_qwen_math.log\"\n    },\n    \"conclusion\": \"success\",\n    \"completed_at\": \"2026-05-16T17:11:24.806Z\",\n    \"metrics\": {\n      \"actual_sparsity\": 0.1909,\n      \"mlp_groups_pruned\": 200,\n      \"mlp_groups_total\": 784,\n      \"attn_groups_pruned\": 0,\n      \"attn_groups_total\": 112,\n      \"pruned_params\": 6161946112\n    }\n  },\n  \"prune_standard_25_qwen_math\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-16T11:00:13.880Z\",\n    \"updated_at\": \"2026-05-16T11:00:50.302Z\",\n    \"conclusion\": \"success\",\n    \"metrics\": {\n      \"actual_sparsity\": 0.2396,\n      \"target_sparsity\": 0.25,\n      \"mlp_groups_pruned\": \"251/784\",\n      \"attn_gqa_groups_pruned\": \"0/112\"\n    },\n    \"spec\": {\n      \"command\": \"CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/models/Qwen2.5-Math-7B --mode standard --sparsity 0.25 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math\",\n      \"server\": \"westd-11672\",\n      \"model_name\": \"Qwen2.5-Math-7B\",\n      \"data_path\": \"results/importance_scores.pt\",\n      \"data_count\": 0,\n      \"seed\": 42,\n      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math/\",\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18e387a5-532a-4346-bb6a-d909b43f9046",
+            "isSidechain": true,
+            "promptId": "bde70742-cefe-4ca4-94c6-e70cef09d4ab",
+            "agentId": "a73d12ff5140964a5",
+            "type": "user",
+            "uuid": "0967d751-1316-4327-ada4-0a75e4097aa9",
+            "sourceToolAssistantUUID": "18e387a5-532a-4346-bb6a-d909b43f9046",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T03:23:43.162Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KxGcoMtTqU4qEFKdyWWqht",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/4c77ad5c-8edc-435c-896e-b2aec707bdd2/tool-results/b3qdmw5ku.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0967d751-1316-4327-ada4-0a75e4097aa9",
+            "isSidechain": true,
+            "agentId": "a73d12ff5140964a5",
+            "requestId": "req_011Cb7RbRB4JWqnJfF4cPTyS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "21861e76-91a0-4386-a432-6a2a3dccae1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011unn8yEbe9DztSh1YDT8c3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1690,
+                "cache_read_input_tokens": 17775,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1690
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 17775,
+                    "cache_creation_input_tokens": 1690,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1690,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T03:23:43.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KxGcoMtTqU4qEFKdyWWqht",
+              "type": "tool_result",
+              "content": "1\tFound: 25, Missing: 0\n2\t{\n3\t  \"prune_rasp_rlvr_20_qwen_math\": {\n4\t    \"status\": \"DONE\",\n5\t    \"retry_count\": 0,\n6\t    \"created_at\": \"2026-05-16T17:11:05.915Z\",\n7\t    \"updated_at\": \"2026-05-16T17:11:26.262Z\",\n8\t    \"spec\": {\n9\t      \"command\": \"python src/prune.py --mode rasp-rlvr --sparsity 0.20\",\n10\t      \"server\": \"westd-11672\",\n11\t      \"model_name\": \"Qwen2.5-Math-7B\",\n12\t      \"seed\": 42,\n13\t      \"data_path\": \"N/A\",\n14\t      \"data_count\": 0,\n15\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20_qwen_math\",\n16\t      \"log_path\": \"/tmp/prune_rasp_rlvr_qwen_math.log\"\n17\t    },\n18\t    \"conclusion\": \"success\",\n19\t    \"completed_at\": \"2026-05-16T17:11:24.806Z\",\n20\t    \"metrics\": {\n21\t      \"actual_sparsity\": 0.1909,\n22\t      \"mlp_groups_pruned\": 200,\n23\t      \"mlp_groups_total\": 784,\n24\t      \"attn_groups_pruned\": 0,\n25\t      \"attn_groups_total\": 112,\n26\t      \"pruned_params\": 6161946112\n27\t    }\n28\t  },\n29\t  \"prune_standard_25_qwen_math\": {\n30\t    \"status\": \"DONE\",\n31\t    \"retry_count\": 0,\n32\t    \"created_at\": \"2026-05-16T11:00:13.880Z\",\n33\t    \"updated_at\": \"2026-05-16T11:00:50.302Z\",\n34\t    \"conclusion\": \"success\",\n35\t    \"metrics\": {\n36\t      \"actual_sparsity\": 0.2396,\n37\t      \"target_sparsity\": 0.25,\n38\t      \"mlp_groups_pruned\": \"251/784\",\n39\t      \"attn_gqa_groups_pruned\": \"0/112\"\n40\t    },\n41\t    \"spec\": {\n42\t      \"command\": \"CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/models/Qwen2.5-Math-7B --mode standard --sparsity 0.25 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math\",\n43\t      \"server\": \"westd-11672\",\n44\t      \"model_name\": \"Qwen2.5-Math-7B\",\n45\t      \"data_path\": \"results/importance_scores.pt\",\n46\t      \"data_count\": 0,\n47\t      \"seed\": 42,\n48\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math/\",\n49\t      \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ops_westd_disk_cleanup_qwen25_20260516T105526.log\"\n50\t    },\n51\t    \"completed_at\": \"2026-05-16T11:00:50.302Z\"\n52\t  },\n53\t  \"prune_rasp_25_qwen_math\": {\n54\t    \"status\": \"DONE\",\n55\t    \"retry_count\": 0,\n56\t    \"created_at\": \"2026-05-16T09:30:44.270Z\",\n57\t    \"updated_at\": \"2026-05-16T11:00:32.812Z\",\n58\t    \"conclusion\": \"success\",\n59\t    \"metrics\": {\n60\t      \"actual_sparsity\": 0.2405,\n61\t      \"target_sparsity\": 0.25,\n62\t      \"mlp_groups_pruned\": \"252/784\",\n63\t      \"attn_gqa_groups_pruned\": \"0/112\",\n64\t      \"params_after\": 5783991808\n65\t    },\n66\t    \"spec\": {\n67\t      \"command\": \"CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/models/Qwen2.5-Math-7B --mode rasp --sparsity 0.25 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores.pt --cka_path results/cka_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25_qwen_math\",\n68\t      \"server\": \"westd-11672\",\n69\t      \"model_name\": \"Qwen2.5-Math-7B\",\n70\t      \"data_path\": \"results/importance_scores.pt + results/cka_scores.pt\",\n71\t      \"data_count\": 0,\n72\t      \"seed\": 42,\n73\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25_qwen_math/\",\n74\t      \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ops_westd_disk_cleanup_qwen25_20260516T105526.log\"\n75\t    },\n76\t    \"completed_at\": \"2026-05-16T11:00:32.812Z\"\n77\t  },\n78\t  \"eval_pass_k8_rasp_20_sft_qwen_math\": {\n79\t    \"status\": \"DONE\",\n80\t    \"retry_count\": 0,\n81\t    \"created_at\": \"2026-05-16T16:43:11.344Z\",\n82\t    \"updated_at\": \"2026-05-16T18:48:29.286Z\",\n83\t    \"spec\": {\n84\t      \"command\": \"CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json\",\n85\t      \"server\": \"westd-11672\",\n86\t      \"gpu\": \"cuda:2\",\n87\t      \"data_path\": \"GSM8K\",\n88\t      \"data_count\": 200,\n89\t      \"model_name\": \"sft_qwen_math_rasp_20\",\n90\t      \"seed\": 42,\n91\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20\",\n92\t      \"eval_data\": \"GSM8K (N=200, pass@8, T=0.7)\"\n93\t    },\n94\t    \"metrics\": {\n95\t      \"pass_at_k\": 0.935,\n96\t      \"k\": 8,\n97\t      \"temperature\": 0.7,\n98\t      \"n_problems\": 200,\n99\t      \"stderr\": 0.0174,\n100\t      \"eos_rate\": 0.99625,\n101\t      \"natural_eos\": 1594,\n102\t      \"truncated\": 6,\n103\t      \"avg_response_length\": 139.86\n104\t    },\n105\t    \"conclusion\": \"success\",\n106\t    \"reproduce\": {\n107\t      \"finished_at\": \"2026-05-16T18:30:19.034Z\"\n108\t    },\n109\t    \"failure_reason\": null,\n110\t    \"completed_at\": \"2026-05-16T18:30:20.418Z\",\n111\t    \"extra\": {\n112\t      \"hook_events\": [\n113\t        {\n114\t          \"event\": \"on_failed\",\n115\t          \"action\": \"agent\",\n116\t          \"ts\": \"2026-05-16T18:30:22.400738+00:00\"\n117\t        }\n118\t      ]\n119\t    }\n120\t  },\n121\t  \"eval_grpo_standard_25_qwen_math\": {\n122\t    \"status\": \"DONE\",\n123\t    \"retry_count\": 0,\n124\t    \"created_at\": \"2026-05-16T15:59:55.747Z\",\n125\t    \"updated_at\": \"2026-05-16T18:47:10.092Z\",\n126\t    \"spec\": {\n127\t      \"hypothesis\": \"Qwen2.5-Math-7B Standard 25% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_standard_25_qwen_math.\",\n128\t      \"parent\": \"grpo_standard_25_qwen_math\",\n129\t      \"server\": \"westd-11672\",\n130\t      \"gpu\": \"cuda:1\",\n131\t      \"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json\",\n132\t      \"data_path\": \"openai/gsm8k\",\n133\t      \"data_count\": 200,\n134\t      \"model_name\": \"Qwen2.5-Math-7B-Standard-25%-postGRPO\",\n135\t      \"seed\": 42,\n136\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\",\n137\t      \"eval_data\": \"gsm8k\",\n138\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\",\n139\t      \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json\"\n140\t    },\n141\t    \"metrics\": {\n142\t      \"accuracy\": 0.635,\n143\t      \"n_samples\": 200,\n144\t      \"seed\": 42\n145\t    },\n146\t    \"conclusion\": \"success\",\n147\t    \"completed_at\": \"2026-05-16T18:47:10.092Z\"\n148\t  },\n149\t  \"eval_sft_rasp_rlvr_20_qwen_math\": {\n150\t    \"status\": \"PREPARING\",\n151\t    \"retry_count\": 0,\n152\t    \"created_at\": \"2026-05-16T18:16:58.087Z\",\n153\t    \"updated_at\": \"2026-05-16T18:23:38.378Z\",\n154\t    \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\",\n155\t    \"conclusion\": \"success\",\n156\t    \"extra\": {\n157\t      \"hook_events\": [\n158\t        {\n159\t          \"event\": \"on_failed\",\n160\t          \"action\": \"agent\",\n161\t          \"ts\": \"2026-05-16T18:17:00.419650+00:00\"\n162\t        }\n163\t      ]\n164\t    },\n165\t    \"metrics\": {\n166\t      \"accuracy\": 0.73,\n167\t      \"n_samples\": 200,\n168\t      \"mode\": \"greedy\",\n169\t      \"n_correct\": 146\n170\t    }\n171\t  },\n172\t  \"eval_pass_k8_rasp_20_grpo_qwen_math\": {\n173\t    \"status\": \"DONE\",\n174\t    \"retry_count\": 0,\n175\t    \"created_at\": \"2026-05-16T16:43:12.096Z\",\n176\t    \"updated_at\": \"2026-05-16T18:23:36.396Z\",\n177\t    \"spec\": {\n178\t      \"command\": \"CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_qwen_math.json\",\n179\t      \"server\": \"westd-11672\",\n180\t      \"gpu\": \"cuda:3\",\n181\t      \"data_path\": \"GSM8K\",\n182\t      \"data_count\": 200,\n183\t      \"model_name\": \"grpo_rasp_qwen_math\",\n184\t      \"seed\": 42,\n185\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math\",\n186\t      \"eval_data\": \"GSM8K (N=200, pass@8, T=0.7)\"\n187\t    },\n188\t    \"reproduce\": {\n189\t      \"finished_at\": \"2026-05-16T18:13:48.390Z\"\n190\t    },\n191\t    \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\",\n192\t    \"conclusion\": \"success\",\n193\t    \"completed_at\": \"2026-05-16T18:13:49.651Z\",\n194\t    \"extra\": {\n195\t      \"hook_events\": [\n196\t        {\n197\t          \"event\": \"on_failed\",\n198\t          \"action\": \"agent\",\n199\t          \"ts\": \"2026-05-16T18:13:51.489018+00:00\"\n200\t        }\n201\t      ]\n202\t    },\n203\t    \"metrics\": {\n204\t      \"pass_at_k\": 0.915,\n205\t      \"accuracy\": 0.915,\n206\t      \"k\": 8,\n207\t      \"temperature\": 0.7,\n208\t      \"n_samples\": 200,\n209\t      \"stderr\": 0.0197\n210\t    }\n211\t  },\n212\t  \"eval_pass_k8_unpruned_qwen_math\": {\n213\t    \"status\": \"DONE\",\n214\t    \"retry_count\": 0,\n215\t    \"created_at\": \"2026-05-16T16:43:10.425Z\",\n216\t    \"updated_at\": \"2026-05-16T18:23:29.250Z\",\n217\t    \"spec\": {\n218\t      \"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json\",\n219\t      \"server\": \"westd-11672\",\n220\t      \"gpu\": \"cuda:1\",\n221\t      \"data_path\": \"GSM8K\",\n222\t      \"data_count\": 200,\n223\t      \"model_name\": \"grpo_unpruned_v2\",\n224\t      \"seed\": 42,\n225\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2\",\n226\t      \"eval_data\": \"GSM8K (N=200, pass@8, T=0.7)\"\n227\t    },\n228\t    \"metrics\": {\n229\t      \"pass_at_k\": 0.965,\n230\t      \"accuracy\": 0.965,\n231\t      \"k\": 8,\n232\t      \"temperature\": 0.7,\n233\t      \"n_samples\": 200,\n234\t      \"stderr\": 0.013\n235\t    },\n236\t    \"conclusion\": \"success\",\n237\t    \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_unpruned_qwen_math.log\",\n238\t    \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json\",\n239\t    \"completed_at\": \"2026-05-16T18:00:04.086Z\"\n240\t  },\n241\t  \"eval_grpo_rasp_25_qwen_math\": {\n242\t    \"status\": \"DONE\",\n243\t    \"retry_count\": 0,\n244\t    \"created_at\": \"2026-05-16T15:59:53.951Z\",\n245\t    \"updated_at\": \"2026-05-16T17:03:17.714Z\",\n246\t    \"spec\": {\n247\t      \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_rasp_25_qwen_math.\",\n248\t      \"parent\": \"grpo_rasp_25_qwen_math\",\n249\t      \"server\": \"westd-11672\",\n250\t      \"gpu\": \"cuda:0\",\n251\t      \"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_qwen_math.json\",\n252\t      \"data_path\": \"openai/gsm8k\",\n253\t      \"data_count\": 200,\n254\t      \"model_name\": \"Qwen2.5-Math-7B-RASP-25%-postGRPO\",\n255\t      \"seed\": 42,\n256\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\",\n257\t      \"eval_data\": \"gsm8k\"\n258\t    },\n259\t    \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_qwen_math.log\",\n260\t    \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_qwen_math.json\",\n261\t    \"conclusion\": \"success\",\n262\t    \"completed_at\": \"2026-05-16T16:30:47.624Z\",\n263\t    \"metrics\": {\n264\t      \"accuracy\": 0.625,\n265\t      \"n_samples\": 200,\n266\t      \"seed\": 42\n267\t    }\n268\t  },\n269\t  \"eval_grpo_standard_20_qwen_math\": {\n270\t    \"status\": \"DONE\",\n271\t    \"retry_count\": 0,\n272\t    \"created_at\": \"2026-05-16T15:59:59.175Z\",\n273\t    \"updated_at\": \"2026-05-16T17:02:48.213Z\",\n274\t    \"spec\": {\n275\t      \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_standard_qwen_math_v3.\",\n276\t      \"parent\": \"grpo_standard_qwen_math_v3\",\n277\t      \"server\": \"westd-11672\",\n278\t      \"gpu\": \"cuda:3\",\n279\t      \"command\": \"CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_20_qwen_math.json\",\n280\t      \"data_path\": \"openai/gsm8k\",\n281\t      \"data_count\": 200,\n282\t      \"model_name\": \"Qwen2.5-Math-7B-Standard-20%-postGRPO\",\n283\t      \"seed\": 42,\n284\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math\",\n285\t      \"eval_data\": \"gsm8k\"\n286\t    },\n287\t    \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_20_qwen_math.log\",\n288\t    \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_20_qwen_math.json\",\n289\t    \"conclusion\": \"success\",\n290\t    \"completed_at\": \"2026-05-16T16:30:46.768Z\",\n291\t    \"metrics\": {\n292\t      \"accuracy\": 0.705,\n293\t      \"n_samples\": 200,\n294\t      \"seed\": 42\n295\t    }\n296\t  },\n297\t  \"eval_grpo_rasp_20_qwen_math\": {\n298\t    \"status\": \"DONE\",\n299\t    \"retry_count\": 0,\n300\t    \"created_at\": \"2026-05-16T15:59:57.504Z\",\n301\t    \"updated_at\": \"2026-05-16T17:02:47.509Z\",\n302\t    \"spec\": {\n303\t      \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_rasp_qwen_math_v3.\",\n304\t      \"parent\": \"grpo_rasp_qwen_math_v3\",\n305\t      \"server\": \"westd-11672\",\n306\t      \"gpu\": \"cuda:2\",\n307\t      \"command\": \"CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_20_qwen_math.json\",\n308\t      \"data_path\": \"openai/gsm8k\",\n309\t      \"data_count\": 200,\n310\t      \"model_name\": \"Qwen2.5-Math-7B-RASP-20%-postGRPO\",\n311\t      \"seed\": 42,\n312\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math\",\n313\t      \"eval_data\": \"gsm8k\"\n314\t    },\n315\t    \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_20_qwen_math.log\",\n316\t    \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_20_qwen_math.json\",\n317\t    \"conclusion\": \"success\",\n318\t    \"completed_at\": \"2026-05-16T16:30:45.885Z\",\n319\t    \"metrics\": {\n320\t      \"accuracy\": 0.725,\n321\t      \"n_samples\": 200,\n322\t      \"seed\": 42\n323\t    }\n324\t  },\n325\t  \"sft_standard_25_westd\": {\n326\t    \"status\": \"DONE\",\n327\t    \"retry_count\": 0,\n328\t    \"created_at\": \"2026-05-16T15:52:30.818Z\",\n329\t    \"updated_at\": \"2026-05-16T17:01:57.353Z\",\n330\t    \"spec\": {\n331\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\"\",\n332\t      \"server\": \"westd-11672\",\n333\t      \"gpu\": [\n334\t        \"cuda:1\"\n335\t      ],\n336\t      \"pid\": \"21488\",\n337\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log\",\n338\t      \"submitted_at\": \"2026-05-16T15:52:30.596Z\",\n339\t      \"submitted_via\": \"submit_training_job\",\n340\t      \"backend\": \"tmux\",\n341\t      \"account\": \"root\",\n342\t      \"data_path\": \"openai/gsm8k\",\n343\t      \"data_count\": 7473,\n344\t      \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (Standard 25% pruned)\",\n345\t      \"seed\": 42,\n346\t      \"wall_clock_seconds\": 3273.0,\n347\t      \"gpu_hours\": 0.91\n348\t    },\n349\t    \"reproduce\": {\n350\t      \"finished_at\": \"2026-05-16T16:47:02.031Z\"\n351\t    },\n352\t    \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\",\n353\t    \"conclusion\": \"success\",\n354\t    \"completed_at\": \"2026-05-16T16:47:03.556Z\",\n355\t    \"extra\": {\n356\t      \"hook_events\": [\n357\t        {\n358\t          \"event\": \"on_failed\",\n359\t          \"action\": \"agent\",\n360\t          \"ts\": \"2026-05-16T16:47:05.612374+00:00\"\n361\t        }\n362\t      ]\n363\t    },\n364\t    \"metrics\": {\n365\t      \"final_loss\": 0.8381,\n366\t      \"token_acc\": 0.8018,\n367\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/model.safetensors\"\n368\t    }\n369\t  },\n370\t  \"sft_standard_25\": {\n371\t    \"status\": \"DONE\",\n372\t    \"retry_count\": 1,\n373\t    \"created_at\": \"2026-05-16T05:21:16.758Z\",\n374\t    \"updated_at\": \"2026-05-16T07:03:55.277Z\",\n375\t    \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\",\n376\t    \"completed_at\": \"2026-05-16T05:35:39.684Z\",\n377\t    \"extra\": {\n378\t      \"previous_failure\": {\n379\t        \"conclusion\": \"failed\"\n380\t      }\n381\t    },\n382\t    \"spec\": {\n383\t      \"data_path\": \"openai/gsm8k\",\n384\t      \"data_count\": 7473,\n385\t      \"model_name\": \"pruned_standard_25 (Standard 25% pruned DeepSeek-R1-Distill-Qwen-7B)\",\n386\t      \"seed\": 42,\n387\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\",\n388\t      \"server\": \"westb-23072\",\n389\t      \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\",\n390\t      \"log_path\": \"/root/runs/recovery_aware_struct_prune/sft_standard_25_retry.log\"\n391\t    },\n392\t    \"conclusion\": \"success\",\n393\t    \"metrics\": {\n394\t      \"total_steps\": 1870,\n395\t      \"runtime_seconds\": 2130,\n396\t      \"model_params\": \"5.79B\",\n397\t      \"model_keys\": 339,\n398\t      \"note\": \"optimizer.pt save failed (RuntimeError) but model.safetensors intact\"\n399\t    }\n400\t  },\n401\t  \"sft_rasp_25\": {\n402\t    \"status\": \"DONE\",\n403\t    \"retry_count\": 0,\n404\t    \"created_at\": \"2026-05-16T05:26:38.517Z\",\n405\t    \"updated_at\": \"2026-05-16T06:17:10.629Z\",\n406\t    \"spec\": {\n407\t      \"command\": \"CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\",\n408\t      \"server\": \"westd-11672\",\n409\t      \"gpu\": [\n410\t        \"cuda:0\"\n411\t      ],\n412\t      \"pid\": \"88528\",\n413\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_rasp_25.log\",\n414\t      \"submitted_at\": \"2026-05-16T05:27:08.163Z\",\n415\t      \"submitted_via\": \"submit_training_job\",\n416\t      \"backend\": \"tmux\",\n417\t      \"account\": \"root\",\n418\t      \"data_path\": \"openai/gsm8k\",\n419\t      \"data_count\": 7473,\n420\t      \"model_name\": \"pruned_rasp_25 (RASP 25% pruned DeepSeek-R1-Distill-Qwen-7B)\",\n421\t      \"seed\": 42,\n422\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25\",\n423\t      \"wall_clock_seconds\": 3002.5,\n424\t      \"gpu_hours\": 0.83\n425\t    },\n426\t    \"conclusion\": \"success\",\n427\t    \"metrics\": {\n428\t      \"train_loss\": 0.8498,\n429\t      \"token_accuracy\": 0.8073,\n430\t      \"runtime_seconds\": 1635\n431\t    },\n432\t    \"completed_at\": \"2026-05-16T06:17:10.629Z\"\n433\t  },\n434\t  \"prune_standard_30\": {\n435\t    \"status\": \"DONE\",\n436\t    \"retry_count\": 0,\n437\t    \"created_at\": \"2026-05-16T09:06:31.546Z\",\n438\t    \"updated_at\": \"2026-05-16T09:29:14.670Z\",\n439\t    \"spec\": {\n440\t      \"command\": \"CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode standard --sparsity 0.30 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30\",\n441\t      \"server\": \"westb-23072\",\n442\t      \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n443\t      \"data_path\": \"results/importance_scores.pt\",\n444\t      \"data_count\": 0,\n445\t      \"seed\": 42,\n446\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30/\",\n447\t      \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_ops_prune_standard_30_20260516T090533.log\"\n448\t    },\n449\t    \"conclusion\": \"success\",\n450\t    \"metrics\": {\n451\t      \"actual_sparsity\": 0.2854,\n452\t      \"target_sparsity\": 0.3,\n453\t      \"mlp_groups_pruned\": \"299/784\",\n454\t      \"attn_gqa_groups_pruned\": \"0/112\",\n455\t      \"params_after\": 5442379264\n456\t    },\n457\t    \"completed_at\": \"2026-05-16T09:09:17.139Z\"\n458\t  },\n459\t  \"prune_rasp_30\": {\n460\t    \"status\": \"DONE\",\n461\t    \"retry_count\": 0,\n462\t    \"created_at\": \"2026-05-16T09:03:45.925Z\",\n463\t    \"updated_at\": \"2026-05-16T09:04:22.915Z\",\n464\t    \"conclusion\": \"success\",\n465\t    \"metrics\": {\n466\t      \"target_sparsity\": 0.3,\n467\t      \"actual_sparsity\": 0.2873,\n468\t      \"mlp_groups_pruned\": \"301/784\",\n469\t      \"attn_groups_pruned\": \"0/112\",\n470\t      \"params_pruned\": 5427842560,\n471\t      \"model_size_gb\": 11\n472\t    },\n473\t    \"spec\": {\n474\t      \"command\": \"python src/prune.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --mode rasp --sparsity 0.30 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores.pt --cka_path results/cka_scores.pt\",\n475\t      \"server\": \"westb-23072\",\n476\t      \"data_path\": \"calibration data\",\n477\t      \"data_count\": 512,\n478\t      \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\",\n479\t      \"seed\": 42,\n480\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30\",\n481\t      \"log_path\": \"N/A (CPU)\"\n482\t    },\n483\t    \"completed_at\": \"2026-05-16T09:04:22.915Z\"\n484\t  },\n485\t  \"eval_grpo_unpruned_v2_step100\": {\n486\t    \"status\": \"DONE\",\n487\t    \"retry_count\": 0,\n488\t    \"created_at\": \"2026-05-16T03:04:55.936Z\",\n489\t    \"updated_at\": \"2026-05-16T05:22:38.323Z\",\n490\t    \"spec\": {\n491\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step100.json\\\"\",\n492\t      \"server\": \"westd-11672\",\n493\t      \"gpu\": [\n494\t        \"cuda:0\"\n495\t      ],\n496\t      \"pid\": \"83589\",\n497\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step100.log\",\n498\t      \"submitted_at\": \"2026-05-16T03:39:11.392Z\",\n499\t      \"submitted_via\": \"submit_training_job\",\n500\t      \"backend\": \"tmux\",\n501\t      \"account\": \"root\",\n502\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100\",\n503\t      \"wall_clock_seconds\": 6195.8,\n504\t      \"gpu_hours\": 1.72\n505\t    },\n506\t    \"conclusion\": \"success\",\n507\t    \"metrics\": {\n508\t      \"accuracy\": 81.27,\n509\t      \"correct\": 1072,\n510\t      \"total\": 1319,\n511\t      \"eos_rate\": 99.7,\n512\t      \"avg_response_length\": 209,\n513\t      \"seed\": 42\n514\t    },\n515\t    \"reproduce\": {\n516\t      \"finished_at\": \"2026-05-16T05:20:49.514Z\"\n517\t    },\n518\t    \"extra\": {\n519\t      \"hook_events\": [\n520\t        {\n521\t          \"event\": \"on_complete\",\n522\t          \"action\": \"agent\",\n523\t          \"ts\": \"2026-05-16T05:20:51.768048+00:00\"\n524\t        }\n525\t      ]\n526\t    },\n527\t    \"completed_at\": \"2026-05-16T05:22:27.217Z\"\n528\t  },\n529\t  \"eval_grpo_unpruned_v2_step90\": {\n530\t    \"status\": \"DONE\",\n531\t    \"retry_count\": 0,\n532\t    \"created_at\": \"2026-05-16T03:05:00.333Z\",\n533\t    \"updated_at\": \"2026-05-16T05:22:36.109Z\",\n534\t    \"spec\": {\n535\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step90.json\\\"\",\n536\t      \"server\": \"westd-11672\",\n537\t      \"gpu\": [\n538\t        \"cuda:1\"\n539\t      ],\n540\t      \"pid\": \"83667\",\n541\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_grpo_unpruned_v2_step90.log\",\n542\t      \"submitted_at\": \"2026-05-16T03:39:13.660Z\",\n543\t      \"submitted_via\": \"submit_training_job\",\n544\t      \"backend\": \"tmux\",\n545\t      \"account\": \"root\",\n546\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90\",\n547\t      \"wall_clock_seconds\": 6194.8,\n548\t      \"gpu_hours\": 1.72\n549\t    },\n550\t    \"conclusion\": \"success\",\n551\t    \"metrics\": {\n552\t      \"accuracy\": 80.59,\n553\t      \"correct\": 1063,\n554\t      \"total\": 1319,\n555\t      \"eos_rate\": 99.6,\n556\t      \"avg_response_length\": 213,\n557\t      \"seed\": 42\n558\t    },\n559\t    \"reproduce\": {\n560\t      \"finished_at\": \"2026-05-16T05:20:55.145Z\"\n561\t    },\n562\t    \"extra\": {\n563\t      \"hook_events\": [\n564\t        {\n565\t          \"event\": \"on_complete\",\n566\t          \"action\": \"agent\",\n567\t          \"ts\": \"2026-05-16T05:21:01.910684+00:00\"\n568\t        }\n569\t      ]\n570\t    },\n571\t    \"completed_at\": \"2026-05-16T05:22:28.433Z\"\n572\t  },\n573\t  \"eval_sft_unpruned_full\": {\n574\t    \"status\": \"DONE\",\n575\t    \"retry_count\": 0,\n576\t    \"created_at\": \"2026-05-16T01:40:17.174Z\",\n577\t    \"updated_at\": \"2026-05-16T02:46:59.009Z\",\n578\t    \"spec\": {\n579\t      \"command\": \"CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42\",\n580\t      \"server\": \"westd-11672\",\n581\t      \"data_path\": \"openai/gsm8k\",\n582\t      \"data_count\": 1319,\n583\t      \"model_name\": \"Qwen2.5-7B (unpruned, SFT)\",\n584\t      \"seed\": 42,\n585\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\",\n586\t      \"eval_data\": \"gsm8k_test_full_1319\",\n587\t      \"parent\": \"sft_unpruned_baseline\",\n588\t      \"hypothesis\": \"Unpruned SFT baseline full GSM8K eval for three-way comparison\",\n589\t      \"pid\": 74129,\n590\t      \"gpu\": \"cuda:0\",\n591\t      \"log_path\": \"/tmp/eval_unpruned_full.log\",\n592\t      \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json\"\n593\t    },\n594\t    \"notes\": \"Unpruned SFT N=1319 full eval on westd cuda:0. PID 74129, ~2.5s/it. Started 09:39 UTC. Progress at 09:46 UTC: 155/1319 (12%), acc=86.67% (at 150), eos_rate=100%, avg_len=188. ETA ~10:35 UTC. Model: /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline. N=100 checkpoint: 84% (84/100). Three-way comparison pending: Standard 59.29%, RASP 61.49%, Unpruned ?%.\",\n595\t    \"conclusion\": \"success\",\n596\t    \"completed_at\": \"2026-05-16T02:45:56.559Z\",\n597\t    \"metrics\": {\n598\t      \"accuracy\": 81.27,\n599\t      \"accuracy_ci\": 1.07,\n600\t      \"correct\": 1072,\n601\t      \"total\": 1319,\n602\t      \"eos_rate\": 99.7,\n603\t      \"avg_response_length\": 207.18,\n604\t      \"truncated\": 4\n605\t    }\n606\t  },\n607\t  \"eval_sft_unpruned_n100\": {\n608\t    \"status\": \"DONE\",\n609\t    \"retry_count\": 0,\n610\t    \"created_at\": \"2026-05-16T01:40:17.686Z\",\n611\t    \"updated_at\": \"2026-05-16T01:40:37.975Z\",\n612\t    \"spec\": {\n613\t      \"command\": \"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\",\n614\t      \"server\": \"westd-11672\",\n615\t      \"data_path\": \"openai/gsm8k\",\n616\t      \"data_count\": 100,\n617\t      \"model_name\": \"Qwen2.5-7B (unpruned, SFT)\",\n618\t      \"seed\": 42,\n619\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\",\n620\t      \"eval_data\": \"gsm8k_test_n100\",\n621\t      \"parent\": \"sft_unpruned_baseline\",\n622\t      \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\",\n623\t      \"log_path\": \"/tmp/eval_unpruned_n100.log\"\n624\t    },\n625\t    \"conclusion\": \"success\",\n626\t    \"completed_at\": \"2026-05-16T01:40:33.108Z\",\n627\t    \"metrics\": {\n628\t      \"accuracy\": 0.84,\n629\t      \"n_correct\": 84,\n630\t      \"n_total\": 100,\n631\t      \"eos_rate\": 1,\n632\t      \"avg_response_length\": 187.22,\n633\t      \"stderr\": 0.0367\n634\t    }\n635\t  },\n636\t  \"eval-sft-alpha-1p0\": {\n637\t    \"status\": \"DONE\",\n638\t    \"retry_count\": 0,\n639\t    \"created_at\": \"2026-05-15T14:51:22.694Z\",\n640\t    \"updated_at\": \"2026-05-15T15:24:58.264Z\",\n641\t    \"spec\": {\n642\t      \"command\": \"python eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --n_samples 100\",\n643\t      \"server\": \"westd-11672\",\n644\t      \"gpu\": [\n645\t        \"cuda:1\"\n646\t      ],\n647\t      \"pid\": \"42530\",\n648\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/eval-sft-alpha-1p0.log\",\n649\t      \"submitted_at\": \"2026-05-15T14:51:22.611Z\",\n650\t      \"submitted_via\": \"submit_training_job\",\n651\t      \"backend\": \"tmux\",\n652\t      \"account\": \"root\",\n653\t      \"data_path\": \"openai/gsm8k\",\n654\t      \"data_count\": 100,\n655\t      \"model_name\": \"Qwen2.5-7B pruned alpha=1.0 post-SFT\",\n656\t      \"seed\": 42,\n657\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\",\n658\t      \"eval_data\": \"gsm8k_test_n100\",\n659\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\",\n660\t      \"wall_clock_seconds\": 2013.4,\n661\t      \"gpu_hours\": 0.56\n662\t    },\n663\t    \"notes\": \"α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。\",\n664\t    \"reproduce\": {\n665\t      \"finished_at\": \"2026-05-15T15:22:49.510Z\"\n666\t    },\n667\t    \"conclusion\": \"success\",\n668\t    \"completed_at\": \"2026-05-15T15:24:56.027Z\",\n669\t    \"metrics\": {\n670\t      \"accuracy\": 0.57,\n671\t      \"stderr\": 0.0495,\n672\t      \"n_correct\": 57,\n673\t      \"n_total\": 100,\n674\t      \"eos_rate\": 0.98,\n675\t      \"avg_len\": 224.18,\n676\t      \"natural_eos\": 98,\n677\t      \"truncated\": 2\n678\t    }\n679\t  },\n680\t  \"eval-sft-alpha-0p0\": {\n681\t    \"status\": \"DONE\",\n682\t    \"retry_count\": 0,\n683\t    \"created_at\": \"2026-05-15T14:26:31.883Z\",\n684\t    \"updated_at\": \"2026-05-15T14:52:02.388Z\",\n685\t    \"spec\": {\n686\t      \"command\": \"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0 --max_samples 100 --max_new_tokens 4096\",\n687\t      \"server\": \"westd-11672\",\n688\t      \"gpu\": [\n689\t        \"cuda:1\"\n690\t      ],\n691\t      \"pid\": \"40489\",\n692\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/eval-sft-alpha-0p0.log\",\n693\t      \"submitted_at\": \"2026-05-15T14:26:31.816Z\",\n694\t      \"submitted_via\": \"submit_training_job\",\n695\t      \"backend\": \"tmux\",\n696\t      \"account\": \"root\",\n697\t      \"data_path\": \"openai/gsm8k\",\n698\t      \"data_count\": 100,\n699\t      \"model_name\": \"Qwen2.5-7B pruned alpha=0.0 post-SFT\",\n700\t      \"seed\": 42,\n701\t      \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\",\n702\t      \"eval_data\": \"gsm8k_test_n100\",\n703\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\",\n704\t      \"wall_clock_seconds\": 1529.3,\n705\t      \"gpu_hours\": 0.42\n706\t    },\n707\t    \"conclusion\": \"success\",\n708\t    \"completed_at\": \"2026-05-15T14:52:01.132Z\",\n709\t    \"metrics\": {\n710\t      \"accuracy\": 0.64,\n711\t      \"eos_rate\": 0.97,\n712\t      \"avg_len\": 257.9,\n713\t      \"n_correct\": 64,\n714\t      \"n_total\": 100\n715\t    }\n716\t  },\n717\t  \"sft-alpha-1p0\": {\n718\t    \"status\": \"DONE\",\n719\t    \"retry_count\": 0,\n720\t    \"created_at\": \"2026-05-15T13:53:32.178Z\",\n721\t    \"updated_at\": \"2026-05-15T14:28:10.199Z\",\n722\t    \"spec\": {\n723\t      \"command\": \"python -u src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42\",\n724\t      \"server\": \"westd-11672\",\n725\t      \"gpu\": [\n726\t        \"cuda:1\"\n727\t      ],\n728\t      \"pid\": \"38797\",\n729\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/sft-alpha-1p0.log\",\n730\t      \"submitted_at\": \"2026-05-15T13:53:32.117Z\",\n731\t      \"submitted_via\": \"submit_training_job\",\n732\t      \"backend\": \"tmux\",\n733\t      \"account\": \"root\",\n734\t      \"data_path\": \"openai/gsm8k\",\n735\t      \"data_count\": 7473,\n736\t      \"model_name\": \"pruned_alpha1.0 (α=1.0, 20% sparsity)\",\n737\t      \"seed\": 42,\n738\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\",\n739\t      \"wall_clock_seconds\": 2069.9,\n740\t      \"gpu_hours\": 0.57\n741\t    },\n742\t    \"conclusion\": \"success\",\n743\t    \"completed_at\": \"2026-05-15T14:28:01.989Z\",\n744\t    \"metrics\": {\n745\t      \"train_loss_final\": 0.64,\n746\t      \"token_accuracy\": 0.83,\n747\t      \"post_prune_accuracy\": 0.27,\n748\t      \"total_steps\": 1870,\n749\t      \"train_time_min\": 28\n750\t    },\n751\t    \"notes\": \"α=1.0 SFT 完成 (1870/1870 steps, 2 epochs, ~28min). loss=0.64, token_acc=0.83. Post-prune 27% → post-SFT 需 eval 确认 (预期 ~57% 与 sft_rasp_20 一致，因 α=1.0 = RASP default). Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\"\n752\t  },\n753\t  \"eval_sft_grasp_20\": {\n754\t    \"status\": \"PREPARING\",\n755\t    \"retry_count\": 0,\n756\t    \"created_at\": \"2026-05-15T15:45:15.051Z\",\n757\t    \"updated_at\": \"2026-05-16T01:46:27.044Z\",\n758\t    \"spec\": {\n759\t      \"hypothesis\": \"GraSP post-SFT GSM8K eval (N=100, greedy). GraSP post-prune ~6%, post-SFT loss=0.59, token_acc=0.84. Three-way comparison: Standard 64% vs RASP 57% vs GraSP ?%. Parent: sft_grasp_20_westd.\",\n760\t      \"parent\": \"sft_grasp_20_westd\",\n761\t      \"command\": \"python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path results/eval_sft_grasp_20_n100.json\",\n762\t      \"server\": \"westd-11672\",\n763\t      \"model_name\": \"Qwen2.5-1.5B-GraSP-20%-SFT\",\n764\t      \"seed\": 42\n765\t    },\n766\t    \"metrics\": {\n767\t      \"accuracy\": 0.41,\n768\t      \"n_total\": 100,\n769\t      \"p_value_vs_standard\": 0.001,\n770\t      \"standard_ref\": 0.64,\n771\t      \"rasp_ref\": 0.57,\n772\t      \"note\": \"论文核心数据点: GraSP post-SFT 41% vs Standard 64% (p=0.001) vs RASP 57%\"\n773\t    },\n774\t    \"notes\": \"GraSP post-SFT eval 完成: 41% accuracy (N=100, greedy, seed=42). 论文核心数据点。三方对比: Standard 64% > RASP 57% > GraSP 41% (p=0.001 vs Standard). GraSP post-prune ~6% → post-SFT 41% (+35pp recovery), 但仍远低于 RASP/Standard. JSON: results/eval_sft_grasp_20_n100.json\",\n775\t    \"conclusion\": \"success\"\n776\t  },\n777\t  \"sft_standard_20_retrain\": {\n778\t    \"status\": \"DONE\",\n779\t    \"retry_count\": 0,\n780\t    \"created_at\": \"2026-05-15T08:00:22.779Z\",\n781\t    \"updated_at\": \"2026-05-15T12:36:07.279Z\",\n782\t    \"spec\": {\n783\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42\\\"\",\n784\t      \"server\": \"westb-23072\",\n785\t      \"gpu\": [\n786\t        \"cuda:1\"\n787\t      ],\n788\t      \"pid\": \"515168\",\n789\t      \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_standard_20_retrain.log\",\n790\t      \"submitted_at\": \"2026-05-15T11:47:22.611Z\",\n791\t      \"submitted_via\": \"submit_training_job\",\n792\t      \"backend\": \"tmux\",\n793\t      \"account\": \"root\",\n794\t      \"data_path\": \"openai/gsm8k\",\n795\t      \"data_count\": 7473,\n796\t      \"model_name\": \"pruned_standard_20\",\n797\t      \"seed\": 42,\n798\t      \"checkpoint_source\": \"/root/autodl-tmp/pruned_standard_20\",\n799\t      \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\",\n800\t      \"wall_clock_seconds\": 2914.0,\n801\t      \"gpu_hours\": 0.81\n802\t    },\n803\t    \"reproduce\": {\n804\t      \"finished_at\": \"2026-05-15T12:30:33.744Z\"\n805\t    },\n806\t    \"extra\": {\n807\t      \"hook_events\": [\n808\t        {\n809\t          \"event\": \"on_complete\",\n810\t          \"action\": \"agent\",\n811\t          \"ts\": \"2026-05-15T12:30:34.816944+00:00\"\n812\t        }\n813\t      ]\n814\t    },\n815\t    \"conclusion\": \"success\",\n816\t    \"notes\": \"SFT Standard retrain 完成. loss 0.64, token_accuracy 83%, 与原始 sft_standard_20 完全一致. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/. 用于 Standard GRPO v5 对照实验.\",\n817\t    \"metrics\": {\n818\t      \"train_loss_final\": 0.64,\n819\t      \"token_accuracy\": 0.83,\n820\t      \"conclusion\": \"Matches original sft_standard_20 (loss 0.64, token_accuracy 83%). Retrain successful.\"\n821\t    },\n822\t    \"completed_at\": \"2026-05-15T12:35:56.639Z\",\n823\t    \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\"\n824\t  }\n825\t}\n826\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21861e76-91a0-4386-a432-6a2a3dccae1c",
+            "isSidechain": true,
+            "promptId": "bde70742-cefe-4ca4-94c6-e70cef09d4ab",
+            "agentId": "a73d12ff5140964a5",
+            "type": "user",
+            "uuid": "0eaa0bfc-1b60-4029-a69b-0e7cdb9c2fd9",
+            "sourceToolAssistantUUID": "21861e76-91a0-4386-a432-6a2a3dccae1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T03:25:29.293Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 25 experiments found. Here is the structured extraction:\n\n---\n\n## 1. prune_rasp_rlvr_20_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: actual_sparsity=0.1909, mlp_groups_pruned=200/784, attn_groups_pruned=0/112, pruned_params=6161946112\n- **spec**: command=`python src/prune.py --mode rasp-rlvr --sparsity 0.20`, server=westd-11672, model=Qwen2.5-Math-7B, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20_qwen_math\n- **notes**: (none)\n\n## 2. prune_standard_25_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: actual_sparsity=0.2396, target_sparsity=0.25, mlp_groups_pruned=251/784, attn_gqa_groups_pruned=0/112\n- **spec**: command=`CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/models/Qwen2.5-Math-7B --mode standard --sparsity 0.25 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math`, server=westd-11672, model=Qwen2.5-Math-7B, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25_qwen_math/\n- **notes**: (none)\n\n## 3. prune_rasp_25_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: actual_sparsity=0.2405, target_sparsity=0.25, mlp_groups_pruned=252/784, attn_gqa_groups_pruned=0/112, params_after=5783991808\n- **spec**: command=`CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/models/Qwen2.5-Math-7B --mode rasp --sparsity 0.25 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores.pt --cka_path results/cka_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25_qwen_math`, server=westd-11672, model=Qwen2.5-Math-7B, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25_qwen_math/\n- **notes**: (none)\n\n## 4. eval_pass_k8_rasp_20_sft_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: pass_at_k=0.935, k=8, temperature=0.7, n_problems=200, stderr=0.0174, eos_rate=0.99625, natural_eos=1594, truncated=6, avg_response_length=139.86\n- **spec**: command=`CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json`, server=westd-11672, gpu=cuda:2, model=sft_qwen_math_rasp_20, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20\n- **notes**: (none)\n\n## 5. eval_grpo_standard_25_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: \"Qwen2.5-Math-7B Standard 25% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_standard_25_qwen_math.\" (stored in spec.hypothesis)\n- **parent**: grpo_standard_25_qwen_math (stored in spec.parent)\n- **metrics**: accuracy=0.635, n_samples=200, seed=42\n- **spec**: command=`CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json`, server=westd-11672, gpu=cuda:1, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\n- **notes**: (none)\n\n## 6. eval_sft_rasp_rlvr_20_qwen_math\n- **status**: PREPARING\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: accuracy=0.73, n_samples=200, mode=greedy, n_correct=146\n- **spec**: (none at top level)\n- **notes**: (none)\n- **failure_reason**: \"process dead 5x with no sentinel/W&B -- auto-resolved as failed\"\n\n## 7. eval_pass_k8_rasp_20_grpo_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: pass_at_k=0.915, accuracy=0.915, k=8, temperature=0.7, n_samples=200, stderr=0.0197\n- **spec**: command=`CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_qwen_math.json`, server=westd-11672, gpu=cuda:3, model=grpo_rasp_qwen_math, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math\n- **notes**: (none)\n\n## 8. eval_pass_k8_unpruned_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: pass_at_k=0.965, accuracy=0.965, k=8, temperature=0.7, n_samples=200, stderr=0.013\n- **spec**: command=`CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json`, server=westd-11672, gpu=cuda:1, model=grpo_unpruned_v2, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2\n- **notes**: (none)\n\n## 9. eval_grpo_rasp_25_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: \"Qwen2.5-Math-7B RASP 25% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_rasp_25_qwen_math.\" (stored in spec.hypothesis)\n- **parent**: grpo_rasp_25_qwen_math (stored in spec.parent)\n- **metrics**: accuracy=0.625, n_samples=200, seed=42\n- **spec**: command=`CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_qwen_math.json`, server=westd-11672, gpu=cuda:0, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\n- **notes**: (none)\n\n## 10. eval_grpo_standard_20_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: \"Qwen2.5-Math-7B Standard 20% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_standard_qwen_math_v3.\" (stored in spec.hypothesis)\n- **parent**: grpo_standard_qwen_math_v3 (stored in spec.parent)\n- **metrics**: accuracy=0.705, n_samples=200, seed=42\n- **spec**: command=`CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_20_qwen_math.json`, server=westd-11672, gpu=cuda:3, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math\n- **notes**: (none)\n\n## 11. eval_grpo_rasp_20_qwen_math\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: \"Qwen2.5-Math-7B RASP 20% post-GRPO GSM8K eval (N=200, seed=42). 验证 GRPO 后 accuracy 变化，reward-accuracy decoupling 证据 (C1)。Parent: grpo_rasp_qwen_math_v3.\" (stored in spec.hypothesis)\n- **parent**: grpo_rasp_qwen_math_v3 (stored in spec.parent)\n- **metrics**: accuracy=0.725, n_samples=200, seed=42\n- **spec**: command=`CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_20_qwen_math.json`, server=westd-11672, gpu=cuda:2, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math\n- **notes**: (none)\n\n## 12. sft_standard_25_westd\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: final_loss=0.8381, token_acc=0.8018, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/model.safetensors\n- **spec**: command=`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\"`, server=westd-11672, gpu=cuda:1, model=DeepSeek-R1-Distill-Qwen-7B (Standard 25% pruned), data=openai/gsm8k (7473), wall_clock=3273s\n- **notes**: (none)\n\n## 13. sft_standard_25\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: total_steps=1870, runtime_seconds=2130, model_params=5.79B, model_keys=339, note=\"optimizer.pt save failed (RuntimeError) but model.safetensors intact\"\n- **spec**: command=`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42`, server=westb-23072, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870\n- **notes**: (none)\n\n## 14. sft_rasp_25\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: train_loss=0.8498, token_accuracy=0.8073, runtime_seconds=1635\n- **spec**: command=`CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42`, server=westd-11672, gpu=cuda:0, model=pruned_rasp_25 (RASP 25% pruned DeepSeek-R1-Distill-Qwen-7B), data=openai/gsm8k (7473), checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25\n- **notes**: (none)\n\n## 15. prune_standard_30\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: actual_sparsity=0.2854, target_sparsity=0.3, mlp_groups_pruned=299/784, attn_gqa_groups_pruned=0/112, params_after=5442379264\n- **spec**: command=`CUDA_VISIBLE_DEVICES='' python src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode standard --sparsity 0.30 --dtype bfloat16 --importance_path results/importance_scores.pt --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30`, server=westb-23072, model=DeepSeek-R1-Distill-Qwen-7B, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30/\n- **notes**: (none)\n\n## 16. prune_rasp_30\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: target_sparsity=0.3, actual_sparsity=0.2873, mlp_groups_pruned=301/784, attn_groups_pruned=0/112, params_pruned=5427842560, model_size_gb=11\n- **spec**: command=`python src/prune.py --model_path /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --mode rasp --sparsity 0.30 --alpha 1.0 --dtype bfloat16 --importance_path results/importance_scores.pt --cka_path results/cka_scores.pt`, server=westb-23072, model=DeepSeek-R1-Distill-Qwen-7B, data_count=512, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30\n- **notes**: (none)\n\n## 17. eval_grpo_unpruned_v2_step100\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: accuracy=81.27, correct=1072, total=1319, eos_rate=99.7, avg_response_length=209, seed=42\n- **spec**: command=`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step100.json\"`, server=westd-11672, gpu=cuda:0, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100, wall_clock=6195.8s\n- **notes**: (none)\n\n## 18. eval_grpo_unpruned_v2_step90\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: accuracy=80.59, correct=1063, total=1319, eos_rate=99.6, avg_response_length=213, seed=42\n- **spec**: command=`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_unpruned_v2_step90.json\"`, server=westd-11672, gpu=cuda:1, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-90, wall_clock=6194.8s\n- **notes**: (none)\n\n## 19. eval_sft_unpruned_full\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: \"Unpruned SFT baseline full GSM8K eval for three-way comparison\" (stored in spec.hypothesis)\n- **parent**: sft_unpruned_baseline (stored in spec.parent)\n- **metrics**: accuracy=81.27, accuracy_ci=1.07, correct=1072, total=1319, eos_rate=99.7, avg_response_length=207.18, truncated=4\n- **spec**: command=`CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42`, server=westd-11672, model=Qwen2.5-7B (unpruned, SFT), checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline, gpu=cuda:0\n- **notes**: \"Unpruned SFT N=1319 full eval on westd cuda:0. PID 74129, ~2.5s/it. Started 09:39 UTC. Progress at 09:46 UTC: 155/1319 (12%), acc=86.67% (at 150), eos_rate=100%, avg_len=188. ETA ~10:35 UTC. Model: /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline. N=100 checkpoint: 84% (84/100). Three-way comparison pending: Standard 59.29%, RASP 61.49%, Unpruned ?%.\"\n\n## 20. eval_sft_unpruned_n100\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: sft_unpruned_baseline (stored in spec.parent)\n- **metrics**: accuracy=0.84, n_correct=84, n_total=100, eos_rate=1, avg_response_length=187.22, stderr=0.0367\n- **spec**: command=`CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42`, server=westd-11672, model=Qwen2.5-7B (unpruned, SFT), checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\n- **notes**: (none)\n\n## 21. eval-sft-alpha-1p0\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: accuracy=0.57, stderr=0.0495, n_correct=57, n_total=100, eos_rate=0.98, avg_len=224.18, natural_eos=98, truncated=2\n- **spec**: command=`python eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --n_samples 100`, server=westd-11672, gpu=cuda:1, model=Qwen2.5-7B pruned alpha=1.0 post-SFT, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0, wall_clock=2013.4s\n- **notes**: \"α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。\"\n\n## 22. eval-sft-alpha-0p0\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: accuracy=0.64, eos_rate=0.97, avg_len=257.9, n_correct=64, n_total=100\n- **spec**: command=`python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0 --max_samples 100 --max_new_tokens 4096`, server=westd-11672, gpu=cuda:1, model=Qwen2.5-7B pruned alpha=0.0 post-SFT, checkpoint_source=/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0, wall_clock=1529.3s\n- **notes**: (none)\n\n## 23. sft-alpha-1p0\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: train_loss_final=0.64, token_accuracy=0.83, post_prune_accuracy=0.27, total_steps=1870, train_time_min=28\n- **spec**: command=`python -u src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42`, server=westd-11672, gpu=cuda:1, model=pruned_alpha1.0 (alpha=1.0, 20% sparsity), data=openai/gsm8k (7473), checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0, wall_clock=2069.9s\n- **notes**: \"α=1.0 SFT 完成 (1870/1870 steps, 2 epochs, ~28min). loss=0.64, token_acc=0.83. Post-prune 27% → post-SFT 需 eval 确认 (预期 ~57% 与 sft_rasp_20 一致，因 α=1.0 = RASP default). Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\"\n\n## 24. eval_sft_grasp_20\n- **status**: PREPARING\n- **conclusion**: success\n- **hypothesis**: \"GraSP post-SFT GSM8K eval (N=100, greedy). GraSP post-prune ~6%, post-SFT loss=0.59, token_acc=0.84. Three-way comparison: Standard 64% vs RASP 57% vs GraSP ?%. Parent: sft_grasp_20_westd.\" (stored in spec.hypothesis)\n- **parent**: sft_grasp_20_westd (stored in spec.parent)\n- **metrics**: accuracy=0.41, n_total=100, p_value_vs_standard=0.001, standard_ref=0.64, rasp_ref=0.57, note=\"论文核心数据点: GraSP post-SFT 41% vs Standard 64% (p=0.001) vs RASP 57%\"\n- **spec**: command=`python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path results/eval_sft_grasp_20_n100.json`, server=westd-11672, model=Qwen2.5-1.5B-GraSP-20%-SFT\n- **notes**: \"GraSP post-SFT eval 完成: 41% accuracy (N=100, greedy, seed=42). 论文核心数据点。三方对比: Standard 64% > RASP 57% > GraSP 41% (p=0.001 vs Standard). GraSP post-prune ~6% → post-SFT 41% (+35pp recovery), 但仍远低于 RASP/Standard. JSON: results/eval_sft_grasp_20_n100.json\"\n\n## 25. sft_standard_20_retrain\n- **status**: DONE\n- **conclusion**: success\n- **hypothesis**: (none)\n- **parent**: (none)\n- **metrics**: train_loss_final=0.64, token_accuracy=0.83, conclusion=\"Matches original sft_standard_20 (loss 0.64, token_accuracy 83%). Retrain successful.\"\n- **spec**: command=`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42\"`, server=westb-23072, gpu=cuda:1, model=pruned_standard_20, checkpoint_source=/root/autodl-tmp/pruned_standard_20, checkpoint_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/, wall_clock=2914s\n- **notes**: \"SFT Standard retrain 完成. loss 0.64, token_accuracy 83%, 与原始 sft_standard_20 完全一致. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/. 用于 Standard GRPO v5 对照实验.\"\n\n---\n\n**Summary of fields needing hypothesis/parent population:**\n\nExperiments that currently have NO hypothesis and NO parent (need both written):\n- #1 prune_rasp_rlvr_20_qwen_math\n- #2 prune_standard_25_qwen_math\n- #3 prune_rasp_25_qwen_math\n- #4 eval_pass_k8_rasp_20_sft_qwen_math\n- #7 eval_pass_k8_rasp_20_grpo_qwen_math\n- #8 eval_pass_k8_unpruned_qwen_math\n- #12 sft_standard_25_westd\n- #13 sft_standard_25\n- #14 sft_rasp_25\n- #15 prune_standard_30\n- #16 prune_rasp_30\n- #17 eval_grpo_unpruned_v2_step100\n- #18 eval_grpo_unpruned_v2_step90\n- #21 eval-sft-alpha-1p0\n- #22 eval-sft-alpha-0p0\n- #23 sft-alpha-1p0\n- #25 sft_standard_20_retrain\n\nExperiments with hypothesis/parent already in `spec` (but not at top-level):\n- #5 eval_grpo_standard_25_qwen_math (parent: grpo_standard_25_qwen_math)\n- #6 eval_sft_rasp_rlvr_20_qwen_math (none)\n- #9 eval_grpo_rasp_25_qwen_math (parent: grpo_rasp_25_qwen_math)\n- #10 eval_grpo_standard_20_qwen_math (parent: grpo_standard_qwen_math_v3)\n- #11 eval_grpo_rasp_20_qwen_math (parent: grpo_rasp_qwen_math_v3)\n- #19 eval_sft_unpruned_full (parent: sft_unpruned_baseline)\n- #20 eval_sft_unpruned_n100 (parent: sft_unpruned_baseline)\n- #24 eval_sft_grasp_20 (parent: sft_grasp_20_westd)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0eaa0bfc-1b60-4029-a69b-0e7cdb9c2fd9",
+            "isSidechain": true,
+            "agentId": "a73d12ff5140964a5",
+            "requestId": "req_011Cb7RbjJiXWktQDxYhBVgn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "71bf7764-9075-4c1c-b7fb-03776e1670ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+            "sessionId": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012imetv55599yR8A86967Mc",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16298,
+                "cache_read_input_tokens": 19465,
+                "output_tokens": 8519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16298
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8519,
+                    "cache_read_input_tokens": 19465,
+                    "cache_creation_input_tokens": 16298,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16298,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-extract-details-for-25-specific-experiments-from-a-large-registry-js.md"
+}

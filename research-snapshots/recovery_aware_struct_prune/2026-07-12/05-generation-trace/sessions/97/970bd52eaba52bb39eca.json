@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "970bd52eaba52bb39eca",
+  "project": "recovery_aware_struct_prune--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: recovery_aware_struct_prune ## 运行环境 - 服务器名: westb-23072 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "140612a8-22a8-4ffd-8dbe-d869c8787872",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/140612a8-22a8-4ffd-8dbe-d869c8787872.jsonl",
+    "occurrence": 1,
+    "bytes": 969413,
+    "sha256": "f31f55fdf004e982994f38e5177362117d252b3de1c477fd73c788d19fba58f4"
+  },
+  "statistics": {
+    "messages": 465,
+    "user_turns": 2,
+    "tool_calls": 162,
+    "roles": {
+      "record": 80,
+      "user": 2,
+      "assistant": 59,
+      "tool_call": 162,
+      "tool_result": 162
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "970bd52eaba52bb39eca-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 462,
+      "chunks": [
+        {
+          "path": "970bd52eaba52bb39eca-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "970bd52eaba52bb39eca-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "970bd52eaba52bb39eca-part-0003.json",
+          "message_count": 104
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "970bd52eaba52bb39eca-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-recovery-aware-struct-prune-westb-23072-ssh-root-ssh-execute-s-copy-486.md"
+}

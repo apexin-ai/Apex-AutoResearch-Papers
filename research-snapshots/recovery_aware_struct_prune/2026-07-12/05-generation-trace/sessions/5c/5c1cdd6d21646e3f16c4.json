@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5c1cdd6d21646e3f16c4",
+  "project": "recovery_aware_struct_prune--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: eval_math500_sft_standard_25 - proje",
+  "task_key": "b2c5b3e0-607f-4553-ad6e-79d1cc84ff5d",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/b2c5b3e0-607f-4553-ad6e-79d1cc84ff5d.jsonl",
+    "occurrence": 1,
+    "bytes": 743745,
+    "sha256": "d372d7f534d61b59ba435c6867379cc385ee32def83f01bdca9892082290c438"
+  },
+  "statistics": {
+    "messages": 82,
+    "user_turns": 1,
+    "tool_calls": 23,
+    "roles": {
+      "record": 20,
+      "user": 1,
+      "assistant": 15,
+      "tool_call": 23,
+      "tool_result": 23
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5c1cdd6d21646e3f16c4-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "5c1cdd6d21646e3f16c4-part-0001.json",
+          "message_count": 34
+        },
+        {
+          "path": "5c1cdd6d21646e3f16c4-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-eval-math500-sft-standard-copy-3.md"
+}
