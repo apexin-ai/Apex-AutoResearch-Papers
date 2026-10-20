@@ -1162,6 +1162,19 @@
       }
     },
     {
+      "project": "recursive_gen_depth_est--export-20260712",
+      "title": "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints (July export snapshot)",
+      "catalog": "../research-snapshots/recursive_gen_depth_est/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1502,
+        "messages": 284691,
+        "user_turns": 12649,
+        "tool_calls": 76174,
+        "unparsed_lines": 0,
+        "conversation": 1502
+      }
+    },
+    {
       "project": "redundancy-compound-sparsity",
       "title": "When Does KV Redundancy Predict MLP Sparsity? Architecture Dependence of Cross-Axis Signals in Reasoning Inference",
       "catalog": "../paper-assets/redundancy-compound-sparsity/05-generation-trace/catalog.json",

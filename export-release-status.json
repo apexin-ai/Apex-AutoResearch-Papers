@@ -254,6 +254,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 529
+        },
+        "recursive_gen_depth_est": {
+          "status": "uploaded",
+          "project": "recursive_gen_depth_est",
+          "collection": "recursive_gen_depth_est--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "6efe128ce6062e75c32e802524c8980d464b6bf617560721468179ff70da0271",
+          "indexed_members": 1507,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1502
         }
       },
       "status": "in_progress",
