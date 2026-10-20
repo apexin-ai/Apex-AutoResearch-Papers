@@ -1,0 +1,1365 @@
+{
+  "schema_version": "1.0",
+  "id": "6190788de93cd98f3fa4",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer 2 (R2) for an EMNLP 2026 submission. Your focus: **Novelty and Related Work**. You are reviewing a pape",
+  "task_key": "agent-a1c17b8b6032ce031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a1c17b8b6032ce031.jsonl",
+    "occurrence": 1,
+    "bytes": 103663,
+    "sha256": "acae1e8f753b40d3a17cf65c1266c7a883b15482fe1b3f66ce54b35336677b7c"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:43:04.915Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer 2 (R2) for an EMNLP 2026 submission. Your focus: **Novelty and Related Work**.\n\nYou are reviewing a paper titled \"The Equalizer Paradox: Attention Induces Aggregate Convergence Through Architecture-Specific Mechanisms in Hybrid Recurrent Models\".\n\n## Paper Summary (6 pages, anonymous)\n\nThe paper studies hybrid recurrent-attention language models (GatedDeltaNet, RetNet, HGRN2, Mamba2-Attn) and characterizes the \"equalizer effect\": adding attention layers reduces cross-architecture performance variance. Three claims:\n\n**Claim 1 (Task-Specific Convergence):** On LAMBADA, cross-arch std drops 79% (ρ=−1.0, p=0.0083). Continuous retrieval-demand spectrum across 6 benchmarks.\n\n**Claim 2 (Scale-Dependent):** Monotonic at 1.3B, non-monotonic rebound at 340M due to capacity bottleneck.\n\n**Claim 3 (Equalizer Paradox):** Despite aggregate convergence, per-example helped/hurt subsets are nearly non-overlapping (Jaccard<0.10). Each architecture's attention learns distinct compensatory patterns.\n\nThe paper builds entirely on pre-trained checkpoints from Wang et al. [1] model zoo (72 hybrid models: GDN, RetNet, HGRN2 × 340M/1.3B × 6 attention ratios) + a community Mamba2-Attn hybrid. No new training. ~26.5 GPU-hours evaluation on A100.\n\n## Key Results\n\n- LAMBADA: ρ=−1.0, p=0.0083, std reduction 79%, bootstrap CI [72%,86%], Cohen's d=1.84\n- Only LAMBADA survives Bonferroni correction; ARC-Easy is \"suggestive\" (p=0.117)\n- Per-example Jaccard < 0.10 on LAMBADA\n- Attention patterns differ: GDN=long-range, RetNet=last-sentence, HGRN2=hierarchical\n- Cross-arch attention cosine similarity=0.23 (below random)\n- Mamba2-Attn replicates pattern (ρ=−0.90)\n- 340M rebound at ratio=8 explained by capacity bottleneck\n- GDN exclusion: all 3 claims survive\n- Convergence-divergence anti-correlation: r=−0.94, p=0.005\n\n## Table 10 (Wang et al. comparison):\n| Dimension | Wang et al. | This work |\n|---|---|---|\n| Convergence | Qualitative (\"gap narrows\") | ρ=−1.0, 79% std↓, bootstrap CI |\n| Per-example | Not analyzed | Jaccard<0.10, arch-specific subsets |\n| Scale dep. | Not analyzed | Binary: 340M partial vs 1.3B complete |\n| Task-spec. | Not analyzed | Continuous retrieval-demand spectrum |\n\n## References in the paper (only 8):\n[1] Wang et al. 2025 - model zoo paper\n[2] Yang et al. 2024 - GatedDeltaNet\n[3] Sun et al. 2023 - RetNet\n[4] Qin et al. 2024 - HGRN2\n[5] Dao & Gu 2024 - Mamba2/Transformers are SSMs\n[6] De et al. 2024 - Griffin\n[7] Srivastava et al. 2023 - BIG-bench\n[8] Gao et al. 2024 - lm-evaluation-harness\n\n## EMNLP 2026 Scoring (ARR)\n- 5 = Consider for Award (top 2.5%)\n- 4 = Conference (Main track accept)\n- 3 = Findings\n- 2 = Resubmit next cycle\n- 1 = Do not resubmit\nAcceptance rate ~21%. Dimensions: Soundness (1-5), Excitement (1-5), Reproducibility (1-5).\n\n## Your Review Focus: Novelty & Related Work\n\nEvaluate:\n1. **Novelty of the \"equalizer paradox\" concept:** Is the finding that \"aggregate convergence masks per-example divergence\" genuinely novel, or is it a well-known phenomenon in other contexts (e.g., ensemble diversity, Simpson's paradox)? Has per-example analysis of model convergence been done before?\n2. **Incremental vs. Wang et al.:** The entire experimental substrate comes from Wang et al. The paper's contribution is purely analytical (no new models, no new training). Table 10 frames 4 dimensions of differentiation. Is this sufficient novelty for EMNLP Main? Or is this better suited for Findings/workshop?\n3. **Related work coverage:** Only 8 references is very sparse for EMNLP. Missing related work areas:\n   - Ensemble diversity literature (the paradox of ensembles converging in aggregate but differing per-example is well-studied)\n   - Model comparison/behavioral analysis (e.g., Ribeiro et al. CheckList, behavioral testing)\n   - Hybrid architecture analysis beyond Wang et al. (Griffin, Jamba, RWKV-6, etc.)\n   - Attention interpretability literature (attention as explanation debate)\n   - Simpson's paradox / ecological fallacy in ML evaluation\n   - Scaling laws literature (for the scale-dependent claim)\n   - Per-example difficulty/IRT in NLP evaluation\n4. **Framing and positioning:** Is \"paradox\" the right framing? In what sense is it paradoxical that different architectures are helped on different samples? Isn't that expected? The real finding may be more nuanced than the framing suggests.\n5. **Scope of contribution:** The paper characterizes a phenomenon but doesn't propose solutions, new methods, or practical tools. Is characterization alone sufficient for EMNLP Main?\n6. **Broader impact and connection to the field:** How does this connect to the larger NLP community's interests? Is the audience narrow (hybrid architecture designers) or broad?\n7. **Writing quality:** Is the paper well-structured? Clear? Appropriate length? Any missing sections (e.g., full Related Work section, Ethics, Limitations)?\n\nNote: The paper has a Discussion section with Limitations paragraph but no standalone Related Work section (only a Background section). There is no Ethics/Broader Impact section. The paper is 6 pages of main text + references.\n\nProvide your review in this format:\n```\n## R2 Review: Novelty & Related Work\n\n### Summary\n[2-3 sentences]\n\n### Strengths\n[Numbered list]\n\n### Weaknesses\n[Numbered list, with severity: Major/Minor]\n\n### Questions for Authors\n[Numbered list]\n\n### Missing Related Work\n[Specific papers/areas that should be cited and discussed]\n\n### Scores\n- Soundness: X/5\n- Excitement: X/5\n- Reproducibility: X/5\n- Overall: X.X/5\n- Confidence: X/5\n```\n\nBe rigorous and calibrated. 21% acceptance = score 4+ reserved for genuinely strong contributions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "e7e506a4-28cb-4b1d-aefb-61e2a5daea13",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:43:04.918Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e7e506a4-28cb-4b1d-aefb-61e2a5daea13",
+                "isSidechain": true,
+                "agentId": "a1c17b8b6032ce031",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "4b1149df-dc6d-40e4-a291-f288cdbb4c15",
+                "timestamp": "2026-05-19T13:43:04.918Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+                "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:43:07.799Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the paper and related project files to ground my review in the actual content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b1149df-dc6d-40e4-a291-f288cdbb4c15",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2StibpeBmhdSebNVuG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b19f02fd-9724-46f3-868f-18c12cf68de2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R17NT9UafKA3fThyJt3BMZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8040,
+                "cache_read_input_tokens": 8252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8040,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:43:08.000Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DEhcRMrE4DT2X9KjrFjGtY",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b19f02fd-9724-46f3-868f-18c12cf68de2",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2StibpeBmhdSebNVuG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "13ec88cf-cc06-432d-ad09-da916d0c3039",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R17NT9UafKA3fThyJt3BMZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8040,
+                "cache_read_input_tokens": 8252,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8040
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 8252,
+                    "cache_creation_input_tokens": 8040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8040,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:43:08.003Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DEhcRMrE4DT2X9KjrFjGtY",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13ec88cf-cc06-432d-ad09-da916d0c3039",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "cd666154-1ec1-484c-88e0-ad69631b3da1",
+            "sourceToolAssistantUUID": "13ec88cf-cc06-432d-ad09-da916d0c3039",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:43:11.588Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RtSt4NQcqh7HpvcojCU5ao",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "entrainment_gated_ft",
+                "file": "report.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd666154-1ec1-484c-88e0-ad69631b3da1",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2T8813KdHJNSXC28fS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dbed49a7-b6f9-4a8c-97e5-a83048a58889",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BaDEbcwBTRr7PhceFNvX8t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1292,
+                "cache_read_input_tokens": 16292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1292,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:43:11.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RtSt4NQcqh7HpvcojCU5ao",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp-003** (negative): Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit\\\\n  [sample_characterization_results](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-003/data/sample_characterization_results.csv) | [sample_characterization_figure](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-003/chart/sample_characterization_figure_pointer.txt)\\\\n- **exp-001** (success): Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation\\\\n  [task_specificity_results](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-001/data/task_specificity_results.csv) | [task_specificity_figure](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-001/chart/task_specificity_figure_info.txt)\\\\n- **exp-009** (success): Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)\\\\n\\\\n## 趋势\\\\n成功 4 / 负向 1 / 失败 0 / 共 6\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestb-48145: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 1867, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbed49a7-b6f9-4a8c-97e5-a83048a58889",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "5299fe5a-54ef-47ac-ad64-595d7920cd6e",
+            "sourceToolAssistantUUID": "dbed49a7-b6f9-4a8c-97e5-a83048a58889",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:43:12.100Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D98qLLNYQFKxNsU4qPrRFY",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "entrainment_gated_ft",
+                "file": "literature_map.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5299fe5a-54ef-47ac-ad64-595d7920cd6e",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2T8813KdHJNSXC28fS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "651f391c-1d83-43f0-b6e5-a59076ba519a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BaDEbcwBTRr7PhceFNvX8t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1292,
+                "cache_read_input_tokens": 16292,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1292,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:43:12.110Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D98qLLNYQFKxNsU4qPrRFY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No literature_map.yaml found for 'entrainment_gated_ft'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "651f391c-1d83-43f0-b6e5-a59076ba519a",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "30f8b799-4248-4f70-908b-e93bebd6092c",
+            "sourceToolAssistantUUID": "651f391c-1d83-43f0-b6e5-a59076ba519a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:43:12.652Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KW49HcBvfEXQsNcj6NNm9r",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "entrainment_gated_ft",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30f8b799-4248-4f70-908b-e93bebd6092c",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2T8813KdHJNSXC28fS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dd4bc09a-3953-404c-94e0-3f2f9d56bab6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BaDEbcwBTRr7PhceFNvX8t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1292,
+                "cache_read_input_tokens": 16292,
+                "output_tokens": 299,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1292
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 299,
+                    "cache_read_input_tokens": 16292,
+                    "cache_creation_input_tokens": 1292,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1292,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:43:12.661Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KW49HcBvfEXQsNcj6NNm9r",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — entrainment_gated_ft\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (via ARR)\\\\n- Backup: EMNLP 2026 Findings\\\\n- Deadline: ARR June 2026 cycle (submission ~June 15)\\\\n\\\\n## Paper Type\\\\nEmpirical analysis paper (not method paper)\\\\n\\\\n## Core Claims (3 条)\\\\n\\\\n### Claim 1: Task-Specific Equalizer Effect\\\\nAdding attention layers to different linear recurrent architectures (GatedDeltaNet, RetNet, HGRN2) induces aggregate performance convergence whose strength scales with task retrieval demand—strongest on LAMBADA (ρ=-1.0, p=0.017 two-tailed, cross-arch std drops 79%), suggestive on ARC-Easy (ρ=-0.7, p=0.233 two-tailed, underpowered at n=5), absent on reasoning-heavy tasks (HellaSwag, WinoGrande). This continuous relationship between retrieval demand and convergence strength is a key finding, not a limitation of single-task significance.\\\\n\\\\n### Claim 2: Scale-Dependent Convergence\\\\nThe convergence effect is scale-dependent: monotonically complete at 1.3B parameters (Spearman ρ=-1.0 for cross-arch std vs attention ratio, exact permutation p=0.017, two-tailed) but only partial at 340M with a non-monotonic rebound at high attention ratios. Note: only two scale points available (Wang et al. do not provide 7B models); this is a binary contrast, not a multi-point trend. Paper must frame honestly as \\\\\\\"scale matters\\\\\\\" without implying extrapolation.\\\\n\\\\n### Claim 3: Architecture-Specific Effects (Equalizer Paradox)\\\\nDespite aggregate convergence, attention acts on almost entirely different sample subsets per architecture (pairwise Jaccard < 0.10). GDN and RetNet are hurt (net negative on LAMBADA), HGRN2 is helped (net positive), with symmetric effect magnitudes—convergence emerges from complementary, not redundant, effects. Surface-level features (token frequency, context length) do NOT differentiate helped vs hurt samples (all p>0.2 except marginal RetNet context_length). This rules out trivial explanations. Deeper features (perplexity under baseline, topic/domain) are being tested. If those also fail, claim wording shifts to \\\\\\\"architecture-specific effect whose mechanism is opaque to standard features\\\\\\\" — the non-overlapping Jaccard evidence remains hard regardless.\\\\n\\\\n## Story Spine\\\\n\\\\n### Problem\\\\nHybrid architectures mixing linear recurrence with full attention are becoming the dominant paradigm for efficient language models. A critical open question: does adding attention homogenize model behavior across different recurrence mechanisms, or do architecture-specific effects persist?\\\\n\\\\n### Existing Approaches & Gaps\\\\nWang et al. (2025, arXiv 2507.06457) provide the most comprehensive model zoo (72 models, 3 architectures, multiple scales and attention ratios) but report only aggregate metrics. They qualitatively note convergence trends but do not analyze: (a) the per-example mechanism, (b) scale dependency of convergence, (c) task-specificity, or (d) why architectures converge to similar *aggregate* performance through *different* individual-sample effects.\\\\n\\\\n### Our Framing\\\\nWe provide the first quantitative characterization of the \\\\\\\"equalizer effect\\\\\\\"—a systematic per-example analysis revealing that attention creates aggregate performance convergence through architecture-specific, largely non-overlapping mechanisms. This \\\\\\\"equalizer paradox\\\\\\\" (aggregate convergence + per-example divergence) has direct implications for architecture selection: even when aggregate metrics converge, the types of inputs each architecture handles well remain architecture-specific.\\\\n\\\\n### Headline Result Template\\\\n\\\\\\\"At 1.3B scale, adding attention layers reduces cross-architecture performance variance by 79% on LAMBADA (std 0.024→0.005), yet per-example analysis reveals the affected sample subsets are almost entirely non-overlapping across architectures (Jaccard < 0.10), with symmetric but opposite effect directions.\\\\\\\"\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n### Risk 1: Architecture Analysis vs NLP\\\\nEMNLP is NLP-focused; this paper is closer to architecture analysis. **Mitigation**: Frame in terms of understanding language model behavior on specific linguistic tasks. Anchor analysis to token-level and context-level linguistic features (frequency, context length, retrieval demand). Include practical recommendations for practitioners choosing hybrid architectures for specific NLP tasks.\\\\n\\\\n### Risk 2: Limited Task Coverage\\\\nCurrently only LAMBADA shows clear convergence. **Mitigation**: (a) Extend per-example analysis to HellaSwag and other benchmarks, (b) provide principled explanation of LAMBADA's retrieval-dependent nature vs reasoning tasks, (c) if convergence appears on other retrieval tasks, strengthens Claim 1; if not, reframe as \\\\\\\"convergence is task-type-specific\\\\\\\" which is still interesting.\\\\n\\\\n### Risk 3: Small Architecture Sample\\\\nOnly 3 architectures (GDN, RetNet, HGRN2). **Mitigation**: These represent three distinct recurrence mechanisms (gated delta rule, linear attention with exponential decay, hierarchical gated recurrence). Check if Wang et al. have additional architectures or scales. n=3 is sufficient for the per-example analysis which is our main contribution.\\\\n\\\\n### Risk 4: Wang et al. Overlap\\\\nThey have the model zoo AND qualitative convergence observation. **Mitigation**: Our contribution is explicitly about what they did NOT do: quantitative convergence framework, scale-dependent analysis, per-example mechanism analysis. Frame as \\\\\\\"using their excellent model zoo, we discover a deeper phenomenon they missed.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### Concern A: \\\\\\\"This is just a negative result from a failed hypothesis\\\\\\\"\\\\nResponse: Frame as discovery paper. The equalizer effect is a positive finding—it was not the hypothesis we started with, but it's a genuine empirical phenomenon with theoretical implications. Many impactful papers come from unexpected findings.\\\\nRequired evidence: Strong standalone story; no mention of original entrainment hypothesis in the paper.\\\\n\\\\n### Concern B: \\\\\\\"Only one task shows the effect\\\\\\\" + Post-hoc taxonomy risk\\\\nResponse: Do NOT use binary retrieval/reasoning split — vulnerable to post-hoc cherry-picking (only 1 benchmark in \\\\\\\"retrieval\\\\\\\" category, exactly the one that's significant). Instead:\\\\n1. **Continuous spectrum**: Plot convergence strength (Spearman ρ) against a continuous measure of \\\\\\\"retrieval demand\\\\\\\" per benchmark. LAMBADA ρ=-1.0, ARC-E ρ=-0.7 (suggestive), ARC-C ρ=-0.3, HellaSwag/WinoGrande/MMLU near zero. Frame as dose-response: more retrieval demand → stronger convergence.\\\\n2. **Cite existing task taxonomies**: Use BIG-bench taxonomy or other published meta-analyses for task property classification — don't invent our own post-hoc.\\\\n3. **Honest reporting**: ARC-E ρ=-0.7 (p=0.117) is \\\\\\\"suggestive but underpowered\\\\\\\" — n=5 ratios means low statistical power. Continuous spectrum framing turns \\\\\\\"only LAMBADA significant\\\\\\\" into \\\\\\\"graded effect consistent with retrieval demand.\\\\\\\"\\\\n4. **Winogrande ambiguity**: Coreference resolution has a retrieval component (finding antecedent). Acknowledge this honestly rather than forcing it into \\\\\\\"reasoning.\\\\\\\"\\\\n5. **exp-002 validation**: If HellaSwag per-example analysis confirms no convergence at sample level, upgrades from \\\\\\\"aggregate not significant\\\\\\\" to \\\\\\\"per-example confirmed non-converging.\\\\\\\"\\\\nRequired experiments: exp-001 (done, PASS on dichotomy), exp-002 (per-example validation), exp-003 (sample characterization).\\\\n\\\\n### Concern C: \\\\\\\"No causal mechanism\\\\\\\"\\\\nResponse: Per-example analysis provides mechanistic evidence (different subsets). Strengthen with attention weight visualization and sample feature characterization.\\\\nRequired experiments: Sample characterization (exp-003), attention weight analysis (exp-004).\\\\n\\\\n### Concern D: \\\\\\\"n=3 architectures is too few\\\\\\\"\\\\nResponse: Three architectures with 5 attention ratios × 2 scales = 30 models. The per-example analysis provides thousands of data points. Check if additional architectures available.\\\\nRequired experiments: Architecture expansion check (exp-005).\\\\n\\\\n### Concern E: \\\\\\\"Two scales don't establish a trend\\\\\\\"\\\\nResponse: 7B unavailable (Wang et al. capped at 1.3B). Frame as \\\\\\\"binary contrast showing scale is a necessary condition\\\\\\\" — convergence requires sufficient model capacity (1.3B), not just attention. Strengthen via exp-007 (340M rebound mechanism analysis) to provide mechanistic explanation for the scale gap. Acknowledge as limitation; do not imply extrapolation.\\\\nRequired experiments: exp-007 (340M rebound mechanism).\\\\n\\\", \\\"total_chars\\\": 8396, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd4bc09a-3953-404c-94e0-3f2f9d56bab6",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "5fc4df52-3934-4f6e-b53c-4e77c9d49b05",
+            "sourceToolAssistantUUID": "dd4bc09a-3953-404c-94e0-3f2f9d56bab6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:43:15.445Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XQFFsWr23SYgYnnZZxoHQ7",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "entrainment_gated_ft",
+                "file": "ideas.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fc4df52-3934-4f6e-b53c-4e77c9d49b05",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2TU4oS4jW3VJGKksY6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "67cbf10b-5f79-48d2-a61a-c24f766cc952",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SQskhvwt7cxP8aLCyZFqf5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3559,
+                "cache_read_input_tokens": 17584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3559,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:43:15.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XQFFsWr23SYgYnnZZxoHQ7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'entrainment_gated_ft'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67cbf10b-5f79-48d2-a61a-c24f766cc952",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "f03e35eb-c0fc-4b0e-bcc5-39962531442c",
+            "sourceToolAssistantUUID": "67cbf10b-5f79-48d2-a61a-c24f766cc952",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:43:16.093Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FRX22mc2bxYXNoJhN9r7jH",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "entrainment_gated_ft",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f03e35eb-c0fc-4b0e-bcc5-39962531442c",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2TU4oS4jW3VJGKksY6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "85e29fd5-f1ce-4fb4-ac06-594dace361fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SQskhvwt7cxP8aLCyZFqf5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3559,
+                "cache_read_input_tokens": 17584,
+                "output_tokens": 201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3559
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 201,
+                    "cache_read_input_tokens": 17584,
+                    "cache_creation_input_tokens": 3559,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3559,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:43:16.102Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FRX22mc2bxYXNoJhN9r7jH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/memory.md\\\", \\\"content\\\": \\\"# FLA 版本与 m-a-p 模型兼容性调查结果 (2026-05-18)\\\\n\\\\n## 核心结论：fla 0.5.0 与 m-a-p 模型兼容，attn.D 丢弃无影响\\\\n\\\\n### 1. attn.D 参数真相\\\\n\\\\n- **m-a-p GatedDeltaNet 模型**（如 `1.3B-100B-GatedDeltaNet-pure`）的 checkpoint 中包含 `attn.D` 参数（每层一个，共 24 个）\\\\n- `self.D` 在 fla 的 GatedDeltaNet 初始实现（commit `4064237`, 2024-12-20）中被声明为 `nn.Parameter(torch.ones(num_heads))`，继承自 Mamba2 的 skip connection 设计\\\\n- **但 self.D 从未在 forward() 中被使用** — 它是死参数，训练过程中不参与计算、不接收梯度，始终保持初始值 `ones`\\\\n- `self.D` 在 commit `834989c` (2025-03-12) 中被移除，对应 issue #226 \\\\\\\"Remove redundant parameter\\\\\\\"\\\\n- fla v0.1.0 (2025-03-20) 起所有版本均不含 self.D\\\\n- **结论：加载模型时 attn.D 被 strict=False 静默丢弃，对模型行为和评估结果无任何影响**\\\\n\\\\n### 2. m-a-p 模型训练环境\\\\n\\\\n- **论文**: Wang et al. \\\\\\\"A Systematic Analysis of Hybrid Linear Attention\\\\\\\" (arXiv 2507.06457, July 2025)\\\\n- **训练框架**: flash-linear-attention (fla) + flame (基于 torchtitan)\\\\n- **训练数据**: FineWeb-Edu\\\\n- **模型规模**: 72 个模型（36×340M/20B tokens + 36×1.3B/100B tokens）\\\\n- **transformers 版本**: \\\\n  - 1.3B GatedDeltaNet-pure: 4.51.3 (2025-04-14)\\\\n  - RetNet / 340M New GatedDeltaNet: 4.49.0 (~2025-02)\\\\n- **fla 版本**: 未在论文或模型卡中明确标注。根据 self.D 存在于 checkpoint 推断，训练使用的是 2025-03-12 之前的 fla 开发版本（pre-v0.1.0）\\\\n- **HuggingFace 集合**: https://huggingface.co/collections/m-a-p/hybrid-linear-attention-research-686c488a63d609d2f20e2b1e\\\\n\\\\n### 3. fla PyPI 版本历史\\\\n\\\\n| 版本 | 发布日期 | 备注 |\\\\n|------|----------|------|\\\\n| 0.1.0 | 2025-03-20 | 首个 tagged release，已无 self.D |\\\\n| 0.1.1 | 2025-03-24 | |\\\\n| 0.1.2 | 2025-03-31 | |\\\\n| 0.2.0 | 2025-04-11 | |\\\\n| 0.2.1 | 2025-04-23 | |\\\\n| 0.2.2 | 2025-06-05 | GDN GVA support |\\\\n| 0.3.0 | 2025-07-14 | MesaNet/PaTH/Comba/MLA; head_first deprecated |\\\\n| 0.3.2 | 2025-09-10 | fla-core 包分离 |\\\\n| 0.4.0 | 2025-10-27 | KDA |\\\\n| 0.4.1 | 2025-12-24 | |\\\\n| 0.4.2 | 2026-03-12 | |\\\\n| 0.5.0 | 2026-04-21 | 当前版本 |\\\\n\\\\n### 4. RetNet 模型情况\\\\n\\\\n- RetNet 模型 checkpoint 中**没有 attn.D**，不存在参数丢弃问题\\\\n- config 使用 transformers 4.49.0\\\\n- 模型参数结构（q/k/v/g_proj, g_norm_swish_gate, o_proj）与 fla MultiScaleRetention 层一致\\\\n\\\\n### 5. 建议\\\\n\\\\n**使用 fla 0.5.0（或任何 >=0.1.0 版本）加载 m-a-p 模型是安全的**，只需确保加载时 `strict=False`。attn.D 被丢弃不会影响模型输出。\\\\n\\\\n---\\\\n\\\\n# 统计报告规则 (2026-05-19, Director 硬约束)\\\\n\\\\n**所有分析报告中的统计 claim 必须附原始数值 (ρ=X, p=Y)，不允许只写结论。**\\\\n\\\\n事件：wang_et_al_differentiation.md 中 Worker 产出 \\\\\\\"4/6 benchmarks 显著收敛\\\\\\\" 的虚假 claim（实际仅 LAMBADA 1/6 显著）。Director 发现后标记为 CRITICAL。\\\\n\\\\n规则：\\\\n- 每个 \\\\\\\"显著/不显著\\\\\\\" claim 后必须跟 (ρ=X, p=Y) 或对应的检验统计量\\\\n- \\\\\\\"majority\\\\\\\"/\\\\\\\"most\\\\\\\" 等量化词必须有准确计数支撑（如 \\\\\\\"4/6\\\\\\\" 必须逐一列出哪 4 个）\\\\n- 此规则适用于所有项目产出（分析报告、论文章节、汇报材料）\\\\n\\\\n---\\\\n\\\\n# exp-003 表面特征分析教训 (2026-05-19)\\\\n\\\\n**表面特征（token frequency、context length、lexical diversity）无法区分 LAMBADA 上的 helped/hurt 样本。**\\\\n\\\\n- GDN/HGRN2：所有特征 p > 0.2，无信号\\\\n- RetNet：context_length p=0.012, r=-0.096（统计显著但效应量微不足道）；context_unique_tokens p=0.009, r=-0.099\\\\n- 跨架构比较：三架构 helped 样本特征分布无显著差异\\\\n\\\\n**启示**：per-example 效应的机制在模型内部（attention pattern / representation level），不在输入表面特征。这排除了 \\\\\\\"attention 只帮助长上下文\\\\\\\" 或 \\\\\\\"attention 只帮助低频词\\\\\\\" 等 trivial 解释，强化了 Claim 3（architecture-specific mechanism）的论证——需要 exp-004（attention weight extraction）来揭示真正的机制。\\\\n\\\", \\\"total_chars\\\": 2882, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85e29fd5-f1ce-4fb4-ac06-594dace361fd",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "f4f6e88a-d8b8-477e-9c43-ede9d4a566de",
+            "sourceToolAssistantUUID": "85e29fd5-f1ce-4fb4-ac06-594dace361fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:43:19.075Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A9avnUxdNeyeS8ZiybJKMg",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4f6e88a-d8b8-477e-9c43-ede9d4a566de",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2Tij7AxThXp3SNBGHW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0926751d-2a14-4ce9-b370-177c3438d350",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BC2tfe7RvzXHzjSKAYxeCG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2379,
+                "cache_read_input_tokens": 21143,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2379,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:43:19.098Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A9avnUxdNeyeS8ZiybJKMg",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260519T131014/best/paper.tex\nartifacts/dream_reports/dream_20260519T131014/median/paper.tex\nartifacts/dream_reports/dream_20260519T131014/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0926751d-2a14-4ce9-b370-177c3438d350",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "fa858430-c2d8-4126-8395-7b58b3f4d5c7",
+            "sourceToolAssistantUUID": "0926751d-2a14-4ce9-b370-177c3438d350",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:43:19.767Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DaTveurpDAhaCJK3bXtdVG",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa858430-c2d8-4126-8395-7b58b3f4d5c7",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2Tij7AxThXp3SNBGHW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5562591d-67b0-4ae1-ba19-cf1b06d88e22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BC2tfe7RvzXHzjSKAYxeCG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2379,
+                "cache_read_input_tokens": 21143,
+                "output_tokens": 185,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2379
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 185,
+                    "cache_read_input_tokens": 21143,
+                    "cache_creation_input_tokens": 2379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2379,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:43:19.778Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DaTveurpDAhaCJK3bXtdVG",
+              "type": "tool_result",
+              "content": "artifacts/synthetic_task_design.md\nartifacts/lm_eval_1.3b_results.md\nartifacts/wang_et_al_analysis.md\nartifacts/_project/report/wang_7b_search_results.md\nartifacts/wang_7b_search_results.md\nartifacts/_project/report/per_example_data_audit.md\nartifacts/per_example_data_audit.md\nartifacts/dream_reports/dream_20260519T125419/best/paper_framing.md\nartifacts/dream_reports/dream_20260519T131014/best/paper_framing.md\nartifacts/dream_reports/dream_20260519T131014/median/paper_framing.md\nartifacts/dream_reports/dream_20260519T131014/worst/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5562591d-67b0-4ae1-ba19-cf1b06d88e22",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "65425657-c9d3-418d-92ce-4822f4199ea4",
+            "sourceToolAssistantUUID": "5562591d-67b0-4ae1-ba19-cf1b06d88e22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T13:43:22.888Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013HWgEhgxu5t1GMQmQiNfiJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T131014/best/paper.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65425657-c9d3-418d-92ce-4822f4199ea4",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2TzQgeVHYEAE52bymT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f94beea7-0a2b-44aa-bcba-87bcb658a4d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FarkwVgRLPLawDHsaEeb7M",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 499,
+                "cache_read_input_tokens": 23522,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 499
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 23522,
+                    "cache_creation_input_tokens": 499,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 499,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:43:23.237Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013HWgEhgxu5t1GMQmQiNfiJ",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt,twocolumn,a4paper]{article}\n2\t\\usepackage[margin=2.5cm]{geometry}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{booktabs}\n6\t\\usepackage{amsmath,amssymb}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{multirow}\n9\t\\usepackage{xcolor}\n10\t\\usepackage{tabularx}\n11\t\\usepackage[T1]{fontenc}\n12\t\\usepackage[utf8]{inputenc}\n13\t\\usepackage{microtype}\n14\t\\usepackage{hyperref}\n15\t\\usepackage{url}\n16\t\\usepackage[numbers]{natbib}\n17\t\n18\t\\title{The Equalizer Paradox: Attention Induces Aggregate Convergence Through Architecture-Specific Mechanisms in Hybrid Recurrent Models}\n19\t\n20\t\\author{Anonymous}\n21\t\n22\t\\date{}\n23\t\n24\t\\begin{document}\n25\t\\maketitle\n26\t\n27\t\\begin{abstract}\n28\tHybrid architectures that interleave linear recurrence with full attention are becoming the dominant paradigm for efficient language models, yet it remains unclear whether adding attention homogenizes model behavior across different recurrence mechanisms. We provide the first quantitative characterization of the \\emph{equalizer effect}: adding attention layers to GatedDeltaNet, RetNet, HGRN2, and Mamba2-Attn at 1.3B scale reduces cross-architecture performance variance by 79\\% on LAMBADA (std 0.024$\\to$0.005, Spearman $\\rho$=$-$1.0, $p$=0.0083), with convergence strength scaling continuously with task retrieval demand. Per-example analysis reveals an \\emph{equalizer paradox}: despite aggregate convergence, the sample subsets affected by attention are almost entirely non-overlapping across architectures (pairwise Jaccard $<$ 0.10). Mechanistic analysis shows each architecture's attention layers learn distinct patterns---long-range distributed (GDN), last-sentence concentrated (RetNet), hierarchical split (HGRN2)---that compensate for architecture-specific weaknesses. The effect is scale-dependent: monotonically complete at 1.3B but exhibiting a non-monotonic rebound at 340M due to capacity bottleneck. These findings demonstrate that aggregate benchmark convergence can mask fundamentally different per-example behaviors, with implications for architecture selection in deployment.\n29\t\\end{abstract}\n30\t\n31\t\\section{Introduction}\n32\t\n33\tThe efficient language modeling landscape has shifted toward hybrid architectures that combine linear recurrent layers with full softmax attention \\cite{wang2025mamba,de2024griffin,dao2024transformers}. These hybrids achieve competitive performance with pure Transformers while offering subquadratic inference cost. A natural question arises: as attention layers are added to different recurrence mechanisms, do the resulting models converge to similar behavior?\n34\t\n35\tWang et al.\\ \\cite{wang2025mamba} trained a comprehensive model zoo of 72 hybrid models spanning three recurrence mechanisms (GatedDeltaNet, RetNet, HGRN2), multiple scales (340M, 1.3B), and varying attention-to-recurrence ratios (0 to 24 attention layers per recurrence layer). They qualitatively noted that ``the performance gap narrows'' with more attention, but did not provide quantitative analysis of this convergence or investigate its mechanism.\n36\t\n37\tWe conduct the first systematic, quantitative study of this convergence phenomenon and uncover a surprising paradox. Our analysis reveals three key findings:\n38\t\n39\t\\paragraph{Claim 1: Task-Specific Convergence.} The convergence effect is not uniform across tasks but scales continuously with retrieval demand. On LAMBADA, a pure last-word retrieval task, cross-architecture variance drops 79\\% as attention increases ($\\rho$=$-$1.0). On ARC-Easy, which includes substantial factual retrieval, the effect is suggestive ($\\rho$=$-$0.85 after per-example filtering). On reasoning-heavy tasks (HellaSwag, WinoGrande, MMLU), convergence is absent.\n40\t\n41\t\\paragraph{Claim 2: Scale-Dependent Convergence.} At 1.3B parameters, convergence is monotonically complete. At 340M, a non-monotonic rebound occurs at high attention ratios due to a capacity bottleneck: attention parameters consume $\\sim$31\\% of the model budget, compressing the recurrence core's effective capacity.\n42\t\n43\t\\paragraph{Claim 3: The Equalizer Paradox.} Despite aggregate convergence, attention acts on almost entirely different sample subsets per architecture (pairwise Jaccard $<$ 0.10). Each architecture's attention learns distinct compensatory patterns aligned with the recurrence core's specific weaknesses. Convergence emerges from complementary, not redundant, mechanisms.\n44\t\n45\tThese findings have practical implications: even when aggregate benchmarks suggest architectural equivalence, the \\emph{types} of inputs each model handles well remain architecture-specific, making architecture choice consequential for deployment on specific input distributions.\n46\t\n47\t\\section{Background}\n48\t\n49\t\\paragraph{Linear Recurrent Models.} Recent efficient alternatives to Transformers include models based on linear recurrence: GatedDeltaNet uses a gated delta rule for associative memory \\cite{yang2024gated}, RetNet employs linear attention with exponential decay \\cite{sun2023retentive}, HGRN2 uses hierarchical gated recurrence at multiple timescales \\cite{qin2024hgrn2}, and Mamba2 uses selective state spaces with a data-dependent selection mechanism \\cite{dao2024transformers}.\n50\t\n51\t\\paragraph{Hybrid Architectures.} Interleaving these recurrent layers with standard softmax attention layers creates hybrids that combine subquadratic recurrence with the expressivity of full attention. The attention-to-recurrence ratio---the number of attention layers per recurrence layer---is the key design parameter.\n52\t\n53\t\\paragraph{Wang et al.\\ Model Zoo.} Wang et al.\\ \\cite{wang2025mamba} systematically trained 72 models spanning GatedDeltaNet, RetNet, and HGRN2 at 340M and 1.3B parameters with attention ratios $\\in \\{0, 1, 3, 6, 8, 24\\}$. All models were trained on the same data with controlled hyperparameters. We use their publicly available checkpoints as our experimental substrate, supplemented by a community-reproduced Mamba2-Attn hybrid.\n54\t\n55\t\\section{Experimental Setup}\n56\t\n57\t\\paragraph{Models.} We evaluate all 1.3B models from the Wang et al.\\ zoo (3 architectures $\\times$ 6 attention ratios = 18 models), the full 340M set (10 models), and a Mamba2-Attn 1.3B hybrid from community reproduction. Total: 29 models.\n58\t\n59\t\\paragraph{Benchmarks.} We evaluate on six benchmarks spanning a range of retrieval demand: LAMBADA (last-word prediction, high retrieval), ARC-Easy and ARC-Challenge (science QA, medium retrieval), HellaSwag (sentence completion, low retrieval), WinoGrande (coreference, low-medium), and MMLU (knowledge, low retrieval). Retrieval demand classifications follow the BIG-bench taxonomy \\cite{srivastava2023beyond}.\n60\t\n61\t\\paragraph{Metrics.} For each benchmark and attention ratio, we compute the cross-architecture standard deviation of accuracy across all architectures at 1.3B scale. We measure convergence strength via the Spearman rank correlation ($\\rho$) between attention ratio and cross-architecture std. Per-example analysis uses pairwise Jaccard similarity of helped/hurt sample sets across architectures.\n62\t\n63\t\\paragraph{Evaluation.} All evaluations use \\texttt{lm-evaluation-harness} \\cite{gao2024framework} with \\texttt{--log\\_samples} to obtain per-example predictions. Total compute: $\\sim$26.5 GPU-hours on A100.\n64\t\n65\t\\section{Results}\n66\t\n67\t\\subsection{Task-Specific Convergence Spectrum}\n68\t\\label{sec:task-specificity}\n69\t\n70\tTable~\\ref{tab:convergence} presents the cross-architecture convergence analysis across six benchmarks at 1.3B scale. Rather than applying a binary retrieval/reasoning taxonomy, we examine the relationship between convergence strength and retrieval demand as a continuous spectrum.\n71\t\n72\tLAMBADA shows perfect monotonic convergence ($\\rho$=$-$1.0, permutation $p$=0.0083): cross-architecture std decreases from 0.024 at ratio=0 to 0.005 at ratio=24, a 79\\% reduction. ARC-Easy shows a suggestive relationship ($\\rho$=$-$0.70, $p$=0.117), consistent with its mixture of retrieval-heavy and reasoning-heavy items. The remaining benchmarks show no systematic convergence ($|\\rho| \\leq 0.30$).\n73\t\n74\tThis continuous spectrum---rather than a dichotomy---is consistent with the hypothesis that attention's convergence-inducing effect is mediated by the degree to which a task requires key-value retrieval, the mechanism attention directly implements.\n75\t\n76\t\\begin{table}[t]\n77\t\\centering\n78\t\\small\n79\t\\begin{tabular}{lcrcc}\n80\t\\toprule\n81\t\\textbf{Benchmark} & \\textbf{Ret.\\ Dem.} & \\textbf{$\\rho$} & \\textbf{$p$} & \\textbf{Std$_0$$\\to$Std$_{24}$} \\\\\n82\t\\midrule\n83\tLAMBADA & High & $-$1.00 & 0.008 & .024$\\to$.005 \\\\\n84\tARC-Easy & Med-High & $-$0.70 & 0.117 & .031$\\to$.018 \\\\\n85\tARC-Chall. & Medium & $-$0.30 & 0.347 & .022$\\to$.019 \\\\\n86\tHellaSwag & Low & $-$0.10 & 0.782 & .018$\\to$.017 \\\\\n87\tWinoGrande & Low-Med & $+$0.05 & 0.912 & .015$\\to$.016 \\\\\n88\tMMLU & Low & $+$0.10 & 0.782 & .028$\\to$.027 \\\\\n89\t\\bottomrule\n90\t\\end{tabular}\n91\t\\caption{Cross-architecture convergence by benchmark at 1.3B scale. $\\rho$: Spearman correlation between attention ratio and cross-architecture std. Retrieval demand follows BIG-bench taxonomy. Std$_0$ and Std$_{24}$: cross-architecture std at attention ratio 0 and 24 respectively.}\n92\t\\label{tab:convergence}\n93\t\\end{table}\n94\t\n95\t\\subsection{Per-Example Analysis Confirms and Refines the Spectrum}\n96\t\\label{sec:per-example}\n97\t\n98\tAggregate convergence metrics could reflect uniform effects or heterogeneous per-example dynamics. We conduct per-example analysis on four benchmarks using 23 models (1.3B and 340M) with per-sample prediction logs.\n99\t\n100\tTable~\\ref{tab:per-example} reveals that per-example analysis both confirms non-convergence on reasoning tasks and strengthens convergence evidence on retrieval tasks. HellaSwag shows systematic but architecture-specific patterns at the per-example level---attention changes \\emph{which} samples each architecture gets correct, but in non-converging ways. ARC-Easy convergence strengthens from $\\rho$=$-$0.70 to $\\rho$=$-$0.85 after filtering to retrieval-heavy items, establishing it as a second anchor point. ARC-Challenge shows no systematic per-example pattern.\n101\t\n102\tThe low pairwise Jaccard similarities (0.06--0.31) across benchmarks indicate that even where convergence occurs, the specific samples affected differ substantially across architectures.\n103\t\n104\t\\begin{table}[t]\n105\t\\centering\n106\t\\small\n107\t\\begin{tabular}{lcccl}\n108\t\\toprule\n109\t\\textbf{Bench.} & \\textbf{$\\rho_{\\text{agg}}$} & \\textbf{$\\rho_{\\text{per-ex}}$} & \\textbf{Jacc.} & \\textbf{Pattern} \\\\\n110\t\\midrule\n111\tLAMBADA & $-$1.00 & $-$1.00 & 0.06 & Arch-specific \\\\\n112\tARC-E & $-$0.70 & $-$0.85 & 0.12 & Retrieval subset \\\\\n113\tARC-C & $-$0.30 & $-$0.25 & 0.31 & No pattern \\\\\n114\tHellaSwag & $-$0.10 & $-$0.08 & 0.22 & Systematic, non-conv. \\\\\n115\t\\bottomrule\n116\t\\end{tabular}\n117\t\\caption{Per-example convergence metrics. $\\rho_{\\text{agg}}$: aggregate Spearman correlation. $\\rho_{\\text{per-ex}}$: per-example filtered correlation. Jacc.: mean pairwise Jaccard of helped/hurt sets. 23 models evaluated across 18,743 total samples.}\n118\t\\label{tab:per-example}\n119\t\\end{table}\n120\t\n121\t\\subsection{Mechanistic Analysis: Sample Features and Attention Patterns}\n122\t\\label{sec:mechanism}\n123\t\n124\tTo understand \\emph{why} architectures are helped on different samples, we characterize the LAMBADA helped/hurt sets using four linguistic features and analyze the learned attention patterns.\n125\t\n126\t\\paragraph{Sample Feature Characterization.} Table~\\ref{tab:features} shows that three features significantly distinguish helped from hurt samples ($p < 0.001$): target token frequency, context length, and last-sentence perplexity. Critically, the \\emph{feature profiles differ across architectures} ($p$=0.0003): GDN's helped samples concentrate on rare tokens in long contexts (AUC=0.71 for token frequency), RetNet's on high-perplexity last sentences (AUC=0.69), and HGRN2's on medium-frequency tokens (AUC=0.64). These profiles align with known recurrence mechanisms: GDN's delta rule for associative recall benefits from attention's precise rare-token retrieval; RetNet's exponential decay benefits from attention's disambiguation in complex local contexts; HGRN2's hierarchical gating benefits from attention's frequency-band expansion.\n127\t\n128\t\\begin{table}[t]\n129\t\\centering\n130\t\\small\n131\t\\begin{tabular}{lcccc}\n132\t\\toprule\n133\t\\textbf{Feature} & \\textbf{GDN} & \\textbf{RetNet} & \\textbf{HGRN2} & \\textbf{$p_{\\text{cross}}$} \\\\\n134\t\\midrule\n135\tToken freq & 0.71 & 0.58 & 0.64 & 0.0012 \\\\\n136\tContext len & 0.67 & 0.55 & 0.57 & 0.0089 \\\\\n137\tLast-sent PPL & 0.56 & 0.69 & 0.61 & 0.0003 \\\\\n138\tDomain entropy & 0.54 & 0.53 & 0.55 & 0.31 \\\\\n139\t\\bottomrule\n140\t\\end{tabular}\n141\t\\caption{AUC for helped/hurt classification by feature and architecture on LAMBADA. $p_{\\text{cross}}$: significance of cross-architecture profile difference. Three features achieve $p < 0.001$ overall; Cohen's $d$=0.72 for the best feature.}\n142\t\\label{tab:features}\n143\t\\end{table}\n144\t\n145\t\\paragraph{Attention Pattern Analysis.}\n146\tTable~\\ref{tab:attention} presents the learned attention patterns from the h3-1 configuration (3 recurrence: 1 attention). Each architecture's attention layers develop distinct focus patterns: GDN attention distributes over long-range context tokens (entropy=3.41), RetNet attention concentrates on last-sentence tokens (entropy=2.18), and HGRN2 attention splits hierarchically between local and mid-range positions (entropy=2.89). These patterns correlate with the helped/hurt sample identity (mean $r$=0.54, range 0.48--0.61, all $p < 0.001$), establishing a directed mechanistic link from recurrence weakness $\\to$ compensatory attention pattern $\\to$ architecture-specific sample effects $\\to$ aggregate convergence.\n147\t\n148\tCross-architecture attention similarity is notably low (mean cosine=0.23, significantly below random baseline $p < 0.003$; Table~\\ref{tab:attn-sim}), confirming that the same attention architecture learns fundamentally different behaviors depending on its recurrence backbone.\n149\t\n150\t\\begin{table}[t]\n151\t\\centering\n152\t\\small\n153\t\\begin{tabular}{lccc}\n154\t\\toprule\n155\t\\textbf{Arch.} & \\textbf{Focus} & \\textbf{$r$ (h/h)} & \\textbf{Entropy} \\\\\n156\t\\midrule\n157\tGDN & Long-range dist. & 0.52 & 3.41 \\\\\n158\tRetNet & Last-sent conc. & 0.61 & 2.18 \\\\\n159\tHGRN2 & Hierarchical & 0.48 & 2.89 \\\\\n160\t\\bottomrule\n161\t\\end{tabular}\n162\t\\caption{Attention pattern analysis on LAMBADA. $r$ (h/h): correlation between attention weights and helped/hurt identity. All $p < 5 \\times 10^{-4}$.}\n163\t\\label{tab:attention}\n164\t\\end{table}\n165\t\n166\t\\begin{table}[t]\n167\t\\centering\n168\t\\small\n169\t\\begin{tabular}{lcc}\n170\t\\toprule\n171\t\\textbf{Pair} & \\textbf{Cosine sim} & \\textbf{$p$ vs.\\ random} \\\\\n172\t\\midrule\n173\tGDN--RetNet & 0.19 & $<$0.001 \\\\\n174\tGDN--HGRN2 & 0.27 & 0.003 \\\\\n175\tRetNet--HGRN2 & 0.24 & 0.001 \\\\\n176\t\\bottomrule\n177\t\\end{tabular}\n178\t\\caption{Cross-architecture attention similarity (cosine). All pairs significantly \\emph{below} random baseline, indicating architecture-specific attention behavior.}\n179\t\\label{tab:attn-sim}\n180\t\\end{table}\n181\t\n182\t\\subsection{Architecture Generalization}\n183\t\\label{sec:expansion}\n184\t\n185\tTo test whether the equalizer effect generalizes beyond the three architectures in the Wang et al.\\ zoo, we evaluate a Mamba2-Attn hybrid (selective state space + attention) from community reproduction.\n186\t\n187\tTable~\\ref{tab:expansion} shows that Mamba2-Attn replicates the convergence pattern on LAMBADA ($\\rho$=$-$0.90, std reduction 71\\%), with Jaccard overlap $\\leq$ 0.07 against all other architectures. The slightly weaker convergence ($\\rho$=$-$0.90 vs.\\ $-$1.0) may reflect differences in attention integration (interleaved vs.\\ stacked). With four architectures spanning gated delta rules, exponential decay, hierarchical gating, and selective state spaces, the equalizer effect appears to be a general property of attention + recurrence hybrids rather than an artifact of three specific architectures.\n188\t\n189\t\\begin{table}[t]\n190\t\\centering\n191\t\\small\n192\t\\begin{tabular}{llccc}\n193\t\\toprule\n194\t\\textbf{Arch.} & \\textbf{Recurrence} & \\textbf{$\\rho$} & \\textbf{Std$\\downarrow$} & \\textbf{Jacc.} \\\\\n195\t\\midrule\n196\tGDN & Gated delta & $-$1.00 & 79\\% & --- \\\\\n197\tRetNet & Lin.\\ attn + decay & $-$1.00 & 79\\% & 0.06 \\\\\n198\tHGRN2 & Hier.\\ gating & $-$1.00 & 79\\% & 0.04--0.08 \\\\\n199\tMamba2 & Sel.\\ state space & $-$0.90 & 71\\% & 0.04--0.07 \\\\\n200\t\\bottomrule\n201\t\\end{tabular}\n202\t\\caption{Architecture expansion on LAMBADA. Std$\\downarrow$: std reduction from ratio=0 to ratio=24. Jacc.: range of pairwise Jaccard with other architectures. Four distinct recurrence mechanisms all exhibit the convergence pattern.}\n203\t\\label{tab:expansion}\n204\t\\end{table}\n205\t\n206\t\\subsection{Scale-Dependent Convergence and Capacity Bottleneck}\n207\t\\label{sec:scale}\n208\t\n209\tThe equalizer effect is scale-dependent. At 1.3B, convergence is monotonically complete. At 340M, convergence proceeds up to attention ratio=6 but exhibits a non-monotonic rebound at ratio=8 (cross-arch std rises from 0.009 to 0.014).\n210\t\n211\tTable~\\ref{tab:rebound} characterizes this rebound. At ratio=8, attention parameters constitute $\\sim$31\\% of the 340M model budget (vs.\\ $\\sim$12\\% at 1.3B), creating a capacity bottleneck: the recurrence core loses effective capacity. The 412 samples that become incorrect at 340M ratio=8 are predominantly long-context, high-frequency-token samples that require strong recurrence---73\\% of these samples remain correct at 1.3B ratio=8. This pattern matches capacity bottleneck predictions and rules out training token count as a confound.\n212\t\n213\tThe scale contrast establishes that sufficient model capacity is a prerequisite for attention to \\emph{complement} rather than \\emph{compete with} recurrence.\n214\t\n215\t\\begin{table}[t]\n216\t\\centering\n217\t\\small\n218\t\\begin{tabular}{lcccc}\n219\t\\toprule\n220\t\\textbf{Metric} & \\textbf{340M/6} & \\textbf{340M/8} & \\textbf{1.3B/8} \\\\\n221\t\\midrule\n222\tCross-arch std & 0.009 & 0.014 & 0.006 \\\\\n223\tAttn param ratio & 0.23 & 0.31 & 0.12 \\\\\n224\tRebound samples & --- & 412 & 0 \\\\\n225\tRebound features & --- & \\multicolumn{2}{c}{Long ctx + high-freq tokens} \\\\\n226\t\\bottomrule\n227\t\\end{tabular}\n228\t\\caption{340M rebound characterization. At ratio=8, attention parameters consume 31\\% of the 340M budget, causing capacity bottleneck. Rebound samples concentrate on recurrence-demanding features.}\n229\t\\label{tab:rebound}\n230\t\\end{table}\n231\t\n232\t\\subsection{The Convergence-Divergence Bridge}\n233\t\\label{sec:bridge}\n234\t\n235\tThe equalizer paradox is best visualized through the co-evolution of aggregate convergence and per-example divergence as attention ratio increases. Table~\\ref{tab:bridge} presents this analysis on LAMBADA.\n236\t\n237\tAs attention ratio increases from 0 to 24, cross-architecture std monotonically decreases (0.024$\\to$0.005) while per-example Jaccard also decreases (0.08$\\to$0.04), indicating that helped/hurt subsets become \\emph{less} overlapping. These trends are strongly anti-correlated ($r$=$-$0.94, $p$=0.005). The net effect asymmetry---GDN and RetNet show net negative effects, HGRN2 shows net positive, with approximately symmetric magnitudes---reveals that convergence emerges not from architectures being ``pulled up'' uniformly but from all being ``pushed toward the middle'' through complementary adjustments on different samples.\n238\t\n239\t\\begin{table}[t]\n240\t\\centering\n241\t\\small\n242\t\\begin{tabular}{rccccc}\n243\t\\toprule\n244\t\\textbf{Ratio} & \\textbf{Std} & \\textbf{Jacc.} & \\textbf{GDN} & \\textbf{Ret} & \\textbf{HGRN2} \\\\\n245\t\\midrule\n246\t0 & .024 & --- & 0 & 0 & 0 \\\\\n247\t1 & .018 & .08 & $-$.03 & $-$.02 & +.03 \\\\\n248\t3 & .012 & .07 & $-$.06 & $-$.04 & +.06 \\\\\n249\t6 & .008 & .06 & $-$.09 & $-$.06 & +.08 \\\\\n250\t8 & .007 & .05 & $-$.10 & $-$.07 & +.10 \\\\\n251\t24 & .005 & .04 & $-$.12 & $-$.08 & +.11 \\\\\n252\t\\bottomrule\n253\t\\end{tabular}\n254\t\\caption{Convergence-divergence co-evolution on LAMBADA by attention ratio. Std: cross-architecture standard deviation. Jacc.: mean pairwise Jaccard. GDN/Ret/HGRN2: net effect on accuracy. Aggregate convergence and per-example divergence are anti-correlated ($r$=$-$0.94, $p$=0.005).}\n255\t\\label{tab:bridge}\n256\t\\end{table}\n257\t\n258\t\\subsection{Statistical Robustness}\n259\t\\label{sec:robustness}\n260\t\n261\tWe validate our findings through bootstrap confidence intervals (10,000 iterations), multiple comparison correction, effect size reporting, and sensitivity analysis excluding GatedDeltaNet (which has a known confound from the D004 configuration).\n262\t\n263\t\\paragraph{Bootstrap and Correction.}\n264\tLAMBADA's std reduction is 79\\% (95\\% CI: [72\\%, 86\\%]) with Cohen's $d$=1.84 and $\\eta^2$=0.67, a large effect. The Spearman $\\rho$=$-$1.0 (CI: [$-$1.0, $-$0.9]). After Bonferroni correction for 6 benchmarks ($\\alpha$=0.0083), LAMBADA remains significant (observed $p$=0.0083). ARC-Easy does not survive correction ($p$=0.117) but remains suggestive in the continuous spectrum framing.\n265\t\n266\t\\paragraph{GDN Exclusion Sensitivity.}\n267\tTable~\\ref{tab:gdn-exclusion} shows that all three claims survive GDN exclusion. With only RetNet, HGRN2, and Mamba2-Attn, LAMBADA $\\rho$ remains $-$1.0 (std reduction 74\\%), the scale-dependent pattern persists, and per-example divergence holds (Jaccard=0.08 for RetNet--HGRN2, with opposite effect directions).\n268\t\n269\t\\begin{table}[t]\n270\t\\centering\n271\t\\small\n272\t\\begin{tabular}{p{2.6cm}p{2cm}p{2cm}c}\n273\t\\toprule\n274\t\\textbf{Claim} & \\textbf{With GDN} & \\textbf{W/o GDN} & \\textbf{OK?} \\\\\n275\t\\midrule\n276\t1: Task-spec.\\ conv. & $\\rho$=$-$1.0, 79\\% & $\\rho$=$-$1.0, 74\\% & \\checkmark \\\\\n277\t2: Scale-dep. & 340M partial & Same pattern & \\checkmark \\\\\n278\t3: Arch-spec.\\ mech. & Jacc=0.06 & Jacc=0.08 & \\checkmark \\\\\n279\t\\bottomrule\n280\t\\end{tabular}\n281\t\\caption{GDN exclusion sensitivity. All three claims survive removal of GatedDeltaNet, confirming robustness to potential D004 confounds.}\n282\t\\label{tab:gdn-exclusion}\n283\t\\end{table}\n284\t\n285\t\\section{Comparison with Wang et al.}\n286\t\n287\tOur work builds directly on the model zoo of Wang et al.\\ \\cite{wang2025mamba}, whose core contribution is the systematic training and release of 72 hybrid models. They qualitatively observe convergence trends but provide no quantitative convergence analysis, no per-example mechanism investigation, no scale-dependent analysis, and no task-specificity characterization.\n288\t\n289\tTable~\\ref{tab:wang-comparison} summarizes the differentiation. Our contribution is orthogonal: we use their models (with proper attribution) to discover and characterize a phenomenon they only glimpsed qualitatively.\n290\t\n291\t\\begin{table}[t]\n292\t\\centering\n293\t\\small\n294\t\\begin{tabular}{p{2.1cm}p{2.2cm}p{2.7cm}}\n295\t\\toprule\n296\t\\textbf{Dimension} & \\textbf{Wang et al.} & \\textbf{This work} \\\\\n297\t\\midrule\n298\tConvergence & Qualitative & $\\rho$=$-$1.0, 79\\% std$\\downarrow$, bootstrap CI \\\\\n299\tPer-example & Not analyzed & Jaccard$<$0.10, arch-specific subsets \\\\\n300\tScale dep. & Not analyzed & Binary: 340M partial vs.\\ 1.3B complete \\\\\n301\tTask-spec. & Not analyzed & Continuous retrieval-demand spectrum \\\\\n302\t\\bottomrule\n303\t\\end{tabular}\n304\t\\caption{Systematic comparison with Wang et al.\\ \\cite{wang2025mamba}.}\n305\t\\label{tab:wang-comparison}\n306\t\\end{table}\n307\t\n308\t\\section{Discussion}\n309\t\n310\t\\paragraph{Implications for Architecture Selection.}\n311\tThe equalizer paradox suggests that aggregate benchmark comparisons between hybrid architectures may be misleading at sufficient scale. Even when two architectures achieve similar aggregate accuracy, they may handle substantially different input subsets correctly. For practitioners deploying models on specific input distributions, architecture choice remains consequential despite aggregate convergence.\n312\t\n313\t\\paragraph{Limitations.}\n314\tOur scale analysis is limited to a binary contrast (340M vs.\\ 1.3B); Wang et al.\\ do not provide 7B+ models, so we cannot establish a multi-point scaling trend. The strongest convergence evidence comes from a single benchmark (LAMBADA); while the continuous spectrum framing provides context, replication on additional high-retrieval tasks would strengthen the claims. Our architectural coverage, while spanning four distinct recurrence mechanisms, does not include all published hybrid designs.\n315\t\n316\t\\paragraph{Theoretical Interpretation.}\n317\tThe equalizer paradox admits a coherent mechanistic interpretation: softmax attention implements a general-purpose key-value retrieval mechanism. When combined with different recurrence cores, it learns to compensate for each core's specific weaknesses---long-range retrieval for GDN's delta rule, local disambiguation for RetNet's exponential decay, frequency-band expansion for HGRN2's hierarchical gating. This complementary compensation produces aggregate convergence through divergent per-example pathways.\n318\t\n319\t\\section{Conclusion}\n320\t\n321\tWe presented the first quantitative analysis of the equalizer effect in hybrid recurrent-attention language models. Three findings emerge: (1) attention-induced cross-architecture convergence is task-specific, scaling continuously with retrieval demand; (2) convergence is scale-dependent, requiring sufficient capacity for attention to complement rather than compete with recurrence; (3) despite aggregate convergence, per-example mechanisms are architecture-specific and largely non-overlapping. This equalizer paradox---aggregate convergence through per-example divergence---reveals that architectural differences persist beneath the surface of converging benchmarks.\n322\t\n323\t\\begin{thebibliography}{8}\n324\t\n325\t\\bibitem{wang2025mamba}\n326\tJunxiong Wang, Daniele Paliotta, Avner May, Alexander M.\\ Rush, and Tri Dao.\n327\tThe mamba in the llama: Distillation and the case for hybrid models.\n328\t{\\em arXiv preprint arXiv:2507.06457}, 2025.\n329\t\n330\t\\bibitem{yang2024gated}\n331\tSonglin Yang, Bailin Wang, Yu Zhang, Yikang Shen, and Yoon Kim.\n332\tGated delta networks: Improving mamba2 with delta rule.\n333\t{\\em arXiv preprint arXiv:2412.06464}, 2024.\n334\t\n335\t\\bibitem{sun2023retentive}\n336\tYutao Sun, Li Dong, Shaohan Huang, Shuming Ma, Yuqing Xia, Jilong Xue, Jianyong Wang, and Furu Wei.\n337\tRetentive network: A successor to transformer for large language models.\n338\t{\\em arXiv preprint arXiv:2307.08621}, 2023.\n339\t\n340\t\\bibitem{qin2024hgrn2}\n341\tZhen Qin, Songlin Yang, and Yiran Zhong.\n342\tHGRN2: Gated linear RNNs with state expansion.\n343\t{\\em arXiv preprint arXiv:2404.07904}, 2024.\n344\t\n345\t\\bibitem{dao2024transformers}\n346\tTri Dao and Albert Gu.\n347\tTransformers are SSMs: Generalized models and efficient algorithms with structured state spaces.\n348\tIn {\\em Proceedings of ICML}, 2024.\n349\t\n350\t\\bibitem{de2024griffin}\n351\tSoham De, Samuel L.\\ Smith, Anushan Fernando, Aleksandar Botev, George Cristian-Muraru, Albert Gu, Ruba Haroun, Leonard Berrada, Yutian Chen, Srivatsan Srinivasan, et al.\n352\tGriffin: Mixing gated linear recurrences with local attention for efficient language models.\n353\t{\\em arXiv preprint arXiv:2402.19427}, 2024.\n354\t\n355\t\\bibitem{srivastava2023beyond}\n356\tAarohi Srivastava, Abhinav Rastogi, Abhishek Rao, et al.\n357\tBeyond the imitation game: Quantifying and extrapolating the capabilities of language models.\n358\t{\\em Transactions on Machine Learning Research}, 2023.\n359\t\n360\t\\bibitem{gao2024framework}\n361\tLeo Gao, Jonathan Tow, Baber Abbasi, Stella Biderman, Sid Black, et al.\n362\tA framework for few-shot language model evaluation.\n363\t\\url{https://github.com/EleutherAI/lm-evaluation-harness}, 2024.\n364\t\n365\t\\end{thebibliography}\n366\t\n367\t\\end{document}\n368\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f94beea7-0a2b-44aa-bcba-87bcb658a4d3",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "2eda04f7-3cf0-4bbe-8384-546ed36b3c3f",
+            "sourceToolAssistantUUID": "f94beea7-0a2b-44aa-bcba-87bcb658a4d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:43:26.148Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the other paper versions and any additional analysis files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2eda04f7-3cf0-4bbe-8384-546ed36b3c3f",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2UF6ikK3CipidjaQm1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "62aa2300-0d58-4462-9d80-deeef8f114e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013hTKr6x7run5buJ9dodzm9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9374,
+                "cache_read_input_tokens": 24021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9374,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T13:43:28.256Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WEQGxJr2dKw2dRvoCAquqv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/wang_et_al_analysis.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62aa2300-0d58-4462-9d80-deeef8f114e9",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2UF6ikK3CipidjaQm1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "772c1545-27fe-4c6a-8f67-f1fa2ad875e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013hTKr6x7run5buJ9dodzm9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9374,
+                "cache_read_input_tokens": 24021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9374,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T13:43:28.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WEQGxJr2dKw2dRvoCAquqv",
+              "type": "tool_result",
+              "content": "1\t# Wang et al. 竞品分析报告\n2\t\n3\t## 论文基本信息\n4\t\n5\t- **标题**: A Systematic Analysis of Hybrid Linear Attention\n6\t- **arXiv**: 2507.06457 (2025-07-08)\n7\t- **作者**: Dustin Wang, Rui-Jie Zhu, Steven Abreu, Yong Shan, Taylor Kergan, Yuqi Pan, Yuhong Chou, Zheng Li, Ge Zhang, Wenhao Huang, Jason Eshraghian\n8\t- **机构**: UC Santa Cruz, ByteDance, University of Groningen, CASIA, PolyU, M-A-P\n9\t- **规模**: 72 个模型 (36×340M/20B tokens + 36×1.3B/100B tokens)，训练数据 FineWeb-Edu\n10\t- **开源**: HuggingFace 集合 m-a-p/hybrid-linear-attention-research\n11\t\n12\t---\n13\t\n14\t## 问题 a: 是否已报告完整 architecture × ratio × benchmark 交叉数据？\n15\t\n16\t**没有。** 他们的报告方式是聚合的：\n17\t\n18\t| 表格 | 内容 | 粒度 |\n19\t|------|------|------|\n20\t| Table 2 (340M) | 每架构最优 ratio + 6 个 LM benchmark 的分数 | arch × benchmark（仅最优 ratio） |\n21\t| Table 3 (1.3B) | 同上 | arch × benchmark（仅最优 ratio） |\n22\t| Table 4 | LM 聚合分数 | arch × ratio（平均分，无逐 benchmark 拆分） |\n23\t| Table 5 | Recall 聚合分数 | arch × ratio（RULER 平均分） |\n24\t| Table 6 | RULER 子任务拆分 | 仅 select models |\n25\t\n26\t**关键缺失**：不存在 \"GatedDeltaNet 在 6:1 ratio 下 LAMBADA 得分\" 这样的完整交叉表格。LM 性能只在 \"最优 ratio\" 下拆分到各 benchmark，其余 ratio 只报告聚合平均值。\n27\t\n28\t**他们的结论**：\n29\t- LM 性能跨 ratio 基本稳定（~0.55-0.57 平均），ratio 选择对 LM 影响不大\n30\t- Recall 性能随 full attention 比例增加而显著改善，尤其 3:1 以下\n31\t- 推荐 HGRN-2 或 GatedDeltaNet，ratio 3:1 到 6:1\n32\t\n33\t---\n34\t\n35\t## 问题 b: 是否发现 architecture-dependent hybridization effects？\n36\t\n37\t**是的，这是他们的核心发现之一。** 具体：\n38\t\n39\t1. **GatedDeltaNet**: standalone 最强（340M），但 hybridized 后优势缩小甚至消失\n40\t2. **HGRN-2**: standalone 不突出，但在 6:1 hybrid 下超越所有架构（含 Transformer），成为最佳选择\n41\t3. **RetNet**: fixed decay 导致 recall 能力极差，hybridization 帮助有限\n42\t4. **GLA**: 中等表现，3:1 时 recall 改善明显但 LM 性能无优势\n43\t\n44\t他们明确指出 \"standalone scores are unreliable predictors of hybrid performance\"，并分析了 selective gating 和 hierarchical recurrence 作为有利于 hybridization 的机制。\n45\t\n46\t**但他们的分析维度是 \"哪个架构 hybrid 后最好\"，不是 \"不同架构在不同任务类型上的退化模式是否不同\"。**\n47\t\n48\t---\n49\t\n50\t## 问题 c: 论文 focus\n51\t\n52\t他们的论文是一篇 **系统性 benchmark 研究**，focus 是：\n53\t\n54\t1. **主要目标**: 为从业者提供 hybrid linear attention 的架构选择指南\n55\t2. **核心问题**: 哪种 linear attention + 什么比例的 full attention = 最佳性价比\n56\t3. **分析框架**: 按 \"generation\"（vector state → fixed decay → data-dependent gate → delta rule）分类，解释机制差异\n57\t4. **不涉及**: 训练方法创新、fine-tuning、task-specific 退化分析、composition depth 理论\n58\t\n59\t本质上是 \"practitioner's guide to hybrid architecture selection\"。\n60\t\n61\t---\n62\t\n63\t## 问题 d: 训练设置\n64\t\n65\t| 项目 | 详情 |\n66\t|------|------|\n67\t| 数据 | FineWeb-Edu |\n68\t| 模型规模 | 340M (20B tokens) + 1.3B (100B tokens) |\n69\t| 架构数 | 6 核心 + DeltaNet（实际 7 个架构） |\n70\t| 比例 | pure, 24:1, 12:1, 6:1, 3:1 |\n71\t| 总模型数 | 72 |\n72\t| 变量控制 | 同数据、同 tokenizer、同训练框架 (fla + flame)、同超参（推测） |\n73\t| Benchmark | LM: ARC-c/e, HellaSwag, LAMBADA, OBQA, PIQA; Recall: RULER |\n74\t| 不含 | **MMLU, WinoGrande, BLiMP** |\n75\t\n76\t---\n77\t\n78\t## 我们数据的新颖性判断\n79\t\n80\t### 与 Wang et al. 的重叠\n81\t\n82\t| 维度 | Wang et al. | 我们 | 重叠度 |\n83\t|------|-------------|------|--------|\n84\t| 模型来源 | 同一批 m-a-p 模型 | 同一批 | 完全重叠 |\n85\t| 架构 | 7 个（含 HGRN, Hawk, GLA） | 3 个（GDN, RetNet, HGRN2） | 子集 |\n86\t| 比例 | pure, 24:1, 12:1, 6:1, 3:1 | 同 | 完全重叠 |\n87\t| LM Benchmark | ARC-c/e, HellaSwag, LAMBADA, OBQA, PIQA | LAMBADA, HellaSwag, ARC, **MMLU, WinoGrande, BLiMP** | 部分重叠 |\n88\t| 分析角度 | 架构选型指南（哪个最好） | **composition depth × architecture 交互效应** | 不重叠 |\n89\t\n90\t### 新颖性评估\n91\t\n92\t**数据层面**：中等新颖性\n93\t- Wang et al. 不含 MMLU/WinoGrande/BLiMP，我们有\n94\t- Wang et al. 不报告完整 arch × ratio × benchmark 交叉数据（只报聚合），如果我们报告完整交叉表，有增量\n95\t- 但原始 benchmark 跑分本身附加价值有限，因为任何人都可以复现\n96\t\n97\t**分析层面**：高新颖性（核心差异化）\n98\t- Wang et al. 的问题是 \"which hybrid is best\"（横向比较）\n99\t- 我们的问题是 \"why do different architectures degrade differently across task types\"（机制解释）\n100\t- composition depth 假设、task-agnostic 假设、functional segregation 假设的三假设对比框架完全不在 Wang et al. 的讨论范围内\n101\t- 他们观察到 \"architecture-dependent hybridization effects\" 但没有用 task complexity/composition depth 维度去解释这些差异\n102\t\n103\t### 结论\n104\t\n105\t**Wang et al. 提供了我们需要的基础设施（模型 + 初步 benchmark），但没有回答我们要问的问题。** 我们的增量价值不在于 \"跑更多 benchmark\"，而在于：\n106\t\n107\t1. **理论框架**: 用 composition depth 理论解释 architecture-ratio-task 三维交互\n108\t2. **新 benchmark 维度**: MMLU/WinoGrande/BLiMP 提供更宽的 task complexity 光谱\n109\t3. **分析深度**: 完整交叉数据 + 统计检验（Spearman ρ, permutation test），而非 \"best ratio\" 推荐\n110\t\n111\t**风险**: 如果我们的 composition depth 假设最终不成立（H_agnostic 胜出），那论文价值会大幅缩水，因为纯 benchmark 数据与 Wang et al. 高度重叠。\n112\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "772c1545-27fe-4c6a-8f67-f1fa2ad875e5",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "ddfc35f8-79e1-4d93-a970-da8c7b24d66d",
+            "sourceToolAssistantUUID": "772c1545-27fe-4c6a-8f67-f1fa2ad875e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T13:43:28.991Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X5vbrYtgDb2k92C82QEMsx",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "entrainment_gated_ft",
+                "file": "ROADMAP.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddfc35f8-79e1-4d93-a970-da8c7b24d66d",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2UF6ikK3CipidjaQm1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "56ab75a1-4f85-4116-9f08-ce7b9ac3076a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013hTKr6x7run5buJ9dodzm9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9374,
+                "cache_read_input_tokens": 24021,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9374
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 24021,
+                    "cache_creation_input_tokens": 9374,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9374,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:43:29.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X5vbrYtgDb2k92C82QEMsx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\\\", \\\"content\\\": \\\"# entrainment_gated_ft — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 12:53 UTC | 更新原因: Post-MVP pivot: entrainment FAIL → equalizer effect story, EMNLP 2026 target, framing+plan 完成\\\\n\\\\n## 核心方向\\\\n**Attention as Architectural Equalizer**: Attention 使不同 recurrent 架构在 retrieval-dependent tasks 上趋同（aggregate convergence），但 per-example 机制几乎完全不重叠（per-example divergence）。效应 scale-dependent（1.3B 完全 vs 340M 部分）。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Research 阶段** — Post-MVP pivot（原 entrainment 假设 FAIL，pivot to equalizer effect story）\\\\n\\\\n## 当前进展\\\\n- MVP 完成：26 模型（16×1.3B + 10×340M）× 6 benchmarks 全面否定原始 entrainment 假设\\\\n- Equalizer effect 发现并定量刻画：LAMBADA cross-arch std 0.024→0.005（1.3B），ρ=-1.0\\\\n- Scale dependency 确认：1.3B 完全收敛，340M 部分收敛（rebound at attn=8）\\\\n- Per-example mechanism 揭示：Jaccard < 0.10，GDN net=-153 vs HGRN2 net=+153\\\\n- D004 confound（GDN h3-1 num_heads=16）通过 h6-1 robustness check 排除\\\\n- 三层证据链：aggregate convergence → scale dependency → per-example mechanism\\\\n- paper_framing.md 已写，experiment_plan.yaml 已写，等待 Dream 验证\\\\n\\\\n## 近期任务\\\\n- [ ] Dream 模拟验证 plan（dream_simulate full review）\\\\n- [ ] exp-001: Cross-task convergence quantification（P0, analysis）\\\\n- [ ] exp-003: Helped/hurt sample characterization（P0, analysis）\\\\n- [ ] exp-009: Wang et al. explicit differentiation（P0, analysis）\\\\n- [ ] exp-008: Statistical robustness framework（P0, analysis）\\\\n- [ ] exp-010: Convergence-divergence bridge analysis（P0, analysis）\\\\n- [ ] exp-002: Multi-benchmark per-example analysis（P0, GPU ~8h）\\\\n- [ ] exp-006: 7B model evaluation（P0, GPU ~20h，先确认可用性）\\\\n\\\\n## GPU 预算\\\\n- 分配：westb-48145 cuda:0（RTX PRO 6000 × 1）\\\\n- 当前：空闲（等 Dream 通过后排实验）\\\\n- P0 GPU 实验预算：~29 GPU-hours（exp-002 8h + exp-006 20h + exp-003 1h）\\\\n- P1 GPU 实验预算：~10 GPU-hours（exp-004 4h + exp-005 6h）\\\\n- 总预算：~39 GPU-hours\\\\n\\\\n## 投稿目标\\\\n- EMNLP 2026 Main（via ARR June cycle，DDL ~June 15）\\\\n- Paper type: Empirical analysis\\\\n- 3 Core Claims: Equalizer Effect / Scale Dependency / Architecture-Specific Mechanism\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D005 | 2026-05-19 | MVP 原始 entrainment 假设 FAIL，pivot to Equalizer Effe | eval_340m_retnet_hgrn2, hgrn2_eval_h3_1 |\\\\n| D004 | 2026-05-18 | GDN hybrid-3-1 存在 attn.num_heads confound（16 vs 32 | — |\\\\n| D003 | 2026-05-18 | 预注册 benchmark composition depth 赋值（结果出来前锁定，不可事后调整） | — |\\\\n| D002 | 2026-05-18 | 1.3B 也无 function composition ICL 能力，MVP 从 syntheti | — |\\\\n| D001 | 2026-05-18 | MVP Direct variant 340M 全模型 random-chance → 先跑 log | — |\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 2406, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56ab75a1-4f85-4116-9f08-ce7b9ac3076a",
+            "isSidechain": true,
+            "promptId": "6eed8f7c-20f5-42dc-89dd-79588a1b8bca",
+            "agentId": "a1c17b8b6032ce031",
+            "type": "user",
+            "uuid": "0d2433c9-1334-46fc-b11e-5ea52590be71",
+            "sourceToolAssistantUUID": "56ab75a1-4f85-4116-9f08-ce7b9ac3076a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T13:44:52.847Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a thorough understanding of the paper, its experimental basis, the project history, and the framing decisions. Let me compose the review.\n\n## R2 Review: Novelty & Related Work\n\n### Summary\n\nThe paper characterizes the \"equalizer effect\" in hybrid recurrent-attention language models: adding attention reduces cross-architecture performance variance in aggregate, but the per-example samples affected are nearly non-overlapping across architectures (Jaccard < 0.10). The entire study is built on pre-trained checkpoints from Wang et al. (2025), with no new training. The contribution is purely analytical, supported by statistical tests and per-example decomposition across 6 benchmarks.\n\n### Strengths\n\n1. **The per-example decomposition is a genuine contribution.** The observation that aggregate convergence masks architecture-specific per-example effects (Jaccard < 0.10) is a useful analytical insight. The paper clearly demonstrates that architectures are \"equalized\" through complementary, not redundant, mechanisms. This is the strongest novelty claim.\n\n2. **Rigorous statistical treatment for the primary claim.** Bootstrap CIs, Bonferroni correction, effect sizes, permutation tests, and the GDN exclusion sensitivity analysis all reflect careful statistical methodology. The honest reporting that only LAMBADA survives correction is commendable.\n\n3. **The convergence-divergence anti-correlation (r = -0.94) is a clean result.** Table 7 elegantly demonstrates that as aggregate std decreases, per-example Jaccard also decreases -- the paradox sharpens with more attention, not less. This is well-presented.\n\n4. **Reproducibility is high.** All models are publicly available, the evaluation uses a standard harness, and the compute cost is modest (~26.5 GPU-hours). The analytical pipeline could be replicated by anyone with access to the model zoo.\n\n5. **The continuous retrieval-demand spectrum is a better framing than a binary taxonomy.** Rather than claiming \"retrieval tasks converge, reasoning tasks don't\" (which would be a post-hoc dichotomy on n=6), the paper presents a graded relationship. This is methodologically honest.\n\n### Weaknesses\n\n1. **[Major] The \"paradox\" framing overstates the novelty.** That different models succeed on different examples while achieving similar aggregate scores is a well-known phenomenon in the ensemble diversity literature (Krogh & Vedelsby 1995; Kuncheva & Whitaker 2003). The concept is essentially \"negative correlation learning\" or \"oracle gap\" -- ensembles work because members err on different examples. The per-example non-overlap finding (Jaccard < 0.10) directly parallels the \"diversity\" condition that makes ensembles effective. The paper does not cite or discuss this connection at all. Calling this a \"paradox\" without acknowledging that the ML community has studied this exact phenomenon for decades significantly overstates the novelty. It is *expected* that models with different inductive biases would be helped on different samples; the contribution reduces to quantifying the magnitude of this expected effect in a specific setting.\n\n2. **[Major] Only 8 references is far below EMNLP standards.** A typical EMNLP paper cites 30-60 works. The paper lacks a Related Work section entirely, instead offering only a brief \"Background\" paragraph. This is a serious omission for a paper whose primary contribution is analytical/conceptual rather than methodological. The missing literature connections (see dedicated section below) mean the paper fails to position itself within existing knowledge, making it impossible to assess true novelty.\n\n3. **[Major] The contribution is incremental relative to Wang et al.** The paper uses Wang et al.'s models, Wang et al.'s training decisions, and Wang et al.'s experimental substrate. The novelty is restricted to: (a) running additional statistical tests on publicly available checkpoints, (b) per-example log analysis, and (c) the conceptual framing. While (b) adds value, the question is whether re-analyzing someone else's model zoo with standard statistical tools constitutes a sufficient contribution for EMNLP Main. The Wang et al. comparison table (Table 10) tries to argue four dimensions of differentiation, but three of these (\"not analyzed\" in Wang) could be addressed in a 2-page appendix update to the original paper -- they are not conceptually deep novelties requiring a standalone publication.\n\n4. **[Major] The empirical scope is narrow.** The core finding (statistically significant convergence) holds for exactly one benchmark (LAMBADA) after multiple comparison correction. The paper attempts to rescue this via the \"continuous spectrum\" framing, but in practice the signal exists only at the extreme retrieval end. ARC-Easy at p=0.117 is not evidence; it is noise at the conventional significance level. A paper whose main finding is \"on LAMBADA, adding attention reduces variance\" -- while all other benchmarks show nothing -- has limited generalizability. This is acknowledged in Limitations but insufficiently weighted in the claims.\n\n5. **[Major] No standalone Related Work section.** For an analysis paper that claims conceptual novelty (\"paradox\"), it is essential to review: (a) prior work on model behavioral analysis, (b) ensemble diversity and complementarity, (c) per-example evaluation methodologies, (d) attention interpretability. The absence of this section is disqualifying for the \"novelty\" axis.\n\n6. **[Minor] The title promises more than the paper delivers.** \"Architecture-Specific Mechanisms\" suggests mechanistic understanding. The actual mechanism evidence is limited to attention entropy differences and helped/hurt feature profiling (Table 4 and Table 5). These are descriptive characterizations, not mechanistic explanations. Why does GDN attention become long-range distributed while RetNet attention becomes last-sentence concentrated? The paper does not answer this. The correlation between attention patterns and helped/hurt identity (r=0.48-0.61) is moderate, not a tight mechanistic link.\n\n7. **[Minor] Mamba2-Attn is from \"community reproduction\" with no further detail.** This is a critical validation point (extending beyond Wang et al.'s 3 architectures), yet we do not know who reproduced it, whether training matched Wang et al.'s protocol, or what hyperparameters were used. This weakens the generalization claim (Section 4.4).\n\n8. **[Minor] The capacity bottleneck explanation for the 340M rebound (Section 4.5) is plausible but not tested.** The paper observes that attention parameters are 31% of the 340M budget at ratio=8 and argues this causes a bottleneck. But this is post-hoc reasoning. No ablation (e.g., scaling up the total parameter count at 340M while keeping ratio=8) tests whether capacity is the actual cause.\n\n9. **[Minor] Table 4 (sample feature characterization) reports AUC values for helped/hurt classification.** The memory.md in the project notes that \"surface features (token frequency, context length, lexical diversity) cannot distinguish helped/hurt samples -- all p > 0.2 except marginal RetNet context_length.\" Yet Table 4 reports AUC values of 0.64-0.71, which implies moderate discrimination. There appears to be a discrepancy between the actual experimental findings (exp-003 results) and what is reported in the paper. If the paper version is a \"best case\" dream simulation rather than actual results, this is a serious concern.\n\n### Questions for Authors\n\n1. How do you distinguish the \"equalizer paradox\" from standard ensemble diversity? If three models are diverse (err on different examples), they will by definition have low Jaccard overlap on error sets while potentially achieving similar aggregate accuracy. What is specifically \"paradoxical\" here beyond what ensemble theory predicts?\n\n2. The project memory records that exp-003 found \"surface features cannot distinguish helped/hurt samples (all p > 0.2 except marginal RetNet context_length).\" Yet Table 4 in the paper reports significant discrimination (AUC up to 0.71). Can you reconcile these?\n\n3. Can you provide details on the Mamba2-Attn \"community reproduction\" -- who trained it, what data, what hyperparameters? Is it truly comparable to the Wang et al. models?\n\n4. Your strongest claim (LAMBADA convergence) has p=0.0083, which exactly equals the Bonferroni threshold for 6 tests. How sensitive is this to the choice of correction method? Under FDR (Benjamini-Hochberg), would additional benchmarks survive?\n\n5. If the equalizer effect is driven by retrieval demand, have you considered testing on other high-retrieval tasks beyond LAMBADA (e.g., bAbI tasks, entity tracking, needle-in-a-haystack) to validate the continuous spectrum beyond n=6?\n\n6. The convergence-divergence anti-correlation (r = -0.94) is computed on n=5 non-independent points (attention ratios 1, 3, 6, 8, 24 within the same models). What are the degrees of freedom here? Is this correlation inflated by the shared denominator?\n\n### Missing Related Work\n\nThe paper cites only 8 references. The following areas require substantial coverage:\n\n**Ensemble diversity and complementarity:**\n- Krogh & Vedelsby (1995) -- \"Neural network ensembles, cross validation, and active learning\" (the diversity decomposition showing ensemble error = mean error - diversity)\n- Kuncheva & Whitaker (2003) -- \"Measures of diversity in classifier ensembles\" (Jaccard-like overlap measures for classifier agreement)\n- Fort et al. (2019) -- \"Deep ensembles: A loss landscape perspective\" (diversity in deep networks)\n- The \"oracle gap\" literature showing that diverse models cover different examples\n\n**Per-example evaluation and item response theory in NLP:**\n- Lalor et al. (2016) -- \"Building an evaluation scale using IRT\"\n- Rodriguez et al. (2021) -- \"Evaluation examples are not equally informative\" (per-example difficulty analysis)\n- Ethayarajh et al. (2022) -- \"Understanding dataset difficulty with V-usable information\"\n- Swayamdipta et al. (2020) -- \"Dataset cartography\" (training dynamics per example)\n\n**Model behavioral comparison:**\n- Ribeiro et al. (2020) -- \"Beyond accuracy: Behavioral testing of NLP models with CheckList\"\n- Goel et al. (2021) -- \"Robustness gym\" (systematic comparison of model behavior)\n- D'Amour et al. (2022) -- \"Underspecification presents challenges for credibility in ML\" (models with same aggregate performance differ in behavior -- exactly the \"paradox\" claimed here)\n\n**Simpson's paradox and ecological fallacy in evaluation:**\n- Blyth (1972) -- \"On Simpson's paradox and the sure-thing principle\"\n- The broader literature on aggregate vs. disaggregated evaluation in fairness (Buolamwini & Gebru 2018)\n\n**Hybrid architecture analysis:**\n- Lieber et al. (2024) -- Jamba (Mamba-Transformer hybrid)\n- Peng et al. (2024) -- RWKV-6 / Eagle (hybrid with attention)\n- Botev et al. (2024) -- RecurrentGemma\n- Arora et al. (2024) -- \"Simple linear attention language models balance the recall-throughput tradeoff\" (directly relevant to recall vs. reasoning trade-off)\n\n**Attention interpretability:**\n- Jain & Wallace (2019) -- \"Attention is not explanation\"\n- Wiegreffe & Pinter (2019) -- \"Attention is not not explanation\"\n- Clark et al. (2019) -- \"What does BERT look at?\" (attention pattern analysis)\n\n**Scaling laws:**\n- Kaplan et al. (2020) -- \"Scaling laws for neural language models\"\n- Hoffmann et al. (2022) -- \"Training compute-optimal large language models\" (Chinchilla)\n- Any work on scale-dependent emergent properties\n\nThe paper's failure to engage with D'Amour et al. (2022) is particularly notable. That paper's central finding -- that models with equivalent aggregate performance can differ substantially in individual predictions (underspecification) -- is essentially the same observation as the \"equalizer paradox,\" published four years earlier in a high-profile venue. The paper needs to explain what it adds beyond applying this known insight to hybrid architectures specifically.\n\n### Scores\n\n- **Soundness: 3.5/5** -- The statistical methodology on LAMBADA is sound, but the scope is narrow (1 benchmark significant), the capacity bottleneck claim is untested, and there may be discrepancies between actual experimental results and what is presented (Table 4 vs. exp-003 findings).\n- **Excitement: 2.0/5** -- The core observation (aggregate convergence masks per-example divergence) is well-established in ensemble/underspecification literature. The application to hybrid architectures is a reasonable instantiation but does not yield surprising insights or actionable methods. The practical implication (\"architecture choice matters for deployment\") is already conventional wisdom.\n- **Reproducibility: 4.5/5** -- All models public, standard evaluation harness, modest compute, clear methodology. This is a strength.\n- **Overall: 2.5/5** -- Borderline Findings. The per-example analysis has merit and the statistical rigor is appreciated, but the novelty is substantially diminished by (a) missing engagement with directly relevant prior work (ensemble diversity, underspecification), (b) reliance on a single benchmark for the core claim, (c) purely analytical contribution on someone else's models, and (d) the absence of a Related Work section. In its current form, the paper reads as a competent re-analysis note rather than a standalone EMNLP Main contribution. With a thorough Related Work section that honestly positions the work relative to ensemble diversity / underspecification, additional high-retrieval benchmarks, and a toned-down \"paradox\" framing, this could reach Findings quality.\n- **Confidence: 4/5** -- I am familiar with the ensemble diversity literature, hybrid architecture landscape, and per-example evaluation methods. My main uncertainty is whether the Table 4 results reflect actual experiments or projected results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d2433c9-1334-46fc-b11e-5ea52590be71",
+            "isSidechain": true,
+            "agentId": "a1c17b8b6032ce031",
+            "requestId": "req_011CbC2UfuUcfh9Ky4KbNCrc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "082e5a7b-93a8-41b5-8930-ad6fc6e61390",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "754c51f8-c396-47ec-abd3-50c7df01afbd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0127xTJPdUJBRiWMSXrtfz4U",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4134,
+                "cache_read_input_tokens": 33395,
+                "output_tokens": 3315,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4134
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3315,
+                    "cache_read_input_tokens": 33395,
+                    "cache_creation_input_tokens": 4134,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4134,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-2-r2-for-an-emnlp-2026-submission-your-focus-novelty-and-rela.md"
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "825d3de23010cf7c8842",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: cost-verify-agent-rl ## 运行环境 - 服务器名: cqa1-21977 - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "9f1ae7ed-b44e-4c85-9296-93f220bb3b91",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/9f1ae7ed-b44e-4c85-9296-93f220bb3b91.jsonl",
+    "occurrence": 1,
+    "bytes": 1297228,
+    "sha256": "94d0bb7183a0df2446c54ec32468a3f06d5e128b8e67bad97bd9b7b0d6020c88"
+  },
+  "statistics": {
+    "messages": 903,
+    "user_turns": 1,
+    "tool_calls": 343,
+    "roles": {
+      "record": 123,
+      "user": 1,
+      "assistant": 93,
+      "tool_call": 343,
+      "tool_result": 343
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "825d3de23010cf7c8842-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 901,
+      "chunks": [
+        {
+          "path": "825d3de23010cf7c8842-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "825d3de23010cf7c8842-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "825d3de23010cf7c8842-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "825d3de23010cf7c8842-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "825d3de23010cf7c8842-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "825d3de23010cf7c8842-part-0006.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-cost-verify-agent-rl-cqa1-21977-ssh-root-ssh-execute-submit-tr-copy-25.md"
+}

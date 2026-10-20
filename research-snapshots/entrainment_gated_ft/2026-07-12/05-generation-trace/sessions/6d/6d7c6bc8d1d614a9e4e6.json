@@ -1,0 +1,2093 @@
+{
+  "schema_version": "1.0",
+  "id": "6d7c6bc8d1d614a9e4e6",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I'm reviewing an ML paper proposal about \"Structure-Guided Draft Training for Reasoning Speculative Decoding\" and need t",
+  "task_key": "agent-aef1d7efc87249487",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-aef1d7efc87249487.jsonl",
+    "occurrence": 1,
+    "bytes": 107268,
+    "sha256": "d32e187c8a1645926b244365a0026b1209262a373bae6a77404c43a62bdae429"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 1,
+    "tool_calls": 18,
+    "roles": {
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 18,
+      "tool_result": 18
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-09T18:43:44.620Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'm reviewing an ML paper proposal about \"Structure-Guided Draft Training for Reasoning Speculative Decoding\" and need to independently verify several claims. Please search for:\n\n1. ThinKV paper (arXiv:2510.01290) - verify it exists, is ICLR 2026 Oral, and what its R/E/T classification granularity actually is (segment-level vs token-level)\n2. CoT-Aware speculative decoding paper (OpenReview bKau2NNrji) - verify it exists and what it actually does\n3. EAGLE-3 (NeurIPS 2025) - verify it exists\n4. SCoT arXiv:2504.19095 - verify it exists and its actual reported speedups\n5. Search for any NEW competing work (2025-2026) on structural/semantic-aware draft training for speculative decoding\n6. Search for any work combining Markov chain models with speculative decoding draft training\n7. Search for \"thought segment speculative decoding\" or \"reasoning trace structure speculative decoding\"\n\nFor each search, use WebSearch. Report what you find - whether papers exist, what they actually claim, and any competing work that might challenge the novelty of this proposal."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "21f1ba23-a54b-44e3-b9d4-ab02d23e19b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-09T18:43:47.294Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll systematically search for information about each of these papers and claims. Let me start with parallel searches for the main papers mentioned."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21f1ba23-a54b-44e3-b9d4-ab02d23e19b6",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVHX9tBxGqHyrDLeUZK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1597f0ab-323a-4577-8ffe-ae710f8e3c7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DKeoTKmfq8qaMAzdDXFh1V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16867,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16867,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-09T18:43:47.297Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CitM8THRNiHswXfDCKWXoN",
+              "name": "WebSearch",
+              "input": {
+                "query": "ThinKV arXiv:2510.01290 ICLR 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1597f0ab-323a-4577-8ffe-ae710f8e3c7b",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVHX9tBxGqHyrDLeUZK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "643425ea-598a-4ed7-9e4e-0374f0d9eebf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DKeoTKmfq8qaMAzdDXFh1V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16867,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16867,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-09T18:43:47.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W486jqSxZ8pGMPkZzf5TjX",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoT-Aware speculative decoding OpenReview bKau2NNrji"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "643425ea-598a-4ed7-9e4e-0374f0d9eebf",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVHX9tBxGqHyrDLeUZK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2badc9b1-4385-4c67-ac8e-85c54d6c1ae9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DKeoTKmfq8qaMAzdDXFh1V",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16867,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16867
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16867,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16867,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-09T18:43:47.424Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QR1EFJT56b92hBxGTD2BNv",
+              "name": "WebSearch",
+              "input": {
+                "query": "EAGLE-3 NeurIPS 2025 speculative decoding"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2badc9b1-4385-4c67-ac8e-85c54d6c1ae9",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVHX9tBxGqHyrDLeUZK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ede91fc-0b58-47d1-9e4f-f51f98c581a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DKeoTKmfq8qaMAzdDXFh1V",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16867,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16867
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16867,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16867,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-09T18:43:47.427Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KQaC6pvamVKbL5YiiUoagp",
+              "name": "WebSearch",
+              "input": {
+                "query": "SCoT arXiv:2504.19095 speedup"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ede91fc-0b58-47d1-9e4f-f51f98c581a7",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVHX9tBxGqHyrDLeUZK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "53df8f6e-8521-4307-89f8-ee0a071a5cc4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DKeoTKmfq8qaMAzdDXFh1V",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16867,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16867
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16867,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16867,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-09T18:43:53.408Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KQaC6pvamVKbL5YiiUoagp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SCoT arXiv:2504.19095 speedup\"\n\nLinks: [{\"title\":\"Efficient Reasoning for LLMs through Speculative Chain-of-Thought Jikai Wang\",\"url\":\"https://arxiv.org/pdf/2504.19095\"},{\"title\":\"[2504.19095] Efficient Reasoning for LLMs through Speculative Chain-of-Thought\",\"url\":\"https://arxiv.org/abs/2504.19095\"},{\"title\":\"Efficient Reasoning for LLMs through Speculative Chain-of-Thought\",\"url\":\"https://arxiv.org/html/2504.19095\"},{\"title\":\"[2504.06254v1] Fixing non-blocking data structures for better compatibility with memory reclamation schemes\",\"url\":\"https://arxiv.org/abs/2504.06254v1\"},{\"title\":\"Computer Science Jun 2025\",\"url\":\"https://arxiv.org/list/cs/2025-06?skip=9800&show=50\"},{\"title\":\"[2504.14841] (Sub)Exponential Quantum Speedup for Optimization\",\"url\":\"https://arxiv.org/abs/2504.14841\"},{\"title\":\"Exponential Quantum Speedup for Simulating Classical Lattice Dynamics\",\"url\":\"https://arxiv.org/html/2504.05453\"},{\"title\":\"[2504.05453] Exponential Quantum Speedup for Simulating Classical Lattice Dynamics\",\"url\":\"https://arxiv.org/abs/2504.05453\"},{\"title\":\"[2601.19095] Dual Analysis of Continuous-time Economic Dispatch and Its Price Implications\",\"url\":\"https://arxiv.org/abs/2601.19095\"},{\"title\":\"[2504.13613] Speedup Chip Yield Analysis by Improved Quantum Bayesian Inference\",\"url\":\"https://arxiv.org/abs/2504.13613\"}]\n\nBased on the search results, here's what I found about SCoT (Speculative Chain-of-Thought) and its speedup metrics from arXiv:2504.19095:\n\n## Overview\nSCoT reduces reasoning latency by accelerating average reasoning speed through large and small model collaboration. The core idea of SCoT is to use a lightweight model to efficiently generate multiple CoT drafts which are then picked and used by the target model.\n\n## Speedup Results\nSCoT demonstrates an average speed-up ratio of 2.3× and 1.6× for the two target models on reasoning latency. More specifically, SCoT reduces reasoning latency by 48%–66% and 21%–49% for Deepseek-R1-Distill-Qwen-32B and Deepseek-R1-Distill-Llama-70B while achieving near-target-model-level performance.\n\n## Key Innovation\nSCoT is inspired by speculative decoding, which performs token-level speculation, whereas SCoT conducts thought-level speculation. Unlike shortening the length of CoT, SCoT accelerates the thinking process by increasing the speed of CoT generation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53df8f6e-8521-4307-89f8-ee0a071a5cc4",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "2e4fe6a7-e22d-445f-9719-997d5aa69254",
+            "sourceToolAssistantUUID": "53df8f6e-8521-4307-89f8-ee0a071a5cc4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-09T18:43:53.900Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CitM8THRNiHswXfDCKWXoN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ThinKV arXiv:2510.01290 ICLR 2026\"\n\nLinks: [{\"title\":\"[2510.01290] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\",\"url\":\"https://arxiv.org/abs/2510.01290\"},{\"title\":\"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\",\"url\":\"https://arxiv.org/html/2510.01290\"},{\"title\":\"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2510.01290\"},{\"title\":\"ICLR 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference\"},{\"title\":\"Paper Digest: ICLR 2026 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"},{\"title\":\"ICLR Workshop 2026\",\"url\":\"https://sites.google.com/view/icbinb-2026/home\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2510.02282\"},{\"title\":\"Publications - NYU Web Publishing - New York University\",\"url\":\"https://wp.nyu.edu/cilvr/cilvr-group-publications/\"},{\"title\":\"Under review as a conference submission to ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2510.03361\"}]\n\nBased on the search results, here's what I found about ThinKV (arXiv:2510.01290):\n\n## Overview\n\nThinKV is a thought-adaptive KV cache compression framework designed to address memory challenges in large reasoning models.\n\n## Problem It Solves\n\nThe long-output context generation of large reasoning models enables extended chain of thought (CoT) but also drives rapid growth of the key-value (KV) cache, quickly overwhelming GPU memory.\n\n## Key Approach\n\nThinKV is based on the observation that attention sparsity reveals distinct thought types with varying importance within the CoT. It applies a hybrid quantization-eviction strategy, assigning token precision by thought importance and progressively evicting tokens from less critical thoughts as reasoning trajectories evolve.\n\n## Implementation Details\n\nTo implement ThinKV, they design a kernel that extends PagedAttention to enable efficient reuse of evicted tokens' memory slots, eliminating compaction overheads.\n\n## Results\n\nExtensive experiments on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason across mathematics and coding benchmarks show that ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache.\n\nThe paper was submitted to arXiv on October 1, 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "643425ea-598a-4ed7-9e4e-0374f0d9eebf",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "48650879-a854-4552-87f9-5fbd1cc961a1",
+            "sourceToolAssistantUUID": "643425ea-598a-4ed7-9e4e-0374f0d9eebf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-09T18:43:53.924Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W486jqSxZ8pGMPkZzf5TjX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoT-Aware speculative decoding OpenReview bKau2NNrji\"\n\nLinks: [{\"title\":\"Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework | OpenReview\",\"url\":\"https://openreview.net/forum?id=bKau2NNrji\"},{\"title\":\"ALIGNING DRAFT AND TARGET IN SPECULATIVE DE- CODING\",\"url\":\"https://openreview.net/pdf?id=bKau2NNrji\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf?id=h1t9kRSbLb\"},{\"title\":\"Speculative Speculative Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=aL1Wnml9Ef\"},{\"title\":\"ALIGNING DRAFT AND TARGET IN SPECULATIVE DE\",\"url\":\"https://openreview.net/pdf/d5ffb8b564b55ef1fb2b46c0c4b4efdbb74366e1.pdf\"},{\"title\":\"DISTILLSPEC: IMPROVING SPECULATIVE DECODING\",\"url\":\"https://openreview.net/pdf?id=rsY6J3ZaTF\"},{\"title\":\"SpecCoT: Accelerating Chain-of-Thought Reasoning through Speculative Exploration | OpenReview\",\"url\":\"https://openreview.net/forum?id=mOR17THWTB\"},{\"title\":\"Online Speculative Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=Km3Kprwyua\"},{\"title\":\"SpecBranch: Speculative Decoding via Hybrid Drafting and Rollback-Aware Branch Parallelism | OpenReview\",\"url\":\"https://openreview.net/forum?id=BrnlCSqO6n\"},{\"title\":\"Speculative Verification: Exploiting Information Gain to Refine Speculative Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=tPXtIMagQX\"}]\n\nI found the paper you're looking for! Here are the key details about the work:\n\n## Title and Overview\nThe paper is titled \"Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework\". Chain-of-thought (CoT) prompting enhances the reasoning of large language models (LLMs) but increases autoregressive latency; speculative decoding (SD) mitigates this via a small-drafter--large-verifier pipeline whose efficiency hinges on drafted-token acceptance.\n\n## Key Problem and Solution\nThe researchers show that training-based SD methods (e.g., EAGLE) suffer from catastrophic forgetting and distribution shift under naïve CoT supervision, and propose a CoT-aware mixed training framework that raises acceptance without altering decoding hyperparameters by combining process-level CoT distillation with feature regression to reduce forward KL divergence and improve step-wise acceptance, and SurpriseRatio (SR), a data-selection metric that anchors the distribution and prevents forgetting using minimal open-domain samples.\n\n## Performance Results\nExperiments on two target models show that their methods achieve wall-clock speedups of 3.04×–4.55×.\n\nThe paper is hosted on OpenReview at: https://openreview.net/forum?id=bKau2NNrji\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2badc9b1-4385-4c67-ac8e-85c54d6c1ae9",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "93923b6d-7830-4e98-8b0c-805feb0c099e",
+            "sourceToolAssistantUUID": "2badc9b1-4385-4c67-ac8e-85c54d6c1ae9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-09T18:43:53.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QR1EFJT56b92hBxGTD2BNv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EAGLE-3 NeurIPS 2025 speculative decoding\"\n\nLinks: [{\"title\":\"GitHub - SafeAILab/EAGLE: Official Implementation of EAGLE-1 (ICML'24), EAGLE-2 (EMNLP'24), and EAGLE-3 (NeurIPS'25). · GitHub\",\"url\":\"https://github.com/SafeAILab/EAGLE\"},{\"title\":\"EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test | OpenReview\",\"url\":\"https://openreview.net/forum?id=4exx1hUffq\"},{\"title\":\"Speculative Decoding in Practice: How EAGLE3 Makes LLMs Faster Without Changing Their Outputs\",\"url\":\"https://huggingface.co/blog/lujangusface/tw-eagle3-gpu\"},{\"title\":\"EAGLE-3: Scaling up Inference Acceleration of Large ...\",\"url\":\"https://openreview.net/pdf?id=4exx1hUffq\"},{\"title\":\"SuffixDecoding: Extreme Speculative Decoding for Emerging AI Applications | NeurIPS 2025 Spotlight\",\"url\":\"https://suffix-decoding.github.io/\"},{\"title\":\"NeurIPS Poster EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test\",\"url\":\"https://neurips.cc/virtual/2025/loc/san-diego/poster/119930\"},{\"title\":\"[2503.01840] EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test\",\"url\":\"https://arxiv.org/abs/2503.01840\"},{\"title\":\"Published as a conference paper at ICLR 2026 SPECULATIVE SPECULATIVE DECODING\",\"url\":\"https://openreview.net/pdf?id=aL1Wnml9Ef\"},{\"title\":\"SuffixDecoding: Extreme Speculative Decoding for Emerging AI Applications\",\"url\":\"https://arxiv.org/pdf/2411.04975\"},{\"title\":\"P-EAGLE: Faster LLM inference with Parallel Speculative Decoding in vLLM | Artificial Intelligence\",\"url\":\"https://aws.amazon.com/blogs/machine-learning/p-eagle-faster-llm-inference-with-parallel-speculative-decoding-in-vllm/\"}]\n\nBased on the search results, here's what I found about EAGLE-3 at NeurIPS 2025:\n\n## Overview\n\nEAGLE-3 was accepted to NeurIPS'25, and the poster was presented on Wednesday, December 3, 2025.\n\n## What is EAGLE-3?\n\nEAGLE (Extrapolation Algorithm for Greater Language-model Efficiency) is a new baseline for fast decoding of Large Language Models (LLMs) with provable performance maintenance through extrapolating the second-top-layer contextual feature vectors of LLMs.\n\n## Key Innovations\n\nEAGLE-3 abandons feature prediction in favor of direct token prediction and replaces reliance on top-layer features with multi-layer feature fusion via a technique named training-time test. More specifically, EAGLE-3 removes the feature prediction constraint in EAGLE and simulates this process during training using training-time testing, while replacing top-layer features with a fusion of low-, mid-, and high-level semantic features.\n\n## Performance Results\n\nEAGLE-3 achieves a speedup ratio up to 6.5x, with about 1.4x improvement over EAGLE-2, and in the SGLang framework, EAGLE-3 achieves a 1.38x throughput improvement at a batch size of 64.\n\n## Code and Implementation\n\nEAGLE has been merged in mainstream LLM serving frameworks including vLLM, SGLang, and others, making it accessible for practical deployment.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ede91fc-0b58-47d1-9e4f-f51f98c581a7",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "74e2cda6-ec63-4f80-ba80-46f7c30c4d37",
+            "sourceToolAssistantUUID": "8ede91fc-0b58-47d1-9e4f-f51f98c581a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-09T18:43:55.536Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good progress. Now let me search for more information about ThinKV's specific classification granularity, and then search for competing and related work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74e2cda6-ec63-4f80-ba80-46f7c30c4d37",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJDBB8iLFkxR6s3Y3S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3e76bd76-f581-4129-beda-cb8e1348f3a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VetK5pPprwEtdJLwRFGRRy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 3709,
+                "cache_read_input_tokens": 16867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3709,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-09T18:43:55.988Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RMoyLSbGYTRWsSBL2UtXeq",
+              "name": "WebSearch",
+              "input": {
+                "query": "ThinKV segment-level token-level thought type classification"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e76bd76-f581-4129-beda-cb8e1348f3a6",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJDBB8iLFkxR6s3Y3S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "346dfebe-c145-4511-bf3d-3fa462e5b9de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VetK5pPprwEtdJLwRFGRRy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 3709,
+                "cache_read_input_tokens": 16867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3709,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-09T18:43:56.317Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kt2KX1oDNHwZV6gys7kguP",
+              "name": "WebSearch",
+              "input": {
+                "query": "structural semantic-aware draft training speculative decoding 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "346dfebe-c145-4511-bf3d-3fa462e5b9de",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJDBB8iLFkxR6s3Y3S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b06af5b2-290c-4fbe-a26d-d5c97a313a82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VetK5pPprwEtdJLwRFGRRy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 3709,
+                "cache_read_input_tokens": 16867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3709,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-09T18:43:56.503Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G97dXVt6QGPFLudsVZeVhR",
+              "name": "WebSearch",
+              "input": {
+                "query": "Markov chain speculative decoding draft training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b06af5b2-290c-4fbe-a26d-d5c97a313a82",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJDBB8iLFkxR6s3Y3S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2e97e9ac-de7b-4813-8c99-482241de707c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VetK5pPprwEtdJLwRFGRRy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 3709,
+                "cache_read_input_tokens": 16867,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3709
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 781,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 16867,
+                    "cache_creation_input_tokens": 3709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3709,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-09T18:43:56.548Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XjLBB9rbVeCGUwRqc1Nk96",
+              "name": "WebSearch",
+              "input": {
+                "query": "thought segment speculative decoding"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e97e9ac-de7b-4813-8c99-482241de707c",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJDBB8iLFkxR6s3Y3S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "04562be6-36ba-4177-b447-539900b60249",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VetK5pPprwEtdJLwRFGRRy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 781,
+                "cache_creation_input_tokens": 3709,
+                "cache_read_input_tokens": 16867,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3709
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 781,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 16867,
+                    "cache_creation_input_tokens": 3709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3709,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-09T18:44:02.660Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G97dXVt6QGPFLudsVZeVhR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Markov chain speculative decoding draft training\"\n\nLinks: [{\"title\":\"Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework | OpenReview\",\"url\":\"https://openreview.net/forum?id=bKau2NNrji\"},{\"title\":\"Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance\",\"url\":\"https://arxiv.org/html/2602.05774v1\"},{\"title\":\"SPECDEC++: BOOSTING SPECULATIVE DECODING VIA ...\",\"url\":\"https://openreview.net/pdf?id=NnExMNiTHw\"},{\"title\":\"Get 3× Faster LLM Inference with Speculative Decoding Using the Right Draft Model\",\"url\":\"https://www.bentoml.com/blog/3x-faster-llm-inference-with-speculative-decoding\"},{\"title\":\"SpecDec++: Boosting Speculative Decoding via Adaptive Candidate Lengths\",\"url\":\"https://openreview.net/pdf?id=ZwwY5UgNGh\"},{\"title\":\"When Drafts Evolve: Speculative Decoding Meets Online Learning\",\"url\":\"https://arxiv.org/html/2603.12617\"},{\"title\":\"Speculative Decoding with CTC-based Draft Model for LLM Inference Acceleration\",\"url\":\"https://arxiv.org/html/2412.00061v1\"},{\"title\":\"Training Domain Draft Models for Speculative Decoding: Best Practices and Insights\",\"url\":\"https://arxiv.org/html/2503.07807v1\"},{\"title\":\"MIXTURE OF ATTENTIONS FOR SPECULATIVE DECODING\",\"url\":\"https://discovery.ucl.ac.uk/id/eprint/10212512/1/11328_Mixture_of_Attentions_Fo.pdf\"},{\"title\":\"Preprint. SELF SPECULATIVE DECODING FOR DIFFUSION LARGE LANGUAGE MODELS\",\"url\":\"https://arxiv.org/pdf/2510.04147\"}]\n\nBased on the search results, here's what I found about Markov chain speculative decoding draft training:\n\n## Markov Decision Process Framework in Speculative Decoding\n\nSpeculative decoding can be formulated into a Markov Decision Process (MDP) framework. The optimal policy of this Markov decision process takes the form of a threshold policy, where the current speculation should stop and be verified when the probability of getting a rejection exceeds a threshold value.\n\n## Key Applications\n\nOne notable application is **SpecDec++**, an enhanced version of speculative decoding that adaptively determines the candidate length on the fly. SpecDec++ augments the draft model with a trained acceptance prediction head to predict the conditional acceptance probability of the candidate tokens, and will stop the current speculation when the predicted probability that at least one token gets rejected exceeds a threshold.\n\n## Broader Context on Draft Training\n\nBeyond the Markov chain approach, speculative decoding is an effective method for accelerating inference of large language models (LLMs) by employing a small draft model to predict the output of a target model. Variational Speculative Decoding (VSD) formulates draft training as variational inference over latent proposals (draft paths), maximizing the marginal probability of target-model acceptance while minimizing divergence from the target distribution.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e97e9ac-de7b-4813-8c99-482241de707c",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "6a2079fa-6aa0-4891-b3a1-602206933980",
+            "sourceToolAssistantUUID": "2e97e9ac-de7b-4813-8c99-482241de707c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-09T18:44:02.778Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RMoyLSbGYTRWsSBL2UtXeq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ThinKV segment-level token-level thought type classification\"\n\nLinks: [{\"title\":\"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\",\"url\":\"https://arxiv.org/html/2510.01290v1\"},{\"title\":\"Think Before You Segment: High-Quality Reasoning Segmentation with GPT Chain of Thoughts\",\"url\":\"https://arxiv.org/html/2503.07503v2\"},{\"title\":\"Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens\",\"url\":\"https://arxiv.org/html/2511.19418v2\"},{\"title\":\"Thought-Adaptive KV Cache Compression\",\"url\":\"https://www.emergentmind.com/topics/thought-adaptive-kv-cache-compression\"},{\"title\":\"Segment-Level Attribution for Selective Learning of Long Reasoning Traces\",\"url\":\"https://arxiv.org/html/2602.00425\"},{\"title\":\"Token Classification in Natural Language Processing - GeeksforGeeks\",\"url\":\"https://www.geeksforgeeks.org/nlp/token-classification-in-natural-language-processing/\"},{\"title\":\"1 The Type-Token Distinction and the Mind and Brain Sciences\",\"url\":\"https://philsci-archive.pitt.edu/3860/1/The_Type-Token_Distinction_and_the_Mind_and_Brain_Sciences.pdf\"},{\"title\":\"Modeling Language as a Sequence of Thoughts\",\"url\":\"https://arxiv.org/html/2512.25026v2\"},{\"title\":\"Token Classification\",\"url\":\"https://colab.research.google.com/github/huggingface/notebooks/blob/master/examples/token_classification.ipynb\"},{\"title\":\"Types and Tokens (Stanford Encyclopedia of Philosophy)\",\"url\":\"https://plato.stanford.edu/entries/types-tokens/\"}]\n\nBased on the search results, here's what I found about ThinKV and its segment-level token-level thought type classification approach:\n\n## ThinKV Overview\n\nThinKV is a thought-adaptive hybrid quantization–eviction framework designed for efficient reasoning models. It addresses the challenge of compressing key-value (KV) cache while preserving reasoning-critical information.\n\n## Thought Type Classification\n\nThinKV categorizes generation into \"Reasoning,\" \"Execution,\" and \"Transition\" types based on attention sparsity statistics measured via kernel density estimates, dynamically assigning compression fidelity to each.\n\nMore specifically, the chain of thought in Large Reasoning Models (LRMs) can be decomposed into distinct thought types, with their differentiation enabled by degree of sparsity in attention weights.\n\n## Key Components\n\nThe framework operates through two main mechanisms:\n\n1. **Think Before You Quantize (TBQ)**: A KV cache quantization scheme that assigns precision to tokens based on the importance of their associated thought type.\n\n2. **Think Before You Evict (TBE)**: A thought-adaptive eviction scheme that leverages inter-thought dynamics to progressively evict tokens.\n\n## Performance\n\nThinKV (TBQ+TBE) yields substantial compression at the cost of only a marginal accuracy reduction, demonstrating the effectiveness of combining thought-aware quantization with adaptive eviction strategies.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "346dfebe-c145-4511-bf3d-3fa462e5b9de",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "5fb6f6b2-e0af-4842-8aac-16d46e62c5d0",
+            "sourceToolAssistantUUID": "346dfebe-c145-4511-bf3d-3fa462e5b9de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-09T18:44:04.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XjLBB9rbVeCGUwRqc1Nk96",
+              "type": "tool_result",
+              "content": "Web search results for query: \"thought segment speculative decoding\"\n\nLinks: [{\"title\":\"A Hitchhiker’s Guide to Speculative Decoding – PyTorch\",\"url\":\"https://pytorch.org/blog/hitchhikers-guide-speculative-decoding/\"},{\"title\":\"Looking back at speculative decoding\",\"url\":\"https://research.google/blog/looking-back-at-speculative-decoding/\"},{\"title\":\"Efficient Reasoning for LLMs through Speculative Chain-of-Thought\",\"url\":\"https://arxiv.org/html/2504.19095v2\"},{\"title\":\"Generation at the Speed of Thought: Speculative Decoding\",\"url\":\"https://bittere.substack.com/p/generation-at-the-speed-of-thought\"},{\"title\":\"Speculative decoding strips thinking tokens · Issue #866 · jundot/omlx\",\"url\":\"https://github.com/jundot/omlx/issues/866\"},{\"title\":\"Speculative Decoding: A Guide With Implementation Examples | DataCamp\",\"url\":\"https://www.datacamp.com/tutorial/speculative-decoding\"},{\"title\":\"An Introduction to Speculative Decoding for Reducing Latency in AI Inference | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/an-introduction-to-speculative-decoding-for-reducing-latency-in-ai-inference/\"},{\"title\":\"In the Fast Lane! Speculative Decoding — 10x Larger Model, No Extra Cost | by TitanML | Medium\",\"url\":\"https://medium.com/@TitanML/in-the-fast-lane-speculative-decoding-10x-larger-model-no-extra-cost-f33ea39d065a\"},{\"title\":\"The Magic of “Thinking Ahead”: How Speculative Decoding Makes AI Faster | by Kyush | Medium\",\"url\":\"https://mkyush.medium.com/the-magic-of-thinking-ahead-how-speculative-decoding-makes-ai-faster-7cca5e1e3c45\"},{\"title\":\"Speculative Speculative Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=aL1Wnml9Ef\"}]\n\nBased on the search results, here's what I found about thought segment speculative decoding:\n\n## Speculative Chain-of-Thought (SCoT)\n\nThe search results reveal a technique called Speculative Chain-of-Thought (SCoT), which is inspired by speculative decoding but performs thought-level speculation rather than token-level speculation. \n\nThis represents an evolution in how speculative decoding is being applied to reasoning tasks. Rather than speculating at the individual token level (as traditional speculative decoding does), thought chains are mostly generated by the draft model for simple tasks, while more thought chains are allocated to the target model for complex problems, achieving a speed-up ratio of up to 2.92× for the reasoning process.\n\n## Overview of Speculative Decoding Context\n\nFor context, speculative decoding is an inference optimization technique that pairs a target model with a lightweight draft mechanism that quickly proposes several next tokens, which the target model then verifies in a single forward pass and accepts the longest prefix that matches its own predictions.\n\nThe thought segment approach appears to be a higher-level application of this same principle, operating at the level of reasoning \"thoughts\" or segments rather than individual tokens, making it particularly useful for tasks that require chain-of-thought reasoning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04562be6-36ba-4177-b447-539900b60249",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "a498550e-4eff-428b-8612-223338782b36",
+            "sourceToolAssistantUUID": "04562be6-36ba-4177-b447-539900b60249",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-09T18:44:04.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kt2KX1oDNHwZV6gys7kguP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"structural semantic-aware draft training speculative decoding 2025 2026\"\n\nLinks: [{\"title\":\"Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance\",\"url\":\"https://arxiv.org/html/2602.05774v1\"},{\"title\":\"Draft, Verify, & Improve Toward Training-Aware Speculative Decoding\",\"url\":\"https://arxiv.org/html/2510.05421v1\"},{\"title\":\"Speculative Decoding: Types and Optimizations\",\"url\":\"https://www.aussieai.com/research/speculative-decoding\"},{\"title\":\"Published as a conference paper at ICLR 2026 SPECULATIVE SPECULATIVE DECODING\",\"url\":\"https://openreview.net/pdf?id=aL1Wnml9Ef\"},{\"title\":\"ConFu: Contemplate the Future for Better Speculative Sampling\",\"url\":\"https://arxiv.org/html/2603.08899v1\"},{\"title\":\"ENTROPY-AWARE SPECULATIVE DECODING TOWARD ...\",\"url\":\"https://openreview.net/pdf/8873a72aa9dd1126e677275974d787218c03b614.pdf\"},{\"title\":\"[2510.05421] Draft, Verify, and Improve: Toward Training-Aware Speculative Decoding\",\"url\":\"https://arxiv.org/abs/2510.05421\"},{\"title\":\"Recurrent Drafter for Fast Speculative Decoding in Large Language Models - Apple Machine Learning Research\",\"url\":\"https://machinelearning.apple.com/research/recurrent-drafter\"},{\"title\":\"Mirror Speculative Decoding: Breaking the Serial Barrier in LLM Inference - Apple Machine Learning Research\",\"url\":\"https://machinelearning.apple.com/research/mirror\"},{\"title\":\"DART: Diffusion-Inspired Speculative Decoding for Fast LLM Inference\",\"url\":\"https://arxiv.org/html/2601.19278v1\"}]\n\nBased on the search results, I found several relevant research papers from 2025-2026 on speculative decoding with draft training improvements. Here are the key findings:\n\n## Recent Advances in Speculative Decoding (2025-2026)\n\nRecent work has improved speculative decoding by refining draft model training. Several notable approaches have emerged:\n\n**Draft Model Training Improvements:**\n- HASS (Zhang et al., 2024) enforces feature consistency to reduce hidden-state mismatches, GRIFFIN (Hu et al., 2025b) resolves token-level misalignment, and EAGLE-3 (Li et al., 2025) incorporates training-time rollouts to better mimic decoding.\n\n**Semantic and Structural Awareness:**\n- A constraint effectively filters out semantically implausible combinations that arise from independently predicted positions, while retaining high-quality candidates.\n- DVI is particularly effective for workloads with strong local lexical structure and retrieval grounding (assistant-style tasks), whereas deep tree drafting is more beneficial for long-range reasoning and structured planning.\n\n**Training-Decoding Distribution Alignment:**\nA fundamental limitation remains: a training-decoding distributional discrepancy. The draft model is trained to favor a deterministic distribution (a single greedy path), while decoding operates over a stochastic distribution induced by ranked multi-path sampling.\n\n**Advanced Architectures:**\n- ConFu provides a new direction for improving draft generation by additionally conditioning the draft model with contemplate token and future token, and views this as an important step toward integrating speculative decoding with latent reasoning paradigms.\n\nThe research demonstrates significant progress in making speculative decoding more semantically aware through better training objectives and structural constraints.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b06af5b2-290c-4fbe-a26d-d5c97a313a82",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "76c98cc0-f13d-4f7d-b521-f07fe947ad53",
+            "sourceToolAssistantUUID": "b06af5b2-290c-4fbe-a26d-d5c97a313a82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-09T18:44:05.765Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one more search to look specifically for \"reasoning trace structure speculative decoding\" and other competing approaches that directly combine reasoning structure with draft training."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76c98cc0-f13d-4f7d-b521-f07fe947ad53",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJxiZ3qPFxK2Bo9EAA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "65590988-84b4-48aa-bb41-4e548de5a869",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QCQuWaRiQVsFTGpxFA282o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1712,
+                "cache_creation_input_tokens": 2852,
+                "cache_read_input_tokens": 20576,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2852,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-09T18:44:05.988Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KTmh8k89J8bUpRGerA3eSV",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"reasoning trace structure\" speculative decoding draft"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65590988-84b4-48aa-bb41-4e548de5a869",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJxiZ3qPFxK2Bo9EAA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2567fae6-b3b0-4907-8971-88d96fa30500",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QCQuWaRiQVsFTGpxFA282o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1712,
+                "cache_creation_input_tokens": 2852,
+                "cache_read_input_tokens": 20576,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2852,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-09T18:44:06.386Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ABJ6Sfko4gpdmo3S21EXh",
+              "name": "WebSearch",
+              "input": {
+                "query": "draft model reasoning path structure CoT 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2567fae6-b3b0-4907-8971-88d96fa30500",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJxiZ3qPFxK2Bo9EAA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2b4f4c0a-b8a2-4753-8bdd-ecfa97645fe3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QCQuWaRiQVsFTGpxFA282o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1712,
+                "cache_creation_input_tokens": 2852,
+                "cache_read_input_tokens": 20576,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2852
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1712,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 20576,
+                    "cache_creation_input_tokens": 2852,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2852,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-09T18:44:06.456Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XAWErbQAjQBggcH7uu4zHc",
+              "name": "WebSearch",
+              "input": {
+                "query": "semantic draft speculative decoding reasoning 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b4f4c0a-b8a2-4753-8bdd-ecfa97645fe3",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVJxiZ3qPFxK2Bo9EAA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "49ec4eac-bb00-4ea2-9c4a-bb087aafe8db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QCQuWaRiQVsFTGpxFA282o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1712,
+                "cache_creation_input_tokens": 2852,
+                "cache_read_input_tokens": 20576,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2852
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1712,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 20576,
+                    "cache_creation_input_tokens": 2852,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2852,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-09T18:44:12.514Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KTmh8k89J8bUpRGerA3eSV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"reasoning trace structure\" speculative decoding draft\"\n\nLinks: [{\"title\":\"Speculative Decoding: A Guide With Implementation Examples | DataCamp\",\"url\":\"https://www.datacamp.com/tutorial/speculative-decoding\"},{\"title\":\"ConfSpec: Efficient Step-Level Speculative Reasoning via Confidence-Gated Verification\",\"url\":\"https://arxiv.org/html/2602.18447\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure\",\"url\":\"https://aclanthology.org/2025.tacl-1.8.pdf\"},{\"title\":\"Adaptive Speculative Decoding\",\"url\":\"https://www.emergentmind.com/topics/adaptive-speculative-decoding\"},{\"title\":\"An Introduction to Speculative Decoding for Reducing Latency in AI Inference | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/an-introduction-to-speculative-decoding-for-reducing-latency-in-ai-inference/\"},{\"title\":\"Faster Speculative Decoding via Effective Draft ...\",\"url\":\"https://aclanthology.org/2025.acl-long.486.pdf\"},{\"title\":\"Offloaded Reasoning: Efficient Inference for Large ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.393.pdf\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure | Transactions of the Association for Computational Linguistics | MIT Press\",\"url\":\"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00735/128189/OPT-Tree-Speculative-Decoding-with-Adaptive-Draft\"},{\"title\":\"GitHub - hemingkx/SpeculativeDecodingPapers: 📰 Must-read papers and blogs on Speculative Decoding ⚡️\",\"url\":\"https://github.com/hemingkx/SpeculativeDecodingPapers\"},{\"title\":\"Scaling Speculative Decoding with Lookahead Reasoning | Hao AI Lab @ UCSD\",\"url\":\"https://haoailab.com/blogs/lookaheadreasoning/\"}]\n\nBased on the web search results, here's what I found about reasoning trace structure in the context of speculative decoding and draft models:\n\n## Reasoning Trace Structure in Speculative Decoding\n\nAlthough reasoning traces are generated token by token, their semantic structure is natural, which has important implications for how speculative decoding can be optimized.\n\n### Step-Level Reasoning Structure\n\nRecent research shows that reasoning is inherently hierarchical: a chain-of-thought naturally decomposes into discrete steps, each representing a semantically meaningful unit of progress. A step might consist of a subgoal, a case split, or a logical transformation.\n\nThis hierarchical structure is significant because a step only needs to be semantically correct to advance the proof or derivation; it need not match the target model token-for-token, to contribute validly to the overall reasoning trace.\n\n### Practical Implementation with Draft Models\n\nThe smaller model, often called the \"draft\" model, generates a batch of tokens that the main, more powerful LLM can either confirm or refine. The draft model acts as a first pass, producing multiple tokens that speed up the generation process. Instead of the main LLM generating tokens sequentially, the draft model provides a set of likely candidates, and the main model evaluates them in parallel.\n\n### Advanced Approaches\n\nStep-level speculative reasoning extends speculative decoding by operating on entire reasoning steps. By allowing verification based on semantic equivalence rather than exact token matching, step-level speculation better aligns with the structure of CoT reasoning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2567fae6-b3b0-4907-8971-88d96fa30500",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "e8413cf1-7b74-4c2a-9176-99ad59eca814",
+            "sourceToolAssistantUUID": "2567fae6-b3b0-4907-8971-88d96fa30500",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-09T18:44:14.744Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XAWErbQAjQBggcH7uu4zHc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"semantic draft speculative decoding reasoning 2026\"\n\nLinks: [{\"title\":\"Scaling Speculative Decoding with Lookahead Reasoning\",\"url\":\"https://arxiv.org/pdf/2506.19830\"},{\"title\":\"[2604.15244] From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning\",\"url\":\"https://arxiv.org/abs/2604.15244\"},{\"title\":\"Beyond Tokens: Semantic-Aware Speculative Decoding for Efficient Inference by Probing Internal States\",\"url\":\"https://arxiv.org/html/2602.03708\"},{\"title\":\"Speculative decoding: how it works & when to use it\",\"url\":\"https://redis.io/blog/speculative-decoding-llm/\"},{\"title\":\"Published as a conference paper at ICLR 2026 SPECULATIVE SPECULATIVE DECODING\",\"url\":\"https://openreview.net/pdf?id=aL1Wnml9Ef\"},{\"title\":\"GitHub - hemingkx/SpeculativeDecodingPapers: 📰 Must-read papers and blogs on Speculative Decoding ⚡️\",\"url\":\"https://github.com/hemingkx/SpeculativeDecodingPapers\"},{\"title\":\"Calibrated Speculative Decoding: Frequency-Guided Candidate Selection for Efficient Inference\",\"url\":\"https://arxiv.org/html/2604.13634\"},{\"title\":\"Speculative decoding | LLM Inference Handbook\",\"url\":\"https://bentoml.com/llm/inference-optimization/speculative-decoding\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=speculative+decoding\"},{\"title\":\"Speculative Speculative Decoding Tanishq Kumar1,* Tri Dao2,3 Avner May3\",\"url\":\"https://arxiv.org/pdf/2603.03251\"}]\n\nBased on the search results, here's what I found about semantic draft speculative decoding and reasoning in 2026:\n\n## Key Developments in 2026\n\nSeveral important papers and approaches have emerged in 2026 addressing semantic-aware speculative decoding for reasoning:\n\n### SemanticSpec Framework\nSemanticSpec is a semantic-aware speculative decoding framework that verifies entire semantic sequences instead of tokens, introducing a semantic probability estimation mechanism that probes the model's internal hidden states to assess the likelihood of generating sequences with specific meanings. This approach achieves up to 2.7× speedup on DeepSeekR1-32B and 2.1× on QwQ-32B, addressing the limitation that existing token-level methods ignore semantic equivalence (i.e., different token sequences expressing the same meaning), leading to inefficient rejections.\n\n### Lookahead Reasoning\nEntire reasoning steps can be speculatively proposed by a draft model, with a small 1.5B draft model able to generate speculative steps that semantically align with over 50% of ground-truth steps from a much larger 32B target model. Methods like SpecReason and Lookahead Reasoning address limitations by drafting entire reasoning steps rather than individual tokens, then verifying them for semantic correctness rather than exact token match.\n\n### Verification-Aware Approaches\nSpecGuard is a verification-aware speculative decoding framework that performs step-level verification using model-internal signals, sampling multiple draft candidates and selecting the most consistent step validated using an ensemble of attention-based grounding scores and log-probability-based scores.\n\n### Speculative Speculative Decoding\nSpeculative speculative decoding (SSD) is a unifying framework for parallelizing drafting and verification, where the draft model predicts what verification outcomes are most likely and prepares speculations for all of them in parallel to verification.\n\nThese approaches represent a shift toward understanding and leveraging semantic meaning rather than strict token matching in speculative decoding for reasoning models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49ec4eac-bb00-4ea2-9c4a-bb087aafe8db",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "666b2477-c9bb-4f50-a679-2e29922d354c",
+            "sourceToolAssistantUUID": "49ec4eac-bb00-4ea2-9c4a-bb087aafe8db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-09T18:44:15.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ABJ6Sfko4gpdmo3S21EXh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"draft model reasoning path structure CoT 2025\"\n\nLinks: [{\"title\":\"Draft-Thinking: Learning Efficient Reasoning in Long Chain-of-Thought LLMs\",\"url\":\"https://arxiv.org/html/2603.00578\"},{\"title\":\"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\",\"url\":\"https://aclanthology.org/2025.emnlp-main.504.pdf\"},{\"title\":\"Published in Transactions on Machine Learning Research (08/2025)\",\"url\":\"https://openreview.net/pdf?id=HvoG8SxggZ\"},{\"title\":\"LLaVA-CoT: Let Vision Language Models Reason Step-by-Step Guowei Xu♣*\",\"url\":\"https://openaccess.thecvf.com/content/ICCV2025/papers/Xu_LLaVA-CoT_Let_Vision_Language_Models_Reason_Step-by-Step_ICCV_2025_paper.pdf\"},{\"title\":\"A Survey of Chain-of-X Paradigms for LLMs\",\"url\":\"https://aclanthology.org/2025.coling-main.719.pdf\"},{\"title\":\"Chain of Draft: Concise Prompting Reduces LLM Costs by 90% - Ajith Vallath Prabhakar\",\"url\":\"https://ajithp.com/2025/03/02/chain-of-draft-llm-prompting/\"},{\"title\":\"Sketch-of-Thought: Efficient LLM Reasoning with Adaptive ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1236.pdf\"},{\"title\":\"Chain of Draft for Software Engineering: Challenges in Applying Concise Reasoning to Code Tasks\",\"url\":\"https://arxiv.org/html/2506.10987\"},{\"title\":\"DR-CoT: dynamic recursive chain of thought with meta reasoning for parameter efficient models | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-18622-6\"},{\"title\":\"CoT-RAG: Integrating Chain of Thought and Retrieval- ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.168.pdf\"}]\n\nBased on the search results, I found relevant information about draft model reasoning and Chain-of-Thought (CoT) structures in 2025. Here are the key findings:\n\n## Draft-Thinking and Reasoning Path Structure\n\nDraft-Thinking internalizes the selection of high-value steps as an endogenous capability of large reasoning models, maintaining the original long-CoT capability while substantially boosting its token efficiency.\n\nThe reasoning behavior differs between the original model and Draft-Thinking's three reasoning modes, with analysis examining the reasoning behavior differences through distinct phases across predefined categories.\n\n## Chain of Draft (CoD) - A Key 2025 Development\n\nChain of Draft (CoD), as introduced by Xu et al. (2025), is a prompting strategy that encourages language models to generate extremely concise intermediate reasoning steps. CoD encourages models to produce extremely concise intermediate reasoning steps—limited to just 5 words per step, with research demonstrating remarkable efficiency gains in mathematical reasoning tasks, reducing token usage to merely 7.6% of CoT while maintaining comparable accuracy.\n\n## CoT Variants and Structured Reasoning\n\nSelf-Consistency CoT replaces the standard greedy decoding approach by sampling diverse reasoning paths and selecting the most consistent answer through marginalization and aggregation. Tree-of-Thought (ToT) prompting further structures the reasoning process as a tree with backtracking, significantly improving efficiency in solving parallelizable subtasks.\n\n## Sketch-of-Thought (SoT)\n\nSketch-of-Thought (SoT) introduces paradigm-guided sketching, yielding more compact yet structured intermediate steps via dynamic routing, in contrast to CoT which produces verbose natural language traces.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b4f4c0a-b8a2-4753-8bdd-ecfa97645fe3",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "326f5b5a-7505-43fc-b355-fead316c3007",
+            "sourceToolAssistantUUID": "2b4f4c0a-b8a2-4753-8bdd-ecfa97645fe3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-09T18:44:17.252Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now let me search more specifically for verification-aware and step-level speculative decoding papers to get complete information on competing work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "326f5b5a-7505-43fc-b355-fead316c3007",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVKpSkQ4rECHMC5bQVZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "478941d7-b635-40af-8782-4ed3732e8877",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0182Vc7bN1fwUPXeB3mFwHzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 982,
+                "cache_creation_input_tokens": 3785,
+                "cache_read_input_tokens": 23428,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3785,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-09T18:44:17.474Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LBraJdYGenUnLsq2Q7ynyt",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"From Tokens to Steps\" verification-aware speculative decoding arXiv 2604.15244"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "478941d7-b635-40af-8782-4ed3732e8877",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVKpSkQ4rECHMC5bQVZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b3432e1c-f11d-4948-8e1f-97ffa39409c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0182Vc7bN1fwUPXeB3mFwHzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 982,
+                "cache_creation_input_tokens": 3785,
+                "cache_read_input_tokens": 23428,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3785,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-09T18:44:17.919Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N3n5598Xv9CqsaJ1Q67suU",
+              "name": "WebSearch",
+              "input": {
+                "query": "ConfSpec step-level speculative reasoning confidence arXiv 2602.18447"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3432e1c-f11d-4948-8e1f-97ffa39409c8",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVKpSkQ4rECHMC5bQVZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4b1ab403-fad6-4de0-9463-66c8b563feef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0182Vc7bN1fwUPXeB3mFwHzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 982,
+                "cache_creation_input_tokens": 3785,
+                "cache_read_input_tokens": 23428,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3785,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-09T18:44:18.209Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012aTUCT9rYdeopJq7SQvuEh",
+              "name": "WebSearch",
+              "input": {
+                "query": "OPT-Tree adaptive draft tree structure speculative decoding"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b1ab403-fad6-4de0-9463-66c8b563feef",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVKpSkQ4rECHMC5bQVZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f1d33f85-3101-4df9-adcd-f9a84ea29e1f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0182Vc7bN1fwUPXeB3mFwHzv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 982,
+                "cache_creation_input_tokens": 3785,
+                "cache_read_input_tokens": 23428,
+                "output_tokens": 205,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3785
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 982,
+                    "output_tokens": 205,
+                    "cache_read_input_tokens": 23428,
+                    "cache_creation_input_tokens": 3785,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3785,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-09T18:44:22.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LBraJdYGenUnLsq2Q7ynyt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"From Tokens to Steps\" verification-aware speculative decoding arXiv 2604.15244\"\n\nLinks: [{\"title\":\"[2604.15244] From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning\",\"url\":\"https://arxiv.org/abs/2604.15244\"},{\"title\":\"From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning\",\"url\":\"https://arxiv.org/html/2604.15244\"},{\"title\":\"ELMoE-3D: Leveraging Intrinsic Elasticity of MoE for Hybrid-Bonding-Enabled Self-Speculative Decoding in On-Premises Serving\",\"url\":\"https://arxiv.org/html/2604.14626\"},{\"title\":\"[2604.14682] Acceptance Dynamics Across Cognitive Domains in Speculative Decoding\",\"url\":\"https://arxiv.org/abs/2604.14682\"},{\"title\":\"See the Forest for the Trees See the Forest for the Trees: Loosely Speculative Decoding via Visual-Semantic Guidance for Efficient Inference of Video LLMs\",\"url\":\"https://arxiv.org/html/2604.05650v1\"},{\"title\":\"Speeding up Speculative Decoding via Approximate Verification\",\"url\":\"https://arxiv.org/html/2502.04557v1\"},{\"title\":\"Beyond Tokens: Semantic-Aware Speculative Decoding for Efficient Inference by Probing Internal States\",\"url\":\"https://arxiv.org/html/2602.03708\"},{\"title\":\"A Comprehensive Survey of Speculative Decoding\",\"url\":\"https://aclanthology.org/2024.findings-acl.456.pdf\"},{\"title\":\"SpecInfer: Accelerating Generative LLM Serving with ...\",\"url\":\"https://www.cs.cmu.edu/~zhihaoj2/papers/specinfer.pdf\"},{\"title\":\"Calibrated Speculative Decoding: Frequency-Guided Candidate Selection for Efficient Inference\",\"url\":\"https://arxiv.org/html/2604.13634\"}]\n\nI found the paper! Here's what I discovered:\n\n\"From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning\" was submitted to arXiv on April 16, 2026 by authors Kiran Purohit, Ramasuri Narayanam, and Soumyabrata Pal.\n\nThe paper addresses speculative decoding, which accelerates large language model inference by allowing a lightweight draft model to propose outputs that a stronger target model verifies, but its token-centric nature allows erroneous steps to propagate.\n\nThe authors propose SpecGuard, a verification-aware speculative decoding framework that performs step-level verification using only model-internal signals. At each step, SpecGuard samples multiple draft candidates and selects the most consistent step, which is then validated using an ensemble of lightweight models.\n\nThe full paper is available on arXiv at https://arxiv.org/abs/2604.15244.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3432e1c-f11d-4948-8e1f-97ffa39409c8",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "2d06f684-8166-4253-8554-9d361282c769",
+            "sourceToolAssistantUUID": "b3432e1c-f11d-4948-8e1f-97ffa39409c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-09T18:44:23.387Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N3n5598Xv9CqsaJ1Q67suU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ConfSpec step-level speculative reasoning confidence arXiv 2602.18447\"\n\nLinks: [{\"title\":\"[2602.18447] ConfSpec: Efficient Step-Level Speculative Reasoning via Confidence-Gated Verification\",\"url\":\"https://arxiv.org/abs/2602.18447\"},{\"title\":\"ConfSpec: Efficient Step-Level Speculative Reasoning via Confidence-Gated Verification\",\"url\":\"https://arxiv.org/html/2602.18447\"},{\"title\":\"SpecReason: Fast and Accurate Inference-Time Compute via Speculative Reasoning\",\"url\":\"https://arxiv.org/html/2504.07891v1\"},{\"title\":\"Accelerating Large Language Model Reasoning via Speculative Search\",\"url\":\"https://arxiv.org/html/2505.02865v1\"},{\"title\":\"Beyond Tokens: Semantic-Aware Speculative Decoding for Efficient Inference by Probing Internal States\",\"url\":\"https://arxiv.org/html/2602.03708\"},{\"title\":\"ConCISE: Confidence-guided Compression in Step-by-step Efficient Reasoning\",\"url\":\"https://arxiv.org/html/2505.04881v1\"},{\"title\":\"Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance\",\"url\":\"https://arxiv.org/html/2602.05774v1\"},{\"title\":\"[2504.07891] SpecReason: Fast and Accurate Inference-Time Compute via Speculative Reasoning\",\"url\":\"https://arxiv.org/abs/2504.07891\"},{\"title\":\"Scaling Speculative Decoding with Lookahead Reasoning\",\"url\":\"https://arxiv.org/html/2506.19830v1\"},{\"title\":\"Speculative Thinking: Enhancing Small-Model Reasoning with Large Model Guidance at Inference Time\",\"url\":\"https://arxiv.org/html/2504.12329v1\"}]\n\nBased on the search results, I found information about the paper you're looking for:\n\nConfSpec is a confidence-gated cascaded verification framework for efficient step-level speculative reasoning via confidence-gated verification. The paper addresses how chain-of-thought reasoning significantly improves the performance of large language models on complex tasks, but incurs high inference latency due to long generation traces.\n\nStep-level speculative reasoning aims to mitigate this cost, yet existing approaches face a long-standing trade-off among accuracy, inference speed, and resource efficiency. The key insight is an asymmetry between generation and verification: while generating a correct reasoning step requires substantial model capacity, step-level verification is a constrained discriminative task for which small draft models are well-calibrated.\n\nThe paper was submitted to arXiv on January 28, 2026, and is authored by Siran Liu and Cyril Y. He. You can access the full paper and additional details at https://arxiv.org/abs/2602.18447.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b1ab403-fad6-4de0-9463-66c8b563feef",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "afedf0d3-7e26-4c36-b215-2663f87c3eb7",
+            "sourceToolAssistantUUID": "4b1ab403-fad6-4de0-9463-66c8b563feef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-09T18:44:23.547Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012aTUCT9rYdeopJq7SQvuEh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"OPT-Tree adaptive draft tree structure speculative decoding\"\n\nLinks: [{\"title\":\"[2406.17276] OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure\",\"url\":\"https://arxiv.org/abs/2406.17276\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.tacl-1.8/\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure | Transactions of the Association for Computational Linguistics | MIT Press\",\"url\":\"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00735/128189/OPT-Tree-Speculative-Decoding-with-Adaptive-Draft\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure\",\"url\":\"https://arxiv.org/html/2406.17276\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure | Transactions of the Association for Computational Linguistics\",\"url\":\"https://transacl.org/index.php/tacl/article/view/6873\"},{\"title\":\"Paper page - OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure\",\"url\":\"https://huggingface.co/papers/2406.17276\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure\",\"url\":\"https://aclanthology.org/2025.tacl-1.8.pdf\"},{\"title\":\"GitHub - Jikai0Wang/OPT-Tree\",\"url\":\"https://github.com/Jikai0Wang/OPT-Tree\"},{\"title\":\"OPT-Tree/README.md at main · Jikai0Wang/OPT-Tree\",\"url\":\"https://github.com/Jikai0Wang/OPT-Tree/blob/main/README.md\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/opt-tree-speculative-decoding-adaptive-draft-tree\"}]\n\nBased on the search results, here's what I found about OPT-Tree:\n\n## Overview\n\nOPT-Tree is an algorithm to construct adaptive and scalable draft trees designed for speculative decoding, which employs a \"draft and then verify\" mechanism to allow multiple tokens to be generated in one step, realizing lossless acceleration.\n\n## Key Innovation\n\nExisting methods mainly adopt fixed heuristic draft structures, which fail to adapt to different situations to maximize the acceptance length during verification. OPT-Tree addresses this limitation by searching the optimal tree structure that maximizes the mathematical expectation of the acceptance length in each decoding step.\n\n## Performance\n\nThe experimental results are impressive: OPT-Tree outperforms the existing draft structures and achieves a speed-up ratio of up to 3.2 compared with autoregressive decoding. Additionally, if the draft model is powerful enough and the node budget is sufficient, it can generate more than ten tokens in a single step.\n\n## Publication\n\nThe work was published in 2025 in Transactions of the Association for Computational Linguistics, volume 13, pages 188–199. The code is available at https://github.com/Jikai0Wang/OPT-Tree.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1d33f85-3101-4df9-adcd-f9a84ea29e1f",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "a1cfaa5e-afd1-44ee-8ad9-c02f5571db61",
+            "sourceToolAssistantUUID": "f1d33f85-3101-4df9-adcd-f9a84ea29e1f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-09T18:44:24.933Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one more search to look for any papers specifically about ICLR 2026 acceptance on this topic and to verify ThinKV's ICLR status."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1cfaa5e-afd1-44ee-8ad9-c02f5571db61",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVLPY5SUJeCUFv4VBtW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f45d975c-e538-4ecd-bf7d-f62f03b0aa5b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AyzLZ33gFEH1uvB8G7KZ7K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3600,
+                "cache_read_input_tokens": 27213,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3600,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-09T18:44:25.150Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BMqM6H39g96Ug7kkKjSbfy",
+              "name": "WebSearch",
+              "input": {
+                "query": "ThinKV ICLR 2026 oral poster acceptance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f45d975c-e538-4ecd-bf7d-f62f03b0aa5b",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVLPY5SUJeCUFv4VBtW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eb2a3d3c-f283-4fd1-9196-6af05ad8c0f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AyzLZ33gFEH1uvB8G7KZ7K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3600,
+                "cache_read_input_tokens": 27213,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3600,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-09T18:44:25.289Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RgsongYw4LvszG96UAVLN2",
+              "name": "WebSearch",
+              "input": {
+                "query": "draft model training speculative decoding ICLR 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb2a3d3c-f283-4fd1-9196-6af05ad8c0f9",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVLPY5SUJeCUFv4VBtW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bf44ce7f-0afb-4abb-b353-29fc832173ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AyzLZ33gFEH1uvB8G7KZ7K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3600,
+                "cache_read_input_tokens": 27213,
+                "output_tokens": 154,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3600
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 154,
+                    "cache_read_input_tokens": 27213,
+                    "cache_creation_input_tokens": 3600,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3600,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-09T18:44:30.345Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BMqM6H39g96Ug7kkKjSbfy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ThinKV ICLR 2026 oral poster acceptance\"\n\nLinks: [{\"title\":\"ICLR 2026 Accepted Paper List - Paper Copilot\",\"url\":\"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/\"},{\"title\":\"2026 Conference\",\"url\":\"https://iclr.cc/\"},{\"title\":\"2026 Poster Instructions\",\"url\":\"https://iclr.cc/Conferences/2026/PosterInstructions\"},{\"title\":\"ICLR 2026 Accepted Papers: Oral Papers, Research Trends & Top Highlights\",\"url\":\"https://www.bohrium.com/en/blog/research-notes/iclr-2026-accepted-papers-highlights/\"},{\"title\":\"ICLR Oral ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\",\"url\":\"https://iclr.cc/virtual/2026/oral/10009981\"},{\"title\":\"ICLR.2026 - Oral | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/venue/ICLR.2026?group=Oral\"},{\"title\":\"ICLR 2026 on X: \\\"ICLR 2025 decisions and meta-reviews are now available on OpenReview. We reviewed 11,565 submissions, with an overall acceptance rate of 32.08%. Oral/poster decisions will be announced at a later date. Camera ready deadline is March 1st.\\\" / X\",\"url\":\"https://x.com/iclr_conf/status/1882140455825297580?lang=en\"},{\"title\":\"ICLR 2026 Acceptance Prediction: Tabular ML Approach\",\"url\":\"https://s-marton.github.io/TabICLR/\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"},{\"title\":\"International Conference on Learning Representations - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations\"}]\n\nBased on the search results, I found information about ThinKV at ICLR 2026:\n\nThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models has been accepted as an Oral presentation at ICLR 2026, scheduled for Friday, April 24, 2026 from 11:15 AM – 11:25 AM PDT in the Amphitheater. The paper will also have a poster presentation during Poster Session 3 in Pavilion 3.\n\nThe paper is authored by Akshat Ramachandran, Marina Neseem, Charbel Sakr, Rangharajan Venkatesan, Brucek Khailany, and Tushar Krishna. ThinKV is a thought-adaptive KV cache compression framework based on the observation that attention sparsity reveals distinct thought types with varying importance within chain of thought reasoning, and it applies a hybrid quantization–eviction strategy.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb2a3d3c-f283-4fd1-9196-6af05ad8c0f9",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "9ffd70d0-6277-4baf-a281-5bf9a4471777",
+            "sourceToolAssistantUUID": "eb2a3d3c-f283-4fd1-9196-6af05ad8c0f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-09T18:44:33.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RgsongYw4LvszG96UAVLN2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"draft model training speculative decoding ICLR 2026\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026 SPECULATIVE SPECULATIVE DECODING\",\"url\":\"https://openreview.net/pdf?id=aL1Wnml9Ef\"},{\"title\":\"ICLR Poster Learning To Draft: Adaptive Speculative Decoding with Reinforcement Learning\",\"url\":\"https://iclr.cc/virtual/2026/poster/10010314\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf/56d5c6f1a93a7b0590cb4e1c32762d84e42428ae.pdf\"},{\"title\":\"Learning To Draft: Adaptive Speculative Decoding with Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=IK9cbzzXLt\"},{\"title\":\"ICLR Poster Speculative Speculative Decoding\",\"url\":\"https://iclr.cc/virtual/2026/poster/10008711\"},{\"title\":\"Training Domain Draft Models for Speculative Decoding: Best Practices and Insights | OpenReview\",\"url\":\"https://openreview.net/forum?id=7FBJIxYXxd\"},{\"title\":\"SPECULATIVE SPECULATIVE DECODING\",\"url\":\"https://openreview.net/pdf/20f1f3685b9fff60c510b3f327fbbde9d5584379.pdf\"},{\"title\":\"Published as a workshop paper at SCOPE - ICLR 2025\",\"url\":\"https://arxiv.org/pdf/2503.07807\"},{\"title\":\"TRAINING-FREE LOOSELY SPECULATIVE DECODING\",\"url\":\"https://openreview.net/pdf/80207abf423159aa729279976811c32dd2f2ea23.pdf\"},{\"title\":\"Draft, Verify, \\\\& Improve: Toward Training-Aware Speculative Decoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=CwvY6TXLxr\"}]\n\nBased on the search results, I found several papers related to draft model training and speculative decoding presented at ICLR 2026:\n\n## Key Papers on Draft Model Training and Speculative Decoding at ICLR 2026\n\n**1. Speculative Speculative Decoding (SSD)**\nThe paper introduces speculative speculative decoding (SSD) to parallelize drafting and verification operations. While a verification is ongoing, the draft model predicts likely verification outcomes and prepares speculations pre-emptively for them. If the actual verification outcome is in the predicted set, a speculation can be returned immediately, eliminating drafting overhead entirely.\n\n**2. Learning To Draft (LTD): Adaptive Speculative Decoding with Reinforcement Learning**\nThis paper formulates speculative decoding as a reinforcement learning environment and trains two co-adaptive policies to dynamically coordinate the draft and verification phases, encouraging the policies to adapt to each other and explicitly maximize decoding efficiency. The results show that LTD achieves speedup ratios ranging from 2.24x to 4.32x, outperforming the state-of-the-art method Eagle3 up to 36.4%.\n\n**3. Position Specialist Generates Better Draft for Speculative Decoding (POSS)**\nThe paper proposes Position Specialists (POSS), which consist of multiple position-specialized draft layers to generate tokens at assigned position(s), substantially improving token acceptance rate at later positions within each drafting round.\n\n**4. Draft, Verify, & Improve (DVI)**\nDVI is a training-aware self-speculative framework that combines inference with continual online learning. It partitions an LLM into a drafter and a verifier, and during generation, verifier accept/reject decisions are converted into supervision signals and used to update the drafter head.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf44ce7f-0afb-4abb-b353-29fc832173ca",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "8bb61b32-38ff-4bde-a88d-bcffacaec4af",
+            "sourceToolAssistantUUID": "bf44ce7f-0afb-4abb-b353-29fc832173ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-09T18:44:34.415Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now let me search for one final confirmation on whether any papers specifically address \"structure-guided\" or \"structure-aware\" draft training."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bb61b32-38ff-4bde-a88d-bcffacaec4af",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVM686n3818L5iC5ojw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "38304f6c-46b9-49b6-847b-7cd50cb3f9b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PZV9h8EWB3eynHoeVNoyQn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2064,
+                "cache_read_input_tokens": 30813,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2064,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-09T18:44:34.663Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KH7v6WX2dhB4uCMLqMjxwT",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"structure-guided\" draft speculative decoding reasoning"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38304f6c-46b9-49b6-847b-7cd50cb3f9b0",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVM686n3818L5iC5ojw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "be16f054-0c09-4b72-90de-5acd98947803",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PZV9h8EWB3eynHoeVNoyQn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2064,
+                "cache_read_input_tokens": 30813,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2064,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-09T18:44:34.791Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016uVBbNy7zgnNSzxH7Cn1Ez",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"structure-aware\" draft training speculative 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be16f054-0c09-4b72-90de-5acd98947803",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVM686n3818L5iC5ojw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8fa9bda3-b426-4ffe-bfd9-376fcb02bb93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PZV9h8EWB3eynHoeVNoyQn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2064,
+                "cache_read_input_tokens": 30813,
+                "output_tokens": 142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2064
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 142,
+                    "cache_read_input_tokens": 30813,
+                    "cache_creation_input_tokens": 2064,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2064,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-09T18:44:41.269Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KH7v6WX2dhB4uCMLqMjxwT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"structure-guided\" draft speculative decoding reasoning\"\n\nLinks: [{\"title\":\"GitHub - hemingkx/SpeculativeDecodingPapers: 📰 Must-read papers and blogs on Speculative Decoding ⚡️\",\"url\":\"https://github.com/hemingkx/SpeculativeDecodingPapers\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure | Transactions of the Association for Computational Linguistics | MIT Press\",\"url\":\"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00735/128189/OPT-Tree-Speculative-Decoding-with-Adaptive-Draft\"},{\"title\":\"Reward-Guided Speculative Decoding for Efficient LLM ...\",\"url\":\"https://arxiv.org/pdf/2501.19324\"},{\"title\":\"ConfSpec: Efficient Step-Level Speculative Reasoning via Confidence-Gated Verification\",\"url\":\"https://arxiv.org/html/2602.18447\"},{\"title\":\"Speculative Decoding: A Guide With Implementation Examples | DataCamp\",\"url\":\"https://www.datacamp.com/tutorial/speculative-decoding\"},{\"title\":\"Faster Speculative Decoding via Effective Draft ...\",\"url\":\"https://aclanthology.org/2025.acl-long.486.pdf\"},{\"title\":\"Scaling Speculative Decoding with Lookahead Reasoning\",\"url\":\"https://arxiv.org/pdf/2506.19830\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.tacl-1.8/\"},{\"title\":\"From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning\",\"url\":\"https://arxiv.org/html/2604.15244\"},{\"title\":\"OPT-Tree: Speculative Decoding with Adaptive Draft Tree Structure\",\"url\":\"https://arxiv.org/html/2406.17276\"}]\n\nBased on the search results, here's what I found about structure-guided draft speculative decoding for reasoning:\n\n## Overview\n\nSpeculative decoding employs a \"draft and then verify\" mechanism to allow multiple tokens to be generated in one step, realizing lossless acceleration.\n\n## Structure-Guided Approaches\n\nSeveral recent works explore structure-guided approaches to speculative decoding:\n\n### OPT-Tree\nOPT-Tree is an algorithm to construct adaptive and scalable draft trees that searches the optimal tree structure which maximizes the mathematical expectation of the acceptance length in each decoding step. Experimental results reveal that OPT-Tree outperforms the existing draft structures and achieves a speed-up ratio of up to 3.2 compared with autoregressive decoding.\n\n### Step-Level Reasoning for Speculative Decoding\n\nStep-level speculative reasoning extends speculative decoding by operating on entire reasoning steps by allowing verification based on semantic equivalence rather than exact token matching, which better aligns with the structure of CoT reasoning.\n\n### Lookahead Reasoning\n\nReasoning is naturally hierarchical: a full chain-of-thought breaks into discrete steps, and each step unrolls tokens by token, where a reasoning step requires only semantic correctness but not exact token matches.\n\nThese structure-guided approaches leverage the inherent structure of reasoning tasks to improve efficiency while maintaining or improving quality compared to token-level speculative decoding alone.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be16f054-0c09-4b72-90de-5acd98947803",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "f6ee9ef1-48a3-412d-a865-0b98241cb0a8",
+            "sourceToolAssistantUUID": "be16f054-0c09-4b72-90de-5acd98947803",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-09T18:44:43.358Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016uVBbNy7zgnNSzxH7Cn1Ez",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"structure-aware\" draft training speculative 2025 2026\"\n\nLinks: [{\"title\":\"Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance\",\"url\":\"https://arxiv.org/html/2602.05774v1\"},{\"title\":\"Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework | OpenReview\",\"url\":\"https://openreview.net/forum?id=bKau2NNrji\"},{\"title\":\"Draft, Verify, & Improve Toward Training-Aware Speculative Decoding\",\"url\":\"https://arxiv.org/html/2510.05421v1\"},{\"title\":\"[2510.05421] Draft, Verify, and Improve: Toward Training-Aware Speculative Decoding\",\"url\":\"https://arxiv.org/abs/2510.05421\"},{\"title\":\"Recurrent Drafter for Fast Speculative Decoding in Large Language Models - Apple Machine Learning Research\",\"url\":\"https://machinelearning.apple.com/research/recurrent-drafter\"},{\"title\":\"Learning To Draft: Adaptive Speculative Decoding with Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2603.01639\"},{\"title\":\"GitHub - smart-lty/ParallelSpeculativeDecoding: [ICLR 2025] PEARL: Parallel Speculative Decoding with Adaptive Draft Length · GitHub\",\"url\":\"https://github.com/smart-lty/parallelspeculativedecoding\"},{\"title\":\"Adaptive Speculative Inference\",\"url\":\"https://www.emergentmind.com/topics/adaptive-speculative-inference\"},{\"title\":\"Adaptive Speculative Decoding with Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2603.01639\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2602.06932v3\"}]\n\nI found several recent research papers and systems related to structure-aware draft training in speculative decoding. Here are the key findings from 2025-2026:\n\n## Key Approaches\n\n**Variational Speculative Decoding (VSD)**: Recent work has improved speculative decoding by refining draft model training. For instance, HASS enforces feature consistency to reduce hidden-state mismatches, GRIFFIN resolves token-level misalignment, and EAGLE-3 incorporates training-time rollouts to better mimic decoding.\n\n**CoT-Aware Mixed Framework**: A CoT-aware mixed training framework raises acceptance without altering decoding hyperparameters by combining process-level CoT distillation with feature regression to reduce forward KL divergence and improve step-wise acceptance, and SurpriseRatio (SR), a data-selection metric that anchors the distribution and prevents forgetting.\n\n**Training-Aware Self-Speculation (DVI)**: Draft, Verify, & Improve (DVI), a training-aware self-speculative framework combines inference with continual online learning. It partitions an LLM into a drafter and a verifier, and during generation, verifier accept/reject decisions are converted into supervision signals and used to update the drafter head.\n\n**Adaptive Draft Structure**: Draft structure adaptation adjusts not only the number, but the organizational structure (e.g., tree depth, width, multi-level cascades) of speculative drafts according to context.\n\n**Learning to Draft with RL**: Recent work focuses on dynamically adjusting the size of the draft tree, with approaches that typically rely on simple heuristics or train models to optimize for the metric of acceptance length.\n\nThese approaches represent the current frontier of structure-aware training methods for speculative decoding in 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8fa9bda3-b426-4ffe-bfd9-376fcb02bb93",
+            "isSidechain": true,
+            "promptId": "f2bd8137-ca32-49e6-98db-d57123b728e0",
+            "agentId": "aef1d7efc87249487",
+            "type": "user",
+            "uuid": "224db0db-e683-4b17-9be0-edef9795a309",
+            "sourceToolAssistantUUID": "8fa9bda3-b426-4ffe-bfd9-376fcb02bb93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-09T18:45:10.926Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive information. Let me compile my findings into a clear report for the user.\n\n## VERIFICATION REPORT: ML PAPER PROPOSAL ON STRUCTURE-GUIDED DRAFT TRAINING\n\nI've completed a thorough search of the literature. Here are my findings on each claim:\n\n### 1. ThinKV (arXiv:2510.01290) - ICLR 2026 Oral\n\n**STATUS: VERIFIED**\n- **Existence**: Confirmed. Paper exists on arXiv and is published.\n- **ICLR 2026 Oral**: CONFIRMED. Paper accepted as Oral presentation at ICLR 2026 (scheduled Friday, April 24, 2026, 11:15-11:25 AM PDT).\n- **Classification Granularity - IMPORTANT FINDING**: ThinKV uses **segment-level** (specifically, \"thought-level\") classification, NOT token-level. The paper categorizes CoT into three distinct thought types (\"Reasoning,\" \"Execution,\" and \"Transition\") based on **attention sparsity patterns** measured via kernel density estimates. The compression is applied at the thought/segment level with hybrid quantization-eviction strategies, not at individual token granularity.\n- **Key approach**: Applies differential KV cache compression based on thought importance within the CoT, achieving near-lossless compression to <5% of original KV cache size.\n\nSource: [ThinKV arXiv paper](https://arxiv.org/abs/2510.01290), [ICLR 2026 Oral listing](https://iclr.cc/virtual/2026/oral/10009981)\n\n---\n\n### 2. CoT-Aware Speculative Decoding (OpenReview bKau2NNrji)\n\n**STATUS: VERIFIED**\n- **Existence**: Confirmed. Paper exists on OpenReview.\n- **Full title**: \"Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework\"\n- **What it actually does**: \n  - Shows that training-based SD methods (like EAGLE) suffer from **catastrophic forgetting and distribution shift** under naive CoT supervision\n  - Proposes a CoT-aware mixed training framework combining:\n    - **Process-level CoT distillation** with feature regression to reduce forward KL divergence\n    - **SurpriseRatio (SR)**: A data-selection metric that prevents forgetting using minimal open-domain samples\n  - Achieves wall-clock speedups of 3.04× to 4.55× without altering decoding hyperparameters\n\nSource: [OpenReview paper](https://openreview.net/forum?id=bKau2NNrji)\n\n---\n\n### 3. EAGLE-3 (NeurIPS 2025)\n\n**STATUS: VERIFIED**\n- **Existence**: Confirmed. Official implementation exists on GitHub.\n- **Conference**: Published at NeurIPS 2025 (poster presentation).\n- **Key innovation**: \n  - Abandons feature prediction in favor of direct token prediction\n  - Replaces top-layer features with **multi-layer feature fusion** (\"training-time test\")\n  - Achieves up to 6.5× speedup (1.4× improvement over EAGLE-2)\n  - 1.38× throughput improvement in SGLang framework at batch size 64\n  - Merged into mainstream frameworks (vLLM, SGLang)\n\nSource: [GitHub official implementation](https://github.com/SafeAILab/EAGLE), [NeurIPS 2025 poster](https://neurips.cc/virtual/2025/loc/san-diego/poster/119930)\n\n---\n\n### 4. SCoT (arXiv:2504.19095) - Speedups\n\n**STATUS: VERIFIED**\n- **Existence**: Confirmed. Paper exists on arXiv.\n- **Full title**: \"Efficient Reasoning for LLMs through Speculative Chain-of-Thought\"\n- **Actual reported speedups**:\n  - **Average 2.3× and 1.6×** for two target models on reasoning latency\n  - More specifically: **48-66% latency reduction** for Deepseek-R1-Distill-Qwen-32B and **21-49% reduction** for Deepseek-R1-Distill-Llama-70B\n  - **Key distinction**: SCoT performs **thought-level** (not token-level) speculation, using a lightweight model to generate multiple CoT drafts\n\nSource: [SCoT arXiv paper](https://arxiv.org/abs/2504.19095)\n\n---\n\n### 5. NEW Competing Work on Structural/Semantic-Aware Draft Training (2025-2026)\n\n**IMPORTANT: Multiple competing approaches exist:**\n\n**a) From Tokens to Steps: Verification-Aware Speculative Decoding (arXiv:2604.15244)**\n- Introduces **SpecGuard**, a verification-aware framework for **step-level verification**\n- Samples multiple draft candidates and selects most consistent step using lightweight ensemble models\n- Addresses token-centric limitations where erroneous steps can propagate\n- Submitted April 2026\n\n**b) ConfSpec: Efficient Step-Level Speculative Reasoning (arXiv:2602.18447)**\n- Confidence-gated cascaded verification framework for **step-level** speculative reasoning\n- Key insight: Generation requires substantial capacity, but **step verification is discriminative** task\n- Submitted January 2026\n\n**c) OPT-Tree: Adaptive Draft Tree Structure (TACL 2025)**\n- Searches optimal tree structure maximizing acceptance length in each step\n- Up to 3.2× speedup with adaptive branching factors\n- Can generate 10+ tokens per step with sufficient compute budget\n- Published in Transactions of the Association for Computational Linguistics\n\n**d) Learning To Draft (LTD): Reinforcement Learning Approach (ICLR 2026 Poster)**\n- Formulates speculative decoding as RL with co-adaptive draft/verify policies\n- Achieves 2.24-4.32× speedup, outperforms EAGLE-3 by up to 36.4%\n\n**e) Beyond Tokens: Semantic-Aware Speculative Decoding (arXiv:2602.03708)**\n- Probes internal model states for semantic probability estimation\n- Accepts semantic sequence equivalence instead of token matching\n- Up to 2.7× speedup on DeepSeekR1-32B, 2.1× on QwQ-32B\n\n**f) Speculative Speculative Decoding (ICLR 2026 Poster)**\n- Parallelizes drafting and verification by predicting verification outcomes\n- Draft model pre-emptively generates speculations for predicted outcomes\n- Eliminates drafting overhead when predictions match actual outcomes\n\n**g) Draft, Verify, & Improve (DVI): Training-Aware Self-Speculation**\n- Uses verifier accept/reject decisions as supervision for continuous drafter updates\n- Combines inference with online learning\n\n---\n\n### 6. Markov Chain Models with Speculative Decoding\n\n**FOUND:**\n- **SpecDec++**: Formulates speculative decoding as an **MDP framework**\n  - Optimal policy takes form of **threshold policy** for stopping speculation\n  - Augments draft model with acceptance prediction head\n  - Stops speculation when rejection probability exceeds threshold\n  \n- **Variational Speculative Decoding (VSD)**: Formulates draft training as **variational inference** over latent proposals, maximizing marginal target acceptance probability\n\nSource: [SpecDec++ OpenReview](https://openreview.net/pdf?id=NnExMNiTHw)\n\n---\n\n### 7. \"Thought Segment Speculative Decoding\"\n\n**FOUND:**\n- **SCoT (already mentioned)** performs thought-level speculation\n- **Step-level approaches** (ConfSpec, From Tokens to Steps) operate on semantic reasoning steps\n- **Lookahead Reasoning**: Entire reasoning steps proposed speculatively with >50% semantic alignment with target model\n- Multiple papers reference **hierarchical structure** of CoT (steps→tokens) but distinction between token-level and step-level verification is well-established\n\n---\n\n## CRITICAL ASSESSMENT FOR PROPOSAL NOVELTY\n\n**Key Competing Areas:**\n\n1. **Step-Level/Thought-Level Speculation**: Well-established (SCoT, ConfSpec, SpecGuard) - multiple papers from 2025-2026\n2. **Semantic Awareness**: Multiple approaches exist (SemanticSpec, Beyond Tokens, Lookahead Reasoning)\n3. **Structure-Guided/Adaptive Structures**: OPT-Tree, Learning To Draft with RL already address draft tree/structure optimization\n4. **Training-Aware Draft Models**: CoT-Aware, DVI, VSD all improve draft training with semantic/structural awareness\n5. **Step-Level Verification with Internal Signals**: ConfSpec, SpecGuard already implement this\n\n**Potential Novelty Gap:**\nThe proposal's claimed novelty of \"Structure-Guided **Draft Training**\" (emphasis on training) may be differentiated if it:\n- Specifically optimizes **draft model training** (not just verification) using reasoning structure\n- Differs from existing CoT-aware training or RL-based approaches\n- Proposes a novel training objective or supervision signal\n\nHowever, several papers already combine structure-awareness with draft training optimization (DVI, CoT-Aware framework, Learning To Draft).\n\n---\n\n**Sources cited in this report:**\n- [ThinKV arXiv](https://arxiv.org/abs/2510.01290)\n- [ICLR 2026 Oral ThinKV](https://iclr.cc/virtual/2026/oral/10009981)\n- [CoT-Aware Speculative Decoding OpenReview](https://openreview.net/forum?id=bKau2NNrji)\n- [EAGLE-3 GitHub](https://github.com/SafeAILab/EAGLE)\n- [EAGLE-3 NeurIPS 2025](https://neurips.cc/virtual/2025/loc/san-diego/poster/119930)\n- [SCoT arXiv](https://arxiv.org/abs/2504.19095)\n- [From Tokens to Steps (SpecGuard) arXiv](https://arxiv.org/abs/2604.15244)\n- [ConfSpec arXiv](https://arxiv.org/abs/2602.18447)\n- [OPT-Tree TACL](https://aclanthology.org/2025.tacl-1.8/)\n- [Learning To Draft ICLR 2026](https://openreview.net/forum?id=IK9cbzzXLt)\n- [Beyond Tokens: Semantic-Aware arXiv](https://arxiv.org/html/2602.03708)\n- [Speculative Speculative Decoding OpenReview](https://openreview.net/pdf?id=aL1Wnml9Ef)\n- [Variational Speculative Decoding arXiv](https://arxiv.org/html/2602.05774v1)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "224db0db-e683-4b17-9be0-edef9795a309",
+            "isSidechain": true,
+            "agentId": "aef1d7efc87249487",
+            "requestId": "req_011CasVMrCUYRBMam2fdpYLK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8095c274-f812-44c0-a77c-8282cd510698",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d544b854-21de-43ec-9cff-7fdef77ddc21",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014G4dnY5TdkqnGqqwQLMMdb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1951,
+                "cache_read_input_tokens": 32877,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1951,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-m-reviewing-an-ml-paper-proposal-about-structure-guided-draft-training-for-r.md"
+}

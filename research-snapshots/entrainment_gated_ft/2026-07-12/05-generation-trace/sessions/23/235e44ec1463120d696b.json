@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "235e44ec1463120d696b",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: entrainment_gated_ft ## 运行环境 - 服务器名: westb-48145 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "07dd30f7-4266-4aca-81a2-bc9023702003",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/07dd30f7-4266-4aca-81a2-bc9023702003.jsonl",
+    "occurrence": 1,
+    "bytes": 1323020,
+    "sha256": "4116abefab27a2dfa722ff20de0e0c8823f0434dad85ce38cf0b07c70cdcc2dd"
+  },
+  "statistics": {
+    "messages": 807,
+    "user_turns": 1,
+    "tool_calls": 318,
+    "roles": {
+      "record": 116,
+      "user": 1,
+      "assistant": 54,
+      "tool_call": 318,
+      "tool_result": 318
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "235e44ec1463120d696b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 805,
+      "chunks": [
+        {
+          "path": "235e44ec1463120d696b-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "235e44ec1463120d696b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "235e44ec1463120d696b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "235e44ec1463120d696b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "235e44ec1463120d696b-part-0005.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-entrainment-gated-ft-westb-48145-ssh-root-ssh-execute-submit-t-copy-31.md"
+}

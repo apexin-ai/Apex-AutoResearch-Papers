@@ -1,0 +1,1049 @@
+{
+  "schema_version": "1.0",
+  "id": "3d03947417c3db6520eb",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check which of these 30 \"orphan\" bib keys are actually cited somewhere in the paper's .tex files. The paper di",
+  "task_key": "agent-a5d47b67d0fecf656",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a5d47b67d0fecf656.jsonl",
+    "occurrence": 1,
+    "bytes": 129050,
+    "sha256": "897c2c5a49fefd8c37a81bc3fdeff434fa9cd9902f01df23d4090f996b87d207"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T17:56:09.548Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check which of these 30 \"orphan\" bib keys are actually cited somewhere in the paper's .tex files. The paper directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/\n\nThe orphan bib keys reported by consistency checker are:\nali2025hidden, arora2024based, arora2024zoology, basu2026routing, botev2024recurrentgemma, clark2018arc, damour2022underspecification, dao2024mamba2, de2024griffin, dong2024hymba, du2025reconciling, fehlauer2025convergence, gorbett2026crossmodel, gu2022s4, gu2024mamba, haghighat2026resolving, hsu2022rashomon, katharopoulos2020transformers, lahoti2026mamba3, lieber2024jamba, mccoy2020berts, paperno2016lambada, peng2024eagle, qin2024hgrn2, ren2024samba, sellam2022multiberts, sun2023retnet, waleffe2024empirical, watson2023predictive, yang2024gateddeltanet\n\nSearch ALL .tex files in the paper directory (main.tex, sections/*.tex, author_response.tex, arr_checklist.tex) for any \\cite or \\citep or \\citet commands that reference these keys. For each key, report whether it's truly orphan (not cited anywhere) or actually used. Be thorough - search breadth \"very thorough\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "aeac6180-ae00-4058-bb9d-97b85fb92ee8",
+            "agentId": "a5d47b67d0fecf656",
+            "type": "user",
+            "uuid": "db4ebe58-f403-4c22-842a-3ae840d16e6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T17:56:11.345Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search all .tex files in the paper directory for citations of these orphan bib keys. Let me start by exploring the directory structure and then systematically search for each key."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db4ebe58-f403-4c22-842a-3ae840d16e6b",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9N3oVMWaFLRNkGVXQQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f53e591f-c1fa-4784-aff5-a2c1de4054d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012okgNLmo6JcQBAv2xkb5Ky",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39906,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39906,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T17:56:11.521Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01APxVctfcXWjgoqcFqHceCX",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper -type f -name \"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f53e591f-c1fa-4784-aff5-a2c1de4054d1",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9N3oVMWaFLRNkGVXQQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0066d7f3-a551-475e-87ce-a939ca4ac31a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012okgNLmo6JcQBAv2xkb5Ky",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39906,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39906
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 39906,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39906,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T17:56:11.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01APxVctfcXWjgoqcFqHceCX",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/arr_checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0066d7f3-a551-475e-87ce-a939ca4ac31a",
+            "isSidechain": true,
+            "promptId": "aeac6180-ae00-4058-bb9d-97b85fb92ee8",
+            "agentId": "a5d47b67d0fecf656",
+            "type": "user",
+            "uuid": "f9fb76b8-9ab0-4fbd-b307-dfd84040a1f7",
+            "sourceToolAssistantUUID": "0066d7f3-a551-475e-87ce-a939ca4ac31a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T17:56:13.382Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Now let me search for all citations of these orphan keys across all .tex files. I'll use grep to search for each key in citation commands."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9fb76b8-9ab0-4fbd-b307-dfd84040a1f7",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NCsSjWmXWxuZsygrF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "32bd43b4-dbb3-418a-8cb9-f2c646dfc7c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Dwb3g8SLxSLZVscXkxwaVG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1354,
+                "cache_read_input_tokens": 39906,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1354,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T17:56:13.830Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TaFSzjxshkNr62WQpkH32K",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && grep -rE \"\\\\\\\\cite(p|t)?\\\\{[^}]*\\}\" --include=\"*.tex\" | head -100"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32bd43b4-dbb3-418a-8cb9-f2c646dfc7c0",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NCsSjWmXWxuZsygrF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bd19dbde-3993-48b3-826e-7a5afdcf1845",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Dwb3g8SLxSLZVscXkxwaVG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1354,
+                "cache_read_input_tokens": 39906,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1354
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 39906,
+                    "cache_creation_input_tokens": 1354,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1354,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T17:56:13.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TaFSzjxshkNr62WQpkH32K",
+              "type": "tool_result",
+              "content": "arr_checklist.tex:\\textit{Yes. We cite the model zoo \\citep{wang2025hybrid}, the evaluation framework \\citep{gao2024lmeval}, and all individual architecture papers (GatedDeltaNet, RetNet, HGRN2).}\narr_checklist.tex:\\textit{The model zoo of \\citet{wang2025hybrid} is publicly released. The lm-evaluation-harness \\citep{gao2024lmeval} is open-source (MIT license). We do not release new artifacts.}\narr_checklist.tex:\\textit{Yes. We report model sizes (340M and 1.3B parameters) and the number of configurations evaluated (30 models $\\times$ 11 benchmarks). All evaluation was inference-only using the pretrained checkpoints of \\citet{wang2025hybrid}; no model training was performed. Inference was conducted on a single NVIDIA RTX PRO 6000 GPU with a total computational budget of approximately 5 GPU-hours.}\narr_checklist.tex:\\textit{Yes. We report exact permutation tests, BCa bootstrap confidence intervals, Bonferroni and Benjamini--Hochberg corrections, effect sizes (Cohen's $d$, Jaccard similarity, normalized ES), and the ambiguity metric $\\alpha$ of \\citet{marx2020predictive}.}\nsections/introduction.tex:This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\nsections/introduction.tex:Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \\citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \\citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \\citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.\nsections/introduction.tex:We present the first systematic per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Using the model zoo of \\citet{wang2025hybrid}, we compare three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios (0\\% to 25\\%) and two scales (340M and 1.3B parameters). These three architectures represent distinct approaches to linear recurrence: gated delta rules, multi-scale exponential decay, and gated state expansion. We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories. On four benchmarks---LAMBADA ($N = 5{,}153$), HellaSwag ($N = 10{,}042$), PIQA ($N = 1{,}838$), and ARC-Easy ($N = 2{,}376$)---we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap using Jaccard similarity. Figure~\\ref{fig:decoupling} previews our central result: aggregate convergence and per-example divergence follow different trajectories as attention ratio increases.\nsections/introduction.tex:Our analysis yields three findings. First, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent spectrum. The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\\leq 0.10$, all $p < .01$). Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval). Second, attention-driven aggregate convergence is task-specific. Of 10 benchmarks, only LAMBADA exhibits monotonic reduction in cross-architecture variance ($\\rho = -1.0$, BCa 95\\% CI $[-1.0,\\,-0.7]$; cross-architecture $\\sigma$ drops 79\\%). LAMBADA \\citep{paperno2016lambada} is a pure context-retrieval task that requires predicting the final word of a passage from long-range dependencies; attention provides direct token-level access to the full context, which offers a natural explanation for why convergence occurs on this task and not others. Benchmarks that involve reasoning or comprehension show no convergence, with all $|\\rho| \\leq 0.7$ and $p \\geq .233$. The Bonferroni-adjusted $p = .100$ does not survive strict correction at $\\alpha = 0.05$; the confidence interval, which excludes zero, provides a complementary characterization of the effect. This convergence is scale-dependent: monotonic at 1.3B but non-monotonic at 340M (Appendix~\\ref{app:scale_convergence}). On LAMBADA, aggregate $\\sigma$ decreases gradually ($0.024 \\to 0.005$) while per-example Jaccard saturates at 4\\% attention (${\\sim}0.09$)---the two quantities are decoupled. The experiments that follow begin with convergence (\\S\\ref{ssec:task_convergence}) because it establishes the aggregate backdrop against which per-example divergence (\\S\\ref{ssec:per_example}) and decoupling (\\S\\ref{ssec:decoupling}) are measured.\nsections/introduction.tex:    \\item Unlike prior studies of seed-driven disagreement within a single architecture \\citep{mccoy2020berts, damour2022underspecification}, we show that architectural variation---under matched training conditions---produces structured per-example predictive multiplicity with a task-dependent spectrum ($\\alpha = 0.14$--$0.30$) across four benchmarks in three recurrent backbones. This multiplicity is not addressable by seed averaging: the source of variation is the recurrent backbone itself, and its magnitude is independent of aggregate convergence (\\S\\ref{ssec:per_example}, \\S\\ref{ssec:decoupling}, Table~\\ref{tab:multiplicity}).\nsections/appendix.tex:Several benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.4$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.\nsections/appendix.tex:In the \\citet{wang2025hybrid} model zoo, the GDN h3-1 configuration at 1.3B scale uses 16 attention heads per attention layer, while all other hybrid configurations (across GDN, RetNet, and HGRN2) use 32 attention heads. This is a design choice in the original model zoo, not an error. The reduced head count changes the per-head dimension and may affect the attention capacity of GDN h3-1 relative to other configurations.\nsections/appendix.tex:We extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \\citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.\nsections/appendix.tex:Table~\\ref{tab:arceasy_ambiguity} reports the ambiguity $\\alpha$ \\citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \\S\\ref{ssec:per_example}.\nsections/method.tex:We use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\nsections/method.tex:    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\nsections/method.tex:    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark; its small sample size renders $\\alpha$ estimation unreliable (CI width 0.13--0.18; Appendix~\\ref{app:subsample_sensitivity}).\nsections/method.tex:All evaluations use the lm-evaluation-harness framework \\citep{gao2024lmeval} with default prompts; accuracy serves as the primary metric for all benchmarks.\nsections/experiments.tex:We analyze how attention affects cross-architecture performance variance using models from the hybrid recurrent model zoo of \\citet{wang2025hybrid}. Our analysis spans three architectures (GatedDeltaNet, RetNet, HGRN2), five attention ratios (0\\% pure recurrent, 4\\%, 7.7\\%, 14.3\\%, 25\\%), and two scales (340M and 1.3B parameters). In the h$k$-1 notation used throughout, one attention layer is interleaved per every $k{+}1$ layers; h3-1 denotes 25\\% attention. All models within each scale share identical training data and hyperparameters; they differ only in architecture and attention configuration. We evaluate on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories, plus one supplementary benchmark (COPA, $n = 100$).\nsections/experiments.tex:Table~\\ref{tab:convergence} reports cross-architecture $\\sigma$ at each attention ratio for all benchmarks at 1.3B scale. LAMBADA is the only benchmark exhibiting monotonic convergence: $\\rho = -1.0$ ($p = .017$; BCa 95\\% CI $[-1.0,\\,-0.7]$; $\\sigma$ drops 79\\%; Bonferroni-adjusted $p = .100$). This is consistent with attention compensating for differences in how recurrent architectures retrieve from context \\citep{arora2024zoology}---LAMBADA requires predicting a final word from long-range dependencies, and attention provides direct token-level access that narrows architectural differences in recall capacity \\citep{arora2024based}. No other benchmark shows significant convergence (all $|\\rho| \\leq 0.7$, $p \\geq .233$; Figure~\\ref{fig:task_specificity}). Full convergence discussion appears in Appendix~\\ref{app:convergence_detail}. Scale analysis (Appendix~\\ref{app:scale_convergence}) shows this convergence is monotonic at 1.3B but non-monotonic at 340M.\nsections/experiments.tex:No surface-level feature (token count, word frequency, syntactic complexity) reliably separates helped from hurt examples. However, pure-model confidence on the target token is strongly predictive within each architecture: hurt examples have lower target-token probability among pure-correct examples ($d = 0.83$--$0.92$), and helped examples have higher probability among pure-wrong examples ($d = 0.73$--$0.77$); see Appendix~\\ref{app:confidence_margin}. A Kruskal-Wallis test confirms cross-architecture structure in both hurt ($p = .0005$) and helped ($p = .020$) distributions. The confidence margin thus identifies a per-example predictor of which examples will be affected: attention disrupts marginally correct predictions and rescues near-miss errors, but with architecture-specific thresholds that produce the observed cross-architecture divergence. The rescue pattern generalizes: across all three architectures on LAMBADA, HellaSwag, and ARC-Easy, helped examples have significantly higher pure-model target probability than stayed-wrong examples (9/9 tests, $d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}). The disruption pattern is weaker on ARC-Easy ($d = 0.13$--$0.26$), absent on HellaSwag under \\texttt{acc\\_norm}, and absent on binary classification (Appendix~\\ref{app:boolq}), likely reflecting structural properties of constrained-choice formats that limit the discriminative power of confidence margins. This structured per-example disagreement despite similar aggregate performance constitutes predictive multiplicity \\citep{marx2020predictive} arising from architectural variation rather than random initialization \\citep{damour2022underspecification}.\nsections/experiments.tex:\\paragraph{Multiplicity spectrum.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent spectrum. Evaluation format does not drive multiplicity: HellaSwag (four-way, $\\alpha = 0.15$) and PIQA (two-choice, $\\alpha = 0.14$) produce nearly identical multiplicity despite different formats; among two-choice benchmarks alone, $\\alpha$ spans $3\\times$ from 0.14 (PIQA) to 0.41 (WinoGrande; Appendix~\\ref{app:winogrande}) to 0.45 (BoolQ; Appendix~\\ref{app:boolq}), covering the full six-benchmark range within a single format. Bootstrap 95\\% CIs confirm the spectrum ordering: all adjacent-benchmark CIs are non-overlapping except PIQA and HellaSwag, whose CIs overlap substantially ($[.127,\\,.159]$ vs.\\ $[.141,\\,.155]$; Appendix, Table~\\ref{tab:arceasy_ambiguity}). Moreover, $\\alpha$ does not significantly correlate with task accuracy (Spearman $\\rho = -0.60$, $p = .24$). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs $2\\times$ across task types (from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}.\nsections/experiments.tex:\\caption{Predictive multiplicity at 1.3B. $\\alpha$: ambiguity at h3-1 \\citep{marx2020predictive}. $\\bar{J}$: mean pairwise Jaccard of helped~(h) and hurt~(u) sets, averaged across four hybrid attention ratios and three architecture pairs. $\\rho_\\alpha$: Spearman $\\rho$ between attention ratio and $\\alpha$. Benchmarks ordered by $\\alpha$.}\nsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\nsections/related_work.tex:Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\nsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\nmain.tex:Hybrid recurrent architectures that interleave attention with linear recurrence are increasingly deployed, yet how attention affects per-example behavior across backbones remains unquantified. Using the controlled model zoo of \\citet{wang2025hybrid}---three architectures, five attention ratios, two scales (340M/1.3B)---we evaluate 10 benchmarks and decompose per-example effects on four (LAMBADA, HellaSwag, PIQA, ARC-Easy). Per-example predictive multiplicity \\citep{marx2020predictive} varies across tasks ($\\alpha = 0.14$--$0.30$) while pairwise Jaccard of helped/hurt sets remains uniformly low ($\\leq 0.10$); multiplicity magnitude depends on task type, not attention dose. Aggregate convergence, by contrast, is task-specific: only LAMBADA shows monotonic variance reduction (79\\%), consistent with attention compensating for retrieval differences across recurrent backbones. On LAMBADA, aggregate variance decreases gradually while per-example overlap saturates at the first attention level---the two are decoupled.\nmain.tex:This work analyzes publicly available pretrained language models from the model zoo of \\citet{wang2025hybrid}. No new data collection, human subjects research, or model training is involved. We identify per-example behavioral differences across architectures, which may inform practitioners about the limitations of aggregate benchmark comparisons but does not introduce new risks.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd19dbde-3993-48b3-826e-7a5afdcf1845",
+            "isSidechain": true,
+            "promptId": "aeac6180-ae00-4058-bb9d-97b85fb92ee8",
+            "agentId": "a5d47b67d0fecf656",
+            "type": "user",
+            "uuid": "7a4ef4da-0106-4a34-afda-cc7b5806981e",
+            "sourceToolAssistantUUID": "bd19dbde-3993-48b3-826e-7a5afdcf1845",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T17:56:15.282Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me systematically search for each orphan key to determine if it's actually cited:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a4ef4da-0106-4a34-afda-cc7b5806981e",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NNLDH2zX527TRGpKj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "22e0265f-da8e-4d2c-8984-233182964647",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NQ3eFX25uV4LxqYSSe6YFh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 5684,
+                "cache_read_input_tokens": 41260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5684,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T17:56:18.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019hggW7FL9F6aHJ6KpRoAiL",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && for key in ali2025hidden arora2024based arora2024zoology basu2026routing botev2024recurrentgemma clark2018arc damour2022underspecification dao2024mamba2 de2024griffin dong2024hymba du2025reconciling fehlauer2025convergence gorbett2026crossmodel gu2022s4 gu2024mamba haghighat2026resolving hsu2022rashomon katharopoulos2020transformers lahoti2026mamba3 lieber2024jamba mccoy2020berts paperno2016lambada peng2024eagle qin2024hgrn2 ren2024samba sellam2022multiberts sun2023retnet waleffe2024empirical watson2023predictive yang2024gateddeltanet; do count=$(grep -r \"\\\\\\\\cite\\(p\\|t\\)?{[^}]*$key\" --include=\"*.tex\" 2>/dev/null | wc -l); if [ $count -gt 0 ]; then echo \"$key: CITED ($count)\"; else echo \"$key: ORPHAN\"; fi; done"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22e0265f-da8e-4d2c-8984-233182964647",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NNLDH2zX527TRGpKj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9aa3a5ee-0701-4660-b6aa-12426437be92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NQ3eFX25uV4LxqYSSe6YFh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 5684,
+                "cache_read_input_tokens": 41260,
+                "output_tokens": 377,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5684
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 377,
+                    "cache_read_input_tokens": 41260,
+                    "cache_creation_input_tokens": 5684,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5684,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T17:56:18.625Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019hggW7FL9F6aHJ6KpRoAiL",
+              "type": "tool_result",
+              "content": "ali2025hidden: ORPHAN\narora2024based: ORPHAN\narora2024zoology: ORPHAN\nbasu2026routing: ORPHAN\nbotev2024recurrentgemma: ORPHAN\nclark2018arc: ORPHAN\ndamour2022underspecification: ORPHAN\ndao2024mamba2: ORPHAN\nde2024griffin: ORPHAN\ndong2024hymba: ORPHAN\ndu2025reconciling: ORPHAN\nfehlauer2025convergence: ORPHAN\ngorbett2026crossmodel: ORPHAN\ngu2022s4: ORPHAN\ngu2024mamba: ORPHAN\nhaghighat2026resolving: ORPHAN\nhsu2022rashomon: ORPHAN\nkatharopoulos2020transformers: ORPHAN\nlahoti2026mamba3: ORPHAN\nlieber2024jamba: ORPHAN\nmccoy2020berts: ORPHAN\npaperno2016lambada: ORPHAN\npeng2024eagle: ORPHAN\nqin2024hgrn2: ORPHAN\nren2024samba: ORPHAN\nsellam2022multiberts: ORPHAN\nsun2023retnet: ORPHAN\nwaleffe2024empirical: ORPHAN\nwatson2023predictive: ORPHAN\nyang2024gateddeltanet: ORPHAN",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9aa3a5ee-0701-4660-b6aa-12426437be92",
+            "isSidechain": true,
+            "promptId": "aeac6180-ae00-4058-bb9d-97b85fb92ee8",
+            "agentId": "a5d47b67d0fecf656",
+            "type": "user",
+            "uuid": "ee55332c-6bdd-4581-8179-b38b6da1ea54",
+            "sourceToolAssistantUUID": "9aa3a5ee-0701-4660-b6aa-12426437be92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T17:56:20.415Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Interesting! The grep pattern didn't match. Let me try a different approach with looser regex:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee55332c-6bdd-4581-8179-b38b6da1ea54",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NiasLU5z7yTUGhS8c",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "416b2f87-fc24-44ff-a90c-32de258ffe2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0191fWCjS6f8njPjHj4xPocD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 46944,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 722,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T17:56:21.524Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0194D2y3p2nPinGRLLPwJBnC",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && for key in ali2025hidden arora2024based arora2024zoology basu2026routing botev2024recurrentgemma clark2018arc damour2022underspecification dao2024mamba2 de2024griffin dong2024hymba du2025reconciling fehlauer2025convergence gorbett2026crossmodel gu2022s4 gu2024mamba haghighat2026resolving hsu2022rashomon katharopoulos2020transformers lahoti2026mamba3 lieber2024jamba mccoy2020berts paperno2016lambada peng2024eagle qin2024hgrn2 ren2024samba sellam2022multiberts sun2023retnet waleffe2024empirical watson2023predictive yang2024gateddeltanet; do count=$(grep -r \"$key\" --include=\"*.tex\" 2>/dev/null | wc -l); if [ $count -gt 0 ]; then echo \"$key: FOUND\"; fi; done"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "416b2f87-fc24-44ff-a90c-32de258ffe2f",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NiasLU5z7yTUGhS8c",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "40d27f35-0629-462f-ab09-f13e6dc62c5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0191fWCjS6f8njPjHj4xPocD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 722,
+                "cache_read_input_tokens": 46944,
+                "output_tokens": 350,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 722
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 350,
+                    "cache_read_input_tokens": 46944,
+                    "cache_creation_input_tokens": 722,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 722,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T17:56:21.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0194D2y3p2nPinGRLLPwJBnC",
+              "type": "tool_result",
+              "content": "ali2025hidden: FOUND\narora2024based: FOUND\narora2024zoology: FOUND\nbasu2026routing: FOUND\nbotev2024recurrentgemma: FOUND\nclark2018arc: FOUND\ndamour2022underspecification: FOUND\ndao2024mamba2: FOUND\nde2024griffin: FOUND\ndong2024hymba: FOUND\ndu2025reconciling: FOUND\nfehlauer2025convergence: FOUND\ngorbett2026crossmodel: FOUND\ngu2022s4: FOUND\ngu2024mamba: FOUND\nhaghighat2026resolving: FOUND\nhsu2022rashomon: FOUND\nkatharopoulos2020transformers: FOUND\nlahoti2026mamba3: FOUND\nlieber2024jamba: FOUND\nmccoy2020berts: FOUND\npaperno2016lambada: FOUND\npeng2024eagle: FOUND\nqin2024hgrn2: FOUND\nren2024samba: FOUND\nsellam2022multiberts: FOUND\nsun2023retnet: FOUND\nwaleffe2024empirical: FOUND\nwatson2023predictive: FOUND\nyang2024gateddeltanet: FOUND",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40d27f35-0629-462f-ab09-f13e6dc62c5a",
+            "isSidechain": true,
+            "promptId": "aeac6180-ae00-4058-bb9d-97b85fb92ee8",
+            "agentId": "a5d47b67d0fecf656",
+            "type": "user",
+            "uuid": "3ad9136b-f075-4da9-950c-b5858d14b9c3",
+            "sourceToolAssistantUUID": "40d27f35-0629-462f-ab09-f13e6dc62c5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T17:56:22.989Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! All keys are found. Now let me get the exact context for each one to verify they're in cite commands:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ad9136b-f075-4da9-950c-b5858d14b9c3",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NwtZbetgkSxSmH7Rr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c432393a-0807-4f7d-88df-9c2cd4caad7a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Xhb9gzKDdEVqnSq4p4NDmi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 665,
+                "cache_read_input_tokens": 47666,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 665,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T17:56:24.081Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CjXFAJU6EkjpFtsYRFByHA",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper && for key in ali2025hidden arora2024based arora2024zoology basu2026routing botev2024recurrentgemma clark2018arc damour2022underspecification dao2024mamba2 de2024griffin dong2024hymba du2025reconciling fehlauer2025convergence gorbett2026crossmodel gu2022s4 gu2024mamba haghighat2026resolving hsu2022rashomon katharopoulos2020transformers lahoti2026mamba3 lieber2024jamba mccoy2020berts paperno2016lambada peng2024eagle qin2024hgrn2 ren2024samba sellam2022multiberts sun2023retnet waleffe2024empirical watson2023predictive yang2024gateddeltanet; do echo \"=== $key ===\"; grep -B2 -A2 \"$key\" --include=\"*.tex\" -r 2>/dev/null | head -15; done"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c432393a-0807-4f7d-88df-9c2cd4caad7a",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9NwtZbetgkSxSmH7Rr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b08bdf08-a937-47fb-a260-f2312208a057",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Xhb9gzKDdEVqnSq4p4NDmi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 665,
+                "cache_read_input_tokens": 47666,
+                "output_tokens": 348,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 665
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 348,
+                    "cache_read_input_tokens": 47666,
+                    "cache_creation_input_tokens": 665,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 665,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T17:56:24.257Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CjXFAJU6EkjpFtsYRFByHA",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (70.3KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-director-63b8b789/765154e5-66a9-4450-b7d7-710330a17dfd/tool-results/b6yy12jp6.txt\n\nPreview (first 2KB):\n=== ali2025hidden ===\nsections/appendix.tex-\\section{Attention Weight Analysis}\\label{app:attention_patterns}\nsections/appendix.tex-\nsections/appendix.tex:We extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \\citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.\nsections/appendix.tex-\nsections/appendix.tex-\\subsection{Cross-Architecture Cosine Similarity}\n--\nsections/related_work.tex-\nsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\nsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\nsections/related_work.tex-\nsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n=== arora2024based ===\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b08bdf08-a937-47fb-a260-f2312208a057",
+            "isSidechain": true,
+            "promptId": "aeac6180-ae00-4058-bb9d-97b85fb92ee8",
+            "agentId": "a5d47b67d0fecf656",
+            "type": "user",
+            "uuid": "0cff1c31-1890-4987-9108-cfdd163b6af5",
+            "sourceToolAssistantUUID": "b08bdf08-a937-47fb-a260-f2312208a057",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T17:56:25.583Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me read the full output and compile a detailed report:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0cff1c31-1890-4987-9108-cfdd163b6af5",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9P8fDBDcayhuu6Bxfp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eec5fb9a-d0f0-482f-b3fc-ffb0f208f4b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuQXhjegdAYw1nNc1SR1C3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1140,
+                "cache_read_input_tokens": 48331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1140,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T17:56:25.891Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XypjSyxbRFtLQvSS6Q1bXb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-director-63b8b789/765154e5-66a9-4450-b7d7-710330a17dfd/tool-results/b6yy12jp6.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eec5fb9a-d0f0-482f-b3fc-ffb0f208f4b8",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9P8fDBDcayhuu6Bxfp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "47d4ebea-3a48-4c06-8a6d-af5fe97c7af8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuQXhjegdAYw1nNc1SR1C3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1140,
+                "cache_read_input_tokens": 48331,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1140
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 48331,
+                    "cache_creation_input_tokens": 1140,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1140,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T17:56:26.160Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XypjSyxbRFtLQvSS6Q1bXb",
+              "type": "tool_result",
+              "content": "1\t=== ali2025hidden ===\n2\tsections/appendix.tex-\\section{Attention Weight Analysis}\\label{app:attention_patterns}\n3\tsections/appendix.tex-\n4\tsections/appendix.tex:We extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \\citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.\n5\tsections/appendix.tex-\n6\tsections/appendix.tex-\\subsection{Cross-Architecture Cosine Similarity}\n7\t--\n8\tsections/related_work.tex-\n9\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n10\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n11\tsections/related_work.tex-\n12\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n13\t=== arora2024based ===\n14\tsections/appendix.tex-Beyond LAMBADA ($\\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\\rho = -0.67$ with a large $\\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.\n15\tsections/appendix.tex-\n16\tsections/appendix.tex:Several benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.4$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.\n17\tsections/appendix.tex-\n18\tsections/appendix.tex-\\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\\times$ $\\sigma$ compression ($0.024 \\to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\\times$ reduction in cross-architecture $\\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\\S\\ref{ssec:per_example}) reveals architecture-specific mechanisms: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.\n19\t--\n20\tsections/experiments.tex-\\subsection{Task-Specific Convergence}\\label{ssec:task_convergence}\n21\tsections/experiments.tex-\n22\tsections/experiments.tex:Table~\\ref{tab:convergence} reports cross-architecture $\\sigma$ at each attention ratio for all benchmarks at 1.3B scale. LAMBADA is the only benchmark exhibiting monotonic convergence: $\\rho = -1.0$ ($p = .017$; BCa 95\\% CI $[-1.0,\\,-0.7]$; $\\sigma$ drops 79\\%; Bonferroni-adjusted $p = .100$). This is consistent with attention compensating for differences in how recurrent architectures retrieve from context \\citep{arora2024zoology}---LAMBADA requires predicting a final word from long-range dependencies, and attention provides direct token-level access that narrows architectural differences in recall capacity \\citep{arora2024based}. No other benchmark shows significant convergence (all $|\\rho| \\leq 0.7$, $p \\geq .233$; Figure~\\ref{fig:task_specificity}). Full convergence discussion appears in Appendix~\\ref{app:convergence_detail}. Scale analysis (Appendix~\\ref{app:scale_convergence}) shows this convergence is monotonic at 1.3B but non-monotonic at 340M.\n23\tsections/experiments.tex-\n24\tsections/experiments.tex-\\begin{figure}[t]\n25\t=== arora2024zoology ===\n26\tsections/appendix.tex-Beyond LAMBADA ($\\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\\rho = -0.67$ with a large $\\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.\n27\tsections/appendix.tex-\n28\tsections/appendix.tex:Several benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.4$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.\n29\tsections/appendix.tex-\n30\tsections/appendix.tex-\\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\\times$ $\\sigma$ compression ($0.024 \\to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\\times$ reduction in cross-architecture $\\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\\S\\ref{ssec:per_example}) reveals architecture-specific mechanisms: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.\n31\t--\n32\tsections/experiments.tex-\\subsection{Task-Specific Convergence}\\label{ssec:task_convergence}\n33\tsections/experiments.tex-\n34\tsections/experiments.tex:Table~\\ref{tab:convergence} reports cross-architecture $\\sigma$ at each attention ratio for all benchmarks at 1.3B scale. LAMBADA is the only benchmark exhibiting monotonic convergence: $\\rho = -1.0$ ($p = .017$; BCa 95\\% CI $[-1.0,\\,-0.7]$; $\\sigma$ drops 79\\%; Bonferroni-adjusted $p = .100$). This is consistent with attention compensating for differences in how recurrent architectures retrieve from context \\citep{arora2024zoology}---LAMBADA requires predicting a final word from long-range dependencies, and attention provides direct token-level access that narrows architectural differences in recall capacity \\citep{arora2024based}. No other benchmark shows significant convergence (all $|\\rho| \\leq 0.7$, $p \\geq .233$; Figure~\\ref{fig:task_specificity}). Full convergence discussion appears in Appendix~\\ref{app:convergence_detail}. Scale analysis (Appendix~\\ref{app:scale_convergence}) shows this convergence is monotonic at 1.3B but non-monotonic at 340M.\n35\tsections/experiments.tex-\n36\tsections/experiments.tex-\\begin{figure}[t]\n37\t=== basu2026routing ===\n38\tsections/related_work.tex-\n39\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n40\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n41\tsections/related_work.tex-\n42\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n43\t=== botev2024recurrentgemma ===\n44\tsections/introduction.tex-When attention layers are interleaved into recurrent architectures, they help and hurt almost entirely different examples---pairwise Jaccard overlap among three hybrid designs is at most 0.10, approximately twice the independence baseline. This per-example divergence is invisible in aggregate metrics: on LAMBADA, cross-architecture standard deviation drops 79\\% as attention increases (Bonferroni-adjusted $p = .100$; the BCa 95\\% CI excludes zero), but each architecture reaches similar accuracy by rescuing and disrupting different inputs. Practitioners increasingly choose between recurrent backbones based on aggregate benchmark scores; architectures that score identically in aggregate may thus carry hidden consequences for deployment reliability and ensemble construction.\n45\tsections/introduction.tex-\n46\tsections/introduction.tex:This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n47\tsections/introduction.tex-\n48\tsections/introduction.tex-Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \\citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \\citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \\citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.\n49\t--\n50\tsections/related_work.tex-\n51\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n52\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n53\tsections/related_work.tex-\n54\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n55\t=== clark2018arc ===\n56\tsections/method.tex-    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n57\tsections/method.tex-    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n58\tsections/method.tex:    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark; its small sample size renders $\\alpha$ estimation unreliable (CI width 0.13--0.18; Appendix~\\ref{app:subsample_sensitivity}).\n59\tsections/method.tex-    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n60\tsections/method.tex-\\end{itemize}\n61\t=== damour2022underspecification ===\n62\tsections/introduction.tex-This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n63\tsections/introduction.tex-\n64\tsections/introduction.tex:Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \\citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \\citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \\citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.\n65\tsections/introduction.tex-\n66\tsections/introduction.tex-We present the first systematic per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Using the model zoo of \\citet{wang2025hybrid}, we compare three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios (0\\% to 25\\%) and two scales (340M and 1.3B parameters). These three architectures represent distinct approaches to linear recurrence: gated delta rules, multi-scale exponential decay, and gated state expansion. We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories. On four benchmarks---LAMBADA ($N = 5{,}153$), HellaSwag ($N = 10{,}042$), PIQA ($N = 1{,}838$), and ARC-Easy ($N = 2{,}376$)---we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap using Jaccard similarity. Figure~\\ref{fig:decoupling} previews our central result: aggregate convergence and per-example divergence follow different trajectories as attention ratio increases.\n67\t--\n68\tsections/introduction.tex-Our contributions are as follows:\n69\tsections/introduction.tex-\\begin{itemize}\n70\tsections/introduction.tex:    \\item Unlike prior studies of seed-driven disagreement within a single architecture \\citep{mccoy2020berts, damour2022underspecification}, we show that architectural variation---under matched training conditions---produces structured per-example predictive multiplicity with a task-dependent spectrum ($\\alpha = 0.14$--$0.30$) across four benchmarks in three recurrent backbones. This multiplicity is not addressable by seed averaging: the source of variation is the recurrent backbone itself, and its magnitude is independent of aggregate convergence (\\S\\ref{ssec:per_example}, \\S\\ref{ssec:decoupling}, Table~\\ref{tab:multiplicity}).\n71\tsections/introduction.tex-    \\item We quantify task-specific convergence: only retrieval tasks (LAMBADA) show attention-driven cross-architecture convergence, and this pattern is scale-dependent (Appendix~\\ref{app:scale_convergence}; \\S\\ref{ssec:task_convergence}, Table~\\ref{tab:convergence}, Figure~\\ref{fig:task_specificity}).\n72\tsections/introduction.tex-\\end{itemize}\n73\t--\n74\tsections/experiments.tex-Each architecture displays a distinct profile of per-example changes (Table~\\ref{tab:per_example}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395). HGRN2 is the only architecture for which attention produces a net per-example benefit. Pairwise Jaccard similarity is low: mean $\\bar{J} \\leq 0.104$ for helped, $\\leq 0.096$ for hurt, indicating ${\\sim}90$\\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\\text{null}} \\approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\\ref{app:jaccard_permutation}), but normalizing by the theoretical upper bound $J_{\\max} = \\min(|A|,|B|)/\\max(|A|,|B|)$, observed overlap reaches only 5--7\\% of the achievable range above chance (normalized ES 0.065 helped, 0.047 hurt; per-pair details in Appendix~\\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.\n75\tsections/experiments.tex-\n76\tsections/experiments.tex:No surface-level feature (token count, word frequency, syntactic complexity) reliably separates helped from hurt examples. However, pure-model confidence on the target token is strongly predictive within each architecture: hurt examples have lower target-token probability among pure-correct examples ($d = 0.83$--$0.92$), and helped examples have higher probability among pure-wrong examples ($d = 0.73$--$0.77$); see Appendix~\\ref{app:confidence_margin}. A Kruskal-Wallis test confirms cross-architecture structure in both hurt ($p = .0005$) and helped ($p = .020$) distributions. The confidence margin thus identifies a per-example predictor of which examples will be affected: attention disrupts marginally correct predictions and rescues near-miss errors, but with architecture-specific thresholds that produce the observed cross-architecture divergence. The rescue pattern generalizes: across all three architectures on LAMBADA, HellaSwag, and ARC-Easy, helped examples have significantly higher pure-model target probability than stayed-wrong examples (9/9 tests, $d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}). The disruption pattern is weaker on ARC-Easy ($d = 0.13$--$0.26$), absent on HellaSwag under \\texttt{acc\\_norm}, and absent on binary classification (Appendix~\\ref{app:boolq}), likely reflecting structural properties of constrained-choice formats that limit the discriminative power of confidence margins. This structured per-example disagreement despite similar aggregate performance constitutes predictive multiplicity \\citep{marx2020predictive} arising from architectural variation rather than random initialization \\citep{damour2022underspecification}.\n77\t=== dao2024mamba2 ===\n78\tsections/related_work.tex-\n79\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n80\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n81\tsections/related_work.tex-\n82\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n83\t=== de2024griffin ===\n84\tsections/introduction.tex-When attention layers are interleaved into recurrent architectures, they help and hurt almost entirely different examples---pairwise Jaccard overlap among three hybrid designs is at most 0.10, approximately twice the independence baseline. This per-example divergence is invisible in aggregate metrics: on LAMBADA, cross-architecture standard deviation drops 79\\% as attention increases (Bonferroni-adjusted $p = .100$; the BCa 95\\% CI excludes zero), but each architecture reaches similar accuracy by rescuing and disrupting different inputs. Practitioners increasingly choose between recurrent backbones based on aggregate benchmark scores; architectures that score identically in aggregate may thus carry hidden consequences for deployment reliability and ensemble construction.\n85\tsections/introduction.tex-\n86\tsections/introduction.tex:This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n87\tsections/introduction.tex-\n88\tsections/introduction.tex-Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \\citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \\citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \\citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.\n89\t--\n90\tsections/related_work.tex-\n91\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n92\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n93\tsections/related_work.tex-\n94\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n95\t=== dong2024hymba ===\n96\tsections/related_work.tex-\n97\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n98\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n99\tsections/related_work.tex-\n100\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n101\t=== du2025reconciling ===\n102\tsections/related_work.tex-\n103\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n104\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n105\t=== fehlauer2025convergence ===\n106\tsections/related_work.tex-\n107\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n108\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n109\t=== gorbett2026crossmodel ===\n110\tsections/experiments.tex-No surface-level feature (token count, word frequency, syntactic complexity) reliably separates helped from hurt examples. However, pure-model confidence on the target token is strongly predictive within each architecture: hurt examples have lower target-token probability among pure-correct examples ($d = 0.83$--$0.92$), and helped examples have higher probability among pure-wrong examples ($d = 0.73$--$0.77$); see Appendix~\\ref{app:confidence_margin}. A Kruskal-Wallis test confirms cross-architecture structure in both hurt ($p = .0005$) and helped ($p = .020$) distributions. The confidence margin thus identifies a per-example predictor of which examples will be affected: attention disrupts marginally correct predictions and rescues near-miss errors, but with architecture-specific thresholds that produce the observed cross-architecture divergence. The rescue pattern generalizes: across all three architectures on LAMBADA, HellaSwag, and ARC-Easy, helped examples have significantly higher pure-model target probability than stayed-wrong examples (9/9 tests, $d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}). The disruption pattern is weaker on ARC-Easy ($d = 0.13$--$0.26$), absent on HellaSwag under \\texttt{acc\\_norm}, and absent on binary classification (Appendix~\\ref{app:boolq}), likely reflecting structural properties of constrained-choice formats that limit the discriminative power of confidence margins. This structured per-example disagreement despite similar aggregate performance constitutes predictive multiplicity \\citep{marx2020predictive} arising from architectural variation rather than random initialization \\citep{damour2022underspecification}.\n111\tsections/experiments.tex-\n112\tsections/experiments.tex:\\paragraph{Multiplicity spectrum.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent spectrum. Evaluation format does not drive multiplicity: HellaSwag (four-way, $\\alpha = 0.15$) and PIQA (two-choice, $\\alpha = 0.14$) produce nearly identical multiplicity despite different formats; among two-choice benchmarks alone, $\\alpha$ spans $3\\times$ from 0.14 (PIQA) to 0.41 (WinoGrande; Appendix~\\ref{app:winogrande}) to 0.45 (BoolQ; Appendix~\\ref{app:boolq}), covering the full six-benchmark range within a single format. Bootstrap 95\\% CIs confirm the spectrum ordering: all adjacent-benchmark CIs are non-overlapping except PIQA and HellaSwag, whose CIs overlap substantially ($[.127,\\,.159]$ vs.\\ $[.141,\\,.155]$; Appendix, Table~\\ref{tab:arceasy_ambiguity}). Moreover, $\\alpha$ does not significantly correlate with task accuracy (Spearman $\\rho = -0.60$, $p = .24$). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs $2\\times$ across task types (from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}.\n113\tsections/experiments.tex-\n114\tsections/experiments.tex-\\begin{table}[t]\n115\t--\n116\tsections/related_work.tex-\n117\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n118\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n119\t=== gu2022s4 ===\n120\tsections/related_work.tex-\n121\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n122\tsections/related_work.tex:Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\n123\tsections/related_work.tex-\n124\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n125\t=== gu2024mamba ===\n126\tsections/related_work.tex-\n127\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n128\tsections/related_work.tex:Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\n129\tsections/related_work.tex-\n130\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n131\t=== haghighat2026resolving ===\n132\tsections/related_work.tex-\n133\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n134\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n135\t=== hsu2022rashomon ===\n136\tsections/related_work.tex-\n137\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n138\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n139\t=== katharopoulos2020transformers ===\n140\tsections/related_work.tex-\n141\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n142\tsections/related_work.tex:Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\n143\tsections/related_work.tex-\n144\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n145\t=== lahoti2026mamba3 ===\n146\tsections/related_work.tex-\n147\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n148\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n149\tsections/related_work.tex-\n150\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n151\t=== lieber2024jamba ===\n152\tsections/introduction.tex-When attention layers are interleaved into recurrent architectures, they help and hurt almost entirely different examples---pairwise Jaccard overlap among three hybrid designs is at most 0.10, approximately twice the independence baseline. This per-example divergence is invisible in aggregate metrics: on LAMBADA, cross-architecture standard deviation drops 79\\% as attention increases (Bonferroni-adjusted $p = .100$; the BCa 95\\% CI excludes zero), but each architecture reaches similar accuracy by rescuing and disrupting different inputs. Practitioners increasingly choose between recurrent backbones based on aggregate benchmark scores; architectures that score identically in aggregate may thus carry hidden consequences for deployment reliability and ensemble construction.\n153\tsections/introduction.tex-\n154\tsections/introduction.tex:This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n155\tsections/introduction.tex-\n156\tsections/introduction.tex-Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \\citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \\citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \\citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.\n157\t--\n158\tsections/related_work.tex-\n159\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n160\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n161\tsections/related_work.tex-\n162\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n163\t=== mccoy2020berts ===\n164\tsections/introduction.tex-This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n165\tsections/introduction.tex-\n166\tsections/introduction.tex:Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \\citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \\citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \\citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.\n167\tsections/introduction.tex-\n168\tsections/introduction.tex-We present the first systematic per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Using the model zoo of \\citet{wang2025hybrid}, we compare three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios (0\\% to 25\\%) and two scales (340M and 1.3B parameters). These three architectures represent distinct approaches to linear recurrence: gated delta rules, multi-scale exponential decay, and gated state expansion. We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories. On four benchmarks---LAMBADA ($N = 5{,}153$), HellaSwag ($N = 10{,}042$), PIQA ($N = 1{,}838$), and ARC-Easy ($N = 2{,}376$)---we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap using Jaccard similarity. Figure~\\ref{fig:decoupling} previews our central result: aggregate convergence and per-example divergence follow different trajectories as attention ratio increases.\n169\t--\n170\tsections/introduction.tex-Our contributions are as follows:\n171\tsections/introduction.tex-\\begin{itemize}\n172\tsections/introduction.tex:    \\item Unlike prior studies of seed-driven disagreement within a single architecture \\citep{mccoy2020berts, damour2022underspecification}, we show that architectural variation---under matched training conditions---produces structured per-example predictive multiplicity with a task-dependent spectrum ($\\alpha = 0.14$--$0.30$) across four benchmarks in three recurrent backbones. This multiplicity is not addressable by seed averaging: the source of variation is the recurrent backbone itself, and its magnitude is independent of aggregate convergence (\\S\\ref{ssec:per_example}, \\S\\ref{ssec:decoupling}, Table~\\ref{tab:multiplicity}).\n173\tsections/introduction.tex-    \\item We quantify task-specific convergence: only retrieval tasks (LAMBADA) show attention-driven cross-architecture convergence, and this pattern is scale-dependent (Appendix~\\ref{app:scale_convergence}; \\S\\ref{ssec:task_convergence}, Table~\\ref{tab:convergence}, Figure~\\ref{fig:task_specificity}).\n174\tsections/introduction.tex-\\end{itemize}\n175\t--\n176\tsections/related_work.tex-\n177\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n178\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n179\t=== paperno2016lambada ===\n180\tsections/introduction.tex-\\end{figure}\n181\tsections/introduction.tex-\n182\tsections/introduction.tex:Our analysis yields three findings. First, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent spectrum. The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\\leq 0.10$, all $p < .01$). Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval). Second, attention-driven aggregate convergence is task-specific. Of 10 benchmarks, only LAMBADA exhibits monotonic reduction in cross-architecture variance ($\\rho = -1.0$, BCa 95\\% CI $[-1.0,\\,-0.7]$; cross-architecture $\\sigma$ drops 79\\%). LAMBADA \\citep{paperno2016lambada} is a pure context-retrieval task that requires predicting the final word of a passage from long-range dependencies; attention provides direct token-level access to the full context, which offers a natural explanation for why convergence occurs on this task and not others. Benchmarks that involve reasoning or comprehension show no convergence, with all $|\\rho| \\leq 0.7$ and $p \\geq .233$. The Bonferroni-adjusted $p = .100$ does not survive strict correction at $\\alpha = 0.05$; the confidence interval, which excludes zero, provides a complementary characterization of the effect. This convergence is scale-dependent: monotonic at 1.3B but non-monotonic at 340M (Appendix~\\ref{app:scale_convergence}). On LAMBADA, aggregate $\\sigma$ decreases gradually ($0.024 \\to 0.005$) while per-example Jaccard saturates at 4\\% attention (${\\sim}0.09$)---the two quantities are decoupled. The experiments that follow begin with convergence (\\S\\ref{ssec:task_convergence}) because it establishes the aggregate backdrop against which per-example divergence (\\S\\ref{ssec:per_example}) and decoupling (\\S\\ref{ssec:decoupling}) are measured.\n183\tsections/introduction.tex-\n184\tsections/introduction.tex-Our contributions are as follows:\n185\t--\n186\tsections/method.tex-\n187\tsections/method.tex-\\begin{itemize}\n188\tsections/method.tex:    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n189\tsections/method.tex-    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n190\tsections/method.tex-    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) serves as a supplementary reasoning benchmark; its small sample size renders $\\alpha$ estimation unreliable (CI width 0.13--0.18; Appendix~\\ref{app:subsample_sensitivity}).\n191\t=== peng2024eagle ===\n192\tsections/introduction.tex-When attention layers are interleaved into recurrent architectures, they help and hurt almost entirely different examples---pairwise Jaccard overlap among three hybrid designs is at most 0.10, approximately twice the independence baseline. This per-example divergence is invisible in aggregate metrics: on LAMBADA, cross-architecture standard deviation drops 79\\% as attention increases (Bonferroni-adjusted $p = .100$; the BCa 95\\% CI excludes zero), but each architecture reaches similar accuracy by rescuing and disrupting different inputs. Practitioners increasingly choose between recurrent backbones based on aggregate benchmark scores; architectures that score identically in aggregate may thus carry hidden consequences for deployment reliability and ensemble construction.\n193\tsections/introduction.tex-\n194\tsections/introduction.tex:This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n195\tsections/introduction.tex-\n196\tsections/introduction.tex-Most evaluations of hybrid architectures compare aggregate benchmark scores and report that a given attention ratio achieves a certain accuracy averaged across tasks or averaged across architectures. This practice can mask substantial per-example behavioral diversity. \\citet{marx2020predictive} formalized this risk as predictive multiplicity: a prediction problem admits competing models with conflicting predictions on individual inputs. \\citet{damour2022underspecification} documented a related phenomenon, underspecification, showing that models trained from the same pipeline with different random seeds can disagree on individual predictions despite equivalent aggregate performance. \\citet{mccoy2020berts} demonstrated a concrete NLP instance: BERT models trained from different random seeds diverge on specific linguistic constructions. These studies examine variation from initialization or training noise within a single architecture. Whether predictive multiplicity extends to hybrid recurrent architectures, where the source of variation is the recurrent backbone itself, remains unquantified. The question matters because practitioners increasingly choose between recurrent backbones based on aggregate benchmarks; if architectures that score identically in aggregate behave differently on individual inputs, such choices carry hidden consequences for deployment reliability and ensemble construction.\n197\t--\n198\tsections/related_work.tex-\n199\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n200\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n201\tsections/related_work.tex-\n202\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n203\t=== qin2024hgrn2 ===\n204\tsections/method.tex-\\subsection{Model Zoo}\\label{ssec:model_zoo}\n205\tsections/method.tex-\n206\tsections/method.tex:We use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n207\tsections/method.tex-\n208\tsections/method.tex-\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n209\t--\n210\tsections/related_work.tex-\n211\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n212\tsections/related_work.tex:Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\n213\tsections/related_work.tex-\n214\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n215\t=== ren2024samba ===\n216\tsections/related_work.tex-\n217\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n218\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n219\tsections/related_work.tex-\n220\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n221\t=== sellam2022multiberts ===\n222\tsections/related_work.tex-\n223\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n224\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n225\t=== sun2023retnet ===\n226\tsections/method.tex-\\subsection{Model Zoo}\\label{ssec:model_zoo}\n227\tsections/method.tex-\n228\tsections/method.tex:We use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n229\tsections/method.tex-\n230\tsections/method.tex-\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n231\t--\n232\tsections/related_work.tex-\n233\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n234\tsections/related_work.tex:Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\n235\tsections/related_work.tex-\n236\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n237\t=== waleffe2024empirical ===\n238\tsections/related_work.tex-\n239\tsections/related_work.tex-\\paragraph{Hybrid Recurrent Architectures.}\n240\tsections/related_work.tex:The design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n241\tsections/related_work.tex-\n242\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n243\t=== watson2023predictive ===\n244\tsections/related_work.tex-\n245\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n246\tsections/related_work.tex:\\citet{damour2022underspecification} formalized underspecification: equivalent aggregate performance can mask per-prediction divergence. Concrete NLP instances include seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts} and the four-phase convergence pattern of autoregressive LMs \\citep{fehlauer2025convergence}. \\citet{marx2020predictive} introduced predictive multiplicity as a complementary lens, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic classification \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, reconciliation \\citep{du2025reconciling,haghighat2026resolving}, and cross-model disagreement as a correctness signal \\citep{gorbett2026crossmodel}. These studies attribute divergence to initialization noise or the near-optimal set within a single architecture. We show that architectural variation in hybrid recurrent models produces analogous per-example multiplicity under matched training conditions.\n247\t=== yang2024gateddeltanet ===\n248\tsections/method.tex-\\subsection{Model Zoo}\\label{ssec:model_zoo}\n249\tsections/method.tex-\n250\tsections/method.tex:We use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n251\tsections/method.tex-\n252\tsections/method.tex-\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n253\t--\n254\tsections/related_work.tex-\n255\tsections/related_work.tex-\\paragraph{Linear Recurrent Models.}\n256\tsections/related_work.tex:Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\n257\tsections/related_work.tex-\n258\tsections/related_work.tex-\\paragraph{Underspecification and Predictive Multiplicity.}\n259\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47d4ebea-3a48-4c06-8a6d-af5fe97c7af8",
+            "isSidechain": true,
+            "promptId": "aeac6180-ae00-4058-bb9d-97b85fb92ee8",
+            "agentId": "a5d47b67d0fecf656",
+            "type": "user",
+            "uuid": "72293b7e-7f81-4441-ae6e-50545ab38938",
+            "sourceToolAssistantUUID": "47d4ebea-3a48-4c06-8a6d-af5fe97c7af8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T17:56:35.266Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a detailed summary of each key:\n\n## Summary: Orphan Bib Key Status\n\nBased on a thorough search of all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/`, **ALL 30 reported \"orphan\" bib keys are ACTUALLY CITED** somewhere in the paper. The consistency checker's report was incorrect.\n\nHere is the detailed breakdown:\n\n1. **ali2025hidden**: CITED in `sections/appendix.tex` and `sections/related_work.tex` (via \\citet and \\citep)\n2. **arora2024based**: CITED in `sections/appendix.tex` and `sections/experiments.tex` (via \\citep)\n3. **arora2024zoology**: CITED in `sections/appendix.tex` and `sections/experiments.tex` (via \\citep)\n4. **basu2026routing**: CITED in `sections/related_work.tex` (via \\citep)\n5. **botev2024recurrentgemma**: CITED in `sections/introduction.tex` and `sections/related_work.tex` (via \\citep)\n6. **clark2018arc**: CITED in `sections/method.tex` (via \\citep)\n7. **damour2022underspecification**: CITED in `sections/introduction.tex`, `sections/experiments.tex`, and `sections/related_work.tex` (via \\citet and \\citep)\n8. **dao2024mamba2**: CITED in `sections/related_work.tex` (via \\citep)\n9. **de2024griffin**: CITED in `sections/introduction.tex` and `sections/related_work.tex` (via \\citep)\n10. **dong2024hymba**: CITED in `sections/related_work.tex` (via \\citep)\n11. **du2025reconciling**: CITED in `sections/related_work.tex` (via \\citep)\n12. **fehlauer2025convergence**: CITED in `sections/related_work.tex` (via \\citep)\n13. **gorbett2026crossmodel**: CITED in `sections/experiments.tex` and `sections/related_work.tex` (via \\citep)\n14. **gu2022s4**: CITED in `sections/related_work.tex` (via \\citep)\n15. **gu2024mamba**: CITED in `sections/related_work.tex` (via \\citep)\n16. **haghighat2026resolving**: CITED in `sections/related_work.tex` (via \\citep)\n17. **hsu2022rashomon**: CITED in `sections/related_work.tex` (via \\citep)\n18. **katharopoulos2020transformers**: CITED in `sections/related_work.tex` (via \\citep)\n19. **lahoti2026mamba3**: CITED in `sections/related_work.tex` (via \\citep)\n20. **lieber2024jamba**: CITED in `sections/introduction.tex` and `sections/related_work.tex` (via \\citep)\n21. **mccoy2020berts**: CITED in `sections/introduction.tex`, `sections/experiments.tex`, and `sections/related_work.tex` (via \\citet and \\citep)\n22. **paperno2016lambada**: CITED in `sections/introduction.tex` and `sections/method.tex` (via \\citep)\n23. **peng2024eagle**: CITED in `sections/introduction.tex` and `sections/related_work.tex` (via \\citep)\n24. **qin2024hgrn2**: CITED in `sections/method.tex` and `sections/related_work.tex` (via \\citep)\n25. **ren2024samba**: CITED in `sections/related_work.tex` (via \\citep)\n26. **sellam2022multiberts**: CITED in `sections/related_work.tex` (via \\citep)\n27. **sun2023retnet**: CITED in `sections/method.tex` and `sections/related_work.tex` (via \\citep)\n28. **waleffe2024empirical**: CITED in `sections/related_work.tex` (via \\citep)\n29. **watson2023predictive**: CITED in `sections/related_work.tex` (via \\citep)\n30. **yang2024gateddeltanet**: CITED in `sections/method.tex` and `sections/related_work.tex` (via \\citep)\n\nThe keys appear primarily in three sections:\n- **sections/related_work.tex**: Contains most of the citations (dense cluster in the \"Hybrid Recurrent Architectures\" and \"Underspecification and Predictive Multiplicity\" paragraphs)\n- **sections/introduction.tex**: Contains citations for hybrid architecture papers and predictive multiplicity references\n- **sections/method.tex**: Contains citations for model zoo and benchmark papers\n- **sections/experiments.tex**: Contains citations supporting experimental findings\n- **sections/appendix.tex**: Contains citations supporting detailed analysis\n\nThis is a false positive from the consistency checker. None of these keys are actually orphaned."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72293b7e-7f81-4441-ae6e-50545ab38938",
+            "isSidechain": true,
+            "agentId": "a5d47b67d0fecf656",
+            "requestId": "req_011CbG9PGoc4q8w8qj1Brf5y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0840af95-001a-459a-b372-c67ef4d001ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "765154e5-66a9-4450-b7d7-710330a17dfd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HSu1JRBMCXJ5zu5axAGw6e",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 19513,
+                "cache_read_input_tokens": 49471,
+                "output_tokens": 1268,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19513
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1268,
+                    "cache_read_input_tokens": 49471,
+                    "cache_creation_input_tokens": 19513,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 19513,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-which-of-these-30-orphan-bib-keys-are-actually-cited-somewhere.md"
+}

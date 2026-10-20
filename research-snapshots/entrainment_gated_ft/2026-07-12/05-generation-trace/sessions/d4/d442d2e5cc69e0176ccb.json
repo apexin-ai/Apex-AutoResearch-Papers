@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "id": "d442d2e5cc69e0176ccb",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: ratekv ## 运行环境 - 服务器名: westd-37397 - SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 accou",
+  "task_key": "5d2cd154-c351-4c43-885a-1d72b4211982",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/5d2cd154-c351-4c43-885a-1d72b4211982.jsonl",
+    "occurrence": 1,
+    "bytes": 2544967,
+    "sha256": "c5636def6045f2f8f594c190c42e25338fcd17f5ac072fd76ced4993e69a92c7"
+  },
+  "statistics": {
+    "messages": 1548,
+    "user_turns": 3,
+    "tool_calls": 580,
+    "roles": {
+      "record": 223,
+      "user": 3,
+      "assistant": 161,
+      "tool_call": 580,
+      "tool_result": 580,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1091,
+      "chunks": [
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0007.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0007.json",
+          "message_count": 167
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0009.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "d442d2e5cc69e0176ccb-part-0009.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-ratekv-westd-37397-ssh-root-ssh-execute-submit-training-job-ac-copy-41.md"
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "c50b2eab7c462f196054",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: entrainment_gated_ft ## 运行环境 - 服务器名: westb-48145 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "435e9ce1-bad2-4fb1-ba77-8637ee8db7a5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/435e9ce1-bad2-4fb1-ba77-8637ee8db7a5.jsonl",
+    "occurrence": 1,
+    "bytes": 742014,
+    "sha256": "832e966a74a2ef6da7bb691deb662f5af7d6d3063f2c3c57f899306c057f24c5"
+  },
+  "statistics": {
+    "messages": 380,
+    "user_turns": 1,
+    "tool_calls": 125,
+    "roles": {
+      "record": 70,
+      "user": 1,
+      "assistant": 59,
+      "tool_call": 125,
+      "tool_result": 125
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c50b2eab7c462f196054-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 378,
+      "chunks": [
+        {
+          "path": "c50b2eab7c462f196054-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "c50b2eab7c462f196054-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c50b2eab7c462f196054-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-entrainment-gated-ft-westb-48145-ssh-root-ssh-execute-submit-t-copy-138.md"
+}

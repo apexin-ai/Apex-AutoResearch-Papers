@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "id": "43c414c7c7f72e4f7b27",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Reviewer 1 审稿结果]: 已清理完毕。审稿完成。",
+  "task_key": "cc57662b-ae44-4200-bf83-8a538bcda4f9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/cc57662b-ae44-4200-bf83-8a538bcda4f9.jsonl",
+    "occurrence": 1,
+    "bytes": 606767,
+    "sha256": "c6abe0140eab0e17fb87d35bbbada4fd3408cf21d5228b42be73d4b4289d52ce"
+  },
+  "statistics": {
+    "messages": 152,
+    "user_turns": 10,
+    "tool_calls": 32,
+    "roles": {
+      "record": 45,
+      "user": 10,
+      "assistant": 33,
+      "tool_call": 32,
+      "tool_result": 32
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 90
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0001.json",
+          "message_count": 5
+        },
+        {
+          "path": "43c414c7c7f72e4f7b27-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-reviewer-1.md"
+}

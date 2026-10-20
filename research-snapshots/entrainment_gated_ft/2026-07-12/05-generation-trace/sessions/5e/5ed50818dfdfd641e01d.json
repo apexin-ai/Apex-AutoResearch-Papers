@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5ed50818dfdfd641e01d",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_graph_jailbreak_detect ## 运行环境 - 服务器名: bjb2-32660 - SSH 账户: root（调用 ssh_execute / su",
+  "task_key": "f7687410-bc31-42c6-9b34-9d7a1eaef1af",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/f7687410-bc31-42c6-9b34-9d7a1eaef1af.jsonl",
+    "occurrence": 1,
+    "bytes": 654234,
+    "sha256": "e672b3ebd7ca945923c385d91b6591c606c3a8b41725261043a72faf7cdc4c84"
+  },
+  "statistics": {
+    "messages": 285,
+    "user_turns": 1,
+    "tool_calls": 83,
+    "roles": {
+      "record": 52,
+      "user": 1,
+      "assistant": 66,
+      "tool_call": 83,
+      "tool_result": 83
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5ed50818dfdfd641e01d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 283,
+      "chunks": [
+        {
+          "path": "5ed50818dfdfd641e01d-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "5ed50818dfdfd641e01d-part-0002.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-graph-jailbreak-detect-bjb2-32660-ssh-root-ssh-exe-copy-6.md"
+}

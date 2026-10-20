@@ -1,0 +1,792 @@
+{
+  "schema_version": "1.0",
+  "id": "dca85a0ec8575876ca50",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check 5 compounding sweep scripts in /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/ for corr",
+  "task_key": "agent-a5d42d85a37f4f722",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a5d42d85a37f4f722.jsonl",
+    "occurrence": 1,
+    "bytes": 69903,
+    "sha256": "eb3da5f7712f917bed0300ccb2d489f6fbe3dd56c38e853a378a697213fa7473"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:14:29.400Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check 5 compounding sweep scripts in /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/ for correct parameters. For each of these files, find the lines containing: model path, k_values/k_list, profile path, and the attention patching import/function used:\n\n1. run_yi_compounding_sweep.py\n2. run_gemma2_compounding_sweep.py\n3. run_codellama_compounding_sweep.py\n4. run_phi3_compounding_sweep.py\n5. run_internlm2_compounding_sweep.py\n\nReport: model path, k values list, profile file path, and attention patching method for each script. Be concise."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3d869325-27a7-4061-a19a-025b5eb7af5b",
+            "agentId": "a5d42d85a37f4f722",
+            "type": "user",
+            "uuid": "ab7c1ecd-129a-4a25-8a7c-5b1662378c4b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T03:14:30.844Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for these 5 compounding sweep scripts and extract the required parameters for each."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab7c1ecd-129a-4a25-8a7c-5b1662378c4b",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X5yTsF6F766er7TMXk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "29163274-2c1d-4992-ad58-0a872a428aa8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Eq43fBpQawQByhz4QY6ax",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20779,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20779,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T03:14:30.985Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N2HBkUa89G9wsZTnbtt48g",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_*_compounding_sweep.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29163274-2c1d-4992-ad58-0a872a428aa8",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X5yTsF6F766er7TMXk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "21f3469a-986f-43ff-866b-5648c8657872",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Eq43fBpQawQByhz4QY6ax",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20779,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 108,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20779
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 108,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20779,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20779,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T03:14:31.013Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N2HBkUa89G9wsZTnbtt48g",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_medium_compounding_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_yi_compounding_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_codellama_compounding_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_compounding_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_gemma2_compounding_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_internlm2_compounding_sweep.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21f3469a-986f-43ff-866b-5648c8657872",
+            "isSidechain": true,
+            "promptId": "3d869325-27a7-4061-a19a-025b5eb7af5b",
+            "agentId": "a5d42d85a37f4f722",
+            "type": "user",
+            "uuid": "f1631482-7ef2-40c5-8192-2516857930ed",
+            "sourceToolAssistantUUID": "21f3469a-986f-43ff-866b-5648c8657872",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T03:14:32.298Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read each of the 5 scripts to extract the required parameters:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1631482-7ef2-40c5-8192-2516857930ed",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X66FQ8cFBP5frYii2y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c65cadd5-eb96-407b-9e4b-e71d1f482eee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JDsWyvM3p4ktauuWFhGjm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 20779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1186,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T03:14:33.399Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0112dybMpHKPD9wFeeJ9EsC3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_yi_compounding_sweep.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c65cadd5-eb96-407b-9e4b-e71d1f482eee",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X66FQ8cFBP5frYii2y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dbddb966-4719-4a5a-a47b-149261956426",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JDsWyvM3p4ktauuWFhGjm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 20779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1186,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T03:14:33.406Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0112dybMpHKPD9wFeeJ9EsC3",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Yi-1.5-9B compounding sweep — measure super-additivity of 2-bit deltas.\n2\t\n3\tArchitecture: 32 layers x 8 KV heads (GQA 4:1), 256 total KV heads.\n4\tProgressively apply 2-bit quantization to increasing numbers of heads\n5\t(sorted by individual delta, most sensitive first) and measure joint PPL.\n6\t\"\"\"\n7\timport os\n8\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n9\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n10\t\n11\timport argparse\n12\timport json\n13\timport math\n14\timport time\n15\timport torch\n16\timport torch.nn.functional as F\n17\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n18\tfrom eval_ppl import patch_attention, restore_attention\n19\t\n20\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\"\n21\tPROFILE_PATH = \"yi15_hires_bf16_2bitonly_profiles.json\"\n22\tOUTPUT_PATH = \"artifacts/yi_compounding_sweep.json\"\n23\t\n24\t\n25\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n26\t    with open(path) as f:\n27\t        samples = json.load(f)\n28\t    all_ids = []\n29\t    for s in samples:\n30\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n31\t        if len(tokens) >= seq_len:\n32\t            all_ids.append(tokens[:seq_len])\n33\t        if len(all_ids) >= num_samples:\n34\t            break\n35\t    if not all_ids:\n36\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n37\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n38\t\n39\t\n40\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n41\t    total_loss = 0.0\n42\t    total_tokens = 0\n43\t    n = input_ids.shape[0]\n44\t    with torch.no_grad():\n45\t        for start in range(0, n, batch_size):\n46\t            end = min(start + batch_size, n)\n47\t            batch = input_ids[start:end]\n48\t            outputs = model(\n49\t                batch, use_cache=False,\n50\t                cache_position=torch.arange(seq_len, device=device)\n51\t            )\n52\t            shift_logits = outputs.logits[:, :-1].contiguous()\n53\t            shift_labels = batch[:, 1:].contiguous()\n54\t            loss = F.cross_entropy(\n55\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n56\t                shift_labels.view(-1),\n57\t                reduction=\"sum\"\n58\t            )\n59\t            total_loss += loss.item()\n60\t            total_tokens += shift_labels.numel()\n61\t            del outputs, shift_logits, loss\n62\t            torch.cuda.empty_cache()\n63\t    return math.exp(total_loss / total_tokens)\n64\t\n65\t\n66\tdef main():\n67\t    parser = argparse.ArgumentParser(description=\"Yi-1.5-9B compounding sweep\")\n68\t    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n69\t    parser.add_argument(\"--num_samples\", type=int, default=64)\n70\t    parser.add_argument(\"--seq_len\", type=int, default=2048)\n71\t    parser.add_argument(\"--batch_size\", type=int, default=2)\n72\t    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n73\t    args = parser.parse_args()\n74\t\n75\t    device = args.gpu\n76\t    k_values = [0, 2, 4, 8, 16, 32, 64, 128, 256]\n77\t    t0 = time.time()\n78\t\n79\t    print(\"Loading profiles...\")\n80\t    with open(PROFILE_PATH) as f:\n81\t        raw = json.load(f)\n82\t    profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n83\t\n84\t    head_deltas = []\n85\t    for l_str in sorted(profiles.keys(), key=int):\n86\t        for h_str in sorted(profiles[l_str].keys(), key=int):\n87\t            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n88\t            head_deltas.append({\n89\t                \"layer\": int(l_str),\n90\t                \"head\": int(h_str),\n91\t                \"key\": f\"{l_str},{h_str}\",\n92\t                \"delta_2bit\": d2,\n93\t            })\n94\t    head_deltas.sort(key=lambda x: x[\"delta_2bit\"], reverse=True)\n95\t\n96\t    total_kv_heads = len(head_deltas)\n97\t    k_values = [k for k in k_values if k <= total_kv_heads]\n98\t    print(f\"Total KV heads: {total_kv_heads}\")\n99\t    print(f\"Sweep k values: {k_values}\")\n100\t    print(f\"Top-5: {[(h['key'], round(h['delta_2bit'], 4)) for h in head_deltas[:5]]}\")\n101\t\n102\t    print(f\"\\nLoading {MODEL_PATH} in bf16 to {device}...\")\n103\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n104\t    model = AutoModelForCausalLM.from_pretrained(\n105\t        MODEL_PATH, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n106\t    )\n107\t    model = model.to(device)\n108\t    model.eval()\n109\t    print(f\"GPU mem: {torch.cuda.memory_allocated(device) / 1e9:.1f}GB\")\n110\t\n111\t    print(f\"Loading calibration data ({args.num_samples} x {args.seq_len})...\")\n112\t    input_ids = load_calibration_data(\n113\t        tokenizer, args.calibration_data,\n114\t        args.num_samples, args.seq_len, device)\n115\t    print(f\"Loaded {input_ids.shape[0]} sequences\")\n116\t\n117\t    print(\"\\nMeasuring baseline PPL...\")\n118\t    baseline_ppl = compute_ppl_batched(\n119\t        model, input_ids, args.seq_len, args.batch_size, device)\n120\t    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n121\t\n122\t    results = []\n123\t    for k in k_values:\n124\t        print(f\"\\n--- k={k} ---\")\n125\t        if k == 0:\n126\t            print(f\"  baseline (no 2-bit heads): {baseline_ppl:.4f}\")\n127\t            results.append({\n128\t                \"k\": 0,\n129\t                \"heads\": [],\n130\t                \"sum_individual_delta\": 0.0,\n131\t                \"joint_ppl\": round(baseline_ppl, 4),\n132\t                \"joint_delta\": 0.0,\n133\t                \"predicted_ppl\": round(baseline_ppl, 4),\n134\t                \"super_additive_ratio\": 1.0,\n135\t            })\n136\t            continue\n137\t\n138\t        top_k = head_deltas[:k]\n139\t        allocation = {h[\"key\"]: [\"quant\", 2] for h in top_k}\n140\t        sum_individual = sum(h[\"delta_2bit\"] for h in top_k)\n141\t\n142\t        orig_fwds = patch_attention(model, allocation)\n143\t        joint_ppl = compute_ppl_batched(\n144\t            model, input_ids, args.seq_len, args.batch_size, device)\n145\t        restore_attention(model, orig_fwds)\n146\t\n147\t        joint_delta = joint_ppl - baseline_ppl\n148\t        predicted_ppl = baseline_ppl + sum_individual\n149\t        ratio = joint_delta / sum_individual if sum_individual > 0 else float('nan')\n150\t\n151\t        print(f\"  sum_indiv={sum_individual:.4f}  joint={joint_ppl:.4f}  \"\n152\t              f\"pred={predicted_ppl:.4f}  ratio={ratio:.4f}\")\n153\t\n154\t        results.append({\n155\t            \"k\": k,\n156\t            \"heads\": [h[\"key\"] for h in top_k],\n157\t            \"sum_individual_delta\": round(sum_individual, 6),\n158\t            \"joint_ppl\": round(joint_ppl, 4),\n159\t            \"joint_delta\": round(joint_delta, 6),\n160\t            \"predicted_ppl\": round(predicted_ppl, 4),\n161\t            \"super_additive_ratio\": round(ratio, 4),\n162\t        })\n163\t\n164\t    elapsed = time.time() - t0\n165\t\n166\t    output = {\n167\t        \"experiment\": \"yi_compounding_sweep\",\n168\t        \"model\": MODEL_PATH,\n169\t        \"model_name\": \"Yi-1.5-9B\",\n170\t        \"baseline_ppl_measured\": round(baseline_ppl, 4),\n171\t        \"calibration\": {\n172\t            \"path\": args.calibration_data,\n173\t            \"num_samples\": args.num_samples,\n174\t            \"seq_len\": args.seq_len,\n175\t        },\n176\t        \"total_kv_heads\": total_kv_heads,\n177\t        \"results\": results,\n178\t        \"top_heads\": [\n179\t            {\"key\": h[\"key\"], \"delta_2bit\": round(h[\"delta_2bit\"], 6)}\n180\t            for h in head_deltas[:10]\n181\t        ],\n182\t        \"timing_seconds\": round(elapsed, 1),\n183\t    }\n184\t\n185\t    os.makedirs(\"artifacts\", exist_ok=True)\n186\t    with open(OUTPUT_PATH, \"w\") as f:\n187\t        json.dump(output, f, indent=2)\n188\t    print(f\"\\nJSON saved to {OUTPUT_PATH}\")\n189\t\n190\t    print(f\"\\n{'='*70}\")\n191\t    print(\"COMPOUNDING SWEEP — Yi-1.5-9B (256 KV heads)\")\n192\t    print(f\"{'='*70}\")\n193\t    print(f\"{'k':>5}  {'sum_indiv':>10}  {'joint_ppl':>10}  {'pred_ppl':>10}  {'ratio':>8}\")\n194\t    print(\"-\" * 70)\n195\t    for r in results:\n196\t        print(f\"{r['k']:>5}  {r['sum_individual_delta']:>10.4f}  \"\n197\t              f\"{r['joint_ppl']:>10.4f}  {r['predicted_ppl']:>10.4f}  \"\n198\t              f\"{r['super_additive_ratio']:>8.4f}\")\n199\t    print(f\"\\nTotal time: {elapsed/60:.1f}min\")\n200\t\n201\t\n202\tif __name__ == \"__main__\":\n203\t    main()\n204\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbddb966-4719-4a5a-a47b-149261956426",
+            "isSidechain": true,
+            "promptId": "3d869325-27a7-4061-a19a-025b5eb7af5b",
+            "agentId": "a5d42d85a37f4f722",
+            "type": "user",
+            "uuid": "60215e56-4943-41c6-98b3-5dc2536241b0",
+            "sourceToolAssistantUUID": "dbddb966-4719-4a5a-a47b-149261956426",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T03:14:33.524Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0178nASgkeh7cLuvQjVw3yB9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_gemma2_compounding_sweep.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60215e56-4943-41c6-98b3-5dc2536241b0",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X66FQ8cFBP5frYii2y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d71a0510-589b-496b-bcd5-2761a18127b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JDsWyvM3p4ktauuWFhGjm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 20779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1186,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T03:14:33.529Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DGAGPynHqUCkZTr2vLxCyN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_codellama_compounding_sweep.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d71a0510-589b-496b-bcd5-2761a18127b5",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X66FQ8cFBP5frYii2y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "db7e157d-5f99-4708-b8e4-4bc756fca4a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JDsWyvM3p4ktauuWFhGjm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 20779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1186,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T03:14:33.534Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RzQUEzNw11wFSUTEUw8HsD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_phi3_compounding_sweep.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db7e157d-5f99-4708-b8e4-4bc756fca4a5",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X66FQ8cFBP5frYii2y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "84906634-7811-485f-82cb-8722198da4e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JDsWyvM3p4ktauuWFhGjm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 20779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1186,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T03:14:33.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0178nASgkeh7cLuvQjVw3yB9",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Gemma-2-9B compounding sweep — measure super-additivity of 2-bit deltas.\n2\t\n3\tArchitecture: 42 layers x 8 KV heads (GQA), 336 total KV heads.\n4\tProgressively apply 2-bit quantization to increasing numbers of heads\n5\t(sorted by individual delta, most sensitive first) and measure joint PPL.\n6\t\n7\tGemma-2 specifics:\n8\t  - Uses patch_attention_gemma2 (handles head_dim=256, attn_logit_softcapping,\n9\t    sliding_window via attention_mask).\n10\t  - Calibration sequences prepend BOS (Gemma-2's tokenizer expects BOS as first token).\n11\t\"\"\"\n12\timport os\n13\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n14\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n15\t\n16\timport argparse\n17\timport json\n18\timport math\n19\timport time\n20\timport torch\n21\timport torch.nn.functional as F\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\tfrom run_gemma2_full_pipeline import patch_attention_gemma2, restore_attention\n24\t\n25\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\"\n26\tPROFILE_PATH = \"gemma2_hires_bf16_2bitonly_profiles.json\"\n27\tOUTPUT_PATH = \"artifacts/gemma2_compounding_sweep.json\"\n28\t\n29\t\n30\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n31\t    \"\"\"Load calibration with BOS prepended (Gemma-2 requires BOS).\"\"\"\n32\t    with open(path) as f:\n33\t        samples = json.load(f)\n34\t    bos_id = tokenizer.bos_token_id\n35\t    if bos_id is None:\n36\t        raise RuntimeError(\"Gemma-2 tokenizer missing BOS token id\")\n37\t    all_ids = []\n38\t    for s in samples:\n39\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n40\t        if len(tokens) >= seq_len - 1:\n41\t            all_ids.append([bos_id] + tokens[:seq_len - 1])\n42\t        if len(all_ids) >= num_samples:\n43\t            break\n44\t    if not all_ids:\n45\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len - 1} tokens\")\n46\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n47\t\n48\t\n49\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n50\t    total_loss = 0.0\n51\t    total_tokens = 0\n52\t    n = input_ids.shape[0]\n53\t    with torch.no_grad():\n54\t        for start in range(0, n, batch_size):\n55\t            end = min(start + batch_size, n)\n56\t            batch = input_ids[start:end]\n57\t            outputs = model(\n58\t                batch, use_cache=False,\n59\t                cache_position=torch.arange(seq_len, device=device)\n60\t            )\n61\t            shift_logits = outputs.logits[:, :-1].contiguous()\n62\t            shift_labels = batch[:, 1:].contiguous()\n63\t            loss = F.cross_entropy(\n64\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n65\t                shift_labels.view(-1),\n66\t                reduction=\"sum\"\n67\t            )\n68\t            total_loss += loss.item()\n69\t            total_tokens += shift_labels.numel()\n70\t            del outputs, shift_logits, loss\n71\t            torch.cuda.empty_cache()\n72\t    return math.exp(total_loss / total_tokens)\n73\t\n74\t\n75\tdef main():\n76\t    parser = argparse.ArgumentParser(description=\"Gemma-2-9B compounding sweep\")\n77\t    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n78\t    parser.add_argument(\"--num_samples\", type=int, default=64)\n79\t    parser.add_argument(\"--seq_len\", type=int, default=2048)\n80\t    parser.add_argument(\"--batch_size\", type=int, default=2)\n81\t    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n82\t    args = parser.parse_args()\n83\t\n84\t    device = args.gpu\n85\t    k_values = [0, 2, 4, 8, 16, 32, 64, 128, 256]\n86\t    t0 = time.time()\n87\t\n88\t    print(\"Loading profiles...\")\n89\t    with open(PROFILE_PATH) as f:\n90\t        raw = json.load(f)\n91\t    profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n92\t\n93\t    head_deltas = []\n94\t    for l_str in sorted(profiles.keys(), key=int):\n95\t        for h_str in sorted(profiles[l_str].keys(), key=int):\n96\t            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n97\t            head_deltas.append({\n98\t                \"layer\": int(l_str),\n99\t                \"head\": int(h_str),\n100\t                \"key\": f\"{l_str},{h_str}\",\n101\t                \"delta_2bit\": d2,\n102\t            })\n103\t    head_deltas.sort(key=lambda x: x[\"delta_2bit\"], reverse=True)\n104\t\n105\t    total_kv_heads = len(head_deltas)\n106\t    k_values = [k for k in k_values if k <= total_kv_heads]\n107\t    print(f\"Total KV heads: {total_kv_heads}\")\n108\t    print(f\"Sweep k values: {k_values}\")\n109\t    print(f\"Top-5: {[(h['key'], round(h['delta_2bit'], 4)) for h in head_deltas[:5]]}\")\n110\t\n111\t    print(f\"\\nLoading {MODEL_PATH} in bf16 to {device}...\")\n112\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n113\t    model = AutoModelForCausalLM.from_pretrained(\n114\t        MODEL_PATH, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n115\t    )\n116\t    model = model.to(device)\n117\t    model.eval()\n118\t    print(f\"GPU mem: {torch.cuda.memory_allocated(device) / 1e9:.1f}GB\")\n119\t\n120\t    print(f\"Loading calibration data ({args.num_samples} x {args.seq_len})...\")\n121\t    input_ids = load_calibration_data(\n122\t        tokenizer, args.calibration_data,\n123\t        args.num_samples, args.seq_len, device)\n124\t    print(f\"Loaded {input_ids.shape[0]} sequences\")\n125\t\n126\t    print(\"\\nMeasuring baseline PPL...\")\n127\t    baseline_ppl = compute_ppl_batched(\n128\t        model, input_ids, args.seq_len, args.batch_size, device)\n129\t    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n130\t\n131\t    results = []\n132\t    for k in k_values:\n133\t        print(f\"\\n--- k={k} ---\")\n134\t        if k == 0:\n135\t            print(f\"  baseline (no 2-bit heads): {baseline_ppl:.4f}\")\n136\t            results.append({\n137\t                \"k\": 0,\n138\t                \"heads\": [],\n139\t                \"sum_individual_delta\": 0.0,\n140\t                \"joint_ppl\": round(baseline_ppl, 4),\n141\t                \"joint_delta\": 0.0,\n142\t                \"predicted_ppl\": round(baseline_ppl, 4),\n143\t                \"super_additive_ratio\": 1.0,\n144\t            })\n145\t            continue\n146\t\n147\t        top_k = head_deltas[:k]\n148\t        allocation = {h[\"key\"]: [\"quant\", 2] for h in top_k}\n149\t        sum_individual = sum(h[\"delta_2bit\"] for h in top_k)\n150\t\n151\t        orig_fwds = patch_attention_gemma2(model, allocation)\n152\t        joint_ppl = compute_ppl_batched(\n153\t            model, input_ids, args.seq_len, args.batch_size, device)\n154\t        restore_attention(model, orig_fwds)\n155\t\n156\t        joint_delta = joint_ppl - baseline_ppl\n157\t        predicted_ppl = baseline_ppl + sum_individual\n158\t        ratio = joint_delta / sum_individual if sum_individual > 0 else float('nan')\n159\t\n160\t        print(f\"  sum_indiv={sum_individual:.4f}  joint={joint_ppl:.4f}  \"\n161\t              f\"pred={predicted_ppl:.4f}  ratio={ratio:.4f}\")\n162\t\n163\t        results.append({\n164\t            \"k\": k,\n165\t            \"heads\": [h[\"key\"] for h in top_k],\n166\t            \"sum_individual_delta\": round(sum_individual, 6),\n167\t            \"joint_ppl\": round(joint_ppl, 4),\n168\t            \"joint_delta\": round(joint_delta, 6),\n169\t            \"predicted_ppl\": round(predicted_ppl, 4),\n170\t            \"super_additive_ratio\": round(ratio, 4),\n171\t        })\n172\t\n173\t    elapsed = time.time() - t0\n174\t\n175\t    output = {\n176\t        \"experiment\": \"gemma2_compounding_sweep\",\n177\t        \"model\": MODEL_PATH,\n178\t        \"model_name\": \"Gemma-2-9B\",\n179\t        \"baseline_ppl_measured\": round(baseline_ppl, 4),\n180\t        \"calibration\": {\n181\t            \"path\": args.calibration_data,\n182\t            \"num_samples\": args.num_samples,\n183\t            \"seq_len\": args.seq_len,\n184\t        },\n185\t        \"total_kv_heads\": total_kv_heads,\n186\t        \"results\": results,\n187\t        \"top_heads\": [\n188\t            {\"key\": h[\"key\"], \"delta_2bit\": round(h[\"delta_2bit\"], 6)}\n189\t            for h in head_deltas[:10]\n190\t        ],\n191\t        \"timing_seconds\": round(elapsed, 1),\n192\t    }\n193\t\n194\t    os.makedirs(\"artifacts\", exist_ok=True)\n195\t    with open(OUTPUT_PATH, \"w\") as f:\n196\t        json.dump(output, f, indent=2)\n197\t    print(f\"\\nJSON saved to {OUTPUT_PATH}\")\n198\t\n199\t    print(f\"\\n{'='*70}\")\n200\t    print(\"COMPOUNDING SWEEP — Gemma-2-9B (336 KV heads)\")\n201\t    print(f\"{'='*70}\")\n202\t    print(f\"{'k':>5}  {'sum_indiv':>10}  {'joint_ppl':>10}  {'pred_ppl':>10}  {'ratio':>8}\")\n203\t    print(\"-\" * 70)\n204\t    for r in results:\n205\t        print(f\"{r['k']:>5}  {r['sum_individual_delta']:>10.4f}  \"\n206\t              f\"{r['joint_ppl']:>10.4f}  {r['predicted_ppl']:>10.4f}  \"\n207\t              f\"{r['super_additive_ratio']:>8.4f}\")\n208\t    print(f\"\\nTotal time: {elapsed/60:.1f}min\")\n209\t\n210\t\n211\tif __name__ == \"__main__\":\n212\t    main()\n213\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d71a0510-589b-496b-bcd5-2761a18127b5",
+            "isSidechain": true,
+            "promptId": "3d869325-27a7-4061-a19a-025b5eb7af5b",
+            "agentId": "a5d42d85a37f4f722",
+            "type": "user",
+            "uuid": "67f3e3ee-926f-4e09-859c-06966d65caa1",
+            "sourceToolAssistantUUID": "d71a0510-589b-496b-bcd5-2761a18127b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T03:14:33.543Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DGAGPynHqUCkZTr2vLxCyN",
+              "type": "tool_result",
+              "content": "1\t\"\"\"CodeLlama-7B compounding sweep — measure super-additivity of 2-bit deltas.\n2\t\n3\tArchitecture: 32 layers x 32 KV heads (MHA, no GQA), 1024 total KV heads.\n4\tProgressively apply 2-bit quantization to increasing numbers of heads\n5\t(sorted by individual delta, most sensitive first) and measure joint PPL.\n6\t\"\"\"\n7\timport os\n8\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n9\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n10\t\n11\timport argparse\n12\timport json\n13\timport math\n14\timport time\n15\timport torch\n16\timport torch.nn.functional as F\n17\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n18\tfrom eval_ppl import patch_attention, restore_attention\n19\t\n20\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/AI-ModelScope/CodeLlama-7b-hf\"\n21\tPROFILE_PATH = \"artifacts/codellama_profiles_hires.json\"\n22\tOUTPUT_PATH = \"artifacts/codellama_compounding_sweep.json\"\n23\t\n24\t\n25\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n26\t    with open(path) as f:\n27\t        samples = json.load(f)\n28\t    all_ids = []\n29\t    for s in samples:\n30\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n31\t        if len(tokens) >= seq_len:\n32\t            all_ids.append(tokens[:seq_len])\n33\t        if len(all_ids) >= num_samples:\n34\t            break\n35\t    if not all_ids:\n36\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n37\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n38\t\n39\t\n40\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n41\t    total_loss = 0.0\n42\t    total_tokens = 0\n43\t    n = input_ids.shape[0]\n44\t    with torch.no_grad():\n45\t        for start in range(0, n, batch_size):\n46\t            end = min(start + batch_size, n)\n47\t            batch = input_ids[start:end]\n48\t            outputs = model(\n49\t                batch, use_cache=False,\n50\t                cache_position=torch.arange(seq_len, device=device)\n51\t            )\n52\t            shift_logits = outputs.logits[:, :-1].contiguous()\n53\t            shift_labels = batch[:, 1:].contiguous()\n54\t            loss = F.cross_entropy(\n55\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n56\t                shift_labels.view(-1),\n57\t                reduction=\"sum\"\n58\t            )\n59\t            total_loss += loss.item()\n60\t            total_tokens += shift_labels.numel()\n61\t            del outputs, shift_logits, loss\n62\t            torch.cuda.empty_cache()\n63\t    return math.exp(total_loss / total_tokens)\n64\t\n65\t\n66\tdef main():\n67\t    parser = argparse.ArgumentParser(description=\"CodeLlama-7B compounding sweep\")\n68\t    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n69\t    parser.add_argument(\"--num_samples\", type=int, default=64)\n70\t    parser.add_argument(\"--seq_len\", type=int, default=2048)\n71\t    parser.add_argument(\"--batch_size\", type=int, default=2)\n72\t    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n73\t    args = parser.parse_args()\n74\t\n75\t    device = args.gpu\n76\t    k_values = [0, 2, 4, 8, 16, 32, 64, 128, 256]\n77\t    t0 = time.time()\n78\t\n79\t    print(\"Loading profiles...\")\n80\t    with open(PROFILE_PATH) as f:\n81\t        raw = json.load(f)\n82\t    profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n83\t\n84\t    head_deltas = []\n85\t    for l_str in sorted(profiles.keys(), key=int):\n86\t        for h_str in sorted(profiles[l_str].keys(), key=int):\n87\t            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n88\t            head_deltas.append({\n89\t                \"layer\": int(l_str),\n90\t                \"head\": int(h_str),\n91\t                \"key\": f\"{l_str},{h_str}\",\n92\t                \"delta_2bit\": d2,\n93\t            })\n94\t    head_deltas.sort(key=lambda x: x[\"delta_2bit\"], reverse=True)\n95\t\n96\t    total_kv_heads = len(head_deltas)\n97\t    k_values = [k for k in k_values if k <= total_kv_heads]\n98\t    print(f\"Total KV heads: {total_kv_heads} (MHA: 32L x 32H)\")\n99\t    print(f\"Sweep k values: {k_values}\")\n100\t    print(f\"Top-5: {[(h['key'], round(h['delta_2bit'], 4)) for h in head_deltas[:5]]}\")\n101\t\n102\t    print(f\"\\nLoading {MODEL_PATH} in bf16 to {device}...\")\n103\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n104\t    model = AutoModelForCausalLM.from_pretrained(\n105\t        MODEL_PATH, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n106\t    )\n107\t    model = model.to(device)\n108\t    model.eval()\n109\t    print(f\"GPU mem: {torch.cuda.memory_allocated(device) / 1e9:.1f}GB\")\n110\t\n111\t    print(f\"Loading calibration data ({args.num_samples} x {args.seq_len})...\")\n112\t    input_ids = load_calibration_data(\n113\t        tokenizer, args.calibration_data,\n114\t        args.num_samples, args.seq_len, device)\n115\t    print(f\"Loaded {input_ids.shape[0]} sequences\")\n116\t\n117\t    print(\"\\nMeasuring baseline PPL...\")\n118\t    baseline_ppl = compute_ppl_batched(\n119\t        model, input_ids, args.seq_len, args.batch_size, device)\n120\t    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n121\t\n122\t    results = []\n123\t    for k in k_values:\n124\t        print(f\"\\n--- k={k} ---\")\n125\t        if k == 0:\n126\t            print(f\"  baseline (no 2-bit heads): {baseline_ppl:.4f}\")\n127\t            results.append({\n128\t                \"k\": 0,\n129\t                \"heads\": [],\n130\t                \"sum_individual_delta\": 0.0,\n131\t                \"joint_ppl\": round(baseline_ppl, 4),\n132\t                \"joint_delta\": 0.0,\n133\t                \"predicted_ppl\": round(baseline_ppl, 4),\n134\t                \"super_additive_ratio\": 1.0,\n135\t            })\n136\t            continue\n137\t\n138\t        top_k = head_deltas[:k]\n139\t        allocation = {h[\"key\"]: [\"quant\", 2] for h in top_k}\n140\t        sum_individual = sum(h[\"delta_2bit\"] for h in top_k)\n141\t\n142\t        orig_fwds = patch_attention(model, allocation)\n143\t        joint_ppl = compute_ppl_batched(\n144\t            model, input_ids, args.seq_len, args.batch_size, device)\n145\t        restore_attention(model, orig_fwds)\n146\t\n147\t        joint_delta = joint_ppl - baseline_ppl\n148\t        predicted_ppl = baseline_ppl + sum_individual\n149\t        ratio = joint_delta / sum_individual if sum_individual > 0 else float('nan')\n150\t\n151\t        print(f\"  sum_indiv={sum_individual:.4f}  joint={joint_ppl:.4f}  \"\n152\t              f\"pred={predicted_ppl:.4f}  ratio={ratio:.4f}\")\n153\t\n154\t        results.append({\n155\t            \"k\": k,\n156\t            \"heads\": [h[\"key\"] for h in top_k],\n157\t            \"sum_individual_delta\": round(sum_individual, 6),\n158\t            \"joint_ppl\": round(joint_ppl, 4),\n159\t            \"joint_delta\": round(joint_delta, 6),\n160\t            \"predicted_ppl\": round(predicted_ppl, 4),\n161\t            \"super_additive_ratio\": round(ratio, 4),\n162\t        })\n163\t\n164\t    elapsed = time.time() - t0\n165\t\n166\t    output = {\n167\t        \"experiment\": \"codellama_compounding_sweep\",\n168\t        \"model\": MODEL_PATH,\n169\t        \"model_name\": \"CodeLlama-7B\",\n170\t        \"baseline_ppl_measured\": round(baseline_ppl, 4),\n171\t        \"calibration\": {\n172\t            \"path\": args.calibration_data,\n173\t            \"num_samples\": args.num_samples,\n174\t            \"seq_len\": args.seq_len,\n175\t        },\n176\t        \"total_kv_heads\": total_kv_heads,\n177\t        \"results\": results,\n178\t        \"top_heads\": [\n179\t            {\"key\": h[\"key\"], \"delta_2bit\": round(h[\"delta_2bit\"], 6)}\n180\t            for h in head_deltas[:10]\n181\t        ],\n182\t        \"timing_seconds\": round(elapsed, 1),\n183\t    }\n184\t\n185\t    os.makedirs(\"artifacts\", exist_ok=True)\n186\t    with open(OUTPUT_PATH, \"w\") as f:\n187\t        json.dump(output, f, indent=2)\n188\t    print(f\"\\nJSON saved to {OUTPUT_PATH}\")\n189\t\n190\t    print(f\"\\n{'='*70}\")\n191\t    print(\"COMPOUNDING SWEEP — CodeLlama-7B (1024 KV heads, MHA)\")\n192\t    print(f\"{'='*70}\")\n193\t    print(f\"{'k':>5}  {'sum_indiv':>10}  {'joint_ppl':>10}  {'pred_ppl':>10}  {'ratio':>8}\")\n194\t    print(\"-\" * 70)\n195\t    for r in results:\n196\t        print(f\"{r['k']:>5}  {r['sum_individual_delta']:>10.4f}  \"\n197\t              f\"{r['joint_ppl']:>10.4f}  {r['predicted_ppl']:>10.4f}  \"\n198\t              f\"{r['super_additive_ratio']:>8.4f}\")\n199\t    print(f\"\\nTotal time: {elapsed/60:.1f}min\")\n200\t\n201\t\n202\tif __name__ == \"__main__\":\n203\t    main()\n204\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db7e157d-5f99-4708-b8e4-4bc756fca4a5",
+            "isSidechain": true,
+            "promptId": "3d869325-27a7-4061-a19a-025b5eb7af5b",
+            "agentId": "a5d42d85a37f4f722",
+            "type": "user",
+            "uuid": "70de387c-fb2f-4296-acf8-1bdf8e2ccdfe",
+            "sourceToolAssistantUUID": "db7e157d-5f99-4708-b8e4-4bc756fca4a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T03:14:33.542Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RzQUEzNw11wFSUTEUw8HsD",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Phi-3-medium-14B compounding sweep — measure super-additivity of 2-bit deltas.\n2\t\n3\tArchitecture: 40 layers x 10 KV heads (GQA 4:1), 400 total KV heads.\n4\tProgressively apply 2-bit quantization to increasing numbers of heads\n5\t(sorted by individual delta, most sensitive first) and measure joint PPL.\n6\tUses eval_ppl.patch_attention (Phi-3's fused qkv_proj is handled there).\n7\t\"\"\"\n8\timport os\n9\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n10\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n11\t\n12\timport argparse\n13\timport json\n14\timport math\n15\timport time\n16\timport torch\n17\timport torch.nn.functional as F\n18\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n19\tfrom eval_ppl import patch_attention, restore_attention\n20\t\n21\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct\"\n22\tPROFILE_PATH = \"artifacts/phi3_medium_profiles_hires.json\"\n23\tOUTPUT_PATH = \"artifacts/phi3_compounding_sweep.json\"\n24\t\n25\t\n26\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n27\t    with open(path) as f:\n28\t        samples = json.load(f)\n29\t    all_ids = []\n30\t    for s in samples:\n31\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n32\t        if len(tokens) >= seq_len:\n33\t            all_ids.append(tokens[:seq_len])\n34\t        if len(all_ids) >= num_samples:\n35\t            break\n36\t    if not all_ids:\n37\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n38\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n39\t\n40\t\n41\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n42\t    total_loss = 0.0\n43\t    total_tokens = 0\n44\t    n = input_ids.shape[0]\n45\t    with torch.no_grad():\n46\t        for start in range(0, n, batch_size):\n47\t            end = min(start + batch_size, n)\n48\t            batch = input_ids[start:end]\n49\t            outputs = model(\n50\t                batch, use_cache=False,\n51\t                cache_position=torch.arange(seq_len, device=device)\n52\t            )\n53\t            shift_logits = outputs.logits[:, :-1].contiguous()\n54\t            shift_labels = batch[:, 1:].contiguous()\n55\t            loss = F.cross_entropy(\n56\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n57\t                shift_labels.view(-1),\n58\t                reduction=\"sum\"\n59\t            )\n60\t            total_loss += loss.item()\n61\t            total_tokens += shift_labels.numel()\n62\t            del outputs, shift_logits, loss\n63\t            torch.cuda.empty_cache()\n64\t    return math.exp(total_loss / total_tokens)\n65\t\n66\t\n67\tdef main():\n68\t    parser = argparse.ArgumentParser(description=\"Phi-3-medium-14B compounding sweep\")\n69\t    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n70\t    parser.add_argument(\"--num_samples\", type=int, default=64)\n71\t    parser.add_argument(\"--seq_len\", type=int, default=2048)\n72\t    parser.add_argument(\"--batch_size\", type=int, default=1)\n73\t    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n74\t    args = parser.parse_args()\n75\t\n76\t    device = args.gpu\n77\t    k_values = [0, 2, 4, 8, 16, 32, 64, 128, 256]\n78\t    t0 = time.time()\n79\t\n80\t    print(\"Loading profiles...\")\n81\t    with open(PROFILE_PATH) as f:\n82\t        raw = json.load(f)\n83\t    profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n84\t\n85\t    head_deltas = []\n86\t    for l_str in sorted(profiles.keys(), key=int):\n87\t        for h_str in sorted(profiles[l_str].keys(), key=int):\n88\t            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n89\t            head_deltas.append({\n90\t                \"layer\": int(l_str),\n91\t                \"head\": int(h_str),\n92\t                \"key\": f\"{l_str},{h_str}\",\n93\t                \"delta_2bit\": d2,\n94\t            })\n95\t    head_deltas.sort(key=lambda x: x[\"delta_2bit\"], reverse=True)\n96\t\n97\t    total_kv_heads = len(head_deltas)\n98\t    k_values = [k for k in k_values if k <= total_kv_heads]\n99\t    print(f\"Total KV heads: {total_kv_heads}\")\n100\t    print(f\"Sweep k values: {k_values}\")\n101\t    print(f\"Top-5: {[(h['key'], round(h['delta_2bit'], 4)) for h in head_deltas[:5]]}\")\n102\t\n103\t    print(f\"\\nLoading {MODEL_PATH} in bf16 to {device}...\")\n104\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n105\t    model = AutoModelForCausalLM.from_pretrained(\n106\t        MODEL_PATH, torch_dtype=torch.bfloat16,\n107\t        attn_implementation=\"eager\", trust_remote_code=True\n108\t    )\n109\t    model = model.to(device)\n110\t    model.eval()\n111\t    print(f\"GPU mem: {torch.cuda.memory_allocated(device) / 1e9:.1f}GB\")\n112\t\n113\t    print(f\"Loading calibration data ({args.num_samples} x {args.seq_len})...\")\n114\t    input_ids = load_calibration_data(\n115\t        tokenizer, args.calibration_data,\n116\t        args.num_samples, args.seq_len, device)\n117\t    print(f\"Loaded {input_ids.shape[0]} sequences\")\n118\t\n119\t    print(\"\\nMeasuring baseline PPL...\")\n120\t    baseline_ppl = compute_ppl_batched(\n121\t        model, input_ids, args.seq_len, args.batch_size, device)\n122\t    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n123\t\n124\t    results = []\n125\t    for k in k_values:\n126\t        print(f\"\\n--- k={k} ---\")\n127\t        if k == 0:\n128\t            print(f\"  baseline (no 2-bit heads): {baseline_ppl:.4f}\")\n129\t            results.append({\n130\t                \"k\": 0,\n131\t                \"heads\": [],\n132\t                \"sum_individual_delta\": 0.0,\n133\t                \"joint_ppl\": round(baseline_ppl, 4),\n134\t                \"joint_delta\": 0.0,\n135\t                \"predicted_ppl\": round(baseline_ppl, 4),\n136\t                \"super_additive_ratio\": 1.0,\n137\t            })\n138\t            continue\n139\t\n140\t        top_k = head_deltas[:k]\n141\t        allocation = {h[\"key\"]: [\"quant\", 2] for h in top_k}\n142\t        sum_individual = sum(h[\"delta_2bit\"] for h in top_k)\n143\t\n144\t        orig_fwds = patch_attention(model, allocation)\n145\t        joint_ppl = compute_ppl_batched(\n146\t            model, input_ids, args.seq_len, args.batch_size, device)\n147\t        restore_attention(model, orig_fwds)\n148\t\n149\t        joint_delta = joint_ppl - baseline_ppl\n150\t        predicted_ppl = baseline_ppl + sum_individual\n151\t        ratio = joint_delta / sum_individual if sum_individual > 0 else float('nan')\n152\t\n153\t        print(f\"  sum_indiv={sum_individual:.4f}  joint={joint_ppl:.4f}  \"\n154\t              f\"pred={predicted_ppl:.4f}  ratio={ratio:.4f}\")\n155\t\n156\t        results.append({\n157\t            \"k\": k,\n158\t            \"heads\": [h[\"key\"] for h in top_k],\n159\t            \"sum_individual_delta\": round(sum_individual, 6),\n160\t            \"joint_ppl\": round(joint_ppl, 4),\n161\t            \"joint_delta\": round(joint_delta, 6),\n162\t            \"predicted_ppl\": round(predicted_ppl, 4),\n163\t            \"super_additive_ratio\": round(ratio, 4),\n164\t        })\n165\t\n166\t    elapsed = time.time() - t0\n167\t\n168\t    output = {\n169\t        \"experiment\": \"phi3_compounding_sweep\",\n170\t        \"model\": MODEL_PATH,\n171\t        \"model_name\": \"Phi-3-medium-14B\",\n172\t        \"baseline_ppl_measured\": round(baseline_ppl, 4),\n173\t        \"calibration\": {\n174\t            \"path\": args.calibration_data,\n175\t            \"num_samples\": args.num_samples,\n176\t            \"seq_len\": args.seq_len,\n177\t        },\n178\t        \"total_kv_heads\": total_kv_heads,\n179\t        \"results\": results,\n180\t        \"top_heads\": [\n181\t            {\"key\": h[\"key\"], \"delta_2bit\": round(h[\"delta_2bit\"], 6)}\n182\t            for h in head_deltas[:10]\n183\t        ],\n184\t        \"timing_seconds\": round(elapsed, 1),\n185\t    }\n186\t\n187\t    os.makedirs(\"artifacts\", exist_ok=True)\n188\t    with open(OUTPUT_PATH, \"w\") as f:\n189\t        json.dump(output, f, indent=2)\n190\t    print(f\"\\nJSON saved to {OUTPUT_PATH}\")\n191\t\n192\t    print(f\"\\n{'='*70}\")\n193\t    print(\"COMPOUNDING SWEEP — Phi-3-medium-14B (400 KV heads)\")\n194\t    print(f\"{'='*70}\")\n195\t    print(f\"{'k':>5}  {'sum_indiv':>10}  {'joint_ppl':>10}  {'pred_ppl':>10}  {'ratio':>8}\")\n196\t    print(\"-\" * 70)\n197\t    for r in results:\n198\t        print(f\"{r['k']:>5}  {r['sum_individual_delta']:>10.4f}  \"\n199\t              f\"{r['joint_ppl']:>10.4f}  {r['predicted_ppl']:>10.4f}  \"\n200\t              f\"{r['super_additive_ratio']:>8.4f}\")\n201\t    print(f\"\\nTotal time: {elapsed/60:.1f}min\")\n202\t\n203\t\n204\tif __name__ == \"__main__\":\n205\t    main()\n206\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84906634-7811-485f-82cb-8722198da4e5",
+            "isSidechain": true,
+            "promptId": "3d869325-27a7-4061-a19a-025b5eb7af5b",
+            "agentId": "a5d42d85a37f4f722",
+            "type": "user",
+            "uuid": "35324e9a-cd4b-45b5-b679-360d3967b8c4",
+            "sourceToolAssistantUUID": "84906634-7811-485f-82cb-8722198da4e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T03:14:33.813Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BzYYG5AhhQi6rNckhYeMR3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_internlm2_compounding_sweep.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35324e9a-cd4b-45b5-b679-360d3967b8c4",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X66FQ8cFBP5frYii2y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d048ff8d-adce-4477-a50b-edfef361976b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JDsWyvM3p4ktauuWFhGjm1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1186,
+                "cache_read_input_tokens": 20779,
+                "output_tokens": 398,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1186
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 398,
+                    "cache_read_input_tokens": 20779,
+                    "cache_creation_input_tokens": 1186,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1186,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T03:14:33.825Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BzYYG5AhhQi6rNckhYeMR3",
+              "type": "tool_result",
+              "content": "1\t\"\"\"InternLM2-7B compounding sweep — measure super-additivity of 2-bit deltas.\n2\t\n3\tArchitecture: 32 layers x 8 KV heads (GQA), 256 total KV heads.\n4\tProgressively apply 2-bit quantization to increasing numbers of heads\n5\t(sorted by individual delta, most sensitive first) and measure joint PPL.\n6\t\n7\tInternLM2 uses fused wqkv projection — custom patch_attention_internlm2 handles\n8\tthe QKV splitting: [Q_groups (ng dims), K (2nd-to-last), V (last)].\n9\t\"\"\"\n10\timport os\n11\tos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n12\tos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\n13\t\n14\timport argparse\n15\timport json\n16\timport math\n17\timport time\n18\timport torch\n19\timport torch.nn.functional as F\n20\tfrom einops import rearrange\n21\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n22\tfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\n23\t\n24\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\"\n25\tPROFILE_PATH = \"artifacts/internlm2_profiles_hires.json\"\n26\tOUTPUT_PATH = \"artifacts/internlm2_compounding_sweep.json\"\n27\t\n28\t\n29\tdef rotate_half(x):\n30\t    x1 = x[..., : x.shape[-1] // 2]\n31\t    x2 = x[..., x.shape[-1] // 2 :]\n32\t    return torch.cat((-x2, x1), dim=-1)\n33\t\n34\t\n35\tdef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\n36\t    cos = cos.unsqueeze(unsqueeze_dim)\n37\t    sin = sin.unsqueeze(unsqueeze_dim)\n38\t    q_embed = (q * cos) + (rotate_half(q) * sin)\n39\t    k_embed = (k * cos) + (rotate_half(k) * sin)\n40\t    return q_embed, k_embed\n41\t\n42\t\n43\tdef patch_attention_internlm2(model, allocations):\n44\t    config = model.config\n45\t    num_kv_heads = config.num_key_value_heads\n46\t    num_q_heads = config.num_attention_heads\n47\t    head_dim = config.hidden_size // num_q_heads\n48\t    n_groups = num_q_heads // num_kv_heads\n49\t\n50\t    original_forwards = {}\n51\t\n52\t    for layer_idx, layer in enumerate(model.model.layers):\n53\t        attn = layer.attention\n54\t\n55\t        head_allocs = {}\n56\t        for h in range(num_kv_heads):\n57\t            key = f\"{layer_idx},{h}\"\n58\t            if key in allocations:\n59\t                atype, param = allocations[key]\n60\t                head_allocs[h] = (atype, param)\n61\t            else:\n62\t                head_allocs[h] = (\"full\", 16)\n63\t\n64\t        all_full = all(a[0] == \"full\" for a in head_allocs.values())\n65\t        if all_full:\n66\t            continue\n67\t\n68\t        original_forwards[layer_idx] = attn.forward\n69\t\n70\t        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\n71\t            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\n72\t                                   past_key_value=None, output_attentions=False,\n73\t                                   use_cache=False, cache_position=None, **kwargs):\n74\t                bsz, q_len, _ = hidden_states.size()\n75\t\n76\t                qkv_states = orig_attn.wqkv(hidden_states)\n77\t                qkv_states = rearrange(\n78\t                    qkv_states,\n79\t                    \"b q (h gs d) -> b q h gs d\",\n80\t                    gs=2 + ng,\n81\t                    d=hd,\n82\t                )\n83\t\n84\t                query_states = qkv_states[..., :ng, :]\n85\t                query_states = rearrange(query_states, \"b q h gs d -> b q (h gs) d\").transpose(1, 2)\n86\t                key_states = qkv_states[..., -2, :].transpose(1, 2)\n87\t                value_states = qkv_states[..., -1, :].transpose(1, 2)\n88\t\n89\t                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\n90\t                query_states, key_states = apply_rotary_pos_emb(\n91\t                    query_states, key_states, cos, sin, position_ids\n92\t                )\n93\t\n94\t                for h in range(n_kv):\n95\t                    atype, param = h_allocs[h]\n96\t                    if atype == \"quant\" and int(param) < 16:\n97\t                        bits = int(param)\n98\t                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\n99\t                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\n100\t\n101\t                key_exp = repeat_kv(key_states, ng)\n102\t                value_exp = repeat_kv(value_states, ng)\n103\t\n104\t                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\n105\t\n106\t                if attention_mask is not None:\n107\t                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\n108\t                    attn_weights = attn_weights + causal_mask\n109\t                else:\n110\t                    causal = torch.triu(\n111\t                        torch.full((q_len, q_len), float(\"-inf\"),\n112\t                                   device=attn_weights.device, dtype=attn_weights.dtype),\n113\t                        diagonal=1,\n114\t                    )\n115\t                    attn_weights = attn_weights + causal\n116\t\n117\t                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\n118\t                attn_output = torch.matmul(attn_weights, value_exp)\n119\t\n120\t                attn_output = attn_output.transpose(1, 2).contiguous()\n121\t                attn_output = attn_output.reshape(bsz, q_len, -1)\n122\t                attn_output = orig_attn.wo(attn_output)\n123\t\n124\t                if not output_attentions:\n125\t                    attn_weights = None\n126\t\n127\t                return attn_output, attn_weights, past_key_value\n128\t\n129\t            return compressed_forward\n130\t\n131\t        attn.forward = make_forward(attn, head_allocs)\n132\t\n133\t    return original_forwards\n134\t\n135\t\n136\tdef restore_attention_internlm2(model, original_forwards):\n137\t    for layer_idx, fwd in original_forwards.items():\n138\t        model.model.layers[layer_idx].attention.forward = fwd\n139\t\n140\t\n141\tdef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\n142\t    with open(path) as f:\n143\t        samples = json.load(f)\n144\t    all_ids = []\n145\t    for s in samples:\n146\t        tokens = tokenizer.encode(s[\"text\"], add_special_tokens=False)\n147\t        if len(tokens) >= seq_len:\n148\t            all_ids.append(tokens[:seq_len])\n149\t        if len(all_ids) >= num_samples:\n150\t            break\n151\t    if not all_ids:\n152\t        raise RuntimeError(f\"No calibration seqs with >= {seq_len} tokens\")\n153\t    return torch.tensor(all_ids, dtype=torch.long, device=device)\n154\t\n155\t\n156\tdef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\n157\t    total_loss = 0.0\n158\t    total_tokens = 0\n159\t    n = input_ids.shape[0]\n160\t    with torch.no_grad():\n161\t        for start in range(0, n, batch_size):\n162\t            end = min(start + batch_size, n)\n163\t            batch = input_ids[start:end]\n164\t            outputs = model(\n165\t                batch, use_cache=False,\n166\t                cache_position=torch.arange(seq_len, device=device)\n167\t            )\n168\t            shift_logits = outputs.logits[:, :-1].contiguous()\n169\t            shift_labels = batch[:, 1:].contiguous()\n170\t            loss = F.cross_entropy(\n171\t                shift_logits.float().view(-1, shift_logits.shape[-1]),\n172\t                shift_labels.view(-1),\n173\t                reduction=\"sum\"\n174\t            )\n175\t            total_loss += loss.item()\n176\t            total_tokens += shift_labels.numel()\n177\t            del outputs, shift_logits, loss\n178\t            torch.cuda.empty_cache()\n179\t    return math.exp(total_loss / total_tokens)\n180\t\n181\t\n182\tdef main():\n183\t    parser = argparse.ArgumentParser(description=\"InternLM2-7B compounding sweep\")\n184\t    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n185\t    parser.add_argument(\"--num_samples\", type=int, default=64)\n186\t    parser.add_argument(\"--seq_len\", type=int, default=2048)\n187\t    parser.add_argument(\"--batch_size\", type=int, default=2)\n188\t    parser.add_argument(\"--calibration_data\", type=str, default=\"calibration_hires.json\")\n189\t    args = parser.parse_args()\n190\t\n191\t    device = args.gpu\n192\t    k_values = [0, 2, 4, 8, 16, 32, 64, 128, 256]\n193\t    t0 = time.time()\n194\t\n195\t    print(\"Loading profiles...\")\n196\t    with open(PROFILE_PATH) as f:\n197\t        raw = json.load(f)\n198\t    profiles = raw[\"profiles\"] if \"profiles\" in raw else raw\n199\t\n200\t    head_deltas = []\n201\t    for l_str in sorted(profiles.keys(), key=int):\n202\t        for h_str in sorted(profiles[l_str].keys(), key=int):\n203\t            d2 = profiles[l_str][h_str][\"quantization\"].get(\"2\", 0.0)\n204\t            head_deltas.append({\n205\t                \"layer\": int(l_str),\n206\t                \"head\": int(h_str),\n207\t                \"key\": f\"{l_str},{h_str}\",\n208\t                \"delta_2bit\": d2,\n209\t            })\n210\t    head_deltas.sort(key=lambda x: x[\"delta_2bit\"], reverse=True)\n211\t\n212\t    total_kv_heads = len(head_deltas)\n213\t    k_values = [k for k in k_values if k <= total_kv_heads]\n214\t    print(f\"Total KV heads: {total_kv_heads}\")\n215\t    print(f\"Sweep k values: {k_values}\")\n216\t    print(f\"Top-5: {[(h['key'], round(h['delta_2bit'], 4)) for h in head_deltas[:5]]}\")\n217\t\n218\t    print(f\"\\nLoading {MODEL_PATH} in bf16 to {device}...\")\n219\t    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n220\t    model = AutoModelForCausalLM.from_pretrained(\n221\t        MODEL_PATH, torch_dtype=torch.bfloat16,\n222\t        attn_implementation=\"eager\", trust_remote_code=True\n223\t    )\n224\t    model = model.to(device)\n225\t    model.eval()\n226\t    print(f\"GPU mem: {torch.cuda.memory_allocated(device) / 1e9:.1f}GB\")\n227\t\n228\t    print(f\"Loading calibration data ({args.num_samples} x {args.seq_len})...\")\n229\t    input_ids = load_calibration_data(\n230\t        tokenizer, args.calibration_data,\n231\t        args.num_samples, args.seq_len, device)\n232\t    print(f\"Loaded {input_ids.shape[0]} sequences\")\n233\t\n234\t    print(\"\\nMeasuring baseline PPL...\")\n235\t    baseline_ppl = compute_ppl_batched(\n236\t        model, input_ids, args.seq_len, args.batch_size, device)\n237\t    print(f\"Baseline PPL: {baseline_ppl:.4f}\")\n238\t\n239\t    results = []\n240\t    for k in k_values:\n241\t        print(f\"\\n--- k={k} ---\")\n242\t        if k == 0:\n243\t            print(f\"  baseline (no 2-bit heads): {baseline_ppl:.4f}\")\n244\t            results.append({\n245\t                \"k\": 0,\n246\t                \"heads\": [],\n247\t                \"sum_individual_delta\": 0.0,\n248\t                \"joint_ppl\": round(baseline_ppl, 4),\n249\t                \"joint_delta\": 0.0,\n250\t                \"predicted_ppl\": round(baseline_ppl, 4),\n251\t                \"super_additive_ratio\": 1.0,\n252\t            })\n253\t            continue\n254\t\n255\t        top_k = head_deltas[:k]\n256\t        allocation = {h[\"key\"]: [\"quant\", 2] for h in top_k}\n257\t        sum_individual = sum(h[\"delta_2bit\"] for h in top_k)\n258\t\n259\t        orig_fwds = patch_attention_internlm2(model, allocation)\n260\t        joint_ppl = compute_ppl_batched(\n261\t            model, input_ids, args.seq_len, args.batch_size, device)\n262\t        restore_attention_internlm2(model, orig_fwds)\n263\t\n264\t        joint_delta = joint_ppl - baseline_ppl\n265\t        predicted_ppl = baseline_ppl + sum_individual\n266\t        ratio = joint_delta / sum_individual if sum_individual > 0 else float('nan')\n267\t\n268\t        print(f\"  sum_indiv={sum_individual:.4f}  joint={joint_ppl:.4f}  \"\n269\t              f\"pred={predicted_ppl:.4f}  ratio={ratio:.4f}\")\n270\t\n271\t        results.append({\n272\t            \"k\": k,\n273\t            \"heads\": [h[\"key\"] for h in top_k],\n274\t            \"sum_individual_delta\": round(sum_individual, 6),\n275\t            \"joint_ppl\": round(joint_ppl, 4),\n276\t            \"joint_delta\": round(joint_delta, 6),\n277\t            \"predicted_ppl\": round(predicted_ppl, 4),\n278\t            \"super_additive_ratio\": round(ratio, 4),\n279\t        })\n280\t\n281\t    elapsed = time.time() - t0\n282\t\n283\t    output = {\n284\t        \"experiment\": \"internlm2_compounding_sweep\",\n285\t        \"model\": MODEL_PATH,\n286\t        \"model_name\": \"InternLM2-7B\",\n287\t        \"baseline_ppl_measured\": round(baseline_ppl, 4),\n288\t        \"calibration\": {\n289\t            \"path\": args.calibration_data,\n290\t            \"num_samples\": args.num_samples,\n291\t            \"seq_len\": args.seq_len,\n292\t        },\n293\t        \"total_kv_heads\": total_kv_heads,\n294\t        \"results\": results,\n295\t        \"top_heads\": [\n296\t            {\"key\": h[\"key\"], \"delta_2bit\": round(h[\"delta_2bit\"], 6)}\n297\t            for h in head_deltas[:10]\n298\t        ],\n299\t        \"timing_seconds\": round(elapsed, 1),\n300\t    }\n301\t\n302\t    os.makedirs(\"artifacts\", exist_ok=True)\n303\t    with open(OUTPUT_PATH, \"w\") as f:\n304\t        json.dump(output, f, indent=2)\n305\t    print(f\"\\nJSON saved to {OUTPUT_PATH}\")\n306\t\n307\t    print(f\"\\n{'='*70}\")\n308\t    print(\"COMPOUNDING SWEEP — InternLM2-7B (256 KV heads)\")\n309\t    print(f\"{'='*70}\")\n310\t    print(f\"{'k':>5}  {'sum_indiv':>10}  {'joint_ppl':>10}  {'pred_ppl':>10}  {'ratio':>8}\")\n311\t    print(\"-\" * 70)\n312\t    for r in results:\n313\t        print(f\"{r['k']:>5}  {r['sum_individual_delta']:>10.4f}  \"\n314\t              f\"{r['joint_ppl']:>10.4f}  {r['predicted_ppl']:>10.4f}  \"\n315\t              f\"{r['super_additive_ratio']:>8.4f}\")\n316\t    print(f\"\\nTotal time: {elapsed/60:.1f}min\")\n317\t\n318\t\n319\tif __name__ == \"__main__\":\n320\t    main()\n321\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d048ff8d-adce-4477-a50b-edfef361976b",
+            "isSidechain": true,
+            "promptId": "3d869325-27a7-4061-a19a-025b5eb7af5b",
+            "agentId": "a5d42d85a37f4f722",
+            "type": "user",
+            "uuid": "b460275e-0a69-422a-b72d-f06a3bc92875",
+            "sourceToolAssistantUUID": "d048ff8d-adce-4477-a50b-edfef361976b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T03:14:41.963Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary\n\nHere are the parameter checks for the 5 compounding sweep scripts:\n\n**1. run_yi_compounding_sweep.py**\n- Model path: `/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B` (line 20)\n- K values: `[0, 2, 4, 8, 16, 32, 64, 128, 256]` (line 76)\n- Profile path: `yi15_hires_bf16_2bitonly_profiles.json` (line 21)\n- Attention patching: `patch_attention, restore_attention` from `eval_ppl` (line 18)\n\n**2. run_gemma2_compounding_sweep.py**\n- Model path: `/root/autodl-tmp/.hf_cache/google/gemma-2-9b` (line 25)\n- K values: `[0, 2, 4, 8, 16, 32, 64, 128, 256]` (line 85)\n- Profile path: `gemma2_hires_bf16_2bitonly_profiles.json` (line 26)\n- Attention patching: `patch_attention_gemma2, restore_attention` from `run_gemma2_full_pipeline` (line 23)\n\n**3. run_codellama_compounding_sweep.py**\n- Model path: `/root/autodl-tmp/.hf_cache/AI-ModelScope/CodeLlama-7b-hf` (line 20)\n- K values: `[0, 2, 4, 8, 16, 32, 64, 128, 256]` (line 76)\n- Profile path: `artifacts/codellama_profiles_hires.json` (line 21)\n- Attention patching: `patch_attention, restore_attention` from `eval_ppl` (line 18)\n\n**4. run_phi3_compounding_sweep.py**\n- Model path: `/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct` (line 21)\n- K values: `[0, 2, 4, 8, 16, 32, 64, 128, 256]` (line 77)\n- Profile path: `artifacts/phi3_medium_profiles_hires.json` (line 22)\n- Attention patching: `patch_attention, restore_attention` from `eval_ppl` (line 19)\n\n**5. run_internlm2_compounding_sweep.py**\n- Model path: `/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b` (line 24)\n- K values: `[0, 2, 4, 8, 16, 32, 64, 128, 256]` (line 192)\n- Profile path: `artifacts/internlm2_profiles_hires.json` (line 25)\n- Attention patching: `patch_attention_internlm2, restore_attention_internlm2` (custom implementations at lines 43-138)\n\nAll scripts use identical k_values lists. The patching methods are script-specific: generic `eval_ppl` functions for Yi/CodeLlama/Phi3, specialized Gemma2 variant, and custom InternLM2 implementation with fused QKV handling."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b460275e-0a69-422a-b72d-f06a3bc92875",
+            "isSidechain": true,
+            "agentId": "a5d42d85a37f4f722",
+            "requestId": "req_011Cb5X6JQ9YtgdjiRD5XnU3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ed3ecd4d-0ed1-4c68-ac24-6ecac127f3c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/reviewer_fe2ad71b",
+            "sessionId": "bf3403d6-3f63-4747-ae88-4c3a1f0ae77d",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "curried-splashing-charm",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LFnYFQjybwoqipCky2D7ut",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 17541,
+                "cache_read_input_tokens": 21965,
+                "output_tokens": 837,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17541
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 837,
+                    "cache_read_input_tokens": 21965,
+                    "cache_creation_input_tokens": 17541,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17541,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-5-compounding-sweep-scripts-in-home-ubuntu-agent-ml-research-i.md"
+}

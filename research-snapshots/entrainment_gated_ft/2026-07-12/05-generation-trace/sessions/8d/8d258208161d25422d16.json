@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8d258208161d25422d16",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 实验 ID: kv_separation (plan_014) Registry 状态: PREPARING Hypothesis: K/V heads 独立 MCKP 优化，允许不对称 K/V bit-wi",
+  "task_key": "926f32c3-e8d1-4c79-9af0-7e394cd6311c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/926f32c3-e8d1-4c79-9af0-7e394cd6311c.jsonl",
+    "occurrence": 1,
+    "bytes": 662616,
+    "sha256": "3f4e8ebeeb70ac1cef1701ecd81152fff455be0a56a758d7400cca2f09524976"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 1,
+    "tool_calls": 73,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 48,
+      "tool_call": 73,
+      "tool_result": 73
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8d258208161d25422d16-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 238,
+      "chunks": [
+        {
+          "path": "8d258208161d25422d16-part-0001.json",
+          "message_count": 172
+        },
+        {
+          "path": "8d258208161d25422d16-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-id-kv-separation-plan-014-registry-preparing-hypothesis-k-v-head.md"
+}

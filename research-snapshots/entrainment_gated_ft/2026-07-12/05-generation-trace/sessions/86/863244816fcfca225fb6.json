@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0",
+  "id": "863244816fcfca225fb6",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 已有 pure baseline 模型（已在服务器上）： - /root/entrainment_gated_ft/models/340M-20B-GatedDeltaNet-pure-baseline/ -",
+  "task_key": "f91c7e3f-c021-4ec0-8958-c2b588a62e76",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/f91c7e3f-c021-4ec0-8958-c2b588a62e76.jsonl",
+    "occurrence": 1,
+    "bytes": 3774316,
+    "sha256": "eb624f6cbefc6e2255999958e8aa8518119e0014c2365f54771521e112eb088d"
+  },
+  "statistics": {
+    "messages": 2463,
+    "user_turns": 14,
+    "tool_calls": 870,
+    "roles": {
+      "record": 397,
+      "user": 14,
+      "assistant": 310,
+      "tool_call": 870,
+      "tool_result": 870,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1145,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0007.json",
+          "message_count": 67
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 998,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0007.json",
+          "message_count": 113
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0012.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0012.json",
+          "message_count": 15
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 40
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0013.json",
+          "message_count": 13
+        },
+        {
+          "path": "863244816fcfca225fb6-part-0014.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0014.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0014.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0014.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "863244816fcfca225fb6-part-0014.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-pure-baseline-root-entrainment-gated-ft-models-340m-20b-gateddel.md"
+}

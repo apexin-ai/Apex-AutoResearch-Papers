@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "id": "2dbe31ebb3ee58df5ec4",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 诊断结果： - GLA h3-1: 已下载完成（model.safetensors = 1,332,498,184 bytes） - DeltaNet h3-1: 下载卡在 60MB/1.33GB，.inco",
+  "task_key": "9ef99da1-538d-4da0-a42c-927a0b8c1190",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/9ef99da1-538d-4da0-a42c-927a0b8c1190.jsonl",
+    "occurrence": 1,
+    "bytes": 1171504,
+    "sha256": "2aba8d528bfc7fd187c60c706b892561fe33193ecbc1642291db4196e080dfe6"
+  },
+  "statistics": {
+    "messages": 750,
+    "user_turns": 6,
+    "tool_calls": 225,
+    "roles": {
+      "record": 122,
+      "user": 6,
+      "assistant": 172,
+      "tool_call": 225,
+      "tool_result": 225
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 388,
+      "chunks": [
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0003.json",
+          "message_count": 99
+        },
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0004.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0004.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0004.json",
+          "message_count": 150
+        },
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0005.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "2dbe31ebb3ee58df5ec4-part-0005.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-gla-h3-1-model-safetensors-1-332-498-184-bytes-deltanet-h3-1-60m.md"
+}

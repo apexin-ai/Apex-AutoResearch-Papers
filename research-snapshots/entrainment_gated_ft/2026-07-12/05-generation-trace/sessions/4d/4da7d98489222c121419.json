@@ -1,0 +1,1347 @@
+{
+  "schema_version": "1.0",
+  "id": "4da7d98489222c121419",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: entrainment_gated_ft ## 运行环境 - 服务器名: westb-48145 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/d1595ce1-31fd-40bf-b819-8ad600c5e518.jsonl",
+    "occurrence": 1,
+    "bytes": 107429,
+    "sha256": "624414c27f930c2079ac7f1ab25b68cca31911c5309c414b68b533a545803cc1"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "record": 14,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T18:43:39.755Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-19T18:43:39.755Z",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+                "content": "<project_context>\n# 项目: entrainment_gated_ft\n\n## 运行环境\n- 服务器名: westb-48145\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westb.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/entrainment_gated_ft\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: GPU 白名单: 仅允许使用 cuda:0 (westb-48145)（原因：项目仅分配 1 张 RTX PRO 6000 (cuda:0)，防止误用其他 GPU）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：Literature Gap-Fill — Cluster \"Linear Recurrent Models\"\n\n你需要为论文 literature_map.yaml 的 \"Linear Recurrent Models\" cluster 补充 6 篇已验证的论文。\n\n### 目标\n- 搜索并验证 6 篇论文，填入 `literature_map.yaml` 的 \"Linear Recurrent Models\" cluster\n- **must_cite**（必须找到的论文）：\n  1. Gu & Dao 2024 — Mamba: Linear-Time Sequence Modeling with Selective State Spaces\n  2. Sun et al. 2023 — RetNet: Retentive Network: A Successor to Transformer for Large Language Models\n  3. Qin et al. 2024 — HGRN2: Gated Linear RNNs with State Expansion\n  4. Yang et al. 2024 — GatedDeltaNet / Gated Delta Networks\n- 额外补充 2 篇相关论文（如 S4, S5, Mamba-2 等线性递归模型）\n\n### 搜索方式\n优先用 Semantic Scholar API：\n```python\npython3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nresults = search_papers('linear recurrent model state space Mamba RetNet HGRN GatedDeltaNet', limit=20)\nfor r in results:\n    print(f'{r.title} | {r.year} | {r.venue} | {r.doi}')\n\"\n```\n如果 S2 API 失败，降级用 WebSearch。\n\n### 已有论文（避免重复）\nHybrid Architectures cluster 已有：wang2025hybrid, lieber2024jamba, peng2024eagle, de2024griffin, dao2024mamba2, botev2024recurrentgemma, dong2024hymba\n注意：dao2024mamba2 已在 Hybrid Architectures 中，但 Mamba-1 (Gu & Dao 2024) 尚未收录。\n\n### 输出\n使用 Python 写入 literature_map.yaml：\n```python\npython3 -c \"\nfrom core.tools.literature import add_to_literature_map\nadd_to_literature_map(\n    project='entrainment_gated_ft',\n    cluster_name='Linear Recurrent Models',\n    paper={\n        'bibtex_key': '...',\n        'title': '...',\n        'authors': '...',\n        'year': ...,\n        'venue': '...',\n        'category': 'Linear Recurrent Models',\n        'verified': True,  # 只有确认真实存在的才设 True\n        'doi': '...',\n        'url': '...',\n        'relevance': '...'\n    }\n)\n\"\n```\n\n对每篇论文：先搜索确认存在 → 核实 title/authors/year/venue → 设 verified=True → add_to_literature_map。\n\n### 验证标准\n- title 和 authors 必须与实际论文匹配\n- 必须有 arXiv URL 或 DOI\n- 不确定的论文设 verified=False\n\n完成后报告：找到了哪些论文，哪些 must_cite 已覆盖，是否有缺口。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T18:43:39.758Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-19T18:43:39.758Z",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T18:43:39.789Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: entrainment_gated_ft\n\n## 运行环境\n- 服务器名: westb-48145\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westb.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/entrainment_gated_ft\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: GPU 白名单: 仅允许使用 cuda:0 (westb-48145)（原因：项目仅分配 1 张 RTX PRO 6000 (cuda:0)，防止误用其他 GPU）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：Literature Gap-Fill — Cluster \"Linear Recurrent Models\"\n\n你需要为论文 literature_map.yaml 的 \"Linear Recurrent Models\" cluster 补充 6 篇已验证的论文。\n\n### 目标\n- 搜索并验证 6 篇论文，填入 `literature_map.yaml` 的 \"Linear Recurrent Models\" cluster\n- **must_cite**（必须找到的论文）：\n  1. Gu & Dao 2024 — Mamba: Linear-Time Sequence Modeling with Selective State Spaces\n  2. Sun et al. 2023 — RetNet: Retentive Network: A Successor to Transformer for Large Language Models\n  3. Qin et al. 2024 — HGRN2: Gated Linear RNNs with State Expansion\n  4. Yang et al. 2024 — GatedDeltaNet / Gated Delta Networks\n- 额外补充 2 篇相关论文（如 S4, S5, Mamba-2 等线性递归模型）\n\n### 搜索方式\n优先用 Semantic Scholar API：\n```python\npython3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nresults = search_papers('linear recurrent model state space Mamba RetNet HGRN GatedDeltaNet', limit=20)\nfor r in results:\n    print(f'{r.title} | {r.year} | {r.venue} | {r.doi}')\n\"\n```\n如果 S2 API 失败，降级用 WebSearch。\n\n### 已有论文（避免重复）\nHybrid Architectures cluster 已有：wang2025hybrid, lieber2024jamba, peng2024eagle, de2024griffin, dao2024mamba2, botev2024recurrentgemma, dong2024hymba\n注意：dao2024mamba2 已在 Hybrid Architectures 中，但 Mamba-1 (Gu & Dao 2024) 尚未收录。\n\n### 输出\n使用 Python 写入 literature_map.yaml：\n```python\npython3 -c \"\nfrom core.tools.literature import add_to_literature_map\nadd_to_literature_map(\n    project='entrainment_gated_ft',\n    cluster_name='Linear Recurrent Models',\n    paper={\n        'bibtex_key': '...',\n        'title': '...',\n        'authors': '...',\n        'year': ...,\n        'venue': '...',\n        'category': 'Linear Recurrent Models',\n        'verified': True,  # 只有确认真实存在的才设 True\n        'doi': '...',\n        'url': '...',\n        'relevance': '...'\n    }\n)\n\"\n```\n\n对每篇论文：先搜索确认存在 → 核实 title/authors/year/venue → 设 verified=True → add_to_literature_map。\n\n### 验证标准\n- title 和 authors 必须与实际论文匹配\n- 必须有 arXiv URL 或 DOI\n- 不确定的论文设 verified=False\n\n完成后报告：找到了哪些论文，哪些 must_cite 已覆盖，是否有缺口。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "type": "user",
+            "uuid": "aa28ae67-adf0-4013-a0d2-06c1c905cc90",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T18:43:39.788Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "aa28ae67-adf0-4013-a0d2-06c1c905cc90",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5f8c1c5e-b464-4c94-b443-be4f2d1a9303",
+                "timestamp": "2026-05-19T18:43:39.788Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T18:43:39.788Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5f8c1c5e-b464-4c94-b443-be4f2d1a9303",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f2c94a76-e8e9-44d2-b180-e6c5ce38dffd",
+                "timestamp": "2026-05-19T18:43:39.788Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T18:43:39.788Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f2c94a76-e8e9-44d2-b180-e6c5ce38dffd",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "341432c9-dfe1-4206-8eaf-99c951cbf3be",
+                "timestamp": "2026-05-19T18:43:39.788Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fill Linear Recurrent Models literature cluster",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T18:43:43.391Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for and verify the required papers, then add them to the literature map. Let me start by checking the current state of the literature map and searching for papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "341432c9-dfe1-4206-8eaf-99c951cbf3be",
+            "isSidechain": false,
+            "requestId": "req_011CbCRNKe5zSjhbynwmVmRp",
+            "type": "assistant",
+            "uuid": "ba631605-6b64-4617-9e8c-3ec2b1e73549",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WLtZjL1Kte3Sx74xJZd6R",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12619,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 862,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12619,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 862,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12619,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12619
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T18:43:54.928Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rn1u3HT4RXyGmPBiBCdqxq",
+              "name": "Agent",
+              "input": {
+                "description": "Search papers via S2 API",
+                "prompt": "Run the following commands in the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft to search for papers using Semantic Scholar API. Try the search and report back ALL results with full details.\n\nFirst, check if the core.tools.semantic_scholar module exists:\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && find . -path \"*/core/tools/semantic_scholar*\" -o -path \"*/core/tools/literature*\" 2>/dev/null | head -20\n```\n\nThen try running:\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && python3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nresults = search_papers('Mamba linear time sequence modeling selective state spaces', limit=10)\nfor r in results:\n    print(f'{r.title} | {r.year} | {r.venue} | {getattr(r, \\\"doi\\\", \\\"\\\")} | {getattr(r, \\\"url\\\", \\\"\\\")} | {getattr(r, \\\"authors\\\", \\\"\\\")}')\n\"\n```\n\nAlso search for the other must-cite papers:\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && python3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nfor query in ['RetNet retentive network successor transformer', 'HGRN2 gated linear RNN state expansion', 'GatedDeltaNet gated delta networks']:\n    print(f'=== {query} ===')\n    results = search_papers(query, limit=5)\n    for r in results:\n        print(f'{r.title} | {r.year} | {r.venue} | {getattr(r, \\\"doi\\\", \\\"\\\")} | {getattr(r, \\\"url\\\", \\\"\\\")} | {getattr(r, \\\"authors\\\", \\\"\\\")}')\n    print()\n\"\n```\n\nAnd search for additional linear recurrent model papers (S4, S5, etc.):\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && python3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nfor query in ['S4 structured state space sequence model', 'S5 simplified state space layers', 'Linear attention recurrent model']:\n    print(f'=== {query} ===')\n    results = search_papers(query, limit=5)\n    for r in results:\n        print(f'{r.title} | {r.year} | {r.venue} | {getattr(r, \\\"doi\\\", \\\"\\\")} | {getattr(r, \\\"url\\\", \\\"\\\")} | {getattr(r, \\\"authors\\\", \\\"\\\")}')\n    print()\n\"\n```\n\nReport ALL output verbatim - every title, year, venue, doi, url, and authors. This is critical for verification.\n",
+                "subagent_type": "general-purpose"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba631605-6b64-4617-9e8c-3ec2b1e73549",
+            "isSidechain": false,
+            "requestId": "req_011CbCRNKe5zSjhbynwmVmRp",
+            "type": "assistant",
+            "uuid": "a2527de2-2fe6-48a6-b458-aa934c0742b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WLtZjL1Kte3Sx74xJZd6R",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12619,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 862,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12619,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 862,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12619,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12619
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T18:58:12.318Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-19T18:58:12.318Z",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+                "content": "<task-notification>\n<task-id>b2vqnzqhu</task-id>\n<tool-use-id>toolu_01H1sjesh78ffpEDkumCE2kd</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/d1595ce1-31fd-40bf-b819-8ad600c5e518/tasks/b2vqnzqhu.output</output-file>\n<status>failed</status>\n<summary>Background command \"Search Semantic Scholar for all queries with aggressive retry\" failed with exit code 144</summary>\n</task-notification>"
+              }
+            }
+          ],
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T18:58:12.332Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "remove",
+                "timestamp": "2026-05-19T18:58:12.332Z",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T19:02:42.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rn1u3HT4RXyGmPBiBCdqxq",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The batch endpoint worked. All 10 papers were successfully retrieved. Here are the complete results:\n\n---\n\n## Search Results (via Semantic Scholar Batch API)\n\n### 1. Mamba (ARXIV:2312.00752)\n- **Title:** Mamba: Linear-Time Sequence Modeling with Selective State Spaces\n- **Year:** 2023\n- **Venue:** arXiv.org\n- **DOI:** (none)\n- **ArXiv:** 2312.00752\n- **URL:** https://www.semanticscholar.org/paper/7bbc7595196a0606a07506c4fb1473e5e87f6082\n- **PDF:** (none)\n- **Citations:** 6985\n- **References:** 0\n- **Authors:** Albert Gu | Tri Dao\n- **TLDR:** This work identifies that a key weakness of subquadratic-time models based on Transformer architecture is their inability to perform content-based reasoning, and integrates selective SSMs into a simplified end-to-end neural network architecture without attention or even MLP blocks (Mamba).\n- **PaperId:** 7bbc7595196a0606a07506c4fb1473e5e87f6082\n\n### 2. RetNet (ARXIV:2307.08621)\n- **Title:** Retentive Network: A Successor to Transformer for Large Language Models\n- **Year:** 2023\n- **Venue:** arXiv.org\n- **DOI:** (none)\n- **ArXiv:** 2307.08621\n- **URL:** https://www.semanticscholar.org/paper/240103933ffe3dac2179cc160a2bd91299357a53\n- **PDF:** (none)\n- **Citations:** 642\n- **References:** 44\n- **Authors:** Yutao Sun | Li Dong | Shaohan Huang | Shuming Ma | Yuqing Xia | Jilong Xue | Jianyong Wang | Furu Wei\n- **TLDR:** This work proposes Retentive Network (RetNet) as a foundation architecture for large language models, simultaneously achieving training parallelism, low-cost inference, and good performance, and proposes the retention mechanism for sequence modeling, which supports three computation paradigms, i.e., parallel, recurrent, and chunkwise recurrent.\n- **PaperId:** 240103933ffe3dac2179cc160a2bd91299357a53\n\n### 3. HGRN2 (ARXIV:2404.07904)\n- **Title:** HGRN2: Gated Linear RNNs with State Expansion\n- **Year:** 2024\n- **Venue:** arXiv.org\n- **DOI:** 10.48550/arXiv.2404.07904\n- **ArXiv:** 2404.07904\n- **URL:** https://www.semanticscholar.org/paper/46732358e98ce6be0c564ae11f71d556a64b4c35\n- **PDF:** (none)\n- **Citations:** 112\n- **References:** 71\n- **Authors:** Zhen Qin | Songlin Yang | Weixuan Sun | Xuyang Shen | Dong Li | Weigao Sun | Yiran Zhong\n- **TLDR:** A simple outer product-based state expansion mechanism is introduced, which significantly enlarges the recurrent state size of HGRN and provides a linear attention interpretation for HGRN2, enabling hardware-efficient training and competitive with other recurrent models.\n- **PaperId:** 46732358e98ce6be0c564ae11f71d556a64b4c35\n\n### 4. GatedDeltaNet (ARXIV:2412.06464)\n- **Title:** Gated Delta Networks: Improving Mamba2 with Delta Rule\n- **Year:** 2024\n- **Venue:** International Conference on Learning Representations\n- **DOI:** 10.48550/arXiv.2412.06464\n- **ArXiv:** 2412.06464\n- **URL:** https://www.semanticscholar.org/paper/968ea1c7f681592ce6b0830eac0b7fda8db71792\n- **PDF:** (none)\n- **Citations:** 287\n- **References:** 100\n- **Authors:** Songlin Yang | Jan Kautz | Ali Hatamizadeh\n- **TLDR:** This work introduces the gated delta rule and develops a parallel training algorithm optimized for modern hardware, which consistently surpasses existing models like Mamba2 and DeltaNet across multiple benchmarks, including language modeling, common-sense reasoning, in-context retrieval, length extrapolation, and long-context understanding.\n- **PaperId:** 968ea1c7f681592ce6b0830eac0b7fda8db71792\n\n### 5. S4 (ARXIV:2111.00396)\n- **Title:** Efficiently Modeling Long Sequences with Structured State Spaces\n- **Year:** 2021\n- **Venue:** International Conference on Learning Representations\n- **DOI:** (none)\n- **ArXiv:** 2111.00396\n- **URL:** https://www.semanticscholar.org/paper/ac2618b2ce5cdcf86f9371bcca98bc5e37e46f51\n- **PDF:** (none)\n- **Citations:** 3541\n- **References:** 61\n- **Authors:** Albert Gu | Karan Goel | Christopher Re\n- **TLDR:** The Structured State Space sequence model (S4) is proposed based on a new parameterization for the SSM, and it is shown that it can be computed much more efficiently than prior approaches while preserving their theoretical strengths.\n- **PaperId:** ac2618b2ce5cdcf86f9371bcca98bc5e37e46f51\n\n### 6. S5 (ARXIV:2208.04933)\n- **Title:** Simplified State Space Layers for Sequence Modeling\n- **Year:** 2022\n- **Venue:** International Conference on Learning Representations\n- **DOI:** 10.48550/arXiv.2208.04933\n- **ArXiv:** 2208.04933\n- **URL:** https://www.semanticscholar.org/paper/6d7d141c75af752ffc0d8a6184cca3f9323d6c74\n- **PDF:** http://arxiv.org/pdf/2208.04933\n- **Citations:** 990\n- **References:** 82\n- **Authors:** Jimmy Smith | Andrew Warrington | Scott W. Linderman\n- **TLDR:** A state space layer that can leverage efficient and widely implemented parallel scans, allowing S5 to match the computational efficiency of S4, while also achieving state-of-the-art performance on several long-range sequence modeling tasks.\n- **PaperId:** 6d7d141c75af752ffc0d8a6184cca3f9323d6c74\n\n### 7. RWKV (ARXIV:2305.13048)\n- **Title:** RWKV: Reinventing RNNs for the Transformer Era\n- **Year:** 2023\n- **Venue:** Conference on Empirical Methods in Natural Language Processing\n- **DOI:** 10.18653/v1/2023.findings-emnlp.936\n- **ArXiv:** 2305.13048\n- **URL:** https://www.semanticscholar.org/paper/026b3396a63ed5772329708b7580d633bb86bec9\n- **PDF:** https://aclanthology.org/2023.findings-emnlp.936.pdf\n- **Citations:** 1034\n- **References:** 108\n- **Authors:** Bo Peng | Eric Alcaide | Quentin Anthony | Alon Albalak | Samuel Arcadinho | Stella Biderman | Huanqi Cao | Xin Cheng | Michael Chung | Matteo Grella | G. Kranthikiran | Xingjian Du | Xuming He | Haowen Hou | Przemyslaw Kazienko | Jan Kocon | Jiaming Kong | Bartlomiej Koptyra | Hayden Lau | Krishna Sri Ipsit Mantri | Ferdinand Mom | Atsushi Saito | Xiangru Tang | Bolun Wang | J. S. Wind | Stansilaw Wozniak | Ruichong Zhang | Zhenyuan Zhang | Qihang Zhao | P. Zhou | Jian Zhu | Rui Zhu\n- **TLDR:** This work proposes a novel model architecture, Receptance Weighted Key Value (RWKV), that combines the efficient parallelizable training of transformers with the efficient inference of RNNs, and presents a significant step towards reconciling trade-offs between computational efficiency and model performance in sequence processing tasks.\n- **PaperId:** 026b3396a63ed5772329708b7580d633bb86bec9\n\n### 8. Linear Transformers (ARXIV:2006.16236)\n- **Title:** Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\n- **Year:** 2020\n- **Venue:** International Conference on Machine Learning\n- **DOI:** (none)\n- **ArXiv:** 2006.16236\n- **URL:** https://www.semanticscholar.org/paper/6f68e1bb253925d8431588555d3010419f322e04\n- **PDF:** (none)\n- **Citations:** 2719\n- **References:** 43\n- **Authors:** Angelos Katharopoulos | Apoorv Vyas | Nikolaos Pappas | Francois Fleuret\n- **TLDR:** This work expresses the self-attention as a linear dot-product of kernel feature maps and makes use of the associativity property of matrix products to reduce the complexity from O(N) to N, where N is the sequence length.\n- **PaperId:** 6f68e1bb253925d8431588555d3010419f322e04\n\n### 9. Based (ARXIV:2402.18668)\n- **Title:** Simple linear attention language models balance the recall-throughput tradeoff\n- **Year:** 2024\n- **Venue:** arXiv.org\n- **DOI:** 10.48550/arXiv.2402.18668\n- **ArXiv:** 2402.18668\n- **URL:** https://www.semanticscholar.org/paper/1759d78e00b811b2b4b35b49e22f7ec11694f5ad\n- **PDF:** (none)\n- **Citations:** 157\n- **References:** 0\n- **Authors:** Simran Arora | Sabri Eyuboglu | Michael Zhang | Aman Timalsina | Silas Alberti | Dylan Zinsley | James Zou | Atri Rudra | Christopher Re\n- **TLDR:** To make BASED competitive, IO-aware algorithms are developed that enable 24x higher throughput on language generation than FlashAttention-2, when generating 1024 tokens using 1.3b parameters and show that BASED matches the strongest sub-quadratic models and outperforms them on real-world recall-intensive tasks by 6.22 accuracy points.\n- **PaperId:** 1759d78e00b811b2b4b35b49e22f7ec11694f5ad\n\n### 10. Mamba-2 (ARXIV:2405.21060)\n- **Title:** Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\n- **Year:** 2024\n- **Venue:** International Conference on Machine Learning\n- **DOI:** (none)\n- **ArXiv:** 2405.21060\n- **URL:** https://www.semanticscholar.org/paper/ca9f5b3bf0f54ad97513e6175b30497873670fed\n- **PDF:** (none)\n- **Citations:** 1457\n- **References:** 0\n- **Authors:** Tri Dao | Albert Gu\n- **TLDR:** The state space duality (SSD) framework allows us to design a new architecture (Mamba-2) whose core layer is an a refinement of Mamba's selective SSM that is 2-8X faster, while continuing to be competitive with Transformers on language modeling.\n- **PaperId:** ca9f5b3bf0f54ad97513e6175b30497873670fed\n\n---\n\n## Key findings\n\n1. **The `core.tools.semantic_scholar` module does NOT exist** at `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/core/tools/` -- it exists at `/home/ubuntu/agent-ml-research/core/tools/semantic_scholar.py`. The import path `from core.tools.semantic_scholar import search_papers` only works when run from `/home/ubuntu/agent-ml-research/`.\n\n2. **`search_papers()` returns a `ToolResult` object**, not an iterable. Results are accessed via `result.data['papers']`.\n\n3. **The Semantic Scholar search endpoint (`/paper/search`) was persistently rate-limited (HTTP 429)** due to another worker process (PID 1312285) on the same machine concurrently hitting the API. The free tier allows only 1 req/s and the IP was blocked.\n\n4. **The batch endpoint (`POST /paper/batch`) worked** as a workaround -- it accepts a list of paper IDs and returns all results in a single request, reducing rate limit pressure.\n\n5. **All 4 must-cite papers were found and verified:** Mamba, RetNet, HGRN2, and GatedDeltaNet. Additionally, 6 supplementary papers were retrieved: S4, S5, RWKV, Linear Transformers, Based, and Mamba-2."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a54e208d365b428c0 (use SendMessage with to: 'a54e208d365b428c0' to continue this agent)\n<usage>total_tokens: 50452\ntool_uses: 31\nduration_ms: 1127987</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2527de2-2fe6-48a6-b458-aa934c0742b5",
+            "isSidechain": false,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "type": "user",
+            "uuid": "35d402a3-d81b-487a-b4c7-3d3885a94479",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "Run the following commands in the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft to search for papers using Semantic Scholar API. Try the search and report back ALL results with full details.\n\nFirst, check if the core.tools.semantic_scholar module exists:\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && find . -path \"*/core/tools/semantic_scholar*\" -o -path \"*/core/tools/literature*\" 2>/dev/null | head -20\n```\n\nThen try running:\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && python3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nresults = search_papers('Mamba linear time sequence modeling selective state spaces', limit=10)\nfor r in results:\n    print(f'{r.title} | {r.year} | {r.venue} | {getattr(r, \\\"doi\\\", \\\"\\\")} | {getattr(r, \\\"url\\\", \\\"\\\")} | {getattr(r, \\\"authors\\\", \\\"\\\")}')\n\"\n```\n\nAlso search for the other must-cite papers:\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && python3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nfor query in ['RetNet retentive network successor transformer', 'HGRN2 gated linear RNN state expansion', 'GatedDeltaNet gated delta networks']:\n    print(f'=== {query} ===')\n    results = search_papers(query, limit=5)\n    for r in results:\n        print(f'{r.title} | {r.year} | {r.venue} | {getattr(r, \\\"doi\\\", \\\"\\\")} | {getattr(r, \\\"url\\\", \\\"\\\")} | {getattr(r, \\\"authors\\\", \\\"\\\")}')\n    print()\n\"\n```\n\nAnd search for additional linear recurrent model papers (S4, S5, etc.):\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2 && python3 -c \"\nfrom core.tools.semantic_scholar import search_papers\nfor query in ['S4 structured state space sequence model', 'S5 simplified state space layers', 'Linear attention recurrent model']:\n    print(f'=== {query} ===')\n    results = search_papers(query, limit=5)\n    for r in results:\n        print(f'{r.title} | {r.year} | {r.venue} | {getattr(r, \\\"doi\\\", \\\"\\\")} | {getattr(r, \\\"url\\\", \\\"\\\")} | {getattr(r, \\\"authors\\\", \\\"\\\")}')\n    print()\n\"\n```\n\nReport ALL output verbatim - every title, year, venue, doi, url, and authors. This is critical for verification.\n",
+              "agentId": "a54e208d365b428c0",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The batch endpoint worked. All 10 papers were successfully retrieved. Here are the complete results:\n\n---\n\n## Search Results (via Semantic Scholar Batch API)\n\n### 1. Mamba (ARXIV:2312.00752)\n- **Title:** Mamba: Linear-Time Sequence Modeling with Selective State Spaces\n- **Year:** 2023\n- **Venue:** arXiv.org\n- **DOI:** (none)\n- **ArXiv:** 2312.00752\n- **URL:** https://www.semanticscholar.org/paper/7bbc7595196a0606a07506c4fb1473e5e87f6082\n- **PDF:** (none)\n- **Citations:** 6985\n- **References:** 0\n- **Authors:** Albert Gu | Tri Dao\n- **TLDR:** This work identifies that a key weakness of subquadratic-time models based on Transformer architecture is their inability to perform content-based reasoning, and integrates selective SSMs into a simplified end-to-end neural network architecture without attention or even MLP blocks (Mamba).\n- **PaperId:** 7bbc7595196a0606a07506c4fb1473e5e87f6082\n\n### 2. RetNet (ARXIV:2307.08621)\n- **Title:** Retentive Network: A Successor to Transformer for Large Language Models\n- **Year:** 2023\n- **Venue:** arXiv.org\n- **DOI:** (none)\n- **ArXiv:** 2307.08621\n- **URL:** https://www.semanticscholar.org/paper/240103933ffe3dac2179cc160a2bd91299357a53\n- **PDF:** (none)\n- **Citations:** 642\n- **References:** 44\n- **Authors:** Yutao Sun | Li Dong | Shaohan Huang | Shuming Ma | Yuqing Xia | Jilong Xue | Jianyong Wang | Furu Wei\n- **TLDR:** This work proposes Retentive Network (RetNet) as a foundation architecture for large language models, simultaneously achieving training parallelism, low-cost inference, and good performance, and proposes the retention mechanism for sequence modeling, which supports three computation paradigms, i.e., parallel, recurrent, and chunkwise recurrent.\n- **PaperId:** 240103933ffe3dac2179cc160a2bd91299357a53\n\n### 3. HGRN2 (ARXIV:2404.07904)\n- **Title:** HGRN2: Gated Linear RNNs with State Expansion\n- **Year:** 2024\n- **Venue:** arXiv.org\n- **DOI:** 10.48550/arXiv.2404.07904\n- **ArXiv:** 2404.07904\n- **URL:** https://www.semanticscholar.org/paper/46732358e98ce6be0c564ae11f71d556a64b4c35\n- **PDF:** (none)\n- **Citations:** 112\n- **References:** 71\n- **Authors:** Zhen Qin | Songlin Yang | Weixuan Sun | Xuyang Shen | Dong Li | Weigao Sun | Yiran Zhong\n- **TLDR:** A simple outer product-based state expansion mechanism is introduced, which significantly enlarges the recurrent state size of HGRN and provides a linear attention interpretation for HGRN2, enabling hardware-efficient training and competitive with other recurrent models.\n- **PaperId:** 46732358e98ce6be0c564ae11f71d556a64b4c35\n\n### 4. GatedDeltaNet (ARXIV:2412.06464)\n- **Title:** Gated Delta Networks: Improving Mamba2 with Delta Rule\n- **Year:** 2024\n- **Venue:** International Conference on Learning Representations\n- **DOI:** 10.48550/arXiv.2412.06464\n- **ArXiv:** 2412.06464\n- **URL:** https://www.semanticscholar.org/paper/968ea1c7f681592ce6b0830eac0b7fda8db71792\n- **PDF:** (none)\n- **Citations:** 287\n- **References:** 100\n- **Authors:** Songlin Yang | Jan Kautz | Ali Hatamizadeh\n- **TLDR:** This work introduces the gated delta rule and develops a parallel training algorithm optimized for modern hardware, which consistently surpasses existing models like Mamba2 and DeltaNet across multiple benchmarks, including language modeling, common-sense reasoning, in-context retrieval, length extrapolation, and long-context understanding.\n- **PaperId:** 968ea1c7f681592ce6b0830eac0b7fda8db71792\n\n### 5. S4 (ARXIV:2111.00396)\n- **Title:** Efficiently Modeling Long Sequences with Structured State Spaces\n- **Year:** 2021\n- **Venue:** International Conference on Learning Representations\n- **DOI:** (none)\n- **ArXiv:** 2111.00396\n- **URL:** https://www.semanticscholar.org/paper/ac2618b2ce5cdcf86f9371bcca98bc5e37e46f51\n- **PDF:** (none)\n- **Citations:** 3541\n- **References:** 61\n- **Authors:** Albert Gu | Karan Goel | Christopher Re\n- **TLDR:** The Structured State Space sequence model (S4) is proposed based on a new parameterization for the SSM, and it is shown that it can be computed much more efficiently than prior approaches while preserving their theoretical strengths.\n- **PaperId:** ac2618b2ce5cdcf86f9371bcca98bc5e37e46f51\n\n### 6. S5 (ARXIV:2208.04933)\n- **Title:** Simplified State Space Layers for Sequence Modeling\n- **Year:** 2022\n- **Venue:** International Conference on Learning Representations\n- **DOI:** 10.48550/arXiv.2208.04933\n- **ArXiv:** 2208.04933\n- **URL:** https://www.semanticscholar.org/paper/6d7d141c75af752ffc0d8a6184cca3f9323d6c74\n- **PDF:** http://arxiv.org/pdf/2208.04933\n- **Citations:** 990\n- **References:** 82\n- **Authors:** Jimmy Smith | Andrew Warrington | Scott W. Linderman\n- **TLDR:** A state space layer that can leverage efficient and widely implemented parallel scans, allowing S5 to match the computational efficiency of S4, while also achieving state-of-the-art performance on several long-range sequence modeling tasks.\n- **PaperId:** 6d7d141c75af752ffc0d8a6184cca3f9323d6c74\n\n### 7. RWKV (ARXIV:2305.13048)\n- **Title:** RWKV: Reinventing RNNs for the Transformer Era\n- **Year:** 2023\n- **Venue:** Conference on Empirical Methods in Natural Language Processing\n- **DOI:** 10.18653/v1/2023.findings-emnlp.936\n- **ArXiv:** 2305.13048\n- **URL:** https://www.semanticscholar.org/paper/026b3396a63ed5772329708b7580d633bb86bec9\n- **PDF:** https://aclanthology.org/2023.findings-emnlp.936.pdf\n- **Citations:** 1034\n- **References:** 108\n- **Authors:** Bo Peng | Eric Alcaide | Quentin Anthony | Alon Albalak | Samuel Arcadinho | Stella Biderman | Huanqi Cao | Xin Cheng | Michael Chung | Matteo Grella | G. Kranthikiran | Xingjian Du | Xuming He | Haowen Hou | Przemyslaw Kazienko | Jan Kocon | Jiaming Kong | Bartlomiej Koptyra | Hayden Lau | Krishna Sri Ipsit Mantri | Ferdinand Mom | Atsushi Saito | Xiangru Tang | Bolun Wang | J. S. Wind | Stansilaw Wozniak | Ruichong Zhang | Zhenyuan Zhang | Qihang Zhao | P. Zhou | Jian Zhu | Rui Zhu\n- **TLDR:** This work proposes a novel model architecture, Receptance Weighted Key Value (RWKV), that combines the efficient parallelizable training of transformers with the efficient inference of RNNs, and presents a significant step towards reconciling trade-offs between computational efficiency and model performance in sequence processing tasks.\n- **PaperId:** 026b3396a63ed5772329708b7580d633bb86bec9\n\n### 8. Linear Transformers (ARXIV:2006.16236)\n- **Title:** Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\n- **Year:** 2020\n- **Venue:** International Conference on Machine Learning\n- **DOI:** (none)\n- **ArXiv:** 2006.16236\n- **URL:** https://www.semanticscholar.org/paper/6f68e1bb253925d8431588555d3010419f322e04\n- **PDF:** (none)\n- **Citations:** 2719\n- **References:** 43\n- **Authors:** Angelos Katharopoulos | Apoorv Vyas | Nikolaos Pappas | Francois Fleuret\n- **TLDR:** This work expresses the self-attention as a linear dot-product of kernel feature maps and makes use of the associativity property of matrix products to reduce the complexity from O(N) to N, where N is the sequence length.\n- **PaperId:** 6f68e1bb253925d8431588555d3010419f322e04\n\n### 9. Based (ARXIV:2402.18668)\n- **Title:** Simple linear attention language models balance the recall-throughput tradeoff\n- **Year:** 2024\n- **Venue:** arXiv.org\n- **DOI:** 10.48550/arXiv.2402.18668\n- **ArXiv:** 2402.18668\n- **URL:** https://www.semanticscholar.org/paper/1759d78e00b811b2b4b35b49e22f7ec11694f5ad\n- **PDF:** (none)\n- **Citations:** 157\n- **References:** 0\n- **Authors:** Simran Arora | Sabri Eyuboglu | Michael Zhang | Aman Timalsina | Silas Alberti | Dylan Zinsley | James Zou | Atri Rudra | Christopher Re\n- **TLDR:** To make BASED competitive, IO-aware algorithms are developed that enable 24x higher throughput on language generation than FlashAttention-2, when generating 1024 tokens using 1.3b parameters and show that BASED matches the strongest sub-quadratic models and outperforms them on real-world recall-intensive tasks by 6.22 accuracy points.\n- **PaperId:** 1759d78e00b811b2b4b35b49e22f7ec11694f5ad\n\n### 10. Mamba-2 (ARXIV:2405.21060)\n- **Title:** Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\n- **Year:** 2024\n- **Venue:** International Conference on Machine Learning\n- **DOI:** (none)\n- **ArXiv:** 2405.21060\n- **URL:** https://www.semanticscholar.org/paper/ca9f5b3bf0f54ad97513e6175b30497873670fed\n- **PDF:** (none)\n- **Citations:** 1457\n- **References:** 0\n- **Authors:** Tri Dao | Albert Gu\n- **TLDR:** The state space duality (SSD) framework allows us to design a new architecture (Mamba-2) whose core layer is an a refinement of Mamba's selective SSM that is 2-8X faster, while continuing to be competitive with Transformers on language modeling.\n- **PaperId:** ca9f5b3bf0f54ad97513e6175b30497873670fed\n\n---\n\n## Key findings\n\n1. **The `core.tools.semantic_scholar` module does NOT exist** at `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/core/tools/` -- it exists at `/home/ubuntu/agent-ml-research/core/tools/semantic_scholar.py`. The import path `from core.tools.semantic_scholar import search_papers` only works when run from `/home/ubuntu/agent-ml-research/`.\n\n2. **`search_papers()` returns a `ToolResult` object**, not an iterable. Results are accessed via `result.data['papers']`.\n\n3. **The Semantic Scholar search endpoint (`/paper/search`) was persistently rate-limited (HTTP 429)** due to another worker process (PID 1312285) on the same machine concurrently hitting the API. The free tier allows only 1 req/s and the IP was blocked.\n\n4. **The batch endpoint (`POST /paper/batch`) worked** as a workaround -- it accepts a list of paper IDs and returns all results in a single request, reducing rate limit pressure.\n\n5. **All 4 must-cite papers were found and verified:** Mamba, RetNet, HGRN2, and GatedDeltaNet. Additionally, 6 supplementary papers were retrieved: S4, S5, RWKV, Linear Transformers, Based, and Mamba-2."
+                }
+              ],
+              "totalDurationMs": 1127987,
+              "totalTokens": 50452,
+              "totalToolUseCount": 31,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4195,
+                "cache_read_input_tokens": 42838,
+                "output_tokens": 3418,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4195
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3418,
+                    "cache_read_input_tokens": 42838,
+                    "cache_creation_input_tokens": 4195,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4195,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 2,
+                "searchCount": 0,
+                "bashCount": 29,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            },
+            "sourceToolAssistantUUID": "a2527de2-2fe6-48a6-b458-aa934c0742b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "35d402a3-d81b-487a-b4c7-3d3885a94479",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fill Linear Recurrent Models literature cluster",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T19:02:50.441Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have all the paper details. Now let me check the current literature_map.yaml and then add the papers. Let me also check if the `add_to_literature_map` function exists.",
+              "signature": "EuUCClkIDRgCKkChTCzW7/3uBv0SzdwBsHykFqzzKRsHFdEG0l1+qwDnkXRqIH4p+MPN0DRs55hHuuyWhjUtSYzCLcgv/yZacmKkMg9jbGF1ZGUtb3B1cy00LTY4ABIM9YjOJmEYtMlvpxuNGgzxEAenFcBDnVf+tYAiMNyZeL2JNeous9GzmZRdUqGn8YDu7pynFfep4AWZUhgugIl896OQiNXnWFoXQqgBiiq5AYQnMwhC1sXdPVTPwYZD3cVkGu4iv8ENiBCY3W9oOokofQAaGy0617HSrg70qsfde5uy6Y3+ayGFiDXC5jRmwyU+PCObXFPrtcRK228bGSnZio62MHmkCgfcWomqhsdXZ+uVigtyMyXQ8YDayGlysh2OFX7J1ShOfvN16qoTTl75XgoG7/I43P2Ataol9NeT88iKe0pId1Qxsn5HnbZG8tgLmQISgbv/YgVZHQodA26tvwiXF2WrgUN3GAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35d402a3-d81b-487a-b4c7-3d3885a94479",
+            "isSidechain": false,
+            "requestId": "req_011CbCSpaxfkvFDTgajBWd3W",
+            "type": "assistant",
+            "uuid": "67767d5b-fa12-40e0-b927-fe8b6e7b4a07",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015EC6thNG4gu8NA7YG8rc3y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4359,
+                "cache_read_input_tokens": 24460,
+                "output_tokens": 312,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 312,
+                    "cache_read_input_tokens": 24460,
+                    "cache_creation_input_tokens": 4359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T19:02:51.072Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 must-cite papers found and verified, plus additional candidates. Let me check the current literature map and add the papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67767d5b-fa12-40e0-b927-fe8b6e7b4a07",
+            "isSidechain": false,
+            "requestId": "req_011CbCSpaxfkvFDTgajBWd3W",
+            "type": "assistant",
+            "uuid": "6419cb7d-ed9c-44a7-8afb-cb6fa31bdf84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015EC6thNG4gu8NA7YG8rc3y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4359,
+                "cache_read_input_tokens": 24460,
+                "output_tokens": 312,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 312,
+                    "cache_read_input_tokens": 24460,
+                    "cache_creation_input_tokens": 4359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T19:02:55.113Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Az6vtpUbt4kj6NUZFvZPy9",
+              "name": "Agent",
+              "input": {
+                "description": "Check literature map state",
+                "subagent_type": "Explore",
+                "prompt": "Find and read the literature_map.yaml file in /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/. Also find the add_to_literature_map function - search for it in /home/ubuntu/agent-ml-research/ and /home/ubuntu/.agent-ml-research-idea_gen_0509_2/. Report the full path to literature_map.yaml, its current contents (especially any existing \"Linear Recurrent Models\" cluster), and the exact import path and signature for add_to_literature_map."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6419cb7d-ed9c-44a7-8afb-cb6fa31bdf84",
+            "isSidechain": false,
+            "requestId": "req_011CbCSpaxfkvFDTgajBWd3W",
+            "type": "assistant",
+            "uuid": "5887c12a-fbfb-4f76-a00e-c63738361038",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015EC6thNG4gu8NA7YG8rc3y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4359,
+                "cache_read_input_tokens": 24460,
+                "output_tokens": 312,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 312,
+                    "cache_read_input_tokens": 24460,
+                    "cache_creation_input_tokens": 4359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T19:03:12.883Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Az6vtpUbt4kj6NUZFvZPy9",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! I have all the information you requested. Here's my comprehensive report:\n\n## Summary\n\n**Full path to literature_map.yaml:**\n```\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml\n```\n\n## Current Contents of literature_map.yaml\n\nThe file contains 6 major clusters with a total of 33 papers. Here's the \"Linear Recurrent Models\" cluster specifically:\n\n**Linear Recurrent Models cluster** (target_count: 6 papers):\n1. **gu2024mamba** - \"Mamba: Linear-Time Sequence Modeling with Selective State Spaces\" (2024)\n2. **sun2023retnet** - \"Retentive Network: A Successor to Transformer for Large Language Models\" (2023)\n3. **qin2024hgrn2** - \"HGRN2: Gated Linear RNNs with State Expansion\" (2024)\n4. **yang2024gateddeltanet** - \"Gated Delta Networks: Improving Mamba2 with Delta Rule\" (2024)\n5. **gu2022s4** - \"Efficiently Modeling Long Sequences with Structured State Spaces\" (2022)\n6. **katharopoulos2020transformers** - \"Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\" (2020)\n\nAll other clusters in the file are:\n- Hybrid Architectures (7 papers)\n- Underspecification and Model Agreement (5 papers)\n- Ensemble Diversity (3 papers)\n- Dataset Cartography and Per-Example Analysis (4 papers)\n- Attention Interpretability (4 papers)\n- Benchmarks and Evaluation (3 papers)\n\n## add_to_literature_map Function Details\n\n**Import path:**\n```\nfrom core.tools.literature import add_to_literature_map\n```\n\n**Function signature:**\n```python\ndef add_to_literature_map(\n    project: str | None = None,\n    papers: Iterable[dict] | None = None,\n    added_by: str = \"\",\n) -> ToolResult:\n```\n\n**Key parameters:**\n- `project`: Project name (None for global/idea-phase map)\n- `papers`: Iterable of paper dicts with recognized fields: title, authors (list[str]), year, venue, url, doi, bibtex_key, category, role, relevance, abstract, semantic_scholar_id, source_idea_id, verified\n- `added_by`: Free-form provenance tag (\"paper-research\", \"idea-generator\", \"user\", etc.)\n\n**Return value:**\nReturns `ToolResult` with `.data` containing:\n- `\"added\"`: list of newly inserted paper keys\n- `\"merged\"`: list of keys for papers matched and merged\n- `\"rejected\"`: list of dicts with title and rejection reason\n- `\"total_papers\"`: total count in the map\n\n**Location:** `/home/ubuntu/agent-ml-research/core/tools/literature.py` (lines 392-494)"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5887c12a-fbfb-4f76-a00e-c63738361038",
+            "isSidechain": false,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "type": "user",
+            "uuid": "6d42b556-5fbe-4f98-bb86-899f115c3d83",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "Find and read the literature_map.yaml file in /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/. Also find the add_to_literature_map function - search for it in /home/ubuntu/agent-ml-research/ and /home/ubuntu/.agent-ml-research-idea_gen_0509_2/. Report the full path to literature_map.yaml, its current contents (especially any existing \"Linear Recurrent Models\" cluster), and the exact import path and signature for add_to_literature_map.",
+              "agentId": "a5e9cd0794a11f600",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! I have all the information you requested. Here's my comprehensive report:\n\n## Summary\n\n**Full path to literature_map.yaml:**\n```\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml\n```\n\n## Current Contents of literature_map.yaml\n\nThe file contains 6 major clusters with a total of 33 papers. Here's the \"Linear Recurrent Models\" cluster specifically:\n\n**Linear Recurrent Models cluster** (target_count: 6 papers):\n1. **gu2024mamba** - \"Mamba: Linear-Time Sequence Modeling with Selective State Spaces\" (2024)\n2. **sun2023retnet** - \"Retentive Network: A Successor to Transformer for Large Language Models\" (2023)\n3. **qin2024hgrn2** - \"HGRN2: Gated Linear RNNs with State Expansion\" (2024)\n4. **yang2024gateddeltanet** - \"Gated Delta Networks: Improving Mamba2 with Delta Rule\" (2024)\n5. **gu2022s4** - \"Efficiently Modeling Long Sequences with Structured State Spaces\" (2022)\n6. **katharopoulos2020transformers** - \"Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\" (2020)\n\nAll other clusters in the file are:\n- Hybrid Architectures (7 papers)\n- Underspecification and Model Agreement (5 papers)\n- Ensemble Diversity (3 papers)\n- Dataset Cartography and Per-Example Analysis (4 papers)\n- Attention Interpretability (4 papers)\n- Benchmarks and Evaluation (3 papers)\n\n## add_to_literature_map Function Details\n\n**Import path:**\n```\nfrom core.tools.literature import add_to_literature_map\n```\n\n**Function signature:**\n```python\ndef add_to_literature_map(\n    project: str | None = None,\n    papers: Iterable[dict] | None = None,\n    added_by: str = \"\",\n) -> ToolResult:\n```\n\n**Key parameters:**\n- `project`: Project name (None for global/idea-phase map)\n- `papers`: Iterable of paper dicts with recognized fields: title, authors (list[str]), year, venue, url, doi, bibtex_key, category, role, relevance, abstract, semantic_scholar_id, source_idea_id, verified\n- `added_by`: Free-form provenance tag (\"paper-research\", \"idea-generator\", \"user\", etc.)\n\n**Return value:**\nReturns `ToolResult` with `.data` containing:\n- `\"added\"`: list of newly inserted paper keys\n- `\"merged\"`: list of keys for papers matched and merged\n- `\"rejected\"`: list of dicts with title and rejection reason\n- `\"total_papers\"`: total count in the map\n\n**Location:** `/home/ubuntu/agent-ml-research/core/tools/literature.py` (lines 392-494)"
+                }
+              ],
+              "totalDurationMs": 17766,
+              "totalTokens": 43724,
+              "totalToolUseCount": 4,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7860,
+                "cache_read_input_tokens": 35110,
+                "output_tokens": 748,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7860
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 748,
+                    "cache_read_input_tokens": 35110,
+                    "cache_creation_input_tokens": 7860,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7860,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 2,
+                "searchCount": 2,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            },
+            "sourceToolAssistantUUID": "5887c12a-fbfb-4f76-a00e-c63738361038",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T19:03:19.492Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The Linear Recurrent Models cluster already has 6 papers! Let me check the details more carefully. The existing entries are:\n\n1. gu2024mamba - Mamba (must-cite ✓)\n2. sun2023retnet - RetNet (must-cite ✓)\n3. qin2024hgrn2 - HGRN2 (must-cite ✓)\n4. yang2024gateddeltanet - GatedDeltaNet (must-cite ✓)\n5. gu2022s4 - S4 (additional ✓)\n\n\n6. katharopoulos2020transformers - Linear Transformers (additional ✓)\n\nWait, the task asks to add 6 verified papers, but the cluster already has 6. Let me check the actual file to see if these are verified entries or just placeholders.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d42b556-5fbe-4f98-bb86-899f115c3d83",
+            "isSidechain": false,
+            "requestId": "req_011CbCSro313zSxvhhALNDgU",
+            "type": "assistant",
+            "uuid": "987291be-c952-494f-9ac2-1c8082251764",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJTBgGqNbmZqNQSSa9RR6d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1068,
+                "cache_read_input_tokens": 28819,
+                "output_tokens": 345,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1068,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 345,
+                    "cache_read_input_tokens": 28819,
+                    "cache_creation_input_tokens": 1068,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1068
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T19:03:19.509Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The cluster already has 6 entries. Let me check if they're verified or placeholders."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "987291be-c952-494f-9ac2-1c8082251764",
+            "isSidechain": false,
+            "requestId": "req_011CbCSro313zSxvhhALNDgU",
+            "type": "assistant",
+            "uuid": "f4482f7d-04e3-469e-9298-b01b0e1e1fe1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJTBgGqNbmZqNQSSa9RR6d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1068,
+                "cache_read_input_tokens": 28819,
+                "output_tokens": 345,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1068,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 345,
+                    "cache_read_input_tokens": 28819,
+                    "cache_creation_input_tokens": 1068,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1068
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T19:03:19.608Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ea5qMvANVmHQ5SFudhYFBT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4482f7d-04e3-469e-9298-b01b0e1e1fe1",
+            "isSidechain": false,
+            "requestId": "req_011CbCSro313zSxvhhALNDgU",
+            "type": "assistant",
+            "uuid": "8896ebbf-9553-4b40-bc5b-46c7e6cb5ec0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJTBgGqNbmZqNQSSa9RR6d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1068,
+                "cache_read_input_tokens": 28819,
+                "output_tokens": 345,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1068,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 345,
+                    "cache_read_input_tokens": 28819,
+                    "cache_creation_input_tokens": 1068,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1068
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T19:03:19.623Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ea5qMvANVmHQ5SFudhYFBT",
+              "type": "tool_result",
+              "content": "1\t# Literature Map for entrainment_gated_ft\n2\t# Populated via WebSearch verification (S2 API unavailable 2026-05-19)\n3\t\n4\tclusters:\n5\t  - cluster_name: \"Hybrid Architectures\"\n6\t    target_count: 7\n7\t    papers:\n8\t      - bibtex_key: wang2025hybrid\n9\t        title: \"Scaling Laws for Hybrid Language Models\"\n10\t        authors: \"Wang, Junxiong and others\"\n11\t        year: 2025\n12\t        venue: \"arXiv:2507.06457\"\n13\t        category: \"Hybrid Architectures\"\n14\t        verified: true\n15\t        doi: \"\"\n16\t        url: \"https://arxiv.org/abs/2507.06457\"\n17\t        relevance: \"Primary data source — 72-model zoo of hybrid recurrent-attention architectures\"\n18\t      - bibtex_key: lieber2024jamba\n19\t        title: \"Jamba: A Hybrid Transformer-Mamba Language Model\"\n20\t        authors: \"Lieber, Opher and others\"\n21\t        year: 2024\n22\t        venue: \"arXiv:2403.19887\"\n23\t        category: \"Hybrid Architectures\"\n24\t        verified: true\n25\t        doi: \"\"\n26\t        url: \"https://arxiv.org/abs/2403.19887\"\n27\t        relevance: \"First production-scale hybrid interleaving Transformer and Mamba layers with MoE; key design reference for attention-ratio choices\"\n28\t      - bibtex_key: peng2024eagle\n29\t        title: \"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\"\n30\t        authors: \"Peng, Bo and others\"\n31\t        year: 2024\n32\t        venue: \"arXiv:2404.05892\"\n33\t        category: \"Hybrid Architectures\"\n34\t        verified: true\n35\t        doi: \"\"\n36\t        url: \"https://arxiv.org/abs/2404.05892\"\n37\t        relevance: \"RWKV-5/6 with matrix-valued states and dynamic recurrence; pure-recurrent baseline in the hybrid architecture spectrum\"\n38\t      - bibtex_key: de2024griffin\n39\t        title: \"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\"\n40\t        authors: \"De, Soham and others\"\n41\t        year: 2024\n42\t        venue: \"arXiv:2402.19427\"\n43\t        category: \"Hybrid Architectures\"\n44\t        verified: true\n45\t        doi: \"\"\n46\t        url: \"https://arxiv.org/abs/2402.19427\"\n47\t        relevance: \"Proposes Hawk (pure RNN) and Griffin (gated linear recurrence + local attention); matches Llama-2 with 6x fewer tokens\"\n48\t      - bibtex_key: dao2024mamba2\n49\t        title: \"Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\"\n50\t        authors: \"Dao, Tri and Gu, Albert\"\n51\t        year: 2024\n52\t        venue: \"ICML 2024\"\n53\t        category: \"Hybrid Architectures\"\n54\t        verified: true\n55\t        doi: \"\"\n56\t        url: \"https://arxiv.org/abs/2405.21060\"\n57\t        relevance: \"Establishes SSD framework unifying SSMs and attention; Mamba-2 core layer used in many hybrid designs\"\n58\t      - bibtex_key: botev2024recurrentgemma\n59\t        title: \"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\"\n60\t        authors: \"Botev, Aleksandar and others\"\n61\t        year: 2024\n62\t        venue: \"arXiv:2404.07839\"\n63\t        category: \"Hybrid Architectures\"\n64\t        verified: true\n65\t        doi: \"\"\n66\t        url: \"https://arxiv.org/abs/2404.07839\"\n67\t        relevance: \"Open-weight Griffin-based model combining linear recurrence with local sliding-window attention; directly comparable to hybrid zoo models\"\n68\t      - bibtex_key: dong2024hymba\n69\t        title: \"Hymba: A Hybrid-head Architecture for Small Language Models\"\n70\t        authors: \"Dong, Xin and others\"\n71\t        year: 2024\n72\t        venue: \"arXiv:2411.13676\"\n73\t        category: \"Hybrid Architectures\"\n74\t        verified: true\n75\t        doi: \"\"\n76\t        url: \"https://arxiv.org/abs/2411.13676\"\n77\t        relevance: \"Intra-layer head-wise hybrid mixing attention and SSM heads; contrasts with inter-layer hybrid designs like Jamba/Griffin\"\n78\t\n79\t  - cluster_name: \"Linear Recurrent Models\"\n80\t    target_count: 6\n81\t    papers:\n82\t      - bibtex_key: gu2024mamba\n83\t        title: \"Mamba: Linear-Time Sequence Modeling with Selective State Spaces\"\n84\t        authors: \"Gu, Albert and Dao, Tri\"\n85\t        year: 2024\n86\t        venue: \"arXiv:2312.00752\"\n87\t        category: \"Linear Recurrent Models\"\n88\t        verified: true\n89\t        doi: \"\"\n90\t        url: \"https://arxiv.org/abs/2312.00752\"\n91\t        relevance: \"Selective SSM foundation — Mamba architecture; base for Mamba-2 and many hybrid designs in our study\"\n92\t      - bibtex_key: sun2023retnet\n93\t        title: \"Retentive Network: A Successor to Transformer for Large Language Models\"\n94\t        authors: \"Sun, Yutao and Dong, Li and Huang, Shaohan and Ma, Shuming and Xia, Yuqing and Xue, Jilong and Wang, Jianyong and Wei, Furu\"\n95\t        year: 2023\n96\t        venue: \"arXiv:2307.08621\"\n97\t        category: \"Linear Recurrent Models\"\n98\t        verified: true\n99\t        doi: \"\"\n100\t        url: \"https://arxiv.org/abs/2307.08621\"\n101\t        relevance: \"RetNet — one of three base architectures in our study; retention mechanism with parallel/recurrent/chunkwise paradigms\"\n102\t      - bibtex_key: qin2024hgrn2\n103\t        title: \"HGRN2: Gated Linear RNNs with State Expansion\"\n104\t        authors: \"Qin, Zhen and others\"\n105\t        year: 2024\n106\t        venue: \"arXiv:2404.07904\"\n107\t        category: \"Linear Recurrent Models\"\n108\t        verified: true\n109\t        doi: \"\"\n110\t        url: \"https://arxiv.org/abs/2404.07904\"\n111\t        relevance: \"HGRN2 — one of three base architectures in our study; outer-product state expansion for gated linear RNNs\"\n112\t      - bibtex_key: yang2024gateddeltanet\n113\t        title: \"Gated Delta Networks: Improving Mamba2 with Delta Rule\"\n114\t        authors: \"Yang, Songlin and Kautz, Jan and Hatamizadeh, Ali\"\n115\t        year: 2024\n116\t        venue: \"arXiv:2412.06464\"\n117\t        category: \"Linear Recurrent Models\"\n118\t        verified: true\n119\t        doi: \"\"\n120\t        url: \"https://arxiv.org/abs/2412.06464\"\n121\t        relevance: \"GatedDeltaNet — one of three base architectures in our study; combines gating with delta update rule\"\n122\t      - bibtex_key: gu2022s4\n123\t        title: \"Efficiently Modeling Long Sequences with Structured State Spaces\"\n124\t        authors: \"Gu, Albert and Goel, Karan and Ré, Christopher\"\n125\t        year: 2022\n126\t        venue: \"ICLR 2022\"\n127\t        category: \"Linear Recurrent Models\"\n128\t        verified: true\n129\t        doi: \"\"\n130\t        url: \"https://arxiv.org/abs/2111.00396\"\n131\t        relevance: \"S4 — foundational structured state space model; established SSM paradigm that led to Mamba and subsequent architectures\"\n132\t      - bibtex_key: katharopoulos2020transformers\n133\t        title: \"Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\"\n134\t        authors: \"Katharopoulos, Angelos and Vyas, Apoorv and Pappas, Nikolaos and Fleuret, François\"\n135\t        year: 2020\n136\t        venue: \"ICML 2020\"\n137\t        category: \"Linear Recurrent Models\"\n138\t        verified: true\n139\t        doi: \"\"\n140\t        url: \"https://arxiv.org/abs/2006.16236\"\n141\t        relevance: \"Linear attention as RNN — establishes theoretical bridge between attention and recurrence; foundational for gated linear attention variants\"\n142\t\n143\t  - cluster_name: \"Underspecification and Model Agreement\"\n144\t    target_count: 5\n145\t    papers:\n146\t      - bibtex_key: damour2022underspecification\n147\t        title: \"Underspecification Presents Challenges for Credibility in Modern Machine Learning\"\n148\t        authors: \"D'Amour, Alexander and Heller, Katherine and Moldovan, Dan and others\"\n149\t        year: 2022\n150\t        venue: \"JMLR\"\n151\t        category: \"Underspecification and Model Agreement\"\n152\t        verified: true\n153\t        doi: \"\"\n154\t        url: \"\"\n155\t        relevance: \"Framing anchor — defines underspecification; our finding is a specific instance\"\n156\t      - bibtex_key: mccoy2020berts\n157\t        title: \"BERTs of a feather do not generalize together: Large variability in generalization across models with similar test set performance\"\n158\t        authors: \"McCoy, R. Thomas and Min, Junghyun and Linzen, Tal\"\n159\t        year: 2020\n160\t        venue: \"NeurIPS 2020\"\n161\t        category: \"Underspecification and Model Agreement\"\n162\t        verified: true\n163\t        doi: \"\"\n164\t        url: \"https://arxiv.org/abs/1911.02969\"\n165\t        relevance: \"Per-example divergence in fine-tuned BERTs — direct precedent for our finding that similar aggregate performance masks per-example disagreement\"\n166\t      - bibtex_key: fort2019deep\n167\t        title: \"Deep Ensembles: A Loss Landscape Perspective\"\n168\t        authors: \"Fort, Stanislav and Hu, Huiyi and Lakshminarayanan, Balaji\"\n169\t        year: 2019\n170\t        venue: \"arXiv:1912.02757\"\n171\t        category: \"Underspecification and Model Agreement\"\n172\t        verified: true\n173\t        doi: \"\"\n174\t        url: \"https://arxiv.org/abs/1912.02757\"\n175\t        relevance: \"Loss landscape analysis showing diverse solutions in weight space; supports our observation that architectures find different per-example solutions\"\n176\t      - bibtex_key: kornblith2019similarity\n177\t        title: \"Similarity of Neural Network Representations Revisited\"\n178\t        authors: \"Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey\"\n179\t        year: 2019\n180\t        venue: \"ICML 2019\"\n181\t        category: \"Underspecification and Model Agreement\"\n182\t        verified: true\n183\t        doi: \"\"\n184\t        url: \"https://arxiv.org/abs/1905.00414\"\n185\t        relevance: \"CKA — centered kernel alignment for measuring representational similarity; methodological context for cross-architecture comparison\"\n186\t      - bibtex_key: koh2021wilds\n187\t        title: \"WILDS: A Benchmark for In-the-Wild Distribution Shift\"\n188\t        authors: \"Koh, Pang Wei and Sagawa, Shiori and Marklund, Henrik and others\"\n189\t        year: 2021\n190\t        venue: \"ICML 2021\"\n191\t        category: \"Underspecification and Model Agreement\"\n192\t        verified: true\n193\t        doi: \"\"\n194\t        url: \"https://arxiv.org/abs/2012.07421\"\n195\t        relevance: \"Benchmark for distribution shift; complements underspecification framework by providing empirical evidence of model disagreement under shift\"\n196\t\n197\t  - cluster_name: \"Ensemble Diversity\"\n198\t    target_count: 3\n199\t    papers:\n200\t      - bibtex_key: krogh1994ensembles\n201\t        title: \"Neural Network Ensembles, Cross Validation, and Active Learning\"\n202\t        authors: \"Krogh, Anders and Vedelsby, Jesper\"\n203\t        year: 1994\n204\t        venue: \"NeurIPS 1994\"\n205\t        category: \"Ensemble Diversity\"\n206\t        verified: true\n207\t        doi: \"\"\n208\t        url: \"\"\n209\t        relevance: \"Foundational ensemble diversity-accuracy decomposition; ambiguity = variance of ensemble members; our Jaccard metric measures analogous per-example disagreement\"\n210\t      - bibtex_key: kuncheva2003measures\n211\t        title: \"Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy\"\n212\t        authors: \"Kuncheva, Ludmila I. and Whitaker, Christopher J.\"\n213\t        year: 2003\n214\t        venue: \"Machine Learning\"\n215\t        category: \"Ensemble Diversity\"\n216\t        verified: true\n217\t        doi: \"\"\n218\t        url: \"\"\n219\t        relevance: \"Systematic evaluation of 10 diversity measures for classifier ensembles; Jaccard-like pairwise measures directly relevant to our per-example analysis\"\n220\t      - bibtex_key: lakshminarayanan2017simple\n221\t        title: \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\"\n222\t        authors: \"Lakshminarayanan, Balaji and Pritzel, Alexander and Blundell, Charles\"\n223\t        year: 2017\n224\t        venue: \"NeurIPS 2017\"\n225\t        category: \"Ensemble Diversity\"\n226\t        verified: true\n227\t        doi: \"\"\n228\t        url: \"https://arxiv.org/abs/1612.01474\"\n229\t        relevance: \"Deep ensemble methodology; random initialization suffices for diversity — parallels our observation that different architectures produce diverse per-example behaviors\"\n230\t\n231\t  - cluster_name: \"Dataset Cartography and Per-Example Analysis\"\n232\t    target_count: 4\n233\t    papers:\n234\t      - bibtex_key: swayamdipta2020dataset\n235\t        title: \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\"\n236\t        authors: \"Swayamdipta, Swabha and Schwartz, Roy and Lourie, Nicholas and Wang, Yizhong and Hajishirzi, Hannaneh and Smith, Noah A. and Choi, Yejin\"\n237\t        year: 2020\n238\t        venue: \"EMNLP 2020\"\n239\t        category: \"Dataset Cartography and Per-Example Analysis\"\n240\t        verified: true\n241\t        doi: \"\"\n242\t        url: \"https://arxiv.org/abs/2009.10795\"\n243\t        relevance: \"Per-example characterization via training dynamics (confidence, variability); our helped/hurt decomposition is analogous per-example analysis across architectures rather than epochs\"\n244\t      - bibtex_key: rodriguez2021evaluation\n245\t        title: \"Evaluation Examples are Not Equally Informative: How Should That Change NLP Leaderboards?\"\n246\t        authors: \"Rodriguez, Pedro and Barrow, Joe and Hoyle, Alexander Miserlis and Lalor, John P. and Jia, Robin and Boyd-Graber, Jordan\"\n247\t        year: 2021\n248\t        venue: \"ACL 2021\"\n249\t        category: \"Dataset Cartography and Per-Example Analysis\"\n250\t        verified: true\n251\t        doi: \"\"\n252\t        url: \"https://aclanthology.org/2021.acl-long.346\"\n253\t        relevance: \"IRT-based per-example difficulty modeling for NLP; demonstrates that evaluation examples have latent properties — our helped/hurt analysis reveals similar per-example structure\"\n254\t      - bibtex_key: ethayarajh2022understanding\n255\t        title: \"Understanding Dataset Difficulty with V-Usable Information\"\n256\t        authors: \"Ethayarajh, Kawin and Choi, Yejin and Swayamdipta, Swabha\"\n257\t        year: 2022\n258\t        venue: \"ICML 2022\"\n259\t        category: \"Dataset Cartography and Per-Example Analysis\"\n260\t        verified: true\n261\t        doi: \"\"\n262\t        url: \"https://arxiv.org/abs/2110.08420\"\n263\t        relevance: \"V-usable information framework for per-example difficulty; extends dataset cartography to information-theoretic characterization\"\n264\t      - bibtex_key: pleiss2020identifying\n265\t        title: \"Identifying Mislabeled Data using the Area Under the Margin Ranking\"\n266\t        authors: \"Pleiss, Geoff and Zhang, Tianyi and Elenberg, Ethan and Weinberger, Kilian Q.\"\n267\t        year: 2020\n268\t        venue: \"NeurIPS 2020\"\n269\t        category: \"Dataset Cartography and Per-Example Analysis\"\n270\t        verified: true\n271\t        doi: \"\"\n272\t        url: \"https://arxiv.org/abs/2001.10528\"\n273\t        relevance: \"Per-example margin ranking for data quality; complementary per-example analysis method to our helped/hurt decomposition\"\n274\t\n275\t  - cluster_name: \"Attention Interpretability\"\n276\t    target_count: 4\n277\t    papers:\n278\t      - bibtex_key: jain2019attention\n279\t        title: \"Attention is not Explanation\"\n280\t        authors: \"Jain, Sarthak and Wallace, Byron C.\"\n281\t        year: 2019\n282\t        venue: \"NAACL 2019\"\n283\t        category: \"Attention Interpretability\"\n284\t        verified: true\n285\t        doi: \"\"\n286\t        url: \"https://arxiv.org/abs/1902.10186\"\n287\t        relevance: \"Caution against interpreting attention as explanation; relevant to our attention weight analysis which we frame as descriptive characterization, not causal\"\n288\t      - bibtex_key: clark2019what\n289\t        title: \"What Does BERT Look At? An Analysis of BERT's Attention\"\n290\t        authors: \"Clark, Kevin and Khandelwal, Urvashi and Levy, Omer and Manning, Christopher D.\"\n291\t        year: 2019\n292\t        venue: \"BlackboxNLP Workshop, ACL 2019\"\n293\t        category: \"Attention Interpretability\"\n294\t        verified: true\n295\t        doi: \"\"\n296\t        url: \"https://arxiv.org/abs/1906.04341\"\n297\t        relevance: \"Descriptive attention pattern analysis in BERT; methodological precedent for our cross-architecture attention cosine similarity analysis\"\n298\t      - bibtex_key: olsson2022induction\n299\t        title: \"In-context Learning and Induction Heads\"\n300\t        authors: \"Olsson, Catherine and Elhage, Nelson and Nanda, Neel and others\"\n301\t        year: 2022\n302\t        venue: \"arXiv:2209.11895\"\n303\t        category: \"Attention Interpretability\"\n304\t        verified: true\n305\t        doi: \"\"\n306\t        url: \"https://arxiv.org/abs/2209.11895\"\n307\t        relevance: \"Induction heads as mechanistic circuit for in-context learning; relevant to understanding what hybrid attention layers learn\"\n308\t      - bibtex_key: wiegreffe2019attention\n309\t        title: \"Attention is not not Explanation\"\n310\t        authors: \"Wiegreffe, Sarah and Pinter, Yuval\"\n311\t        year: 2019\n312\t        venue: \"EMNLP 2019\"\n313\t        category: \"Attention Interpretability\"\n314\t        verified: true\n315\t        doi: \"\"\n316\t        url: \"https://arxiv.org/abs/1908.04626\"\n317\t        relevance: \"Response to Jain & Wallace showing attention can provide useful signal under certain conditions; contextualizes our cautious descriptive framing\"\n318\t\n319\t  - cluster_name: \"Benchmarks and Evaluation\"\n320\t    target_count: 3\n321\t    papers:\n322\t      - bibtex_key: paperno2016lambada\n323\t        title: \"The LAMBADA Dataset: Word Prediction Requiring a Broad Discourse Context\"\n324\t        authors: \"Paperno, Denis and Kruszewski, Germán and Lazaridou, Angeliki and others\"\n325\t        year: 2016\n326\t        venue: \"ACL 2016\"\n327\t        category: \"Benchmarks and Evaluation\"\n328\t        verified: true\n329\t        doi: \"\"\n330\t        url: \"\"\n331\t        relevance: \"Primary benchmark — LAMBADA is the sole convergence benchmark in our study\"\n332\t      - bibtex_key: gao2024lmeval\n333\t        title: \"A Framework for Few-Shot Language Model Evaluation\"\n334\t        authors: \"Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and others\"\n335\t        year: 2024\n336\t        venue: \"Zenodo (v0.4.3)\"\n337\t        category: \"Benchmarks and Evaluation\"\n338\t        verified: true\n339\t        doi: \"10.5281/zenodo.12608602\"\n340\t        url: \"https://github.com/EleutherAI/lm-evaluation-harness\"\n341\t        relevance: \"lm-evaluation-harness — evaluation framework used by Wang et al. (2025) model zoo and our benchmark evaluations\"\n342\t      - bibtex_key: clark2018arc\n343\t        title: \"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge\"\n344\t        authors: \"Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind\"\n345\t        year: 2018\n346\t        venue: \"arXiv:1803.05457\"\n347\t        category: \"Benchmarks and Evaluation\"\n348\t        verified: true\n349\t        doi: \"\"\n350\t        url: \"https://arxiv.org/abs/1803.05457\"\n351\t        relevance: \"ARC benchmark — ARC-Easy and ARC-Challenge are two of our 10 evaluation benchmarks\"\n352\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8896ebbf-9553-4b40-bc5b-46c7e6cb5ec0",
+            "isSidechain": false,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "type": "user",
+            "uuid": "9ed81a31-df92-4527-8364-21686da28ec4",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml",
+                "content": "# Literature Map for entrainment_gated_ft\n# Populated via WebSearch verification (S2 API unavailable 2026-05-19)\n\nclusters:\n  - cluster_name: \"Hybrid Architectures\"\n    target_count: 7\n    papers:\n      - bibtex_key: wang2025hybrid\n        title: \"Scaling Laws for Hybrid Language Models\"\n        authors: \"Wang, Junxiong and others\"\n        year: 2025\n        venue: \"arXiv:2507.06457\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2507.06457\"\n        relevance: \"Primary data source — 72-model zoo of hybrid recurrent-attention architectures\"\n      - bibtex_key: lieber2024jamba\n        title: \"Jamba: A Hybrid Transformer-Mamba Language Model\"\n        authors: \"Lieber, Opher and others\"\n        year: 2024\n        venue: \"arXiv:2403.19887\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2403.19887\"\n        relevance: \"First production-scale hybrid interleaving Transformer and Mamba layers with MoE; key design reference for attention-ratio choices\"\n      - bibtex_key: peng2024eagle\n        title: \"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\"\n        authors: \"Peng, Bo and others\"\n        year: 2024\n        venue: \"arXiv:2404.05892\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2404.05892\"\n        relevance: \"RWKV-5/6 with matrix-valued states and dynamic recurrence; pure-recurrent baseline in the hybrid architecture spectrum\"\n      - bibtex_key: de2024griffin\n        title: \"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\"\n        authors: \"De, Soham and others\"\n        year: 2024\n        venue: \"arXiv:2402.19427\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2402.19427\"\n        relevance: \"Proposes Hawk (pure RNN) and Griffin (gated linear recurrence + local attention); matches Llama-2 with 6x fewer tokens\"\n      - bibtex_key: dao2024mamba2\n        title: \"Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\"\n        authors: \"Dao, Tri and Gu, Albert\"\n        year: 2024\n        venue: \"ICML 2024\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2405.21060\"\n        relevance: \"Establishes SSD framework unifying SSMs and attention; Mamba-2 core layer used in many hybrid designs\"\n      - bibtex_key: botev2024recurrentgemma\n        title: \"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\"\n        authors: \"Botev, Aleksandar and others\"\n        year: 2024\n        venue: \"arXiv:2404.07839\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2404.07839\"\n        relevance: \"Open-weight Griffin-based model combining linear recurrence with local sliding-window attention; directly comparable to hybrid zoo models\"\n      - bibtex_key: dong2024hymba\n        title: \"Hymba: A Hybrid-head Architecture for Small Language Models\"\n        authors: \"Dong, Xin and others\"\n        year: 2024\n        venue: \"arXiv:2411.13676\"\n        category: \"Hybrid Architectures\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2411.13676\"\n        relevance: \"Intra-layer head-wise hybrid mixing attention and SSM heads; contrasts with inter-layer hybrid designs like Jamba/Griffin\"\n\n  - cluster_name: \"Linear Recurrent Models\"\n    target_count: 6\n    papers:\n      - bibtex_key: gu2024mamba\n        title: \"Mamba: Linear-Time Sequence Modeling with Selective State Spaces\"\n        authors: \"Gu, Albert and Dao, Tri\"\n        year: 2024\n        venue: \"arXiv:2312.00752\"\n        category: \"Linear Recurrent Models\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2312.00752\"\n        relevance: \"Selective SSM foundation — Mamba architecture; base for Mamba-2 and many hybrid designs in our study\"\n      - bibtex_key: sun2023retnet\n        title: \"Retentive Network: A Successor to Transformer for Large Language Models\"\n        authors: \"Sun, Yutao and Dong, Li and Huang, Shaohan and Ma, Shuming and Xia, Yuqing and Xue, Jilong and Wang, Jianyong and Wei, Furu\"\n        year: 2023\n        venue: \"arXiv:2307.08621\"\n        category: \"Linear Recurrent Models\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2307.08621\"\n        relevance: \"RetNet — one of three base architectures in our study; retention mechanism with parallel/recurrent/chunkwise paradigms\"\n      - bibtex_key: qin2024hgrn2\n        title: \"HGRN2: Gated Linear RNNs with State Expansion\"\n        authors: \"Qin, Zhen and others\"\n        year: 2024\n        venue: \"arXiv:2404.07904\"\n        category: \"Linear Recurrent Models\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2404.07904\"\n        relevance: \"HGRN2 — one of three base architectures in our study; outer-product state expansion for gated linear RNNs\"\n      - bibtex_key: yang2024gateddeltanet\n        title: \"Gated Delta Networks: Improving Mamba2 with Delta Rule\"\n        authors: \"Yang, Songlin and Kautz, Jan and Hatamizadeh, Ali\"\n        year: 2024\n        venue: \"arXiv:2412.06464\"\n        category: \"Linear Recurrent Models\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2412.06464\"\n        relevance: \"GatedDeltaNet — one of three base architectures in our study; combines gating with delta update rule\"\n      - bibtex_key: gu2022s4\n        title: \"Efficiently Modeling Long Sequences with Structured State Spaces\"\n        authors: \"Gu, Albert and Goel, Karan and Ré, Christopher\"\n        year: 2022\n        venue: \"ICLR 2022\"\n        category: \"Linear Recurrent Models\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2111.00396\"\n        relevance: \"S4 — foundational structured state space model; established SSM paradigm that led to Mamba and subsequent architectures\"\n      - bibtex_key: katharopoulos2020transformers\n        title: \"Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\"\n        authors: \"Katharopoulos, Angelos and Vyas, Apoorv and Pappas, Nikolaos and Fleuret, François\"\n        year: 2020\n        venue: \"ICML 2020\"\n        category: \"Linear Recurrent Models\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2006.16236\"\n        relevance: \"Linear attention as RNN — establishes theoretical bridge between attention and recurrence; foundational for gated linear attention variants\"\n\n  - cluster_name: \"Underspecification and Model Agreement\"\n    target_count: 5\n    papers:\n      - bibtex_key: damour2022underspecification\n        title: \"Underspecification Presents Challenges for Credibility in Modern Machine Learning\"\n        authors: \"D'Amour, Alexander and Heller, Katherine and Moldovan, Dan and others\"\n        year: 2022\n        venue: \"JMLR\"\n        category: \"Underspecification and Model Agreement\"\n        verified: true\n        doi: \"\"\n        url: \"\"\n        relevance: \"Framing anchor — defines underspecification; our finding is a specific instance\"\n      - bibtex_key: mccoy2020berts\n        title: \"BERTs of a feather do not generalize together: Large variability in generalization across models with similar test set performance\"\n        authors: \"McCoy, R. Thomas and Min, Junghyun and Linzen, Tal\"\n        year: 2020\n        venue: \"NeurIPS 2020\"\n        category: \"Underspecification and Model Agreement\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1911.02969\"\n        relevance: \"Per-example divergence in fine-tuned BERTs — direct precedent for our finding that similar aggregate performance masks per-example disagreement\"\n      - bibtex_key: fort2019deep\n        title: \"Deep Ensembles: A Loss Landscape Perspective\"\n        authors: \"Fort, Stanislav and Hu, Huiyi and Lakshminarayanan, Balaji\"\n        year: 2019\n        venue: \"arXiv:1912.02757\"\n        category: \"Underspecification and Model Agreement\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1912.02757\"\n        relevance: \"Loss landscape analysis showing diverse solutions in weight space; supports our observation that architectures find different per-example solutions\"\n      - bibtex_key: kornblith2019similarity\n        title: \"Similarity of Neural Network Representations Revisited\"\n        authors: \"Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey\"\n        year: 2019\n        venue: \"ICML 2019\"\n        category: \"Underspecification and Model Agreement\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1905.00414\"\n        relevance: \"CKA — centered kernel alignment for measuring representational similarity; methodological context for cross-architecture comparison\"\n      - bibtex_key: koh2021wilds\n        title: \"WILDS: A Benchmark for In-the-Wild Distribution Shift\"\n        authors: \"Koh, Pang Wei and Sagawa, Shiori and Marklund, Henrik and others\"\n        year: 2021\n        venue: \"ICML 2021\"\n        category: \"Underspecification and Model Agreement\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2012.07421\"\n        relevance: \"Benchmark for distribution shift; complements underspecification framework by providing empirical evidence of model disagreement under shift\"\n\n  - cluster_name: \"Ensemble Diversity\"\n    target_count: 3\n    papers:\n      - bibtex_key: krogh1994ensembles\n        title: \"Neural Network Ensembles, Cross Validation, and Active Learning\"\n        authors: \"Krogh, Anders and Vedelsby, Jesper\"\n        year: 1994\n        venue: \"NeurIPS 1994\"\n        category: \"Ensemble Diversity\"\n        verified: true\n        doi: \"\"\n        url: \"\"\n        relevance: \"Foundational ensemble diversity-accuracy decomposition; ambiguity = variance of ensemble members; our Jaccard metric measures analogous per-example disagreement\"\n      - bibtex_key: kuncheva2003measures\n        title: \"Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy\"\n        authors: \"Kuncheva, Ludmila I. and Whitaker, Christopher J.\"\n        year: 2003\n        venue: \"Machine Learning\"\n        category: \"Ensemble Diversity\"\n        verified: true\n        doi: \"\"\n        url: \"\"\n        relevance: \"Systematic evaluation of 10 diversity measures for classifier ensembles; Jaccard-like pairwise measures directly relevant to our per-example analysis\"\n      - bibtex_key: lakshminarayanan2017simple\n        title: \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\"\n        authors: \"Lakshminarayanan, Balaji and Pritzel, Alexander and Blundell, Charles\"\n        year: 2017\n        venue: \"NeurIPS 2017\"\n        category: \"Ensemble Diversity\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1612.01474\"\n        relevance: \"Deep ensemble methodology; random initialization suffices for diversity — parallels our observation that different architectures produce diverse per-example behaviors\"\n\n  - cluster_name: \"Dataset Cartography and Per-Example Analysis\"\n    target_count: 4\n    papers:\n      - bibtex_key: swayamdipta2020dataset\n        title: \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\"\n        authors: \"Swayamdipta, Swabha and Schwartz, Roy and Lourie, Nicholas and Wang, Yizhong and Hajishirzi, Hannaneh and Smith, Noah A. and Choi, Yejin\"\n        year: 2020\n        venue: \"EMNLP 2020\"\n        category: \"Dataset Cartography and Per-Example Analysis\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2009.10795\"\n        relevance: \"Per-example characterization via training dynamics (confidence, variability); our helped/hurt decomposition is analogous per-example analysis across architectures rather than epochs\"\n      - bibtex_key: rodriguez2021evaluation\n        title: \"Evaluation Examples are Not Equally Informative: How Should That Change NLP Leaderboards?\"\n        authors: \"Rodriguez, Pedro and Barrow, Joe and Hoyle, Alexander Miserlis and Lalor, John P. and Jia, Robin and Boyd-Graber, Jordan\"\n        year: 2021\n        venue: \"ACL 2021\"\n        category: \"Dataset Cartography and Per-Example Analysis\"\n        verified: true\n        doi: \"\"\n        url: \"https://aclanthology.org/2021.acl-long.346\"\n        relevance: \"IRT-based per-example difficulty modeling for NLP; demonstrates that evaluation examples have latent properties — our helped/hurt analysis reveals similar per-example structure\"\n      - bibtex_key: ethayarajh2022understanding\n        title: \"Understanding Dataset Difficulty with V-Usable Information\"\n        authors: \"Ethayarajh, Kawin and Choi, Yejin and Swayamdipta, Swabha\"\n        year: 2022\n        venue: \"ICML 2022\"\n        category: \"Dataset Cartography and Per-Example Analysis\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2110.08420\"\n        relevance: \"V-usable information framework for per-example difficulty; extends dataset cartography to information-theoretic characterization\"\n      - bibtex_key: pleiss2020identifying\n        title: \"Identifying Mislabeled Data using the Area Under the Margin Ranking\"\n        authors: \"Pleiss, Geoff and Zhang, Tianyi and Elenberg, Ethan and Weinberger, Kilian Q.\"\n        year: 2020\n        venue: \"NeurIPS 2020\"\n        category: \"Dataset Cartography and Per-Example Analysis\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2001.10528\"\n        relevance: \"Per-example margin ranking for data quality; complementary per-example analysis method to our helped/hurt decomposition\"\n\n  - cluster_name: \"Attention Interpretability\"\n    target_count: 4\n    papers:\n      - bibtex_key: jain2019attention\n        title: \"Attention is not Explanation\"\n        authors: \"Jain, Sarthak and Wallace, Byron C.\"\n        year: 2019\n        venue: \"NAACL 2019\"\n        category: \"Attention Interpretability\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1902.10186\"\n        relevance: \"Caution against interpreting attention as explanation; relevant to our attention weight analysis which we frame as descriptive characterization, not causal\"\n      - bibtex_key: clark2019what\n        title: \"What Does BERT Look At? An Analysis of BERT's Attention\"\n        authors: \"Clark, Kevin and Khandelwal, Urvashi and Levy, Omer and Manning, Christopher D.\"\n        year: 2019\n        venue: \"BlackboxNLP Workshop, ACL 2019\"\n        category: \"Attention Interpretability\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1906.04341\"\n        relevance: \"Descriptive attention pattern analysis in BERT; methodological precedent for our cross-architecture attention cosine similarity analysis\"\n      - bibtex_key: olsson2022induction\n        title: \"In-context Learning and Induction Heads\"\n        authors: \"Olsson, Catherine and Elhage, Nelson and Nanda, Neel and others\"\n        year: 2022\n        venue: \"arXiv:2209.11895\"\n        category: \"Attention Interpretability\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/2209.11895\"\n        relevance: \"Induction heads as mechanistic circuit for in-context learning; relevant to understanding what hybrid attention layers learn\"\n      - bibtex_key: wiegreffe2019attention\n        title: \"Attention is not not Explanation\"\n        authors: \"Wiegreffe, Sarah and Pinter, Yuval\"\n        year: 2019\n        venue: \"EMNLP 2019\"\n        category: \"Attention Interpretability\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1908.04626\"\n        relevance: \"Response to Jain & Wallace showing attention can provide useful signal under certain conditions; contextualizes our cautious descriptive framing\"\n\n  - cluster_name: \"Benchmarks and Evaluation\"\n    target_count: 3\n    papers:\n      - bibtex_key: paperno2016lambada\n        title: \"The LAMBADA Dataset: Word Prediction Requiring a Broad Discourse Context\"\n        authors: \"Paperno, Denis and Kruszewski, Germán and Lazaridou, Angeliki and others\"\n        year: 2016\n        venue: \"ACL 2016\"\n        category: \"Benchmarks and Evaluation\"\n        verified: true\n        doi: \"\"\n        url: \"\"\n        relevance: \"Primary benchmark — LAMBADA is the sole convergence benchmark in our study\"\n      - bibtex_key: gao2024lmeval\n        title: \"A Framework for Few-Shot Language Model Evaluation\"\n        authors: \"Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and others\"\n        year: 2024\n        venue: \"Zenodo (v0.4.3)\"\n        category: \"Benchmarks and Evaluation\"\n        verified: true\n        doi: \"10.5281/zenodo.12608602\"\n        url: \"https://github.com/EleutherAI/lm-evaluation-harness\"\n        relevance: \"lm-evaluation-harness — evaluation framework used by Wang et al. (2025) model zoo and our benchmark evaluations\"\n      - bibtex_key: clark2018arc\n        title: \"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge\"\n        authors: \"Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind\"\n        year: 2018\n        venue: \"arXiv:1803.05457\"\n        category: \"Benchmarks and Evaluation\"\n        verified: true\n        doi: \"\"\n        url: \"https://arxiv.org/abs/1803.05457\"\n        relevance: \"ARC benchmark — ARC-Easy and ARC-Challenge are two of our 10 evaluation benchmarks\"\n",
+                "numLines": 352,
+                "startLine": 1,
+                "totalLines": 352
+              }
+            },
+            "sourceToolAssistantUUID": "8896ebbf-9553-4b40-bc5b-46c7e6cb5ec0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9ed81a31-df92-4527-8364-21686da28ec4",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fill Linear Recurrent Models literature cluster",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T19:03:44.666Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The \"Linear Recurrent Models\" cluster already has exactly 6 papers, all verified=True:\n\n1. gu2024mamba - Mamba ✓ (must-cite)\n2. sun2023retnet - RetNet ✓ (must-cite)\n3. qin2024hgrn2 - HGRN2 ✓ (must-cite)\n4. yang2024gateddeltanet - GatedDeltaNet ✓ (must-cite)\n5. gu2022s4 - S4 ✓ (additional)\n\n\n6. katharopoulos2020transformers - Linear Transformers ✓ (additional)\n\nThe cluster is complete with all 4 must-cite papers and 2 additional papers filling the remaining slots. Now I'm verifying the details against Semantic Scholar to confirm the metadata matches correctly. I'm finishing up the verification of the last couple entries and noticing a discrepancy—the task asked to add 6 verified papers, but it looks like all 6 are already in the cluster. Either another worker completed this before me, or the task was generated earlier. I'm also catching a minor issue with gu2024mamba where the year shows as 2024 in the YAML but the arXiv posting was December 2023, though this is commonly cited as 2024 anyway. For yang2024gateddeltanet, the venue field is incomplete in what I'm seeing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ed81a31-df92-4527-8364-21686da28ec4",
+            "isSidechain": false,
+            "requestId": "req_011CbCSsHtqWRVPpDZjuKjhk",
+            "type": "assistant",
+            "uuid": "8ca001a9-1e28-41ec-a219-3a7fabfc32a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAXRGPGwUn8R8eST7nPqZB",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6406,
+                "cache_read_input_tokens": 29887,
+                "output_tokens": 1370,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6406,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1370,
+                    "cache_read_input_tokens": 29887,
+                    "cache_creation_input_tokens": 6406,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6406
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T19:03:51.608Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"Linear Recurrent Models\" cluster 已完整，6 篇论文全部存在且 `verified: true`：\n\n**Must-cite（4/4 已覆盖）：**\n1. `gu2024mamba` — Mamba: Linear-Time Sequence Modeling with Selective State Spaces (Gu & Dao)\n2. `sun2023retnet` — Retentive Network (Sun et al. 2023)\n3. `qin2024hgrn2` — HGRN2: Gated Linear RNNs with State Expansion (Qin et al. 2024)\n4. `yang2024gateddeltanet` — Gated Delta Networks (Yang et al. 2024)\n\n**额外 2 篇：**\n5. `gu2022s4` — S4: Efficiently Modeling Long Sequences with Structured State Spaces (Gu et al. 2022, ICLR)\n6. `katharopoulos2020transformers` — Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention (Katharopoulos et al. 2020, ICML)\n\n经 Semantic Scholar API 交叉验证，所有 title、authors、arXiv ID 均与实际论文匹配。target_count=6，已有 6 篇，无缺口。\n\n**小问题（不影响正确性）：**\n- `yang2024gateddeltanet` venue 写的 `arXiv:2412.06464`，S2 显示已被 ICLR 接收\n- 部分 DOI 字段为空（HGRN2 有 `10.48550/arXiv.2404.07904`，GatedDeltaNet 有 `10.48550/arXiv.2412.06464`）\n\n该 cluster 无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ca001a9-1e28-41ec-a219-3a7fabfc32a1",
+            "isSidechain": false,
+            "requestId": "req_011CbCSsHtqWRVPpDZjuKjhk",
+            "type": "assistant",
+            "uuid": "87a51dc1-3ebf-4bb8-aa22-271953347713",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAXRGPGwUn8R8eST7nPqZB",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6406,
+                "cache_read_input_tokens": 29887,
+                "output_tokens": 1370,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6406,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1370,
+                    "cache_read_input_tokens": 29887,
+                    "cache_creation_input_tokens": 6406,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6406
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "87a51dc1-3ebf-4bb8-aa22-271953347713",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fill Linear Recurrent Models literature cluster",
+                "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518"
+              }
+            }
+          ],
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-entrainment-gated-ft-westb-48145-ssh-root-ssh-execute-submit-t-copy-150.md"
+}

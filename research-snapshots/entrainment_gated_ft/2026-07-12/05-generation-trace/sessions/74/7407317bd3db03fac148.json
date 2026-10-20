@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "7407317bd3db03fac148",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 3 architectures: GDN (GatedDeltaNet), RetNet, HGRN2 5 attention ratios: pure (0%), h24-1 (4%), h12-1 (7.",
+  "task_key": "7dee1a6f-69ea-4377-bb8a-78a47cced500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/7dee1a6f-69ea-4377-bb8a-78a47cced500.jsonl",
+    "occurrence": 1,
+    "bytes": 671456,
+    "sha256": "edc7d05187506c4c2359b0a6d0efd22f3fbf104d4f1868ec322f06d50812656d"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 1,
+    "tool_calls": 53,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 30,
+      "tool_call": 53,
+      "tool_result": 53
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7407317bd3db03fac148-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "7407317bd3db03fac148-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "7407317bd3db03fac148-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-3-architectures-gdn-gateddeltanet-retnet-hgrn2-5-attention-ratio.md"
+}

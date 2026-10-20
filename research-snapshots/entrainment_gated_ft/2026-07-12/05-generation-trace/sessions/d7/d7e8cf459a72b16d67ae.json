@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d7e8cf459a72b16d67ae",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: ratekv ## 运行环境 - 服务器名: westd-37397 - SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 accou",
+  "task_key": "914e7358-5915-4397-814a-c4033836a843",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/914e7358-5915-4397-814a-c4033836a843.jsonl",
+    "occurrence": 1,
+    "bytes": 574414,
+    "sha256": "24b98f1842f4b9e9fdbc8bc8da262f3fef546534f1050c924ab57bf221c445d6"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 51,
+    "roles": {
+      "record": 38,
+      "user": 1,
+      "assistant": 43,
+      "tool_call": 51,
+      "tool_result": 51
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d7e8cf459a72b16d67ae-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "d7e8cf459a72b16d67ae-part-0001.json",
+          "message_count": 177
+        },
+        {
+          "path": "d7e8cf459a72b16d67ae-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-ratekv-westd-37397-ssh-root-ssh-execute-submit-training-job-ac-copy-99.md"
+}

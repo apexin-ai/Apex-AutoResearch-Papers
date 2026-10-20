@@ -1,0 +1,1550 @@
+{
+  "schema_version": "1.0",
+  "id": "cfb3fc88591d9520d2d8",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: ratekv ## 运行环境 - 服务器名: westd-37397 - SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 accou",
+  "task_key": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/dc54b085-27d2-470a-bc77-92c047e6b5f2.jsonl",
+    "occurrence": 1,
+    "bytes": 111222,
+    "sha256": "0020f47c36930d7aab36ed6cb50f74e06f38ed2021809e577154f015f3e0da4c"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T09:22:50.221Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-16T09:22:50.221Z",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+                "content": "<project_context>\n# 项目: ratekv\n\n## 运行环境\n- 服务器名: westd-37397\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westd-37397  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/ratekv\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n在 related work section 补充 3 个方法的讨论。\n\n## 文件\n- Related work: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex\n- References: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/references.bib\n- Appendix (已有 KVTuner 引用): /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex\n\n## 任务\n\n先读 related_work.tex 和 references.bib 了解现有结构。\n\n### 1. QAQ (mixed-precision KV cache)\n- 搜索 bib 中是否有 QAQ 条目。如果没有，添加 bib 条目（QAQ: Quality Adaptive Quantization for KV Cache）。\n- 在 related work 的 KV cache quantization 段落加 1-2 句：区分 QAQ 的 attention-score-based adaptive 方法与我们的 profiling-based per-head allocation + cardinality constraint。QAQ 用 attention score 动态决定精度，我们用离线 profiling 静态决定 + constraint 防止 compounding。\n- QAQ 论文信息：Dong et al., 2024, \"QAQ: Quality Adaptive Quantization for LLM KV Cache\", arXiv:2403.04643\n\n### 2. AQLM/QuIP# (non-additive weight quantization)\n- 检查 bib 中是否有这些条目。如果没有，添加。\n- 在 related work 中加 1-2 句作为 conceptual parallel：weight quantization 领域的 AQLM 和 QuIP# 已观察到量化误差的 non-additive 行为，我们在 KV cache 的 per-head allocation 中独立发现了类似现象。\n- AQLM: Egiazarian et al., 2024, \"AQLM: Extreme Compression of Large Language Models via Additive Quantization\", ICML 2024\n- QuIP#: Tseng et al., 2024, \"QuIP#: Even Better LLM Quantization with Hadamard Incoherence and Lattice Codebooks\", ICML 2024\n\n### 3. KVTuner (per-layer mixed-precision)\n- 已在 bib 中 (li2025kvtuner)，已在 appendix L61 提及。\n- 在 related_work.tex 的 KV cache 段落加 1-2 句：KVTuner 在 layer 级别做 mixed-precision（所有 heads in a layer 共享 bitwidth），我们在 head 级别做（更细粒度但搜索空间更大），cardinality constraint 使搜索空间可控。\n\n## 规范\n- 每个方法 1-2 句，简洁对比\n- LaTeX citation 格式正确\n- 完成后 grep 确认新引用在正文和 bib 中都存在"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T09:22:50.224Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T09:22:50.224Z",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T09:22:50.258Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: ratekv\n\n## 运行环境\n- 服务器名: westd-37397\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westd-37397  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/ratekv\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n在 related work section 补充 3 个方法的讨论。\n\n## 文件\n- Related work: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex\n- References: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/references.bib\n- Appendix (已有 KVTuner 引用): /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex\n\n## 任务\n\n先读 related_work.tex 和 references.bib 了解现有结构。\n\n### 1. QAQ (mixed-precision KV cache)\n- 搜索 bib 中是否有 QAQ 条目。如果没有，添加 bib 条目（QAQ: Quality Adaptive Quantization for KV Cache）。\n- 在 related work 的 KV cache quantization 段落加 1-2 句：区分 QAQ 的 attention-score-based adaptive 方法与我们的 profiling-based per-head allocation + cardinality constraint。QAQ 用 attention score 动态决定精度，我们用离线 profiling 静态决定 + constraint 防止 compounding。\n- QAQ 论文信息：Dong et al., 2024, \"QAQ: Quality Adaptive Quantization for LLM KV Cache\", arXiv:2403.04643\n\n### 2. AQLM/QuIP# (non-additive weight quantization)\n- 检查 bib 中是否有这些条目。如果没有，添加。\n- 在 related work 中加 1-2 句作为 conceptual parallel：weight quantization 领域的 AQLM 和 QuIP# 已观察到量化误差的 non-additive 行为，我们在 KV cache 的 per-head allocation 中独立发现了类似现象。\n- AQLM: Egiazarian et al., 2024, \"AQLM: Extreme Compression of Large Language Models via Additive Quantization\", ICML 2024\n- QuIP#: Tseng et al., 2024, \"QuIP#: Even Better LLM Quantization with Hadamard Incoherence and Lattice Codebooks\", ICML 2024\n\n### 3. KVTuner (per-layer mixed-precision)\n- 已在 bib 中 (li2025kvtuner)，已在 appendix L61 提及。\n- 在 related_work.tex 的 KV cache 段落加 1-2 句：KVTuner 在 layer 级别做 mixed-precision（所有 heads in a layer 共享 bitwidth），我们在 head 级别做（更细粒度但搜索空间更大），cardinality constraint 使搜索空间可控。\n\n## 规范\n- 每个方法 1-2 句，简洁对比\n- LaTeX citation 格式正确\n- 完成后 grep 确认新引用在正文和 bib 中都存在"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "40a44b9f-ec42-4524-8222-9202fd9fab70",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T09:22:50.257Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "40a44b9f-ec42-4524-8222-9202fd9fab70",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "1310ec62-d846-4e99-be62-3d4e159355fd",
+                "timestamp": "2026-05-16T09:22:50.257Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T09:22:50.257Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1310ec62-d846-4e99-be62-3d4e159355fd",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "2e2a79b3-7380-4e74-b5af-ab5b0cf90dd0",
+                "timestamp": "2026-05-16T09:22:50.257Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T09:22:50.257Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2e2a79b3-7380-4e74-b5af-ab5b0cf90dd0",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "36dddfdd-af53-4c2c-a25b-a3caa9a53164",
+                "timestamp": "2026-05-16T09:22:50.257Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add three methods to related work section",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T09:22:53.375Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the related_work.tex and references.bib files to understand the current structure.",
+              "signature": "EqUCClkIDRgCKkB6zmwhbDyiHCRJ2/zuTdg8j1HokRh8sBCKEECYOTKKdITpegPnkkJeEQjeyaPZFnVrjV8AGTrW72Jzc1DqFDnLMg9jbGF1ZGUtb3B1cy00LTY4ABIMudurAEoEwv/gPlQ2GgwJbzFeFNVcINWsAAMiMNAGmmHvEAtH85KQh/Hnm1jqY6xD0SJgU5/K7izodftWtIVClGR+dIMDQzHoxZFGdCp6pQPGlXqNa79Z2QT64wBa9TKat3Bcdw+CSg9j70wQlA+N6cQmBVULLcwHSw/vlqKg4CDtMYGL3p6YBo9YNoVDW6xdz4fDmchqPuz6bdbyBXQllv0mjwXG6AZss4+1SY9i50FWxrZfvxxezacCL7L0Wxg/gZbxocm85bsYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36dddfdd-af53-4c2c-a25b-a3caa9a53164",
+            "isSidechain": false,
+            "requestId": "req_011Cb61B81UCdft6midd83iE",
+            "type": "assistant",
+            "uuid": "6f8bb246-b557-4c16-a105-321c6d8e82cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0128YotsKdoP1MSfMvmzkzSm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12719,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12719,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 195,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12719,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12719
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T09:22:53.867Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DDHho3St23qDuwSsk3ktkQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f8bb246-b557-4c16-a105-321c6d8e82cd",
+            "isSidechain": false,
+            "requestId": "req_011Cb61B81UCdft6midd83iE",
+            "type": "assistant",
+            "uuid": "826d2f38-dc38-4377-b1ea-4662748895ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0128YotsKdoP1MSfMvmzkzSm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12719,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12719,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 195,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12719,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12719
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T09:22:53.877Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DDHho3St23qDuwSsk3ktkQ",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{KV Cache Quantization.}\n4\tUniform-precision methods quantize the KV cache at a single bit-width across all heads, using techniques such as asymmetric per-channel/per-token schemes~\\cite{liu2024kivi,hooper2024kvquant}, quantization--serving co-design~\\cite{lin2024qserve}, salient-token identification~\\cite{he2024zipcache}, low-rank plus sparse correction~\\cite{kang2024gear}, sliding-window adaptation~\\cite{duanmu2024skvq}, rotation-based outlier smoothing for robust 2-bit~\\cite{su2025rotatekv}, 2-bit with adaptive token retention~\\cite{sharma2025minikv}, and adapter-based inter-layer prediction at 2--2.5 bits~\\cite{shutova2025aquakv}.\n5\tWe extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\\{2,4,8,16\\}$.\n6\tOur per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\n7\tThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.\n8\t\n9\t\\paragraph{KV Cache Eviction.}\n10\tComplementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}.\n11\tRecent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.\n12\t\n13\t\n14\t\\paragraph{Mixed-Precision Quantization (Weights).}\n15\tMixed-precision allocation has a long history at the weight level.\n16\tHAWQ~\\cite{dong2019hawq} and HAWQ-V2~\\cite{dong2020hawqv2} use second-order (Hessian-based) sensitivity to assign per-layer bit-widths, with V2 introducing block-wise trace-weighted scoring and Pareto-frontier selection; HAQ~\\cite{wang2019haq} learns an allocation by reinforcement learning under hardware-aware latency/energy constraints.\n17\tThese methods operate on weights, where per-layer distortions are approximately additive and sensitivity varies smoothly across layers.\n18\tKV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.\n19\tOur primary contribution is not the allocation algorithm itself---any MCKP or greedy solver suffices---but the diagnosis and fix of this compounding effect via cardinality constraints, and the characterization of when non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).\n20\t\n21\t\\paragraph{Mixed-Precision Rate-Distortion Allocation.}\n22\tRateQuant~\\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\\{2,\\ldots,6\\}$ via the polymatroid structure, which relies on the assumption that per-head distortions decompose additively into the global objective---valid when adjacent bit-widths differ by a single bit so that quantization noise stays in the small-perturbation regime.\n23\tOn hardware-aligned $\\{2,4,8,16\\}$, the 4$\\times$ gap between 2-bit and 4-bit drives 2-bit distortion to compound super-additively, breaking the polymatroid structure and the additivity assumption with it.\n24\tConcretely, running RateQuant's greedy algorithm (Algorithm~1) directly on $\\{2,4,8,16\\}$ yields 32.45 PPL on Qwen2.5-7B at $4\\times$ compression---catastrophically worse than uniform 4-bit (15.45)---whereas our cardinality constraint on simultaneously active 2-bit heads recovers 10.91 PPL at the same average bit-width.\n25\tThe constraint is the minimal fix that restores the additive regime in which RateQuant's polymatroid argument applies.\n26\tRelated mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n27\t\n28\t\\paragraph{Attention Head Analysis.}\n29\tPrior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.\n30\tOur analysis asks a different question: which heads are sensitive to \\emph{quantization}, and how heterogeneous that sensitivity is across architectures---a property that determines whether non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "826d2f38-dc38-4377-b1ea-4662748895ce",
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "c6562eda-8642-4534-8023-bfe43cc2595d",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{KV Cache Quantization.}\nUniform-precision methods quantize the KV cache at a single bit-width across all heads, using techniques such as asymmetric per-channel/per-token schemes~\\cite{liu2024kivi,hooper2024kvquant}, quantization--serving co-design~\\cite{lin2024qserve}, salient-token identification~\\cite{he2024zipcache}, low-rank plus sparse correction~\\cite{kang2024gear}, sliding-window adaptation~\\cite{duanmu2024skvq}, rotation-based outlier smoothing for robust 2-bit~\\cite{su2025rotatekv}, 2-bit with adaptive token retention~\\cite{sharma2025minikv}, and adapter-based inter-layer prediction at 2--2.5 bits~\\cite{shutova2025aquakv}.\nWe extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\\{2,4,8,16\\}$.\nOur per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.\n\n\\paragraph{KV Cache Eviction.}\nComplementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}.\nRecent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.\n\n\n\\paragraph{Mixed-Precision Quantization (Weights).}\nMixed-precision allocation has a long history at the weight level.\nHAWQ~\\cite{dong2019hawq} and HAWQ-V2~\\cite{dong2020hawqv2} use second-order (Hessian-based) sensitivity to assign per-layer bit-widths, with V2 introducing block-wise trace-weighted scoring and Pareto-frontier selection; HAQ~\\cite{wang2019haq} learns an allocation by reinforcement learning under hardware-aware latency/energy constraints.\nThese methods operate on weights, where per-layer distortions are approximately additive and sensitivity varies smoothly across layers.\nKV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.\nOur primary contribution is not the allocation algorithm itself---any MCKP or greedy solver suffices---but the diagnosis and fix of this compounding effect via cardinality constraints, and the characterization of when non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).\n\n\\paragraph{Mixed-Precision Rate-Distortion Allocation.}\nRateQuant~\\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\\{2,\\ldots,6\\}$ via the polymatroid structure, which relies on the assumption that per-head distortions decompose additively into the global objective---valid when adjacent bit-widths differ by a single bit so that quantization noise stays in the small-perturbation regime.\nOn hardware-aligned $\\{2,4,8,16\\}$, the 4$\\times$ gap between 2-bit and 4-bit drives 2-bit distortion to compound super-additively, breaking the polymatroid structure and the additivity assumption with it.\nConcretely, running RateQuant's greedy algorithm (Algorithm~1) directly on $\\{2,4,8,16\\}$ yields 32.45 PPL on Qwen2.5-7B at $4\\times$ compression---catastrophically worse than uniform 4-bit (15.45)---whereas our cardinality constraint on simultaneously active 2-bit heads recovers 10.91 PPL at the same average bit-width.\nThe constraint is the minimal fix that restores the additive regime in which RateQuant's polymatroid argument applies.\nRelated mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n\n\\paragraph{Attention Head Analysis.}\nPrior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.\nOur analysis asks a different question: which heads are sensitive to \\emph{quantization}, and how heterogeneous that sensitivity is across architectures---a property that determines whether non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).",
+                "numLines": 30,
+                "startLine": 1,
+                "totalLines": 30
+              }
+            },
+            "sourceToolAssistantUUID": "826d2f38-dc38-4377-b1ea-4662748895ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T09:22:54.257Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BTDTnc8rFsiRzfNT8uwZ8g",
+              "type": "tool_result",
+              "content": "1\t% Auto-generated from literature_map.yaml (verified=true entries)\n2\t\n3\t@inproceedings{liu2024kivi,\n4\t  title = {{KIVI}: A Tuning-Free Asymmetric 2bit Quantization for {KV} Cache},\n5\t  author = {Zirui Liu and Jiayi Yuan and Hongye Jin and Shaochen Zhong and Zhaozhuo Xu and Vladimir Braverman and Beidi Chen and Xia Hu},\n6\t  year = {2024},\n7\t  booktitle = {ICML 2024},\n8\t  url = {https://arxiv.org/abs/2402.02750},\n9\t}\n10\t\n11\t@inproceedings{hooper2024kvquant,\n12\t  title = {{KVQuant}: Towards 10 Million Context Length {LLM} Inference with {KV} Cache Quantization},\n13\t  author = {Coleman Hooper and Sehoon Kim and Hiva Mohammadzadeh and Michael W. Mahoney and Yakun Sophia Shao and Kurt Keutzer and Amir Gholami},\n14\t  year = {2024},\n15\t  booktitle = {NeurIPS 2024},\n16\t  url = {https://arxiv.org/abs/2401.18079},\n17\t}\n18\t\n19\t@inproceedings{lin2024qserve,\n20\t  title = {{QServe}: {W4A8KV4} Quantization and System Co-design for Efficient {LLM} Serving},\n21\t  author = {Yujun Lin and Haotian Tang and Shang Yang and Zhekai Zhang and Guangxuan Xiao and Chuang Gan and Song Han},\n22\t  year = {2025},\n23\t  booktitle = {MLSys 2025},\n24\t  url = {https://arxiv.org/abs/2405.04532},\n25\t}\n26\t\n27\t@inproceedings{he2024zipcache,\n28\t  title = {{ZipCache}: Accurate and Efficient {KV} Cache Quantization with Salient Token Identification},\n29\t  author = {Yefei He and Luoming Zhang and Weijia Wu and Jing Liu and Hong Zhou and Bohan Zhuang},\n30\t  year = {2024},\n31\t  booktitle = {NeurIPS 2024},\n32\t  url = {https://arxiv.org/abs/2405.14256},\n33\t}\n34\t\n35\t@misc{kang2024gear,\n36\t  title = {{GEAR}: An Efficient {KV} Cache Compression Recipe for Near-Lossless Generative Inference of {LLM}},\n37\t  author = {Hao Kang and Qingru Zhang and Souvik Kundu and Geonhwa Jeong and Zaoxing Liu and Tushar Krishna and Tuo Zhao},\n38\t  year = {2024},\n39\t  note = {arXiv preprint},\n40\t  url = {https://arxiv.org/abs/2403.05527},\n41\t  eprint = {2403.05527},\n42\t  archivePrefix = {arXiv},\n43\t}\n44\t\n45\t@misc{duanmu2024skvq,\n46\t  title = {{SKVQ}: Sliding-window Key and Value Cache Quantization for Large Language Models},\n47\t  author = {Haojie Duanmu and Zhihang Yuan and Xiuhong Li and Jiangfei Duan and Xingcheng Zhang and Dahua Lin},\n48\t  year = {2024},\n49\t  note = {arXiv preprint},\n50\t  url = {https://arxiv.org/abs/2405.06219},\n51\t  eprint = {2405.06219},\n52\t  archivePrefix = {arXiv},\n53\t}\n54\t\n55\t@inproceedings{zhang2023h2o,\n56\t  title = {{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n57\t  author = {Zhenyu Zhang and Ying Sheng and Tianyi Zhou and Tianlong Chen and Lianmin Zheng and Ruisi Cai and Zhao Song and Yuandong Tian and Christopher R{\\'{e}} and Clark Barrett and Zhangyang Wang and Beidi Chen},\n58\t  year = {2023},\n59\t  booktitle = {NeurIPS 2023},\n60\t  url = {https://arxiv.org/abs/2306.14048},\n61\t}\n62\t\n63\t@inproceedings{li2024snapkv,\n64\t  title = {{SnapKV}: {LLM} Knows What You are Looking for Before Generation},\n65\t  author = {Yuhong Li and Yingbing Huang and Bowen Yang and Bharat Venkitesh and Acyr Locatelli and Hanchen Ye and Tianle Cai and Patrick Lewis and Deming Chen},\n66\t  year = {2024},\n67\t  booktitle = {NeurIPS 2024},\n68\t  url = {https://arxiv.org/abs/2404.14469},\n69\t}\n70\t\n71\t@inproceedings{ge2024fastgen,\n72\t  title = {Model Tells You What to Discard: Adaptive {KV} Cache Compression for {LLMs}},\n73\t  author = {Suyu Ge and Yunan Zhang and Liyuan Liu and Minjia Zhang and Jiawei Han and Jianfeng Gao},\n74\t  year = {2024},\n75\t  booktitle = {ICLR 2024},\n76\t  url = {https://arxiv.org/abs/2310.01801},\n77\t}\n78\t\n79\t@inproceedings{xiao2024streamingllm,\n80\t  title = {Efficient Streaming Language Models with Attention Sinks},\n81\t  author = {Guangxuan Xiao and Yuandong Tian and Beidi Chen and Song Han and Mike Lewis},\n82\t  year = {2024},\n83\t  booktitle = {ICLR 2024},\n84\t  url = {https://arxiv.org/abs/2309.17453},\n85\t}\n86\t\n87\t@inproceedings{liu2024scissorhands,\n88\t  title = {Scissorhands: Exploiting the Persistence of Importance Hypothesis for {LLM} {KV} Cache Compression at Test Time},\n89\t  author = {Zichang Liu and Aditya Desai and Fangshuo Liao and Weitao Wang and Victor Xie and Zhaozhuo Xu and Anastasios Kyrillidis and Anshumali Shrivastava},\n90\t  year = {2023},\n91\t  booktitle = {NeurIPS 2023},\n92\t  url = {https://arxiv.org/abs/2305.17118},\n93\t}\n94\t\n95\t@inproceedings{yang2024pyramidinfer,\n96\t  title = {{PyramidInfer}: Pyramid {KV} Cache Compression for High-throughput {LLM} Inference},\n97\t  author = {Dongjie Yang and Xiaodong Han and Yan Gao and Yao Hu and Shilin Zhang and Hai Zhao},\n98\t  year = {2024},\n99\t  booktitle = {Findings of ACL 2024},\n100\t  url = {https://arxiv.org/abs/2405.12532},\n101\t}\n102\t\n103\t@misc{zuo2026ratequant,\n104\t  title = {{RateQuant}: Optimal Mixed-Precision {KV} Cache Quantization via Rate-Distortion Theory},\n105\t  author = {Fei Zuo and Zikang Zhou and Hao Cong and Xiaoyan Xi and Ho Fai Leung},\n106\t  year = {2026},\n107\t  note = {arXiv preprint},\n108\t  url = {https://arxiv.org/abs/2605.06675},\n109\t  eprint = {2605.06675},\n110\t  archivePrefix = {arXiv},\n111\t}\n112\t\n113\t@misc{lei2026arkv,\n114\t  title = {{ARKV}: Adaptive and Resource-Efficient {KV} Cache Management under Limited Memory Budget for Long-Context Inference in {LLMs}},\n115\t  author = {Jianlong Lei and Shashikant Ilager},\n116\t  year = {2026},\n117\t  note = {arXiv preprint},\n118\t  url = {https://arxiv.org/abs/2603.08727},\n119\t  eprint = {2603.08727},\n120\t  archivePrefix = {arXiv},\n121\t}\n122\t\n123\t@misc{li2025kvmix,\n124\t  title = {{KVmix}: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for {KV} Cache},\n125\t  author = {Fei Li and Song Liu and Weiguo Wu and Shiqiang Nie and Jinyu Wang},\n126\t  year = {2025},\n127\t  note = {arXiv preprint},\n128\t  url = {https://arxiv.org/abs/2506.08018},\n129\t  eprint = {2506.08018},\n130\t  archivePrefix = {arXiv},\n131\t}\n132\t\n133\t@misc{zhang2025mixkvq,\n134\t  title = {{MixKVQ}: Query-Aware Mixed-Precision {KV} Cache Quantization for Long-Context Reasoning},\n135\t  author = {Tao Zhang and Ziqian Zeng and Hao Peng and Huiping Zhuang and Cen Chen},\n136\t  year = {2025},\n137\t  note = {arXiv preprint},\n138\t  url = {https://arxiv.org/abs/2512.19206},\n139\t  eprint = {2512.19206},\n140\t  archivePrefix = {arXiv},\n141\t}\n142\t\n143\t@inproceedings{kim2024squeezellm,\n144\t  title = {{SqueezeLLM}: Dense-and-Sparse Quantization},\n145\t  author = {Sehoon Kim and Coleman Hooper and Amir Gholami and Zhen Dong and Xiuyu Li and Sheng Shen and Michael W. Mahoney and Kurt Keutzer},\n146\t  year = {2024},\n147\t  booktitle = {ICML 2024},\n148\t  url = {https://arxiv.org/abs/2306.07629},\n149\t}\n150\t\n151\t@inproceedings{fu2025headkv,\n152\t  title = {Not All Heads Matter: A Head-Level {KV} Cache Compression Method with Integrated Retrieval and Reasoning},\n153\t  author = {Yu Fu and Zefan Cai and Abdelrahman Sid-Lakhdar and Wayne Xin Zhao and Richard Peng},\n154\t  year = {2025},\n155\t  booktitle = {ICLR 2025},\n156\t  url = {https://arxiv.org/abs/2410.19258},\n157\t}\n158\t\n159\t@inproceedings{feng2025adakv,\n160\t  title = {{Ada-KV}: Optimizing {KV} Cache Eviction by Adaptive Budget Allocation},\n161\t  author = {Yuan Feng and Junlin Lv and Yukun Cao and Xike Xie and S. Kevin Zhou},\n162\t  year = {2025},\n163\t  booktitle = {NeurIPS 2025},\n164\t  url = {https://arxiv.org/abs/2407.11550},\n165\t}\n166\t\n167\t@inproceedings{li2025kvtuner,\n168\t  title = {{KVTuner}: Sensitivity-Aware Layer-Wise Mixed-Precision {KV} Cache Quantization for Efficient and Nearly Lossless {LLM} Inference},\n169\t  author = {Li, Zhongzhi and Shen, Yuhan and Tang, Yixuan and Luo, Jian and Dai, Yonggang},\n170\t  year = {2025},\n171\t  booktitle = {ICML 2025},\n172\t  url = {https://arxiv.org/abs/2502.04420},\n173\t}\n174\t\n175\t@inproceedings{voita2019analyzing,\n176\t  title = {Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned},\n177\t  author = {Elena Voita and David Talbot and Fedor Moiseev and Rico Sennrich and Ivan Titov},\n178\t  year = {2019},\n179\t  booktitle = {ACL 2019},\n180\t  url = {https://arxiv.org/abs/1905.09418},\n181\t}\n182\t\n183\t@inproceedings{michel2019sixteen,\n184\t  title = {Are Sixteen Heads Really Better than One?},\n185\t  author = {Paul Michel and Omer Levy and Graham Neubig},\n186\t  year = {2019},\n187\t  booktitle = {NeurIPS 2019},\n188\t  url = {https://arxiv.org/abs/1905.10650},\n189\t}\n190\t\n191\t@inproceedings{dong2019hawq,\n192\t  title = {{HAWQ}: {Hessian} AWare Quantization of Neural Networks with Mixed-Precision},\n193\t  author = {Zhen Dong and Zhewei Yao and Amir Gholami and Michael W. Mahoney and Kurt Keutzer},\n194\t  year = {2019},\n195\t  booktitle = {ICCV 2019},\n196\t  url = {https://arxiv.org/abs/1905.03696},\n197\t}\n198\t\n199\t@inproceedings{dong2020hawqv2,\n200\t  title = {{HAWQ-V2}: {Hessian} Aware trace-Weighted Quantization of Neural Networks},\n201\t  author = {Zhen Dong and Zhewei Yao and Yaohui Cai and Daiyaan Arfeen and Amir Gholami and Michael W. Mahoney and Kurt Keutzer},\n202\t  year = {2020},\n203\t  booktitle = {NeurIPS 2020},\n204\t  url = {https://arxiv.org/abs/1911.03852},\n205\t}\n206\t\n207\t@inproceedings{wang2019haq,\n208\t  title = {{HAQ}: Hardware-Aware Automated Quantization with Mixed Precision},\n209\t  author = {Kuan Wang and Zhijian Liu and Yujun Lin and Ji Lin and Song Han},\n210\t  year = {2019},\n211\t  booktitle = {CVPR 2019},\n212\t  url = {https://arxiv.org/abs/1811.08886},\n213\t}\n214\t\n215\t@inproceedings{su2025rotatekv,\n216\t  title = {{RotateKV}: Accurate and Robust 2-Bit {KV} Cache Quantization for {LLMs} via Outlier-Aware Adaptive Rotations},\n217\t  author = {Zunhai Su and Zhe Chen and Wang Shen and Hanyu Wei and Linge Li and Huangqi Yu and Kehong Yuan},\n218\t  year = {2025},\n219\t  booktitle = {IJCAI 2025},\n220\t  url = {https://arxiv.org/abs/2501.16383},\n221\t}\n222\t\n223\t@inproceedings{sharma2025minikv,\n224\t  title = {{MiniKV}: Pushing the Limits of 2-Bit {KV} Cache via Compression and System Co-Design for Efficient Long Context Inference},\n225\t  author = {Akshat Sharma and Hangliang Ding and Jianping Li and Neel Dani and Minjia Zhang},\n226\t  year = {2025},\n227\t  booktitle = {Findings of ACL 2025},\n228\t  url = {https://arxiv.org/abs/2411.18077},\n229\t}\n230\t\n231\t@inproceedings{shutova2025aquakv,\n232\t  title = {Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models},\n233\t  author = {Alina Shutova and Vladimir Malinovskii and Vage Egiazarian and Denis Kuznedelev and Denis Mazur and Nikita Surkov and Ivan Ermakov and Dan Alistarh},\n234\t  year = {2025},\n235\t  booktitle = {ICML 2025},\n236\t  url = {https://arxiv.org/abs/2501.19392},\n237\t}\n238\t\n239\t@misc{liu2025pmkvq,\n240\t  title = {{PM-KVQ}: Progressive Mixed-precision {KV} Cache Quantization for Long-CoT {LLMs}},\n241\t  author = {Tengxuan Liu and Shiyao Li and Jiayi Yang and Tianchen Zhao and Feng Zhou and Xiaohui Song and Guohao Dai and Shengen Yan and Huazhong Yang and Yu Wang},\n242\t  year = {2025},\n243\t  note = {arXiv preprint},\n244\t  url = {https://arxiv.org/abs/2505.18610},\n245\t  eprint = {2505.18610},\n246\t  archivePrefix = {arXiv},\n247\t}\n248\t\n249\t@misc{xia2025kitty,\n250\t  title = {{Kitty}: Accurate and Efficient 2-bit {KV} Cache Quantization with Dynamic Channel-wise Precision Boost},\n251\t  author = {Haojun Xia and Xiaoxia Wu and Jisen Li and Robert Wu and Junxiong Wang and Jue Wang and Chenxi Li and Aman Singhal and Alay Dilipbhai Shah and Alpay Ariyak and Donglin Zhuang and Zhongzhu Zhou and Ben Athiwaratkun and Zhen Zheng and Shuaiwen Leon Song},\n252\t  year = {2025},\n253\t  note = {arXiv preprint},\n254\t  url = {https://arxiv.org/abs/2511.18643},\n255\t  eprint = {2511.18643},\n256\t  archivePrefix = {arXiv},\n257\t}\n258\t\n259\t@inproceedings{haeriboroujeni2026dontwaste,\n260\t  title = {Don't Waste Bits! {Adaptive} {KV}-Cache Quantization for Lightweight On-Device {LLMs}},\n261\t  author = {Haeri Boroujeni, Sayed Pedram and Mehrabi, Niloufar and Woods, Patrick and Hillesheim, Gabriel and Razi, Abolfazl},\n262\t  year = {2026},\n263\t  booktitle = {CVPR 2026},\n264\t  url = {https://arxiv.org/abs/2604.04722},\n265\t}\n266\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81e371c5-853f-44e9-89af-bd3bce878813",
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "d529a322-7cf7-49ad-9201-b468d42058f7",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/references.bib",
+                "content": "% Auto-generated from literature_map.yaml (verified=true entries)\n\n@inproceedings{liu2024kivi,\n  title = {{KIVI}: A Tuning-Free Asymmetric 2bit Quantization for {KV} Cache},\n  author = {Zirui Liu and Jiayi Yuan and Hongye Jin and Shaochen Zhong and Zhaozhuo Xu and Vladimir Braverman and Beidi Chen and Xia Hu},\n  year = {2024},\n  booktitle = {ICML 2024},\n  url = {https://arxiv.org/abs/2402.02750},\n}\n\n@inproceedings{hooper2024kvquant,\n  title = {{KVQuant}: Towards 10 Million Context Length {LLM} Inference with {KV} Cache Quantization},\n  author = {Coleman Hooper and Sehoon Kim and Hiva Mohammadzadeh and Michael W. Mahoney and Yakun Sophia Shao and Kurt Keutzer and Amir Gholami},\n  year = {2024},\n  booktitle = {NeurIPS 2024},\n  url = {https://arxiv.org/abs/2401.18079},\n}\n\n@inproceedings{lin2024qserve,\n  title = {{QServe}: {W4A8KV4} Quantization and System Co-design for Efficient {LLM} Serving},\n  author = {Yujun Lin and Haotian Tang and Shang Yang and Zhekai Zhang and Guangxuan Xiao and Chuang Gan and Song Han},\n  year = {2025},\n  booktitle = {MLSys 2025},\n  url = {https://arxiv.org/abs/2405.04532},\n}\n\n@inproceedings{he2024zipcache,\n  title = {{ZipCache}: Accurate and Efficient {KV} Cache Quantization with Salient Token Identification},\n  author = {Yefei He and Luoming Zhang and Weijia Wu and Jing Liu and Hong Zhou and Bohan Zhuang},\n  year = {2024},\n  booktitle = {NeurIPS 2024},\n  url = {https://arxiv.org/abs/2405.14256},\n}\n\n@misc{kang2024gear,\n  title = {{GEAR}: An Efficient {KV} Cache Compression Recipe for Near-Lossless Generative Inference of {LLM}},\n  author = {Hao Kang and Qingru Zhang and Souvik Kundu and Geonhwa Jeong and Zaoxing Liu and Tushar Krishna and Tuo Zhao},\n  year = {2024},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2403.05527},\n  eprint = {2403.05527},\n  archivePrefix = {arXiv},\n}\n\n@misc{duanmu2024skvq,\n  title = {{SKVQ}: Sliding-window Key and Value Cache Quantization for Large Language Models},\n  author = {Haojie Duanmu and Zhihang Yuan and Xiuhong Li and Jiangfei Duan and Xingcheng Zhang and Dahua Lin},\n  year = {2024},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2405.06219},\n  eprint = {2405.06219},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{zhang2023h2o,\n  title = {{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n  author = {Zhenyu Zhang and Ying Sheng and Tianyi Zhou and Tianlong Chen and Lianmin Zheng and Ruisi Cai and Zhao Song and Yuandong Tian and Christopher R{\\'{e}} and Clark Barrett and Zhangyang Wang and Beidi Chen},\n  year = {2023},\n  booktitle = {NeurIPS 2023},\n  url = {https://arxiv.org/abs/2306.14048},\n}\n\n@inproceedings{li2024snapkv,\n  title = {{SnapKV}: {LLM} Knows What You are Looking for Before Generation},\n  author = {Yuhong Li and Yingbing Huang and Bowen Yang and Bharat Venkitesh and Acyr Locatelli and Hanchen Ye and Tianle Cai and Patrick Lewis and Deming Chen},\n  year = {2024},\n  booktitle = {NeurIPS 2024},\n  url = {https://arxiv.org/abs/2404.14469},\n}\n\n@inproceedings{ge2024fastgen,\n  title = {Model Tells You What to Discard: Adaptive {KV} Cache Compression for {LLMs}},\n  author = {Suyu Ge and Yunan Zhang and Liyuan Liu and Minjia Zhang and Jiawei Han and Jianfeng Gao},\n  year = {2024},\n  booktitle = {ICLR 2024},\n  url = {https://arxiv.org/abs/2310.01801},\n}\n\n@inproceedings{xiao2024streamingllm,\n  title = {Efficient Streaming Language Models with Attention Sinks},\n  author = {Guangxuan Xiao and Yuandong Tian and Beidi Chen and Song Han and Mike Lewis},\n  year = {2024},\n  booktitle = {ICLR 2024},\n  url = {https://arxiv.org/abs/2309.17453},\n}\n\n@inproceedings{liu2024scissorhands,\n  title = {Scissorhands: Exploiting the Persistence of Importance Hypothesis for {LLM} {KV} Cache Compression at Test Time},\n  author = {Zichang Liu and Aditya Desai and Fangshuo Liao and Weitao Wang and Victor Xie and Zhaozhuo Xu and Anastasios Kyrillidis and Anshumali Shrivastava},\n  year = {2023},\n  booktitle = {NeurIPS 2023},\n  url = {https://arxiv.org/abs/2305.17118},\n}\n\n@inproceedings{yang2024pyramidinfer,\n  title = {{PyramidInfer}: Pyramid {KV} Cache Compression for High-throughput {LLM} Inference},\n  author = {Dongjie Yang and Xiaodong Han and Yan Gao and Yao Hu and Shilin Zhang and Hai Zhao},\n  year = {2024},\n  booktitle = {Findings of ACL 2024},\n  url = {https://arxiv.org/abs/2405.12532},\n}\n\n@misc{zuo2026ratequant,\n  title = {{RateQuant}: Optimal Mixed-Precision {KV} Cache Quantization via Rate-Distortion Theory},\n  author = {Fei Zuo and Zikang Zhou and Hao Cong and Xiaoyan Xi and Ho Fai Leung},\n  year = {2026},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2605.06675},\n  eprint = {2605.06675},\n  archivePrefix = {arXiv},\n}\n\n@misc{lei2026arkv,\n  title = {{ARKV}: Adaptive and Resource-Efficient {KV} Cache Management under Limited Memory Budget for Long-Context Inference in {LLMs}},\n  author = {Jianlong Lei and Shashikant Ilager},\n  year = {2026},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2603.08727},\n  eprint = {2603.08727},\n  archivePrefix = {arXiv},\n}\n\n@misc{li2025kvmix,\n  title = {{KVmix}: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for {KV} Cache},\n  author = {Fei Li and Song Liu and Weiguo Wu and Shiqiang Nie and Jinyu Wang},\n  year = {2025},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2506.08018},\n  eprint = {2506.08018},\n  archivePrefix = {arXiv},\n}\n\n@misc{zhang2025mixkvq,\n  title = {{MixKVQ}: Query-Aware Mixed-Precision {KV} Cache Quantization for Long-Context Reasoning},\n  author = {Tao Zhang and Ziqian Zeng and Hao Peng and Huiping Zhuang and Cen Chen},\n  year = {2025},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2512.19206},\n  eprint = {2512.19206},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{kim2024squeezellm,\n  title = {{SqueezeLLM}: Dense-and-Sparse Quantization},\n  author = {Sehoon Kim and Coleman Hooper and Amir Gholami and Zhen Dong and Xiuyu Li and Sheng Shen and Michael W. Mahoney and Kurt Keutzer},\n  year = {2024},\n  booktitle = {ICML 2024},\n  url = {https://arxiv.org/abs/2306.07629},\n}\n\n@inproceedings{fu2025headkv,\n  title = {Not All Heads Matter: A Head-Level {KV} Cache Compression Method with Integrated Retrieval and Reasoning},\n  author = {Yu Fu and Zefan Cai and Abdelrahman Sid-Lakhdar and Wayne Xin Zhao and Richard Peng},\n  year = {2025},\n  booktitle = {ICLR 2025},\n  url = {https://arxiv.org/abs/2410.19258},\n}\n\n@inproceedings{feng2025adakv,\n  title = {{Ada-KV}: Optimizing {KV} Cache Eviction by Adaptive Budget Allocation},\n  author = {Yuan Feng and Junlin Lv and Yukun Cao and Xike Xie and S. Kevin Zhou},\n  year = {2025},\n  booktitle = {NeurIPS 2025},\n  url = {https://arxiv.org/abs/2407.11550},\n}\n\n@inproceedings{li2025kvtuner,\n  title = {{KVTuner}: Sensitivity-Aware Layer-Wise Mixed-Precision {KV} Cache Quantization for Efficient and Nearly Lossless {LLM} Inference},\n  author = {Li, Zhongzhi and Shen, Yuhan and Tang, Yixuan and Luo, Jian and Dai, Yonggang},\n  year = {2025},\n  booktitle = {ICML 2025},\n  url = {https://arxiv.org/abs/2502.04420},\n}\n\n@inproceedings{voita2019analyzing,\n  title = {Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned},\n  author = {Elena Voita and David Talbot and Fedor Moiseev and Rico Sennrich and Ivan Titov},\n  year = {2019},\n  booktitle = {ACL 2019},\n  url = {https://arxiv.org/abs/1905.09418},\n}\n\n@inproceedings{michel2019sixteen,\n  title = {Are Sixteen Heads Really Better than One?},\n  author = {Paul Michel and Omer Levy and Graham Neubig},\n  year = {2019},\n  booktitle = {NeurIPS 2019},\n  url = {https://arxiv.org/abs/1905.10650},\n}\n\n@inproceedings{dong2019hawq,\n  title = {{HAWQ}: {Hessian} AWare Quantization of Neural Networks with Mixed-Precision},\n  author = {Zhen Dong and Zhewei Yao and Amir Gholami and Michael W. Mahoney and Kurt Keutzer},\n  year = {2019},\n  booktitle = {ICCV 2019},\n  url = {https://arxiv.org/abs/1905.03696},\n}\n\n@inproceedings{dong2020hawqv2,\n  title = {{HAWQ-V2}: {Hessian} Aware trace-Weighted Quantization of Neural Networks},\n  author = {Zhen Dong and Zhewei Yao and Yaohui Cai and Daiyaan Arfeen and Amir Gholami and Michael W. Mahoney and Kurt Keutzer},\n  year = {2020},\n  booktitle = {NeurIPS 2020},\n  url = {https://arxiv.org/abs/1911.03852},\n}\n\n@inproceedings{wang2019haq,\n  title = {{HAQ}: Hardware-Aware Automated Quantization with Mixed Precision},\n  author = {Kuan Wang and Zhijian Liu and Yujun Lin and Ji Lin and Song Han},\n  year = {2019},\n  booktitle = {CVPR 2019},\n  url = {https://arxiv.org/abs/1811.08886},\n}\n\n@inproceedings{su2025rotatekv,\n  title = {{RotateKV}: Accurate and Robust 2-Bit {KV} Cache Quantization for {LLMs} via Outlier-Aware Adaptive Rotations},\n  author = {Zunhai Su and Zhe Chen and Wang Shen and Hanyu Wei and Linge Li and Huangqi Yu and Kehong Yuan},\n  year = {2025},\n  booktitle = {IJCAI 2025},\n  url = {https://arxiv.org/abs/2501.16383},\n}\n\n@inproceedings{sharma2025minikv,\n  title = {{MiniKV}: Pushing the Limits of 2-Bit {KV} Cache via Compression and System Co-Design for Efficient Long Context Inference},\n  author = {Akshat Sharma and Hangliang Ding and Jianping Li and Neel Dani and Minjia Zhang},\n  year = {2025},\n  booktitle = {Findings of ACL 2025},\n  url = {https://arxiv.org/abs/2411.18077},\n}\n\n@inproceedings{shutova2025aquakv,\n  title = {Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models},\n  author = {Alina Shutova and Vladimir Malinovskii and Vage Egiazarian and Denis Kuznedelev and Denis Mazur and Nikita Surkov and Ivan Ermakov and Dan Alistarh},\n  year = {2025},\n  booktitle = {ICML 2025},\n  url = {https://arxiv.org/abs/2501.19392},\n}\n\n@misc{liu2025pmkvq,\n  title = {{PM-KVQ}: Progressive Mixed-precision {KV} Cache Quantization for Long-CoT {LLMs}},\n  author = {Tengxuan Liu and Shiyao Li and Jiayi Yang and Tianchen Zhao and Feng Zhou and Xiaohui Song and Guohao Dai and Shengen Yan and Huazhong Yang and Yu Wang},\n  year = {2025},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2505.18610},\n  eprint = {2505.18610},\n  archivePrefix = {arXiv},\n}\n\n@misc{xia2025kitty,\n  title = {{Kitty}: Accurate and Efficient 2-bit {KV} Cache Quantization with Dynamic Channel-wise Precision Boost},\n  author = {Haojun Xia and Xiaoxia Wu and Jisen Li and Robert Wu and Junxiong Wang and Jue Wang and Chenxi Li and Aman Singhal and Alay Dilipbhai Shah and Alpay Ariyak and Donglin Zhuang and Zhongzhu Zhou and Ben Athiwaratkun and Zhen Zheng and Shuaiwen Leon Song},\n  year = {2025},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2511.18643},\n  eprint = {2511.18643},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{haeriboroujeni2026dontwaste,\n  title = {Don't Waste Bits! {Adaptive} {KV}-Cache Quantization for Lightweight On-Device {LLMs}},\n  author = {Haeri Boroujeni, Sayed Pedram and Mehrabi, Niloufar and Woods, Patrick and Hillesheim, Gabriel and Razi, Abolfazl},\n  year = {2026},\n  booktitle = {CVPR 2026},\n  url = {https://arxiv.org/abs/2604.04722},\n}\n",
+                "numLines": 266,
+                "startLine": 1,
+                "totalLines": 266
+              }
+            },
+            "sourceToolAssistantUUID": "81e371c5-853f-44e9-89af-bd3bce878813",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T09:22:54.246Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BTDTnc8rFsiRzfNT8uwZ8g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6562eda-8642-4534-8023-bfe43cc2595d",
+            "isSidechain": false,
+            "requestId": "req_011Cb61B81UCdft6midd83iE",
+            "type": "assistant",
+            "uuid": "81e371c5-853f-44e9-89af-bd3bce878813",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0128YotsKdoP1MSfMvmzkzSm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12719,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12719,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 195,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12719,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12719
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d529a322-7cf7-49ad-9201-b468d42058f7",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add three methods to related work section",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T09:23:05.129Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the current state. Let me check if QAQ, AQLM, or QuIP# entries already exist in the bib file.\n\nFrom my reading:\n- QAQ: Not in bib\n- AQLM: Not in bib\n- QuIP#: Not in bib\n- KVTuner: Already in bib as `li2025kvtuner`\n\nNow I need to:\n1. Add bib entries for QAQ, AQLM, and QuIP#\n2. Edit related_work.tex to add discussions of all three methods\n\n\n3. Place QAQ in the KV Cache Quantization section, AQLM and QuIP# in the Mixed-Precision Quantization section as conceptual parallels, and ensure KVTuner gets proper discussion in the Mixed-Precision Rate-Distortion Allocation paragraph where it's currently only cited.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d529a322-7cf7-49ad-9201-b468d42058f7",
+            "isSidechain": false,
+            "requestId": "req_011Cb61BRQitNZ5RrSv1r1tM",
+            "type": "assistant",
+            "uuid": "4a5d9cdc-4519-4203-9438-2cf4aaa4be45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012DW6hnrNkEkytUdH1Px2E9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6809,
+                "cache_read_input_tokens": 24560,
+                "output_tokens": 1623,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6809,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1623,
+                    "cache_read_input_tokens": 24560,
+                    "cache_creation_input_tokens": 6809,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6809
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T09:23:05.133Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll add the bib entries and update the related work text."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a5d9cdc-4519-4203-9438-2cf4aaa4be45",
+            "isSidechain": false,
+            "requestId": "req_011Cb61BRQitNZ5RrSv1r1tM",
+            "type": "assistant",
+            "uuid": "db143d7c-a00b-4116-b51c-f1ea0dff5707",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012DW6hnrNkEkytUdH1Px2E9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6809,
+                "cache_read_input_tokens": 24560,
+                "output_tokens": 1623,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6809,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1623,
+                    "cache_read_input_tokens": 24560,
+                    "cache_creation_input_tokens": 6809,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6809
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T09:23:16.124Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018t1gAW3YheYPrtk8aQDsji",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/references.bib",
+                "old_string": "@inproceedings{haeriboroujeni2026dontwaste,\n  title = {Don't Waste Bits! {Adaptive} {KV}-Cache Quantization for Lightweight On-Device {LLMs}},\n  author = {Haeri Boroujeni, Sayed Pedram and Mehrabi, Niloufar and Woods, Patrick and Hillesheim, Gabriel and Razi, Abolfazl},\n  year = {2026},\n  booktitle = {CVPR 2026},\n  url = {https://arxiv.org/abs/2604.04722},\n}",
+                "new_string": "@inproceedings{haeriboroujeni2026dontwaste,\n  title = {Don't Waste Bits! {Adaptive} {KV}-Cache Quantization for Lightweight On-Device {LLMs}},\n  author = {Haeri Boroujeni, Sayed Pedram and Mehrabi, Niloufar and Woods, Patrick and Hillesheim, Gabriel and Razi, Abolfazl},\n  year = {2026},\n  booktitle = {CVPR 2026},\n  url = {https://arxiv.org/abs/2604.04722},\n}\n\n@misc{dong2024qaq,\n  title = {{QAQ}: Quality Adaptive Quantization for {LLM} {KV} Cache},\n  author = {Shichen Dong and Wen Cheng and Jiayu Qin and Wei Wang},\n  year = {2024},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2403.04643},\n  eprint = {2403.04643},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{egiazarian2024aqlm,\n  title = {{AQLM}: Extreme Compression of Large Language Models via Additive Quantization},\n  author = {Vage Egiazarian and Andrei Panferov and Denis Kuznedelev and Elias Frantar and Artem Babenko and Dan Alistarh},\n  year = {2024},\n  booktitle = {ICML 2024},\n  url = {https://arxiv.org/abs/2401.06118},\n}\n\n@inproceedings{tseng2024quipsharp,\n  title = {{QuIP\\#}: Even Better {LLM} Quantization with {Hadamard} Incoherence and Lattice Codebooks},\n  author = {Albert Tseng and Jerry Chee and Qingyao Sun and Volodymyr Kuleshov and Christopher De Sa},\n  year = {2024},\n  booktitle = {ICML 2024},\n  url = {https://arxiv.org/abs/2402.04396},\n}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db143d7c-a00b-4116-b51c-f1ea0dff5707",
+            "isSidechain": false,
+            "requestId": "req_011Cb61BRQitNZ5RrSv1r1tM",
+            "type": "assistant",
+            "uuid": "38fbf750-af5f-413f-8c94-4485c977507b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012DW6hnrNkEkytUdH1Px2E9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6809,
+                "cache_read_input_tokens": 24560,
+                "output_tokens": 1623,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6809,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1623,
+                    "cache_read_input_tokens": 24560,
+                    "cache_creation_input_tokens": 6809,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6809
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T09:23:24.180Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FQ17UJQmQj75iphPsfwQkw",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6d384ca-8609-44ca-bd3b-b5807d38c743",
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "e112260d-b5f4-44bd-8a87-8c51ec55fdf0",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+              "oldString": "Our per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.",
+              "newString": "Our per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.\nQAQ~\\cite{dong2024qaq} also pursues mixed-precision KV cache but selects precision dynamically at inference time using attention scores; in contrast, our allocation is determined offline via one-shot profiling and enforces a cardinality constraint that prevents compounding---a failure mode that any unconstrained adaptive scheme remains susceptible to.",
+              "originalFile": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{KV Cache Quantization.}\nUniform-precision methods quantize the KV cache at a single bit-width across all heads, using techniques such as asymmetric per-channel/per-token schemes~\\cite{liu2024kivi,hooper2024kvquant}, quantization--serving co-design~\\cite{lin2024qserve}, salient-token identification~\\cite{he2024zipcache}, low-rank plus sparse correction~\\cite{kang2024gear}, sliding-window adaptation~\\cite{duanmu2024skvq}, rotation-based outlier smoothing for robust 2-bit~\\cite{su2025rotatekv}, 2-bit with adaptive token retention~\\cite{sharma2025minikv}, and adapter-based inter-layer prediction at 2--2.5 bits~\\cite{shutova2025aquakv}.\nWe extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\\{2,4,8,16\\}$.\nOur per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.\n\n\\paragraph{KV Cache Eviction.}\nComplementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}.\nRecent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.\n\n\n\\paragraph{Mixed-Precision Quantization (Weights).}\nMixed-precision allocation has a long history at the weight level.\nHAWQ~\\cite{dong2019hawq} and HAWQ-V2~\\cite{dong2020hawqv2} use second-order (Hessian-based) sensitivity to assign per-layer bit-widths, with V2 introducing block-wise trace-weighted scoring and Pareto-frontier selection; HAQ~\\cite{wang2019haq} learns an allocation by reinforcement learning under hardware-aware latency/energy constraints.\nThese methods operate on weights, where per-layer distortions are approximately additive and sensitivity varies smoothly across layers.\nKV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.\nOur primary contribution is not the allocation algorithm itself---any MCKP or greedy solver suffices---but the diagnosis and fix of this compounding effect via cardinality constraints, and the characterization of when non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).\n\n\\paragraph{Mixed-Precision Rate-Distortion Allocation.}\nRateQuant~\\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\\{2,\\ldots,6\\}$ via the polymatroid structure, which relies on the assumption that per-head distortions decompose additively into the global objective---valid when adjacent bit-widths differ by a single bit so that quantization noise stays in the small-perturbation regime.\nOn hardware-aligned $\\{2,4,8,16\\}$, the 4$\\times$ gap between 2-bit and 4-bit drives 2-bit distortion to compound super-additively, breaking the polymatroid structure and the additivity assumption with it.\nConcretely, running RateQuant's greedy algorithm (Algorithm~1) directly on $\\{2,4,8,16\\}$ yields 32.45 PPL on Qwen2.5-7B at $4\\times$ compression---catastrophically worse than uniform 4-bit (15.45)---whereas our cardinality constraint on simultaneously active 2-bit heads recovers 10.91 PPL at the same average bit-width.\nThe constraint is the minimal fix that restores the additive regime in which RateQuant's polymatroid argument applies.\nRelated mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n\n\\paragraph{Attention Head Analysis.}\nPrior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.\nOur analysis asks a different question: which heads are sensitive to \\emph{quantization}, and how heterogeneous that sensitivity is across architectures---a property that determines whether non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).",
+              "structuredPatch": [
+                {
+                  "oldStart": 5,
+                  "oldLines": 6,
+                  "newStart": 5,
+                  "newLines": 7,
+                  "lines": [
+                    " We extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\\{2,4,8,16\\}$.",
+                    " Our per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).",
+                    " The two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.",
+                    "+QAQ~\\cite{dong2024qaq} also pursues mixed-precision KV cache but selects precision dynamically at inference time using attention scores; in contrast, our allocation is determined offline via one-shot profiling and enforces a cardinality constraint that prevents compounding---a failure mode that any unconstrained adaptive scheme remains susceptible to.",
+                    " ",
+                    " \\paragraph{KV Cache Eviction.}",
+                    " Complementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "b6d384ca-8609-44ca-bd3b-b5807d38c743",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T09:23:16.150Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018t1gAW3YheYPrtk8aQDsji",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38fbf750-af5f-413f-8c94-4485c977507b",
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "65febb6e-b6e1-4575-b77f-450745e12fb8",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/references.bib",
+              "oldString": "@inproceedings{haeriboroujeni2026dontwaste,\n  title = {Don't Waste Bits! {Adaptive} {KV}-Cache Quantization for Lightweight On-Device {LLMs}},\n  author = {Haeri Boroujeni, Sayed Pedram and Mehrabi, Niloufar and Woods, Patrick and Hillesheim, Gabriel and Razi, Abolfazl},\n  year = {2026},\n  booktitle = {CVPR 2026},\n  url = {https://arxiv.org/abs/2604.04722},\n}",
+              "newString": "@inproceedings{haeriboroujeni2026dontwaste,\n  title = {Don't Waste Bits! {Adaptive} {KV}-Cache Quantization for Lightweight On-Device {LLMs}},\n  author = {Haeri Boroujeni, Sayed Pedram and Mehrabi, Niloufar and Woods, Patrick and Hillesheim, Gabriel and Razi, Abolfazl},\n  year = {2026},\n  booktitle = {CVPR 2026},\n  url = {https://arxiv.org/abs/2604.04722},\n}\n\n@misc{dong2024qaq,\n  title = {{QAQ}: Quality Adaptive Quantization for {LLM} {KV} Cache},\n  author = {Shichen Dong and Wen Cheng and Jiayu Qin and Wei Wang},\n  year = {2024},\n  note = {arXiv preprint},\n  url = {https://arxiv.org/abs/2403.04643},\n  eprint = {2403.04643},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{egiazarian2024aqlm,\n  title = {{AQLM}: Extreme Compression of Large Language Models via Additive Quantization},\n  author = {Vage Egiazarian and Andrei Panferov and Denis Kuznedelev and Elias Frantar and Artem Babenko and Dan Alistarh},\n  year = {2024},\n  booktitle = {ICML 2024},\n  url = {https://arxiv.org/abs/2401.06118},\n}\n\n@inproceedings{tseng2024quipsharp,\n  title = {{QuIP\\#}: Even Better {LLM} Quantization with {Hadamard} Incoherence and Lattice Codebooks},\n  author = {Albert Tseng and Jerry Chee and Qingyao Sun and Volodymyr Kuleshov and Christopher De Sa},\n  year = {2024},\n  booktitle = {ICML 2024},\n  url = {https://arxiv.org/abs/2402.04396},\n}",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 263,
+                  "oldLines": 3,
+                  "newStart": 263,
+                  "newLines": 29,
+                  "lines": [
+                    "   booktitle = {CVPR 2026},",
+                    "   url = {https://arxiv.org/abs/2604.04722},",
+                    " }",
+                    "+",
+                    "+@misc{dong2024qaq,",
+                    "+  title = {{QAQ}: Quality Adaptive Quantization for {LLM} {KV} Cache},",
+                    "+  author = {Shichen Dong and Wen Cheng and Jiayu Qin and Wei Wang},",
+                    "+  year = {2024},",
+                    "+  note = {arXiv preprint},",
+                    "+  url = {https://arxiv.org/abs/2403.04643},",
+                    "+  eprint = {2403.04643},",
+                    "+  archivePrefix = {arXiv},",
+                    "+}",
+                    "+",
+                    "+@inproceedings{egiazarian2024aqlm,",
+                    "+  title = {{AQLM}: Extreme Compression of Large Language Models via Additive Quantization},",
+                    "+  author = {Vage Egiazarian and Andrei Panferov and Denis Kuznedelev and Elias Frantar and Artem Babenko and Dan Alistarh},",
+                    "+  year = {2024},",
+                    "+  booktitle = {ICML 2024},",
+                    "+  url = {https://arxiv.org/abs/2401.06118},",
+                    "+}",
+                    "+",
+                    "+@inproceedings{tseng2024quipsharp,",
+                    "+  title = {{QuIP\\#}: Even Better {LLM} Quantization with {Hadamard} Incoherence and Lattice Codebooks},",
+                    "+  author = {Albert Tseng and Jerry Chee and Qingyao Sun and Volodymyr Kuleshov and Christopher De Sa},",
+                    "+  year = {2024},",
+                    "+  booktitle = {ICML 2024},",
+                    "+  url = {https://arxiv.org/abs/2402.04396},",
+                    "+}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "38fbf750-af5f-413f-8c94-4485c977507b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T09:23:24.163Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FQ17UJQmQj75iphPsfwQkw",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+                "old_string": "Our per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.",
+                "new_string": "Our per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.\nQAQ~\\cite{dong2024qaq} also pursues mixed-precision KV cache but selects precision dynamically at inference time using attention scores; in contrast, our allocation is determined offline via one-shot profiling and enforces a cardinality constraint that prevents compounding---a failure mode that any unconstrained adaptive scheme remains susceptible to."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65febb6e-b6e1-4575-b77f-450745e12fb8",
+            "isSidechain": false,
+            "requestId": "req_011Cb61BRQitNZ5RrSv1r1tM",
+            "type": "assistant",
+            "uuid": "b6d384ca-8609-44ca-bd3b-b5807d38c743",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012DW6hnrNkEkytUdH1Px2E9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6809,
+                "cache_read_input_tokens": 24560,
+                "output_tokens": 1623,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6809,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1623,
+                    "cache_read_input_tokens": 24560,
+                    "cache_creation_input_tokens": 6809,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6809
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T09:23:34.913Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RR8yn1VXWd7dN4AGoGsSRe",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+                "old_string": "KV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.",
+                "new_string": "KV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.\nNotably, AQLM~\\cite{egiazarian2024aqlm} and QuIP\\#~\\cite{tseng2024quipsharp} have observed non-additive error behaviour in extreme weight quantization when codebook interactions amplify distortion beyond per-parameter predictions; we independently identify an analogous phenomenon in per-head KV cache allocation, where co-activating multiple 2-bit heads triggers super-additive degradation through the residual stream."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e112260d-b5f4-44bd-8a87-8c51ec55fdf0",
+            "isSidechain": false,
+            "requestId": "req_011Cb61DdBTGU9sBLmHdvNhR",
+            "type": "assistant",
+            "uuid": "f8e82c60-9ee8-4fe1-9bc1-6938a42a4fca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0167v9Lx1m8P1cndgU6D6gk5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1801,
+                "cache_read_input_tokens": 31369,
+                "output_tokens": 954,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1801,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 954,
+                    "cache_read_input_tokens": 31369,
+                    "cache_creation_input_tokens": 1801,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1801
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T09:23:34.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RR8yn1VXWd7dN4AGoGsSRe",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8e82c60-9ee8-4fe1-9bc1-6938a42a4fca",
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "8d5f6857-e942-4b93-b5cc-31900f8b9d8d",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+              "oldString": "KV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.",
+              "newString": "KV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.\nNotably, AQLM~\\cite{egiazarian2024aqlm} and QuIP\\#~\\cite{tseng2024quipsharp} have observed non-additive error behaviour in extreme weight quantization when codebook interactions amplify distortion beyond per-parameter predictions; we independently identify an analogous phenomenon in per-head KV cache allocation, where co-activating multiple 2-bit heads triggers super-additive degradation through the residual stream.",
+              "originalFile": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{KV Cache Quantization.}\nUniform-precision methods quantize the KV cache at a single bit-width across all heads, using techniques such as asymmetric per-channel/per-token schemes~\\cite{liu2024kivi,hooper2024kvquant}, quantization--serving co-design~\\cite{lin2024qserve}, salient-token identification~\\cite{he2024zipcache}, low-rank plus sparse correction~\\cite{kang2024gear}, sliding-window adaptation~\\cite{duanmu2024skvq}, rotation-based outlier smoothing for robust 2-bit~\\cite{su2025rotatekv}, 2-bit with adaptive token retention~\\cite{sharma2025minikv}, and adapter-based inter-layer prediction at 2--2.5 bits~\\cite{shutova2025aquakv}.\nWe extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\\{2,4,8,16\\}$.\nOur per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.\nQAQ~\\cite{dong2024qaq} also pursues mixed-precision KV cache but selects precision dynamically at inference time using attention scores; in contrast, our allocation is determined offline via one-shot profiling and enforces a cardinality constraint that prevents compounding---a failure mode that any unconstrained adaptive scheme remains susceptible to.\n\n\\paragraph{KV Cache Eviction.}\nComplementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}.\nRecent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.\n\n\n\\paragraph{Mixed-Precision Quantization (Weights).}\nMixed-precision allocation has a long history at the weight level.\nHAWQ~\\cite{dong2019hawq} and HAWQ-V2~\\cite{dong2020hawqv2} use second-order (Hessian-based) sensitivity to assign per-layer bit-widths, with V2 introducing block-wise trace-weighted scoring and Pareto-frontier selection; HAQ~\\cite{wang2019haq} learns an allocation by reinforcement learning under hardware-aware latency/energy constraints.\nThese methods operate on weights, where per-layer distortions are approximately additive and sensitivity varies smoothly across layers.\nKV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.\nOur primary contribution is not the allocation algorithm itself---any MCKP or greedy solver suffices---but the diagnosis and fix of this compounding effect via cardinality constraints, and the characterization of when non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).\n\n\\paragraph{Mixed-Precision Rate-Distortion Allocation.}\nRateQuant~\\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\\{2,\\ldots,6\\}$ via the polymatroid structure, which relies on the assumption that per-head distortions decompose additively into the global objective---valid when adjacent bit-widths differ by a single bit so that quantization noise stays in the small-perturbation regime.\nOn hardware-aligned $\\{2,4,8,16\\}$, the 4$\\times$ gap between 2-bit and 4-bit drives 2-bit distortion to compound super-additively, breaking the polymatroid structure and the additivity assumption with it.\nConcretely, running RateQuant's greedy algorithm (Algorithm~1) directly on $\\{2,4,8,16\\}$ yields 32.45 PPL on Qwen2.5-7B at $4\\times$ compression---catastrophically worse than uniform 4-bit (15.45)---whereas our cardinality constraint on simultaneously active 2-bit heads recovers 10.91 PPL at the same average bit-width.\nThe constraint is the minimal fix that restores the additive regime in which RateQuant's polymatroid argument applies.\nRelated mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n\n\\paragraph{Attention Head Analysis.}\nPrior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.\nOur analysis asks a different question: which heads are sensitive to \\emph{quantization}, and how heterogeneous that sensitivity is across architectures---a property that determines whether non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).",
+              "structuredPatch": [
+                {
+                  "oldStart": 17,
+                  "oldLines": 6,
+                  "newStart": 17,
+                  "newLines": 7,
+                  "lines": [
+                    " HAWQ~\\cite{dong2019hawq} and HAWQ-V2~\\cite{dong2020hawqv2} use second-order (Hessian-based) sensitivity to assign per-layer bit-widths, with V2 introducing block-wise trace-weighted scoring and Pareto-frontier selection; HAQ~\\cite{wang2019haq} learns an allocation by reinforcement learning under hardware-aware latency/energy constraints.",
+                    " These methods operate on weights, where per-layer distortions are approximately additive and sensitivity varies smoothly across layers.",
+                    " KV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.",
+                    "+Notably, AQLM~\\cite{egiazarian2024aqlm} and QuIP\\#~\\cite{tseng2024quipsharp} have observed non-additive error behaviour in extreme weight quantization when codebook interactions amplify distortion beyond per-parameter predictions; we independently identify an analogous phenomenon in per-head KV cache allocation, where co-activating multiple 2-bit heads triggers super-additive degradation through the residual stream.",
+                    " Our primary contribution is not the allocation algorithm itself---any MCKP or greedy solver suffices---but the diagnosis and fix of this compounding effect via cardinality constraints, and the characterization of when non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).",
+                    " ",
+                    " \\paragraph{Mixed-Precision Rate-Distortion Allocation.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "f8e82c60-9ee8-4fe1-9bc1-6938a42a4fca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T09:23:42.450Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WZTeU3fD1PFLbaWM8CrCeB",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+                "old_string": "Related mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.",
+                "new_string": "Related mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\nKVTuner~\\cite{li2025kvtuner} assigns mixed precision at the layer level (all heads within a layer share a single bit-width); our head-level granularity exposes intra-layer heterogeneity at the cost of a combinatorially larger search space, which the cardinality constraint renders tractable."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d5f6857-e942-4b93-b5cc-31900f8b9d8d",
+            "isSidechain": false,
+            "requestId": "req_011Cb61DdBTGU9sBLmHdvNhR",
+            "type": "assistant",
+            "uuid": "9deaf370-ee1c-45b5-a105-d66dfcd670f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0167v9Lx1m8P1cndgU6D6gk5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1801,
+                "cache_read_input_tokens": 31369,
+                "output_tokens": 954,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1801,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 954,
+                    "cache_read_input_tokens": 31369,
+                    "cache_creation_input_tokens": 1801,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1801
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T09:23:42.472Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WZTeU3fD1PFLbaWM8CrCeB",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9deaf370-ee1c-45b5-a105-d66dfcd670f3",
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "971bb3f5-653d-41fb-ab28-c137aaa5bcd3",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+              "oldString": "Related mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.",
+              "newString": "Related mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\nKVTuner~\\cite{li2025kvtuner} assigns mixed precision at the layer level (all heads within a layer share a single bit-width); our head-level granularity exposes intra-layer heterogeneity at the cost of a combinatorially larger search space, which the cardinality constraint renders tractable.",
+              "originalFile": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{KV Cache Quantization.}\nUniform-precision methods quantize the KV cache at a single bit-width across all heads, using techniques such as asymmetric per-channel/per-token schemes~\\cite{liu2024kivi,hooper2024kvquant}, quantization--serving co-design~\\cite{lin2024qserve}, salient-token identification~\\cite{he2024zipcache}, low-rank plus sparse correction~\\cite{kang2024gear}, sliding-window adaptation~\\cite{duanmu2024skvq}, rotation-based outlier smoothing for robust 2-bit~\\cite{su2025rotatekv}, 2-bit with adaptive token retention~\\cite{sharma2025minikv}, and adapter-based inter-layer prediction at 2--2.5 bits~\\cite{shutova2025aquakv}.\nWe extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\\{2,4,8,16\\}$.\nOur per-head bit-width allocation is orthogonal to per-channel quantization schemes such as KIVI: KIVI determines \\emph{how} each head is quantized (asymmetric per-channel scaling), while our method determines \\emph{at what precision} (bit-width selection across heads).\nThe two can be composed, though the per-channel method dominates when available (\\S\\ref{sec:main_results}); per-head allocation provides independent value in symmetric-only environments where per-channel asymmetric quantization is unavailable.\nQAQ~\\cite{dong2024qaq} also pursues mixed-precision KV cache but selects precision dynamically at inference time using attention scores; in contrast, our allocation is determined offline via one-shot profiling and enforces a cardinality constraint that prevents compounding---a failure mode that any unconstrained adaptive scheme remains susceptible to.\n\n\\paragraph{KV Cache Eviction.}\nComplementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}.\nRecent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.\n\n\n\\paragraph{Mixed-Precision Quantization (Weights).}\nMixed-precision allocation has a long history at the weight level.\nHAWQ~\\cite{dong2019hawq} and HAWQ-V2~\\cite{dong2020hawqv2} use second-order (Hessian-based) sensitivity to assign per-layer bit-widths, with V2 introducing block-wise trace-weighted scoring and Pareto-frontier selection; HAQ~\\cite{wang2019haq} learns an allocation by reinforcement learning under hardware-aware latency/energy constraints.\nThese methods operate on weights, where per-layer distortions are approximately additive and sensitivity varies smoothly across layers.\nKV cache quantization presents a qualitatively different challenge: 2-bit head distortions compound super-additively through the residual stream (\\S\\ref{sec:compounding}), a phenomenon absent in weight quantization where each layer's parameters are independently quantized.\nNotably, AQLM~\\cite{egiazarian2024aqlm} and QuIP\\#~\\cite{tseng2024quipsharp} have observed non-additive error behaviour in extreme weight quantization when codebook interactions amplify distortion beyond per-parameter predictions; we independently identify an analogous phenomenon in per-head KV cache allocation, where co-activating multiple 2-bit heads triggers super-additive degradation through the residual stream.\nOur primary contribution is not the allocation algorithm itself---any MCKP or greedy solver suffices---but the diagnosis and fix of this compounding effect via cardinality constraints, and the characterization of when non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).\n\n\\paragraph{Mixed-Precision Rate-Distortion Allocation.}\nRateQuant~\\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\\{2,\\ldots,6\\}$ via the polymatroid structure, which relies on the assumption that per-head distortions decompose additively into the global objective---valid when adjacent bit-widths differ by a single bit so that quantization noise stays in the small-perturbation regime.\nOn hardware-aligned $\\{2,4,8,16\\}$, the 4$\\times$ gap between 2-bit and 4-bit drives 2-bit distortion to compound super-additively, breaking the polymatroid structure and the additivity assumption with it.\nConcretely, running RateQuant's greedy algorithm (Algorithm~1) directly on $\\{2,4,8,16\\}$ yields 32.45 PPL on Qwen2.5-7B at $4\\times$ compression---catastrophically worse than uniform 4-bit (15.45)---whereas our cardinality constraint on simultaneously active 2-bit heads recovers 10.91 PPL at the same average bit-width.\nThe constraint is the minimal fix that restores the additive regime in which RateQuant's polymatroid argument applies.\nRelated mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n\n\\paragraph{Attention Head Analysis.}\nPrior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.\nOur analysis asks a different question: which heads are sensitive to \\emph{quantization}, and how heterogeneous that sensitivity is across architectures---a property that determines whether non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).",
+              "structuredPatch": [
+                {
+                  "oldStart": 26,
+                  "oldLines": 6,
+                  "newStart": 26,
+                  "newLines": 7,
+                  "lines": [
+                    " Concretely, running RateQuant's greedy algorithm (Algorithm~1) directly on $\\{2,4,8,16\\}$ yields 32.45 PPL on Qwen2.5-7B at $4\\times$ compression---catastrophically worse than uniform 4-bit (15.45)---whereas our cardinality constraint on simultaneously active 2-bit heads recovers 10.91 PPL at the same average bit-width.",
+                    " The constraint is the minimal fix that restores the additive regime in which RateQuant's polymatroid argument applies.",
+                    " Related mixed-precision KV-cache work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, block-level via progressive decoding-step quantization for long-CoT reasoning~\\cite{liu2025pmkvq}, channel-level via dynamic precision boost on sensitive Key channels~\\cite{xia2025kitty}, token-level via a learned on-device controller~\\cite{haeriboroujeni2026dontwaste}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.",
+                    "+KVTuner~\\cite{li2025kvtuner} assigns mixed precision at the layer level (all heads within a layer share a single bit-width); our head-level granularity exposes intra-layer heterogeneity at the cost of a combinatorially larger search space, which the cardinality constraint renders tractable.",
+                    " ",
+                    " \\paragraph{Attention Head Analysis.}",
+                    " Prior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "9deaf370-ee1c-45b5-a105-d66dfcd670f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "971bb3f5-653d-41fb-ab28-c137aaa5bcd3",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add three methods to related work section",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T09:23:46.495Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证新引用在正文和 bib 中都存在。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "971bb3f5-653d-41fb-ab28-c137aaa5bcd3",
+            "isSidechain": false,
+            "requestId": "req_011Cb61Eyufjb5oayDf66fa6",
+            "type": "assistant",
+            "uuid": "b1d2109f-bdd7-4d78-8620-cda726a7d71b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q3hEwfFQWq2fS6oASnopmq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1095,
+                "cache_read_input_tokens": 33170,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1095,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 33170,
+                    "cache_creation_input_tokens": 1095,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1095
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T09:23:47.261Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FByiRRK2kxw5V5wwEtRi7Z",
+              "name": "Grep",
+              "input": {
+                "pattern": "dong2024qaq|egiazarian2024aqlm|tseng2024quipsharp|li2025kvtuner",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1d2109f-bdd7-4d78-8620-cda726a7d71b",
+            "isSidechain": false,
+            "requestId": "req_011Cb61Eyufjb5oayDf66fa6",
+            "type": "assistant",
+            "uuid": "4f75dad2-411f-4acc-aa16-67ef83ab5cb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q3hEwfFQWq2fS6oASnopmq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1095,
+                "cache_read_input_tokens": 33170,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1095,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 33170,
+                    "cache_creation_input_tokens": 1095,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1095
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T09:23:47.280Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FByiRRK2kxw5V5wwEtRi7Z",
+              "type": "tool_result",
+              "content": "docs/paper/related_work.tex:8:QAQ~\\cite{dong2024qaq} also pursues mixed-precision KV cache but selects precision dynamically at inference time using attention scores; in contrast, our allocation is determined offline via one-shot profiling and enforces a cardinality constraint that prevents compounding---a failure mode that any unconstrained adaptive scheme remains susceptible to.\ndocs/paper/related_work.tex:20:Notably, AQLM~\\cite{egiazarian2024aqlm} and QuIP\\#~\\cite{tseng2024quipsharp} have observed non-additive error behaviour in extreme weight quantization when codebook interactions amplify distortion beyond per-parameter predictions; we independently identify an analogous phenomenon in per-head KV cache allocation, where co-activating multiple 2-bit heads triggers super-additive degradation through the residual stream.\ndocs/paper/related_work.tex:28:[Omitted long matching line]\ndocs/paper/related_work.tex:29:KVTuner~\\cite{li2025kvtuner} assigns mixed precision at the layer level (all heads within a layer share a single bit-width); our head-level granularity exposes intra-layer heterogeneity at the cost of a combinatorially larger search space, which the cardinality constraint renders tractable.\ndocs/paper/main.bbl:115:  Dai}]{li2025kvtuner}\ndocs/paper/appendix.tex:61:\\emph{Layer-level} allocation (KVmix~\\cite{li2025kvmix}, KVTuner~\\cite{li2025kvtuner}) keeps the search space small ($L$ layers) but forces all heads in a layer to share one bitwidth.\ndocs/paper/references.bib:167:@inproceedings{li2025kvtuner,\ndocs/paper/references.bib:267:@misc{dong2024qaq,\ndocs/paper/references.bib:277:@inproceedings{egiazarian2024aqlm,\ndocs/paper/references.bib:285:@inproceedings{tseng2024quipsharp,\ndocs/paper/main.aux:224:\\citation{li2025kvtuner}\ndocs/paper/main.aux:927:\\bibcite{li2025kvtuner}{{15}{2025{b}}{{Li et~al.}}{{Li, Shen, Tang, Luo, and Dai}}}\ndocs/paper/main.aux:1139:\\citation{li2025kvtuner}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f75dad2-411f-4acc-aa16-67ef83ab5cb2",
+            "isSidechain": false,
+            "promptId": "57178dec-a181-4689-b8dc-6bbe16ba62d5",
+            "type": "user",
+            "uuid": "0b149636-417a-4e4b-9dce-ce989b9489d5",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/related_work.tex:8:QAQ~\\cite{dong2024qaq} also pursues mixed-precision KV cache but selects precision dynamically at inference time using attention scores; in contrast, our allocation is determined offline via one-shot profiling and enforces a cardinality constraint that prevents compounding---a failure mode that any unconstrained adaptive scheme remains susceptible to.\ndocs/paper/related_work.tex:20:Notably, AQLM~\\cite{egiazarian2024aqlm} and QuIP\\#~\\cite{tseng2024quipsharp} have observed non-additive error behaviour in extreme weight quantization when codebook interactions amplify distortion beyond per-parameter predictions; we independently identify an analogous phenomenon in per-head KV cache allocation, where co-activating multiple 2-bit heads triggers super-additive degradation through the residual stream.\ndocs/paper/related_work.tex:28:[Omitted long matching line]\ndocs/paper/related_work.tex:29:KVTuner~\\cite{li2025kvtuner} assigns mixed precision at the layer level (all heads within a layer share a single bit-width); our head-level granularity exposes intra-layer heterogeneity at the cost of a combinatorially larger search space, which the cardinality constraint renders tractable.\ndocs/paper/main.bbl:115:  Dai}]{li2025kvtuner}\ndocs/paper/appendix.tex:61:\\emph{Layer-level} allocation (KVmix~\\cite{li2025kvmix}, KVTuner~\\cite{li2025kvtuner}) keeps the search space small ($L$ layers) but forces all heads in a layer to share one bitwidth.\ndocs/paper/references.bib:167:@inproceedings{li2025kvtuner,\ndocs/paper/references.bib:267:@misc{dong2024qaq,\ndocs/paper/references.bib:277:@inproceedings{egiazarian2024aqlm,\ndocs/paper/references.bib:285:@inproceedings{tseng2024quipsharp,\ndocs/paper/main.aux:224:\\citation{li2025kvtuner}\ndocs/paper/main.aux:927:\\bibcite{li2025kvtuner}{{15}{2025{b}}{{Li et~al.}}{{Li, Shen, Tang, Luo, and Dai}}}\ndocs/paper/main.aux:1139:\\citation{li2025kvtuner}",
+              "numLines": 13
+            },
+            "sourceToolAssistantUUID": "4f75dad2-411f-4acc-aa16-67ef83ab5cb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T09:23:53.315Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。新增内容：\n\n1. **QAQ** — `related_work.tex` KV Cache Quantization 段落末尾，区分 attention-score-based 动态方法 vs 我们的 offline profiling + cardinality constraint。bib 条目 `dong2024qaq` 已添加。\n\n2. **AQLM/QuIP#** — Mixed-Precision Quantization (Weights) 段落，作为 non-additive error 的 conceptual parallel。bib 条目 `egiazarian2024aqlm` 和 `tseng2024quipsharp` 已添加。\n\n3. **KVTuner** — Mixed-Precision Rate-Distortion Allocation 段落，区分 layer-level vs head-level granularity，cardinality constraint 使更大搜索空间可控。已有 bib 条目 `li2025kvtuner`。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b149636-417a-4e4b-9dce-ce989b9489d5",
+            "isSidechain": false,
+            "requestId": "req_011Cb61FKvS81rSYzdjXXmZk",
+            "type": "assistant",
+            "uuid": "7841d934-9323-4f00-aa0a-80979af5fbc0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+            "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011g6wSH6hWZuYhLabLZmz5x",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 788,
+                "cache_read_input_tokens": 34265,
+                "output_tokens": 242,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 788,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 242,
+                    "cache_read_input_tokens": 34265,
+                    "cache_creation_input_tokens": 788,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 788
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "7841d934-9323-4f00-aa0a-80979af5fbc0",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add three methods to related work section",
+                "sessionId": "dc54b085-27d2-470a-bc77-92c047e6b5f2"
+              }
+            }
+          ],
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-ratekv-westd-37397-ssh-root-ssh-execute-submit-training-job-ac-copy-198.md"
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "c23f3e52d5c04da814c1",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: entrainment_gated_ft ## 运行环境 - 服务器名: westb-48145 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "ee315f7f-db43-4614-a732-7080dd3e9cc8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/ee315f7f-db43-4614-a732-7080dd3e9cc8.jsonl",
+    "occurrence": 1,
+    "bytes": 1380971,
+    "sha256": "59606bbca9b5f7fb5f16de942d9a6753d819ef11251f1b4aedbcb12e1d93dad9"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 2,
+    "tool_calls": 74,
+    "roles": {
+      "record": 80,
+      "user": 2,
+      "assistant": 39,
+      "tool_call": 74,
+      "tool_result": 74,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c23f3e52d5c04da814c1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 188,
+      "chunks": [
+        {
+          "path": "c23f3e52d5c04da814c1-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "c23f3e52d5c04da814c1-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "c23f3e52d5c04da814c1-part-0002.json",
+          "message_count": 45
+        },
+        {
+          "path": "c23f3e52d5c04da814c1-part-0003.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-entrainment-gated-ft-westb-48145-ssh-root-ssh-execute-submit-t-copy-73.md"
+}

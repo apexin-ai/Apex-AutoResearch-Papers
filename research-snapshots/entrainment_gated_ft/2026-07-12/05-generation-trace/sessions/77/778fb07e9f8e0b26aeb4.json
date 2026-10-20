@@ -1,0 +1,1392 @@
+{
+  "schema_version": "1.0",
+  "id": "778fb07e9f8e0b26aeb4",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify two specific things for a paper review: 1. Verify \"Token-Budget-Aware LLM Reasoning\" (arXiv:2412.18547,",
+  "task_key": "agent-a9db66ed10d534296",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a9db66ed10d534296.jsonl",
+    "occurrence": 1,
+    "bytes": 58482,
+    "sha256": "653cc5a88a1f97183d1452262cd19e78516de18fdb47b4c41a5b78f368717d54"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-09T21:08:57.951Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify two specific things for a paper review:\n\n1. Verify \"Token-Budget-Aware LLM Reasoning\" (arXiv:2412.18547, ACL 2025 Findings):\n   - Does this paper exist? Fetch https://arxiv.org/abs/2412.18547 to confirm\n   - What is the approach — does it use the LLM itself to predict token budget, or prompt features?\n   - Is it published at ACL 2025?\n   - How is it different from prompt-only classification?\n\n2. Search for empirical evidence on \"straggler reduction in continuous batching LLM serving\":\n   - Is there any empirical quantification of how much throughput straggler reduction provides in vLLM continuous batching specifically for reasoning models with variable thinking lengths?\n   - Search \"vLLM straggler continuous batching throughput reasoning models\"\n   - Search \"heterogeneous thinking length KV cache preemption throughput vLLM\"\n   - Specifically I want to know: is the claim \"straggler reduction from shorter thinking traces pushes throughput gains superlinearly beyond first-order KV savings\" supported by prior literature?\n\n3. Also check arXiv:2601.18383 \"Dynamic Thinking-Token Selection for Efficient Reasoning in Large Reasoning Models\" - does it propose prompt-only features or does it require model access?\n\nReport exactly what you find for each query."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "25184aa0-06ac-4fe7-9e0e-bb1af5c9ac6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-09T21:08:59.340Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you verify these specific claims. Let me start by fetching the papers and searching for the empirical evidence you need."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25184aa0-06ac-4fe7-9e0e-bb1af5c9ac6e",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgMpNNSV9Wi9d2SizWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2a6f3d42-b8dc-4675-bf15-e3e3577b8cb1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1XfQm1Vwvn2BKm4XKMtte",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 757,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 757,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-09T21:09:00.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G4cgtcXshYmuhXvZXTXTbY",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2412.18547",
+                "prompt": "What is the approach for token budget prediction - does it use the LLM itself or prompt features? Is it published at ACL 2025? What are the key technical contributions?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a6f3d42-b8dc-4675-bf15-e3e3577b8cb1",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgMpNNSV9Wi9d2SizWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e7f2c0c4-3b96-43d5-8928-adcb4867769c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1XfQm1Vwvn2BKm4XKMtte",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 757,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 757,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-09T21:09:00.318Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gud87MrzceDVMWmnGxt8H8",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2601.18383",
+                "prompt": "Does this paper propose prompt-only features or does it require model access for dynamic thinking token selection?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7f2c0c4-3b96-43d5-8928-adcb4867769c",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgMpNNSV9Wi9d2SizWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7edfba0b-c2a5-4e02-b824-22f910aef2fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1XfQm1Vwvn2BKm4XKMtte",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 757,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 757,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-09T21:09:00.819Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CyK7FaUJLQzrShP7bygJdD",
+              "name": "WebSearch",
+              "input": {
+                "query": "vLLM straggler continuous batching throughput reasoning models 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7edfba0b-c2a5-4e02-b824-22f910aef2fa",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgMpNNSV9Wi9d2SizWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "53410640-c73d-4642-844b-2bfd2b585187",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1XfQm1Vwvn2BKm4XKMtte",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 757,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 757,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-09T21:09:00.903Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FeiGCJHm4WwcS7hNiiK2bJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "heterogeneous thinking length KV cache preemption throughput vLLM"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53410640-c73d-4642-844b-2bfd2b585187",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgMpNNSV9Wi9d2SizWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2324b248-137c-42d2-b296-dd16e36f0e94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1XfQm1Vwvn2BKm4XKMtte",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 757,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 757,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-09T21:09:00.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KuuKyn47AGeZ8P6qSUJupt",
+              "name": "WebSearch",
+              "input": {
+                "query": "straggler reduction continuous batching LLM serving empirical throughput gains"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2324b248-137c-42d2-b296-dd16e36f0e94",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgMpNNSV9Wi9d2SizWo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "032f8ff8-78df-44b3-997a-76ce19ddd557",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1XfQm1Vwvn2BKm4XKMtte",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 757,
+                "cache_read_input_tokens": 16155,
+                "output_tokens": 388,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 757
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 388,
+                    "cache_read_input_tokens": 16155,
+                    "cache_creation_input_tokens": 757,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 757,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-09T21:09:02.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gud87MrzceDVMWmnGxt8H8",
+              "type": "tool_result",
+              "content": "# Model Access Required\n\nBased on the abstract provided, Dynamic Thinking-Token Selection (DynTS) requires **direct model access**, not just prompt-only features.\n\nThe paper states the method \"identifies decision-critical tokens and retains only their associated Key-Value (KV) cache states during inference.\" This requires modifying the internal KV cache mechanism during the model's inference process, which cannot be accomplished through prompting alone. The approach necessitates access to the model's attention mechanisms and cache management systems to selectively evict or retain specific cached states."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7edfba0b-c2a5-4e02-b824-22f910aef2fa",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "d223cd24-289e-4499-820e-79439fededf6",
+            "sourceToolAssistantUUID": "7edfba0b-c2a5-4e02-b824-22f910aef2fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-09T21:09:04.337Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G4cgtcXshYmuhXvZXTXTbY",
+              "type": "tool_result",
+              "content": "# Analysis of Token-Budget-Aware LLM Reasoning Paper\n\nBased on the arXiv page provided, I can share the following information:\n\n## What's Available\nThe abstract confirms the paper proposes \"a token-budget-aware LLM reasoning framework that dynamically adjusts the number of reasoning tokens based on the reasoning complexity of each problem.\" However, the specific mechanism for predicting token budgets—whether it relies on the LLM itself or prompt features—is not detailed in the abstract provided.\n\n## Publication Venue\nThe page does not indicate publication at ACL 2025. It shows this is an arXiv preprint (submitted December 24, 2024, most recently revised June 2, 2025) with no conference publication venue listed.\n\n## Key Contributions\nAccording to the abstract, the main contributions are:\n\n1. Identifying that \"the reasoning process of current LLMs is unnecessarily lengthy and it can be compressed by including a reasonable token budget in the prompt\"\n\n2. Demonstrating that \"the choice of token budget plays a crucial role in the actual compression effectiveness\"\n\n3. Proposing a framework that \"effectively reduces token costs in CoT reasoning with only a slight performance reduction\"\n\nTo obtain details about the prediction approach and full technical contributions, you would need to access the full PDF or HTML versions of the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7f2c0c4-3b96-43d5-8928-adcb4867769c",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "fd4112fc-b798-472f-90df-e62564ea614c",
+            "sourceToolAssistantUUID": "e7f2c0c4-3b96-43d5-8928-adcb4867769c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-09T21:09:07.430Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KuuKyn47AGeZ8P6qSUJupt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"straggler reduction continuous batching LLM serving empirical throughput gains\"\n\nLinks: [{\"title\":\"Continuous Batching in LLM Inference | by Bahadır AKDEMİR | Medium\",\"url\":\"https://medium.com/@akdemir_bahadir/continuous-batching-in-llm-inference-d24182b21bdf\"},{\"title\":\"Continuous Batching: Optimizing LLM Inference Throughput - Interactive | Michael Brenndoerfer | Michael Brenndoerfer\",\"url\":\"https://mbrenndoerfer.com/writing/continuous-batching\"},{\"title\":\"Achieve 23x LLM Inference Throughput & Reduce p50 Latency\",\"url\":\"https://www.anyscale.com/blog/continuous-batching-llm-inference\"},{\"title\":\"Continuous batching from first principles\",\"url\":\"https://huggingface.co/blog/continuous_batching\"},{\"title\":\"Optimizing LLM Inference Throughput via Memory-aware and SLA-constrained Dynamic Batching\",\"url\":\"https://arxiv.org/html/2503.05248v1\"},{\"title\":\"Cutting LLM Batch Inference Time in Half: Dynamic Prefix Bucketing at Scale\",\"url\":\"https://www.daft.ai/blog/cutting-llm-batch-inference-time-in-half-dynamic-prefix-bucketing-at-scale\"},{\"title\":\"vLLM System: Efficient LLM Serving\",\"url\":\"https://www.emergentmind.com/topics/vllm-system\"},{\"title\":\"BucketServe: Bucket-Based Dynamic Batching for Smart and Efficient LLM Inference Serving\",\"url\":\"https://arxiv.org/html/2507.17120v1\"},{\"title\":\"Understanding Efficiency: Quantization, Batching, and Serving Strategies in LLM Energy Use | OpenReview\",\"url\":\"https://openreview.net/forum?id=m1lq5lg6r1\"},{\"title\":\"From Sequential to Scale: Advanced Batching and Parallelism in LLM Serving | by Dinuka Jayakody | Nov, 2025 | Medium\",\"url\":\"https://medium.com/@dinukajkdy/from-sequential-to-scale-advanced-batching-and-parallelism-in-llm-serving-e753bf3221be\"}]\n\nBased on the search results, here's what the research shows about straggler reduction and continuous batching for LLM serving:\n\n## Key Empirical Throughput Gains\n\nContinuous batching achieves 2-3x throughput improvement in workloads with moderate length variation and 4-8x throughput improvement in workloads with high length variation, with the largest gains occurring when output length distribution has high variance.\n\nThe Orca paper (Yu et al., 2022) demonstrated that iteration-level scheduling could achieve up to 36.9x higher throughput compared to existing systems, and using vLLM, users can achieve 23x LLM inference throughput while reducing p50 latency.\n\n## How Straggler Reduction Works\n\nThe core of the improvement lies in eliminating stragglers. In a batch of four user prompts, three might result in concise answers while the fourth triggers a 500-token response, and in static batching, the GPU cannot release resources for the short requests until the long straggler finishes.\n\nTraditional batching suffers from stragglers where a single request generating many tokens forces other requests to wait idle, but continuous batching eliminates these barriers—each request is independent and the system continuously flows without global synchronization points.\n\n## GPU Utilization Improvements\n\nPractical deployments report GPU utilization improvements from 30-60% with static batching to 80-95% with continuous batching, and continuous batching achieves 2-4× throughput improvements over traditional systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "032f8ff8-78df-44b3-997a-76ce19ddd557",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "4c79e6a3-5599-488f-90e1-39eb93d99804",
+            "sourceToolAssistantUUID": "032f8ff8-78df-44b3-997a-76ce19ddd557",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-09T21:09:07.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FeiGCJHm4WwcS7hNiiK2bJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"heterogeneous thinking length KV cache preemption throughput vLLM\"\n\nLinks: [{\"title\":\"Optimization and Tuning - vLLM\",\"url\":\"https://docs.vllm.ai/en/stable/configuration/optimization/\"},{\"title\":\"Unifying KV Cache Compression for Large Language Models with LeanKV\",\"url\":\"https://arxiv.org/html/2412.03131v2\"},{\"title\":\"Quantized KV Cache - vLLM\",\"url\":\"https://docs.vllm.ai/en/latest/features/quantization/quantized_kvcache/\"},{\"title\":\"Inside vLLM: Anatomy of a High-Throughput LLM Inference System | vLLM Blog\",\"url\":\"https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html\"},{\"title\":\"LMCACHE: AN EFFICIENT KV CACHE LAYER FOR ENTERPRISE-SCALE LLM INFERENCE\",\"url\":\"https://lmcache.ai/tech_report.pdf\"},{\"title\":\"Optimization and Tuning — vLLM\",\"url\":\"https://docs.vllm.ai/en/v0.8.2/performance/optimization.html\"},{\"title\":\"KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head\",\"url\":\"https://arxiv.org/html/2410.00161v2\"},{\"title\":\"KV-Cache Wins You Can See: From Prefix Caching in vLLM to Distributed Scheduling with llm-d | llm-d\",\"url\":\"https://llm-d.ai/blog/kvcache-wins-you-can-see\"},{\"title\":\"Performance and Tuning — vLLM\",\"url\":\"https://docs.vllm.ai/en/v0.6.0/models/performance.html\"},{\"title\":\"kv_cache Explained: How It Enhances vLLM Inference - Cloudthrill\",\"url\":\"https://cloudthrill.ca/kv_cache-explained\"}]\n\nBased on the search results, here's what I found related to your query about heterogeneous thinking length, KV cache preemption, throughput, and vLLM:\n\n## Key Findings:\n\n**Thinking Models and KV Cache:**\nLeanKV was implemented on vLLM and evaluated on emerging thinking models like QwQ-32B, achieving 5.4× higher throughput over vLLM on the QwQ-32B thinking model.\n\n**KV Cache Preemption in vLLM:**\nWhen KV cache space is insufficient to handle all batched requests, vLLM can preempt requests to free up KV cache space for other requests, and preempted requests are recomputed when sufficient KV cache space becomes available again. Preemption and recomputation can adversely affect end-to-end latency.\n\n**Improving Throughput:**\nChunked prefill allows vLLM to process large prefills in smaller chunks and batch them together with decode requests, helping improve both throughput and latency by better balancing compute-bound (prefill) and memory-bound (decode) operations.\n\n**KV Cache Compression for Variable Lengths:**\nSome approaches schedule iterations of compression after each prefill and whenever preemption would otherwise be forced, which can help handle heterogeneous sequence lengths more efficiently. Results from eviction-based KV cache compression methods demonstrate increased throughput by factors of up to 5.18x.\n\nThese techniques work together to address the challenges of handling variable-length sequences (heterogeneous thinking lengths) while managing KV cache preemption and maintaining high throughput in vLLM systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2324b248-137c-42d2-b296-dd16e36f0e94",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "6910f37f-263d-4931-9e76-aa43defad80d",
+            "sourceToolAssistantUUID": "2324b248-137c-42d2-b296-dd16e36f0e94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-09T21:09:09.076Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CyK7FaUJLQzrShP7bygJdD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"vLLM straggler continuous batching throughput reasoning models 2025 2026\"\n\nLinks: [{\"title\":\"Inside vLLM: Anatomy of a High-Throughput LLM Inference System - Aleksa Gordić\",\"url\":\"https://www.aleksagordic.com/blog/vllm\"},{\"title\":\"LLM Serving in Production with vLLM | Medium\",\"url\":\"https://ammarab.medium.com/llm-serving-with-vllm-23e3b1e0c617\"},{\"title\":\"vLLM Overview - NVIDIA Docs\",\"url\":\"https://docs.nvidia.com/deeplearning/frameworks/vllm-release-notes/overview.html\"},{\"title\":\"vLLM Throughput Optimization-1: Basic of vLLM Parameters | by Kaige | Medium\",\"url\":\"https://medium.com/@kaige.yang0110/vllm-throughput-optimization-1-basic-of-vllm-parameters-c39ace00a519\"},{\"title\":\"vLLM - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/VLLM\"},{\"title\":\"vLLM Explained: PagedAttention, Continuous Batching, and Deploying High-Throughput LLM Inference in Production\",\"url\":\"https://www.runpod.io/articles/guides/vllm-pagedattention-continuous-batching\"},{\"title\":\"vLLM Continuous Batching: High-Throughput Serving for Long Contexts 2025\",\"url\":\"https://www.johal.in/vllm-continuous-batching-high-throughput-serving-for-long-contexts-2025/\"},{\"title\":\"vLLM Quickstart: High-Performance LLM Serving - in 2026 - Rost Glukhov | Personal site and technical blog\",\"url\":\"https://www.glukhov.org/llm-hosting/vllm/vllm-quickstart/\"},{\"title\":\"Continuous batching from first principles\",\"url\":\"https://huggingface.co/blog/continuous_batching\"},{\"title\":\"Inside vLLM: Anatomy of a High-Throughput LLM Inference System | vLLM Blog\",\"url\":\"https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html\"}]\n\nBased on the search results, here's what I found about vLLM's straggler problem, continuous batching, throughput, and reasoning models in 2025-2026:\n\n## Straggler Problem and Continuous Batching\n\nIn traditional static batching, if one request generates 10 tokens and another generates 500, the GPU sits idle waiting for the long request to finish—this is the \"straggler\" problem. vLLM implements iteration-level scheduling where after every single token generation step, the scheduler checks if any request has finished.\n\nvLLM's approach to token batching is called continuous batching, where instead of waiting for a full batch of requests to arrive and finish before starting the next batch, vLLM's scheduler continuously runs the model with a dynamic batch that adds new incoming requests and removes completed ones on the fly.\n\n## Throughput Improvements\n\nThe performance gains are significant: At high concurrency with mixed-length outputs, the throughput difference against static batching typically reaches 2-4x, and the tail latency distribution tightens because long sequences stop blocking short ones. For long-context models specifically, according to the 2025 MLPerf Inference Benchmark, traditional serving engines achieve 15-20 tokens/second per user on A100 GPUs for long-context tasks, while vLLM's continuous batching surges to 60+ tokens/second—a 3-4x leap.\n\n## 2025-2026 Developments\n\nIn January 2026, TechCrunch reported that the creators of vLLM had launched the startup Inferact to commercialize the project, raising $150 million in seed funding. Looking forward, the 2026 roadmap promises integration with quantum-inspired sparse attention for ultra-long contexts.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53410640-c73d-4642-844b-2bfd2b585187",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "e91132a3-a7dd-4cd7-8cec-b5bb10ba8820",
+            "sourceToolAssistantUUID": "53410640-c73d-4642-844b-2bfd2b585187",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-09T21:09:10.396Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get more specific details on the first paper by fetching the full content:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e91132a3-a7dd-4cd7-8cec-b5bb10ba8820",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgNdwLvvoDiq91ugTHn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c7b7ac83-d493-4bec-9092-41e2a5e3f318",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TSbTtsFF1rFUKmprQExCnE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1879,
+                "cache_creation_input_tokens": 2654,
+                "cache_read_input_tokens": 16912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2654,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-09T21:09:11.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016rFZtHpgnVZAoCRsmtYUfd",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2412.18547",
+                "prompt": "What is the exact mechanism for token budget prediction? Does it use LLM itself, prompt features, or some classifier? Explain the full approach."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7b7ac83-d493-4bec-9092-41e2a5e3f318",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgNdwLvvoDiq91ugTHn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e55136ae-e467-4638-aba8-b099f396e0d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TSbTtsFF1rFUKmprQExCnE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1879,
+                "cache_creation_input_tokens": 2654,
+                "cache_read_input_tokens": 16912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2654,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-09T21:09:11.689Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tfn23E7f8ahkaKGrZ1Q6i3",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Token-Budget-Aware LLM Reasoning\" arXiv 2412.18547 ACL 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e55136ae-e467-4638-aba8-b099f396e0d4",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgNdwLvvoDiq91ugTHn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "041e32cb-1cb1-4399-8424-69cfc02cd4d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TSbTtsFF1rFUKmprQExCnE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1879,
+                "cache_creation_input_tokens": 2654,
+                "cache_read_input_tokens": 16912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2654,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-09T21:09:11.925Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DbWWUpsFyhLnTJeWVb99d4",
+              "name": "WebSearch",
+              "input": {
+                "query": "thinking token prediction prompt features classifier CoT reasoning models 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "041e32cb-1cb1-4399-8424-69cfc02cd4d1",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgNdwLvvoDiq91ugTHn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f283c0f1-840a-4950-8082-c729ac92a3cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TSbTtsFF1rFUKmprQExCnE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1879,
+                "cache_creation_input_tokens": 2654,
+                "cache_read_input_tokens": 16912,
+                "output_tokens": 240,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2654
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1879,
+                    "output_tokens": 240,
+                    "cache_read_input_tokens": 16912,
+                    "cache_creation_input_tokens": 2654,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2654,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-09T21:09:14.076Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016rFZtHpgnVZAoCRsmtYUfd",
+              "type": "tool_result",
+              "content": "# Token Budget Prediction Mechanism\n\nBased on the provided webpage content, I cannot provide specific details about the exact mechanism for token budget prediction. The abstract states that the framework \"dynamically adjusts the number of reasoning tokens based on the reasoning complexity of each problem,\" but it doesn't elaborate on whether this uses an LLM, prompt features, or a classifier.\n\nThe webpage only offers limited information—it's an arXiv abstract page rather than the full paper. To understand the precise technical approach, methodology, and implementation details, you would need to access the complete paper via the PDF link or HTML version provided on the page.\n\nThe code repository referenced (via GitHub link) might also clarify the implementation approach."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e55136ae-e467-4638-aba8-b099f396e0d4",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "1ecf94cb-5efe-4f2c-a8e6-5a687ff3acdd",
+            "sourceToolAssistantUUID": "e55136ae-e467-4638-aba8-b099f396e0d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-09T21:09:15.955Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tfn23E7f8ahkaKGrZ1Q6i3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Token-Budget-Aware LLM Reasoning\" arXiv 2412.18547 ACL 2025\"\n\nLinks: [{\"title\":\"arXiv:2412.18547v5 [cs.CL] 2 Jun 2025 Token-Budget-Aware LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2412.18547\"},{\"title\":\"[2412.18547] Token-Budget-Aware LLM Reasoning\",\"url\":\"https://arxiv.org/abs/2412.18547\"},{\"title\":\"Token-Budget-Aware LLM Reasoning\",\"url\":\"https://arxiv.org/html/2412.18547v1\"},{\"title\":\"GitHub - GeniusHTX/TALE · GitHub\",\"url\":\"https://github.com/GeniusHTX/TALE\"},{\"title\":\"Token-Budget-Aware LLM Reasoning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv241218547H/abstract\"},{\"title\":\"Token-Budget-Aware LLM Reasoning\",\"url\":\"https://aclanthology.org/2025.findings-acl.1274.pdf\"},{\"title\":\"Paper page - Token-Budget-Aware LLM Reasoning\",\"url\":\"https://huggingface.co/papers/2412.18547\"},{\"title\":\"Wait, We Don't Need to “Wait”! Removing Thinking Tokens ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.394.pdf\"},{\"title\":\"SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2505.11274\"},{\"title\":\"Token-Budget-Aware LLM Reasoning - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.1274/\"}]\n\nI found the paper you're looking for! Here's information about \"Token-Budget-Aware LLM Reasoning\":\n\n## Overview\n\nReasoning is critical for large language models (LLMs) to excel in a wide range of tasks. While methods like Chain-of-Thought (CoT) reasoning enhance LLM performance by decomposing problems into intermediate steps, they also incur significant overhead in token usage, leading to increased costs.\n\n## Key Findings and Approach\n\nThe researchers find that the reasoning process of current LLMs is unnecessarily lengthy and it can be compressed by including a reasonable token budget in the prompt, but the choice of token budget plays a crucial role in the actual compression effectiveness.\n\nThey propose a token-budget-aware LLM reasoning framework that dynamically adjusts the number of reasoning tokens based on the reasoning complexity of each problem.\n\n## Results\n\nExperiments show that their method effectively reduces token costs in CoT reasoning with only a slight performance reduction, offering a practical solution to balance efficiency and accuracy in LLM reasoning.\n\n## Publication Status\n\nThe paper has been accepted to ACL 2025 (Findings).\n\n**Authors:** Tingxu Han, Zhenting Wang, Chunrong Fang, Shiyu Zhao, Shiqing Ma, and Zhenyu Chen\n\n**Code:** The implementation is available at https://github.com/GeniusHTX/TALE\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "041e32cb-1cb1-4399-8424-69cfc02cd4d1",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "349bcaa7-2e5a-4b42-ac63-f87ca32a8c01",
+            "sourceToolAssistantUUID": "041e32cb-1cb1-4399-8424-69cfc02cd4d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-09T21:09:19.797Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DbWWUpsFyhLnTJeWVb99d4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"thinking token prediction prompt features classifier CoT reasoning models 2025\"\n\nLinks: [{\"title\":\"Token-Budget-Aware LLM Reasoning\",\"url\":\"https://aclanthology.org/2025.findings-acl.1274.pdf\"},{\"title\":\"LLM Representations Encode Information About Chain-of- ...\",\"url\":\"https://aclanthology.org/2025.findings-acl.662.pdf\"},{\"title\":\"Why We Think | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2025-05-01-thinking/\"},{\"title\":\"Token Signature: Predicting Chain-of-Thought Gains with Token Decoding Feature in Large Language Models\",\"url\":\"https://arxiv.org/html/2506.06008v1\"},{\"title\":\"Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium\",\"url\":\"https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad\"},{\"title\":\"DR-CoT: dynamic recursive chain of thought with meta reasoning for parameter efficient models | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-18622-6\"},{\"title\":\"CoT Reasoning Models – Which One Reigns Supreme in 2025? | Composio\",\"url\":\"https://composio.dev/content/cot-reasoning-models-which-one-reigns-supreme-in-2025\"},{\"title\":\"Soft Chain-of-Thought for Efficient Reasoning with LLMs\",\"url\":\"https://aclanthology.org/2025.acl-long.1137.pdf\"},{\"title\":\"Fast Thinking for Large Language Models Haoyu Zheng Zhuonan Wang Yuqian Yuan\",\"url\":\"https://arxiv.org/pdf/2509.23633\"},{\"title\":\"Causal Sufficiency and Necessity Improves Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/html/2506.09853v3\"}]\n\nBased on the search results, here are key findings about thinking tokens, prediction, prompt features, classifiers, and CoT reasoning in 2025:\n\n## Thinking Token Usage and Prediction\n\nRecent reasoning models like DeepSeek-R1 wrap Chain-of-Thought processes in `<thinking>` tokens through reinforcement learning, where the model naturally learns to spend more thinking tokens during the RL training process to solve reasoning tasks.\n\n## Classifiers and Internal Representations\n\nResearch has shown that LLM internal representations can predict whether the CoT process will succeed by using classifiers at step i during intermediate reasoning generation. These internal representation-based classifiers outperform BERT, a strong text classifier that relies only on input text.\n\n## Token-Based Features for CoT Success\n\nToken probability has been shown to reflect a language model's confidence in its outputs. There's emerging research on using token decoding features and signatures to predict when CoT prompting will be beneficial for a given problem.\n\n## Selective CoT Application\n\nModern approaches predict failure risk to keep models in fast mode and escalate to CoT reasoning only when the predicted failure risk is high, thus reducing overthinking and token usage while maintaining accuracy.\n\n## Process Reward Models\n\nProcess reward models (PRMs) determine how much each node should be expanded during beam search, with approaches like RATIONALYST providing process supervision to CoT generators by helping estimate log-probability of next reasoning steps.\n\nThe research in 2025 reflects a growing focus on intelligently predicting when to apply CoT reasoning and how to optimize token usage through internal model representations and reward-based guidance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f283c0f1-840a-4950-8082-c729ac92a3cd",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "a0bee3dd-5ac9-4e40-a20c-035a9ad639ed",
+            "sourceToolAssistantUUID": "f283c0f1-840a-4950-8082-c729ac92a3cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-09T21:09:21.681Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me fetch the actual papers to get the specific technical details you need:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0bee3dd-5ac9-4e40-a20c-035a9ad639ed",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgPRj9yAnAkQA24wAuP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9430c835-b15c-44fb-b38c-f74ca37b1704",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013Brc2NTM3QGVVp9ezx79hR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4120,
+                "cache_read_input_tokens": 19566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4120,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-09T21:09:22.548Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KeVt3y9uumjHjZqHVR2duN",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2025.findings-acl.1274.pdf",
+                "prompt": "What is the exact mechanism used to predict token budget? Does it use a learned model, prompt features, or LLM self-prediction? How does it differ from prompt-only classification?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9430c835-b15c-44fb-b38c-f74ca37b1704",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgPRj9yAnAkQA24wAuP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "075f70f1-f66c-4d55-ab5b-1f9554556652",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013Brc2NTM3QGVVp9ezx79hR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4120,
+                "cache_read_input_tokens": 19566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4120,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-09T21:09:23.425Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015MnXkDmk42rCRRCRZCGQiv",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2601.18383",
+                "prompt": "Describe the complete approach for Dynamic Thinking-Token Selection. Does it require model weight access or just prompting? How are the decision-critical tokens identified?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "075f70f1-f66c-4d55-ab5b-1f9554556652",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgPRj9yAnAkQA24wAuP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4f2ebbbf-a3ba-4f19-a44b-7aa921132d65",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013Brc2NTM3QGVVp9ezx79hR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4120,
+                "cache_read_input_tokens": 19566,
+                "output_tokens": 246,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4120
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 246,
+                    "cache_read_input_tokens": 19566,
+                    "cache_creation_input_tokens": 4120,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4120,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-09T21:09:27.504Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015MnXkDmk42rCRRCRZCGQiv",
+              "type": "tool_result",
+              "content": "# Dynamic Thinking-Token Selection Approach\n\nBased on the arXiv abstract provided, here's what we know about DynTS:\n\n## Core Mechanism\n\nThe method identifies which tokens in a reasoning trace are genuinely important. According to the paper, \"only some decision-critical tokens in a reasoning trace steer the model toward the final answer, while the remaining tokens contribute negligibly.\"\n\n## Identification Method\n\nThe researchers use **attention maps** to uncover this phenomenon. By analyzing attention patterns, they can determine which tokens have decision-critical influence on the final output.\n\n## Implementation Strategy\n\nRather than generating full reasoning traces, DynTS \"retains only their associated Key-Value (KV) cache states during inference, evicting the remaining redundant entries to optimize efficiency.\"\n\n## Model Access Requirements\n\nThe abstract indicates this approach requires **model weight access** (or at minimum, internal model inspection capabilities). The method analyzes attention mechanisms and manipulates KV cache states—operations that typically require working within or directly interfacing with the model's architecture, not just prompting it.\n\nThis is fundamentally different from prompt-based approaches, as it involves identifying and selectively storing internal computational states during inference rather than instructing the model through input prompting."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f2ebbbf-a3ba-4f19-a44b-7aa921132d65",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "b0f75131-09cd-4e80-a7e1-c47a6aa7b244",
+            "sourceToolAssistantUUID": "4f2ebbbf-a3ba-4f19-a44b-7aa921132d65",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-09T21:09:27.990Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KeVt3y9uumjHjZqHVR2duN",
+              "type": "tool_result",
+              "content": "I appreciate your question, but I'm unable to provide a meaningful answer based on the content provided. The document appears to be a PDF file containing compressed/encoded data rather than readable text about token budget prediction mechanisms.\n\nTo properly address your question about whether the prediction uses a learned model, prompt features, or LLM self-prediction, I would need access to the actual paper content in a readable format. The current content consists primarily of binary streams and PDF object references that don't contain interpretable information about the methodology.\n\nIf you could provide:\n- The paper title or abstract in readable text\n- A link to the paper\n- The relevant methodology sections in plain text\n\nI'd be happy to explain the exact mechanism used for token budget prediction and how it differs from prompt-only classification approaches.\n\n[Binary content (application/pdf, 1.1MB) also saved to /home/ubuntu/.claude-account-1/projects/-/2ee32438-646f-43d1-b1c8-c9b3124b741b/tool-results/webfetch-1778360964638-zv7exq.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "075f70f1-f66c-4d55-ab5b-1f9554556652",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "c6376e82-5ec4-4536-9d7f-2fb67d6c3a32",
+            "sourceToolAssistantUUID": "075f70f1-f66c-4d55-ab5b-1f9554556652",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-09T21:09:28.948Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for the actual paper content on arXiv HTML version instead:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6376e82-5ec4-4536-9d7f-2fb67d6c3a32",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgQ2jZsTMDthkgmpxje",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e9c9dd3a-c1c9-40dc-a735-fbec2029d6b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JgnqR64rhuypCV8ixjGrPR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 294,
+                "cache_creation_input_tokens": 528,
+                "cache_read_input_tokens": 23686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 528,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-09T21:09:29.761Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GohYATVbvQRLkXifM6Mb4g",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2412.18547v1",
+                "prompt": "What is the exact token budget prediction mechanism? Is it a learned classifier, prompt-based, LLM self-assessment, or something else? What are the key differences from prompt-only approaches?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9c9dd3a-c1c9-40dc-a735-fbec2029d6b0",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgQ2jZsTMDthkgmpxje",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a55208e2-1af2-40c0-85f8-7c57ac3b8116",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JgnqR64rhuypCV8ixjGrPR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 294,
+                "cache_creation_input_tokens": 528,
+                "cache_read_input_tokens": 23686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 528,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-09T21:09:29.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MbxSm923DdM4XzPso6gJ4E",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2601.18383",
+                "prompt": "Describe the complete technical approach. How are decision-critical tokens identified - does it require model weight access or just API access?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a55208e2-1af2-40c0-85f8-7c57ac3b8116",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgQ2jZsTMDthkgmpxje",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c1fb7778-029f-44ec-92d5-baf610451b10",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JgnqR64rhuypCV8ixjGrPR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 294,
+                "cache_creation_input_tokens": 528,
+                "cache_read_input_tokens": 23686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 528,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-09T21:09:35.305Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MbxSm923DdM4XzPso6gJ4E",
+              "type": "tool_result",
+              "content": "# Technical Approach for Decision-Critical Token Identification\n\n## Identification Method\n\nDynTS identifies critical tokens through an **Importance Predictor** - a lightweight MLP head attached to the model's final layer. The approach operates in two phases:\n\n**Training Phase:**\nThe system computes importance scores by aggregating attention weights from answer tokens back to thinking tokens: \"the importance scores are defined as... sum of attention weights from answer tokens to each thinking token\" (adapted from their mathematical formulation).\n\n**Inference Phase:**\n\"The model outputs the next token and a predicted importance score of the current token\" during generation, enabling dynamic selection without waiting for complete sequences.\n\n## Access Requirements\n\n**This approach requires full model weight access**, not just API access. Specifically, you need:\n\n1. **Model internals**: Access to attention maps and final hidden states\n2. **Fine-tuning capability**: The importance predictor must be trained on your target domain (they trained on MATH dataset with ~7,000 samples)\n3. **Inference control**: Ability to modify the forward pass to attach and run the predictor\n\nThe authors state: \"we freeze the model backbone and optimize the Importance Predictor exclusively,\" confirming the method requires modifying model architecture and parameters.\n\n## Why API-Only Won't Work\n\nAPI access provides only token outputs and response times—not the internal attention mechanisms or hidden states needed to train or deploy the importance predictor."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1fb7778-029f-44ec-92d5-baf610451b10",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "2cb191bc-fdcc-4347-b061-d68d2e35f51f",
+            "sourceToolAssistantUUID": "c1fb7778-029f-44ec-92d5-baf610451b10",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-09T21:09:35.775Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GohYATVbvQRLkXifM6Mb4g",
+              "type": "tool_result",
+              "content": "# Token Budget Prediction in TALE\n\nThe paper presents **three distinct mechanisms** for predicting token budgets:\n\n## 1. Zero-Shot Estimator (Primary Method)\nThis leverages the LLM itself as the predictor. Before processing the main question, the system prompts the LLM to estimate output tokens needed. The authors explain: \"When presented with a mathematical question, although it may take humans a few minutes to calculate the answer, they can typically estimate the time or effort required to solve it after just briefly reviewing the question.\"\n\n## 2. Regression-Based Estimator\nA separate fine-tuned LLM (like LLaMA 3-8B) serves as the budget predictor. The model learns to map from questions to optimal budgets using supervised training on previously searched optimal budgets.\n\n## 3. Fine-Tuned LLM with Internalized Awareness\nThe reasoning LLM itself is fine-tuned to inherently produce budget-aware outputs without explicit budget prompts during inference.\n\n## Key Differences from Prompt-Only Approaches\n\nUnlike simple prompt engineering, TALE's zero-shot estimator uses a **separate inference pass** to estimate budgets before the main reasoning task. The regression and internalization approaches go further by **learning budget estimation capabilities** rather than relying solely on in-context instruction following. This enables dynamic, problem-specific budget allocation rather than static budget values applied uniformly across all queries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a55208e2-1af2-40c0-85f8-7c57ac3b8116",
+            "isSidechain": true,
+            "promptId": "8b7e5c31-19f9-47c5-ba0c-101d4d541bbc",
+            "agentId": "a9db66ed10d534296",
+            "type": "user",
+            "uuid": "998b42fd-f31a-4859-aaa8-b93ed7c06467",
+            "sourceToolAssistantUUID": "a55208e2-1af2-40c0-85f8-7c57ac3b8116",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-09T21:09:50.622Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have the detailed information you need. Let me compile my findings:\n\n## Verification Results\n\n### 1. **Token-Budget-Aware LLM Reasoning (arXiv:2412.18547, ACL 2025 Findings)**\n\n**Does the paper exist?** ✓ Yes, confirmed at https://arxiv.org/abs/2412.18547\n\n**Publication status:** ✓ Published at ACL 2025 (Findings track) - officially listed in ACL Anthology as 2025.findings-acl.1274\n\n**Token budget prediction approach:** The paper uses **three mechanisms**, NOT just prompt-only:\n\n1. **Zero-Shot Estimator (primary)**: Uses the LLM itself to self-estimate the token budget needed before answering. Prompts the model: \"estimate how many tokens you'll need to solve this.\" This is more sophisticated than static prompts—it's an LLM self-assessment approach.\n\n2. **Regression-Based Estimator**: A separate fine-tuned LLM (e.g., LLaMA 3-8B) is trained as a dedicated budget predictor that learns mappings from questions to optimal budgets via supervised learning.\n\n3. **Fine-Tuned Awareness**: The reasoning LLM itself is fine-tuned to inherently produce budget-aware outputs.\n\n**Key difference from prompt-only classification:** TALE goes beyond simple prompt engineering. The zero-shot method requires a *separate inference pass* before main reasoning, and the regression/fine-tuning approaches *learn* budget estimation capabilities through supervised training on previously searched optimal budgets. This enables problem-specific dynamic allocation rather than uniform static budgets applied to all queries.\n\n---\n\n### 2. **Straggler Reduction in Continuous Batching - Empirical Evidence**\n\n**Throughput gains from straggler reduction:**\n\n- **vLLM specifically**: 2-4x throughput improvements with moderate length variation, 4-8x with high length variation (from Orca paper demonstrating up to 36.9x in some scenarios)\n- **Practical deployments**: GPU utilization improvements from 30-60% (static batching) to 80-95% (continuous batching)\n- **Specific claim validation**: Yes, straggler elimination provides significant gains, but the literature shows these are **first-order throughput effects**, not superlinear beyond KV savings\n\n**For reasoning models with variable thinking lengths specifically:**\n- LeanKV achieved **5.4x higher throughput over vLLM** on QwQ-32B thinking model through KV cache compression\n- Preemption mechanisms in vLLM handle heterogeneous sequences by scheduling KV cache compression after prefill/when preemption would occur\n- Eviction-based KV cache compression methods show up to **5.18x throughput improvements**\n\n**Critical finding:** The evidence shows straggler reduction produces *significant* but **not superlinear** gains beyond first-order KV savings. The 2-4x improvements are from eliminating GPU idle time; additional gains come from KV cache optimization (compression, preemption), which are separate mechanisms—not superlinear amplification of straggler reduction.\n\n---\n\n### 3. **Dynamic Thinking-Token Selection (arXiv:2601.18383)**\n\n**Model access requirement:** ✗ **Requires full model weight access**, NOT prompt-only features.\n\n**Technical approach:**\n- Uses an **Importance Predictor** (lightweight MLP head) attached to the model's final layer\n- Identifies critical tokens by aggregating attention weights from answer tokens back to thinking tokens\n- Requires fine-tuning the predictor on domain data (~7,000 MATH samples)\n- Needs ability to modify forward pass and access internal attention maps/hidden states\n\n**Why it's not prompt-only:** The method requires:\n1. Access to model internals (attention mechanisms, hidden states)\n2. Fine-tuning capability to train the importance predictor\n3. Control over the inference computation graph\n\nThis is fundamentally incompatible with API-only access, which provides only token outputs and response times.\n\n---\n\n### Summary for Your Paper Review\n\n- **2412.18547**: CONFIRMED published at ACL 2025. Uses LLM self-assessment + learned predictors, not prompt-only\n- **2601.18383**: Requires model weight access, uses attention-based importance scoring\n- **Straggler throughput claim**: Supported by literature (2-4x gains), but evidence doesn't support \"superlinear beyond first-order KV savings\"—the gains are primarily first-order from eliminating idle time, with additional gains from KV compression as a separate optimization layer\n\n---\n\n## Sources\n\n- [arXiv Token-Budget-Aware LLM Reasoning](https://arxiv.org/abs/2412.18547)\n- [ACL 2025 Findings publication](https://aclanthology.org/2025.findings-acl.1274/)\n- [GitHub TALE implementation](https://github.com/GeniusHTX/TALE)\n- [vLLM Blog - Anatomy of High-Throughput Inference](https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html)\n- [Hugging Face Continuous Batching Explanation](https://huggingface.co/blog/continuous_batching)\n- [Anyscale - 23x LLM Inference Throughput](https://www.anyscale.com/blog/continuous-batching-llm-inference)\n- [LeanKV - Unifying KV Cache Compression](https://arxiv.org/html/2412.03131v2)\n- [KV-Cache Wins with llm-d](https://llm-d.ai/blog/kvcache-wins-you-can-see)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "998b42fd-f31a-4859-aaa8-b93ed7c06467",
+            "isSidechain": true,
+            "agentId": "a9db66ed10d534296",
+            "requestId": "req_011CasgQc5mnsmiEbTWtZCXd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ff9f2624-10ac-4ba2-a3d1-3e143da8fe74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "2ee32438-646f-43d1-b1c8-c9b3124b741b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SQXggcZC3PoNYyq59diJbu",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 342,
+                "cache_creation_input_tokens": 873,
+                "cache_read_input_tokens": 24214,
+                "output_tokens": 1362,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 873
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 342,
+                    "output_tokens": 1362,
+                    "cache_read_input_tokens": 24214,
+                    "cache_creation_input_tokens": 873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 873,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-two-specific-things-for-a-paper-review-1-verify-token-budget.md"
+}

@@ -1,0 +1,1343 @@
+{
+  "schema_version": "1.0",
+  "id": "cf8b480315aacd5c6adf",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Verify that the following papers are real and find their actual publication venues. Search for each one: 1. \"Lost in Sim",
+  "task_key": "agent-a2acd1edb962c2b6a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a2acd1edb962c2b6a.jsonl",
+    "occurrence": 1,
+    "bytes": 68076,
+    "sha256": "93b31b71852b6cc1c2acaab277f3d04a8ac28d44bd63b26c552006355570e07d"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T06:27:52.513Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verify that the following papers are real and find their actual publication venues. Search for each one:\n\n1. \"Lost in Simulation\" paper about agent success rates varying across user LLMs, arXiv 2601.17087 (Jan 2026)\n2. \"MirrorBench\" paper defining behavioral metrics MATTR, HD-D, GTEval for human-likeness, arXiv 2601.08118 (Feb 2026)\n3. LLM-based conversational user simulation survey, arXiv 2604.24977 (April 2026)\n4. τ-Bench task-oriented dialogue benchmark\n5. Paper on conversational recommendation simulators evaluated on five realism tasks, arXiv 2403.09738\n6. Steering-vector-based injection of demographic attributes, arXiv 2504.02234 (position paper on LLM social simulations)\n7. DPO (Direct Preference Optimization) - original paper\n8. Papers on AAVE dialect in NLP/AI evaluation\n\nFor each paper, report: exact title, whether it's real (confirm), venue/arXiv ID, and year. Do NOT include any you cannot verify."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "6baab423-611c-46bb-8c9d-9052706b0d87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T06:27:54.562Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for each of these papers to verify their existence and find their actual publication venues. Let me conduct web searches for each one."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6baab423-611c-46bb-8c9d-9052706b0d87",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "14fa94e2-8b61-4059-84e4-8bf40185f293",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 699,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T06:27:55.451Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015f1AHFh3NEaPHmFexmXQgo",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2601.17087 \"Lost in Simulation\" agent"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14fa94e2-8b61-4059-84e4-8bf40185f293",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4632446e-a971-4526-8801-36be369a61b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 699,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T06:27:55.644Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L9xKqgpKKdzV74sPbLrWoY",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2601.08118 MirrorBench behavioral metrics MATTR"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4632446e-a971-4526-8801-36be369a61b6",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9f015406-996b-433c-86ee-b20f2f2212af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 699,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T06:27:55.754Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XtP7EyTTaqB8jK7qhWe81Z",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2604.24977 LLM conversational user simulation survey"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f015406-996b-433c-86ee-b20f2f2212af",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ca5b3cbd-ab13-4d4c-9d3d-f09ed1d27f3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 699,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T06:27:55.858Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DBHUaLi2XPhpv5NoaKqeNq",
+              "name": "WebSearch",
+              "input": {
+                "query": "τ-Bench task-oriented dialogue benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca5b3cbd-ab13-4d4c-9d3d-f09ed1d27f3b",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5fcb71bb-1c3e-498a-9919-460a5fceaa3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 699,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T06:27:56.019Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C9GRkxPETY5BfMDLBx7WA9",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2403.09738 conversational recommendation simulators"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fcb71bb-1c3e-498a-9919-460a5fceaa3b",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a53454f5-7168-488c-aef6-ce5a793ef4ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "output_tokens": 434,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 699
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 434,
+                    "cache_read_input_tokens": 16155,
+                    "cache_creation_input_tokens": 699,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 699,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T06:27:56.067Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ThFwjdq4ckEZ19juiWX5JD",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2504.02234 steering vector demographic attributes LLM"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a53454f5-7168-488c-aef6-ce5a793ef4ee",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4ba6a334-baa1-46f3-969c-90196800f70c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "output_tokens": 434,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 699
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 434,
+                    "cache_read_input_tokens": 16155,
+                    "cache_creation_input_tokens": 699,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 699,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T06:27:56.075Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VNp5iyMXV1NuRufjgBcd3p",
+              "name": "WebSearch",
+              "input": {
+                "query": "DPO Direct Preference Optimization original paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ba6a334-baa1-46f3-969c-90196800f70c",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f71cebfc-1fd1-40ec-8dfe-af878114df8d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "output_tokens": 434,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 699
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 434,
+                    "cache_read_input_tokens": 16155,
+                    "cache_creation_input_tokens": 699,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 699,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T06:27:56.078Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CmYc34eDBLye4AnuyNgJcj",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAVE dialect NLP AI evaluation papers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f71cebfc-1fd1-40ec-8dfe-af878114df8d",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQynzR9wHZTqnEexWzo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c168eedb-cd09-404a-b637-995a866b7489",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G882ocQARoP3aV92ivrGbW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 16155,
+                "output_tokens": 434,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 699
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 434,
+                    "cache_read_input_tokens": 16155,
+                    "cache_creation_input_tokens": 699,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 699,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T06:28:01.710Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VNp5iyMXV1NuRufjgBcd3p",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DPO Direct Preference Optimization original paper\"\n\nLinks: [{\"title\":\"[2305.18290] Direct Preference Optimization: Your Language Model is Secretly a Reward Model\",\"url\":\"https://arxiv.org/abs/2305.18290\"},{\"title\":\"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\",\"url\":\"https://arxiv.org/pdf/2305.18290\"},{\"title\":\"Direct preference optimization | Proceedings of the 37th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3666122.3668460\"},{\"title\":\"[2410.15595] A Comprehensive Survey of Direct Preference Optimization: Datasets, Theories, Variants, and Applications\",\"url\":\"https://arxiv.org/abs/2410.15595\"},{\"title\":\"Direct Preference Optimization Explained In-depth\",\"url\":\"https://www.tylerromero.com/posts/2024-04-dpo/\"},{\"title\":\"[2311.12908] Diffusion Model Alignment Using Direct Preference Optimization\",\"url\":\"https://arxiv.org/abs/2311.12908\"},{\"title\":\"GitHub - eric-mitchell/direct-preference-optimization: Reference implementation for DPO (Direct Preference Optimization) · GitHub\",\"url\":\"https://github.com/eric-mitchell/direct-preference-optimization\"},{\"title\":\"Direct Preference Optimization (DPO) - Deep (Learning) Focus\",\"url\":\"https://cameronrwolfe.substack.com/p/direct-preference-optimization\"},{\"title\":\"Direct Preference Optimization(DPO) Presented by: Di Mu, An Cao 2024 MScAC\",\"url\":\"https://www.cs.toronto.edu/~cmaddis/courses/csc2541_w25/presentations/mu_cao_dpo.pdf\"},{\"title\":\"DPO(Direct Preference Optimization) - AI Engineering Academy\",\"url\":\"https://aiengineering.academy/LLM/TheoryBehindFinetuning/DPO/\"}]\n\nI found the original DPO paper for you. Here's what I discovered:\n\n## Original Paper Information\n\nThe original paper is titled \"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\" by Rafael Rafailov and 5 other authors.\n\n**Publication Details:**\n- arXiv paper 2305.18290\n- Published at the Thirty-seventh Conference on Neural Information Processing Systems in 2023\n\n## Key Contributions\n\nThe paper introduces a new parameterization of the reward model in RLHF that enables extraction of the corresponding optimal policy in closed form, allowing the standard RLHF problem to be solved with only a simple classification loss.\n\nThe resulting algorithm, called Direct Preference Optimization (DPO), is stable, performant, and computationally lightweight, eliminating the need for sampling from the LM during fine-tuning.\n\n## Accessing the Paper\n\nYou can access the paper directly at:\n- **ArXiv abstract**: https://arxiv.org/abs/2305.18290\n- **PDF**: https://arxiv.org/pdf/2305.18290\n\nThere's also a reference implementation available on GitHub: https://github.com/eric-mitchell/direct-preference-optimization\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f71cebfc-1fd1-40ec-8dfe-af878114df8d",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "5f2f084b-4c71-4778-b3d6-f093cd92ff9b",
+            "sourceToolAssistantUUID": "f71cebfc-1fd1-40ec-8dfe-af878114df8d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T06:28:01.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XtP7EyTTaqB8jK7qhWe81Z",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2604.24977 LLM conversational user simulation survey\"\n\nLinks: [{\"title\":\"[2604.24977] A Survey on LLM-based Conversational User Simulation\",\"url\":\"https://arxiv.org/abs/2604.24977\"},{\"title\":\"A Survey on LLM-based Conversational User Simulation\",\"url\":\"https://arxiv.org/html/2604.24977\"},{\"title\":\"Lost in Simulation: LLM-Simulated Users are Unreliable Proxies for Human Users in Agentic Evaluations\",\"url\":\"https://arxiv.org/html/2601.17087v1\"},{\"title\":\"Large Language Models for Conversational User Simulation:\",\"url\":\"http://ryanrossi.com/pubs/LLM-based_User_Simulated_Data_Generation_Survey.pdf\"},{\"title\":\"An Analysis of Large Language Models for Simulating User Responses in Surveys\",\"url\":\"https://arxiv.org/html/2512.06874\"},{\"title\":\"Large Language Models for Conversational User Simulation: A Comprehensive Survey - Archive ouverte HAL\",\"url\":\"https://hal.science/hal-05217179/\"},{\"title\":\"A Survey on LLM-based Conversational User Simulation - ACL Anthology\",\"url\":\"https://aclanthology.org/2026.eacl-long.200/\"},{\"title\":\"Large language models empowered agent-based modeling and simulation: a survey and perspectives | Humanities and Social Sciences Communications\",\"url\":\"https://www.nature.com/articles/s41599-024-03611-3\"},{\"title\":\"Evaluating Large Language Models as Generative User ...\",\"url\":\"https://aclanthology.org/2024.naacl-long.83.pdf\"},{\"title\":\"Let the LLMs Talk: Simulating Human-to-Human Conversational\",\"url\":\"https://arxiv.org/pdf/2312.02913\"}]\n\nI found the paper you're looking for! Here are the key details about arXiv:2604.24977:\n\n## A Survey on LLM-based Conversational User Simulation\n\nThis paper surveys recent advancements in LLM-based conversational user simulation. \n\n**Key Focus Areas:**\n- The survey introduces a novel taxonomy covering user granularity and simulation objectives, and systematically analyzes core techniques and evaluation methodologies.\n\n**Authors and Affiliations:**\nThe paper is authored by Bo Ni (Vanderbilt University), Leyao Wang (Yale University), Yu Wang (University of Oregon), Branislav Kveton (Adobe Research), Franck Dernoncourt (Adobe Research), and 25 other co-authors from various institutions including UC San Diego, Dolby Laboratories, UC Berkeley, Cisco AI Research, and others.\n\n**Research Goals:**\nThe authors aim to keep the research community informed of the latest advancements in conversational user simulation and to further facilitate future research by identifying open challenges and organizing existing work under a unified framework.\n\n**Publication Status:**\nThe paper was published in the Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers) in 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca5b3cbd-ab13-4d4c-9d3d-f09ed1d27f3b",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "6d61c25d-c6f4-4858-b543-ec587feaf3bb",
+            "sourceToolAssistantUUID": "ca5b3cbd-ab13-4d4c-9d3d-f09ed1d27f3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T06:28:02.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C9GRkxPETY5BfMDLBx7WA9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2403.09738 conversational recommendation simulators\"\n\nLinks: [{\"title\":\"[2403.09738] Evaluating Large Language Models as Generative User Simulators for Conversational Recommendation\",\"url\":\"https://arxiv.org/abs/2403.09738\"},{\"title\":\"Evaluating Large Language Models as Generative User Simulators for Conversational Recommendation\",\"url\":\"https://arxiv.org/html/2403.09738\"},{\"title\":\"LLMs as User Simulators in Conversational Recommenders\",\"url\":\"https://www.emergentmind.com/papers/2403.09738\"},{\"title\":\"SimUSER: Simulating User Behavior with Large Language Models for Recommender System Evaluation\",\"url\":\"https://arxiv.org/html/2504.12722v1\"},{\"title\":\"UserSimCRS v2: Simulation-Based Evaluation for ...\",\"url\":\"https://arxiv.org/pdf/2512.04588\"},{\"title\":\"Evaluating Large Language Models as Generative User ...\",\"url\":\"https://aclanthology.org/2024.naacl-long.83.pdf\"},{\"title\":\"How Reliable is Your Simulator? Analysis on the Limitations of Current LLM-based User Simulators for Conversational Recommendation\",\"url\":\"https://arxiv.org/html/2403.16416\"},{\"title\":\"[2403.16416] How Reliable is Your Simulator? Analysis on the Limitations of Current LLM-based User Simulators for Conversational Recommendation\",\"url\":\"https://arxiv.org/abs/2403.16416\"},{\"title\":\"arXiv:2506.20291v1 [cs.HC] 25 Jun 2025 A Literature Review on Simulation in\",\"url\":\"https://arxiv.org/pdf/2506.20291\"},{\"title\":\"RecUserSim: A Realistic and Diverse User Simulator for ...\",\"url\":\"https://arxiv.org/pdf/2507.22897\"}]\n\nBased on the search results, here's what I found about arXiv paper 2403.09738:\n\n## Overview\n\nThe paper introduces synthetic users as cost-effective proxies for real users in the evaluation of conversational recommender systems.\n\n## Main Focus\n\nLarge language models show promise in simulating human-like behavior, raising the question of their ability to represent a diverse population of users. The paper introduces a new protocol to measure the degree to which language models can accurately emulate human behavior in conversational recommendation.\n\n## Methodology\n\nThe protocol is comprised of five tasks, each designed to evaluate a key property that a synthetic user should exhibit: choosing which items to talk about, expressing binary preferences, expressing open-ended preferences, requesting recommendations, and giving feedback.\n\n## Key Findings\n\nThrough evaluation of baseline simulators, the tasks effectively reveal deviations of language models from human behavior, and offer insights on how to reduce the deviations with model selection and prompting strategies.\n\nThe paper was submitted on March 13, 2024, with the final version (v4) released on March 25, 2024, and authored by Se-eun Yoon, Zhankui He, Jessica Maria Echterhoff, and Julian McAuley.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a53454f5-7168-488c-aef6-ce5a793ef4ee",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "96fc540d-0e94-4253-8e96-4b617ba9e281",
+            "sourceToolAssistantUUID": "a53454f5-7168-488c-aef6-ce5a793ef4ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T06:28:02.253Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015f1AHFh3NEaPHmFexmXQgo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2601.17087 \"Lost in Simulation\" agent\"\n\nLinks: [{\"title\":\"[2601.17087] Lost in Simulation: LLM-Simulated Users are Unreliable Proxies for Human Users in Agentic Evaluations\",\"url\":\"https://arxiv.org/abs/2601.17087\"},{\"title\":\"Lost in Simulation: LLM-Simulated Users are Unreliable Proxies for Human Users in Agentic Evaluations\",\"url\":\"https://arxiv.org/html/2601.17087\"},{\"title\":\"Lost in Simulation: LLM-Simulated Users are Unreliable Proxies for Human Users in Agentic Evaluations | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2601.17087\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2601.17087\"},{\"title\":\"GitHub - UltraClr/agent-arxiv-daily: 🎓Automatically Update Agents Papers Daily using Github Actions\",\"url\":\"https://github.com/UltraClr/agent-arxiv-daily\"},{\"title\":\"[2601.11650v1] Large Language Model Agent for User-friendly Chemical Process Simulations\",\"url\":\"https://arxiv.org/abs/2601.11650v1\"},{\"title\":\"[2601.14296] From Agent Simulation to Social Simulator: A Comprehensive Review (Part 2)\",\"url\":\"https://arxiv.org/abs/2601.14296\"},{\"title\":\"GitHub - pat-jj/Awesome-Adaptation-of-Agentic-AI: Repo for \\\"Adaptation of Agentic AI\\\" · GitHub\",\"url\":\"https://github.com/pat-jj/Awesome-Adaptation-of-Agentic-AI\"},{\"title\":\"Agentic AI systems fail due to lack of adaptation\",\"url\":\"https://www.facebook.com/groups/techtitansgroup/posts/1544639030196743/\"},{\"title\":\"[2601.21473] ScaleSim: Serving Large-Scale Multi-Agent Simulation with Invocation Distance-Based Memory Management\",\"url\":\"https://arxiv.org/abs/2601.21473\"}]\n\nBased on the search results, here's what I found about arXiv paper 2601.17087:\n\n## Paper Overview\n\n\"Lost in Simulation: LLM-Simulated Users are Unreliable Proxies for Human Users in Agentic Evaluations\" by Preethi Seshadri, Samuel Cahyawijaya, Ayomide Odumakinde, Sameer Singh, and Seraphina Goldfarb-Tarrant\n\n## Key Findings\n\nThe paper investigates agentic benchmarks that increasingly rely on LLM-simulated users to evaluate agent performance, examining the robustness, validity, and fairness of this approach.\n\nThrough a user study with participants across the United States, India, Kenya, and Nigeria, the researchers investigated whether LLM-simulated users serve as reliable proxies for real human users in evaluating agents on τ-Bench retail tasks.\n\nThe study reveals several important limitations:\n\n- User simulation lacks robustness, with agent success rates varying up to 9 percentage points across different user LLMs\n- Evaluations using simulated users exhibit systematic miscalibration, underestimating agent performance on challenging tasks and overestimating it on moderately difficult ones\n- African American Vernacular English (AAVE) speakers experience consistently worse success rates and calibration errors than Standard American English (SAE) speakers, with disparities compounding significantly with age\n\nThese findings demonstrate that current evaluation practices risk misrepresenting agent capabilities across diverse user populations and may obscure real-world deployment challenges.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4632446e-a971-4526-8801-36be369a61b6",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "b722ba41-78ad-4308-9043-03456db04d62",
+            "sourceToolAssistantUUID": "4632446e-a971-4526-8801-36be369a61b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T06:28:02.578Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DBHUaLi2XPhpv5NoaKqeNq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"τ-Bench task-oriented dialogue benchmark\"\n\nLinks: [{\"title\":\"τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains\",\"url\":\"https://arxiv.org/pdf/2406.12045\"},{\"title\":\"GitHub - sierra-research/tau2-bench: τ-Bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains · GitHub\",\"url\":\"https://github.com/sierra-research/tau2-bench\"},{\"title\":\"τ-bench - EvalScope - Read the Docs\",\"url\":\"https://evalscope.readthedocs.io/en/latest/third_party/tau_bench.html\"},{\"title\":\"TAU-bench: Multi-Domain Benchmark Suite\",\"url\":\"https://www.emergentmind.com/topics/tau-bench\"},{\"title\":\"[2406.12045] $τ$-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains\",\"url\":\"https://arxiv.org/abs/2406.12045\"},{\"title\":\"GitHub - sierra-research/tau-bench: Code and Data for Tau-Bench · GitHub\",\"url\":\"https://github.com/sierra-research/tau-bench\"},{\"title\":\"GitHub - bansky-cl/tods-arxiv-daily-paper: task-oriented dialogue system, especially for LLM, contain subtask: (1) intent-detection (2) slot filling (3) dialogue state tracking · GitHub\",\"url\":\"https://github.com/bansky-cl/tods-arxiv-daily-paper\"},{\"title\":\"[PDF] τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/%CF%84-bench:-A-Benchmark-for-Tool-Agent-User-in-Domains-Yao-Shinn/70aa016c1f68fd5c0261f26ad20017b8307650af\"},{\"title\":\"{$\\\\tau$}-bench: A Benchmark for...\",\"url\":\"https://openreview.net/forum?id=roNSXZpUDN\"},{\"title\":\"𝜏-bench | Sierra\",\"url\":\"https://sierra.ai/blog/tau-bench-shaping-development-evaluation-agents\"}]\n\nBased on the search results, here's comprehensive information about τ-Bench:\n\n## Overview\n\nτ-Bench (Tool-Agent-User Interaction Benchmark) measures an agent's ability to interact with simulated human users and programmatic APIs while following domain-specific policies in a consistent manner.\n\n## Key Features\n\nτ-Bench emulates dynamic conversations between a user (simulated by language models) and a language agent provided with domain-specific API tools and policy guidelines. The benchmark is built in a modular framework with (1) realistic databases and APIs, (2) domain-specific policy documents, and (3) instructions for completing tasks.\n\n## Domains and Evaluation\n\nThe benchmark includes two domains (retail and airline) emulating dynamic conversations between a user and a customer service agent. It covers real-world business scenarios such as airline customer service and retail customer service.\n\nThe benchmark employs an efficient and faithful evaluation process that compares the database state at the end of a conversation with the annotated goal state, and proposes a new metric (pass^k) to evaluate the reliability of agent behavior over multiple trials.\n\n## Performance Insights\n\nExperiments show that even state-of-the-art function calling agents (like gpt-4o) succeed on <50% of the tasks, and are quite inconsistent (pass^8 <25% in retail). More recently, the best models are now crossing 80% pass^1 in the easier domain (retail).\n\n## Access\n\nCode and data are available at https://github.com/sierra-research/tau-bench.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fcb71bb-1c3e-498a-9919-460a5fceaa3b",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "eb65129d-5b41-4b91-b6bf-159c12ef2066",
+            "sourceToolAssistantUUID": "5fcb71bb-1c3e-498a-9919-460a5fceaa3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T06:28:03.324Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L9xKqgpKKdzV74sPbLrWoY",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2601.08118 MirrorBench behavioral metrics MATTR\"\n\nLinks: [{\"title\":\"[2601.08118] MirrorBench: An Extensible Framework to Evaluate User-Proxy Agents for Human-Likeness\",\"url\":\"https://arxiv.org/abs/2601.08118\"},{\"title\":\"MirrorBench: A Benchmark to Evaluate Conversational User-Proxy Agents for Human-Likeness\",\"url\":\"https://arxiv.org/html/2601.08118\"},{\"title\":\"MirrorBench: Evaluating Self-centric Intelligence in MLLMs by Introducing a Mirror\",\"url\":\"https://arxiv.org/html/2604.14785\"},{\"title\":\"[2604.14785] MirrorBench: Evaluating Self-centric Intelligence in MLLMs by Introducing a Mirror\",\"url\":\"https://arxiv.org/abs/2604.14785\"},{\"title\":\"GitHub - SAP/mirrorbench: An automatic, extensible Framework to Evaluate User-Proxy Agents for Human-Likeness. 🌟 Star if you like it!\",\"url\":\"https://github.com/SAP/mirrorbench\"},{\"title\":\"[2601.08462] M3-BENCH: Process-Aware Evaluation of LLM Agents' Social Behaviors in Mixed-Motive Games\",\"url\":\"https://arxiv.org/abs/2601.08462\"},{\"title\":\"MirrorBench: Evaluating Self-centric Intelligence in MLLMs by Introducing a Mirror | Request PDF\",\"url\":\"https://www.researchgate.net/publication/403905891_MirrorBench_Evaluating_Self-centric_Intelligence_in_MLLMs_by_Introducing_a_Mirror\"},{\"title\":\"Mirror: A Hierarchical Benchmark for Metacognitive Calibration in Large Language Models\",\"url\":\"https://arxiv.org/html/2604.19809\"},{\"title\":\"Understanding Behavioral Metric Learning: A Large-Scale Study on Distracting Reinforcement Learning Environments\",\"url\":\"https://arxiv.org/html/2506.00563v2\"},{\"title\":\"[2506.00563] Understanding Behavioral Metric Learning: A Large-Scale Study on Distracting Reinforcement Learning Environments\",\"url\":\"https://arxiv.org/abs/2506.00563\"}]\n\nBased on the search results for arXiv paper 2601.08118, here's what I found:\n\nMirrorBench is a reproducible, extensible benchmarking framework that evaluates user proxies solely on their ability to produce human-like user utterances across diverse conversational tasks, explicitly decoupled from downstream task success.\n\nRegarding the behavioral metrics and MATTR specifically:\n\nThe framework includes three lexical-diversity metrics (MATTR, YULE'S K, and HD-D) and three LLM-judge-based metrics (GTEval, Pairwise Indistinguishability, and Rubric-and-Reason).\n\nTo quantify alignment in lexical diversity with human users, the paper implements Moving-Average Type-Token Ratio (MATTR) (Covington and McFall, 2010), Yule's K (Tanaka-Ishii and Aihara, 2015), and a Hypergeometric Distribution Diversity (HD-D) (Carmona et al., 2019). The moving-average TTR (MATTR) mitigates length bias by averaging TTR over a sliding window.\n\nMirrorBench quantifies the human-likeness of user proxies with two metric families: (i) lexical-diversity metrics measure vocabulary richness and repetition patterns, and (ii) judge-based realism metrics measure behavioral realism.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f015406-996b-433c-86ee-b20f2f2212af",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "df594840-46ff-4b39-8097-182a71bc3056",
+            "sourceToolAssistantUUID": "9f015406-996b-433c-86ee-b20f2f2212af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T06:28:03.944Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CmYc34eDBLye4AnuyNgJcj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAVE dialect NLP AI evaluation papers\"\n\nLinks: [{\"title\":\"[2408.14845] AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\",\"url\":\"https://arxiv.org/abs/2408.14845\"},{\"title\":\"AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\",\"url\":\"https://arxiv.org/html/2408.14845v3\"},{\"title\":\"AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\",\"url\":\"https://aavenuee.github.io/\"},{\"title\":\"(PDF) AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\",\"url\":\"https://www.researchgate.net/publication/383461248_AAVENUE_Detecting_LLM_Biases_on_NLU_Tasks_in_AAVE_via_a_Novel_Benchmark\"},{\"title\":\"Evaluating the Usage of African-American Vernacular English in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.21485v1\"},{\"title\":\"ENDIVE:ACROSS-DIALECT BENCHMARK FOR FAIR\",\"url\":\"https://openreview.net/pdf?id=C7Mwox3C1u\"},{\"title\":\"Chatbot AAVE Dialect Evaluation - Emory NLP\",\"url\":\"https://www.emorynlp.org/postings/chatbot-aave-dialect-evaluation\"},{\"title\":\"Natural Language Processing for Dialects of a Language: A Survey\",\"url\":\"https://arxiv.org/html/2401.05632v3\"},{\"title\":\"AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.nlp4pi-1.28/\"},{\"title\":\"EnDive: A Cross-Dialect Benchmark for Fairness and Performance in Large Language Models\",\"url\":\"https://arxiv.org/html/2504.07100\"}]\n\nBased on the search results, here are several significant papers on AAVE dialect and NLP AI evaluation:\n\n## Key Papers and Benchmarks\n\n### AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\n\nAAVENUE is a benchmark for evaluating large language model (LLM) performance on NLU tasks in AAVE and Standard American English (SAE), designed to detect biases in natural language understanding for African American Vernacular English, which is crucial to developing inclusive natural language processing (NLP) systems. The benchmark extends existing benchmarks like VALUE, replacing deterministic syntactic and morphological transformations with a more flexible methodology leveraging LLM-based translation with few-shot prompting. Evaluations reveal that LLMs consistently perform better on SAE tasks than AAVE-translated versions, underscoring inherent biases.\n\n### Evaluating the Usage of African-American Vernacular English in Large Language Models\n\nPrior studies suggest that LLMs tend to default to Standard American English (SAE) and that attempts to generate non-standard varieties such as AAVE often result in grammatical inaccuracies and the reinforcement of harmful stereotypes. Further, AI systems tend to perform worse on NLU tasks with AAVE prompts than with SAE prompts. This paper focuses on seven grammatical features of AAVE: the negation word ain't, negative concord, habitual be, double comparatives, perfective done, multiple modals, and null copula.\n\n### EnDive: A Cross-Dialect Benchmark for Fairness and Performance in Large Language Models\n\nEnDive is a benchmark that evaluates five widely-used large language models (LLMs) across tasks in language understanding, algorithmic reasoning, mathematics, and logic, translating Standard American English datasets into five underrepresented dialects using few-shot prompting with verified examples from native speakers. The benchmark reveals significant performance disparities—models consistently underperform on dialectal inputs compared to Standard American English.\n\n### Natural Language Processing for Dialects of a Language: A Survey\n\nThis survey discusses AAVE alongside Indian English (IndE), Nigerian English (NgE), Colloquial Singaporean English (CollSgE), and Chicano English (ChcE) as part of dialect variants of the GLUE benchmark.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c168eedb-cd09-404a-b637-995a866b7489",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "b8e83082-3cb9-4105-9f10-8eac67df81ba",
+            "sourceToolAssistantUUID": "c168eedb-cd09-404a-b637-995a866b7489",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T06:28:08.202Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ThFwjdq4ckEZ19juiWX5JD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2504.02234 steering vector demographic attributes LLM\"\n\nLinks: [{\"title\":\"arXiv:2504.02234v2 [cs.HC] 5 Jun 2025\",\"url\":\"https://arxiv.org/pdf/2504.02234\"},{\"title\":\"On the Non-Identifiability of Steering Vectors in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.06801v4\"},{\"title\":\"UNDERSTANDING (UN)RELIABILITY OF STEERING ...\",\"url\":\"https://openreview.net/pdf?id=JZiKuvIK1t\"},{\"title\":\"[2406.00045] Personalized Steering of Large Language Models: Versatile Steering Vectors Through Bi-directional Preference Optimization\",\"url\":\"https://arxiv.org/abs/2406.00045\"},{\"title\":\"Analysing the Safety Pitfalls of Steering Vectors\",\"url\":\"https://arxiv.org/html/2603.24543\"},{\"title\":\"Can Role Vectors Affect LLM Behaviour?\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.963.pdf\"},{\"title\":\"Steering Evaluation-Aware Language Models to Act Like They Are Deployed\",\"url\":\"https://arxiv.org/html/2510.20487v3\"},{\"title\":\"From Steering Vectors to Conceptors: Compositional Affine Activation Steering for LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=0Yu0eNdHyV\"},{\"title\":\"Prototype-Based Dynamic Steering for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.05498v1\"},{\"title\":\"Steer2Adapt: Dynamically Composing Steering Vectors Elicits Efficient Adaptation of LLMs\",\"url\":\"https://arxiv.org/html/2602.07276v1\"}]\n\nBased on the search results, I found the arXiv paper 2504.02234. The paper appears to be a recent work (from June 2025 based on the header information) that discusses challenges in using Large Language Models for social simulations.\n\nThe paper discusses studies of LLM steering vectors that have found limited usefulness and detrimental side effects, particularly for debiasing and out-of-distribution generalization.\n\nWhile the search results show the PDF content from arXiv 2504.02234, the specific sections returned don't contain detailed information about steering vectors targeting demographic attributes. However, the paper does address broader issues with LLM steering effectiveness and limitations. The content suggests the paper is part of a larger discussion about evaluating LLMs for social simulations and addresses challenges in using steering approaches for various behavioral modifications.\n\nIf you need more specific information about how this paper addresses steering vectors for demographic attributes specifically, you may want to access the full PDF directly at https://arxiv.org/pdf/2504.02234.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ba6a334-baa1-46f3-969c-90196800f70c",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "16f627ae-3cf0-4884-84e5-b3acf81421a2",
+            "sourceToolAssistantUUID": "4ba6a334-baa1-46f3-969c-90196800f70c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T06:28:09.972Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more specific information on some of these papers to verify details and find any additional papers on AAVE."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16f627ae-3cf0-4884-84e5-b3acf81421a2",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQzx2v8nrF2r68RkhU5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dc82cad0-1176-4f30-818b-df200af576f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NZsaV4cb1LiYKAUxuYgWwS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1919,
+                "cache_creation_input_tokens": 6351,
+                "cache_read_input_tokens": 16854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6351,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T06:28:10.179Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012uLt1B3DosMvW8HHFUdtku",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2602.21485 AAVE African American Vernacular English LLM"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc82cad0-1176-4f30-818b-df200af576f0",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQzx2v8nrF2r68RkhU5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cdfa8f36-87ae-4eb3-a6b9-e5746ab6bc05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NZsaV4cb1LiYKAUxuYgWwS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1919,
+                "cache_creation_input_tokens": 6351,
+                "cache_read_input_tokens": 16854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6351,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T06:28:10.229Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YZ5k5QmZyg6Zf9nT9yQLjC",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2504.07100 EnDive cross-dialect benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdfa8f36-87ae-4eb3-a6b9-e5746ab6bc05",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQzx2v8nrF2r68RkhU5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "830ca928-0a65-444f-ad5a-86de08f03bf3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NZsaV4cb1LiYKAUxuYgWwS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1919,
+                "cache_creation_input_tokens": 6351,
+                "cache_read_input_tokens": 16854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6351,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T06:28:10.331Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0133PyM1xJAizvsN7v6AksNY",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2401.05632 dialects NLP survey"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "830ca928-0a65-444f-ad5a-86de08f03bf3",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQzx2v8nrF2r68RkhU5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "70f02dc3-43b5-4b41-9dfa-c34158af58c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NZsaV4cb1LiYKAUxuYgWwS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1919,
+                "cache_creation_input_tokens": 6351,
+                "cache_read_input_tokens": 16854,
+                "output_tokens": 249,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6351
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1919,
+                    "output_tokens": 249,
+                    "cache_read_input_tokens": 16854,
+                    "cache_creation_input_tokens": 6351,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6351,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T06:28:10.341Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GBgraDrV7Z5qXgzcfJKTUw",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2408.14845 AAVENUE benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70f02dc3-43b5-4b41-9dfa-c34158af58c9",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatQzx2v8nrF2r68RkhU5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e60b907f-8a46-4ee6-9e5f-39302b964e08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NZsaV4cb1LiYKAUxuYgWwS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1919,
+                "cache_creation_input_tokens": 6351,
+                "cache_read_input_tokens": 16854,
+                "output_tokens": 249,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6351
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1919,
+                    "output_tokens": 249,
+                    "cache_read_input_tokens": 16854,
+                    "cache_creation_input_tokens": 6351,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6351,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T06:28:16.611Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GBgraDrV7Z5qXgzcfJKTUw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2408.14845 AAVENUE benchmark\"\n\nLinks: [{\"title\":\"[2408.14845] AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\",\"url\":\"https://arxiv.org/abs/2408.14845\"},{\"title\":\"AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\",\"url\":\"https://arxiv.org/html/2408.14845\"},{\"title\":\"AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2408.14845\"},{\"title\":\"(PDF) AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\",\"url\":\"https://www.researchgate.net/publication/383461248_AAVENUE_Detecting_LLM_Biases_on_NLU_Tasks_in_AAVE_via_a_Novel_Benchmark\"},{\"title\":\"AAVENUE: Detecting LLM Biases On NLU Tasks in AAVE Via A Novel Benchmark | PDF\",\"url\":\"https://www.scribd.com/document/774521822/2408-14845v1-1\"},{\"title\":\"UrBench: A Comprehensive Benchmark for Evaluating Large Multimodal Models in Multi-View Urban Scenarios\",\"url\":\"https://arxiv.org/html/2408.17267v3\"},{\"title\":\"FeatureBench: Benchmarking Agentic Coding for Complex Feature Development | OpenReview\",\"url\":\"https://openreview.net/forum?id=41xrZ3uGuI\"},{\"title\":\"Computer Vision and Pattern Recognition Aug 2024\",\"url\":\"https://arxiv.org/list/cs.CV/2024-08?skip=1135&show=250\"},{\"title\":\"[2408.14817v1] A Comprehensive Benchmark of Machine and Deep Learning Across Diverse Tabular Datasets\",\"url\":\"https://arxiv.org/abs/2408.14817v1\"},{\"title\":\"LegalBench-RAG: A Benchmark for Retrieval-Augmented Generation in the\",\"url\":\"https://arxiv.org/pdf/2408.10343\"}]\n\nBased on the search results, here's information about arXiv paper 2408.14845:\n\n## AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\n\nAAVENUE (AAVE Natural Language Understanding Evaluation) is a benchmark for evaluating large language model (LLM) performance on NLU tasks in AAVE and Standard American English (SAE).\n\n**Purpose and Motivation:**\nDetecting biases in natural language understanding (NLU) for African American Vernacular English (AAVE) is crucial to developing inclusive natural language processing (NLP) systems.\n\n**Methodology:**\nAAVENUE builds upon and extends existing benchmarks like VALUE, replacing deterministic syntactic and morphological transformations with a more flexible methodology leveraging LLM-based translation with few-shot prompting, improving performance across evaluation metrics when translating key tasks from the GLUE and SuperGLUE benchmarks.\n\n**Evaluation:**\nThe researchers compare AAVENUE and VALUE translations using five popular LLMs and a comprehensive set of metrics including fluency, BARTScore, quality, coherence, and understandability.\n\n**Key Findings:**\nEvaluations of popular LLMs on the benchmark revealed biases, with SAE versions consistently achieving higher accuracy than AAVE translations across key tasks, highlighting the need for more inclusive NLP models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e60b907f-8a46-4ee6-9e5f-39302b964e08",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "5e179c5a-7b45-480f-8e2d-5c533e106032",
+            "sourceToolAssistantUUID": "e60b907f-8a46-4ee6-9e5f-39302b964e08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T06:28:16.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0133PyM1xJAizvsN7v6AksNY",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2401.05632 dialects NLP survey\"\n\nLinks: [{\"title\":\"[2401.05632] Natural Language Processing for Dialects of a Language: A Survey\",\"url\":\"https://arxiv.org/abs/2401.05632\"},{\"title\":\"1 Natural Language Processing for Dialects of a Language: A Survey\",\"url\":\"https://arxiv.org/pdf/2401.05632\"},{\"title\":\"[2401.05632v4] Natural Language Processing for Dialects of a Language: A Survey\",\"url\":\"https://arxiv.org/abs/2401.05632v4\"},{\"title\":\"Natural Language Processing for Dialects of a Language: A Survey\",\"url\":\"https://arxiv.org/html/2401.05632\"},{\"title\":\"[2401.05632v3] Natural Language Processing for Dialects of a Language: A Survey\",\"url\":\"https://arxiv.org/abs/2401.05632v3\"},{\"title\":\"dblp: Natural Language Processing for Dialects of a Language: A Survey.\",\"url\":\"https://dblp.org/rec/journals/corr/abs-2401-05632.html\"},{\"title\":\"[PDF] Natural Language Processing for Dialects of a Language: A Survey | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Natural-Language-Processing-for-Dialects-of-a-A-Joshi-Dabre/d70fe318d5fa97dab6ceaa3a5f14869f45b384dd\"},{\"title\":\"Natural Language Processing for Dialects of a Language: A Survey | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/natural-language-processing-dialects-language-survey\"},{\"title\":\"Natural Language Processing for Dialects of a Language: A Survey | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2401.05632\"},{\"title\":\"Natural Language Processing for Dialects of a Language: A Survey | ACM Computing Surveys\",\"url\":\"https://dl.acm.org/doi/10.1145/3712060\"}]\n\nI found the paper you were looking for. Here's information about arXiv 2401.05632:\n\n**Title:** Natural Language Processing for Dialects of a Language: A Survey\n\n**Authors:** Aditya Joshi, Raj Dabre, Diptesh Kanojia, Zhuang Li, Haolan Zhan, Gholamreza Haffari, and Doris Dippold\n\n**Overview:** Motivated by the performance degradation of NLP models for dialectal datasets and its implications for the equity of language technologies, this survey covers past research in NLP for dialects in terms of datasets, and approaches.\n\n**Scope:** The survey describes a wide range of NLP tasks in terms of two categories: natural language understanding (NLU) (for tasks such as dialect classification, sentiment analysis, parsing, and NLU benchmarks) and natural language generation (NLG) (for summarisation, machine translation, and dialogue systems). The survey is also broad in its coverage of languages which include English, Arabic, German, among others.\n\n**Approaches Covered:** For these tasks, the survey describes classical machine learning using statistical models, along with the recent deep learning-based approaches based on pre-trained language models.\n\n**Latest Version:** The latest version (v4) was last revised on December 6, 2024, with the paper originally submitted on January 11, 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70f02dc3-43b5-4b41-9dfa-c34158af58c9",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "9aa12ada-6e58-47b7-8318-c9c0823fce8b",
+            "sourceToolAssistantUUID": "70f02dc3-43b5-4b41-9dfa-c34158af58c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T06:28:16.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012uLt1B3DosMvW8HHFUdtku",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2602.21485 AAVE African American Vernacular English LLM\"\n\nLinks: [{\"title\":\"[2602.21485] Evaluating the Usage of African-American Vernacular English in Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.21485\"},{\"title\":\"Evaluating the Usage of African-American Vernacular English in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.21485v1\"},{\"title\":\"Enhancing Patient-Physician Communication: Simulating African American Vernacular English in Medical Diagnostics with Large Language Models - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12037967/\"},{\"title\":\"Data Caricatures: On the Representation of African American Language in Pretraining Corpora\",\"url\":\"https://arxiv.org/html/2503.10789\"},{\"title\":\"Can Small-Scale Data Poisoning Exacerbate Dialect-Linked Biases in Large Language Models?\",\"url\":\"https://arxiv.org/html/2507.19195v1\"},{\"title\":\"One Language, Many Gaps: Evaluating Dialect Fairness and Robustness of Large Language Models in Reasoning Tasks | OpenReview\",\"url\":\"https://openreview.net/forum?id=hRSabwKj53\"},{\"title\":\"Vernacular? I Barely Know Her: Challenges with Style Control and Stereotyping\",\"url\":\"https://arxiv.org/html/2406.12679\"},{\"title\":\"[2010.02510] Investigating African-American Vernacular English in Transformer-Based Text Generation\",\"url\":\"https://arxiv.org/abs/2010.02510\"},{\"title\":\"Analysis of LLM as a grammatical feature tagger for African American English\",\"url\":\"https://arxiv.org/html/2502.06004\"},{\"title\":\"Enhancing Patient-Physician Communication: Simulating African American Vernacular English in Medical Diagnostics with Large Language Models | Journal of Healthcare Informatics Research | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s41666-025-00194-9\"}]\n\nI found the paper you're looking for! Here's what I found about arXiv 2602.21485:\n\n## Paper Summary\n\nThe paper investigates how accurately large language models (LLMs) represent African American Vernacular English (AAVE) by analyzing three LLMs to compare their usage of AAVE to the usage of humans who natively speak AAVE.\n\n### Methodology\n\nThe researchers analyzed interviews from the Corpus of Regional African American Language and TwitterAAE to identify the typical contexts where people use AAVE grammatical features such as ain't, then prompted the LLMs to produce text in AAVE and compared the model-generated text to human usage patterns.\n\n### Key Findings\n\nThe study finds that in many cases, there are substantial differences between AAVE usage in LLMs and humans: LLMs usually underuse and misuse grammatical features characteristic of AAVE. Additionally, through sentiment analysis and manual inspection, the researchers found that the models replicated stereotypes about African Americans.\n\n### Authors and Details\n\nThe paper was submitted on February 25, 2026 by authors Deja Dunlap and R. Thomas McCoy.\n\nYou can access the full paper on arXiv at https://arxiv.org/abs/2602.21485.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdfa8f36-87ae-4eb3-a6b9-e5746ab6bc05",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "b5329dab-3b7a-4cf0-a9d2-88a30358ec0b",
+            "sourceToolAssistantUUID": "cdfa8f36-87ae-4eb3-a6b9-e5746ab6bc05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T06:28:16.866Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YZ5k5QmZyg6Zf9nT9yQLjC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2504.07100 EnDive cross-dialect benchmark\"\n\nLinks: [{\"title\":\"[2504.07100] EnDive: A Cross-Dialect Benchmark for Fairness and Performance in Large Language Models\",\"url\":\"https://arxiv.org/abs/2504.07100\"},{\"title\":\"EnDive: A Cross-Dialect Benchmark for Fairness and Performance in\",\"url\":\"https://arxiv.org/pdf/2504.07100\"},{\"title\":\"EnDive: A Cross-Dialect Benchmark for Fairness and Performance in Large Language Models\",\"url\":\"https://arxiv.org/html/2504.07100\"},{\"title\":\"ENDIVE:ACROSS-DIALECT BENCHMARK FOR FAIR\",\"url\":\"https://openreview.net/pdf?id=C7Mwox3C1u\"},{\"title\":\"Computation and Language Apr 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025-04?skip=400&show=1000\"},{\"title\":\"Endive: A Cross-Dialect Benchmark for Fairness and Performance in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=C7Mwox3C1u\"},{\"title\":\"EnDive: A Cross-Dialect Benchmark for Fairness and Performance in Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.913/\"},{\"title\":\"Abhay Gupta - ACL Anthology\",\"url\":\"https://aclanthology.org/people/abhay-gupta/unverified/\"},{\"title\":\"EnDive: A Cross-Dialect Benchmark for Fairness and ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.913.pdf\"},{\"title\":\"[PDF] EnDive: A Cross-Dialect Benchmark for Fairness and ...\",\"url\":\"https://www.semanticscholar.org/paper/EnDive:-A-Cross-Dialect-Benchmark-for-Fairness-and-Gupta-Cheung/1e4da0716688e6c3d904006c98ecdb1e4b4c6533\"}]\n\nBased on the search results, here's information about arXiv 2504.07100 - EnDive:\n\n## Overview\n\nEnDive (English Diversity) is a benchmark that evaluates five widely-used large language models (LLMs) across tasks in language understanding, algorithmic reasoning, mathematics, and logic.\n\n## Motivation\n\nThe diversity of human language, shaped by social, cultural, and regional influences, presents significant challenges for natural language processing (NLP) systems. Existing benchmarks often overlook intra-language variations, leaving speakers of non-standard dialects underserved.\n\n## Methodology\n\nThe framework translates Standard American English datasets into five underrepresented dialects using few-shot prompting with verified examples from native speakers. The five dialects selected for their linguistic distinctiveness and sociocultural significance are: African American Vernacular English (AAVE) with 33M speakers, Indian English (IndE) with 250M speakers, Jamaican English (JamE), Chicano English (ChcE), and Colloquial Singaporean English (CollSgE).\n\n## Results\n\nHuman evaluations confirm high translation quality, with average scores of at least 6.02/7 for faithfulness, fluency, and formality. By filtering out near-identical translations, the researchers created a challenging dataset that reveals significant performance disparities—models consistently underperform on dialectal inputs compared to Standard American English.\n\n## Impact\n\nEnDive advances dialect-aware NLP by uncovering model biases and promoting more equitable language technologies.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "830ca928-0a65-444f-ad5a-86de08f03bf3",
+            "isSidechain": true,
+            "promptId": "65c9c31a-1745-4148-a2b6-c8121abe6f91",
+            "agentId": "a2acd1edb962c2b6a",
+            "type": "user",
+            "uuid": "23ac21cb-31c2-453b-8743-cffbdfd0d249",
+            "sourceToolAssistantUUID": "830ca928-0a65-444f-ad5a-86de08f03bf3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T06:28:27.438Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my comprehensive search, here are the verified papers with their actual publication venues:\n\n## Verified Papers\n\n**1. \"Lost in Simulation: LLM-Simulated Users are Unreliable Proxies for Human Users in Agentic Evaluations\"**\n- arXiv: 2601.17087\n- Year: January 2026\n- Status: REAL - Confirmed\n- Note: The paper studies agent success rates varying up to 9 percentage points across different user LLMs\n\n**2. \"MirrorBench: An Extensible Framework to Evaluate User-Proxy Agents for Human-Likeness\"**\n- arXiv: 2601.08118\n- Year: January 2026\n- Status: REAL - Confirmed\n- Note: Includes behavioral metrics MATTR (Moving-Average Type-Token Ratio), HD-D (Hypergeometric Distribution Diversity), and GTEval\n\n**3. \"A Survey on LLM-based Conversational User Simulation\"**\n- arXiv: 2604.24977\n- Venue: EACL 2026 (Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics, Volume 1: Long Papers)\n- Year: April 2026\n- Status: REAL - Confirmed\n\n**4. \"τ-Bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains\"**\n- arXiv: 2406.12045\n- Year: June 2024\n- Status: REAL - Confirmed\n- Note: Includes retail and airline domains for task-oriented dialogue evaluation\n\n**5. \"Evaluating Large Language Models as Generative User Simulators for Conversational Recommendation\"**\n- arXiv: 2403.09738\n- Year: March 2024\n- Status: REAL - Confirmed\n- Note: Includes five evaluation tasks for conversational recommendation simulators\n\n**6. Paper on steering vectors and demographic attributes (arXiv 2504.02234)**\n- arXiv: 2504.02234\n- Year: 2025\n- Status: REAL - Confirmed\n- Note: Addresses challenges with steering vectors in LLM social simulations\n\n**7. \"Direct Preference Optimization: Your Language Model is Secretly a Reward Model\"**\n- arXiv: 2305.18290\n- Venue: NeurIPS 2023 (Thirty-seventh Conference on Neural Information Processing Systems)\n- Year: May 2023\n- Status: REAL - Confirmed\n\n## Papers on AAVE Dialect in NLP/AI Evaluation\n\n**8. \"AAVENUE: Detecting LLM Biases on NLU Tasks in AAVE via a Novel Benchmark\"**\n- arXiv: 2408.14845\n- Year: August 2024\n- Status: REAL - Confirmed\n\n**9. \"Evaluating the Usage of African-American Vernacular English in Large Language Models\"**\n- arXiv: 2602.21485\n- Year: February 2026\n- Status: REAL - Confirmed\n\n**10. \"EnDive: A Cross-Dialect Benchmark for Fairness and Performance in Large Language Models\"**\n- arXiv: 2504.07100\n- Venue: EMNLP 2025 (Findings)\n- Year: April/May 2025\n- Status: REAL - Confirmed\n- Note: Evaluates AAVE alongside Indian English, Jamaican English, Chicano English, and Colloquial Singaporean English\n\n**11. \"Natural Language Processing for Dialects of a Language: A Survey\"**\n- arXiv: 2401.05632\n- Year: January 2024\n- Status: REAL - Confirmed\n- Note: Comprehensive survey covering AAVE and other dialects\n\n---\n\n## Sources\n\n- [Lost in Simulation: LLM-Simulated Users arXiv](https://arxiv.org/abs/2601.17087)\n- [MirrorBench: An Extensible Framework arXiv](https://arxiv.org/abs/2601.08118)\n- [A Survey on LLM-based Conversational User Simulation](https://arxiv.org/abs/2604.24977)\n- [τ-Bench: A Benchmark for Tool-Agent-User Interaction arXiv](https://arxiv.org/abs/2406.12045)\n- [Evaluating Large Language Models as Generative User Simulators arXiv](https://arxiv.org/abs/2403.09738)\n- [arXiv 2504.02234 on Steering Vectors](https://arxiv.org/pdf/2504.02234)\n- [Direct Preference Optimization arXiv](https://arxiv.org/abs/2305.18290)\n- [AAVENUE: Detecting LLM Biases arXiv](https://arxiv.org/abs/2408.14845)\n- [Evaluating the Usage of AAVE in LLMs arXiv](https://arxiv.org/abs/2602.21485)\n- [EnDive: A Cross-Dialect Benchmark arXiv](https://arxiv.org/abs/2504.07100)\n- [Natural Language Processing for Dialects Survey arXiv](https://arxiv.org/abs/2401.05632)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23ac21cb-31c2-453b-8743-cffbdfd0d249",
+            "isSidechain": true,
+            "agentId": "a2acd1edb962c2b6a",
+            "requestId": "req_011CatR1b6rjg6DgGb5zidAc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2e4eaf70-668a-4691-b788-87fbefafb614",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6f9dd2ec-2541-4890-8b0e-a97a16307e26",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SJaQyX9VPwe6XRXCDSRJFf",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1810,
+                "cache_creation_input_tokens": 4054,
+                "cache_read_input_tokens": 23205,
+                "output_tokens": 1279,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4054
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1810,
+                    "output_tokens": 1279,
+                    "cache_read_input_tokens": 23205,
+                    "cache_creation_input_tokens": 4054,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4054,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-verify-that-the-following-papers-are-real-and-find-their-actual-publication-ve.md"
+}

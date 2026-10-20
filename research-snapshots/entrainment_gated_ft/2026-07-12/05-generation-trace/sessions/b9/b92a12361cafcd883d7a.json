@@ -1,0 +1,2338 @@
+{
+  "schema_version": "1.0",
+  "id": "b92a12361cafcd883d7a",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for the paper \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Leve",
+  "task_key": "agent-a337e4be66e068a7b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a337e4be66e068a7b.jsonl",
+    "occurrence": 1,
+    "bytes": 97155,
+    "sha256": "a22a2e12d3c8095b5d0fc9cf5f1ce02647c804a09457c33333b732a575c16d6b"
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 1,
+    "tool_calls": 22,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T21:03:46.850Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for the paper \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\" (also known as CrossKV). \n\n1. Verify its current publication status. The SegAttn proposal claims it was posted on OpenReview in Sep 2025. Has it been accepted at any conference (ICLR 2026, ICML 2026, etc.)?\n2. Search: \"CrossKV segment-level KV cache sharing agent\" and \"collaborative memory agentic workflow prefix barrier\"\n3. Check OpenReview for its review status if possible.\n\nAlso verify: is \"BFCL v3\" (Berkeley Function Calling Leaderboard version 3) a real benchmark? Search \"BFCL v3 function calling benchmark\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "f43698e9-b274-432f-b6cb-91d834262679",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T21:03:46.853Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f43698e9-b274-432f-b6cb-91d834262679",
+                "isSidechain": true,
+                "agentId": "a337e4be66e068a7b",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "8426f585-813f-442e-9cc4-c4940796802d",
+                "timestamp": "2026-05-10T21:03:46.853Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T21:03:49.840Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01291ZajmB1mKKQasLE6D3o6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8426f585-813f-442e-9cc4-c4940796802d",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZmoHzRPh4wocqT6th6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "918ddd9b-31f2-4d3d-8b28-94d7783114f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ADMEL2WbG7q2zLrYKcqivn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 737,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 737
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 737,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 737,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T21:03:49.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01291ZajmB1mKKQasLE6D3o6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "918ddd9b-31f2-4d3d-8b28-94d7783114f9",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "0e787b16-4806-4fdc-a82c-7b49745aeb32",
+            "sourceToolAssistantUUID": "918ddd9b-31f2-4d3d-8b28-94d7783114f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T21:03:53.121Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ByYFTWE59sqvHfCoFRfLF1",
+              "name": "WebSearch",
+              "input": {
+                "query": "CrossKV segment-level KV cache sharing agent collaborative memory agentic workflow prefix barrier"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e787b16-4806-4fdc-a82c-7b49745aeb32",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZn2NoF1LuzvBqGajKa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "77cf63af-3bdb-4fc5-8071-b45428d74d9b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RcVESb6Wm7aQ2K5f77mE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8960,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T21:03:53.830Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014kNsFhNWrFFyi1dWk6NbfV",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Towards a Collaborative Memory for Agentic Workflow\" \"Segment-Level KV Cache Sharing\" OpenReview 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77cf63af-3bdb-4fc5-8071-b45428d74d9b",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZn2NoF1LuzvBqGajKa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "12ed3bb3-b897-40fd-bab7-6b3c5e87fb95",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RcVESb6Wm7aQ2K5f77mE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8960,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T21:03:54.031Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WdpdJf3z9Xa4V5o48ghpmL",
+              "name": "WebSearch",
+              "input": {
+                "query": "BFCL v3 function calling benchmark Berkeley"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12ed3bb3-b897-40fd-bab7-6b3c5e87fb95",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZn2NoF1LuzvBqGajKa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8d8a5c9f-d1e1-412f-8c12-33f78bd61d01",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RcVESb6Wm7aQ2K5f77mE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8960,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 56,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T21:04:01.067Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014kNsFhNWrFFyi1dWk6NbfV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Towards a Collaborative Memory for Agentic Workflow\" \"Segment-Level KV Cache Sharing\" OpenReview 2025\"\n\nLinks: [{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"},{\"title\":\"TOWARDS A COLLABORATIVE MEMORY FOR AGENTIC ...\",\"url\":\"https://openreview.net/pdf/c8adae36c42059677552b1255da2411e2839f58a.pdf\"},{\"title\":\"KVCOMM: Online Cross-context KV-cache Communication ...\",\"url\":\"https://openreview.net/pdf/81561154949bf17e7f12ee6dc0485c10a2415686.pdf\"},{\"title\":\"[2505.18279] Collaborative Memory: Multi-User Memory Sharing in LLM Agents with Dynamic Access Control\",\"url\":\"https://arxiv.org/abs/2505.18279\"},{\"title\":\"Agentic Plan Caching: Test-Time Memory for Fast and Cost-Efficient LLM Agents\",\"url\":\"https://openreview.net/pdf?id=n4V3MSqK77\"},{\"title\":\"Collaborative Memory: Multi-User Memory Sharing in LLM Agents with Dynamic Access Control | OpenReview\",\"url\":\"https://openreview.net/forum?id=pJUQ5YA98Z\"},{\"title\":\"Paper published at the Lifelong Agent Workshop @ ICLR 2026\",\"url\":\"https://openreview.net/pdf/5c6ed290be90eea7b75202124c5bffecac714a4c.pdf\"},{\"title\":\"Agent Workflow Memory | OpenReview\",\"url\":\"https://openreview.net/forum?id=NTAhi2JEEE\"},{\"title\":\"arXiv:submit/6596874 [cs.CL] 4 Jul 2025 MemOS: A Memory OS for AI System\",\"url\":\"https://statics.memtensor.com.cn/files/MemOS_0707.pdf\"},{\"title\":\"Collaborative Memory: Multi-User Memory Sharing in LLM Agents with Dynamic Access Control\",\"url\":\"https://arxiv.org/html/2505.18279v1\"}]\n\nI found the paper you were searching for! Here are the results:\n\n## \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\"\n\nThis paper introduces a novel collaborative memory approach underpinned by a Segment-Level KV Cache Sharing mechanism that decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments generated by any other agent at arbitrary positions, without relying on sequential prefix consistency.\n\n**Key Problem Addressed:**\nIn LLMs-based multi-agent systems, the Key-Value (KV) cache serves as a critical carrier of agents' working memory. However, prevailing KV cache reuse methods rely heavily on a rigid prefix matching mechanism, which mandates exact equivalence between the query request and the cached prefix. This inflexible matching scheme struggles to accommodate the highly heterogeneous instruction prompt template in multi-agent environments, thereby severely constraining the overall system throughput.\n\n**Key Results:**\nExtensive experimental results demonstrate that the proposed method markedly reduces redundant computation, increases system throughput, and even improves the performance of agentic workflow on benchmark tests through effective working memory sharing.\n\n**Implementation Details:**\nThe implementation is built upon the vLLM framework and leverages the PageAttention mechanism.\n\nThe paper was published on OpenReview on October 8, 2025, and is available at: https://openreview.net/forum?id=kgzBkyqg6Z\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12ed3bb3-b897-40fd-bab7-6b3c5e87fb95",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "5f0d8b8c-ffd4-494b-8372-5851e013db7b",
+            "sourceToolAssistantUUID": "12ed3bb3-b897-40fd-bab7-6b3c5e87fb95",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T21:04:01.782Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WdpdJf3z9Xa4V5o48ghpmL",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BFCL v3 function calling benchmark Berkeley\"\n\nLinks: [{\"title\":\"The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=2GmDdhBdDk\"},{\"title\":\"Berkeley Function Calling Leaderboard (BFCL) V4\",\"url\":\"https://gorilla.cs.berkeley.edu/leaderboard.html\"},{\"title\":\"BFCL-v3 - EvalScope - Read the Docs\",\"url\":\"https://evalscope.readthedocs.io/en/latest/third_party/bfcl_v3.html\"},{\"title\":\"Berkeley Function Calling Leaderboard (BFCL)\",\"url\":\"https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard\"},{\"title\":\"BFCL V3 • Multi-Turn & Multi-Step Function Calling\",\"url\":\"https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html\"},{\"title\":\"BFCL Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/bfcl\"},{\"title\":\"gorilla-llm/Berkeley-Function-Calling-Leaderboard · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard\"},{\"title\":\"BFCL: Berkeley Function-Calling Leaderboard\",\"url\":\"https://ukgovernmentbeis.github.io/inspect_evals/evals/assistants/bfcl/\"},{\"title\":\"Berkeley Function Calling Leaderboard\",\"url\":\"https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html\"},{\"title\":\"ICML Poster The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models\",\"url\":\"https://icml.cc/virtual/2025/poster/46593\"}]\n\nBased on the search results, here's information about the BFCL v3 function calling benchmark from Berkeley:\n\n## Overview\n\nThe Berkeley Function-Calling Leaderboard (BFCL) V3 makes a big step forward by introducing a new category for multi-turn and multi-step function calls (tool use).\n\n## Key Features of BFCL V3\n\nBFCL V3 still includes the Expert Curated (Non-live) dataset from BFCL V1 and the User Contributed (Live) dataset from BFCL V2. On top of that, it now tests how well models can handle back-and-forth (multi-turn) and step-by-step (multi-step) interactions.\n\n## Evaluation Methodology\n\nInstead of dissecting function parameter pairs using AST and matching them in a list of possible answers, V3 verifies the actual state of the API system (like file systems or booking systems) after the model runs its functions. This gives a more realistic way to see if the model did the right thing.\n\n## Dataset Composition\n\nBFCL V3's Base Multi-Turn category (200 examples) covers foundational yet diverse basic multi-turn interactions. In this category, all necessary information is provided—whether from the user request message, execution result from previous turn, or the output of exploratory functions—to complete the task. The model is expected to handle the multi-turn interaction without any ambiguity.\n\nThe Augmented Multi-Turn category (800 examples) introduces additional complexity, such as ambiguous prompts or situations where the model must process multiple pieces of information across turns. Models must demonstrate more nuanced decision-making, disambiguation, and conditional logic across multiple turns.\n\nBFCL-v3 introduced multi-turn interactions as part of the benchmark's evolution from previous versions.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d8a5c9f-d1e1-412f-8c12-33f78bd61d01",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "ac0bb473-fd22-4a6e-827e-2bd14b553142",
+            "sourceToolAssistantUUID": "8d8a5c9f-d1e1-412f-8c12-33f78bd61d01",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T21:04:02.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ByYFTWE59sqvHfCoFRfLF1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CrossKV segment-level KV cache sharing agent collaborative memory agentic workflow prefix barrier\"\n\nLinks: [{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"},{\"title\":\"TOWARDS A COLLABORATIVE MEMORY FOR AGENTIC ...\",\"url\":\"https://openreview.net/pdf/c8adae36c42059677552b1255da2411e2839f58a.pdf\"},{\"title\":\"KVFlow: Efficient Prefix Caching for Accelerating LLM- ...\",\"url\":\"https://arxiv.org/pdf/2507.07400\"},{\"title\":\"KVComm: Online Cross-context KV-cache Communication for Efficient LLM-based Multi-agent Systems\",\"url\":\"https://arxiv.org/html/2510.12872v1\"},{\"title\":\"KVCOMM: Online Cross-context KV-cache Communication ...\",\"url\":\"https://openreview.net/pdf/81561154949bf17e7f12ee6dc0485c10a2415686.pdf\"},{\"title\":\"KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows\",\"url\":\"https://arxiv.org/html/2507.07400v1\"},{\"title\":\"Crusoe MemoryAlloy technology: Reinventing KV caching for cluster-scale inference\",\"url\":\"https://www.crusoe.ai/resources/blog/crusoe-memoryalloy-reinventing-kv-caching-for-cluster-scale-inference\"},{\"title\":\"DroidSpeak: KV Cache Sharing for Cross-LLM Communication and Multi-LLM Serving\",\"url\":\"https://arxiv.org/html/2411.02820v4\"},{\"title\":\"GitHub - HankYe/KVCOMM: [NeurIPS'25] KVCOMM: Online Cross-context KV-cache Communication for Efficient LLM-based Multi-agent Systems\",\"url\":\"https://github.com/HankYe/KVCOMM\"},{\"title\":\"Ramp Labs on X: \\\"Latent Briefing: Efficient Memory Sharing for Multi-Agent Systems via KV Cache Compaction\\\" / X\",\"url\":\"https://x.com/RampLabs/status/2042660310851449223\"}]\n\nBased on the search results, I found comprehensive information about CrossKV and related segment-level KV cache sharing technologies for agentic workflows:\n\n## CrossKV: Segment-Level KV Cache Sharing for Collaborative Agents\n\nIn LLMs-based multi-agent systems, the Key-Value (KV) cache serves as a critical carrier of agents' working memory, and its efficient reuse is paramount for enhancing the service throughput and inference efficiency.\n\n### The Problem with Traditional Prefix Matching\n\nPrevailing KV cache reuse methods rely heavily on a rigid prefix matching mechanism, which mandates exact equivalence between the query request and the cached prefix. This inflexible matching scheme struggles to accommodate the highly heterogeneous instruction prompt template in multi-agent environments, thereby severely constraining the overall system throughput.\n\n### CrossKV Solution\n\nTo overcome these limitations, CrossKV introduces a novel collaborative memory approach, underpinned by a Segment-Level KV Cache Sharing mechanism. This method decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments generated by any other agent at arbitrary positions, without relying on sequential prefix consistency.\n\n### Key Features and Implementation\n\nCrossKV consists of three coordinated stages: (1) Pre-Alias during Pre-Filling: The system first identifies reusable segments within the input, and then queries the Memory Table and vLLM's internal Prefix Hash Table to retrieve the physical blocks of these segments. Finally, the system assigns new logical hashes that are calculated based on the current context to these physical blocks, effectively creating aliases that enable efficient cross-context cache reuse; (2) Decoding: The decoding stage leverages vLLM's paged attention mechanism to perform inference efficiently.\n\n### Benefits\n\nCrossKV not only significantly boosts the inference efficiency of LLMs in agentic workflows but also achieves genuine working memory sharing and collaboration, thereby enhancing cooperative capabilities among agents. Extensive experimental results demonstrate that the proposed method markedly reduces redundant computation, increases system throughput, and even improves the performance of agentic workflow on benchmark tests through effective working memory sharing.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77cf63af-3bdb-4fc5-8071-b45428d74d9b",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "4bcd0199-f5aa-4240-8885-75ed89e6d3fb",
+            "sourceToolAssistantUUID": "77cf63af-3bdb-4fc5-8071-b45428d74d9b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T21:04:05.146Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more specific information about the CrossKV paper's conference acceptance status and review details on OpenReview."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bcd0199-f5aa-4240-8885-75ed89e6d3fb",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZnvc4QTeZLaEsdGyQk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1c2e6b46-7d67-4e30-90e8-a8272497af79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqGzRMBGGfFw4cNr9Gkv13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1948,
+                "cache_creation_input_tokens": 1299,
+                "cache_read_input_tokens": 10352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1299,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T21:04:06.102Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Da46Qmz5bZjeFzKsBmqbzS",
+              "name": "WebSearch",
+              "input": {
+                "query": "CrossKV \"kgzBkyqg6Z\" OpenReview ICLR 2026 accepted decision"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c2e6b46-7d67-4e30-90e8-a8272497af79",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZnvc4QTeZLaEsdGyQk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "460ef3c7-2ee0-41bd-85fd-29384692ba04",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqGzRMBGGfFw4cNr9Gkv13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1948,
+                "cache_creation_input_tokens": 1299,
+                "cache_read_input_tokens": 10352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1299,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T21:04:06.390Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MS1KhMfSdRS2RGFxPYdcyS",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:openreview.net \"Towards a Collaborative Memory for Agentic Workflow\" venue decision 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "460ef3c7-2ee0-41bd-85fd-29384692ba04",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZnvc4QTeZLaEsdGyQk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9c64a96e-4542-4483-a614-21ed8c49e541",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqGzRMBGGfFw4cNr9Gkv13",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1948,
+                "cache_creation_input_tokens": 1299,
+                "cache_read_input_tokens": 10352,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1299
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1948,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 10352,
+                    "cache_creation_input_tokens": 1299,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1299,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T21:04:09.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MS1KhMfSdRS2RGFxPYdcyS",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:openreview.net \"Towards a Collaborative Memory for Agentic Workflow\" venue decision 2026\"\n\nLinks: [{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"}]\n\nBased on the search results, I found the paper on OpenReview. However, the search result doesn't display the venue decision information for 2026. The paper \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\" is posted on OpenReview at https://openreview.net/forum?id=kgzBkyqg6Z, but the venue decision details aren't visible in the search result snippet provided.\n\nTo see the full venue decision information for 2026, you would need to visit the OpenReview page directly using the link above, where the decision and submission/review details should be displayed on the forum page.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c64a96e-4542-4483-a614-21ed8c49e541",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "0c54f373-3c2a-4437-bd5e-72d5aa704234",
+            "sourceToolAssistantUUID": "9c64a96e-4542-4483-a614-21ed8c49e541",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T21:04:10.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Da46Qmz5bZjeFzKsBmqbzS",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CrossKV \"kgzBkyqg6Z\" OpenReview ICLR 2026 accepted decision\"\n\nLinks: [{\"title\":\"ICLR 2026 | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc%2F2026\"},{\"title\":\"ICLR 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference\"},{\"title\":\"ICLR 2026 Conference Submissions\",\"url\":\"https://openreview.net/submissions?page=387&venue=ICLR.cc/2026/Conference\"},{\"title\":\"2026 Conference\",\"url\":\"https://iclr.cc/\"},{\"title\":\"ICLR 2026 Papers\",\"url\":\"https://iclr.cc/virtual/2026/papers.html\"},{\"title\":\"The OpenReview / ICLR 2026 Identity Leak: What Really Happened, Why It Matters, and What Comes Next\",\"url\":\"https://atoms.dev/blog/openreview-leak-2025\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"},{\"title\":\"ICLR 2026 Author Guide\",\"url\":\"https://iclr.cc/Conferences/2026/AuthorGuide\"},{\"title\":\"ICLR 2026 Reviewer Guide\",\"url\":\"https://iclr.cc/Conferences/2026/ReviewerGuide\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"}]\n\nThe search results provide information about ICLR 2026 on OpenReview but do not contain specific information about a paper titled \"CrossKV\" with the submission ID \"kgzBkyqg6Z\" or its acceptance decision. \n\nThe search returned general ICLR 2026 conference pages, author/reviewer guides, and information about a security incident on OpenReview, but not the specific paper submission you're looking for. To find details about this particular paper and its decision status, you would need to:\n\n1. Visit the OpenReview page directly for ICLR 2026 at https://openreview.net/group?id=ICLR.cc%2F2026%2FConference\n2. Search for the paper ID \"kgzBkyqg6Z\" in their search functionality\n3. Look for papers with \"CrossKV\" in the title\n\nAlternatively, if you have the direct OpenReview link to the paper, you can access it to see the current decision status and review information.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "460ef3c7-2ee0-41bd-85fd-29384692ba04",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "81d567fe-cdc9-4019-9276-d8422b1f36ee",
+            "sourceToolAssistantUUID": "460ef3c7-2ee0-41bd-85fd-29384692ba04",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T21:04:15.918Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BmyMcdw5Smn83tyEPHi5NT",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81d567fe-cdc9-4019-9276-d8422b1f36ee",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZoaDzQiSXffu3fg3Yf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aeff3093-45c9-4426-b0af-be5eec4782d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R8nBkuNWbhWN5s6UwicDWF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 310,
+                "cache_creation_input_tokens": 2818,
+                "cache_read_input_tokens": 11651,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2818
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 310,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 11651,
+                    "cache_creation_input_tokens": 2818,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2818,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T21:04:15.923Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01BmyMcdw5Smn83tyEPHi5NT",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aeff3093-45c9-4426-b0af-be5eec4782d3",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "8a72abea-55d2-40de-87d7-8faa556f5a13",
+            "sourceToolAssistantUUID": "aeff3093-45c9-4426-b0af-be5eec4782d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T21:04:21.020Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016JuiUf1q1yEsN75NLo5ag2",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=kgzBkyqg6Z",
+                "prompt": "What is the venue/conference this paper was submitted to? What is the decision (accepted/rejected/withdrawn)? What are the review scores? When was it submitted? Is there any information about ICLR 2026 or ICML 2026 acceptance? List all available metadata about the submission status, venue, and reviews."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a72abea-55d2-40de-87d7-8faa556f5a13",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZowmXrZjTR6W1VscZG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "42cc162c-993b-401e-9a1e-ce0b0fb7407c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T2bDyr5cB8bgT1vvJb2bHk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 904,
+                "cache_read_input_tokens": 14469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 904,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T21:04:21.440Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UwhqCuvaaCb9Xeyo3xVdXx",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"CrossKV\" \"segment-level KV cache\" ICLR 2026 accepted OR rejected OR spotlight OR poster"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42cc162c-993b-401e-9a1e-ce0b0fb7407c",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZowmXrZjTR6W1VscZG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2a4a8be2-ad4c-4f05-bea9-5696bd57ef4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T2bDyr5cB8bgT1vvJb2bHk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 904,
+                "cache_read_input_tokens": 14469,
+                "output_tokens": 223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 904
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 223,
+                    "cache_read_input_tokens": 14469,
+                    "cache_creation_input_tokens": 904,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 904,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T21:04:24.810Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016JuiUf1q1yEsN75NLo5ag2",
+              "type": "tool_result",
+              "content": "# Submission Metadata Summary\n\n**Venue:** ICLR 2026 Conference\n\n**Submission Number:** 5797\n\n**Submission Date:** September 15, 2025 (modified February 11, 2026)\n\n**Decision Status:** Not indicated in the provided content. The document shows this is an OpenReview submission page, but no acceptance, rejection, or withdrawal decision is stated.\n\n**Review Scores:** No review scores are visible in the provided material.\n\n**Additional Details:**\n- The paper is licensed under \"CC BY 4.0\" Creative Commons Attribution\n- Visibility is set to \"Everyone\"\n- A revisions page exists for this submission\n- The work is \"built upon the vLLM framework\"\n\n**Note:** The provided webpage content does not include decision information, reviewer ratings, or acceptance/rejection status. To obtain this information, you would need to access the full OpenReview submission page directly, as decision details typically appear separately from the abstract view shown here."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42cc162c-993b-401e-9a1e-ce0b0fb7407c",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "92c0c48d-8ee8-4cf7-a3c8-b77189210a6a",
+            "sourceToolAssistantUUID": "42cc162c-993b-401e-9a1e-ce0b0fb7407c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T21:04:26.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UwhqCuvaaCb9Xeyo3xVdXx",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"CrossKV\" \"segment-level KV cache\" ICLR 2026 accepted OR rejected OR spotlight OR poster\"\n\nLinks: [{\"title\":\"XKV: CROSS-LAYER KV-CACHE COMPRESSION VIA ...\",\"url\":\"https://openreview.net/pdf?id=CSooB1sE2m\"},{\"title\":\"xKV: Cross-Layer KV-Cache Compression via Aligned Singular Vector Extraction | OpenReview\",\"url\":\"https://openreview.net/forum?id=CSooB1sE2m\"},{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"},{\"title\":\"Published as a conference paper at ICLR 2026 KV CACHE TRANSFORM CODING\",\"url\":\"https://openreview.net/pdf/1cef9774f0f0cf7bb9e4b167882e3ad3ef8cde16.pdf\"},{\"title\":\"[2503.18893] xKV: Cross-Layer SVD for KV-Cache Compression\",\"url\":\"https://arxiv.org/abs/2503.18893\"},{\"title\":\"GitHub - abdelfattah-lab/xKV: xKV: Cross-Layer SVD for KV-Cache Compression · GitHub\",\"url\":\"https://github.com/abdelfattah-lab/xKV\"},{\"title\":\"CommonKV: Compressing KV Cache with Cross-layer Parameter Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=ELGBM1aEjB\"},{\"title\":\"ICLR Poster KV Cache Transform Coding for Compact Storage in LLM Inference\",\"url\":\"https://iclr.cc/virtual/2026/poster/10008708\"},{\"title\":\"xKV: Cross-Layer SVD for KV-Cache Compression Chi-Chih Chang1 Chien-Yu Lin2\",\"url\":\"https://arxiv.org/pdf/2503.18893\"},{\"title\":\"Utilizing KV Cache for Sampling and Reasoning\",\"url\":\"https://arxiv.org/pdf/2601.20326\"}]\n\nBased on the search results, I found a paper that matches your query about segment-level KV cache for ICLR 2026:\n\nThe paper \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\" introduces a novel collaborative memory approach with a Segment-Level KV Cache Sharing mechanism that decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments generated by any other agent at arbitrary positions, without relying on sequential prefix consistency.\n\nHowever, I was unable to find the specific status (accepted, rejected, spotlight, or poster) for this paper from the search results. The results show it was submitted to ICLR 2026 on September 15, 2025 (modified February 11, 2026), but the final acceptance status is not clearly indicated in these search results.\n\nI should note that I did not find a paper specifically titled \"CrossKV\" in the results. If you're looking for information about the acceptance status of this segment-level KV cache paper or other details about it, you may want to check the ICLR 2026 OpenReview portal directly.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a4a8be2-ad4c-4f05-bea9-5696bd57ef4c",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "1635bdf6-4e91-4d25-b5cc-7b5b92bbc08a",
+            "sourceToolAssistantUUID": "2a4a8be2-ad4c-4f05-bea9-5696bd57ef4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T21:04:30.356Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016hDyDLVLzLWK6ks9tGToh3",
+              "name": "WebSearch",
+              "input": {
+                "query": "OpenReview \"kgzBkyqg6Z\" ICLR 2026 decision review rating"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1635bdf6-4e91-4d25-b5cc-7b5b92bbc08a",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZpk8ptUyMACKoBcgon",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "87e763a2-d162-4122-a6aa-0ddb4da8a220",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X9Nb3QoVnjxvKG97sMykaB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1446,
+                "cache_read_input_tokens": 15373,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1446,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T21:04:31.180Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HUJDRVvtatNBbtHKvAYFNw",
+              "name": "WebSearch",
+              "input": {
+                "query": "BFCL v3 \"multi-turn\" \"multi-step\" Berkeley gorilla function calling 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87e763a2-d162-4122-a6aa-0ddb4da8a220",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZpk8ptUyMACKoBcgon",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4d06ef1e-71a9-4afe-9556-dbc7a0c19823",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X9Nb3QoVnjxvKG97sMykaB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1446,
+                "cache_read_input_tokens": 15373,
+                "output_tokens": 136,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1446
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 136,
+                    "cache_read_input_tokens": 15373,
+                    "cache_creation_input_tokens": 1446,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1446,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T21:04:35.023Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016hDyDLVLzLWK6ks9tGToh3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"OpenReview \"kgzBkyqg6Z\" ICLR 2026 decision review rating\"\n\nLinks: [{\"title\":\"A Retrospective on the ICLR 2026 Review Process – ICLR Blog\",\"url\":\"https://blog.iclr.cc/2026/03/31/a-retrospective-on-the-iclr-2026-review-process/\"},{\"title\":\"ICLR 2026 Reviewer Guide\",\"url\":\"https://iclr.cc/Conferences/2026/ReviewerGuide\"},{\"title\":\"ICLR 2026 | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc%2F2026\"},{\"title\":\"PaperDecision | Modeling the Complete Peer Review Process\",\"url\":\"https://paperdecision.netlify.app/\"},{\"title\":\"ICLR 2026 Statistics - Paper Copilot\",\"url\":\"https://papercopilot.com/statistics/iclr-statistics/iclr-2026-statistics/\"},{\"title\":\"ICLR 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference\"},{\"title\":\"ICLR 2026 - Reviews\",\"url\":\"https://iclr.pangram.com/reviews\"},{\"title\":\"Insights from the ICLR Peer Review and Rebuttal Process\",\"url\":\"https://arxiv.org/pdf/2511.15462\"},{\"title\":\"ICLR 2026 Conference Submissions\",\"url\":\"https://openreview.net/submissions?page=617&venue=ICLR.cc/2026/Conference\"},{\"title\":\"ICLR | OpenReview\",\"url\":\"https://openreview.net/group?id=ICLR.cc\"}]\n\nThe search results don't contain specific information about the OpenReview submission ID \"kgzBkyqg6Z\" or its individual decision review rating. The search results provide general information about ICLR 2026, including its review process and overall acceptance rates, but don't retrieve the specific paper's review details.\n\nTo access information about that specific submission, you would need to visit the OpenReview website directly at https://openreview.net/ and search for the submission ID \"kgzBkyqg6Z\" within the ICLR 2026 submissions database. OpenReview maintains publicly accessible records of submissions, reviews, decisions, and ratings for ICLR papers.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87e763a2-d162-4122-a6aa-0ddb4da8a220",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "a75fe40f-3619-4ed3-b5c7-e1e945f9dc1f",
+            "sourceToolAssistantUUID": "87e763a2-d162-4122-a6aa-0ddb4da8a220",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T21:04:38.389Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HUJDRVvtatNBbtHKvAYFNw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BFCL v3 \"multi-turn\" \"multi-step\" Berkeley gorilla function calling 2024\"\n\nLinks: [{\"title\":\"gorilla-llm/Berkeley-Function-Calling-Leaderboard · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard\"},{\"title\":\"BFCL V3 • Multi-Turn & Multi-Step Function Calling\",\"url\":\"https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html\"},{\"title\":\"Berkeley Function Calling Leaderboard (BFCL) V4\",\"url\":\"https://gorilla.cs.berkeley.edu/leaderboard.html\"},{\"title\":\"The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=2GmDdhBdDk\"},{\"title\":\"Berkeley Function Calling Leaderboard\",\"url\":\"https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html\"},{\"title\":\"GitHub - speakleash/gorilla-bfcl-benchmark: FORK FOR = Gorilla: Training and Evaluating LLMs for Function Calls (Tool Calls) · GitHub\",\"url\":\"https://github.com/speakleash/gorilla-bfcl-benchmark\"},{\"title\":\"GitHub - ShishirPatil/gorilla: Gorilla: Training and Evaluating LLMs for Function Calls (Tool Calls) · GitHub\",\"url\":\"https://github.com/ShishirPatil/gorilla\"},{\"title\":\"README.md · gorilla-llm/Berkeley-Function-Calling-Leaderboard at main\",\"url\":\"https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard/blob/main/README.md\"},{\"title\":\"Shishir Patil on X: \\\"📣 Announcing BFCL V3 - evaluating how LLMs handle multi-turn, and multi-step function calling! 🚀 For agentic systems, function calling is critical, but a model needs to do more than single-turn tasks. Can it manage multi-turn workflows, handle sequential functions, and adapt to https://t.co/lC5ud5bkCN\\\" / X\",\"url\":\"https://x.com/shishirpatil_/status/1837205152132153803\"},{\"title\":\"gorilla/berkeley-function-call-leaderboard/CHANGELOG.md at main · ShishirPatil/gorilla\",\"url\":\"https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md\"}]\n\nBased on the search results, here's what I found about BFCL V3 with multi-turn and multi-step function calling:\n\n## Overview\n\nBFCL V3 introduces a new category for multi-turn and multi-step function calls (tool use). BFCL V3 was released on 09/22/2024.\n\n## Key Features\n\n**Multi-Turn vs. Multi-Step:**\n- Multi-turn function calls (user t0, assistant t1, user t2, assistant t3, ..) let models interact with the user back-and-forth, asking questions and refining their approach\n- Multi-step calls (user t0, assistant t1, assistant t2,..) let a model break its response into smaller parts before giving a final answer\n\n**Realistic Evaluation:**\nInstead of dissecting function parameter pairs using AST and matching them in a list of possible answers, BFCL V3 now verifies the actual state of the API system (like file systems or booking systems) after the model runs its functions, giving a more realistic way to see if the model did the right thing.\n\n## Dataset Composition\n\nBase Multi-Turn (200): This category covers foundational basic multi-turn interactions where all necessary information is provided to complete the task, and the model is expected to handle the multi-turn interaction without any ambiguity.\n\nAugmented Multi-Turn (800): These categories introduce additional complexity, such as ambiguous prompts or situations where the model must process multiple pieces of information across turns, requiring models to demonstrate more nuanced decision-making, disambiguation, and conditional logic across multiple turns.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d06ef1e-71a9-4afe-9556-dbc7a0c19823",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "569b17af-498c-4e5b-8329-ea068f5b96b9",
+            "sourceToolAssistantUUID": "4d06ef1e-71a9-4afe-9556-dbc7a0c19823",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T21:04:42.648Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ACFfAdUgYNp5Z5kc3ynMLX",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html",
+                "prompt": "When was BFCL v3 released? Who are the authors? What institution? Is this an official benchmark from UC Berkeley? What is the Gorilla project?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "569b17af-498c-4e5b-8329-ea068f5b96b9",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZqbddVB25sJg7rXqNu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bed7ef3f-1dc6-4ceb-af6b-2cb106d8cac4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013DRfNkdoA9vsbTDfZCmugB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1895,
+                "cache_read_input_tokens": 16819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1895,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T21:04:43.466Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MCgqu2rsvrDRejZtJC9dby",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Towards a Collaborative Memory for Agentic Workflow\" ICLR 2026 poster OR oral OR spotlight accepted"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bed7ef3f-1dc6-4ceb-af6b-2cb106d8cac4",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZqbddVB25sJg7rXqNu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c148ca90-d16d-4489-b1cb-73c36f976b68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013DRfNkdoA9vsbTDfZCmugB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1895,
+                "cache_read_input_tokens": 16819,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1895
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 16819,
+                    "cache_creation_input_tokens": 1895,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1895,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T21:04:47.387Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ACFfAdUgYNp5Z5kc3ynMLX",
+              "type": "tool_result",
+              "content": "# BFCL V3 Release Information\n\n**Release Date:** The benchmark was \"Release date: 2024-09-19. Last updated: 2024-12-10.\"\n\n**Authors:** The work was created by researchers including Huanzhi Mao, Fanjia Yan, Charlie Cheng-Jie Ji, Jason Huang, Vishnu Suresh, Yixin Huang, Xiaowen Yu, Joseph E. Gonzalez, and Shishir G. Patil.\n\n**Institution:** This is affiliated with UC Berkeley. The authors are from the university's computer science division, making this an official research project from the institution.\n\n**Official Status:** Yes, this appears to be an official benchmark. It's part of the Berkeley Function-Calling Leaderboard maintained through UC Berkeley's research channels with GitHub hosting.\n\n**Gorilla Project:** Gorilla is described as a \"Large Language Model Connected with Massive APIs.\" The project focuses on developing and evaluating LLMs' ability to effectively use external tools and functions—spanning single-turn basic requests through complex multi-turn, multi-step interactions requiring planning and error recovery across diverse API domains."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bed7ef3f-1dc6-4ceb-af6b-2cb106d8cac4",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "42d4e203-e5fa-411b-a707-12d79ebc6922",
+            "sourceToolAssistantUUID": "bed7ef3f-1dc6-4ceb-af6b-2cb106d8cac4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T21:04:49.117Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MCgqu2rsvrDRejZtJC9dby",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Towards a Collaborative Memory for Agentic Workflow\" ICLR 2026 poster OR oral OR spotlight accepted\"\n\nLinks: [{\"title\":\"ICLR 2026 Workshop MemAgents\",\"url\":\"https://sites.google.com/view/memagent-iclr26/\"},{\"title\":\"ICLR 2026 Workshop on Memory for LLM-Based Agentic Systems (MemAgents)\",\"url\":\"https://iclr.cc/virtual/2026/workshop/10000792\"},{\"title\":\"ICLR 2026 Workshop Proposal MemAgents: Memory for LLM-Based Agentic Systems\",\"url\":\"https://openreview.net/pdf?id=U51WxL382H\"},{\"title\":\"ICLR 2026 Workshops\",\"url\":\"https://iclr.cc/virtual/2026/events/workshop\"},{\"title\":\"ICLR 2026 Workshop on Memory for LLM-Based Agentic Systems (MemAgents) | OpenReview\",\"url\":\"https://openreview.net/forum?id=U51WxL382H\"},{\"title\":\"Intrinsic Memory Agents: Heterogeneous Multi-Agent LLM Systems through Structured Contextual Memory | OpenReview\",\"url\":\"https://openreview.net/forum?id=UbSUxAK3BI\"},{\"title\":\"ICLR 2026 Monday 04/27\",\"url\":\"https://iclr.cc/virtual/2026/day/4/27\"},{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"},{\"title\":\"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure\",\"url\":\"https://lambda.ai/blog/iclr-2026-12-papers\"},{\"title\":\"Workshops at ICLR 2026 – ICLR Blog\",\"url\":\"https://blog.iclr.cc/2026/01/13/iclr2026-workshops/\"}]\n\nPerfect! I found the paper you're looking for. \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\" introduces a novel collaborative memory approach underpinned by a Segment-Level KV Cache Sharing mechanism that decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments generated by any other agent at arbitrary positions, without relying on sequential prefix consistency.\n\nExtensive experimental results demonstrate that the proposed method markedly reduces redundant computation, increases system throughput, and even improves the performance of agentic workflow on benchmark tests through effective working memory sharing.\n\nThe paper appears to be in the primary area of \"other topics in machine learning,\" and it was found on OpenReview, indicating it was submitted to ICLR 2026. However, the specific acceptance status (whether it was accepted as a poster, oral, or spotlight) is not directly stated in the available search results. The paper focuses on making collaborative memory sharing more efficient for multi-agent LLM systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c148ca90-d16d-4489-b1cb-73c36f976b68",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "847d97b3-955a-4541-ad1b-ccf0f0ff0c20",
+            "sourceToolAssistantUUID": "c148ca90-d16d-4489-b1cb-73c36f976b68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T21:04:52.123Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0185DBVfh5iKGYNnZtuBCFxj",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICLR 2026 accepted papers list \"collaborative memory\" OR \"CrossKV\" OR \"segment-level KV\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "847d97b3-955a-4541-ad1b-ccf0f0ff0c20",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZrPXdr6t6Hs3gNN1tK",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f77b3418-a24e-4cdb-98b7-1eaf09da71e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014xejSaBZhrRoG6P3wxL2FZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1313,
+                "cache_read_input_tokens": 18714,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1313,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T21:04:52.579Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015inpKJhCwoP4TkJ4rEvNNV",
+              "name": "WebSearch",
+              "input": {
+                "query": "BFCL v3 paper ICML 2025 \"Berkeley Function Calling Leaderboard\" published"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f77b3418-a24e-4cdb-98b7-1eaf09da71e3",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZrPXdr6t6Hs3gNN1tK",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dcd088f3-8d05-48e1-9847-1ba472c932df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014xejSaBZhrRoG6P3wxL2FZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1313,
+                "cache_read_input_tokens": 18714,
+                "output_tokens": 141,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1313
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 141,
+                    "cache_read_input_tokens": 18714,
+                    "cache_creation_input_tokens": 1313,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1313,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T21:04:58.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015inpKJhCwoP4TkJ4rEvNNV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BFCL v3 paper ICML 2025 \"Berkeley Function Calling Leaderboard\" published\"\n\nLinks: [{\"title\":\"The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=2GmDdhBdDk\"},{\"title\":\"ICML Poster The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models\",\"url\":\"https://icml.cc/virtual/2025/poster/46593\"},{\"title\":\"Berkeley Function Calling Leaderboard (BFCL) V4\",\"url\":\"https://gorilla.cs.berkeley.edu/leaderboard.html\"},{\"title\":\"The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models\",\"url\":\"https://proceedings.mlr.press/v267/patil25a.html\"},{\"title\":\"Berkeley Function Calling Leaderboard (BFCL)\",\"url\":\"https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard\"},{\"title\":\"The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic\",\"url\":\"https://openreview.net/pdf?id=2GmDdhBdDk\"},{\"title\":\"Berkeley Function Calling Leaderboard\",\"url\":\"https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html\"},{\"title\":\"BFCL: Berkeley Function-Calling Leaderboard\",\"url\":\"https://ukgovernmentbeis.github.io/inspect_evals/evals/assistants/bfcl/\"},{\"title\":\"BFCL-v3 - EvalScope - Read the Docs\",\"url\":\"https://evalscope.readthedocs.io/en/latest/third_party/bfcl_v3.html\"},{\"title\":\"dblp: The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models.\",\"url\":\"https://dblp.org/rec/conf/icml/PatilMYJSSG25.html\"}]\n\nBased on the search results, I found information about the BFCL paper and ICML 2025 publication:\n\n## BFCL Paper Published at ICML 2025\n\nThe Berkeley Function Calling Leaderboard (BFCL) paper was published at ICML 2025 as a poster on May 1, 2025.\n\n### Paper Details\n\nThe paper is titled \"The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models\".\n\n**Authors:** Shishir G. Patil, Huanzhi Mao, Fanjia Yan, Charlie Cheng-Jie Ji, Vishnu Suresh, Ion Stoica, and Joseph E. Gonzalez\n\n### Key Contributions\n\nThe BFCL benchmark evaluates serial and parallel function calls across various programming languages using a novel Abstract Syntax Tree (AST) evaluation method that can easily scale to thousands of functions.\n\nThe BFCL benchmark evaluates the ability of models to abstain and reason in stateful multi-step agentic settings, and shows that while state-of-the-art LLMs excel at single-turn calls, memory, dynamic decision-making, and long-horizon reasoning remain open challenges.\n\n### Availability\n\nSince its preview, BFCL has become the de facto standard for evaluating function-calls, and can be accessed at gorilla.cs.berkeley.edu/leaderboard.html.\n\nThe paper is available through multiple sources including OpenReview and the MLNL Proceedings.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dcd088f3-8d05-48e1-9847-1ba472c932df",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "6d35ee3b-e12c-4a82-9583-4f7ac13520ee",
+            "sourceToolAssistantUUID": "dcd088f3-8d05-48e1-9847-1ba472c932df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T21:05:01.314Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0185DBVfh5iKGYNnZtuBCFxj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICLR 2026 accepted papers list \"collaborative memory\" OR \"CrossKV\" OR \"segment-level KV\"\"\n\nLinks: [{\"title\":\"ICLR 2026 Accepted Paper List - Paper Copilot\",\"url\":\"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/\"},{\"title\":\"Papers from the Department of Computing accepted at ICLR 2026 | Imperial News | Imperial College London\",\"url\":\"https://www.imperial.ac.uk/news/articles/engineering/computing/2026/papers-from-the-department-of-computing-accepted-at-iclr-2026/\"},{\"title\":\"ICLR 2026 Papers\",\"url\":\"https://iclr.cc/virtual/2026/papers.html\"},{\"title\":\"Paper Digest: ICLR 2026 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/\"},{\"title\":\"ICLR.2026 | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/venue/ICLR.2026\"},{\"title\":\"2026 Conference\",\"url\":\"https://iclr.cc/\"},{\"title\":\"Downloads 2026\",\"url\":\"https://iclr.cc/Downloads/2026\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"},{\"title\":\"34 papers have been accepted at ICLR 2026 | Center for Advanced Intelligence Project\",\"url\":\"https://aip.riken.jp/news/iclr2026/\"},{\"title\":\"Accepted papers\",\"url\":\"https://jmlr.org/tmlr/papers/\"}]\n\nBased on the search results, I found some ICLR 2026 accepted papers lists, but the search results don't contain specific papers matching the terms \"collaborative memory,\" \"CrossKV,\" or \"segment-level KV\" that you're looking for.\n\nThe search returned several resources with ICLR 2026 accepted papers, including:\n\n1. Paper Copilot's ICLR 2026 Paper List\n2. Cool Papers' list of accepted papers for ICLR.2026, including titles, authors, and abstracts\n3. A comprehensive ICLR 2026 downloads page with many paper titles listed\n\nHowever, none of the specific paper titles or descriptions in these search results mention \"collaborative memory,\" \"CrossKV,\" or \"segment-level KV.\" To find these specific papers, I'd recommend:\n\n- Visiting the Paper Copilot ICLR 2026 list and searching directly for your keywords\n- Checking the official ICLR 2026 papers page at iclr.cc\n- Using the Cool Papers website with keyword filters\n\nThe papers you're looking for may be among the accepted papers but weren't included in the excerpts returned by the search.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f77b3418-a24e-4cdb-98b7-1eaf09da71e3",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "37eec692-5b55-46c8-a4f3-3f29e4771921",
+            "sourceToolAssistantUUID": "f77b3418-a24e-4cdb-98b7-1eaf09da71e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T21:05:06.256Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UCC2sYAHVhvLqL6qd8xawF",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/",
+                "prompt": "Search for any paper with \"Collaborative Memory\" or \"CrossKV\" or \"Segment-Level KV Cache\" or \"Prefix Barrier\" in the title. Is there a paper called \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\" in this accepted papers list? List any matching or similar papers you find."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37eec692-5b55-46c8-a4f3-3f29e4771921",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZsHgge6BvoqDrebTrB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e6435da6-67fa-4a07-8f38-a159ad231c67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LCWz2WLkEpNyKLyF5JQXB4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 988,
+                "cache_creation_input_tokens": 908,
+                "cache_read_input_tokens": 20027,
+                "output_tokens": 188,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 908
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 988,
+                    "output_tokens": 188,
+                    "cache_read_input_tokens": 20027,
+                    "cache_creation_input_tokens": 908,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 908,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T21:05:10.093Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UCC2sYAHVhvLqL6qd8xawF",
+              "type": "tool_result",
+              "content": "# Search Results for ICLR 2026 Accepted Papers\n\nBased on the webpage content provided, **I cannot find the specific paper** \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\" in the visible ICLR 2026 accepted papers list.\n\nThe webpage displays only a summary statistics table and an empty paper list interface with the note \"Visible rows 0 / ...\" indicating that detailed paper records have not been loaded yet. The page states \"The table starts with the first `100 records`\" but no actual paper titles, authors, or metadata are displayed in the provided content.\n\nTo locate this paper, you would need to:\n- Click \"Fetch all\" on the webpage to load the complete paper database\n- Use the search functionality to query for \"Collaborative Memory,\" \"CrossKV,\" or related terms\n- Check the OpenReview portal directly at the provided link"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6435da6-67fa-4a07-8f38-a159ad231c67",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "6996af58-d6aa-4aee-bb3f-3d2f37059fc4",
+            "sourceToolAssistantUUID": "e6435da6-67fa-4a07-8f38-a159ad231c67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T21:05:13.773Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016yGKAvzbExBqetPQ9F9v9L",
+              "name": "WebSearch",
+              "input": {
+                "query": "iclr.cc 2026 papers \"Prefix Barrier\" OR \"Collaborative Memory for Agentic\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6996af58-d6aa-4aee-bb3f-3d2f37059fc4",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZswDf3V2w17ibcwYVb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f0ad8ef0-907b-4a17-aac0-e84cdfd7e31a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmbPpQCC6k86V2pdrbN5j6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1399,
+                "cache_read_input_tokens": 20935,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1399,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T21:05:14.472Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qqm75zRcyiL7mg1vQyXrKb",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"SegAttn\" CrossKV \"segment-level KV cache\" paper 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0ad8ef0-907b-4a17-aac0-e84cdfd7e31a",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZswDf3V2w17ibcwYVb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "12dd8678-6d60-4de3-9cfa-3b2f5efbdeeb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BmbPpQCC6k86V2pdrbN5j6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1399,
+                "cache_read_input_tokens": 20935,
+                "output_tokens": 133,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1399
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 133,
+                    "cache_read_input_tokens": 20935,
+                    "cache_creation_input_tokens": 1399,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1399,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T21:05:17.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016yGKAvzbExBqetPQ9F9v9L",
+              "type": "tool_result",
+              "content": "Web search results for query: \"iclr.cc 2026 papers \"Prefix Barrier\" OR \"Collaborative Memory for Agentic\"\"\n\nLinks: [{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"}]\n\nBased on the search results, I found a paper that matches your query:\n\n**\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\"**\n\nThis paper introduces a collaborative memory approach with a Segment-Level KV Cache Sharing mechanism that decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments generated by any other agent at arbitrary positions, without relying on sequential prefix consistency.\n\nThe research addresses how in LLM-based multi-agent systems, the Key-Value cache serves as a critical carrier of agents' working memory, and shows that prevailing KV cache reuse methods rely on a rigid prefix matching mechanism that mandates exact equivalence between the query request and the cached prefix, which constrains throughput in heterogeneous multi-agent environments.\n\nThe implementation is built upon the vLLM framework and leverages the PageAttention mechanism.\n\nThe paper is hosted on OpenReview at: https://openreview.net/forum?id=kgzBkyqg6Z\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0ad8ef0-907b-4a17-aac0-e84cdfd7e31a",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "71ba849a-dda8-4343-a618-1b1748336711",
+            "sourceToolAssistantUUID": "f0ad8ef0-907b-4a17-aac0-e84cdfd7e31a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-10T21:05:20.208Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qqm75zRcyiL7mg1vQyXrKb",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"SegAttn\" CrossKV \"segment-level KV cache\" paper 2025\"\n\nLinks: [{\"title\":\"[2503.18893] xKV: Cross-Layer SVD for KV-Cache Compression\",\"url\":\"https://arxiv.org/abs/2503.18893\"},{\"title\":\"GitHub - abdelfattah-lab/xKV: xKV: Cross-Layer SVD for KV-Cache Compression · GitHub\",\"url\":\"https://github.com/abdelfattah-lab/xKV\"},{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"},{\"title\":\"Published as a conference paper at ICLR 2025 SCBENCH:\",\"url\":\"https://openreview.net/pdf?id=gkUyYcY1W9\"},{\"title\":\"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).\",\"url\":\"https://github.com/October2001/Awesome-KV-Cache-Compression\"},{\"title\":\"Prompt Leakage via KV-Cache Sharing in Multi-Tenant ...\",\"url\":\"https://www.ndss-symposium.org/wp-content/uploads/2025-1772-paper.pdf\"},{\"title\":\"xKV: Cross-Layer SVD for KV-Cache Compression Chi-Chih Chang1 Chien-Yu Lin2\",\"url\":\"https://arxiv.org/pdf/2503.18893\"},{\"title\":\"CommonKV: Compressing KV Cache with Cross-layer Parameter Sharing\",\"url\":\"https://arxiv.org/pdf/2508.16134\"},{\"title\":\"xKV: Cross-Layer SVD for KV-Cache Compression\",\"url\":\"https://arxiv.org/html/2503.18893v1\"},{\"title\":\"[2508.16134] CommonKV: Compressing KV Cache with Cross-layer Parameter Sharing\",\"url\":\"https://arxiv.org/abs/2508.16134\"}]\n\nBased on the web search results, I found information about segment-level KV cache approaches in 2025, though the specific papers \"SegAttn\" and \"CrossKV\" with those exact names weren't the primary results. Here's what I found:\n\n## Segment-Level KV Cache Sharing Research\n\nOne paper introduces a segment-level KV cache sharing mechanism that decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments generated by any other agent at arbitrary positions, without relying on sequential prefix consistency.\n\n## Related KV Cache Compression Papers from 2025\n\nTwo prominent cross-layer KV cache compression papers from 2025 are:\n\n1. **xKV**: xKV is a simple post-training method that applies Singular Value Decomposition (SVD) on the KV-Cache of grouped layers, consolidating the KV-Cache of multiple layers into a shared low-rank subspace.\n\n2. **CommonKV**: CommonKV is a training-free method for cross-layer KV cache compression through adjacent parameters sharing that utilizes Singular Value Decomposition (SVD) to achieve weight sharing across adjacent parameters.\n\nThe search results suggest these are leading approaches to segment and layer-level KV cache optimization in 2025, though the exact papers titled \"SegAttn\" and \"CrossKV\" didn't appear in the search results. Would you like me to search with different keywords to find those specific papers?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12dd8678-6d60-4de3-9cfa-3b2f5efbdeeb",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "19fa9cdf-4aa6-462d-956d-ae916dba270b",
+            "sourceToolAssistantUUID": "12dd8678-6d60-4de3-9cfa-3b2f5efbdeeb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-10T21:05:24.135Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L6xADJKhyBQtLDHsKMuZEK",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://iclr.cc/virtual/2026/papers.html",
+                "prompt": "Search for any paper with \"Collaborative Memory\" or \"CrossKV\" or \"Segment-Level KV Cache\" or \"Prefix Barrier\" or \"Agentic Workflow\" in the title. Is there a paper called \"Towards a Collaborative Memory for Agentic Workflow\" in this list? List any matching papers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19fa9cdf-4aa6-462d-956d-ae916dba270b",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZtgSBx9utCdWf3puZu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6d2c4e9d-9c09-4577-b585-aa3e11c40359",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EkVYkRgfsZFjPp6vSVfWJY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1445,
+                "cache_read_input_tokens": 22334,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1445
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 22334,
+                    "cache_creation_input_tokens": 1445,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1445,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-10T21:05:30.067Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L6xADJKhyBQtLDHsKMuZEK",
+              "type": "tool_result",
+              "content": "Based on the webpage content provided, I cannot find any papers matching those search terms. The page shows the ICLR 2026 conference navigation and interface elements, but does not display an actual list of papers with their titles or details.\n\nTo search for papers like \"Towards a Collaborative Memory for Agentic Workflow\" or those containing \"Collaborative Memory,\" \"CrossKV,\" \"Segment-Level KV Cache,\" \"Prefix Barrier,\" or \"Agentic Workflow,\" you would need to access the actual papers listing page at the conference website, which is not shown in this content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d2c4e9d-9c09-4577-b585-aa3e11c40359",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "51f92bdc-ecf6-4356-b3e1-74264fb23fbf",
+            "sourceToolAssistantUUID": "6d2c4e9d-9c09-4577-b585-aa3e11c40359",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-10T21:05:34.010Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FJZJbZP9TZeKDvDXYt5Hbg",
+              "name": "WebSearch",
+              "input": {
+                "query": "papers.cool ICLR 2026 \"Collaborative Memory\" OR \"segment-level KV\" OR \"prefix barrier\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51f92bdc-ecf6-4356-b3e1-74264fb23fbf",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZuQchwBve61y479ewC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "393d79fe-cb94-465f-ab24-97651e3702c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJKMVyzZQ1PVp2aoBYbULr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 404,
+                "cache_read_input_tokens": 23779,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 404
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 23779,
+                    "cache_creation_input_tokens": 404,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 404,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-10T21:05:39.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FJZJbZP9TZeKDvDXYt5Hbg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"papers.cool ICLR 2026 \"Collaborative Memory\" OR \"segment-level KV\" OR \"prefix barrier\"\"\n\nLinks: [{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"},{\"title\":\"ICLR 2026 Papers\",\"url\":\"https://iclr.cc/virtual/2026/papers.html\"},{\"title\":\"ICLR.2026 | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/venue/ICLR.2026\"},{\"title\":\"Paper Digest: ICLR 2026 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/\"},{\"title\":\"ICLR.2026 - Oral | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/venue/ICLR.2026?group=Oral\"},{\"title\":\"Published as a conference paper at ICLR 2026 KV CACHE TRANSFORM CODING\",\"url\":\"https://openreview.net/pdf/1cef9774f0f0cf7bb9e4b167882e3ad3ef8cde16.pdf\"},{\"title\":\"Paper published at the Lifelong Agent Workshop @ ICLR 2026\",\"url\":\"https://openreview.net/pdf/5c6ed290be90eea7b75202124c5bffecac714a4c.pdf\"},{\"title\":\"ICLR 2026 Accepted Paper List - Paper Copilot\",\"url\":\"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/\"},{\"title\":\"ICLR 2026 Schedule\",\"url\":\"https://iclr.cc/virtual/2026/calendar\"},{\"title\":\"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure\",\"url\":\"https://lambda.ai/blog/iclr-2026-12-papers\"}]\n\nI found a highly relevant paper matching your search query. Based on the search results, the paper you're looking for is:\n\n**\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\"** - This paper introduces a collaborative memory approach underpinned by a Segment-Level KV Cache Sharing mechanism that decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments generated by any other agent at arbitrary positions, without relying on sequential prefix consistency.\n\nThe paper addresses the challenge that in LLMs-based multi-agent systems, the Key-Value (KV) cache serves as a critical carrier of agents' working memory. However, prevailing KV cache reuse methods rely heavily on a rigid prefix matching mechanism that mandates exact equivalence between the query request and the cached prefix, which struggles to accommodate the highly heterogeneous instruction prompt template in multi-agent environments.\n\nThe paper is published at ICLR 2026 and is available on OpenReview (https://openreview.net/forum?id=kgzBkyqg6Z).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "393d79fe-cb94-465f-ab24-97651e3702c4",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "f1f77747-dec7-4a44-8e0d-f8be760e23e1",
+            "sourceToolAssistantUUID": "393d79fe-cb94-465f-ab24-97651e3702c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-10T21:05:43.954Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Bj79J8kneUfANECpXv5K3",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://papers.cool/venue/ICLR.2026",
+                "prompt": "Search the page for any paper with \"Collaborative Memory\" or \"Prefix Barrier\" or \"Segment-Level KV Cache\" in the title. Is \"Towards a Collaborative Memory for Agentic Workflow\" listed here? What category is it in (oral, spotlight, poster)? List any matching results."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1f77747-dec7-4a44-8e0d-f8be760e23e1",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZv6rPw9jZFsnvezTbA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8bc4c03b-0cd4-494f-b001-3e0fcfacfe34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFpomVkL6yaLYbFGcpr6Hs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 912,
+                "cache_read_input_tokens": 24183,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 912
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 24183,
+                    "cache_creation_input_tokens": 912,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 912,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-10T21:05:50.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Bj79J8kneUfANECpXv5K3",
+              "type": "tool_result",
+              "content": "# Search Results\n\nBased on my search of the provided ICLR 2026 paper listing, I found **no matches** for:\n- \"Collaborative Memory\"\n- \"Prefix Barrier\"\n- \"Segment-Level KV Cache\"\n- \"Towards a Collaborative Memory for Agentic Workflow\"\n\nThe document contains the first 25 papers from a total of 5,357 submissions. The paper you're looking for is not visible in this excerpt. To locate it, you would need to search the complete ICLR 2026 proceedings or access additional pages of the conference materials."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bc4c03b-0cd4-494f-b001-3e0fcfacfe34",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "8d3fe5f2-0dff-4b27-935b-e8252b19a371",
+            "sourceToolAssistantUUID": "8bc4c03b-0cd4-494f-b001-3e0fcfacfe34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-10T21:05:55.001Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018kf66qdRpGXSSZYu5gyM4H",
+              "name": "WebSearch",
+              "input": {
+                "query": "openreview.net \"kgzBkyqg6Z\" \"Published as\" OR \"Accept\" OR \"Reject\" OR \"Withdrawn\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d3fe5f2-0dff-4b27-935b-e8252b19a371",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZvvVLSmVoAzKQCAGv7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "59dd84a4-8977-4d22-8bc1-6d1408965ea8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mop161KWrf7BZSrQnSAvgw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 298,
+                "cache_read_input_tokens": 25095,
+                "output_tokens": 85,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 298
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 85,
+                    "cache_read_input_tokens": 25095,
+                    "cache_creation_input_tokens": 298,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 298,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-10T21:06:01.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018kf66qdRpGXSSZYu5gyM4H",
+              "type": "tool_result",
+              "content": "Web search results for query: \"openreview.net \"kgzBkyqg6Z\" \"Published as\" OR \"Accept\" OR \"Reject\" OR \"Withdrawn\"\"\n\nLinks: [{\"title\":\"I want to delete my withdrawn or desk-rejected paper, what do I do? | OpenReview\",\"url\":\"https://docs.openreview.net/getting-started/frequently-asked-questions/i-want-to-delete-my-withdrawn-or-desk-rejected-paper-what-do-i-do\"},{\"title\":\"How to Undo a Paper Withdrawal | OpenReview\",\"url\":\"https://docs.openreview.net/how-to-guides/workflow/how-to-undo-a-paper-withdrawal\"},{\"title\":\"I accidentally withdrew a submission, what do I do? | OpenReview\",\"url\":\"https://docs.openreview.net/getting-started/frequently-asked-questions/i-accidentally-withdrew-a-submission-what-do-i-do\"},{\"title\":\"When will I be able to withdraw my submission? | OpenReview\",\"url\":\"https://docs.openreview.net/getting-started/frequently-asked-questions/when-will-i-be-able-to-withdraw-my-submission\"},{\"title\":\"Withdraw | OpenReview\",\"url\":\"https://openreview.net/forum?id=cQyybLUoXxc\"},{\"title\":\"How to Get all Notes (for submissions, reviews, rebuttals, etc) | OpenReview\",\"url\":\"https://docs.openreview.net/how-to-guides/data-retrieval-and-modification/how-to-get-all-notes-for-submissions-reviews-rebuttals-etc\"},{\"title\":\"Withdrawn | OpenReview\",\"url\":\"https://openreview.net/forum?id=BJgm2DkJgN\"},{\"title\":\"Venues | OpenReview\",\"url\":\"https://openreview.net/\"},{\"title\":\"How to Set a Custom Deadline for Withdrawals | OpenReview\",\"url\":\"https://docs.openreview.net/how-to-guides/workflow/how-to-set-a-custom-deadline-for-withdrawals\"},{\"title\":\"A simple Training-Free Method for Rejection Option | OpenReview\",\"url\":\"https://openreview.net/forum?id=K1DdnjL6p7\"}]\n\nThe search didn't return direct results for the specific submission ID \"kgzBkyqg6Z\". Let me try a more direct approach by searching for that ID on OpenReview.\n\nLinks: [{\"title\":\"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing | OpenReview\",\"url\":\"https://openreview.net/forum?id=kgzBkyqg6Z\"},{\"title\":\"Reasoning Vectors: Transferring Chain-of-Thought Capabilities via Task Arithmetic | OpenReview\",\"url\":\"https://openreview.net/forum?id=nYSqyzEp3G\"},{\"title\":\"MathNet: A Global Multimodal Benchmark for Mathematical Reasoning and Retrieval | OpenReview\",\"url\":\"https://openreview.net/forum?id=zPvdG1Va5Q\"},{\"title\":\"OracleKV: Oracle Guidance for Question-Independent KV Cache Eviction | OpenReview\",\"url\":\"https://openreview.net/forum?id=k3IAjIsfyw\"},{\"title\":\"Revision History for Response to Reviewer QXZH pt 2\",\"url\":\"https://openreview.net/revisions?id=nUrpwzPG2B1\"},{\"title\":\"RankNovo: A Universal Reranking Approach for Robust De Novo Peptide Sequencing | OpenReview\",\"url\":\"https://openreview.net/forum?id=87B3zDRMjv\"},{\"title\":\"Scaling up Memory for Robotic Control via Experience Retrieval | OpenReview\",\"url\":\"https://openreview.net/forum?id=1dH4ARGdwD\"},{\"title\":\"Revision History for Response to Reviewer KXKd\",\"url\":\"https://openreview.net/revisions?id=xByPyjSQYSl\"},{\"title\":\"Revision History for Rebuttal Summary For Area Chair's...\",\"url\":\"https://openreview.net/revisions?id=w7J1zwtz7E\"},{\"title\":\"FoPO: Foresight Policy Optimization Incentivizes Strategic Reasoning in LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=QlPSCVjG8U\"}]\n\nI found the submission! Here are the results for your search:\n\nThe paper with ID kgzBkyqg6Z is titled \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing.\" It addresses how Key-Value (KV) cache serves as a critical carrier of agents' working memory in LLM-based multi-agent systems. The paper proposes a novel collaborative memory approach with Segment-Level KV Cache Sharing that decomposes the cache unit into fine-grained semantic segments, enabling agents to dynamically reuse KV cache segments without relying on sequential prefix consistency.\n\nHowever, the search results do not contain information about the submission status (Published, Accepted, Rejected, or Withdrawn). The OpenReview forum page exists but the search results only show the abstract and paper content, not the decision status. You may need to visit the OpenReview forum directly at https://openreview.net/forum?id=kgzBkyqg6Z to see the current status of the submission.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59dd84a4-8977-4d22-8bc1-6d1408965ea8",
+            "isSidechain": true,
+            "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+            "agentId": "a337e4be66e068a7b",
+            "type": "user",
+            "uuid": "9c5655c0-c925-4ac4-b8a9-2b52c53e125b",
+            "sourceToolAssistantUUID": "59dd84a4-8977-4d22-8bc1-6d1408965ea8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-10T21:06:30.085Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my extensive research, here is what I was able to determine:\n\n---\n\n## 1. CrossKV Paper: \"Towards a Collaborative Memory for Agentic Workflow: Breaking the Prefix Barrier with Segment-Level KV Cache Sharing\"\n\n**The paper is real and confirmed to exist on OpenReview.**\n\n**Publication status findings:**\n- **Venue:** Submitted to **ICLR 2026 Conference** (Submission #5797)\n- **Submission date:** September 15, 2025 (modified February 11, 2026)\n- **OpenReview link:** https://openreview.net/forum?id=kgzBkyqg6Z\n- **Conference acceptance status:** I was unable to definitively confirm whether this paper was accepted or rejected at ICLR 2026. The paper appears on OpenReview under the ICLR 2026 conference venue, and the February 2026 modification date suggests it went through the rebuttal process. However, I could not find it explicitly listed in the ICLR 2026 accepted papers lists I was able to access (which were incomplete -- the conference had 5,357 submissions total). I also could not retrieve specific review scores from the OpenReview page.\n\n**The claim that it was \"posted on OpenReview in Sep 2025\" is confirmed accurate** (September 15, 2025).\n\n**Key details about the paper:**\n- Proposes segment-level KV cache sharing that breaks the prefix matching constraint\n- Enables cross-agent KV cache reuse at arbitrary positions (not just matching prefixes)\n- Built on vLLM framework using PagedAttention\n- Three stages: Pre-Alias during Pre-Filling, Decoding, and Memory Table management\n\n---\n\n## 2. BFCL v3 (Berkeley Function Calling Leaderboard Version 3)\n\n**Yes, BFCL v3 is a real, well-established benchmark.**\n\n- **Release date:** September 19, 2024 (last updated December 10, 2024)\n- **Institution:** UC Berkeley (part of the Gorilla project)\n- **Authors:** Shishir G. Patil, Huanzhi Mao, Fanjia Yan, Charlie Cheng-Jie Ji, Vishnu Suresh, Ion Stoica, Joseph E. Gonzalez\n- **Publication:** The BFCL paper was published as a poster at **ICML 2025** (proceedings at MLR Press: `proceedings.mlr.press/v267/patil25a.html`)\n- **What v3 adds:** Multi-turn and multi-step function calling evaluation (Base Multi-Turn: 200 examples; Augmented Multi-Turn: 800 examples)\n- **Evaluation method:** State-based verification (checks actual API system state after execution, rather than AST matching)\n- **Current status:** Now at V4, accessible at `gorilla.cs.berkeley.edu/leaderboard.html`\n- **Official page for v3:** https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html\n\nBFCL is described as having become \"the de facto standard for evaluating function-calls\" in LLMs.\n\n---\n\n## Summary\n\n| Item | Status |\n|------|--------|\n| CrossKV paper exists | Confirmed |\n| Posted on OpenReview Sep 2025 | Confirmed (Sep 15, 2025) |\n| Submitted to ICLR 2026 | Confirmed |\n| Accepted at ICLR 2026 | Could not definitively confirm or deny |\n| BFCL v3 is real | Confirmed |\n| BFCL v3 is from Berkeley | Confirmed (UC Berkeley, Gorilla project) |\n| BFCL paper published | Yes, at ICML 2025 |\n\nSources:\n- [CrossKV on OpenReview](https://openreview.net/forum?id=kgzBkyqg6Z)\n- [BFCL V3 Blog Post](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html)\n- [BFCL Paper at ICML 2025](https://icml.cc/virtual/2025/poster/46593)\n- [BFCL Paper in MLR Proceedings](https://proceedings.mlr.press/v267/patil25a.html)\n- [BFCL V4 Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html)\n- [ICLR 2026 Conference on OpenReview](https://openreview.net/group?id=ICLR.cc%2F2026%2FConference)\n- [ICLR 2026 Papers (papers.cool)](https://papers.cool/venue/ICLR.2026)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c5655c0-c925-4ac4-b8a9-2b52c53e125b",
+            "isSidechain": true,
+            "agentId": "a337e4be66e068a7b",
+            "requestId": "req_011CauZwkemmP5ArFAtXKEAo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5915c988-873f-42a3-adfc-d3fcdc936ade",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012dBnagSsc2H8NeMdkACS2x",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1456,
+                "cache_read_input_tokens": 25393,
+                "output_tokens": 1184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1456
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1184,
+                    "cache_read_input_tokens": 25393,
+                    "cache_creation_input_tokens": 1456,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1456,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 48
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-the-paper-towards-a-collaborative-memory-for-agentic-workflow-break.md"
+}

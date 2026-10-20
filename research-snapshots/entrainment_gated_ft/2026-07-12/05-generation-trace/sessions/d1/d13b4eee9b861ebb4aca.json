@@ -1,0 +1,1972 @@
+{
+  "schema_version": "1.0",
+  "id": "d13b4eee9b861ebb4aca",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to find the expected YAML schema for experiment_plan.yaml used by two Python functions: `read_experiment_plan_wit",
+  "task_key": "agent-a687669e02e1c82a7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a687669e02e1c82a7.jsonl",
+    "occurrence": 1,
+    "bytes": 117699,
+    "sha256": "a012970f358b81c53d8436a047c779321d932f725c0ce6e1c57b16bfdc71287a"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "assistant": 11,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T15:38:44.682Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to find the expected YAML schema for experiment_plan.yaml used by two Python functions: `read_experiment_plan_with_status` and `compute_coverage_matrix`. These tools are defined in the agent-ml-research MCP server codebase.\n\nSearch in /home/ubuntu/agent-ml-research/ for:\n1. The implementation of `read_experiment_plan_with_status` — what YAML keys does it parse? What's the expected top-level structure?\n2. The implementation of `compute_coverage_matrix` — same question.\n3. Any example experiment_plan.yaml files in the codebase.\n\nThe current YAML has top-level keys `claims:` (dict) and `experiments:` (list of plan entries). Each plan entry has: plan_id, name, claim, description, priority, depends_on, registry_id, notes. The tools return empty results, so one or more field names don't match.\n\nReport: the exact expected YAML structure (key names, nesting) so I can fix the file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "584b3e78-0919-456b-a9bc-11ea3f6cb999",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T15:38:47.049Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the agent-ml-research codebase to find the expected YAML schema for experiment_plan.yaml."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "584b3e78-0919-456b-a9bc-11ea3f6cb999",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpQxgjD5WKHbm3GSK1u",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "48247bb6-4623-408f-8ba6-ae4d7e1c2227",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DVmzgFygsbfmfb6xWD1iCd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 34626,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 34626,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T15:38:47.155Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MKNU2ez3xEoX9PoufQeFCm",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/agent-ml-research -type f -name \"*.py\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48247bb6-4623-408f-8ba6-ae4d7e1c2227",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpQxgjD5WKHbm3GSK1u",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "789dab0c-0e50-4308-8c2f-49413cb285ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DVmzgFygsbfmfb6xWD1iCd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 34626,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 102,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 34626
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 102,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 34626,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 34626,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T15:38:47.319Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MKNU2ez3xEoX9PoufQeFCm",
+              "type": "tool_result",
+              "content": "/home/ubuntu/agent-ml-research/scripts/smoke_test.py\n/home/ubuntu/agent-ml-research/scripts/feishu_chat.py\n/home/ubuntu/agent-ml-research/scripts/instance_monitor.py\n/home/ubuntu/agent-ml-research/scripts/evaluation/gen_review_html.py\n/home/ubuntu/agent-ml-research/scripts/migrate_experiments_to_projects.py\n/home/ubuntu/agent-ml-research/scripts/migrate_v2_layout.py\n/home/ubuntu/agent-ml-research/scripts/migrate_registry.py\n/home/ubuntu/agent-ml-research/scripts/migrate_workspace.py\n/home/ubuntu/agent-ml-research/scripts/split_active_workspaces.py\n/home/ubuntu/agent-ml-research/scripts/resample_split2_neg5.py\n/home/ubuntu/agent-ml-research/scripts/simulate_user.py\n/home/ubuntu/agent-ml-research/scripts/compare_weight_methods.py\n/home/ubuntu/agent-ml-research/.venv/bin/pdf2txt.py\n/home/ubuntu/agent-ml-research/.venv/bin/dumppdf.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/aiohappyeyeballs/utils.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/aiohappyeyeballs/impl.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/aiohappyeyeballs/_staggered.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/aiohappyeyeballs/__init__.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/aiohappyeyeballs/types.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/annotated_doc/main.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "789dab0c-0e50-4308-8c2f-49413cb285ba",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "42276b24-4a4f-4384-8f8c-32a251df8ce7",
+            "sourceToolAssistantUUID": "789dab0c-0e50-4308-8c2f-49413cb285ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T15:38:48.921Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for the implementation of these two functions:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42276b24-4a4f-4384-8f8c-32a251df8ce7",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpR9oxUcJPTrtSPUUoP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f5e302ff-c9bd-4963-9433-7896f49d35d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SMy3bTaKDmRdHUydK4LB8m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1464,
+                "cache_read_input_tokens": 34626,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1464,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T15:38:49.386Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NWAsar54XfCByV7s9xN2M3",
+              "name": "Grep",
+              "input": {
+                "pattern": "def read_experiment_plan_with_status",
+                "path": "/home/ubuntu/agent-ml-research"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5e302ff-c9bd-4963-9433-7896f49d35d5",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpR9oxUcJPTrtSPUUoP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "70d636d0-8f40-4e2b-b5f3-6a6890698cb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SMy3bTaKDmRdHUydK4LB8m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1464,
+                "cache_read_input_tokens": 34626,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1464,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T15:38:49.445Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NWAsar54XfCByV7s9xN2M3",
+              "type": "tool_result",
+              "content": "Found 3 files\n/home/ubuntu/agent-ml-research/docs/plans/dream/DREAM_AGENT_DESIGN.md\n/home/ubuntu/agent-ml-research/core/mcp_server.py\n/home/ubuntu/agent-ml-research/core/tools/experiment_plan.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70d636d0-8f40-4e2b-b5f3-6a6890698cb8",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "aff5580a-cf15-4cec-b07f-5e876de14cdf",
+            "sourceToolAssistantUUID": "70d636d0-8f40-4e2b-b5f3-6a6890698cb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T15:38:49.506Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BUSjCPRrirtPwsXMmufknc",
+              "name": "Grep",
+              "input": {
+                "pattern": "def compute_coverage_matrix",
+                "path": "/home/ubuntu/agent-ml-research"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aff5580a-cf15-4cec-b07f-5e876de14cdf",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpR9oxUcJPTrtSPUUoP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b052e75d-96de-4ed9-9fd5-505ef1602aa5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SMy3bTaKDmRdHUydK4LB8m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1464,
+                "cache_read_input_tokens": 34626,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1464
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 34626,
+                    "cache_creation_input_tokens": 1464,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1464,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T15:38:49.558Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BUSjCPRrirtPwsXMmufknc",
+              "type": "tool_result",
+              "content": "Found 3 files\n/home/ubuntu/agent-ml-research/docs/plans/dream/DREAM_AGENT_DESIGN.md\n/home/ubuntu/agent-ml-research/core/mcp_server.py\n/home/ubuntu/agent-ml-research/core/tools/experiment_plan.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b052e75d-96de-4ed9-9fd5-505ef1602aa5",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "40fc160e-dab6-453e-9aba-34714b4c2c22",
+            "sourceToolAssistantUUID": "b052e75d-96de-4ed9-9fd5-505ef1602aa5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T15:38:51.067Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the experiment_plan.py file which likely contains both functions:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40fc160e-dab6-453e-9aba-34714b4c2c22",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRKNRmN4p2FkdNgzma",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f60cfe0f-91c7-4068-abe7-ca7de0ca1c18",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BM5LwhgrLsXBHYdvSh65Ro",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 374,
+                "cache_read_input_tokens": 36090,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 374
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 36090,
+                    "cache_creation_input_tokens": 374,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 374,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T15:38:51.127Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tca5igGQxbw7HRHF3edd5g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/tools/experiment_plan.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f60cfe0f-91c7-4068-abe7-ca7de0ca1c18",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRKNRmN4p2FkdNgzma",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "aa4717d7-1538-458f-b111-9bc5ff9ebbdb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BM5LwhgrLsXBHYdvSh65Ro",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 374,
+                "cache_read_input_tokens": 36090,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 374
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 36090,
+                    "cache_creation_input_tokens": 374,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 374,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T15:38:51.137Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tca5igGQxbw7HRHF3edd5g",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Experiment Plan — Director-authored research roadmap.\n2\t\n3\tThe plan file (``projects/{project}/experiment_plan.yaml``) is the\n4\tauthoritative list of experiments that the project will need to write the\n5\ttarget paper. Each plan entry holds **planning intent only** — the claim\n6\tit supports, priority, dependencies, GPU budget, description. It does\n7\t**not** store experiment status.\n8\t\n9\tStatus comes from the registry. Plan entries link to registry entries via\n10\tthe optional ``registry_id`` field:\n11\t\n12\t  • ``registry_id`` present + matches a registry entry → status / metrics\n13\t    / conclusion are read from the registry on every call.\n14\t  • ``registry_id`` present but registry entry missing → ``status =\n15\t    \"orphaned\"`` (registry was rebuilt / experiment was deleted by hand).\n16\t  • ``registry_id`` absent → implicit ``status = \"planned\"``.\n17\t\n18\tThe \"selection C\" rationale (see ``docs/plans/DREAM_AGENT_DESIGN.md``) is\n19\tthat storing status in two places creates a synchronization problem. This\n20\tmodule eliminates it by always deriving live status from the registry.\n21\t\n22\tCompanion view: ``compute_coverage_matrix()`` aggregates plan entries by\n23\t``claim`` so Director / Dream Tool can see \"for each Core Claim, what\n24\texperiments are planned / running / done / blocked.\" The matrix is\n25\trecomputed on demand — nothing is persisted.\n26\t\n27\tConcurrent writers (e.g. ``writeback_registry_id`` called from\n28\t``submit_training_job``) hold an exclusive flock on a sidecar ``.lock``\n29\tfile and use atomic temp-and-rename, matching the patterns in\n30\t``literature.py`` and ``paper_checklist.py``.\n31\t\"\"\"\n32\t\n33\tfrom __future__ import annotations\n34\t\n35\timport fcntl\n36\timport logging\n37\timport os\n38\timport tempfile\n39\tfrom pathlib import Path\n40\tfrom typing import Any\n41\t\n42\timport yaml\n43\t\n44\tfrom core import paths as _paths\n45\tfrom core.tools.result import ToolResult\n46\t\n47\tlogger = logging.getLogger(__name__)\n48\t\n49\t\n50\tPLAN_FILENAME = \"experiment_plan.yaml\"\n51\t\n52\t# Statuses returned by read_experiment_plan_with_status() for entries whose\n53\t# registry_id is absent or stale. Registry statuses (PENDING/RUNNING/DONE/...)\n54\t# are passed through unchanged.\n55\tSTATUS_PLANNED = \"planned\"\n56\tSTATUS_ORPHANED = \"orphaned\"\n57\t\n58\t# Statuses that count as \"done with usable data\" for coverage purposes.\n59\t_COVERAGE_FILLED = frozenset({\"DONE\"})\n60\t\n61\t# Coverage rollup buckets (returned in the matrix summary).\n62\t_COVERAGE_BUCKETS = (\"planned\", \"running\", \"done\", \"failed\", \"orphaned\")\n63\t\n64\t\n65\t# ---------------------------------------------------------------------------\n66\t# Path resolution\n67\t# ---------------------------------------------------------------------------\n68\t\n69\tdef get_experiment_plan_path(project: str) -> Path:\n70\t    \"\"\"Resolve the per-project experiment_plan.yaml path.\"\"\"\n71\t    if not project:\n72\t        raise ValueError(\"project is required\")\n73\t    p = _paths.resolve_project_file(project, PLAN_FILENAME)\n74\t    p.parent.mkdir(parents=True, exist_ok=True)\n75\t    return p\n76\t\n77\t\n78\t# ---------------------------------------------------------------------------\n79\t# Atomic I/O\n80\t# ---------------------------------------------------------------------------\n81\t\n82\tdef _empty_plan() -> dict:\n83\t    return {\"experiments\": []}\n84\t\n85\t\n86\tdef _read_raw(path: Path) -> dict:\n87\t    \"\"\"Load and lightly normalise the plan file.\n88\t\n89\t    Malformed entries (missing ``id``) are dropped silently — the file may\n90\t    have been hand-edited. The caller (read_experiment_plan_with_status)\n91\t    decides how strict to be.\n92\t    \"\"\"\n93\t    if not path.exists():\n94\t        return _empty_plan()\n95\t    try:\n96\t        data = yaml.safe_load(path.read_text(encoding=\"utf-8\")) or {}\n97\t    except Exception:\n98\t        logger.warning(\"Failed to parse experiment_plan at %s\", path, exc_info=True)\n99\t        return _empty_plan()\n100\t    if not isinstance(data, dict):\n101\t        return _empty_plan()\n102\t    experiments = data.get(\"experiments\")\n103\t    if not isinstance(experiments, list):\n104\t        experiments = []\n105\t    clean: list[dict] = []\n106\t    for e in experiments:\n107\t        if isinstance(e, dict) and e.get(\"id\"):\n108\t            clean.append(e)\n109\t    return {\"experiments\": clean}\n110\t\n111\t\n112\tdef _read_modify_write(path: Path, modifier) -> dict:\n113\t    path.parent.mkdir(parents=True, exist_ok=True)\n114\t    lock_path = path.with_suffix(\".lock\")\n115\t    with open(lock_path, \"a+\") as lock_f:\n116\t        fcntl.flock(lock_f, fcntl.LOCK_EX)\n117\t        try:\n118\t            data = _read_raw(path)\n119\t            modifier(data)\n120\t\n121\t            fd, tmp_path = tempfile.mkstemp(\n122\t                dir=str(path.parent), prefix=\".plan_\", suffix=\".tmp\",\n123\t            )\n124\t            try:\n125\t                with os.fdopen(fd, \"w\", encoding=\"utf-8\") as tmp_f:\n126\t                    yaml.dump(\n127\t                        data, tmp_f,\n128\t                        default_flow_style=False, allow_unicode=True, sort_keys=False,\n129\t                    )\n130\t                    tmp_f.flush()\n131\t                    os.fsync(tmp_f.fileno())\n132\t                os.replace(tmp_path, str(path))\n133\t            except Exception:\n134\t                if os.path.exists(tmp_path):\n135\t                    os.unlink(tmp_path)\n136\t                raise\n137\t        finally:\n138\t            fcntl.flock(lock_f, fcntl.LOCK_UN)\n139\t    return data\n140\t\n141\t\n142\t# ---------------------------------------------------------------------------\n143\t# Registry join — runs on every read so plan/registry never drift\n144\t# ---------------------------------------------------------------------------\n145\t\n146\tdef _load_registry_experiments(project: str) -> dict[str, dict]:\n147\t    \"\"\"Read the registry once and return the {exp_id: entry} map.\n148\t\n149\t    Imported lazily to avoid pulling registry dependencies into modules\n150\t    that only need plan reads (e.g. session prompts).\n151\t    \"\"\"\n152\t    try:\n153\t        from core.tools.registry import get_registry_path\n154\t        reg_path = get_registry_path(project)\n155\t    except Exception:\n156\t        return {}\n157\t    if not reg_path.exists():\n158\t        return {}\n159\t    try:\n160\t        data = yaml.safe_load(reg_path.read_text(encoding=\"utf-8\")) or {}\n161\t    except Exception:\n162\t        logger.warning(\"Failed to parse registry at %s\", reg_path, exc_info=True)\n163\t        return {}\n164\t    experiments = data.get(\"experiments\")\n165\t    if not isinstance(experiments, dict):\n166\t        return {}\n167\t    return experiments\n168\t\n169\t\n170\tdef _attach_status(entry: dict, registry: dict[str, dict]) -> dict:\n171\t    \"\"\"Return a copy of ``entry`` with status / conclusion / metrics from registry.\n172\t\n173\t    Never mutates the input. The returned dict is what callers display —\n174\t    on-disk YAML stays untouched.\n175\t    \"\"\"\n176\t    merged = dict(entry)\n177\t    reg_id = entry.get(\"registry_id\")\n178\t    if reg_id:\n179\t        reg_exp = registry.get(reg_id)\n180\t        if reg_exp:\n181\t            merged[\"status\"] = reg_exp.get(\"status\", STATUS_ORPHANED)\n182\t            if \"conclusion\" in reg_exp:\n183\t                merged[\"conclusion\"] = reg_exp.get(\"conclusion\")\n184\t            if \"metrics\" in reg_exp:\n185\t                merged[\"metrics\"] = reg_exp.get(\"metrics\")\n186\t        else:\n187\t            merged[\"status\"] = STATUS_ORPHANED\n188\t    else:\n189\t        merged[\"status\"] = STATUS_PLANNED\n190\t    return merged\n191\t\n192\t\n193\tdef read_experiment_plan_with_status(project: str) -> ToolResult:\n194\t    \"\"\"Read the plan and overlay live status from the registry.\n195\t\n196\t    Returns:\n197\t        ToolResult.data = {\n198\t            \"experiments\": [\n199\t                {\"id\": \"plan_001\", \"name\": \"...\", \"claim\": \"Claim 1\",\n200\t                 \"registry_id\": \"exp_001\", \"status\": \"RUNNING\",\n201\t                 \"metrics\": {...}, \"conclusion\": \"success\", ...},\n202\t                ...\n203\t            ],\n204\t            \"total\": N,\n205\t        }\n206\t\n207\t    Status is one of:\n208\t        - \"planned\"  — no registry_id\n209\t        - \"orphaned\" — registry_id set but registry entry missing\n210\t        - any registry status (PREPARING/PENDING/QUEUED/ALLOCATED/RUNNING/\n211\t          ANALYZING/DONE/DEPLOYING/DEPLOYED)\n212\t    \"\"\"\n213\t    if not project:\n214\t        return ToolResult(success=False, error=\"project is required\")\n215\t\n216\t    plan = _read_raw(get_experiment_plan_path(project))\n217\t    registry = _load_registry_experiments(project)\n218\t\n219\t    merged = [_attach_status(e, registry) for e in plan.get(\"experiments\", [])]\n220\t    return ToolResult(\n221\t        success=True,\n222\t        data={\"experiments\": merged, \"total\": len(merged)},\n223\t    )\n224\t\n225\t\n226\t# ---------------------------------------------------------------------------\n227\t# Coverage matrix — derived view, not persisted\n228\t# ---------------------------------------------------------------------------\n229\t\n230\tdef _coverage_bucket(status: str, conclusion: str | None = None) -> str:\n231\t    \"\"\"Map a (status, conclusion) pair to a coverage bucket.\"\"\"\n232\t    if status == STATUS_PLANNED:\n233\t        return \"planned\"\n234\t    if status == STATUS_ORPHANED:\n235\t        return \"orphaned\"\n236\t    if status == \"DONE\":\n237\t        if conclusion == \"success\":\n238\t            return \"done\"\n239\t        if conclusion in (\"failed\", \"killed\", \"negative\"):\n240\t            return \"failed\"\n241\t        return \"done\"  # unknown conclusion — count as done so it isn't pending\n242\t    # PREPARING / PENDING / QUEUED / ALLOCATED / RUNNING / ANALYZING / DEPLOY*\n243\t    return \"running\"\n244\t\n245\t\n246\tdef _empty_bucket_counts() -> dict[str, int]:\n247\t    return {b: 0 for b in _COVERAGE_BUCKETS}\n248\t\n249\t\n250\tdef compute_coverage_matrix(project: str) -> ToolResult:\n251\t    \"\"\"Group plan entries by ``claim`` and report coverage per claim.\n252\t\n253\t    Coverage = experiments whose ``status == DONE`` (regardless of\n254\t    conclusion), divided by total experiments in that claim. Claims with\n255\t    zero experiments report ``coverage_pct = 0.0``.\n256\t\n257\t    Returns:\n258\t        ToolResult.data = {\n259\t            \"claims\": [\"Claim 1\", \"Claim 2\", ...],\n260\t            \"matrix\": {\n261\t                \"Claim 1\": {\n262\t                    \"experiments\": [{...}, {...}],\n263\t                    \"counts\": {\"planned\": 2, \"running\": 1, \"done\": 3, ...},\n264\t                    \"total\": 6,\n265\t                    \"coverage\": \"3/6\",\n266\t                    \"coverage_pct\": 50.0,\n267\t                },\n268\t                ...\n269\t            },\n270\t            \"unassigned\": [{...}],   # entries without a `claim` field\n271\t            \"summary\": {\n272\t                \"total_experiments\": N,\n273\t                \"total_claims\": M,\n274\t                \"counts\": {\"planned\": ..., \"running\": ..., \"done\": ...},\n275\t                \"coverage\": \"K/N\",\n276\t                \"coverage_pct\": ...,\n277\t            },\n278\t        }\n279\t\n280\t    The ``unassigned`` list lets Director see which plan entries still\n281\t    need a claim attached — important for keeping the matrix honest.\n282\t    \"\"\"\n283\t    plan_res = read_experiment_plan_with_status(project)\n284\t    if not plan_res.success:\n285\t        return plan_res\n286\t\n287\t    entries: list[dict] = plan_res.data.get(\"experiments\", []) or []\n288\t\n289\t    by_claim: dict[str, list[dict]] = {}\n290\t    unassigned: list[dict] = []\n291\t    for e in entries:\n292\t        claim = e.get(\"claim\")\n293\t        if claim:\n294\t            by_claim.setdefault(claim, []).append(e)\n295\t        else:\n296\t            unassigned.append(e)\n297\t\n298\t    matrix: dict[str, dict] = {}\n299\t    overall_counts = _empty_bucket_counts()\n300\t\n301\t    for claim, exps in by_claim.items():\n302\t        counts = _empty_bucket_counts()\n303\t        for e in exps:\n304\t            bucket = _coverage_bucket(e.get(\"status\", STATUS_PLANNED), e.get(\"conclusion\"))\n305\t            counts[bucket] += 1\n306\t            overall_counts[bucket] += 1\n307\t        total = len(exps)\n308\t        done = counts[\"done\"]\n309\t        matrix[claim] = {\n310\t            \"experiments\": exps,\n311\t            \"counts\": counts,\n312\t            \"total\": total,\n313\t            \"coverage\": f\"{done}/{total}\" if total else \"0/0\",\n314\t            \"coverage_pct\": round(100.0 * done / total, 1) if total else 0.0,\n315\t        }\n316\t\n317\t    for e in unassigned:\n318\t        bucket = _coverage_bucket(e.get(\"status\", STATUS_PLANNED), e.get(\"conclusion\"))\n319\t        overall_counts[bucket] += 1\n320\t\n321\t    total_exps = len(entries)\n322\t    total_done = overall_counts[\"done\"]\n323\t\n324\t    return ToolResult(success=True, data={\n325\t        \"claims\": sorted(by_claim.keys()),\n326\t        \"matrix\": matrix,\n327\t        \"unassigned\": unassigned,\n328\t        \"summary\": {\n329\t            \"total_experiments\": total_exps,\n330\t            \"total_claims\": len(by_claim),\n331\t            \"counts\": overall_counts,\n332\t            \"coverage\": f\"{total_done}/{total_exps}\" if total_exps else \"0/0\",\n333\t            \"coverage_pct\": round(100.0 * total_done / total_exps, 1) if total_exps else 0.0,\n334\t            \"unassigned\": len(unassigned),\n335\t        },\n336\t    })\n337\t\n338\t\n339\t# ---------------------------------------------------------------------------\n340\t# Write-back from submit_training_job — keeps plan↔registry linkage fresh\n341\t# ---------------------------------------------------------------------------\n342\t\n343\tdef writeback_registry_id(\n344\t    project: str,\n345\t    plan_id: str,\n346\t    registry_id: str,\n347\t) -> ToolResult:\n348\t    \"\"\"Attach a freshly-minted ``registry_id`` to a plan entry.\n349\t\n350\t    Called from ``submit_training_job(plan_id=...)`` as a side-effect so\n351\t    that future ``read_experiment_plan_with_status()`` calls reflect the\n352\t    new linkage. No-op when the plan entry is missing — ad-hoc\n353\t    experiments don't need a plan attachment.\n354\t\n355\t    Returns:\n356\t        ToolResult.data = {\n357\t            \"linked\": bool,\n358\t            \"plan_id\": \"plan_003\",\n359\t            \"registry_id\": \"exp_001\",\n360\t        }\n361\t    \"\"\"\n362\t    if not project:\n363\t        return ToolResult(success=False, error=\"project is required\")\n364\t    if not plan_id or not registry_id:\n365\t        return ToolResult(\n366\t            success=False,\n367\t            error=\"plan_id and registry_id are required\",\n368\t        )\n369\t\n370\t    hit = {\"linked\": False}\n371\t\n372\t    def _apply(data: dict) -> None:\n373\t        for e in data.get(\"experiments\", []):\n374\t            if e.get(\"id\") == plan_id:\n375\t                e[\"registry_id\"] = registry_id\n376\t                hit[\"linked\"] = True\n377\t                return\n378\t\n379\t    _read_modify_write(get_experiment_plan_path(project), _apply)\n380\t    return ToolResult(success=True, data={\n381\t        \"linked\": hit[\"linked\"],\n382\t        \"plan_id\": plan_id,\n383\t        \"registry_id\": registry_id,\n384\t    })\n385\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa4717d7-1538-458f-b111-9bc5ff9ebbdb",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "f22c04a4-1860-41be-8a9b-bf1c10e8c7db",
+            "sourceToolAssistantUUID": "aa4717d7-1538-458f-b111-9bc5ff9ebbdb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T15:38:52.708Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me search for example experiment_plan.yaml files in the codebase:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f22c04a4-1860-41be-8a9b-bf1c10e8c7db",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRSGQwuRE2p3ZxeRvF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "20a16e19-f051-4dd4-9941-bd62ff857148",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PH6cYT7YRf1WmiKD7v9jUc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 4599,
+                "cache_read_input_tokens": 36464,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4599,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T15:38:53.055Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ERbTTzhixVekMKh4BSGwU",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/experiment_plan.yaml",
+                "path": "/home/ubuntu/agent-ml-research"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20a16e19-f051-4dd4-9941-bd62ff857148",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRSGQwuRE2p3ZxeRvF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f4aefddc-a6e8-49bd-9c3b-6cfa373803c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PH6cYT7YRf1WmiKD7v9jUc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 4599,
+                "cache_read_input_tokens": 36464,
+                "output_tokens": 105,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4599
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 105,
+                    "cache_read_input_tokens": 36464,
+                    "cache_creation_input_tokens": 4599,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4599,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T15:38:53.175Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ERbTTzhixVekMKh4BSGwU",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4aefddc-a6e8-49bd-9c3b-6cfa373803c3",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "10435385-8aa9-4ba6-801f-f202a8ef311b",
+            "sourceToolAssistantUUID": "f4aefddc-a6e8-49bd-9c3b-6cfa373803c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T15:38:55.101Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the projects directory structure to see if there are any sample files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10435385-8aa9-4ba6-801f-f202a8ef311b",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRas63q8yRBBbRCkq7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ed54f3f3-420e-4520-9c98-fbb7fb4bca23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DYKq1Kw6KEtqVinBYL3P7e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 120,
+                "cache_read_input_tokens": 41063,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 120,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T15:38:55.214Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DX6pXKpHRcdRG5cVUSsm2v",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/agent-ml-research -type d -name \"projects\" | head -5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed54f3f3-420e-4520-9c98-fbb7fb4bca23",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRas63q8yRBBbRCkq7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d8220573-1a33-4398-bd76-8fc376d0dbc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DYKq1Kw6KEtqVinBYL3P7e",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 120,
+                "cache_read_input_tokens": 41063,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 120
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 41063,
+                    "cache_creation_input_tokens": 120,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 120,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T15:38:55.412Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DX6pXKpHRcdRG5cVUSsm2v",
+              "type": "tool_result",
+              "content": "/home/ubuntu/agent-ml-research/workspace/projects\n/home/ubuntu/agent-ml-research/workspace/config/projects\n/home/ubuntu/agent-ml-research/manager/projects",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8220573-1a33-4398-bd76-8fc376d0dbc9",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "8905d845-5628-469f-b048-44524478d3e7",
+            "sourceToolAssistantUUID": "d8220573-1a33-4398-bd76-8fc376d0dbc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T15:38:57.828Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FobYHQZUcdPb6oXyxRwBi8",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/agent-ml-research/workspace/projects -name \"experiment_plan.yaml\" -o -name \"*experiment_plan*\" 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8905d845-5628-469f-b048-44524478d3e7",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRkiAzTBxLRPd5pHSd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "50472a39-e439-4fc3-96b5-d782c8772f01",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V8VwfPt3p9dDKqsuhxQNxK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 252,
+                "cache_read_input_tokens": 41183,
+                "output_tokens": 95,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 252
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 95,
+                    "cache_read_input_tokens": 41183,
+                    "cache_creation_input_tokens": 252,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 252,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T15:38:57.882Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FobYHQZUcdPb6oXyxRwBi8",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50472a39-e439-4fc3-96b5-d782c8772f01",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "fc3195ab-1526-4691-93a7-e583b863eef9",
+            "sourceToolAssistantUUID": "50472a39-e439-4fc3-96b5-d782c8772f01",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T15:38:59.992Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the documentation and tests for examples:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc3195ab-1526-4691-93a7-e583b863eef9",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRvy4sgenckPpzxLzJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6d760201-62a9-4479-b2f7-690b6539442b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011aqkQ3MGsnCkVy53XxvdDs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 114,
+                "cache_read_input_tokens": 41435,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 114,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T15:39:00.323Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ZhmrWPTY1SY2H6k5hkdPW",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/agent-ml-research -type f \\( -name \"*.md\" -o -name \"*test*.py\" \\) | xargs grep -l \"experiment_plan\" 2>/dev/null | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d760201-62a9-4479-b2f7-690b6539442b",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpRvy4sgenckPpzxLzJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8d5a57a4-a9c5-47d5-8f0b-3cfad48e7725",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011aqkQ3MGsnCkVy53XxvdDs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 114,
+                "cache_read_input_tokens": 41435,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 114
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 41435,
+                    "cache_creation_input_tokens": 114,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 114,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T15:39:00.915Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015ZhmrWPTY1SY2H6k5hkdPW",
+              "type": "tool_result",
+              "content": "/home/ubuntu/agent-ml-research/docs/plans/dream/DREAM_FEEDBACK_ACTION_PROTOCOL.md\n/home/ubuntu/agent-ml-research/docs/plans/dream/DREAM_AGENT_DESIGN.md\n/home/ubuntu/agent-ml-research/TEST.md\n/home/ubuntu/agent-ml-research/CLAUDE.md\n/home/ubuntu/agent-ml-research/tests/test_dream_define_tiers.py\n/home/ubuntu/agent-ml-research/tests/test_experiment_matrix_skill.py\n/home/ubuntu/agent-ml-research/tests/test_dream_what_if.py\n/home/ubuntu/agent-ml-research/tests/test_session_claude_md.py\n/home/ubuntu/agent-ml-research/tests/test_dream_elaborate.py\n/home/ubuntu/agent-ml-research/tests/test_experiment_plan.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d5a57a4-a9c5-47d5-8f0b-3cfad48e7725",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "2ed1e970-9ac3-4abb-b01c-b27807df5ccd",
+            "sourceToolAssistantUUID": "8d5a57a4-a9c5-47d5-8f0b-3cfad48e7725",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T15:39:02.234Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Let me check the test file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ed1e970-9ac3-4abb-b01c-b27807df5ccd",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpS9wg2HxCMFcpQWBcQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bf90c003-9d0b-4cce-9c1a-bae492a5ea8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XEjM19SLGQEtPVmVxEPyxj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 350,
+                "cache_read_input_tokens": 41549,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 350,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T15:39:02.390Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SUR8q2yQjqVFAStoFL88zm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/tests/test_experiment_plan.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf90c003-9d0b-4cce-9c1a-bae492a5ea8f",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpS9wg2HxCMFcpQWBcQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b07fbbb3-6ec2-42b6-923d-69b8853935f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XEjM19SLGQEtPVmVxEPyxj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 350,
+                "cache_read_input_tokens": 41549,
+                "output_tokens": 83,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 350
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 83,
+                    "cache_read_input_tokens": 41549,
+                    "cache_creation_input_tokens": 350,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 350,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T15:39:02.396Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SUR8q2yQjqVFAStoFL88zm",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Tests for ``core/tools/experiment_plan.py``.\n2\t\n3\tCovers:\n4\t- ``read_experiment_plan_with_status()`` overlay logic — entries with /\n5\t  without ``registry_id``, stale ``registry_id`` (orphaned), missing\n6\t  registry file, missing plan file, malformed YAML.\n7\t- Status / conclusion / metrics propagation from registry.\n8\t- ``writeback_registry_id()`` side-effect plus its no-op behaviour when\n9\t  the plan entry is missing.\n10\t- Project isolation — two projects don't see each other's plan files.\n11\t\"\"\"\n12\t\n13\tfrom __future__ import annotations\n14\t\n15\tfrom pathlib import Path\n16\t\n17\timport pytest\n18\timport yaml\n19\t\n20\tfrom core import paths as _paths\n21\tfrom core.tools.experiment_plan import (\n22\t    PLAN_FILENAME,\n23\t    STATUS_ORPHANED,\n24\t    STATUS_PLANNED,\n25\t    get_experiment_plan_path,\n26\t    read_experiment_plan_with_status,\n27\t    writeback_registry_id,\n28\t)\n29\t\n30\t\n31\tdef _seed_plan(project: str, experiments: list[dict]) -> Path:\n32\t    \"\"\"Write a plan YAML for ``project`` and return its path.\"\"\"\n33\t    p = get_experiment_plan_path(project)\n34\t    p.write_text(yaml.safe_dump({\"experiments\": experiments}, allow_unicode=True))\n35\t    return p\n36\t\n37\t\n38\tdef _seed_registry(project: str, experiments: dict[str, dict]) -> Path:\n39\t    \"\"\"Write a registry YAML for ``project`` and return its path.\"\"\"\n40\t    from core.tools.registry import get_registry_path\n41\t    p = get_registry_path(project)\n42\t    p.write_text(yaml.safe_dump({\"experiments\": experiments, \"baseline\": None}))\n43\t    return p\n44\t\n45\t\n46\t# ---------------------------------------------------------------------------\n47\t# read_experiment_plan_with_status\n48\t# ---------------------------------------------------------------------------\n49\t\n50\tclass TestReadWithStatus:\n51\t\n52\t    def test_empty_when_no_files(self, workspace):\n53\t        result = read_experiment_plan_with_status(\"proj_x\")\n54\t        assert result.success\n55\t        assert result.data == {\"experiments\": [], \"total\": 0}\n56\t\n57\t    def test_planned_when_no_registry_id(self, workspace):\n58\t        _seed_plan(\"proj_x\", [\n59\t            {\"id\": \"plan_001\", \"name\": \"main\", \"claim\": \"Claim 1\"},\n60\t            {\"id\": \"plan_002\", \"name\": \"ablation\", \"claim\": \"Claim 2\"},\n61\t        ])\n62\t        result = read_experiment_plan_with_status(\"proj_x\")\n63\t        assert result.success\n64\t        exps = result.data[\"experiments\"]\n65\t        assert {e[\"id\"]: e[\"status\"] for e in exps} == {\n66\t            \"plan_001\": STATUS_PLANNED,\n67\t            \"plan_002\": STATUS_PLANNED,\n68\t        }\n69\t        # Pure planning entries do not carry conclusion/metrics keys.\n70\t        assert \"conclusion\" not in exps[0]\n71\t        assert \"metrics\" not in exps[0]\n72\t\n73\t    def test_status_pulled_from_registry(self, workspace):\n74\t        _seed_plan(\"proj_x\", [\n75\t            {\"id\": \"plan_001\", \"registry_id\": \"exp_001\", \"claim\": \"C1\"},\n76\t            {\"id\": \"plan_002\", \"registry_id\": \"exp_002\", \"claim\": \"C2\"},\n77\t        ])\n78\t        _seed_registry(\"proj_x\", {\n79\t            \"exp_001\": {\"status\": \"DONE\", \"conclusion\": \"success\",\n80\t                        \"metrics\": {\"acc\": 0.91}},\n81\t            \"exp_002\": {\"status\": \"RUNNING\"},\n82\t        })\n83\t        result = read_experiment_plan_with_status(\"proj_x\")\n84\t        assert result.success\n85\t        by_id = {e[\"id\"]: e for e in result.data[\"experiments\"]}\n86\t        assert by_id[\"plan_001\"][\"status\"] == \"DONE\"\n87\t        assert by_id[\"plan_001\"][\"conclusion\"] == \"success\"\n88\t        assert by_id[\"plan_001\"][\"metrics\"] == {\"acc\": 0.91}\n89\t        assert by_id[\"plan_002\"][\"status\"] == \"RUNNING\"\n90\t        # Running entry has no conclusion/metrics keys yet.\n91\t        assert \"conclusion\" not in by_id[\"plan_002\"]\n92\t\n93\t    def test_registry_id_without_registry_entry_is_orphaned(self, workspace):\n94\t        _seed_plan(\"proj_x\", [\n95\t            {\"id\": \"plan_001\", \"registry_id\": \"exp_missing\"},\n96\t        ])\n97\t        _seed_registry(\"proj_x\", {})  # registry exists, but entry is gone\n98\t        result = read_experiment_plan_with_status(\"proj_x\")\n99\t        assert result.data[\"experiments\"][0][\"status\"] == STATUS_ORPHANED\n100\t\n101\t    def test_registry_id_without_registry_file_is_orphaned(self, workspace):\n102\t        \"\"\"If registry.yaml is missing entirely, registry_id can't be resolved.\"\"\"\n103\t        _seed_plan(\"proj_x\", [\n104\t            {\"id\": \"plan_001\", \"registry_id\": \"exp_001\"},\n105\t            {\"id\": \"plan_002\"},\n106\t        ])\n107\t        # Do NOT seed registry — file truly missing.\n108\t        result = read_experiment_plan_with_status(\"proj_x\")\n109\t        by_id = {e[\"id\"]: e for e in result.data[\"experiments\"]}\n110\t        assert by_id[\"plan_001\"][\"status\"] == STATUS_ORPHANED\n111\t        assert by_id[\"plan_002\"][\"status\"] == STATUS_PLANNED\n112\t\n113\t    def test_malformed_yaml_returns_empty(self, workspace):\n114\t        p = get_experiment_plan_path(\"proj_x\")\n115\t        p.write_text(\":::not a yaml mapping:::\")\n116\t        result = read_experiment_plan_with_status(\"proj_x\")\n117\t        assert result.success\n118\t        assert result.data[\"experiments\"] == []\n119\t\n120\t    def test_missing_id_entries_dropped(self, workspace):\n121\t        _seed_plan(\"proj_x\", [\n122\t            {\"id\": \"plan_001\", \"name\": \"good\"},\n123\t            {\"name\": \"missing_id\"},  # dropped\n124\t            {\"id\": \"plan_002\"},\n125\t        ])\n126\t        result = read_experiment_plan_with_status(\"proj_x\")\n127\t        ids = [e[\"id\"] for e in result.data[\"experiments\"]]\n128\t        assert ids == [\"plan_001\", \"plan_002\"]\n129\t\n130\t    def test_project_isolation(self, workspace):\n131\t        _seed_plan(\"proj_a\", [{\"id\": \"plan_001\"}])\n132\t        _seed_plan(\"proj_b\", [{\"id\": \"plan_999\"}])\n133\t        a = read_experiment_plan_with_status(\"proj_a\").data\n134\t        b = read_experiment_plan_with_status(\"proj_b\").data\n135\t        assert [e[\"id\"] for e in a[\"experiments\"]] == [\"plan_001\"]\n136\t        assert [e[\"id\"] for e in b[\"experiments\"]] == [\"plan_999\"]\n137\t\n138\t    def test_project_required(self, workspace):\n139\t        r = read_experiment_plan_with_status(\"\")\n140\t        assert not r.success\n141\t        assert \"project\" in (r.error or \"\").lower()\n142\t\n143\t\n144\t# ---------------------------------------------------------------------------\n145\t# writeback_registry_id\n146\t# ---------------------------------------------------------------------------\n147\t\n148\tclass TestWriteback:\n149\t\n150\t    def test_links_existing_entry(self, workspace):\n151\t        _seed_plan(\"proj_x\", [\n152\t            {\"id\": \"plan_001\", \"name\": \"main\", \"claim\": \"Claim 1\"},\n153\t        ])\n154\t        r = writeback_registry_id(\"proj_x\", \"plan_001\", \"exp_001\")\n155\t        assert r.success\n156\t        assert r.data == {\n157\t            \"linked\": True, \"plan_id\": \"plan_001\", \"registry_id\": \"exp_001\",\n158\t        }\n159\t\n160\t        # File reflects the linkage now.\n161\t        on_disk = yaml.safe_load(get_experiment_plan_path(\"proj_x\").read_text())\n162\t        assert on_disk[\"experiments\"][0][\"registry_id\"] == \"exp_001\"\n163\t\n164\t    def test_unknown_plan_id_is_noop(self, workspace):\n165\t        _seed_plan(\"proj_x\", [{\"id\": \"plan_001\"}])\n166\t        r = writeback_registry_id(\"proj_x\", \"plan_does_not_exist\", \"exp_001\")\n167\t        assert r.success           # not an error — ad-hoc experiments are fine\n168\t        assert r.data[\"linked\"] is False\n169\t        # File untouched.\n170\t        on_disk = yaml.safe_load(get_experiment_plan_path(\"proj_x\").read_text())\n171\t        assert on_disk[\"experiments\"][0].get(\"registry_id\") is None\n172\t\n173\t    def test_missing_args_rejected(self, workspace):\n174\t        for args in [(\"\", \"plan\", \"exp\"), (\"p\", \"\", \"exp\"), (\"p\", \"plan\", \"\")]:\n175\t            r = writeback_registry_id(*args)\n176\t            assert not r.success\n177\t\n178\t    def test_writeback_then_status_shows_registry(self, workspace):\n179\t        \"\"\"End-to-end: writeback updates the file, and a subsequent\n180\t        read_experiment_plan_with_status() sees the live registry status.\n181\t        \"\"\"\n182\t        _seed_plan(\"proj_x\", [{\"id\": \"plan_001\"}])\n183\t        _seed_registry(\"proj_x\", {\n184\t            \"exp_007\": {\"status\": \"RUNNING\"},\n185\t        })\n186\t        # Before linking — status is planned.\n187\t        before = read_experiment_plan_with_status(\"proj_x\").data[\"experiments\"][0]\n188\t        assert before[\"status\"] == STATUS_PLANNED\n189\t\n190\t        writeback_registry_id(\"proj_x\", \"plan_001\", \"exp_007\")\n191\t\n192\t        after = read_experiment_plan_with_status(\"proj_x\").data[\"experiments\"][0]\n193\t        assert after[\"status\"] == \"RUNNING\"\n194\t        assert after[\"registry_id\"] == \"exp_007\"\n195\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b07fbbb3-6ec2-42b6-923d-69b8853935f0",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "92dccaa9-20ea-41ed-8253-b4a729960284",
+            "sourceToolAssistantUUID": "b07fbbb3-6ec2-42b6-923d-69b8853935f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T15:39:04.201Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me check the DREAM_AGENT_DESIGN.md for any additional documentation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92dccaa9-20ea-41ed-8253-b4a729960284",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSGS6hPnrC8TBmEkFx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4dbe6c5b-fb85-436b-a382-401eb44da6fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PjLZybMgJ86aQoXLY9LNEP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2855,
+                "cache_read_input_tokens": 41899,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2855,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T15:39:04.590Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GQEWkAf1yAnkKaTTxmSxdY",
+              "name": "Bash",
+              "input": {
+                "command": "grep -A 20 \"experiment_plan\" /home/ubuntu/agent-ml-research/docs/plans/dream/DREAM_AGENT_DESIGN.md | head -40"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4dbe6c5b-fb85-436b-a382-401eb44da6fc",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSGS6hPnrC8TBmEkFx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9e14119d-dfc5-4dd0-8c4b-b601f6d47a2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PjLZybMgJ86aQoXLY9LNEP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2855,
+                "cache_read_input_tokens": 41899,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2855
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 41899,
+                    "cache_creation_input_tokens": 2855,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2855,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T15:39:04.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GQEWkAf1yAnkKaTTxmSxdY",
+              "type": "tool_result",
+              "content": "- [x] 0-1 实现 `core/tools/experiment_plan.py`：`read_experiment_plan_with_status()` + `compute_coverage_matrix()`\n- [x] 0-2 `core/mcp_server.py`：注册 `read_experiment_plan_with_status` + `compute_coverage_matrix`\n- [x] 0-3 `core/tool_registry.py`：Director/Agent/Reviewer 角色添加新工具权限\n- [x] 0-4 `core/session_claude_md.py`：Director/Agent/Reviewer 的按需查阅增加 `paper_framing.md` + `experiment_plan.yaml`\n- [x] 0-5 `prompts/roles/director.md`：Post-MVP 第一步改为制定 framing + plan + dream\n- [x] 0-6 ROADMAP 格式简化为 dashboard（引用 framing 和 plan）\n- [x] 0-7 `core/tools/experiment_matrix.py`：移除 `_sync_matrix_for_experiment()` side-effect，改为按需计算\n- [x] 0-8 `config/projects/{name}.yaml`：增加 dream 配置段 schema\n- [x] 0-9 `core/paths.py`：增加 `dream_report_dir(project, dream_id)` 路径函数\n- [x] 0-T1 测试：`test_experiment_plan.py` — `read_with_status()` 动态合并 registry 状态（有/无 registry_id）\n- [x] 0-T2 测试：`test_coverage_matrix.py` — 覆盖率矩阵从 plan + framing 按需计算\n\n### Phase 1: Writing Utilities + Paper Agent Dream 模式\n- [x] 1-1 创建 `core/writing/` 目录：`types.py`（ExperimentData / CompiledPaper）\n- [x] 1-2 实现 `core/writing/latex_compiler.py`：latexmk 编译\n- [x] 1-3 实现 `core/writing/template_manager.py`：加载 venue 模板\n- [x] 1-4 实现 `core/writing/table_generator.py`：实验数据 → LaTeX 表格\n- [x] 1-5 `prompts/roles/paper-agent.md`：增加 Dream 模式支持（简化 pipeline，一次性 session）\n- [x] 1-6 `core/session_server.py`：支持 `dream_{id}:paper_agent` session key\n- [x] 1-7 `core/tools/feishu_group.py`：Dream Paper Agent B 群消息带 `[Dream]` 前缀 + 不路由到其他 agent\n- [x] 1-T1 测试：类型序列化 — 覆盖在 `tests/test_writing_utilities.py::TestTypesRoundTrip`\n- [x] 1-T2 测试：LaTeX 编译 — 覆盖在 `tests/test_writing_utilities.py::TestLatexCompiler*`（6 个 class，含 ArgValidation/EngineMissing/LogParsing/Finalize/EndToEndMocked）\n- [x] 1-T3 测试：venue 模板加载 — 覆盖在 `tests/test_writing_utilities.py::TestTemplateDiscovery/TestTemplateLookup/TestTemplateCopy`\n- [x] 1-T4 测试：实验数据 → LaTeX 表格 — 覆盖在 `tests/test_writing_utilities.py::TestRenderTable*` + `TestComparisonTable`\n- [x] 1-T5 测试：Paper Agent Dream 模式 session 隔离 + 消息可见性 — 见 `tests/test_paper_agent_dream_session_isolation.py`\n- [x] 1-T6 测试：Dream 工具可见性 — 由 prompt 段 (`paper-agent.md` Dream 模式) + `dream_id` 短路实现，覆盖在 `tests/test_paper_agent_dream_session_isolation.py` 及 `tests/test_paper_agent_dream_e2e.py`\n- [x] 1-T7 测试：Dream Paper Agent 写入 `dream_reports/{id}/{tier}/paper.tex`，不写入 `projects/{project}/paper/` — 见 `tests/test_paper_agent_dream_e2e.py` (G2 output-path isolation)\n\n### Phase 2: Dream Tool 核心（异步架构 + 两阶段想象）\n- [x] 2-1 实现 `core/dream_types.py`：DreamInput / DreamHandle / DreamOutput / TierDefinitions / TierDefinition / ImaginedScenario / ImaginedExperiment（含 WhatIfExperiment + DreamScenarioResult）\n--\n### 2.2 新增文件：experiment_plan.yaml\n\n**位置**：`projects/{project}/experiment_plan.yaml`\n\n**内容**：所有规划中的实验——包括已完成的、进行中的、和计划做但还没提交的。\n\n```yaml\n# 注意：plan 中不存 status 字段（选项 C）。\n# 有 registry_id 的实验，status 通过 read_experiment_plan_with_status() 从 registry 动态读取。",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e14119d-dfc5-4dd0-8c4b-b601f6d47a2f",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "01c7ec4a-3a1b-4051-bc22-174e9bb39431",
+            "sourceToolAssistantUUID": "9e14119d-dfc5-4dd0-8c4b-b601f6d47a2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T15:39:06.212Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more of this documentation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01c7ec4a-3a1b-4051-bc22-174e9bb39431",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSRvrFdtNTPG2HniYX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "17868847-cd7e-4faf-b2bf-3e458e96314b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UY8DW82tPuE1UV3gjV941A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1593,
+                "cache_read_input_tokens": 44754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1593,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T15:39:07.173Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014GjjXLCuFYT2qUN4Y8epbx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/docs/plans/dream/DREAM_AGENT_DESIGN.md",
+                "offset": 1,
+                "limit": 400
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17868847-cd7e-4faf-b2bf-3e458e96314b",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSRvrFdtNTPG2HniYX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "59b2e01c-e70b-4fdb-96a5-fa5830a8b740",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UY8DW82tPuE1UV3gjV941A",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1593,
+                "cache_read_input_tokens": 44754,
+                "output_tokens": 122,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1593
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 122,
+                    "cache_read_input_tokens": 44754,
+                    "cache_creation_input_tokens": 1593,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1593,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T15:39:07.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014GjjXLCuFYT2qUN4Y8epbx",
+              "type": "tool_result",
+              "content": "1\t# Dream Agent 设计：正向模拟与即时反馈机制\n2\t\n3\t> 日期：2026-05-10\n4\t> 前置阅读：\n5\t> - [NeurIPS 2026 复盘](../research/NEURIPS_2026_RETROSPECTIVE.md) §2（反馈稀疏与 Agent 短视）\n6\t> - [Paper Writing Agent 方案](PAPER_WRITING_AGENT_PLAN.md)\n7\t\n8\t---\n9\t\n10\t## TODO\n11\t\n12\t### Phase 0: Paper Framing + Experiment Plan 基础设施\n13\t- [x] 0-1 实现 `core/tools/experiment_plan.py`：`read_experiment_plan_with_status()` + `compute_coverage_matrix()`\n14\t- [x] 0-2 `core/mcp_server.py`：注册 `read_experiment_plan_with_status` + `compute_coverage_matrix`\n15\t- [x] 0-3 `core/tool_registry.py`：Director/Agent/Reviewer 角色添加新工具权限\n16\t- [x] 0-4 `core/session_claude_md.py`：Director/Agent/Reviewer 的按需查阅增加 `paper_framing.md` + `experiment_plan.yaml`\n17\t- [x] 0-5 `prompts/roles/director.md`：Post-MVP 第一步改为制定 framing + plan + dream\n18\t- [x] 0-6 ROADMAP 格式简化为 dashboard（引用 framing 和 plan）\n19\t- [x] 0-7 `core/tools/experiment_matrix.py`：移除 `_sync_matrix_for_experiment()` side-effect，改为按需计算\n20\t- [x] 0-8 `config/projects/{name}.yaml`：增加 dream 配置段 schema\n21\t- [x] 0-9 `core/paths.py`：增加 `dream_report_dir(project, dream_id)` 路径函数\n22\t- [x] 0-T1 测试：`test_experiment_plan.py` — `read_with_status()` 动态合并 registry 状态（有/无 registry_id）\n23\t- [x] 0-T2 测试：`test_coverage_matrix.py` — 覆盖率矩阵从 plan + framing 按需计算\n24\t\n25\t### Phase 1: Writing Utilities + Paper Agent Dream 模式\n26\t- [x] 1-1 创建 `core/writing/` 目录：`types.py`（ExperimentData / CompiledPaper）\n27\t- [x] 1-2 实现 `core/writing/latex_compiler.py`：latexmk 编译\n28\t- [x] 1-3 实现 `core/writing/template_manager.py`：加载 venue 模板\n29\t- [x] 1-4 实现 `core/writing/table_generator.py`：实验数据 → LaTeX 表格\n30\t- [x] 1-5 `prompts/roles/paper-agent.md`：增加 Dream 模式支持（简化 pipeline，一次性 session）\n31\t- [x] 1-6 `core/session_server.py`：支持 `dream_{id}:paper_agent` session key\n32\t- [x] 1-7 `core/tools/feishu_group.py`：Dream Paper Agent B 群消息带 `[Dream]` 前缀 + 不路由到其他 agent\n33\t- [x] 1-T1 测试：类型序列化 — 覆盖在 `tests/test_writing_utilities.py::TestTypesRoundTrip`\n34\t- [x] 1-T2 测试：LaTeX 编译 — 覆盖在 `tests/test_writing_utilities.py::TestLatexCompiler*`（6 个 class，含 ArgValidation/EngineMissing/LogParsing/Finalize/EndToEndMocked）\n35\t- [x] 1-T3 测试：venue 模板加载 — 覆盖在 `tests/test_writing_utilities.py::TestTemplateDiscovery/TestTemplateLookup/TestTemplateCopy`\n36\t- [x] 1-T4 测试：实验数据 → LaTeX 表格 — 覆盖在 `tests/test_writing_utilities.py::TestRenderTable*` + `TestComparisonTable`\n37\t- [x] 1-T5 测试：Paper Agent Dream 模式 session 隔离 + 消息可见性 — 见 `tests/test_paper_agent_dream_session_isolation.py`\n38\t- [x] 1-T6 测试：Dream 工具可见性 — 由 prompt 段 (`paper-agent.md` Dream 模式) + `dream_id` 短路实现，覆盖在 `tests/test_paper_agent_dream_session_isolation.py` 及 `tests/test_paper_agent_dream_e2e.py`\n39\t- [x] 1-T7 测试：Dream Paper Agent 写入 `dream_reports/{id}/{tier}/paper.tex`，不写入 `projects/{project}/paper/` — 见 `tests/test_paper_agent_dream_e2e.py` (G2 output-path isolation)\n40\t\n41\t### Phase 2: Dream Tool 核心（异步架构 + 两阶段想象）\n42\t- [x] 2-1 实现 `core/dream_types.py`：DreamInput / DreamHandle / DreamOutput / TierDefinitions / TierDefinition / ImaginedScenario / ImaginedExperiment（含 WhatIfExperiment + DreamScenarioResult）\n43\t- [x] 2-2 实现 `core/dream_registry.py`：dream_registry.yaml 持久化状态管理（per-project + 文件锁 + 备份恢复）\n44\t- [x] 2-3 实现 `core/tools/dream.py`：`_collect_context()` 读取 framing + plan + registry\n45\t- [x] 2-4 实现 `_define_tiers()`：Phase 1 单 subprocess——统一定义三档含义 + 数字范围 + 叙事方向\n46\t- [x] 2-5 实现 `_elaborate_scenario()`：Phase 2 每档 subprocess——基于 TierDefinition 展开详细数据\n47\t- [x] 2-6 实现 `_write_dream_paper()`：启动 Paper Agent Dream 模式写论文（含统计图生成）\n48\t- [x] 2-7 实现 `_persist_report()`：保存到 `artifacts/dream_reports/{dream_id}/`（含 logs/）\n49\t- [x] 2-8 实现 `dream_simulate()`：注册 dream_registry + 启动独立编排进程 + 立即返回 dream_id\n50\t- [x] 2-9 实现 `_run_dream_pipeline()`：独立进程（`start_new_session=True`），编排想象→写作→审稿\n51\t- [x] 2-10 实现 `dispatch_dream_done()`：完成回调（注入 Director session + A 群摘要）\n52\t- [x] 2-11 实现 `get_dream_status()`：从 dream_registry.yaml 读取进度\n53\t- [x] 2-12 `core/mcp_server.py`：注册 `dream_simulate` + `get_dream_status` MCP Tool\n54\t- [x] 2-13 `core/tool_registry.py`：Director 白名单增加 `dream_simulate` + `get_dream_status`\n55\t- [x] 2-T1 测试：`tests/test_dream_types.py` — 类型定义序列化/反序列化（含 TierDefinitions）+ `tests/test_dream_registry.py` 覆盖 registry CRUD/stages/recovery/project 隔离\n56\t- [x] 2-T2 测试：`test_dream_collect_context.py` — context 收集（有/无 framing、有/无 plan、有/无 registry）+ helpers (YAML extraction, Phase 1/2 validators, ImaginedExperiment→ExperimentData mapping, dream_simulate pre-flight, get_dream_status)\n57\t- [x] 2-T3 测试：`test_dream_define_tiers.py` — Phase 1 三档定义一致性（best ≥ median ≥ worst）\n58\t- [x] 2-T4 测试：`test_dream_elaborate.py` — Phase 2 展开结果在 Phase 1 范围内 + result_rationale 必填\n59\t- [x] 2-T5 测试：`test_dream_persist.py` — 持久化目录结构 + meta.yaml + logs/\n60\t- [x] 2-T6 测试：`test_dream_what_if.py` — what_if 追加实验的合并逻辑\n61\t- [x] 2-T7 测试：`test_dream_async.py` — 独立编排进程 + dream_registry 持久化 + Director 重启后 status 可查\n62\t- [x] 2-T8 测试：`test_dream_status.py` — get_dream_status 各阶段状态查询 + failed 状态\n63\t- [x] 2-T9 测试：`test_dream_pipeline_failure.py` — 各阶段失败处理：部分结果 + error 记录\n64\t- [x] 2-T10 测试：`test_dream_concurrent.py` — 并发调用行为\n65\t- [x] 2-T11 测试：`test_dream_yaml_parsing.py` — YAML 输出解析 + 校验 + 解析失败重试/降级\n66\t- [x] 2-T12 测试：`test_dream_registry_id_writeback.py` — submit_training_job(plan_id=...) 自动写回 registry_id\n67\t\n68\t### Phase 3: Review Phase 集成\n69\t- [x] 3-1 `core/session_server.py`：支持 `dream_{id}:director` / `dream_{id}:reviewer_N` session key（`_detect_role` 检测 dream 段 → `dream_review_director` / `dream_review_reviewer_N` 角色 + `_mcp_config_for_role` 路由）\n70\t- [x] 3-2 `core/tools/feishu_group.py`：`director_post_to_reviewer()` 支持 dream 命名空间（显式 `dream_id` 参数 + 从 session_key 自动推断）\n71\t- [x] 3-3 `core/tools/feishu_group.py`：`submit_dream_review_report()` 替代 `submit_review_report_to_research_director`（写 `dream_reports/{dream_id}/{tier}/review_report.md`，不走 5-step protocol）\n72\t- [x] 3-4 `core/tools/feishu_group.py`：`review_visible=false` 时跳过 Group C 卡片，仅走内部 session_server 路由（`director_post_to_reviewer` + `review_reviewer_post_to_director` 都支持）\n73\t- [x] 3-5 实现 `_submit_to_review()`：spawn Dream Review Director subprocess（`_run_dream_review_director_subprocess` + `_build_dream_review_dispatch_prompt`），等子进程退出后从文件系统读 `review_report.md`\n74\t- [x] 3-5b 实现 `submit_dream_review_report()`：Dream 审稿专用报告提交工具（同时注册为 MCP tool）\n75\t- [x] 3-5c `_ensure_dream_review_director_mcp_config()` + `_ensure_dream_review_reviewer_mcp_config()`：Dream 缩减版工具白名单（`_DREAM_REVIEW_DIRECTOR_TOOLS` / `_DREAM_REVIEW_REVIEWER_TOOLS`）+ Dream 模式指令追加（`_build_dream_review_director` / `_build_dream_review_reviewer`）\n76\t- [x] 3-6 Dream 审稿 artifacts 全部在 `dream_reports/` 内（`submit_dream_review_report` 仅写该目录，工具白名单已剔除 `update_review_issues` / `submit_review_report_to_research_director`）\n77\t- [x] 3-7 `skills/global/dream-review-simple.skill.md`：简化模式全面审稿 prompt（合并方法 + 新颖性 + 实验设计，不含格式）\n78\t- [x] 3-8 完整模式支持：2 Reviewers（方法+实验 / 新颖性+相关工作）+ roundtable — 新增 `skills/global/dream-review-full.skill.md`（dispatch 模板：R1 方法+实验、R2 新颖性+相关工作、Step 1/2/3/4 roundtable 流程）+ `_build_dream_review_dispatch_prompt` 在 `review_mode=full` 时指向该 skill\n79\t- [x] 3-T1 测试：`test_dream_review_session_isolation.py` — Dream session key / role / MCP config / 工具白名单 / 提示词 / 生命周期 / 路由 / 提交工具 全链路隔离（27 tests）\n80\t- [x] 3-T2 测试：`test_dream_review_artifacts_isolation.py` — Dream artifacts 不写入真实审稿路径（17 tests：output path locality / no real-review artifacts / tier 隔离 / dream_id 隔离 / 工具白名单 / 可见性不改变 artifact 位置）\n81\t- [x] 3-T3 测试：`test_dream_review_visible.py` — review_visible=true/false 消息路由（15 tests：director_post_to_reviewer / review_reviewer_post_to_director / submit_dream_review_report 三个入口 + 默认值 + 调度 prompt 携带）\n82\t- [x] 3-T4 测试：`test_dream_review_simple.py` — 简化模式 1 Reviewer 跳过交叉分享（20 tests：dispatch payload / skill 模板形状 / 不 fan-out R2 / 默认 simple）\n83\t- [x] 3-T5 测试：`test_dream_review_full.py` — 完整模式 2 Reviewers roundtable 协议（27 tests：dispatch payload / 新建 `dream-review-full.skill.md` / R2 routing / 白名单）\n84\t- [x] 3-T6 测试：`test_dream_review_no_continue.py` — Dream 审稿不支持 Continue 模式，每次 Fresh（12 tests：session key 唯一 / subprocess 无 --resume / 白名单排除 Continue 入口 / 不走审批卡片）\n85\t- [x] 3-T7 测试：`test_dream_review_report_delivery.py` — submit_review_report Dream 模式不走 5-step protocol，直接返回给 Dream Tool（14 tests：报告无 protocol 文本 / 不路由到 Research Director / 文件交付 / 无 issue tracker / dream_reports 路径）\n86\t- [x] 3-T8 测试：`test_dream_review_simple_prompt.py` — 简化模式 reviewer 使用合并 prompt（方法 + 新颖性，不含格式），而非复用单方向 prompt（13 tests：merged template 三轴 / 格式 out of scope / skill 是 Director dispatch 而非 Reviewer prompt）\n87\t\n88\t### Phase 4: Director + 飞书 + Cron 集成\n89\t- [x] 4-1 `core/session_claude_md.py`：`_build_director()` prompt 增加 dream 工具使用指引（仅当 `dream_simulate` 在 director 白名单时注入；含 何时调 / what_if / 三档审稿解读 / cron 当前配置摘要）\n90\t- [x] 4-2 `core/agents/message_router.py`：注册 `/dream` 飞书 slash 命令（含 simple/full、what_if=\"...\"、list/status/cancel 子命令）+ Research 群 `/help` 同步\n91\t- [x] 4-3 `core/cron_hooks.py`：新增 `on_dream` 事件 + `DEFAULT_HOOKS[\"on_dream\"]` → `dream-cron` skill + `on_dream(project, cron_entry)` wrapper 读取 `get_dream_config` 并按 `cron_enabled` 短路（默认 False）\n92\t- [x] 4-4 `skills/global/dream-cron.skill.md`：定时 Dream 行为规范（含 smart_skip / 阶段限制 / cron 只用 simple mode 等约束）\n93\t- [x] 4-5 实现智能跳过（`_compute_context_hash` + `should_skip_dream` MCP tool；`dream_simulate(smart_skip=True)` 短路；registry 持久化 `context_hash`）\n94\t- [x] 4-6 实现趋势追踪（`get_dream_trend` MCP tool：读取 `dream_reports/*/meta.yaml` + 计算相邻 dream 的 per-tier 预测 delta）\n95\t- [x] 4-T1 测试：`test_dream_feishu_command.py` — `/dream` / `/dream full` / `/dream what_if \"...\"` 解析 + list/status/cancel 子命令 + help 文本 (37 tests)\n96\t- [x] 4-T2 测试：`test_dream_cron.py` — cron_enabled=false 不触发；=true 按 schedule 触发 + DEFAULT_HOOKS 注册 + dream-cron skill 解析 + 端到端 send_sync (13 tests)\n97\t- [x] 4-T3 测试：`test_dream_smart_skip.py` — 18 tests：context hash 稳定性 + 各字段变更触发重算 + `should_skip_dream` 三种 reason + `dream_simulate(smart_skip=True)` 短路 + registry 持久化 hash\n98\t- [x] 4-T4 测试：`test_dream_trend.py` — 15 tests：newest-first 排序 + limit 截断 + per-tier 预测 delta（added/removed/changed）+ failed dream 透明展示 + 内部 helpers\n99\t\n100\t### 集成测试\n101\t- [x] E2E-1 `test_dream_e2e_simple.py`：完整流程——想象 → Paper Agent 写论文 → 简化审稿 → 报告返回 Director（4 tests：pipeline 完成、handle 同步返回、Director summary 注入、simple dispatch skill）\n102\t- [x] E2E-2 `test_dream_e2e_full.py`：完整流程——完整模式 2 Reviewers roundtable（3 tests：full 模式 pipeline、dream-review-full skill dispatch、review_visible 透传）\n103\t- [x] E2E-3 `test_dream_post_mvp.py`：Post-MVP 流程——制定 framing → plan → dream(full) → 调整 → 再 dream（4 tests：framing/plan 缺失拦截、首次 dream、调整 plan 后第二次 dream、第一次产物不变）\n104\t- [x] E2E-4 `test_dream_what_if_comparison.py`：两次 dream 对比（有/无 what_if）的结果差异（5 tests：baseline 无 what_if、what_if 进 meta、Phase 2 context 差异、context hash 差异、plan 文件不被修改）\n105\t- [x] E2E-5 `test_dream_isolation_full.py`：Dream 全链路隔离——Paper Agent session + Review session + artifacts 均不污染真实流程（10 tests：真实 paper/ 不变、真实 review_reports/ 不变、Dream artifacts 仅在 dream_reports/、session key dream 段、role 检测、白名单隔离）\n106\t- [x] E2E-6 `test_dream_async_director.py`：异步行为——Dream 运行期间 Director 继续审批实验、回复 Agent，Dream 完成后结果正确注入（6 tests：同步返回、status 可查、stage 状态进展、并发 status 查询不阻塞、dispatch_dream_done 注入、空 director_session_key 不崩）\n107\t- [x] E2E-7 `test_dream_partial_failure.py`：部分失败——某一档（如 worst）写作失败，其余两档（best/median）的审稿结果仍正常返回（6 tests：write 失败、review 失败、Phase 2 失败、2/3 失败仍 done、全失败为 failed、Director summary 反映部分失败）\n108\t\n109\t---\n110\t\n111\t## 一、定位与核心思路\n112\t\n113\t### 1.1 要解决什么问题\n114\t\n115\tAuto Research 链路中存在大量需要\"评判\"的环节——Idea 好不好？实验计划值不值得做？当前方向还能不能出论文？这些对象都是抽象的，无论对人还是对 Agent，直接评判都很难做准。\n116\t\n117\t目前系统中的尝试（Agent + Reviewer 聊几句得出\"加 5% 中稿概率\"）太糙，本质是两个 Agent 在评判一个抽象对象，没有实质性推演。\n118\t\n119\t### 1.2 核心思路\n120\t\n121\t**把难以评判的抽象对象，正向模拟为容易评判的具体对象。**\n122\t\n123\t```\n124\t难以直接评判的抽象对象          容易评判的具体对象\n125\t┌─────────────────┐          ┌─────────────────┐\n126\t│  Idea            │          │                 │\n127\t│  实验计划         │ ──Dream──→  模拟论文 PDF    │ ──Group C 审稿──→ 审稿报告\n128\t│  决策链           │          │  (上/中/下三档)   │\n129\t└─────────────────┘          └─────────────────┘\n130\t```\n131\t\n132\t- **Dream**：基于输入（idea + 现状 + 决策），**只想象未来的实验和结果**（不触碰已有的真实实验数据）\n133\t- **Paper Agent（Dream 模式）**：将 Dream 的想象内容 + 已有真实数据写成完整 LaTeX 论文并编译为 PDF\n134\t- **审稿**：将 PDF 交给现有的 Group C 审稿流程（Review Director + Reviewers），走完整的 roundtable 协议\n135\t- **综合**：Director 收到三档论文的审稿报告，自行判断 idea + 现状 + 决策的质量\n136\t\n137\t### 1.3 关键原则：Dream 只想象未来，Paper Agent 不区分来源\n138\t\n139\tDream 的核心产出是**对未来实验和对应结果的想象**：\n140\t\n141\t- Dream 生成的是\"如果做了实验 X，可能会得到结果 Y\"——只想象**尚未做的**实验\n142\t- 已有的真实实验数据原封不动地从 registry 中读取\n143\t- Paper Agent（Dream 模式）收到的所有数据（真实 + 想象）都**统一当作真实数据来写作**，不做区分。因为已经分了上/中/下三档，每档本身就是一个完整的\"如果未来是这样\"的假设场景，全部按真实数据写，写出的论文最逼真，拿到的审稿结论也最准确\n144\t\n145\t---\n146\t\n147\t## 二、前置改动：Paper Framing + Experiment Plan\n148\t\n149\tDream 需要两个核心输入来\"做梦\"——论文的完整故事（要讲什么）和实验计划（怎么讲）。目前系统中没有这两个东西。ROADMAP 太短（200 行），只覆盖核心 idea + 近期任务，缺乏长期目标和完整叙事。\n150\t\n151\t### 2.1 新增文件：paper_framing.md\n152\t\n153\t**位置**：`projects/{project}/paper_framing.md`\n154\t\n155\t**内容**：论文的完整故事——从问题到贡献到 story arc，不是大纲而是详细的叙事规划。\n156\t\n157\t```markdown\n158\t## Core Problem\n159\t[什么问题，为什么重要，现有方法为什么不够]\n160\t\n161\t## Key Insight\n162\t[我们的核心洞察/切入点]\n163\t\n164\t## Proposed Method\n165\t[方法概述，关键技术点]\n166\t\n167\t## Story Arc\n168\t[论文的叙事线：怎么从问题引出 insight，怎么从 insight 引出 method，\n169\t 怎么用实验论证 method 的有效性]\n170\t\n171\t## Core Claims\n172\t[每个 claim 及其所需的实验证据]\n173\t- Claim 1: \"...\" → 需要实验: main_results, baseline_comparison\n174\t- Claim 2: \"...\" → 需要实验: ablation_X, ablation_Y\n175\t- Claim 3: \"...\" → 需要实验: scale_experiment, efficiency_analysis\n176\t\n177\t## Anticipated Reviewer Concerns\n178\t[预判审稿人会提什么问题，每个 concern 对应什么实验来回应]\n179\t- Concern: \"与 Z 方法的对比不充分\" → 需要实验: baseline_Z_comparison\n180\t- Concern: \"泛化性存疑\" → 需要实验: cross_dataset_transfer\n181\t\n182\t## Target Venue & Constraints\n183\t[目标会议、页数限制、格式要求、deadline]\n184\t```\n185\t\n186\t**谁维护**：Research Director 通过 `save_project_file(\"paper_framing.md\", content)` 创建和更新。Paper Agent 和 Dream Tool 通过 `read_project_file(\"paper_framing.md\")` 读取。不需要专用工具——framing 是自由格式的 markdown，没有需要程序保障的约束。\n187\t\n188\t**与 ROADMAP 的关系**：ROADMAP 中可引用 framing（`见 paper_framing.md`），但 framing 本身独立存在，不受 200 行限制。\n189\t\n190\t### 2.2 新增文件：experiment_plan.yaml\n191\t\n192\t**位置**：`projects/{project}/experiment_plan.yaml`\n193\t\n194\t**内容**：所有规划中的实验——包括已完成的、进行中的、和计划做但还没提交的。\n195\t\n196\t```yaml\n197\t# 注意：plan 中不存 status 字段（选项 C）。\n198\t# 有 registry_id 的实验，status 通过 read_experiment_plan_with_status() 从 registry 动态读取。\n199\t# 无 registry_id 的实验，隐含 status = planned。\n200\t\n201\texperiments:\n202\t  # 已提交到 registry 的实验——plan 中只存规划信息，不存 status\n203\t  - id: plan_001\n204\t    name: \"main_results_dataset_A\"\n205\t    registry_id: exp_001            # 有此字段 = 已提交，status 从 registry 动态读取\n206\t    claim: \"Claim 1\"\n207\t    framing_ref: \"Core Claims → Claim 1\"\n208\t\n209\t  - id: plan_002\n210\t    name: \"ablation_learning_rate\"\n211\t    registry_id: exp_002\n212\t    claim: \"Claim 2\"\n213\t\n214\t  # 计划中的实验——无 registry_id，隐含 planned 状态\n215\t  - id: plan_003\n216\t    name: \"baseline_Z_comparison\"\n217\t    # 无 registry_id = planned\n218\t    claim: \"Claim 1\"\n219\t    framing_ref: \"Anticipated Reviewer Concerns → 与 Z 方法的对比\"\n220\t    priority: P0\n221\t    estimated_gpu_hours: 8\n222\t    depends_on: [plan_001]\n223\t    description: \"在 Dataset A/B/C 上与 Z 方法做完整对比...\"\n224\t\n225\t  - id: plan_004\n226\t    name: \"cross_dataset_transfer\"\n227\t    claim: \"Claim 3\"\n228\t    framing_ref: \"Anticipated Reviewer Concerns → 泛化性\"\n229\t    priority: P1\n230\t    estimated_gpu_hours: 16\n231\t    description: \"...\"\n232\t```\n233\t\n234\t**谁维护**：Research Director 通过 `save_project_file(\"experiment_plan.yaml\", content)` 创建和管理。Plan 是纯规划文档，不存执行状态——所有状态查询通过 `read_experiment_plan_with_status()` 动态合并 registry。\n235\t\n236\t### 2.2.1 experiment_matrix 是否还需要存在？\n237\t\n238\t**结论：experiment_matrix 应该废弃为持久文件，改为按需计算的派生视图。**\n239\t\n240\texperiment_matrix 的核心价值是\"paper target → 实验的 2D 映射 + 覆盖率可视化\"。但引入 paper_framing.md 和 experiment_plan.yaml 后，这个价值已被完全覆盖：\n241\t\n242\t| matrix 提供的 | 现在由谁提供 |\n243\t|-------------|------------|\n244\t| Paper targets（9 维度） | paper_framing.md 的 Core Claims + Reviewer Concerns |\n245\t| 每个 target 对应什么实验 | experiment_plan.yaml 的 `claim` / `framing_ref` 字段 |\n246\t| 覆盖率（哪些 target 还缺实验） | 从 plan 中按 claim 分组统计即可 |\n247\t| Cell 状态（planned/running/filled） | `read_experiment_plan_with_status()` 动态合并 |\n248\t\n249\t**三个文件存同一件事 = 三份需要同步的状态。** 目前 `update_registry()` 已经有 `_sync_matrix_for_experiment()` 作为 side-effect；如果再加 `_sync_plan_for_experiment()`，就是一次 registry 更新要同步两个下游文件。而 plan 和 matrix 存的本质是同一件事（实验 → paper target 的映射 + 状态）。\n250\t\n251\t**改为派生视图**：当 Director 或 Dream 需要看\"覆盖率矩阵\"时，从 plan + framing 实时计算：\n252\t\n253\t```python\n254\tdef compute_coverage_matrix(project: str) -> CoverageMatrix:\n255\t    \"\"\"按需计算覆盖率矩阵，不持久化。\n256\t\n257\t    覆盖率的计算方向是 plan → framing：遍历 plan 中每个实验的 claim 字段，\n258\t    按 claim 分组统计。不需要解析 framing markdown 的结构——framing 是给人和\n259\t    LLM 读的自由文本，claim 的权威 ID 在 plan 的 claim 字段中。\n260\t    \"\"\"\n261\t    framing_text = read_project_file(project, \"paper_framing.md\")  # 原文，供展示\n262\t    plan = read_experiment_plan_with_status(project)\n263\t\n264\t    # 从 plan 中提取所有唯一的 claim 名称\n265\t    claims = sorted(set(e[\"claim\"] for e in plan if e.get(\"claim\")))\n266\t\n267\t    matrix = {}\n268\t    for claim in claims:\n269\t        experiments = [e for e in plan if e.get(\"claim\") == claim]\n270\t        matrix[claim] = {\n271\t            \"experiments\": experiments,\n272\t            \"coverage\": _compute_coverage(experiments),  # 0-100%\n273\t        }\n274\t    return matrix\n275\t```\n276\t\n277\t**设计要点**：覆盖率矩阵从 `experiment_plan.yaml` 的 `claim` 字段聚合，不解析 `paper_framing.md` 的 markdown 结构。Framing 是自由格式文档（给人和 LLM 读），不适合程序化解析。Plan 中的 `claim` 字段是结构化的权威来源——Director 在制定 plan 时确保 claim 名称与 framing 一致。\n278\t\n279\t**对现有代码的影响**：\n280\t- `_sync_matrix_for_experiment()` side-effect 从 `update_registry()` 中移除\n281\t- `experiment-matrix` skill 改为调用 `compute_coverage_matrix()` 展示结果\n282\t- Director prompt 中不再提 \"画空矩阵\"，改为 \"查看覆盖率\"\n283\t\n284\t### 2.2.2 experiment_plan.yaml 和 registry 是否需要两个文件？\n285\t\n286\t**问题的本质：plan 中\"已提交\"实验的 status 是 registry 中 status 的复制品。两个文件存同一个 status = 需要同步 = 容易不一致。**\n287\t\n288\t分析三个选项：\n289\t\n290\t**~~选项 A：合并到 registry（给 registry 加 PLANNED 状态）~~ ❌ 已否决**\n291\t\n292\t```\n293\tPLANNED → PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING → ANALYZING → DONE\n294\t```\n295\t\n296\tRegistry 增加字段：`claim`、`framing_ref`、`priority`、`depends_on`、`estimated_gpu_hours`。\n297\t\n298\t| 优势 | 劣势 |\n299\t|------|------|\n300\t| 单一数据源，零同步 | registry 混合了规划和执行两种职责 |\n301\t| 所有工具和 side-effect 自动生效 | Director 改规划（增删 PLANNED 实验）会触发 registry 的 checkpoint/report 刷新 |\n302\t| 状态机天然覆盖全生命周期 | PLANNED 状态的实验没有 spec（command/server/gpu），但 registry 对 RUNNING 要求 spec 齐全——两种实验的数据 schema 差异大 |\n303\t\n304\t**~~选项 B：两个文件 + 状态同步~~ ❌ 已否决**\n305\t\n306\tPlan 存规划信息 + status，registry 存执行信息 + status。通过 `update_registry()` side-effect 同步。\n307\t\n308\t| 优势 | 劣势 |\n309\t|------|------|\n310\t| 职责清晰分离 | 两个文件存同一个 status，需要同步 |\n311\t| Director 改规划不影响 registry | 同步逻辑增加系统复杂度 |\n312\t| 向后兼容（没有 plan 的项目不受影响） | 崩溃/手动编辑可能导致 drift |\n313\t\n314\t**选项 C：两个文件，plan 不存已提交实验的 status（推荐）**\n315\t\n316\tPlan 只存**规划信息**（claim、priority、depends_on、description），不存 status。Status 通过 `registry_id` 实时从 registry 查询：\n317\t\n318\t```yaml\n319\texperiments:\n320\t  # 已提交到 registry 的实验——plan 中不存 status，读取时从 registry 动态获取\n321\t  - id: plan_001\n322\t    name: \"main_results_dataset_A\"\n323\t    registry_id: exp_001            # 有这个字段 = 已提交，status 从 registry 读\n324\t    claim: \"Claim 1\"\n325\t    framing_ref: \"Core Claims → Claim 1\"\n326\t\n327\t  # 计划中的实验——没有 registry_id，status 隐含为 planned\n328\t  - id: plan_003\n329\t    name: \"baseline_Z_comparison\"\n330\t    # 无 registry_id = planned\n331\t    claim: \"Claim 1\"\n332\t    framing_ref: \"Anticipated Reviewer Concerns → 与 Z 方法的对比\"\n333\t    priority: P0\n334\t    estimated_gpu_hours: 8\n335\t    depends_on: [plan_001]\n336\t    description: \"在 Dataset A/B/C 上与 Z 方法做完整对比...\"\n337\t```\n338\t\n339\t```python\n340\tdef read_experiment_plan_with_status(project: str) -> list[PlanEntry]:\n341\t    \"\"\"读取 plan 时，动态合并 registry 状态。\"\"\"\n342\t    plan = _read_experiment_plan_raw(project)\n343\t    registry = _read_registry(project)\n344\t\n345\t    for entry in plan:\n346\t        if entry.get(\"registry_id\"):\n347\t            reg_exp = registry.get(entry[\"registry_id\"])\n348\t            if reg_exp:\n349\t                entry[\"status\"] = reg_exp[\"status\"]\n350\t                entry[\"conclusion\"] = reg_exp.get(\"conclusion\")\n351\t                entry[\"metrics\"] = reg_exp.get(\"metrics\")\n352\t            else:\n353\t                entry[\"status\"] = \"orphaned\"  # registry 中被删了\n354\t        else:\n355\t            entry[\"status\"] = \"planned\"\n356\t\n357\t    return plan\n358\t```\n359\t\n360\t| 优势 | 劣势 |\n361\t|------|------|\n362\t| **零同步**——plan 中没有 status 字段，不存在重复状态 | 读取 plan 需要同时读 registry（一次额外 IO） |\n363\t| 规划和执行完全解耦 | 调用者需要用 `read_experiment_plan_with_status()` 而非直接读 YAML |\n364\t| 不需要任何 `update_registry()` side-effect | |\n365\t| 不需要 reconciliation | |\n366\t| 完全向后兼容 | |\n367\t\n368\t**采用选项 C。** 原因：\n369\t\n370\t1. **从根源消除同步问题**——不存重复状态，就不需要同步\n371\t2. **Plan 文件成为纯规划文档**——规划内容（claim/priority/depends_on/description）只有 Director 写入\n372\t3. **Registry 完全不改**——不加 PLANNED 状态，不加 claim 字段，不加新 side-effect\n373\t4. **读取时 join 的成本可忽略**——两个小 YAML 文件的内存 join，微秒级\n374\t\n375\t**`registry_id` 写回机制：**\n376\t\n377\tPlan entry 从 planned 变为已提交时，需要写入 `registry_id`。这由**系统自动完成**（不是 Director 也不是 Agent 手动写）：\n378\t\n379\tAgent 调用 `submit_training_job()` 时传入 `plan_id` 参数：\n380\t```python\n381\tsubmit_training_job(\n382\t    ...,\n383\t    plan_id=\"plan_003\",  # 对应 experiment_plan.yaml 中的 id\n384\t)\n385\t```\n386\t\n387\t`submit_training_job()` 在创建 registry entry（`exp_001`）后，自动将 `registry_id: exp_001` 写回 `experiment_plan.yaml` 中 `id == plan_003` 的 entry。这是一个**系统级 side-effect**，类似 registry 的 checkpoint/report 刷新——不改变\"Director 拥有规划内容\"的语义，只是维护了 plan ↔ registry 的关联。\n388\t\n389\t如果 `plan_id` 未传或未匹配到 plan entry，不报错（ad-hoc 实验不需要 plan 关联）。\n390\t\n391\t### 2.3 ROADMAP 的角色重新定义\n392\t\n393\tROADMAP 的最大价值是**短**——200 行内覆盖核心 idea + 近期决策，适合 Agent 每次 session 启动时快速读取建立 context。但它缺乏长期目标。\n394\t\n395\t**新的分工：**\n396\t\n397\t| 文件 | 回答什么问题 | 长度 | 更新频率 |\n398\t|------|------------|------|---------|\n399\t| **paper_framing.md** | \"我们在写什么论文，讲什么故事\" | 无限制 | 方向变化时 |\n400\t| **experiment_plan.yaml** | \"有哪些实验，为什么做\"（status 从 registry 动态读取） | 无限制 | Director 调整规划时 |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59b2e01c-e70b-4fdb-96a5-fa5830a8b740",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "fc45962b-92dd-41b0-8e39-f620bd97868b",
+            "sourceToolAssistantUUID": "59b2e01c-e70b-4fdb-96a5-fa5830a8b740",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T15:39:09.446Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the information I need. Let me also check if there's a test file for the coverage matrix to see example data:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc45962b-92dd-41b0-8e39-f620bd97868b",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSdCG9gGTEBTV1ckcC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "840d3351-ea43-4411-832c-01eb9df36b08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01E2Zp7t1Dp7BE1NNatJSiMy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11731,
+                "cache_read_input_tokens": 46347,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11731,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T15:39:09.723Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V3CUgfpEA5wEgNgEcJA8rf",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/agent-ml-research/tests -name \"*coverage*\" -o -name \"*matrix*\" | head -5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "840d3351-ea43-4411-832c-01eb9df36b08",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSdCG9gGTEBTV1ckcC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "28f4c06e-e7f9-4163-85f7-1fa3aa63baa2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01E2Zp7t1Dp7BE1NNatJSiMy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11731,
+                "cache_read_input_tokens": 46347,
+                "output_tokens": 113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11731
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 113,
+                    "cache_read_input_tokens": 46347,
+                    "cache_creation_input_tokens": 11731,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11731,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T15:39:09.786Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V3CUgfpEA5wEgNgEcJA8rf",
+              "type": "tool_result",
+              "content": "/home/ubuntu/agent-ml-research/tests/test_experiment_matrix.py\n/home/ubuntu/agent-ml-research/tests/test_experiment_matrix_skill.py\n/home/ubuntu/agent-ml-research/tests/test_api_matrix.py\n/home/ubuntu/agent-ml-research/tests/test_coverage_matrix.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28f4c06e-e7f9-4163-85f7-1fa3aa63baa2",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "3cd5e292-d30e-4100-9877-b3dba893d1b4",
+            "sourceToolAssistantUUID": "28f4c06e-e7f9-4163-85f7-1fa3aa63baa2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T15:39:11.876Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GvzsRW2jwSnLd8mEjbyhtL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/tests/test_coverage_matrix.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3cd5e292-d30e-4100-9877-b3dba893d1b4",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSpH1gJwMsdomngJp1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "675758f3-bc2b-4aa9-bc53-71b92ca0d8c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01G4BFwvaMfoTGJp7TfLmJSG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 313,
+                "cache_read_input_tokens": 58078,
+                "output_tokens": 72,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 313
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 72,
+                    "cache_read_input_tokens": 58078,
+                    "cache_creation_input_tokens": 313,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 313,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T15:39:11.888Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GvzsRW2jwSnLd8mEjbyhtL",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Tests for ``compute_coverage_matrix()`` in core/tools/experiment_plan.py.\n2\t\n3\tThe coverage matrix groups plan entries by ``claim`` and rolls registry\n4\tstatus up into a small bucket vocabulary (planned / running / done /\n5\tfailed / orphaned). These tests exercise:\n6\t\n7\t- Empty / missing plan files.\n8\t- Grouping by claim plus the unassigned bucket.\n9\t- Bucket mapping for each status the registry can return.\n10\t- Coverage percentages with single- and multi-experiment claims.\n11\t- The summary section's totals.\n12\t\"\"\"\n13\t\n14\tfrom __future__ import annotations\n15\t\n16\tfrom pathlib import Path\n17\t\n18\timport pytest\n19\timport yaml\n20\t\n21\tfrom core.tools.experiment_plan import (\n22\t    compute_coverage_matrix,\n23\t    get_experiment_plan_path,\n24\t)\n25\tfrom core.tools.registry import get_registry_path\n26\t\n27\t\n28\tdef _seed_plan(project: str, experiments: list[dict]) -> Path:\n29\t    p = get_experiment_plan_path(project)\n30\t    p.write_text(yaml.safe_dump({\"experiments\": experiments}, allow_unicode=True))\n31\t    return p\n32\t\n33\t\n34\tdef _seed_registry(project: str, experiments: dict[str, dict]) -> Path:\n35\t    p = get_registry_path(project)\n36\t    p.write_text(yaml.safe_dump({\"experiments\": experiments, \"baseline\": None}))\n37\t    return p\n38\t\n39\t\n40\tclass TestCoverageMatrix:\n41\t\n42\t    def test_empty_when_no_plan(self, workspace):\n43\t        r = compute_coverage_matrix(\"proj_x\")\n44\t        assert r.success\n45\t        assert r.data[\"claims\"] == []\n46\t        assert r.data[\"matrix\"] == {}\n47\t        assert r.data[\"unassigned\"] == []\n48\t        assert r.data[\"summary\"][\"total_experiments\"] == 0\n49\t        assert r.data[\"summary\"][\"coverage_pct\"] == 0.0\n50\t\n51\t    def test_groups_by_claim(self, workspace):\n52\t        _seed_plan(\"proj_x\", [\n53\t            {\"id\": \"plan_001\", \"claim\": \"Claim 1\"},\n54\t            {\"id\": \"plan_002\", \"claim\": \"Claim 1\"},\n55\t            {\"id\": \"plan_003\", \"claim\": \"Claim 2\"},\n56\t        ])\n57\t        r = compute_coverage_matrix(\"proj_x\")\n58\t        assert r.success\n59\t        assert r.data[\"claims\"] == [\"Claim 1\", \"Claim 2\"]\n60\t        assert len(r.data[\"matrix\"][\"Claim 1\"][\"experiments\"]) == 2\n61\t        assert len(r.data[\"matrix\"][\"Claim 2\"][\"experiments\"]) == 1\n62\t\n63\t    def test_unassigned_entries_collected(self, workspace):\n64\t        _seed_plan(\"proj_x\", [\n65\t            {\"id\": \"plan_001\", \"claim\": \"Claim 1\"},\n66\t            {\"id\": \"plan_002\"},  # no claim\n67\t            {\"id\": \"plan_003\"},\n68\t        ])\n69\t        r = compute_coverage_matrix(\"proj_x\")\n70\t        ids = sorted(e[\"id\"] for e in r.data[\"unassigned\"])\n71\t        assert ids == [\"plan_002\", \"plan_003\"]\n72\t        assert r.data[\"summary\"][\"unassigned\"] == 2\n73\t\n74\t    def test_coverage_pct_for_completed_claim(self, workspace):\n75\t        \"\"\"Two of three experiments in Claim 1 are DONE/success → 66.7%.\"\"\"\n76\t        _seed_plan(\"proj_x\", [\n77\t            {\"id\": \"plan_001\", \"claim\": \"Claim 1\", \"registry_id\": \"exp_a\"},\n78\t            {\"id\": \"plan_002\", \"claim\": \"Claim 1\", \"registry_id\": \"exp_b\"},\n79\t            {\"id\": \"plan_003\", \"claim\": \"Claim 1\"},\n80\t        ])\n81\t        _seed_registry(\"proj_x\", {\n82\t            \"exp_a\": {\"status\": \"DONE\", \"conclusion\": \"success\"},\n83\t            \"exp_b\": {\"status\": \"DONE\", \"conclusion\": \"success\"},\n84\t        })\n85\t        r = compute_coverage_matrix(\"proj_x\")\n86\t        c1 = r.data[\"matrix\"][\"Claim 1\"]\n87\t        assert c1[\"counts\"][\"done\"] == 2\n88\t        assert c1[\"counts\"][\"planned\"] == 1\n89\t        assert c1[\"coverage\"] == \"2/3\"\n90\t        assert c1[\"coverage_pct\"] == round(100 * 2 / 3, 1)\n91\t\n92\t    def test_bucket_mapping_covers_all_statuses(self, workspace):\n93\t        \"\"\"Each registry status maps to the expected coverage bucket.\"\"\"\n94\t        _seed_plan(\"proj_x\", [\n95\t            {\"id\": \"p_planned\", \"claim\": \"C\"},\n96\t            {\"id\": \"p_running\", \"claim\": \"C\", \"registry_id\": \"r_running\"},\n97\t            {\"id\": \"p_done\", \"claim\": \"C\", \"registry_id\": \"r_done\"},\n98\t            {\"id\": \"p_failed\", \"claim\": \"C\", \"registry_id\": \"r_failed\"},\n99\t            {\"id\": \"p_orphan\", \"claim\": \"C\", \"registry_id\": \"r_missing\"},\n100\t        ])\n101\t        _seed_registry(\"proj_x\", {\n102\t            \"r_running\": {\"status\": \"RUNNING\"},\n103\t            \"r_done\":    {\"status\": \"DONE\", \"conclusion\": \"success\"},\n104\t            \"r_failed\":  {\"status\": \"DONE\", \"conclusion\": \"failed\"},\n105\t            # r_missing intentionally absent → orphaned.\n106\t        })\n107\t        r = compute_coverage_matrix(\"proj_x\")\n108\t        counts = r.data[\"matrix\"][\"C\"][\"counts\"]\n109\t        assert counts == {\n110\t            \"planned\": 1, \"running\": 1, \"done\": 1,\n111\t            \"failed\": 1, \"orphaned\": 1,\n112\t        }\n113\t        # 1 done out of 5 → 20%.\n114\t        assert r.data[\"matrix\"][\"C\"][\"coverage_pct\"] == 20.0\n115\t\n116\t    def test_summary_aggregates_across_claims(self, workspace):\n117\t        _seed_plan(\"proj_x\", [\n118\t            {\"id\": \"p1\", \"claim\": \"C1\", \"registry_id\": \"e1\"},\n119\t            {\"id\": \"p2\", \"claim\": \"C2\", \"registry_id\": \"e2\"},\n120\t            {\"id\": \"p3\", \"claim\": \"C2\"},\n121\t        ])\n122\t        _seed_registry(\"proj_x\", {\n123\t            \"e1\": {\"status\": \"DONE\", \"conclusion\": \"success\"},\n124\t            \"e2\": {\"status\": \"RUNNING\"},\n125\t        })\n126\t        r = compute_coverage_matrix(\"proj_x\")\n127\t        s = r.data[\"summary\"]\n128\t        assert s[\"total_experiments\"] == 3\n129\t        assert s[\"total_claims\"] == 2\n130\t        assert s[\"counts\"][\"done\"] == 1\n131\t        assert s[\"counts\"][\"running\"] == 1\n132\t        assert s[\"counts\"][\"planned\"] == 1\n133\t        assert s[\"coverage\"] == \"1/3\"\n134\t        assert s[\"coverage_pct\"] == round(100 / 3, 1)\n135\t\n136\t    def test_intermediate_statuses_count_as_running(self, workspace):\n137\t        \"\"\"PREPARING/PENDING/QUEUED/ALLOCATED/ANALYZING all roll into \"running\".\"\"\"\n138\t        statuses = [\"PREPARING\", \"PENDING\", \"QUEUED\", \"ALLOCATED\", \"ANALYZING\"]\n139\t        plan = []\n140\t        registry = {}\n141\t        for i, st in enumerate(statuses):\n142\t            pid = f\"plan_{i:03d}\"\n143\t            eid = f\"exp_{i:03d}\"\n144\t            plan.append({\"id\": pid, \"claim\": \"C\", \"registry_id\": eid})\n145\t            registry[eid] = {\"status\": st}\n146\t        _seed_plan(\"proj_x\", plan)\n147\t        _seed_registry(\"proj_x\", registry)\n148\t        r = compute_coverage_matrix(\"proj_x\")\n149\t        assert r.data[\"matrix\"][\"C\"][\"counts\"][\"running\"] == len(statuses)\n150\t        assert r.data[\"matrix\"][\"C\"][\"counts\"][\"done\"] == 0\n151\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "675758f3-bc2b-4aa9-bc53-71b92ca0d8c3",
+            "isSidechain": true,
+            "promptId": "d2598d23-c4b2-4a60-9caa-6e35fb60a8a8",
+            "agentId": "a687669e02e1c82a7",
+            "type": "user",
+            "uuid": "6c33a799-55c9-4315-8e02-da4dace42ae7",
+            "sourceToolAssistantUUID": "675758f3-bc2b-4aa9-bc53-71b92ca0d8c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T15:39:28.251Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information needed. Let me create a comprehensive report.\n\n## Summary\n\nI've successfully identified the expected YAML schema for `experiment_plan.yaml` by analyzing the implementation of both `read_experiment_plan_with_status` and `compute_coverage_matrix` in the agent-ml-research codebase.\n\n---\n\n## Expected YAML Schema for experiment_plan.yaml\n\n### Top-Level Structure\n\nThe YAML file must have exactly this top-level key:\n\n```yaml\nexperiments:\n  - id: ...\n    # other fields...\n  - id: ...\n    # other fields...\n```\n\n**Critical**: The top-level must be `experiments:` (NOT `claims:` and `experiments:` as a dict). Your current structure with separate `claims:` dict is not compatible.\n\n### Required Fields Per Experiment Entry\n\nEach entry in the `experiments` list **must** have:\n\n1. **`id`** (required, string) — Unique identifier for the plan entry (e.g., `\"plan_001\"`)\n   - Entries without an `id` are silently dropped during parsing (line 107 in experiment_plan.py: `if isinstance(e, dict) and e.get(\"id\")`)\n\n2. **`claim`** (optional, string) — The claim this experiment supports\n   - Used by `compute_coverage_matrix()` to group experiments by claim (line 292)\n   - If absent, the entry goes into the `unassigned` bucket (lines 290-296)\n   - This field is critical for the coverage matrix functionality\n\n3. **`registry_id`** (optional, string) — Reference to a registry experiment\n   - If present and matches a registry entry: status/conclusion/metrics are pulled from registry\n   - If present but registry entry is missing: status becomes `\"orphaned\"`\n   - If absent: status defaults to `\"planned\"`\n\n### Optional Fields (Recognized but Not Required)\n\n- `name` (string) — Human-readable name\n- `description` (string) — Long-form description\n- `priority` (string) — Priority level (e.g., `\"P0\"`, `\"P1\"`)\n- `depends_on` (list of strings) — Plan IDs this depends on\n- `estimated_gpu_hours` (number) — GPU budget estimate\n- `framing_ref` (string) — Reference to framing document section\n- Any other custom fields — preserved but not used by tools\n\n### Status Fields (Auto-Populated, Not in YAML)\n\nThese are **computed dynamically** during `read_experiment_plan_with_status()` and should NOT be stored in the YAML file:\n\n- `status` — One of: `\"planned\"`, `\"orphaned\"`, or any registry status (e.g., `\"RUNNING\"`, `\"DONE\"`)\n- `conclusion` — Only present if registry entry has one (e.g., `\"success\"`, `\"failed\"`)\n- `metrics` — Only present if registry entry has them\n\n---\n\n## Correct YAML Format\n\n```yaml\nexperiments:\n  # Already submitted to registry\n  - id: plan_001\n    name: \"main_results_dataset_A\"\n    registry_id: exp_001\n    claim: \"Claim 1\"\n    framing_ref: \"Core Claims → Claim 1\"\n\n  - id: plan_002\n    name: \"ablation_learning_rate\"\n    registry_id: exp_002\n    claim: \"Claim 2\"\n\n  # Planned experiments (no registry_id yet)\n  - id: plan_003\n    name: \"baseline_Z_comparison\"\n    claim: \"Claim 1\"\n    framing_ref: \"Anticipated Reviewer Concerns → Z comparison\"\n    priority: P0\n    estimated_gpu_hours: 8\n    depends_on: [plan_001]\n    description: \"Compare against Z method on Dataset A/B/C\"\n\n  - id: plan_004\n    name: \"cross_dataset_transfer\"\n    claim: \"Claim 3\"\n    priority: P1\n    estimated_gpu_hours: 16\n    description: \"Evaluate generalization across datasets\"\n```\n\n---\n\n## Why Your Current Structure Fails\n\nYour current YAML has:\n\n```yaml\nclaims:\n  Claim 1: ...\n  Claim 2: ...\nexperiments:\n  - plan_id: ...\n    name: ...\n    claim: ...\n```\n\n**Issues:**\n\n1. **Top-level `claims:` dict is ignored** — The parsers only look for `data.get(\"experiments\")` (line 102, experiment_plan.py)\n2. **Field name is `plan_id` not `id`** — The code explicitly checks `e.get(\"id\")` (line 107); entries without `id` are dropped\n3. **No `registry_id` field** — Without it, status stays `\"planned\"` forever and can never reflect actual registry state\n\n---\n\n## Source Code Evidence\n\n**From `/home/ubuntu/agent-ml-research/core/tools/experiment_plan.py`:**\n\n- Lines 102-109: Raw YAML parsing expects `data.get(\"experiments\")` to be a list; drops any entry without an `id`\n- Lines 176-190: `_attach_status()` joins plan with registry using the `registry_id` field\n- Lines 219: `read_experiment_plan_with_status()` returns only the `experiments` list\n- Lines 289-296: `compute_coverage_matrix()` groups by `claim` field; entries without `claim` go to `unassigned`\n\n**Test evidence** (`test_experiment_plan.py` lines 58-62, test_coverage_matrix.py lines 52-61):\n\n```python\n_seed_plan(\"proj_x\", [\n    {\"id\": \"plan_001\", \"name\": \"main\", \"claim\": \"Claim 1\"},\n    {\"id\": \"plan_002\", \"name\": \"ablation\", \"claim\": \"Claim 2\"},\n])\n```\n\nAll test examples use `id`, not `plan_id`, and `claim` as a per-entry field, not a top-level dict.\n\n---\n\n## Fix Required\n\n1. **Remove the `claims:` dict entirely** — it's not parsed\n2. **Rename `plan_id` to `id`** in every entry\n3. **Keep `claim` as a string field in each experiment entry** (not a top-level key)\n4. **Add `registry_id` field to entries already submitted**, so their status pulls from the registry\n5. **Omit `status` fields from the YAML** — they're computed on every read\n\nThis structure matches the documented format in `/home/ubuntu/agent-ml-research/docs/plans/dream/DREAM_AGENT_DESIGN.md` (lines 196-232)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c33a799-55c9-4315-8e02-da4dace42ae7",
+            "isSidechain": true,
+            "agentId": "a687669e02e1c82a7",
+            "requestId": "req_011CazpSxytY6oEaCERjAsy4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b4200317-da87-4c0c-82e6-fbe95ef52b17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/sessions/agent_32270b04",
+            "sessionId": "6750f4f6-3193-46ae-b369-8b58278787ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CeqHqRNkNLZd77eLHobxq5",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 2299,
+                "cache_read_input_tokens": 58391,
+                "output_tokens": 1600,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2299
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1600,
+                    "cache_read_input_tokens": 58391,
+                    "cache_creation_input_tokens": 2299,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2299,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-find-the-expected-yaml-schema-for-experiment-plan-yaml-used-by-two-p.md"
+}

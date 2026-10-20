@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "aa230209db9589dae2b2",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Qwen2.5-7B: 28 layers × 4 KV heads = 112 heads, GQA 7:1。exp_e hires MCKP allocation: {8:4 (L0), 4:100, 2",
+  "task_key": "22bd21bb-a250-4bbe-be3c-680dfd2ae84b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/22bd21bb-a250-4bbe-be3c-680dfd2ae84b.jsonl",
+    "occurrence": 1,
+    "bytes": 916935,
+    "sha256": "f5c230554c3136c665364c49942211c6e8c3ba64955c42d166c646e2992ef221"
+  },
+  "statistics": {
+    "messages": 496,
+    "user_turns": 1,
+    "tool_calls": 151,
+    "roles": {
+      "record": 76,
+      "user": 1,
+      "assistant": 117,
+      "tool_call": 151,
+      "tool_result": 151
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "aa230209db9589dae2b2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 494,
+      "chunks": [
+        {
+          "path": "aa230209db9589dae2b2-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "aa230209db9589dae2b2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "aa230209db9589dae2b2-part-0003.json",
+          "message_count": 136
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-qwen2-5-7b-28-layers-4-kv-heads-112-heads-gqa-7-1exp-e-hires-mck.md"
+}

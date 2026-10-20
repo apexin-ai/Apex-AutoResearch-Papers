@@ -1,0 +1,608 @@
+{
+  "schema_version": "1.0",
+  "id": "69f2404734914dcd6db3",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find and read the literature_map.yaml file in /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated",
+  "task_key": "agent-a5e9cd0794a11f600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a5e9cd0794a11f600.jsonl",
+    "occurrence": 1,
+    "bytes": 62588,
+    "sha256": "3050c1acca9bf6e7ea8e6b2f862cff67ddb14359db975c6b9f79920821ce6d25"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T19:02:55.116Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find and read the literature_map.yaml file in /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/. Also find the add_to_literature_map function - search for it in /home/ubuntu/agent-ml-research/ and /home/ubuntu/.agent-ml-research-idea_gen_0509_2/. Report the full path to literature_map.yaml, its current contents (especially any existing \"Linear Recurrent Models\" cluster), and the exact import path and signature for add_to_literature_map."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "agentId": "a5e9cd0794a11f600",
+            "type": "user",
+            "uuid": "3221305f-fe28-436c-b334-3022e75e8cad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T19:02:56.826Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and analyze the literature_map.yaml file and locate the add_to_literature_map function. Let me search for these."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3221305f-fe28-436c-b334-3022e75e8cad",
+            "isSidechain": true,
+            "agentId": "a5e9cd0794a11f600",
+            "requestId": "req_011CbCSqV7iCdbXqxif8jmHU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b7e8f33b-a20e-400e-92a5-f8bba5acc288",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UJQHc5u59FCVgK67udEbiJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27753,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27753,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T19:02:57.144Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017jPnTVH7MST5XNyuBaLLSB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7e8f33b-a20e-400e-92a5-f8bba5acc288",
+            "isSidechain": true,
+            "agentId": "a5e9cd0794a11f600",
+            "requestId": "req_011CbCSqV7iCdbXqxif8jmHU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b0dd79e9-724d-4af2-b204-91e00a19fd6d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UJQHc5u59FCVgK67udEbiJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27753,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27753,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T19:02:57.161Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017jPnTVH7MST5XNyuBaLLSB",
+              "type": "tool_result",
+              "content": "1\t# Literature Map for entrainment_gated_ft\n2\t# Populated via WebSearch verification (S2 API unavailable 2026-05-19)\n3\t\n4\tclusters:\n5\t  - cluster_name: \"Hybrid Architectures\"\n6\t    target_count: 7\n7\t    papers:\n8\t      - bibtex_key: wang2025hybrid\n9\t        title: \"Scaling Laws for Hybrid Language Models\"\n10\t        authors: \"Wang, Junxiong and others\"\n11\t        year: 2025\n12\t        venue: \"arXiv:2507.06457\"\n13\t        category: \"Hybrid Architectures\"\n14\t        verified: true\n15\t        doi: \"\"\n16\t        url: \"https://arxiv.org/abs/2507.06457\"\n17\t        relevance: \"Primary data source — 72-model zoo of hybrid recurrent-attention architectures\"\n18\t      - bibtex_key: lieber2024jamba\n19\t        title: \"Jamba: A Hybrid Transformer-Mamba Language Model\"\n20\t        authors: \"Lieber, Opher and others\"\n21\t        year: 2024\n22\t        venue: \"arXiv:2403.19887\"\n23\t        category: \"Hybrid Architectures\"\n24\t        verified: true\n25\t        doi: \"\"\n26\t        url: \"https://arxiv.org/abs/2403.19887\"\n27\t        relevance: \"First production-scale hybrid interleaving Transformer and Mamba layers with MoE; key design reference for attention-ratio choices\"\n28\t      - bibtex_key: peng2024eagle\n29\t        title: \"Eagle and Finch: RWKV with Matrix-Valued States and Dynamic Recurrence\"\n30\t        authors: \"Peng, Bo and others\"\n31\t        year: 2024\n32\t        venue: \"arXiv:2404.05892\"\n33\t        category: \"Hybrid Architectures\"\n34\t        verified: true\n35\t        doi: \"\"\n36\t        url: \"https://arxiv.org/abs/2404.05892\"\n37\t        relevance: \"RWKV-5/6 with matrix-valued states and dynamic recurrence; pure-recurrent baseline in the hybrid architecture spectrum\"\n38\t      - bibtex_key: de2024griffin\n39\t        title: \"Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models\"\n40\t        authors: \"De, Soham and others\"\n41\t        year: 2024\n42\t        venue: \"arXiv:2402.19427\"\n43\t        category: \"Hybrid Architectures\"\n44\t        verified: true\n45\t        doi: \"\"\n46\t        url: \"https://arxiv.org/abs/2402.19427\"\n47\t        relevance: \"Proposes Hawk (pure RNN) and Griffin (gated linear recurrence + local attention); matches Llama-2 with 6x fewer tokens\"\n48\t      - bibtex_key: dao2024mamba2\n49\t        title: \"Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality\"\n50\t        authors: \"Dao, Tri and Gu, Albert\"\n51\t        year: 2024\n52\t        venue: \"ICML 2024\"\n53\t        category: \"Hybrid Architectures\"\n54\t        verified: true\n55\t        doi: \"\"\n56\t        url: \"https://arxiv.org/abs/2405.21060\"\n57\t        relevance: \"Establishes SSD framework unifying SSMs and attention; Mamba-2 core layer used in many hybrid designs\"\n58\t      - bibtex_key: botev2024recurrentgemma\n59\t        title: \"RecurrentGemma: Moving Past Transformers for Efficient Open Language Models\"\n60\t        authors: \"Botev, Aleksandar and others\"\n61\t        year: 2024\n62\t        venue: \"arXiv:2404.07839\"\n63\t        category: \"Hybrid Architectures\"\n64\t        verified: true\n65\t        doi: \"\"\n66\t        url: \"https://arxiv.org/abs/2404.07839\"\n67\t        relevance: \"Open-weight Griffin-based model combining linear recurrence with local sliding-window attention; directly comparable to hybrid zoo models\"\n68\t      - bibtex_key: dong2024hymba\n69\t        title: \"Hymba: A Hybrid-head Architecture for Small Language Models\"\n70\t        authors: \"Dong, Xin and others\"\n71\t        year: 2024\n72\t        venue: \"arXiv:2411.13676\"\n73\t        category: \"Hybrid Architectures\"\n74\t        verified: true\n75\t        doi: \"\"\n76\t        url: \"https://arxiv.org/abs/2411.13676\"\n77\t        relevance: \"Intra-layer head-wise hybrid mixing attention and SSM heads; contrasts with inter-layer hybrid designs like Jamba/Griffin\"\n78\t\n79\t  - cluster_name: \"Linear Recurrent Models\"\n80\t    target_count: 6\n81\t    papers:\n82\t      - bibtex_key: gu2024mamba\n83\t        title: \"Mamba: Linear-Time Sequence Modeling with Selective State Spaces\"\n84\t        authors: \"Gu, Albert and Dao, Tri\"\n85\t        year: 2024\n86\t        venue: \"arXiv:2312.00752\"\n87\t        category: \"Linear Recurrent Models\"\n88\t        verified: true\n89\t        doi: \"\"\n90\t        url: \"https://arxiv.org/abs/2312.00752\"\n91\t        relevance: \"Selective SSM foundation — Mamba architecture; base for Mamba-2 and many hybrid designs in our study\"\n92\t      - bibtex_key: sun2023retnet\n93\t        title: \"Retentive Network: A Successor to Transformer for Large Language Models\"\n94\t        authors: \"Sun, Yutao and Dong, Li and Huang, Shaohan and Ma, Shuming and Xia, Yuqing and Xue, Jilong and Wang, Jianyong and Wei, Furu\"\n95\t        year: 2023\n96\t        venue: \"arXiv:2307.08621\"\n97\t        category: \"Linear Recurrent Models\"\n98\t        verified: true\n99\t        doi: \"\"\n100\t        url: \"https://arxiv.org/abs/2307.08621\"\n101\t        relevance: \"RetNet — one of three base architectures in our study; retention mechanism with parallel/recurrent/chunkwise paradigms\"\n102\t      - bibtex_key: qin2024hgrn2\n103\t        title: \"HGRN2: Gated Linear RNNs with State Expansion\"\n104\t        authors: \"Qin, Zhen and others\"\n105\t        year: 2024\n106\t        venue: \"arXiv:2404.07904\"\n107\t        category: \"Linear Recurrent Models\"\n108\t        verified: true\n109\t        doi: \"\"\n110\t        url: \"https://arxiv.org/abs/2404.07904\"\n111\t        relevance: \"HGRN2 — one of three base architectures in our study; outer-product state expansion for gated linear RNNs\"\n112\t      - bibtex_key: yang2024gateddeltanet\n113\t        title: \"Gated Delta Networks: Improving Mamba2 with Delta Rule\"\n114\t        authors: \"Yang, Songlin and Kautz, Jan and Hatamizadeh, Ali\"\n115\t        year: 2024\n116\t        venue: \"arXiv:2412.06464\"\n117\t        category: \"Linear Recurrent Models\"\n118\t        verified: true\n119\t        doi: \"\"\n120\t        url: \"https://arxiv.org/abs/2412.06464\"\n121\t        relevance: \"GatedDeltaNet — one of three base architectures in our study; combines gating with delta update rule\"\n122\t      - bibtex_key: gu2022s4\n123\t        title: \"Efficiently Modeling Long Sequences with Structured State Spaces\"\n124\t        authors: \"Gu, Albert and Goel, Karan and Ré, Christopher\"\n125\t        year: 2022\n126\t        venue: \"ICLR 2022\"\n127\t        category: \"Linear Recurrent Models\"\n128\t        verified: true\n129\t        doi: \"\"\n130\t        url: \"https://arxiv.org/abs/2111.00396\"\n131\t        relevance: \"S4 — foundational structured state space model; established SSM paradigm that led to Mamba and subsequent architectures\"\n132\t      - bibtex_key: katharopoulos2020transformers\n133\t        title: \"Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\"\n134\t        authors: \"Katharopoulos, Angelos and Vyas, Apoorv and Pappas, Nikolaos and Fleuret, François\"\n135\t        year: 2020\n136\t        venue: \"ICML 2020\"\n137\t        category: \"Linear Recurrent Models\"\n138\t        verified: true\n139\t        doi: \"\"\n140\t        url: \"https://arxiv.org/abs/2006.16236\"\n141\t        relevance: \"Linear attention as RNN — establishes theoretical bridge between attention and recurrence; foundational for gated linear attention variants\"\n142\t\n143\t  - cluster_name: \"Underspecification and Model Agreement\"\n144\t    target_count: 5\n145\t    papers:\n146\t      - bibtex_key: damour2022underspecification\n147\t        title: \"Underspecification Presents Challenges for Credibility in Modern Machine Learning\"\n148\t        authors: \"D'Amour, Alexander and Heller, Katherine and Moldovan, Dan and others\"\n149\t        year: 2022\n150\t        venue: \"JMLR\"\n151\t        category: \"Underspecification and Model Agreement\"\n152\t        verified: true\n153\t        doi: \"\"\n154\t        url: \"\"\n155\t        relevance: \"Framing anchor — defines underspecification; our finding is a specific instance\"\n156\t      - bibtex_key: mccoy2020berts\n157\t        title: \"BERTs of a feather do not generalize together: Large variability in generalization across models with similar test set performance\"\n158\t        authors: \"McCoy, R. Thomas and Min, Junghyun and Linzen, Tal\"\n159\t        year: 2020\n160\t        venue: \"NeurIPS 2020\"\n161\t        category: \"Underspecification and Model Agreement\"\n162\t        verified: true\n163\t        doi: \"\"\n164\t        url: \"https://arxiv.org/abs/1911.02969\"\n165\t        relevance: \"Per-example divergence in fine-tuned BERTs — direct precedent for our finding that similar aggregate performance masks per-example disagreement\"\n166\t      - bibtex_key: fort2019deep\n167\t        title: \"Deep Ensembles: A Loss Landscape Perspective\"\n168\t        authors: \"Fort, Stanislav and Hu, Huiyi and Lakshminarayanan, Balaji\"\n169\t        year: 2019\n170\t        venue: \"arXiv:1912.02757\"\n171\t        category: \"Underspecification and Model Agreement\"\n172\t        verified: true\n173\t        doi: \"\"\n174\t        url: \"https://arxiv.org/abs/1912.02757\"\n175\t        relevance: \"Loss landscape analysis showing diverse solutions in weight space; supports our observation that architectures find different per-example solutions\"\n176\t      - bibtex_key: kornblith2019similarity\n177\t        title: \"Similarity of Neural Network Representations Revisited\"\n178\t        authors: \"Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey\"\n179\t        year: 2019\n180\t        venue: \"ICML 2019\"\n181\t        category: \"Underspecification and Model Agreement\"\n182\t        verified: true\n183\t        doi: \"\"\n184\t        url: \"https://arxiv.org/abs/1905.00414\"\n185\t        relevance: \"CKA — centered kernel alignment for measuring representational similarity; methodological context for cross-architecture comparison\"\n186\t      - bibtex_key: koh2021wilds\n187\t        title: \"WILDS: A Benchmark for In-the-Wild Distribution Shift\"\n188\t        authors: \"Koh, Pang Wei and Sagawa, Shiori and Marklund, Henrik and others\"\n189\t        year: 2021\n190\t        venue: \"ICML 2021\"\n191\t        category: \"Underspecification and Model Agreement\"\n192\t        verified: true\n193\t        doi: \"\"\n194\t        url: \"https://arxiv.org/abs/2012.07421\"\n195\t        relevance: \"Benchmark for distribution shift; complements underspecification framework by providing empirical evidence of model disagreement under shift\"\n196\t\n197\t  - cluster_name: \"Ensemble Diversity\"\n198\t    target_count: 3\n199\t    papers:\n200\t      - bibtex_key: krogh1994ensembles\n201\t        title: \"Neural Network Ensembles, Cross Validation, and Active Learning\"\n202\t        authors: \"Krogh, Anders and Vedelsby, Jesper\"\n203\t        year: 1994\n204\t        venue: \"NeurIPS 1994\"\n205\t        category: \"Ensemble Diversity\"\n206\t        verified: true\n207\t        doi: \"\"\n208\t        url: \"\"\n209\t        relevance: \"Foundational ensemble diversity-accuracy decomposition; ambiguity = variance of ensemble members; our Jaccard metric measures analogous per-example disagreement\"\n210\t      - bibtex_key: kuncheva2003measures\n211\t        title: \"Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy\"\n212\t        authors: \"Kuncheva, Ludmila I. and Whitaker, Christopher J.\"\n213\t        year: 2003\n214\t        venue: \"Machine Learning\"\n215\t        category: \"Ensemble Diversity\"\n216\t        verified: true\n217\t        doi: \"\"\n218\t        url: \"\"\n219\t        relevance: \"Systematic evaluation of 10 diversity measures for classifier ensembles; Jaccard-like pairwise measures directly relevant to our per-example analysis\"\n220\t      - bibtex_key: lakshminarayanan2017simple\n221\t        title: \"Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles\"\n222\t        authors: \"Lakshminarayanan, Balaji and Pritzel, Alexander and Blundell, Charles\"\n223\t        year: 2017\n224\t        venue: \"NeurIPS 2017\"\n225\t        category: \"Ensemble Diversity\"\n226\t        verified: true\n227\t        doi: \"\"\n228\t        url: \"https://arxiv.org/abs/1612.01474\"\n229\t        relevance: \"Deep ensemble methodology; random initialization suffices for diversity — parallels our observation that different architectures produce diverse per-example behaviors\"\n230\t\n231\t  - cluster_name: \"Dataset Cartography and Per-Example Analysis\"\n232\t    target_count: 4\n233\t    papers:\n234\t      - bibtex_key: swayamdipta2020dataset\n235\t        title: \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\"\n236\t        authors: \"Swayamdipta, Swabha and Schwartz, Roy and Lourie, Nicholas and Wang, Yizhong and Hajishirzi, Hannaneh and Smith, Noah A. and Choi, Yejin\"\n237\t        year: 2020\n238\t        venue: \"EMNLP 2020\"\n239\t        category: \"Dataset Cartography and Per-Example Analysis\"\n240\t        verified: true\n241\t        doi: \"\"\n242\t        url: \"https://arxiv.org/abs/2009.10795\"\n243\t        relevance: \"Per-example characterization via training dynamics (confidence, variability); our helped/hurt decomposition is analogous per-example analysis across architectures rather than epochs\"\n244\t      - bibtex_key: rodriguez2021evaluation\n245\t        title: \"Evaluation Examples are Not Equally Informative: How Should That Change NLP Leaderboards?\"\n246\t        authors: \"Rodriguez, Pedro and Barrow, Joe and Hoyle, Alexander Miserlis and Lalor, John P. and Jia, Robin and Boyd-Graber, Jordan\"\n247\t        year: 2021\n248\t        venue: \"ACL 2021\"\n249\t        category: \"Dataset Cartography and Per-Example Analysis\"\n250\t        verified: true\n251\t        doi: \"\"\n252\t        url: \"https://aclanthology.org/2021.acl-long.346\"\n253\t        relevance: \"IRT-based per-example difficulty modeling for NLP; demonstrates that evaluation examples have latent properties — our helped/hurt analysis reveals similar per-example structure\"\n254\t      - bibtex_key: ethayarajh2022understanding\n255\t        title: \"Understanding Dataset Difficulty with V-Usable Information\"\n256\t        authors: \"Ethayarajh, Kawin and Choi, Yejin and Swayamdipta, Swabha\"\n257\t        year: 2022\n258\t        venue: \"ICML 2022\"\n259\t        category: \"Dataset Cartography and Per-Example Analysis\"\n260\t        verified: true\n261\t        doi: \"\"\n262\t        url: \"https://arxiv.org/abs/2110.08420\"\n263\t        relevance: \"V-usable information framework for per-example difficulty; extends dataset cartography to information-theoretic characterization\"\n264\t      - bibtex_key: pleiss2020identifying\n265\t        title: \"Identifying Mislabeled Data using the Area Under the Margin Ranking\"\n266\t        authors: \"Pleiss, Geoff and Zhang, Tianyi and Elenberg, Ethan and Weinberger, Kilian Q.\"\n267\t        year: 2020\n268\t        venue: \"NeurIPS 2020\"\n269\t        category: \"Dataset Cartography and Per-Example Analysis\"\n270\t        verified: true\n271\t        doi: \"\"\n272\t        url: \"https://arxiv.org/abs/2001.10528\"\n273\t        relevance: \"Per-example margin ranking for data quality; complementary per-example analysis method to our helped/hurt decomposition\"\n274\t\n275\t  - cluster_name: \"Attention Interpretability\"\n276\t    target_count: 4\n277\t    papers:\n278\t      - bibtex_key: jain2019attention\n279\t        title: \"Attention is not Explanation\"\n280\t        authors: \"Jain, Sarthak and Wallace, Byron C.\"\n281\t        year: 2019\n282\t        venue: \"NAACL 2019\"\n283\t        category: \"Attention Interpretability\"\n284\t        verified: true\n285\t        doi: \"\"\n286\t        url: \"https://arxiv.org/abs/1902.10186\"\n287\t        relevance: \"Caution against interpreting attention as explanation; relevant to our attention weight analysis which we frame as descriptive characterization, not causal\"\n288\t      - bibtex_key: clark2019what\n289\t        title: \"What Does BERT Look At? An Analysis of BERT's Attention\"\n290\t        authors: \"Clark, Kevin and Khandelwal, Urvashi and Levy, Omer and Manning, Christopher D.\"\n291\t        year: 2019\n292\t        venue: \"BlackboxNLP Workshop, ACL 2019\"\n293\t        category: \"Attention Interpretability\"\n294\t        verified: true\n295\t        doi: \"\"\n296\t        url: \"https://arxiv.org/abs/1906.04341\"\n297\t        relevance: \"Descriptive attention pattern analysis in BERT; methodological precedent for our cross-architecture attention cosine similarity analysis\"\n298\t      - bibtex_key: olsson2022induction\n299\t        title: \"In-context Learning and Induction Heads\"\n300\t        authors: \"Olsson, Catherine and Elhage, Nelson and Nanda, Neel and others\"\n301\t        year: 2022\n302\t        venue: \"arXiv:2209.11895\"\n303\t        category: \"Attention Interpretability\"\n304\t        verified: true\n305\t        doi: \"\"\n306\t        url: \"https://arxiv.org/abs/2209.11895\"\n307\t        relevance: \"Induction heads as mechanistic circuit for in-context learning; relevant to understanding what hybrid attention layers learn\"\n308\t      - bibtex_key: wiegreffe2019attention\n309\t        title: \"Attention is not not Explanation\"\n310\t        authors: \"Wiegreffe, Sarah and Pinter, Yuval\"\n311\t        year: 2019\n312\t        venue: \"EMNLP 2019\"\n313\t        category: \"Attention Interpretability\"\n314\t        verified: true\n315\t        doi: \"\"\n316\t        url: \"https://arxiv.org/abs/1908.04626\"\n317\t        relevance: \"Response to Jain & Wallace showing attention can provide useful signal under certain conditions; contextualizes our cautious descriptive framing\"\n318\t\n319\t  - cluster_name: \"Benchmarks and Evaluation\"\n320\t    target_count: 3\n321\t    papers:\n322\t      - bibtex_key: paperno2016lambada\n323\t        title: \"The LAMBADA Dataset: Word Prediction Requiring a Broad Discourse Context\"\n324\t        authors: \"Paperno, Denis and Kruszewski, Germán and Lazaridou, Angeliki and others\"\n325\t        year: 2016\n326\t        venue: \"ACL 2016\"\n327\t        category: \"Benchmarks and Evaluation\"\n328\t        verified: true\n329\t        doi: \"\"\n330\t        url: \"\"\n331\t        relevance: \"Primary benchmark — LAMBADA is the sole convergence benchmark in our study\"\n332\t      - bibtex_key: gao2024lmeval\n333\t        title: \"A Framework for Few-Shot Language Model Evaluation\"\n334\t        authors: \"Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and others\"\n335\t        year: 2024\n336\t        venue: \"Zenodo (v0.4.3)\"\n337\t        category: \"Benchmarks and Evaluation\"\n338\t        verified: true\n339\t        doi: \"10.5281/zenodo.12608602\"\n340\t        url: \"https://github.com/EleutherAI/lm-evaluation-harness\"\n341\t        relevance: \"lm-evaluation-harness — evaluation framework used by Wang et al. (2025) model zoo and our benchmark evaluations\"\n342\t      - bibtex_key: clark2018arc\n343\t        title: \"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge\"\n344\t        authors: \"Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind\"\n345\t        year: 2018\n346\t        venue: \"arXiv:1803.05457\"\n347\t        category: \"Benchmarks and Evaluation\"\n348\t        verified: true\n349\t        doi: \"\"\n350\t        url: \"https://arxiv.org/abs/1803.05457\"\n351\t        relevance: \"ARC benchmark — ARC-Easy and ARC-Challenge are two of our 10 evaluation benchmarks\"\n352\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0dd79e9-724d-4af2-b204-91e00a19fd6d",
+            "isSidechain": true,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "agentId": "a5e9cd0794a11f600",
+            "type": "user",
+            "uuid": "c54ce7dc-1129-4979-b228-784e7c695c5a",
+            "sourceToolAssistantUUID": "b0dd79e9-724d-4af2-b204-91e00a19fd6d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T19:02:57.256Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016okBqbxpHykEm3dhRVrWHD",
+              "name": "Grep",
+              "input": {
+                "pattern": "def add_to_literature_map",
+                "path": "/home/ubuntu/agent-ml-research"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c54ce7dc-1129-4979-b228-784e7c695c5a",
+            "isSidechain": true,
+            "agentId": "a5e9cd0794a11f600",
+            "requestId": "req_011CbCSqV7iCdbXqxif8jmHU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fe44b9bc-de18-4904-b932-fbb2a0f3eac5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UJQHc5u59FCVgK67udEbiJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27753,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27753,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T19:02:57.468Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199ZmqJ6aHwUFDGKbxMtaVT",
+              "name": "Grep",
+              "input": {
+                "pattern": "def add_to_literature_map",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe44b9bc-de18-4904-b932-fbb2a0f3eac5",
+            "isSidechain": true,
+            "agentId": "a5e9cd0794a11f600",
+            "requestId": "req_011CbCSqV7iCdbXqxif8jmHU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "98e6721c-fcc9-4cc9-a5d9-e14df03ccc51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UJQHc5u59FCVgK67udEbiJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27753,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 266,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 27753
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 266,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 27753,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 27753,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T19:02:58.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016okBqbxpHykEm3dhRVrWHD",
+              "type": "tool_result",
+              "content": "Found 1 file\n/home/ubuntu/agent-ml-research/core/tools/literature.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe44b9bc-de18-4904-b932-fbb2a0f3eac5",
+            "isSidechain": true,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "agentId": "a5e9cd0794a11f600",
+            "type": "user",
+            "uuid": "06c64b48-ba40-4206-b780-2cd80c670bfa",
+            "sourceToolAssistantUUID": "fe44b9bc-de18-4904-b932-fbb2a0f3eac5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T19:03:01.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199ZmqJ6aHwUFDGKbxMtaVT",
+              "type": "tool_result",
+              "content": "Found 2 files\nlogs/workers/worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/logs/chats/feishu_group_oc_16f4cc04d259f364091fe7b4addd7912_paper_agent.jsonl"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98e6721c-fcc9-4cc9-a5d9-e14df03ccc51",
+            "isSidechain": true,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "agentId": "a5e9cd0794a11f600",
+            "type": "user",
+            "uuid": "6242e278-d793-4236-a006-22936eda6cce",
+            "sourceToolAssistantUUID": "98e6721c-fcc9-4cc9-a5d9-e14df03ccc51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T19:03:03.821Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! Now let me read the literature.py file to get the exact function signature and imports:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6242e278-d793-4236-a006-22936eda6cce",
+            "isSidechain": true,
+            "agentId": "a5e9cd0794a11f600",
+            "requestId": "req_011CbCSqyLr1xtX95gfLYgZE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "191d9b50-3103-402f-9b32-8831cdd51d5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WQzwKHxnRfnN1SLN7SNhkC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7357,
+                "cache_read_input_tokens": 27753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7357,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T19:03:04.256Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EFFZK96BAUdecQdnWVxdBM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/tools/literature.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "191d9b50-3103-402f-9b32-8831cdd51d5f",
+            "isSidechain": true,
+            "agentId": "a5e9cd0794a11f600",
+            "requestId": "req_011CbCSqyLr1xtX95gfLYgZE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a3d7e7bb-55ee-4989-a0bd-2e8f791656e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WQzwKHxnRfnN1SLN7SNhkC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7357,
+                "cache_read_input_tokens": 27753,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7357
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 27753,
+                    "cache_creation_input_tokens": 7357,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7357,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T19:03:04.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EFFZK96BAUdecQdnWVxdBM",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Literature map — persistent, cross-stage knowledge base of papers.\n2\t\n3\tThe literature_map.yaml is the single source of truth for papers a project\n4\taccumulates across the Idea → Research → Writing → Review pipeline. Each\n5\tentry is verified (or marked unverified) and carries enough metadata to\n6\tgenerate BibTeX entries and to drive Related Work / citation gap-fill in\n7\tthe Paper Agent's writing pipeline.\n8\t\n9\tTwo scopes:\n10\t\n11\t  - Project-level: ``projects/{project}/literature_map.yaml``\n12\t      Used during Research and Writing phases.\n13\t\n14\t  - Global (Idea phase): ``{WORKSPACE_ROOT}/literature_map.yaml``\n15\t      Used before a project exists. Each entry carries ``source_idea_id`` so\n16\t      multiple ideas can coexist. On project creation, matching entries are\n17\t      seeded into the project map.\n18\t\n19\tDesign notes:\n20\t\n21\t  - Read paths support modes (summary / category:X / competitors / unverified\n22\t    / bib / full) so day-to-day reads stay token-cheap even when the map has\n23\t    grown to 40-60 papers.\n24\t\n25\t  - Writes hold an exclusive flock + use atomic temp→rename, modeled on\n26\t    ``core/tools/registry.py`` so the file never tears under concurrent\n27\t    Worker writes.\n28\t\n29\t  - Dedup happens on add: DOI exact match wins; otherwise normalized title\n30\t    match. Existing entries are merged (new fields fill empty existing\n31\t    fields) rather than overwritten.\n32\t\"\"\"\n33\t\n34\tfrom __future__ import annotations\n35\t\n36\timport fcntl\n37\timport logging\n38\timport os\n39\timport re\n40\timport tempfile\n41\timport unicodedata\n42\tfrom pathlib import Path\n43\tfrom typing import Any, Iterable\n44\t\n45\timport yaml\n46\t\n47\tfrom core import paths as _paths\n48\tfrom core.tools.result import ToolResult\n49\t\n50\tlogger = logging.getLogger(__name__)\n51\t\n52\t\n53\t# ---------------------------------------------------------------------------\n54\t# Constants\n55\t# ---------------------------------------------------------------------------\n56\t\n57\t# Roles a paper can play relative to the project. Used by Related Work drafting\n58\t# (foundation papers anchor narratives; direct-competitor papers must be cited).\n59\tVALID_ROLES: frozenset[str] = frozenset(\n60\t    {\"foundation\", \"direct-competitor\", \"method-component\", \"evaluation\", \"background\"}\n61\t)\n62\t\n63\t# Modes for read_literature_map — keep token usage proportional to need.\n64\tVALID_READ_MODES: frozenset[str] = frozenset(\n65\t    {\"summary\", \"competitors\", \"unverified\", \"bib\", \"full\"}\n66\t)\n67\t\n68\t# Fields kept in summary mode (skips long fields like abstract, relevance).\n69\t_SUMMARY_FIELDS: tuple[str, ...] = (\n70\t    \"title\", \"year\", \"venue\", \"category\", \"role\", \"verified\", \"bibtex_key\",\n71\t)\n72\t\n73\t\n74\t# ---------------------------------------------------------------------------\n75\t# Path resolution\n76\t# ---------------------------------------------------------------------------\n77\t\n78\tdef get_literature_map_path(project: str | None = None) -> Path:\n79\t    \"\"\"Resolve the literature_map.yaml path.\n80\t\n81\t    Project name → ``projects/{project}/literature_map.yaml`` (V3 layout).\n82\t    No project   → ``{WORKSPACE_ROOT}/literature_map.yaml`` (global, idea phase).\n83\t    \"\"\"\n84\t    if project:\n85\t        p = _paths.resolve_project_file(project, \"literature_map.yaml\")\n86\t        p.parent.mkdir(parents=True, exist_ok=True)\n87\t        return p\n88\t    return _paths.global_literature_map_path()\n89\t\n90\t\n91\t# ---------------------------------------------------------------------------\n92\t# Atomic file I/O — modeled on registry._read_modify_write_registry\n93\t# ---------------------------------------------------------------------------\n94\t\n95\tdef _empty_map() -> dict:\n96\t    return {\n97\t        \"meta\": {\"last_updated\": None, \"total_papers\": 0},\n98\t        \"categories\": [],\n99\t        \"papers\": {},\n100\t    }\n101\t\n102\t\n103\tdef _read_map(path: Path) -> dict:\n104\t    \"\"\"Read literature_map.yaml without a lock (atomic single-syscall read).\n105\t\n106\t    Returns a fresh empty skeleton if the file doesn't exist or is unreadable.\n107\t    Writers use exclusive flock + atomic rename so readers always see a\n108\t    consistent snapshot.\n109\t    \"\"\"\n110\t    if not path.exists():\n111\t        return _empty_map()\n112\t    try:\n113\t        data = yaml.safe_load(path.read_text(encoding=\"utf-8\")) or {}\n114\t    except Exception:\n115\t        logger.warning(\"Failed to parse literature_map at %s\", path, exc_info=True)\n116\t        return _empty_map()\n117\t    if isinstance(data, list):\n118\t        data = {\"papers\": data, \"meta\": {}, \"categories\": []}\n119\t    elif not isinstance(data, dict):\n120\t        logger.warning(\"literature_map at %s is %s, expected dict — resetting\", path, type(data).__name__)\n121\t        return _empty_map()\n122\t    data.setdefault(\"meta\", {})\n123\t    data[\"meta\"].setdefault(\"last_updated\", None)\n124\t    data[\"meta\"].setdefault(\"total_papers\", 0)\n125\t    data.setdefault(\"categories\", [])\n126\t    data.setdefault(\"papers\", {})\n127\t    return data\n128\t\n129\t\n130\tdef _read_modify_write(path: Path, modifier) -> dict:\n131\t    \"\"\"Read, apply ``modifier(data)`` in place, atomically write back.\n132\t\n133\t    Holds LOCK_EX on a sibling .lock file (not the data file — atomic rename\n134\t    swaps the inode and would invalidate locks held on it).\n135\t    \"\"\"\n136\t    path.parent.mkdir(parents=True, exist_ok=True)\n137\t    lock_path = path.with_suffix(\".lock\")\n138\t\n139\t    with open(lock_path, \"a+\") as lock_f:\n140\t        fcntl.flock(lock_f, fcntl.LOCK_EX)\n141\t        try:\n142\t            data = _read_map(path)\n143\t            modifier(data)\n144\t            data[\"meta\"][\"total_papers\"] = len(data.get(\"papers\", {}))\n145\t            data[\"meta\"][\"last_updated\"] = _paths.now_iso()\n146\t\n147\t            fd, tmp_path = tempfile.mkstemp(\n148\t                dir=str(path.parent), prefix=\".literature_\", suffix=\".tmp\"\n149\t            )\n150\t            try:\n151\t                with os.fdopen(fd, \"w\", encoding=\"utf-8\") as tmp_f:\n152\t                    yaml.dump(\n153\t                        data, tmp_f,\n154\t                        default_flow_style=False, allow_unicode=True, sort_keys=False,\n155\t                    )\n156\t                    tmp_f.flush()\n157\t                    os.fsync(tmp_f.fileno())\n158\t                os.replace(tmp_path, str(path))\n159\t            except Exception:\n160\t                if os.path.exists(tmp_path):\n161\t                    os.unlink(tmp_path)\n162\t                raise\n163\t        finally:\n164\t            fcntl.flock(lock_f, fcntl.LOCK_UN)\n165\t\n166\t    return data\n167\t\n168\t\n169\t# ---------------------------------------------------------------------------\n170\t# Normalization & dedup\n171\t# ---------------------------------------------------------------------------\n172\t\n173\t_PUNCT_RE = re.compile(r\"[^\\w\\s]\")\n174\t_WS_RE = re.compile(r\"\\s+\")\n175\t\n176\t\n177\tdef _normalize_title(title: str) -> str:\n178\t    \"\"\"Lowercase, strip diacritics + punctuation, collapse whitespace.\n179\t\n180\t    Used for fuzzy dedup when two records describe the same paper with\n181\t    slightly different titles (smart quotes, hyphens, capitalization).\n182\t    \"\"\"\n183\t    if not title:\n184\t        return \"\"\n185\t    s = unicodedata.normalize(\"NFKD\", title)\n186\t    s = \"\".join(c for c in s if not unicodedata.combining(c))\n187\t    s = s.lower()\n188\t    s = _PUNCT_RE.sub(\" \", s)\n189\t    s = _WS_RE.sub(\" \", s).strip()\n190\t    return s\n191\t\n192\t\n193\tdef _normalize_doi(doi: str) -> str:\n194\t    \"\"\"Lowercase DOI, strip common prefixes.\"\"\"\n195\t    if not doi:\n196\t        return \"\"\n197\t    s = doi.strip().lower()\n198\t    for prefix in (\"https://doi.org/\", \"http://doi.org/\", \"doi:\"):\n199\t        if s.startswith(prefix):\n200\t            s = s[len(prefix):]\n201\t            break\n202\t    return s.strip()\n203\t\n204\t\n205\tdef _slugify(s: str, max_len: int = 24) -> str:\n206\t    \"\"\"First-word slug — lowercase, alnum only, truncated.\"\"\"\n207\t    s = unicodedata.normalize(\"NFKD\", s or \"\")\n208\t    s = \"\".join(c for c in s if not unicodedata.combining(c))\n209\t    s = re.sub(r\"[^a-zA-Z0-9]+\", \"\", s.split()[0] if s.split() else \"\")\n210\t    return s.lower()[:max_len]\n211\t\n212\t\n213\tdef _generate_bibtex_key(paper: dict) -> str:\n214\t    \"\"\"Generate a bibtex key like ``vaswani2017attention``.\n215\t\n216\t    Uses the first author's surname + year + the first significant word of\n217\t    the title. Falls back to ``paper_{hash}`` if metadata is missing.\n218\t    \"\"\"\n219\t    authors = paper.get(\"authors\") or []\n220\t    first_author = \"\"\n221\t    if authors:\n222\t        raw = authors[0]\n223\t        if isinstance(raw, str):\n224\t            # Could be \"Vaswani, A.\" or \"Ashish Vaswani\"\n225\t            if \",\" in raw:\n226\t                first_author = raw.split(\",\", 1)[0].strip()\n227\t            else:\n228\t                first_author = raw.strip().split()[-1] if raw.strip() else \"\"\n229\t    surname = _slugify(first_author)\n230\t\n231\t    year = paper.get(\"year\") or \"\"\n232\t    year_part = str(year) if year else \"\"\n233\t\n234\t    title = paper.get(\"title\") or \"\"\n235\t    # Skip stop words for the title slug\n236\t    stop = {\"a\", \"an\", \"the\", \"on\", \"in\", \"of\", \"for\", \"and\", \"or\", \"is\", \"to\"}\n237\t    words = [w for w in re.split(r\"\\W+\", title.lower()) if w and w not in stop]\n238\t    word = _slugify(words[0]) if words else \"\"\n239\t\n240\t    key = f\"{surname}{year_part}{word}\"\n241\t    if not key.strip():\n242\t        import hashlib\n243\t        h = hashlib.md5(title.encode(\"utf-8\")).hexdigest()[:8]\n244\t        key = f\"paper_{h}\"\n245\t    return key\n246\t\n247\t\n248\tdef _find_existing_key(papers: dict, candidate: dict) -> str | None:\n249\t    \"\"\"Find a matching paper key in ``papers`` for the candidate dict.\n250\t\n251\t    Match order: DOI exact (normalized) → normalized title.\n252\t    Returns the existing key or None.\n253\t\n254\t    bibtex_key collisions are NOT treated as dedup signal — two different\n255\t    papers can share a naive bibtex_key (e.g. same first author + year), and\n256\t    we handle that with a suffix at insert time. Real dedup must be content\n257\t    based.\n258\t    \"\"\"\n259\t    cand_doi = _normalize_doi(candidate.get(\"doi\", \"\"))\n260\t    cand_title = _normalize_title(candidate.get(\"title\", \"\"))\n261\t\n262\t    for key, entry in papers.items():\n263\t        if cand_doi:\n264\t            entry_doi = _normalize_doi(entry.get(\"doi\", \"\"))\n265\t            if entry_doi and entry_doi == cand_doi:\n266\t                return key\n267\t        if cand_title:\n268\t            entry_title = _normalize_title(entry.get(\"title\", \"\"))\n269\t            if entry_title and entry_title == cand_title:\n270\t                return key\n271\t    return None\n272\t\n273\t\n274\tdef _merge_paper(existing: dict, new: dict) -> dict:\n275\t    \"\"\"Merge new fields into existing — only fill empty slots, never overwrite.\n276\t\n277\t    Verified=True wins over False (a later verification cannot un-verify).\n278\t    \"\"\"\n279\t    merged = dict(existing)\n280\t    for k, v in new.items():\n281\t        if v is None or v == \"\" or v == []:\n282\t            continue\n283\t        if k == \"verified\":\n284\t            merged[\"verified\"] = bool(existing.get(\"verified\")) or bool(v)\n285\t            continue\n286\t        if not merged.get(k):\n287\t            merged[k] = v\n288\t    return merged\n289\t\n290\t\n291\t# ---------------------------------------------------------------------------\n292\t# Public API\n293\t# ---------------------------------------------------------------------------\n294\t\n295\tdef read_literature_map(\n296\t    project: str | None = None,\n297\t    mode: str = \"summary\",\n298\t) -> ToolResult:\n299\t    \"\"\"Read the literature map with mode-controlled verbosity.\n300\t\n301\t    Args:\n302\t        project: Project name — None reads the global (idea-phase) map.\n303\t        mode:\n304\t          - \"summary\"        → categories + per-paper {title, year, venue,\n305\t                                category, role, verified, bibtex_key}\n306\t          - \"category:<key>\" → full entries in the named category\n307\t          - \"competitors\"    → full entries with role=direct-competitor\n308\t          - \"unverified\"     → full entries with verified=False\n309\t          - \"bib\"            → list of bibtex_key strings (for citation lookups)\n310\t          - \"full\"           → everything (use sparingly — token-heavy)\n311\t\n312\t    Returns:\n313\t        ToolResult.data = {\n314\t            \"categories\": [...],\n315\t            \"papers\": {key: {...}, ...},\n316\t            \"meta\": {\"last_updated\", \"total_papers\"},\n317\t            \"mode\": <effective mode>,\n318\t        }\n319\t    \"\"\"\n320\t    path = get_literature_map_path(project)\n321\t    data = _read_map(path)\n322\t    papers: dict = data.get(\"papers\", {})\n323\t    categories: list = data.get(\"categories\", [])\n324\t\n325\t    # Category-scoped read: \"category:<key>\"\n326\t    if mode.startswith(\"category:\"):\n327\t        cat_key = mode.split(\":\", 1)[1].strip()\n328\t        filtered = {k: v for k, v in papers.items() if v.get(\"category\") == cat_key}\n329\t        return ToolResult(success=True, data={\n330\t            \"categories\": [c for c in categories if c.get(\"key\") == cat_key],\n331\t            \"papers\": filtered,\n332\t            \"meta\": data.get(\"meta\", {}),\n333\t            \"mode\": mode,\n334\t        })\n335\t\n336\t    if mode not in VALID_READ_MODES:\n337\t        return ToolResult(\n338\t            success=False,\n339\t            error=(\n340\t                f\"Unknown mode '{mode}'. Valid: {sorted(VALID_READ_MODES)} \"\n341\t                \"or 'category:<key>'.\"\n342\t            ),\n343\t        )\n344\t\n345\t    if mode == \"summary\":\n346\t        compact = {\n347\t            k: {f: v.get(f) for f in _SUMMARY_FIELDS if f in v}\n348\t            for k, v in papers.items()\n349\t        }\n350\t        return ToolResult(success=True, data={\n351\t            \"categories\": categories,\n352\t            \"papers\": compact,\n353\t            \"meta\": data.get(\"meta\", {}),\n354\t            \"mode\": mode,\n355\t        })\n356\t\n357\t    if mode == \"competitors\":\n358\t        filtered = {k: v for k, v in papers.items() if v.get(\"role\") == \"direct-competitor\"}\n359\t        return ToolResult(success=True, data={\n360\t            \"categories\": categories,\n361\t            \"papers\": filtered,\n362\t            \"meta\": data.get(\"meta\", {}),\n363\t            \"mode\": mode,\n364\t        })\n365\t\n366\t    if mode == \"unverified\":\n367\t        filtered = {k: v for k, v in papers.items() if not v.get(\"verified\")}\n368\t        return ToolResult(success=True, data={\n369\t            \"categories\": categories,\n370\t            \"papers\": filtered,\n371\t            \"meta\": data.get(\"meta\", {}),\n372\t            \"mode\": mode,\n373\t        })\n374\t\n375\t    if mode == \"bib\":\n376\t        keys = [v.get(\"bibtex_key\") or k for k, v in papers.items()]\n377\t        return ToolResult(success=True, data={\n378\t            \"bibtex_keys\": keys,\n379\t            \"meta\": data.get(\"meta\", {}),\n380\t            \"mode\": mode,\n381\t        })\n382\t\n383\t    # mode == \"full\"\n384\t    return ToolResult(success=True, data={\n385\t        \"categories\": categories,\n386\t        \"papers\": papers,\n387\t        \"meta\": data.get(\"meta\", {}),\n388\t        \"mode\": mode,\n389\t    })\n390\t\n391\t\n392\tdef add_to_literature_map(\n393\t    project: str | None = None,\n394\t    papers: Iterable[dict] | None = None,\n395\t    added_by: str = \"\",\n396\t) -> ToolResult:\n397\t    \"\"\"Add (or merge) one or more papers into the literature map.\n398\t\n399\t    Dedup: DOI exact (normalized) → normalized title → bibtex_key collision.\n400\t    Existing entries are merged field-by-field, never overwritten.\n401\t\n402\t    Args:\n403\t        project: Project name — None writes to the global (idea-phase) map.\n404\t        papers: Iterable of paper dicts. Recognized fields:\n405\t                title, authors (list[str]), year, venue, url, doi,\n406\t                bibtex_key, category, role, relevance, abstract,\n407\t                semantic_scholar_id, source_idea_id, verified.\n408\t                Missing bibtex_key is auto-generated.\n409\t        added_by: Free-form tag for provenance (\"paper-research\",\n410\t                  \"idea-generator\", \"user\", etc.). Recorded on new entries.\n411\t\n412\t    Returns:\n413\t        ToolResult.data = {\n414\t            \"added\": [keys],            # newly inserted\n415\t            \"merged\": [keys],           # matched existing, fields merged\n416\t            \"rejected\": [{title, reason}],\n417\t            \"total_papers\": N,\n418\t        }\n419\t    \"\"\"\n420\t    if not papers:\n421\t        return ToolResult(\n422\t            success=False, error=\"No papers provided.\",\n423\t        )\n424\t\n425\t    paper_list = list(papers)\n426\t    added: list[str] = []\n427\t    merged: list[str] = []\n428\t    rejected: list[dict] = []\n429\t    now = _paths.now_iso()\n430\t\n431\t    def _apply(data: dict) -> None:\n432\t        existing = data.setdefault(\"papers\", {})\n433\t        for cand in paper_list:\n434\t            if not isinstance(cand, dict):\n435\t                rejected.append({\"title\": str(cand), \"reason\": \"not a dict\"})\n436\t                continue\n437\t            title = (cand.get(\"title\") or \"\").strip()\n438\t            if not title:\n439\t                rejected.append({\"title\": \"\", \"reason\": \"missing title\"})\n440\t                continue\n441\t            if cand.get(\"role\") and cand[\"role\"] not in VALID_ROLES:\n442\t                rejected.append({\n443\t                    \"title\": title,\n444\t                    \"reason\": f\"invalid role '{cand['role']}', valid: {sorted(VALID_ROLES)}\",\n445\t                })\n446\t                continue\n447\t\n448\t            existing_key = _find_existing_key(existing, cand)\n449\t            if existing_key:\n450\t                # Merge — fill empty fields, keep verified=True if either is True\n451\t                existing[existing_key] = _merge_paper(existing[existing_key], cand)\n452\t                merged.append(existing_key)\n453\t                continue\n454\t\n455\t            # New entry — assign a bibtex_key if missing, dedupe within file\n456\t            key = cand.get(\"bibtex_key\") or _generate_bibtex_key(cand)\n457\t            base_key = key\n458\t            suffix = 1\n459\t            while key in existing:\n460\t                suffix += 1\n461\t                key = f\"{base_key}_{suffix}\"\n462\t\n463\t            entry = {\n464\t                \"title\": title,\n465\t                \"authors\": cand.get(\"authors\") or [],\n466\t                \"year\": cand.get(\"year\"),\n467\t                \"venue\": cand.get(\"venue\") or \"\",\n468\t                \"url\": cand.get(\"url\") or \"\",\n469\t                \"doi\": cand.get(\"doi\") or \"\",\n470\t                \"bibtex_key\": key,\n471\t                \"category\": cand.get(\"category\") or \"\",\n472\t                \"role\": cand.get(\"role\") or \"\",\n473\t                \"relevance\": cand.get(\"relevance\") or \"\",\n474\t                \"abstract\": cand.get(\"abstract\") or \"\",\n475\t                \"semantic_scholar_id\": cand.get(\"semantic_scholar_id\") or \"\",\n476\t                \"verified\": bool(cand.get(\"verified\", False)),\n477\t                \"added_by\": cand.get(\"added_by\") or added_by or \"\",\n478\t                \"added_at\": cand.get(\"added_at\") or now,\n479\t            }\n480\t            # Optional source_idea_id (global map only) — keep if present\n481\t            if cand.get(\"source_idea_id\"):\n482\t                entry[\"source_idea_id\"] = cand[\"source_idea_id\"]\n483\t\n484\t            existing[key] = entry\n485\t            added.append(key)\n486\t\n487\t    data = _read_modify_write(get_literature_map_path(project), _apply)\n488\t\n489\t    return ToolResult(success=True, data={\n490\t        \"added\": added,\n491\t        \"merged\": merged,\n492\t        \"rejected\": rejected,\n493\t        \"total_papers\": data[\"meta\"][\"total_papers\"],\n494\t    })\n495\t\n496\t\n497\tdef update_literature_category(\n498\t    paper_key: str,\n499\t    project: str | None = None,\n500\t    category: str | None = None,\n501\t    role: str | None = None,\n502\t    relevance: str | None = None,\n503\t    verified: bool | None = None,\n504\t) -> ToolResult:\n505\t    \"\"\"Update a single paper's classification fields.\n506\t\n507\t    Only the fields you pass are changed — others are left intact. This is\n508\t    the preferred path for \"re-classify this paper after reading it\" or\n509\t    \"mark verified=true after OpenAlex check\" — it's smaller than rewriting\n510\t    the whole entry via add_to_literature_map.\n511\t\n512\t    Args:\n513\t        paper_key: The YAML key of the paper (e.g. \"vaswani2017attention\").\n514\t        project: Project name — None updates the global map.\n515\t        category: New category key (must match a categories[].key, or empty).\n516\t        role: New role (must be in VALID_ROLES, or empty to clear).\n517\t        relevance: One-line relevance description.\n518\t        verified: Mark verified/unverified (e.g. after OpenAlex check).\n519\t\n520\t    Returns:\n521\t        ToolResult.data = {\"paper_key\", \"updated_fields\": {...}}\n522\t        ToolResult.error if paper_key not found or role/category invalid.\n523\t    \"\"\"\n524\t    if role is not None and role and role not in VALID_ROLES:\n525\t        return ToolResult(\n526\t            success=False,\n527\t            error=f\"invalid role '{role}', valid: {sorted(VALID_ROLES)}\",\n528\t        )\n529\t\n530\t    updated: dict[str, Any] = {}\n531\t    not_found = {\"miss\": False}\n532\t\n533\t    def _apply(data: dict) -> None:\n534\t        papers = data.setdefault(\"papers\", {})\n535\t        if paper_key not in papers:\n536\t            not_found[\"miss\"] = True\n537\t            return\n538\t        entry = papers[paper_key]\n539\t        if category is not None:\n540\t            entry[\"category\"] = category\n541\t            updated[\"category\"] = category\n542\t        if role is not None:\n543\t            entry[\"role\"] = role\n544\t            updated[\"role\"] = role\n545\t        if relevance is not None:\n546\t            entry[\"relevance\"] = relevance\n547\t            updated[\"relevance\"] = relevance\n548\t        if verified is not None:\n549\t            entry[\"verified\"] = bool(verified)\n550\t            updated[\"verified\"] = bool(verified)\n551\t\n552\t    _read_modify_write(get_literature_map_path(project), _apply)\n553\t\n554\t    if not_found[\"miss\"]:\n555\t        return ToolResult(\n556\t            success=False,\n557\t            error=f\"paper_key '{paper_key}' not found in literature_map\",\n558\t        )\n559\t    return ToolResult(success=True, data={\n560\t        \"paper_key\": paper_key,\n561\t        \"updated_fields\": updated,\n562\t    })\n563\t\n564\t\n565\tdef upsert_category(\n566\t    project: str | None = None,\n567\t    key: str = \"\",\n568\t    name: str = \"\",\n569\t    narrative: str = \"\",\n570\t) -> ToolResult:\n571\t    \"\"\"Add or update a category entry in the categories[] list.\n572\t\n573\t    Categories define the Related Work subsection structure. A paper's\n574\t    ``category`` field references one of these by ``key``.\n575\t\n576\t    Args:\n577\t        project: Project name — None edits the global map.\n578\t        key: Category slug (e.g. \"attention_mechanisms\"). Required.\n579\t        name: Human-readable name (e.g. \"Attention Mechanisms\"). Required for new.\n580\t        narrative: One-line description of the category's narrative arc.\n581\t\n582\t    Returns:\n583\t        ToolResult.data = {\"key\", \"action\": \"added\"|\"updated\"}.\n584\t    \"\"\"\n585\t    if not key:\n586\t        return ToolResult(success=False, error=\"key is required\")\n587\t\n588\t    state = {\"action\": \"added\"}\n589\t\n590\t    def _apply(data: dict) -> None:\n591\t        cats = data.setdefault(\"categories\", [])\n592\t        for c in cats:\n593\t            if c.get(\"key\") == key:\n594\t                if name:\n595\t                    c[\"name\"] = name\n596\t                if narrative:\n597\t                    c[\"narrative\"] = narrative\n598\t                state[\"action\"] = \"updated\"\n599\t                return\n600\t        cats.append({\"key\": key, \"name\": name or key, \"narrative\": narrative})\n601\t\n602\t    _read_modify_write(get_literature_map_path(project), _apply)\n603\t    return ToolResult(success=True, data={\"key\": key, \"action\": state[\"action\"]})\n604\t\n605\t\n606\tdef seed_literature_map(\n607\t    project: str,\n608\t    seed_papers: Iterable[dict],\n609\t    source_idea_id: str = \"\",\n610\t) -> ToolResult:\n611\t    \"\"\"Bulk-seed a new project's literature_map from an idea's accumulated papers.\n612\t\n613\t    Called by the idea→project bootstrap hook. Each seed paper is added with\n614\t    ``added_by=\"idea_generator\"`` so downstream consumers can distinguish\n615\t    seed papers from those discovered during research.\n616\t\n617\t    Args:\n618\t        project: Project name (required — seeding without a project is the\n619\t                 global map case, handled by add_to_literature_map directly).\n620\t        seed_papers: Iterable of paper dicts (same schema as add_to_literature_map).\n621\t        source_idea_id: Idea ID these papers came from. Stamped on entries so\n622\t                        a future \"re-seed from idea\" can find them.\n623\t\n624\t    Returns:\n625\t        Same shape as add_to_literature_map.\n626\t    \"\"\"\n627\t    if not project:\n628\t        return ToolResult(success=False, error=\"project is required for seed_literature_map\")\n629\t\n630\t    seeds = []\n631\t    for p in seed_papers:\n632\t        if not isinstance(p, dict):\n633\t            continue\n634\t        p2 = dict(p)\n635\t        if source_idea_id:\n636\t            p2.setdefault(\"source_idea_id\", source_idea_id)\n637\t        seeds.append(p2)\n638\t\n639\t    return add_to_literature_map(\n640\t        project=project, papers=seeds, added_by=\"idea_generator\",\n641\t    )\n642\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3d7e7bb-55ee-4989-a0bd-2e8f791656e7",
+            "isSidechain": true,
+            "promptId": "1e6b9f9c-391a-42e2-a12a-c7c861397b6a",
+            "agentId": "a5e9cd0794a11f600",
+            "type": "user",
+            "uuid": "35b8e6e2-d050-4978-a831-6028e2e4c340",
+            "sourceToolAssistantUUID": "a3d7e7bb-55ee-4989-a0bd-2e8f791656e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T19:03:12.843Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have all the information you requested. Here's my comprehensive report:\n\n## Summary\n\n**Full path to literature_map.yaml:**\n```\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/literature_map.yaml\n```\n\n## Current Contents of literature_map.yaml\n\nThe file contains 6 major clusters with a total of 33 papers. Here's the \"Linear Recurrent Models\" cluster specifically:\n\n**Linear Recurrent Models cluster** (target_count: 6 papers):\n1. **gu2024mamba** - \"Mamba: Linear-Time Sequence Modeling with Selective State Spaces\" (2024)\n2. **sun2023retnet** - \"Retentive Network: A Successor to Transformer for Large Language Models\" (2023)\n3. **qin2024hgrn2** - \"HGRN2: Gated Linear RNNs with State Expansion\" (2024)\n4. **yang2024gateddeltanet** - \"Gated Delta Networks: Improving Mamba2 with Delta Rule\" (2024)\n5. **gu2022s4** - \"Efficiently Modeling Long Sequences with Structured State Spaces\" (2022)\n6. **katharopoulos2020transformers** - \"Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention\" (2020)\n\nAll other clusters in the file are:\n- Hybrid Architectures (7 papers)\n- Underspecification and Model Agreement (5 papers)\n- Ensemble Diversity (3 papers)\n- Dataset Cartography and Per-Example Analysis (4 papers)\n- Attention Interpretability (4 papers)\n- Benchmarks and Evaluation (3 papers)\n\n## add_to_literature_map Function Details\n\n**Import path:**\n```\nfrom core.tools.literature import add_to_literature_map\n```\n\n**Function signature:**\n```python\ndef add_to_literature_map(\n    project: str | None = None,\n    papers: Iterable[dict] | None = None,\n    added_by: str = \"\",\n) -> ToolResult:\n```\n\n**Key parameters:**\n- `project`: Project name (None for global/idea-phase map)\n- `papers`: Iterable of paper dicts with recognized fields: title, authors (list[str]), year, venue, url, doi, bibtex_key, category, role, relevance, abstract, semantic_scholar_id, source_idea_id, verified\n- `added_by`: Free-form provenance tag (\"paper-research\", \"idea-generator\", \"user\", etc.)\n\n**Return value:**\nReturns `ToolResult` with `.data` containing:\n- `\"added\"`: list of newly inserted paper keys\n- `\"merged\"`: list of keys for papers matched and merged\n- `\"rejected\"`: list of dicts with title and rejection reason\n- `\"total_papers\"`: total count in the map\n\n**Location:** `/home/ubuntu/agent-ml-research/core/tools/literature.py` (lines 392-494)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35b8e6e2-d050-4978-a831-6028e2e4c340",
+            "isSidechain": true,
+            "agentId": "a5e9cd0794a11f600",
+            "requestId": "req_011CbCSrAADtMKUidaz3DPTK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ead911c8-65d2-418f-9a7d-647f9c76958c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+            "sessionId": "d1595ce1-31fd-40bf-b819-8ad600c5e518",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015gYKnkmnY7ooR8wqKx4abU",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7860,
+                "cache_read_input_tokens": 35110,
+                "output_tokens": 748,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7860
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 748,
+                    "cache_read_input_tokens": 35110,
+                    "cache_creation_input_tokens": 7860,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7860,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-and-read-the-literature-map-yaml-file-in-home-ubuntu-agent-ml-research-id.md"
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "id": "463ff0e4fdd7becc1030",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: entrainment_gated_ft ## 运行环境 - 服务器名: westb-48145 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "3fb844c6-ae33-4c75-9b97-b356cc225d53",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/3fb844c6-ae33-4c75-9b97-b356cc225d53.jsonl",
+    "occurrence": 1,
+    "bytes": 1361588,
+    "sha256": "962f268e69ac9ca7e9601b7ba59fd083066af92ae1d639b54e3535a2a6a9d919"
+  },
+  "statistics": {
+    "messages": 703,
+    "user_turns": 2,
+    "tool_calls": 188,
+    "roles": {
+      "record": 119,
+      "user": 2,
+      "assistant": 205,
+      "tool_call": 188,
+      "tool_result": 188,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "463ff0e4fdd7becc1030-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 621,
+      "chunks": [
+        {
+          "path": "463ff0e4fdd7becc1030-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "463ff0e4fdd7becc1030-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "463ff0e4fdd7becc1030-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "463ff0e4fdd7becc1030-part-0004.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "463ff0e4fdd7becc1030-part-0004.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-entrainment-gated-ft-westb-48145-ssh-root-ssh-execute-submit-t-copy-18.md"
+}

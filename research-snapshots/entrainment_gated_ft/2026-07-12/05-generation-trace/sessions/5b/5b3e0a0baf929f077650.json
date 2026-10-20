@@ -1,0 +1,923 @@
+{
+  "schema_version": "1.0",
+  "id": "5b3e0a0baf929f077650",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for the paper \"SVD Contextual Sparsity Predictors for Fast LLM Inference\" (arXiv 2603.14110, March 2026). Verify:",
+  "task_key": "agent-a9d21ee8a60f2959b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a9d21ee8a60f2959b.jsonl",
+    "occurrence": 1,
+    "bytes": 31569,
+    "sha256": "8f0ad370a6ea6b3f18f98cc11320381f7273b9d2155effc19238f41042edb89f"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T03:50:11.066Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for the paper \"SVD Contextual Sparsity Predictors for Fast LLM Inference\" (arXiv 2603.14110, March 2026). Verify:\n\n1. Does it exist? Is it from March 2026?\n2. Does it find that learned predictors suffer from out-of-distribution sensitivity?\n3. Does it use truncated SVD of gate projections?\n4. Does it target ReGLU-based models specifically?\n5. What models does it evaluate on?\n\nTry:\n- \"SVD contextual sparsity predictors arXiv 2603.14110\"\n- \"site:arxiv.org 2603.14110\"\n\nReport findings."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6b75caff-9e8f-4914-a49c-e6cefa1414d7",
+            "agentId": "a9d21ee8a60f2959b",
+            "type": "user",
+            "uuid": "a079443f-cf31-4517-a16c-a096ce6fcecb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T03:50:11.070Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a079443f-cf31-4517-a16c-a096ce6fcecb",
+                "isSidechain": true,
+                "agentId": "a9d21ee8a60f2959b",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f333a13d-fc01-49b7-9e98-05f5fdc0b25e",
+                "timestamp": "2026-05-12T03:50:11.070Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T03:50:13.390Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for this paper using multiple strategies."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f333a13d-fc01-49b7-9e98-05f5fdc0b25e",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzaBTpmwH4ez19wcWgw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "42078e18-7e9a-4883-bea4-649a1b5427d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01534D1Qs7AQMc1VBcvqkR8n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 711,
+                "cache_read_input_tokens": 8223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 711,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T03:50:14.004Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RW8NRJ9EBRoNFHWmA5UEj3",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42078e18-7e9a-4883-bea4-649a1b5427d6",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzaBTpmwH4ez19wcWgw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "844eee47-82df-4f01-b7d5-be1f178bae2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01534D1Qs7AQMc1VBcvqkR8n",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 711,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 711
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 711,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 711,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T03:50:14.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RW8NRJ9EBRoNFHWmA5UEj3",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "844eee47-82df-4f01-b7d5-be1f178bae2a",
+            "isSidechain": true,
+            "promptId": "6b75caff-9e8f-4914-a49c-e6cefa1414d7",
+            "agentId": "a9d21ee8a60f2959b",
+            "type": "user",
+            "uuid": "66623d5c-d680-4523-b394-3f1ed4639a0c",
+            "sourceToolAssistantUUID": "844eee47-82df-4f01-b7d5-be1f178bae2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T03:50:16.803Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66623d5c-d680-4523-b394-3f1ed4639a0c",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzaQkY1FpewFsScMzPc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "31562f1c-1915-4c12-8c95-641bc0c24450",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QYnxNS118ZyYTY9RpT4jCS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1900,
+                "cache_read_input_tokens": 8934,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T03:50:17.240Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JWmfTPSqrUXcnhKYaC4cyZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "SVD contextual sparsity predictors arXiv 2603.14110"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31562f1c-1915-4c12-8c95-641bc0c24450",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzaQkY1FpewFsScMzPc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a47a5e84-d858-48de-a65b-4c07df7be186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QYnxNS118ZyYTY9RpT4jCS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1900,
+                "cache_read_input_tokens": 8934,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T03:50:17.866Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F3xrjiEJaxs1LXRiYaeTgN",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org 2603.14110"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a47a5e84-d858-48de-a65b-4c07df7be186",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzaQkY1FpewFsScMzPc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "235f9e6c-de0e-4045-900a-998e37b305c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QYnxNS118ZyYTY9RpT4jCS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1900,
+                "cache_read_input_tokens": 8934,
+                "output_tokens": 184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1900
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 184,
+                    "cache_read_input_tokens": 8934,
+                    "cache_creation_input_tokens": 1900,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1900,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T03:50:17.885Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VKeauqZTQYm62qTuFRb9c1",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"SVD Contextual Sparsity Predictors for Fast LLM Inference\" 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "235f9e6c-de0e-4045-900a-998e37b305c2",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzaQkY1FpewFsScMzPc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6ca81c1f-c4aa-42d7-839d-97a755125bc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QYnxNS118ZyYTY9RpT4jCS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1900,
+                "cache_read_input_tokens": 8934,
+                "output_tokens": 184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1900
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 184,
+                    "cache_read_input_tokens": 8934,
+                    "cache_creation_input_tokens": 1900,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1900,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T03:50:23.367Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F3xrjiEJaxs1LXRiYaeTgN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org 2603.14110\"\n\nLinks: [{\"title\":\"[2603.14110] SVD Contextual Sparsity Predictors for Fast LLM Inference\",\"url\":\"https://arxiv.org/abs/2603.14110\"},{\"title\":\"[2604.14110] Non-Gaussian fluctuations in relativistic hydrodynamics: Confluent equations for three-point correlations\",\"url\":\"https://arxiv.org/abs/2604.14110\"},{\"title\":\"Value Sensitive Design for Fair Online Recruitment: A Conceptual Framework Informed by Job Seekers’ Fairness Concerns\",\"url\":\"https://arxiv.org/html/2501.14110\"},{\"title\":\"[2601.14110] Adsorption-Driven Symmetry Lowering in Single Molecules Revealed by Ångstrom-scale Tip-Enhanced Raman Imaging\",\"url\":\"https://arxiv.org/abs/2601.14110\"},{\"title\":\"Non-Gaussian fluctuations in relativistic hydrodynamics: Confluent equations for three-point correlations\",\"url\":\"https://arxiv.org/html/2604.14110\"},{\"title\":\"[2501.14110] Value Sensitive Design for Fair Online Recruitment: A Conceptual Framework Informed by Job Seekers' Fairness Concerns\",\"url\":\"https://arxiv.org/abs/2501.14110\"},{\"title\":\"[2509.14110] Local existence theory for a class of CMC gauges for the Einstein-non-linear scalar field equations\",\"url\":\"https://arxiv.org/abs/2509.14110\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2203.14110.pdf\"},{\"title\":\"[2508.14110] Mott transition from the non-analyticity of the one-body reduced density-matrix functional\",\"url\":\"https://arxiv.org/abs/2508.14110\"},{\"title\":\"DROID: Dual Representation for Out-of-Scope Intent Detection\",\"url\":\"https://arxiv.org/html/2510.14110\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**The paper \"SVD Contextual Sparsity Predictors for Fast LLM Inference\" (arXiv:2603.14110) presents a framework for accelerating inference of ReGLU-based feed-forward networks (FFNs) within LLMs using a training-free method for building sparse pattern predictors based on truncation-aware singular value decomposition (SVD) of the gate projection matrix, along with a threshold calibration algorithm.**\n\nThe experiments on three sparse LLMs with an average activation sparsity level of 90% in the FFNs demonstrate up to a 1.8x reduction in end-to-end decoding time while maintaining less than 1% degradation in benchmark scores.\n\nThe paper was submitted on March 14, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "235f9e6c-de0e-4045-900a-998e37b305c2",
+            "isSidechain": true,
+            "promptId": "6b75caff-9e8f-4914-a49c-e6cefa1414d7",
+            "agentId": "a9d21ee8a60f2959b",
+            "type": "user",
+            "uuid": "c6a886d8-e807-4ae3-8702-f899dc4ccf8f",
+            "sourceToolAssistantUUID": "235f9e6c-de0e-4045-900a-998e37b305c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T03:50:24.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VKeauqZTQYm62qTuFRb9c1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"SVD Contextual Sparsity Predictors for Fast LLM Inference\" 2026\"\n\nLinks: [{\"title\":\"[2603.14110] SVD Contextual Sparsity Predictors for Fast LLM Inference\",\"url\":\"https://arxiv.org/abs/2603.14110\"},{\"title\":\"SVD Contextual Sparsity Predictors for Fast LLM Inference\",\"url\":\"https://arxiv.org/html/2603.14110\"},{\"title\":\"GitHub - z-lab/sparselora: [ICML 2025] SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity\",\"url\":\"https://github.com/z-lab/sparselora\"},{\"title\":\"SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity - Z Lab\",\"url\":\"https://z-lab.ai/projects/sparselora/\"},{\"title\":\"SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity\",\"url\":\"https://arxiv.org/html/2506.16500v1\"},{\"title\":\"Accelerating LLM Fine-Tuning with Contextual Sparsity\",\"url\":\"https://arxiv.org/pdf/2506.16500\"},{\"title\":\"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time | OpenReview\",\"url\":\"https://openreview.net/forum?id=wIPIhHd00i\"},{\"title\":\"SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity\",\"url\":\"https://openreview.net/pdf?id=z83rodY0Pw\"},{\"title\":\"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models\",\"url\":\"https://arxiv.org/html/2406.16635v2\"},{\"title\":\"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time\",\"url\":\"https://arxiv.org/pdf/2310.17157\"}]\n\nI found the research paper you're looking for. Here are the key details:\n\n## SVD Contextual Sparsity Predictors for Fast LLM Inference\n\nThis is an arXiv paper (2603.14110) from March 14, 2026.\n\n### Overview\nContextual sparsity is one of the approaches used to reduce computational complexity in the inference process of large language models (LLMs). Existing techniques for efficient LLM inference acceleration based on contextual sparsity with minimal accuracy degradation require training sparse pattern predictors.\n\n### Main Contribution\nThe paper presents a framework for accelerating inference of ReGLU-based feed-forward networks (FFNs) within LLMs. The proposed framework provides a fast, training-free method for building sparse pattern predictors using truncation-aware singular value decomposition (SVD) of the gate projection matrix, along with a threshold calibration algorithm, and inference executors supporting conditional computation on CUDA and CANN devices.\n\n### Results\nExperiments on three sparse LLMs with an average activation sparsity level of 90% in the FFNs demonstrate up to a 1.8x reduction in end-to-end decoding time while maintaining less than 1% degradation in benchmark scores on tasks involving complex math.\n\nYou can access the full paper at: https://arxiv.org/abs/2603.14110\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ca81c1f-c4aa-42d7-839d-97a755125bc7",
+            "isSidechain": true,
+            "promptId": "6b75caff-9e8f-4914-a49c-e6cefa1414d7",
+            "agentId": "a9d21ee8a60f2959b",
+            "type": "user",
+            "uuid": "33061c8e-53ec-415a-8a5a-746b6689787a",
+            "sourceToolAssistantUUID": "6ca81c1f-c4aa-42d7-839d-97a755125bc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T03:50:26.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JWmfTPSqrUXcnhKYaC4cyZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SVD contextual sparsity predictors arXiv 2603.14110\"\n\nLinks: [{\"title\":\"[2603.14110] SVD Contextual Sparsity Predictors for Fast LLM Inference\",\"url\":\"https://arxiv.org/abs/2603.14110\"},{\"title\":\"SVD Contextual Sparsity Predictors for Fast LLM Inference\",\"url\":\"https://arxiv.org/html/2603.14110\"},{\"title\":\"SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity\",\"url\":\"https://arxiv.org/html/2506.16500.pdf\"},{\"title\":\"Accelerating LLM Fine-Tuning with Contextual Sparsity\",\"url\":\"https://arxiv.org/pdf/2506.16500\"},{\"title\":\"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models\",\"url\":\"https://arxiv.org/html/2406.16635v2\"},{\"title\":\"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time\",\"url\":\"https://arxiv.org/pdf/2310.17157\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2502.12444v1\"},{\"title\":\"Catchup results for stat from Sat, 21 Jan 2023\",\"url\":\"https://arxiv.org/catchup?smonth=1&sday=21&group=grp_&archive=stat&num=2000&order=reverse&method=without&syear=2023\"},{\"title\":\"TurboESM: Ultra-Efficient 3-Bit KV Cache Quantization for ...\",\"url\":\"https://arxiv.org/pdf/2603.26110\"},{\"title\":\"Sparse autoencoders reveal organized biological knowledge but minimal regulatory logic in single-cell foundation models: a comparative atlas of Geneformer and scGPT\",\"url\":\"https://arxiv.org/html/2603.02952v1\"}]\n\nI found the paper you're looking for. Here's what I found about arXiv 2603.14110:\n\n## SVD Contextual Sparsity Predictors for Fast LLM Inference\n\nThis paper presents a framework for accelerating inference of ReGLU-based feed-forward networks (FFNs) within LLMs. The proposed framework provides a fast, training-free method for building sparse pattern predictors using truncation-aware singular value decomposition (SVD) of the gate projection matrix, along with a threshold calibration algorithm, and inference executors supporting conditional computation on CUDA and CANN devices.\n\n**Key Details:**\n- **Authors:** Georgii Serbin, Kirill Koshkin, Zhongao Sun, Anastasiya Bistrigova, and C.C. Korikov\n- **Date:** March 14, 2026\n- **Topic:** Contextual sparsity is one of the approaches used to reduce computational complexity in the inference process of large language models (LLMs).\n\n**Results:** Experiments on three sparse LLMs with an average activation sparsity level of 90% in the FFNs demonstrate up to a 1.8x reduction in end-to-end decoding time while maintaining less than 1% degradation in benchmark scores on tasks involving complex math.\n\nThe paper is available at https://arxiv.org/abs/2603.14110 and https://arxiv.org/html/2603.14110.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a47a5e84-d858-48de-a65b-4c07df7be186",
+            "isSidechain": true,
+            "promptId": "6b75caff-9e8f-4914-a49c-e6cefa1414d7",
+            "agentId": "a9d21ee8a60f2959b",
+            "type": "user",
+            "uuid": "34269a59-c177-4d95-ad6f-c6e943aa87fc",
+            "sourceToolAssistantUUID": "a47a5e84-d858-48de-a65b-4c07df7be186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T03:50:30.267Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The paper is confirmed to exist. Let me now fetch the full paper to answer the detailed questions about out-of-distribution sensitivity, specific models evaluated, and the other claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34269a59-c177-4d95-ad6f-c6e943aa87fc",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzbJbE5MaxKFVSqpjTv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "90ecfb5b-c874-4601-9c1f-24f679ca118a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMNiMjEQzB1WpYQ2Ck8azR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1618,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 10834,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1072,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T03:50:32.169Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TtHoSvajtKY3wnxxq8vc9m",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2603.14110",
+                "prompt": "Extract the full abstract, list of authors, submission date, and any details about: (1) out-of-distribution sensitivity of learned predictors, (2) use of truncated SVD of gate projections, (3) whether it targets ReGLU-based models specifically, (4) what specific models are evaluated in experiments."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90ecfb5b-c874-4601-9c1f-24f679ca118a",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzbJbE5MaxKFVSqpjTv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5b4c5b6b-f44f-4c57-9b58-3e65f9a3cea9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMNiMjEQzB1WpYQ2Ck8azR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1618,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 10834,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1072,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T03:50:34.511Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015GKWt4tWwjdczgnKThxfcr",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.14110",
+                "prompt": "Extract detailed information about: (1) Does the paper find that learned predictors suffer from out-of-distribution sensitivity? What exactly does it say about this? (2) Does it use truncated SVD of gate projections? (3) Does it target ReGLU-based models specifically? (4) What specific models (e.g., Llama, Mistral, etc.) does it evaluate on? (5) What are the main results and speedups reported? Please include relevant quotes where possible."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b4c5b6b-f44f-4c57-9b58-3e65f9a3cea9",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzbJbE5MaxKFVSqpjTv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1b40254c-dcb2-4526-b22d-965dcaa3a6e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMNiMjEQzB1WpYQ2Ck8azR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1618,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 10834,
+                "output_tokens": 362,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1072
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1618,
+                    "output_tokens": 362,
+                    "cache_read_input_tokens": 10834,
+                    "cache_creation_input_tokens": 1072,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1072,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T03:50:38.524Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TtHoSvajtKY3wnxxq8vc9m",
+              "type": "tool_result",
+              "content": "# Paper Summary: SVD Contextual Sparsity Predictors for Fast LLM Inference\n\n**Full Abstract:**\n\"Contextual sparsity is one of the approaches used to reduce computational complexity in the inference process of large language models (LLMs). Existing techniques for efficient LLM inference acceleration based on contextual sparsity with minimal accuracy degradation require training sparse pattern predictors. This paper presents a framework for accelerating inference of ReGLU-based feed-forward networks (FFNs) within LLMs. The proposed framework provides a fast, training-free method for building sparse pattern predictors using truncation-aware singular value decomposition (SVD) of the gate projection matrix, along with a threshold calibration algorithm, and inference executors supporting conditional computation on CUDA and CANN devices. Experiments on three sparse LLMs with an average activation sparsity level of 90% in the FFNs demonstrate up to a 1.8x reduction in end-to-end decoding time while maintaining less than 1% degradation in benchmark scores on tasks involving complex math and code generation. This work advances the deployment of LLMs on edge devices.\"\n\n**Authors:**\nGeorgii Serbin, Kirill Koshkin, Zhongao Sun, Anastasiya Bistrigova, C.C. Korikov\n\n**Submission Date:**\nMarch 14, 2026\n\n---\n\n## Key Details:\n\n**(1) Out-of-Distribution Sensitivity:**\nNot discussed in the provided content.\n\n**(2) Truncated SVD of Gate Projections:**\nYes—the method employs \"truncation-aware singular value decomposition (SVD) of the gate projection matrix\" as a core technique for building sparse pattern predictors without requiring training.\n\n**(3) ReGLU-Based Models:**\nYes, specifically confirmed: the framework targets \"ReGLU-based feed-forward networks (FFNs) within LLMs.\"\n\n**(4) Specific Models Evaluated:**\nThe abstract mentions \"three sparse LLMs\" but does not name them explicitly in the available content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b4c5b6b-f44f-4c57-9b58-3e65f9a3cea9",
+            "isSidechain": true,
+            "promptId": "6b75caff-9e8f-4914-a49c-e6cefa1414d7",
+            "agentId": "a9d21ee8a60f2959b",
+            "type": "user",
+            "uuid": "97166938-0ed0-4306-acba-b419997356d2",
+            "sourceToolAssistantUUID": "5b4c5b6b-f44f-4c57-9b58-3e65f9a3cea9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T03:50:40.727Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015GKWt4tWwjdczgnKThxfcr",
+              "type": "tool_result",
+              "content": "# SVD Contextual Sparsity Predictors: Key Findings\n\n## (1) Out-of-Distribution Sensitivity in Learned Predictors\n\nYes, the paper explicitly identifies this issue. In the ROC-AUC analysis section, it states:\n\n> \"Trained predictors may suffer from out-of-distribution sensitivity due to their data-dependent nature, while SVD predictors directly leverage the LLM's internal weight structure.\"\n\nThis observation supports their argument that training-free SVD approaches offer advantages over learned predictors like Deja Vu and PowerInfer.\n\n## (2) Truncated SVD of Gate Projections\n\nYes, the approach is fundamentally built on this technique. The paper describes their method as using \"low-rank singular value decomposition (SVD) of the gate projection matrix\" with data-aware truncation to create lightweight predictors for contextual sparsity estimation.\n\n## (3) ReGLU-Based Models\n\nConfirmed. The work specifically targets ReGLU-activated FFNs. The paper notes that \"A key characteristic of ReGLU-based LLMs is dynamic (or contextual) sparsity,\" and their method leverages this property where \"computations for the remaining neurons can be safely skipped\" due to ReLU's behavior.\n\n## (4) Evaluated Models\n\nThe paper evaluates on three 7B-parameter sparse models:\n- **ProSparse-LLaMA2-7B**\n- **SparseQwen2-7B** (instruction-tuned)\n- **TurboSparse-Mistral-Instruct** (instruction-tuned)\n\n## (5) Main Results and Speedups\n\nThe key achievement: \"up to 1.8× end-to-end decoding acceleration with minimal accuracy degradation\" while maintaining \"less than 1% degradation in benchmark scores on tasks involving complex math and code generation.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b40254c-dcb2-4526-b22d-965dcaa3a6e8",
+            "isSidechain": true,
+            "promptId": "6b75caff-9e8f-4914-a49c-e6cefa1414d7",
+            "agentId": "a9d21ee8a60f2959b",
+            "type": "user",
+            "uuid": "c6322654-25df-4afc-8b13-8b667b6b6693",
+            "sourceToolAssistantUUID": "1b40254c-dcb2-4526-b22d-965dcaa3a6e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T03:50:50.405Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the findings for each of your questions:\n\n---\n\n**1. Does the paper exist? Is it from March 2026?**\n\nYes, confirmed. The paper \"SVD Contextual Sparsity Predictors for Fast LLM Inference\" exists at arXiv:2603.14110. It was submitted on **March 14, 2026**. Authors: Georgii Serbin, Kirill Koshkin, Zhongao Sun, Anastasiya Bistrigova, and C.C. Korikov.\n\n**2. Does it find that learned predictors suffer from out-of-distribution sensitivity?**\n\nYes. The paper explicitly states: *\"Trained predictors may suffer from out-of-distribution sensitivity due to their data-dependent nature, while SVD predictors directly leverage the LLM's internal weight structure.\"* This is a key motivation for their training-free SVD-based approach over learned predictors like Deja Vu and PowerInfer.\n\n**3. Does it use truncated SVD of gate projections?**\n\nYes. The core method uses \"truncation-aware singular value decomposition (SVD) of the gate projection matrix\" to build lightweight, training-free sparse pattern predictors. This is the central technical contribution of the paper.\n\n**4. Does it target ReGLU-based models specifically?**\n\nYes. The paper explicitly targets ReGLU-activated feed-forward networks (FFNs) within LLMs. It notes that \"a key characteristic of ReGLU-based LLMs is dynamic (or contextual) sparsity,\" leveraging the fact that ReLU gating zeroes out neurons whose computations can be safely skipped.\n\n**5. What models does it evaluate on?**\n\nThree 7B-parameter sparse models:\n- **ProSparse-LLaMA2-7B**\n- **SparseQwen2-7B** (instruction-tuned)\n- **TurboSparse-Mistral-Instruct** (instruction-tuned)\n\nThe experiments demonstrate up to **1.8x end-to-end decoding speedup** at ~90% FFN activation sparsity, with less than 1% degradation on benchmarks involving complex math and code generation. The framework supports inference on both CUDA and CANN devices.\n\n---\n\nSources:\n- [arXiv abstract page: 2603.14110](https://arxiv.org/abs/2603.14110)\n- [arXiv HTML full paper: 2603.14110](https://arxiv.org/html/2603.14110)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6322654-25df-4afc-8b13-8b667b6b6693",
+            "isSidechain": true,
+            "agentId": "a9d21ee8a60f2959b",
+            "requestId": "req_011CawzcNMUK54t8CCi3mUBE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7194e508-818d-4ae2-8fe4-b4f34441da91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "bdf522a6-a8a8-46bb-9a44-de1ead278b20",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FkrighB5vuFYiiWYDzkeX5",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2942,
+                "cache_read_input_tokens": 11906,
+                "output_tokens": 600,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2942
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 600,
+                    "cache_read_input_tokens": 11906,
+                    "cache_creation_input_tokens": 2942,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2942,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-the-paper-svd-contextual-sparsity-predictors-for-fast-llm-inference.md"
+}

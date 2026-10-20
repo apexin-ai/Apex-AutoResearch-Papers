@@ -1,0 +1,380 @@
+{
+  "schema_version": "1.0",
+  "id": "7be6ba3a1772d1037f80",
+  "project": "entrainment_gated_ft--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to find all citation keys available in the references.bib file for this paper. Specifically, I need to check whic",
+  "task_key": "agent-a9dd6b1167d14272e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a9dd6b1167d14272e.jsonl",
+    "occurrence": 1,
+    "bytes": 36369,
+    "sha256": "635816120f92d15f2d31bf6606e847917fca245ba227e4fbfebf71b91442cfc4"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T09:35:20.992Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to find all citation keys available in the references.bib file for this paper. Specifically, I need to check which of the following have entries in the bib file:\n\n1. Architecture names: GatedDeltaNet, RetNet, HGRN2, GLA (Gated Linear Attention), DeltaNet\n2. Benchmarks: LAMBADA, HellaSwag, PIQA, ARC-Easy\n3. Jaccard similarity (as a metric)\n4. Any other commonly cited concepts\n\nSearch in: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib\n\nFor each item, tell me the exact citation key if found (e.g., \"sun2023retnet\"), or \"NOT FOUND\" if no bib entry exists.\n\nAlso search broadly - grep for \"lambada\", \"hellaswag\", \"piqa\", \"arc\", \"gla\", \"deltanet\", \"retnet\", \"hgrn\" case-insensitively in the bib file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3ba761f8-4110-4ee6-a45d-600ecf758c29",
+            "agentId": "a9dd6b1167d14272e",
+            "type": "user",
+            "uuid": "e015838d-9200-4b9f-9057-7720ef3e571e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "9aa19bf8-cb5b-42e3-9abb-cce2d701182a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "toasty-tinkering-galaxy"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T09:35:22.609Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the references.bib file to find all the citation keys you're looking for."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e015838d-9200-4b9f-9057-7720ef3e571e",
+            "isSidechain": true,
+            "agentId": "a9dd6b1167d14272e",
+            "requestId": "req_011CbP4QhtSyLHANoa13GXpK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "56e6b04c-031b-40a1-8110-f0681cb11b8a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "9aa19bf8-cb5b-42e3-9abb-cce2d701182a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "toasty-tinkering-galaxy",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NsBREtoehxVRSPpFzBm5QP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39782,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39782,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T09:35:23.282Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019dGxKSU4g3LvHcPrERwCxQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56e6b04c-031b-40a1-8110-f0681cb11b8a",
+            "isSidechain": true,
+            "agentId": "a9dd6b1167d14272e",
+            "requestId": "req_011CbP4QhtSyLHANoa13GXpK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6f91dc34-3649-4d8f-a716-1c7d3a6d7431",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "9aa19bf8-cb5b-42e3-9abb-cce2d701182a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "toasty-tinkering-galaxy",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NsBREtoehxVRSPpFzBm5QP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39782,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39782,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T09:35:23.306Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019dGxKSU4g3LvHcPrERwCxQ",
+              "type": "tool_result",
+              "content": "1\t% References for entrainment_gated_ft paper\n2\t% Generated from literature_map.yaml (all verified=true entries)\n3\t\n4\t% ============================================================\n5\t% Per-Example Analysis / Dataset Cartography\n6\t\n7\t@article{fort2019deep,\n8\t  title={Deep Ensembles: A Loss Landscape Perspective},\n9\t  author={Fort, Stanislav and Hu, Huiyi and Lakshminarayanan, Balaji},\n10\t  journal={arXiv preprint arXiv:1912.02757},\n11\t  year={2019}\n12\t}\n13\t\n14\t@inproceedings{niven2019probing,\n15\t  title={Probing Neural Network Comprehension of Natural Language Arguments},\n16\t  author={Niven, Timothy and Kao, Hung-Yu},\n17\t  booktitle={Proceedings of ACL},\n18\t  year={2019}\n19\t}\n20\t\n21\t@inproceedings{swayamdipta2020dataset,\n22\t  title={Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics},\n23\t  author={Swayamdipta, Swabha and Chandrasekaran, Roy and Wieting, John and Hajishirzi, Hannaneh and Smith, Noah A.},\n24\t  booktitle={Proceedings of EMNLP},\n25\t  year={2020}\n26\t}\n27\t\n28\t% ============================================================\n29\t% Model Multiplicity Surveys and Fairness\n30\t\n31\t@inproceedings{black2022model,\n32\t  title={Model Multiplicity: Opportunities, Concerns, and Solutions},\n33\t  author={Black, Emily and Raghavan, Manish and Barocas, Solon},\n34\t  booktitle={Proceedings of the ACM Conference on Fairness, Accountability, and Transparency (FAccT)},\n35\t  year={2022}\n36\t}\n37\t\n38\t@inproceedings{cooper2024arbitrariness,\n39\t  title={Arbitrariness and Social Prediction: The Confounding Role of Variance in Fair Classification},\n40\t  author={Cooper, A. Feder and Abrams, Katherine and Barocas, Solon},\n41\t  booktitle={Proceedings of AAAI},\n42\t  year={2024}\n43\t}\n44\t\n45\t% ============================================================\n46\t% Hybrid Architectures\n47\t\n48\t@inproceedings{fu2023hungry,\n49\t  title={Hungry Hungry Hippos: Towards Language Modeling with State Space Models},\n50\t  author={Fu, Daniel Y. and Dao, Tri and Saab, Khaled K. and Thomas, Armin W. and Rudra, Atri and R\\'{e}, Christopher},\n51\t  booktitle={Proceedings of ICLR},\n52\t  year={2023}\n53\t}\n54\t\n55\t% ============================================================\n56\t% Hybrid Architectures (continued)\n57\t% ============================================================\n58\t\n59\t@article{waleffe2024empirical,\n60\t  title={An Empirical Study of Mamba-based Language Models},\n61\t  author={Waleffe, Roger and Byeon, Wonmin and Riach, Duncan and Norick, Brandon and others},\n62\t  journal={arXiv preprint arXiv:2406.07887},\n63\t  year={2024}\n64\t}\n65\t\n66\t@article{basu2026routing,\n67\t  title={When Does Content-Based Routing Work? Representation Requirements for Selective Attention in Hybrid Sequence Models},\n68\t  author={Basu, Abhinaba},\n69\t  journal={arXiv preprint arXiv:2603.20997},\n70\t  year={2026}\n71\t}\n72\t\n73\t@article{wang2025hybrid,\n74\t  title={A Systematic Analysis of Hybrid Linear Attention},\n75\t  author={Wang, Dustin and Zhu, Rui-Jie and Katharopoulos, Angelos and Gu, Albert},\n76\t  journal={arXiv preprint arXiv:2507.06457},\n77\t  year={2025}\n78\t}\n79\t\n80\t@article{ye2026provable,\n81\t  title={A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention},\n82\t  author={Ye, Xiaowei and He, Xiaoyu and Liao, Chao and Wu, Chen and Lu, Pinyan},\n83\t  journal={arXiv preprint arXiv:2602.01763},\n84\t  year={2026}\n85\t}\n86\t\n87\t@article{lieber2024jamba,\n88\t  title={Jamba: A Hybrid Transformer-Mamba Language Model},\n89\t  author={Lieber, Opher and Lenz, Barak and Bata, Hofit and others},\n90\t  journal={arXiv preprint arXiv:2403.19887},\n91\t  year={2024}\n92\t}\n93\t\n94\t@article{peng2024eagle,\n95\t  title={Eagle and Finch: {RWKV} with Matrix-Valued States and Dynamic Recurrence},\n96\t  author={Peng, Bo and others},\n97\t  journal={arXiv preprint arXiv:2404.05892},\n98\t  year={2024}\n99\t}\n100\t\n101\t@article{de2024griffin,\n102\t  title={Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models},\n103\t  author={De, Soham and Smith, Samuel L. and Fernando, Anushan and others},\n104\t  journal={arXiv preprint arXiv:2402.19427},\n105\t  year={2024}\n106\t}\n107\t\n108\t@inproceedings{dao2024mamba2,\n109\t  title={Transformers are {SSMs}: Generalized Models and Efficient Algorithms Through Structured State Space Duality},\n110\t  author={Dao, Tri and Gu, Albert},\n111\t  booktitle={Proceedings of ICML},\n112\t  year={2024}\n113\t}\n114\t\n115\t@article{botev2024recurrentgemma,\n116\t  title={RecurrentGemma: Moving Past Transformers for Efficient Open Language Models},\n117\t  author={Botev, Aleksandar and De, Soham and Smith, Samuel L. and others},\n118\t  journal={arXiv preprint arXiv:2404.07839},\n119\t  year={2024}\n120\t}\n121\t\n122\t@article{dong2024hymba,\n123\t  title={Hymba: A Hybrid-head Architecture for Small Language Models},\n124\t  author={Dong, Xin and others},\n125\t  journal={arXiv preprint arXiv:2411.13676},\n126\t  year={2024}\n127\t}\n128\t\n129\t@article{ren2024samba,\n130\t  title={Samba: Simple Hybrid State Space Models for Efficient Unlimited Context Language Modeling},\n131\t  author={Ren, Liliang and Liu, Yang and Yan, Yadong and Zhu, Yi and others},\n132\t  journal={arXiv preprint arXiv:2406.07522},\n133\t  year={2024}\n134\t}\n135\t\n136\t@inproceedings{arora2024zoology,\n137\t  title={Zoology: Measuring and Improving Recall in Efficient Language Models},\n138\t  author={Arora, Simran and Eyuboglu, Sabri and Timalsina, Aman and Johnson, Isys and Poli, Michael and Zou, James and Rudra, Atri and R{\\'e}, Christopher},\n139\t  booktitle={Proceedings of ICLR},\n140\t  year={2024}\n141\t}\n142\t\n143\t@inproceedings{arora2024based,\n144\t  title={Simple Linear Attention Language Models Balance the Recall-Throughput Tradeoff},\n145\t  author={Arora, Simran and Eyuboglu, Sabri and Zhang, Michael and Timalsina, Aman and Alberti, Frederic and Bornschein, James and others},\n146\t  booktitle={Proceedings of ICML},\n147\t  year={2024}\n148\t}\n149\t\n150\t% ============================================================\n151\t% Linear Recurrent Models\n152\t% ============================================================\n153\t\n154\t@article{gu2024mamba,\n155\t  title={Mamba: Linear-Time Sequence Modeling with Selective State Spaces},\n156\t  author={Gu, Albert and Dao, Tri},\n157\t  journal={arXiv preprint arXiv:2312.00752},\n158\t  year={2024}\n159\t}\n160\t\n161\t@article{sun2023retnet,\n162\t  title={Retentive Network: A Successor to Transformer for Large Language Models},\n163\t  author={Sun, Yutao and Dong, Li and Huang, Shaohan and Ma, Shuming and Xia, Yuqing and Xue, Jilong and Wang, Jianyong and Wei, Furu},\n164\t  journal={arXiv preprint arXiv:2307.08621},\n165\t  year={2023}\n166\t}\n167\t\n168\t@article{qin2024hgrn2,\n169\t  title={{HGRN2}: Gated Linear {RNNs} with State Expansion},\n170\t  author={Qin, Zhen and others},\n171\t  journal={arXiv preprint arXiv:2404.07904},\n172\t  year={2024}\n173\t}\n174\t\n175\t@article{yang2024gateddeltanet,\n176\t  title={Gated Delta Networks: Improving Mamba2 with Delta Rule},\n177\t  author={Yang, Songlin and Kautz, Jan and Hatamizadeh, Ali},\n178\t  journal={arXiv preprint arXiv:2412.06464},\n179\t  year={2024}\n180\t}\n181\t\n182\t@inproceedings{gu2022s4,\n183\t  title={Efficiently Modeling Long Sequences with Structured State Spaces},\n184\t  author={Gu, Albert and Goel, Karan and R{\\'e}, Christopher},\n185\t  booktitle={Proceedings of ICLR},\n186\t  year={2022}\n187\t}\n188\t\n189\t@inproceedings{katharopoulos2020transformers,\n190\t  title={Transformers are {RNNs}: Fast Autoregressive Transformers with Linear Attention},\n191\t  author={Katharopoulos, Angelos and Vyas, Apoorv and Pappas, Nikolaos and Fleuret, Fran{\\c{c}}ois},\n192\t  booktitle={Proceedings of ICML},\n193\t  year={2020}\n194\t}\n195\t\n196\t% ============================================================\n197\t% Predictive Multiplicity\n198\t% ============================================================\n199\t\n200\t@inproceedings{marx2020predictive,\n201\t  title={Predictive Multiplicity in Classification},\n202\t  author={Marx, Charles and Calmon, Flavio P. and Ustun, Berk},\n203\t  booktitle={Proceedings of ICML},\n204\t  year={2020}\n205\t}\n206\t\n207\t@inproceedings{ganesh2025systemizing,\n208\t  title={Systemizing Multiplicity: The Curious Case of Arbitrariness in Machine Learning},\n209\t  author={Ganesh, Prakhar and Ta{\\\"\\i}k, Afaf and Farnadi, Golnoosh},\n210\t  booktitle={Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society},\n211\t  volume={8}, number={2}, pages={1032--1048},\n212\t  year={2025}, doi={10.1609/aies.v8i2.36609}\n213\t}\n214\t\n215\t@inproceedings{watson2023predictive,\n216\t  title={Predictive Multiplicity in Probabilistic Classification},\n217\t  author={Watson-Daniels, Jamelle and Parkes, David C. and Ustun, Berk},\n218\t  booktitle={Proceedings of AAAI},\n219\t  volume={37},\n220\t  number={9},\n221\t  pages={10306--10314},\n222\t  year={2023}\n223\t}\n224\t\n225\t@inproceedings{hsu2022rashomon,\n226\t  title={Rashomon Capacity: A Metric for Predictive Multiplicity in Classification},\n227\t  author={Hsu, Hsiang and Calmon, Flavio P.},\n228\t  booktitle={Advances in Neural Information Processing Systems},\n229\t  year={2022}\n230\t}\n231\t\n232\t% ============================================================\n233\t% Underspecification and Model Agreement\n234\t% ============================================================\n235\t\n236\t@article{damour2022underspecification,\n237\t  title={Underspecification Presents Challenges for Credibility in Modern Machine Learning},\n238\t  author={D'Amour, Alexander and Heller, Katherine and Moldovan, Dan and others},\n239\t  journal={Journal of Machine Learning Research},\n240\t  volume={23},\n241\t  number={226},\n242\t  pages={1--61},\n243\t  year={2022}\n244\t}\n245\t\n246\t@inproceedings{mccoy2020berts,\n247\t  title={{BERTs} of a feather do not generalize together: Large variability in generalization across models with similar test set performance},\n248\t  author={McCoy, R. Thomas and Min, Junghyun and Linzen, Tal},\n249\t  booktitle={Proceedings of NeurIPS},\n250\t  year={2020}\n251\t}\n252\t\n253\t@inproceedings{sellam2022multiberts,\n254\t  title={The {MultiBERTs}: {BERT} Reproductions for Robustness Analysis},\n255\t  author={Sellam, Thibault and Yadlowsky, Steve and Tenney, Ian and Wei, Jason and Saphra, Naomi and D'Amour, Alexander and Linzen, Tal and Bastings, Jasmijn and Turc, Iulia Raluca and Eisenstein, Jacob and Das, Dipanjan and Pavlick, Ellie},\n256\t  booktitle={Proceedings of ICLR},\n257\t  year={2022}\n258\t}\n259\t\n260\t@inproceedings{fehlauer2025convergence,\n261\t  title={Convergence and Divergence of Language Models under Different Random Seeds},\n262\t  author={Fehlauer, Finlay and Mahowald, Kyle and Pimentel, Tiago},\n263\t  booktitle={Proceedings of EMNLP},\n264\t  pages={32982--32991},\n265\t  year={2025}\n266\t}\n267\t\n268\t% ============================================================\n269\t% Benchmarks and Evaluation\n270\t% ============================================================\n271\t\n272\t@inproceedings{paperno2016lambada,\n273\t  title={The {LAMBADA} Dataset: Word Prediction Requiring a Broad Discourse Context},\n274\t  author={Paperno, Denis and Kruszewski, Germ{\\'a}n and Lazaridou, Angeliki and others},\n275\t  booktitle={Proceedings of ACL},\n276\t  year={2016}\n277\t}\n278\t\n279\t@misc{gao2024lmeval,\n280\t  title={A Framework for Few-Shot Language Model Evaluation},\n281\t  author={Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and others},\n282\t  year={2024},\n283\t  howpublished={Zenodo},\n284\t  doi={10.5281/zenodo.12608602}\n285\t}\n286\t\n287\t@article{clark2018arc,\n288\t  title={Think you have Solved Question Answering? Try {ARC}, the {AI2} Reasoning Challenge},\n289\t  author={Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n290\t  journal={arXiv preprint arXiv:1803.05457},\n291\t  year={2018}\n292\t}\n293\t\n294\t% ============================================================\n295\t% Round 3 Reviewer-Requested References\n296\t% ============================================================\n297\t\n298\t@article{gorbett2026crossmodel,\n299\t  title={Cross-Model Disagreement as a Label-Free Correctness Signal},\n300\t  author={Gorbett, Matt and Jana, Suman},\n301\t  journal={arXiv preprint arXiv:2603.25450},\n302\t  year={2026}\n303\t}\n304\t\n305\t@inproceedings{ali2025hidden,\n306\t  title={The Hidden Attention of Mamba Models},\n307\t  author={Ali, Ameen and Zimerman, Itamar and Wolf, Lior},\n308\t  booktitle={Proceedings of ACL},\n309\t  year={2025}\n310\t}\n311\t\n312\t@inproceedings{du2025reconciling,\n313\t  title={Reconciling Model Multiplicity for Downstream Decision Making},\n314\t  author={Du, Ally Yalei and Ngo, Dung Daniel and Wu, Zhiwei Steven},\n315\t  booktitle={Proceedings of ICLR},\n316\t  year={2025}\n317\t}\n318\t\n319\t@inproceedings{haghighat2026resolving,\n320\t  title={Resolving Predictive Multiplicity for the Rashomon Set},\n321\t  author={Haghighat, Parian and Anahideh, Hadis and Rudin, Cynthia},\n322\t  booktitle={Proceedings of AAAI},\n323\t  year={2026}\n324\t}\n325\t\n326\t@inproceedings{lahoti2026mamba3,\n327\t  title={Mamba-3: Improved Sequence Modeling using State Space Principles},\n328\t  author={Lahoti, Aakash and Li, Kevin Y. and Chen, Berlin and Wang, Caitlin and Bick, Aviv and Kolter, J. Zico and Dao, Tri and Gu, Albert},\n329\t  booktitle={Proceedings of ICLR},\n330\t  year={2026}\n331\t}\n332\t\n333\t% ============================================================\n334\t% Round 14 additions\n335\t% ============================================================\n336\t\n337\t@inproceedings{milanifard2016launch,\n338\t  title={Launch and Iterate: Reducing Prediction Churn},\n339\t  author={Milani Fard, Mahdi and Canini, Kevin and Cotter, Andrew and Pfeifer, Jan and Bartlett, Peter},\n340\t  booktitle={Advances in Neural Information Processing Systems},\n341\t  year={2016}\n342\t}\n343\t\n344\t@inproceedings{poli2023hyena,\n345\t  title={Hyena Hierarchy: Towards Larger Convolutional Language Models},\n346\t  author={Poli, Michael and Massaroli, Stefano and Nguyen, Eric and Fu, Daniel Y. and Dao, Tri and Baccus, Stephen and Bengio, Yoshua and Ermon, Stefano and R{\\'e}, Christopher},\n347\t  booktitle={Proceedings of ICML},\n348\t  year={2023}\n349\t}\n350\t\n351\t@inproceedings{biderman2023pythia,\n352\t  title={Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling},\n353\t  author={Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin Gregory and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and van der Wal, Oskar},\n354\t  booktitle={Proceedings of ICML},\n355\t  year={2023}\n356\t}\n357\t\n358\t% ============================================================\n359\t% Round 13 additions (continued)\n360\t% ============================================================\n361\t\n362\t@inproceedings{vanderwal2025polypythias,\n363\t  title={PolyPythias: Stability and Outliers across Fifty Language Model Pre-Training Runs},\n364\t  author={van der Wal, Oskar and Lesci, Pietro and M{\\\"u}ller-Eberstein, Max and Saphra, Naomi and Schoelkopf, Hailey and Zuidema, Willem and Biderman, Stella},\n365\t  booktitle={Proceedings of ICLR},\n366\t  year={2025}\n367\t}\n368\t\n369\t% ============================================================\n370\t% Final additions\n371\t% ============================================================\n372\t\n373\t@inproceedings{qin2023hierarchically,\n374\t  title={Hierarchically Gated Recurrent Neural Network for Sequence Modeling},\n375\t  author={Qin, Zhen and Li, Songlin and Zhong, Weixuan and Sun, Yiran and Li, Dong and Peng, Hao and Yang, Zhijun and Zhong, Sheng},\n376\t  booktitle={Advances in Neural Information Processing Systems},\n377\t  year={2023}\n378\t}\n379\t\n380\t% ============================================================\n381\t% Round 15 additions\n382\t% ============================================================\n383\t\n384\t@inproceedings{jain2025allocation,\n385\t  title={Allocation Multiplicity: Evaluating the Promises of the {R}ashomon Set},\n386\t  author={Jain, Suyash and Wang, Yuanjun and Creel, Kathleen and Wilson, Christo},\n387\t  booktitle={Proceedings of the 2025 ACM Conference on Fairness, Accountability, and Transparency (FAccT)},\n388\t  year={2025}\n389\t}\n390\t\n391\t% ============================================================\n392\t% Round 13 additions\n393\t% ============================================================\n394\t\n395\t@article{robinson1950ecological,\n396\t  title={Ecological Correlations and the Behavior of Individuals},\n397\t  author={Robinson, William S.},\n398\t  journal={American Sociological Review},\n399\t  volume={15},\n400\t  number={3},\n401\t  pages={351--357},\n402\t  year={1950}\n403\t}\n404\t\n405\t@article{brown2005diversity,\n406\t  title={Diversity Creation Methods: A Survey and Categorisation},\n407\t  author={Brown, Gavin and Wyatt, Jeremy and Harris, Rachel and Yao, Xin},\n408\t  journal={Information Fusion},\n409\t  volume={6},\n410\t  number={1},\n411\t  pages={5--20},\n412\t  year={2005}\n413\t}\n414\t\n415\t% ============================================================\n416\t% Round 12 additions\n417\t% ============================================================\n418\t\n419\t@article{fisher2019all,\n420\t  title={All Models are Wrong, but Many are Useful: Learning a Variable's Importance by Studying an Entire Class of Prediction Models Simultaneously},\n421\t  author={Fisher, Aaron and Rudin, Cynthia and Dominici, Francesca},\n422\t  journal={Journal of Machine Learning Research},\n423\t  volume={20},\n424\t  number={177},\n425\t  pages={1--81},\n426\t  year={2019}\n427\t}\n428\t\n429\t@inproceedings{semenova2022existence,\n430\t  title={On the Existence of Simpler Machine Learning Models},\n431\t  author={Semenova, Lesia and Rudin, Cynthia and Parr, Ronald},\n432\t  booktitle={Proceedings of FAccT},\n433\t  pages={1827--1858},\n434\t  year={2022}\n435\t}\n436\t\n437\t@article{kuncheva2003measures,\n438\t  title={Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy},\n439\t  author={Kuncheva, Ludmila I. and Whitaker, Christopher J.},\n440\t  journal={Machine Learning},\n441\t  volume={51},\n442\t  number={2},\n443\t  pages={181--207},\n444\t  year={2003}\n445\t}\n446\t\n447\t@inproceedings{wortsman2022model,\n448\t  title={Model Soups: Averaging Weights of Multiple Fine-tuned Models Improves Accuracy without Increasing Inference Time},\n449\t  author={Wortsman, Mitchell and Ilharco, Gabriel and Gadre, Samir Yitzhak and Roelofs, Rebecca and Gontijo-Lopes, Raphael and Morcos, Ari S. and Namkoong, Hongseok and Farhadi, Ali and Carmon, Yair and Kornblith, Simon and Schmidt, Ludwig},\n450\t  booktitle={Proceedings of ICML},\n451\t  pages={23965--23998},\n452\t  year={2022}\n453\t}\n454\t\n455\t@inproceedings{guo2017calibration,\n456\t  title={On Calibration of Modern Neural Networks},\n457\t  author={Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n458\t  booktitle={Proceedings of ICML},\n459\t  pages={1321--1330},\n460\t  year={2017}\n461\t}\n462\t\n463\t@article{dodge2020finetuning,\n464\t  title={Fine-Tuning Pretrained Language Models: Weight Initializations, Data Orders, and Early Stopping},\n465\t  author={Dodge, Jesse and Ilharco, Gabriel and Schwartz, Roy and Farhadi, Ali and Hajishirzi, Hannaneh and Smith, Noah A.},\n466\t  journal={arXiv preprint arXiv:2002.06305},\n467\t  year={2020}\n468\t}\n469\t\n470\t% ============================================================\n471\t% Round 19 additions\n472\t% ============================================================\n473\t\n474\t@inproceedings{geifman2017selective,\n475\t  title={Selective Classification for Deep Neural Networks},\n476\t  author={Geifman, Yonatan and El-Yaniv, Ran},\n477\t  booktitle={Advances in Neural Information Processing Systems},\n478\t  year={2017}\n479\t}\n480\t\n481\t@inproceedings{caruana2004ensemble,\n482\t  title={Ensemble Selection from Libraries of Models},\n483\t  author={Caruana, Rich and Niculescu-Mizil, Alexandru and Crew, Geoff and Ksikes, Alex},\n484\t  booktitle={Proceedings of the 21st International Conference on Machine Learning},\n485\t  year={2004}\n486\t}\n487\t\n488\t@article{yang2026benchmark,\n489\t  title={Benchmark Illusion: Disagreement among {LLMs} and Its Scientific Consequences},\n490\t  author={Yang, Eddie and Wang, Dashun},\n491\t  journal={arXiv preprint arXiv:2602.11898},\n492\t  year={2026}\n493\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f91dc34-3649-4d8f-a716-1c7d3a6d7431",
+            "isSidechain": true,
+            "promptId": "3ba761f8-4110-4ee6-a45d-600ecf758c29",
+            "agentId": "a9dd6b1167d14272e",
+            "type": "user",
+            "uuid": "f30a6fdf-d231-4d9c-9884-f1c711977592",
+            "sourceToolAssistantUUID": "6f91dc34-3649-4d8f-a716-1c7d3a6d7431",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "9aa19bf8-cb5b-42e3-9abb-cce2d701182a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "toasty-tinkering-galaxy"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T09:35:23.741Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Aozy7pfbjs2pmiMoy6DXBh",
+              "name": "Grep",
+              "input": {
+                "pattern": "(lambada|hellaswag|piqa|arc|gla|deltanet|retnet|hgrn|jaccard)",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/references.bib",
+                "output_mode": "content",
+                "context": 3,
+                "-i": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f30a6fdf-d231-4d9c-9884-f1c711977592",
+            "isSidechain": true,
+            "agentId": "a9dd6b1167d14272e",
+            "requestId": "req_011CbP4QhtSyLHANoa13GXpK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "46467851-5710-4e53-a86a-9ecd96e16673",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "9aa19bf8-cb5b-42e3-9abb-cce2d701182a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "toasty-tinkering-galaxy",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NsBREtoehxVRSPpFzBm5QP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39782,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 284,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39782
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 284,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 39782,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39782,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T09:35:23.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Aozy7pfbjs2pmiMoy6DXBh",
+              "type": "tool_result",
+              "content": "43-}\n44-\n45-% ============================================================\n46:% Hybrid Architectures\n47-\n48-@inproceedings{fu2023hungry,\n49-  title={Hungry Hungry Hippos: Towards Language Modeling with State Space Models},\n--\n53-}\n54-\n55-% ============================================================\n56:% Hybrid Architectures (continued)\n57-% ============================================================\n58-\n59-@article{waleffe2024empirical,\n--\n78-}\n79-\n80-@article{ye2026provable,\n81:  title={A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention},\n82-  author={Ye, Xiaowei and He, Xiaoyu and Liao, Chao and Wu, Chen and Lu, Pinyan},\n83-  journal={arXiv preprint arXiv:2602.01763},\n84-  year={2026}\n--\n120-}\n121-\n122-@article{dong2024hymba,\n123:  title={Hymba: A Hybrid-head Architecture for Small Language Models},\n124-  author={Dong, Xin and others},\n125-  journal={arXiv preprint arXiv:2411.13676},\n126-  year={2024}\n--\n158-  year={2024}\n159-}\n160-\n161:@article{sun2023retnet,\n162-  title={Retentive Network: A Successor to Transformer for Large Language Models},\n163-  author={Sun, Yutao and Dong, Li and Huang, Shaohan and Ma, Shuming and Xia, Yuqing and Xue, Jilong and Wang, Jianyong and Wei, Furu},\n164-  journal={arXiv preprint arXiv:2307.08621},\n165-  year={2023}\n166-}\n167-\n168:@article{qin2024hgrn2,\n169:  title={{HGRN2}: Gated Linear {RNNs} with State Expansion},\n170-  author={Qin, Zhen and others},\n171-  journal={arXiv preprint arXiv:2404.07904},\n172-  year={2024}\n173-}\n174-\n175:@article{yang2024gateddeltanet,\n176-  title={Gated Delta Networks: Improving Mamba2 with Delta Rule},\n177-  author={Yang, Songlin and Kautz, Jan and Hatamizadeh, Ali},\n178-  journal={arXiv preprint arXiv:2412.06464},\n--\n236-@article{damour2022underspecification,\n237-  title={Underspecification Presents Challenges for Credibility in Modern Machine Learning},\n238-  author={D'Amour, Alexander and Heller, Katherine and Moldovan, Dan and others},\n239:  journal={Journal of Machine Learning Research},\n240-  volume={23},\n241-  number={226},\n242-  pages={1--61},\n--\n269-% Benchmarks and Evaluation\n270-% ============================================================\n271-\n272:@inproceedings{paperno2016lambada,\n273:  title={The {LAMBADA} Dataset: Word Prediction Requiring a Broad Discourse Context},\n274-  author={Paperno, Denis and Kruszewski, Germ{\\'a}n and Lazaridou, Angeliki and others},\n275-  booktitle={Proceedings of ACL},\n276-  year={2016}\n--\n284-  doi={10.5281/zenodo.12608602}\n285-}\n286-\n287:@article{clark2018arc,\n288:  title={Think you have Solved Question Answering? Try {ARC}, the {AI2} Reasoning Challenge},\n289-  author={Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n290-  journal={arXiv preprint arXiv:1803.05457},\n291-  year={2018}\n--\n342-}\n343-\n344-@inproceedings{poli2023hyena,\n345:  title={Hyena Hierarchy: Towards Larger Convolutional Language Models},\n346-  author={Poli, Michael and Massaroli, Stefano and Nguyen, Eric and Fu, Daniel Y. and Dao, Tri and Baccus, Stephen and Bengio, Yoshua and Ermon, Stefano and R{\\'e}, Christopher},\n347-  booktitle={Proceedings of ICML},\n348-  year={2023}\n--\n370-% Final additions\n371-% ============================================================\n372-\n373:@inproceedings{qin2023hierarchically,\n374:  title={Hierarchically Gated Recurrent Neural Network for Sequence Modeling},\n375-  author={Qin, Zhen and Li, Songlin and Zhong, Weixuan and Sun, Yiran and Li, Dong and Peng, Hao and Yang, Zhijun and Zhong, Sheng},\n376-  booktitle={Advances in Neural Information Processing Systems},\n377-  year={2023}\n--\n419-@article{fisher2019all,\n420-  title={All Models are Wrong, but Many are Useful: Learning a Variable's Importance by Studying an Entire Class of Prediction Models Simultaneously},\n421-  author={Fisher, Aaron and Rudin, Cynthia and Dominici, Francesca},\n422:  journal={Journal of Machine Learning Research},\n423-  volume={20},\n424-  number={177},\n425-  pages={1--81},\n--\n446-\n447-@inproceedings{wortsman2022model,\n448-  title={Model Soups: Averaging Weights of Multiple Fine-tuned Models Improves Accuracy without Increasing Inference Time},\n449:  author={Wortsman, Mitchell and Ilharco, Gabriel and Gadre, Samir Yitzhak and Roelofs, Rebecca and Gontijo-Lopes, Raphael and Morcos, Ari S. and Namkoong, Hongseok and Farhadi, Ali and Carmon, Yair and Kornblith, Simon and Schmidt, Ludwig},\n450-  booktitle={Proceedings of ICML},\n451-  pages={23965--23998},\n452-  year={2022}\n--\n462-\n463-@article{dodge2020finetuning,\n464-  title={Fine-Tuning Pretrained Language Models: Weight Initializations, Data Orders, and Early Stopping},\n465:  author={Dodge, Jesse and Ilharco, Gabriel and Schwartz, Roy and Farhadi, Ali and Hajishirzi, Hannaneh and Smith, Noah A.},\n466-  journal={arXiv preprint arXiv:2002.06305},\n467-  year={2020}\n468-}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46467851-5710-4e53-a86a-9ecd96e16673",
+            "isSidechain": true,
+            "promptId": "3ba761f8-4110-4ee6-a45d-600ecf758c29",
+            "agentId": "a9dd6b1167d14272e",
+            "type": "user",
+            "uuid": "2923df48-5e06-4789-9fdf-ec9c61fec301",
+            "sourceToolAssistantUUID": "46467851-5710-4e53-a86a-9ecd96e16673",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "9aa19bf8-cb5b-42e3-9abb-cce2d701182a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "toasty-tinkering-galaxy"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T09:35:30.771Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have found the references.bib file and searched it comprehensively. Here's the summary of what I found:\n\n## Citation Keys Found in references.bib\n\n### Architecture Names:\n1. **GatedDeltaNet** - FOUND: `yang2024gateddeltanet` (line 175)\n   - Title: \"Gated Delta Networks: Improving Mamba2 with Delta Rule\"\n\n2. **RetNet** - FOUND: `sun2023retnet` (line 161)\n   - Title: \"Retentive Network: A Successor to Transformer for Large Language Models\"\n\n3. **HGRN2** - FOUND: `qin2024hgrn2` (line 168)\n   - Title: \"HGRN2: Gated Linear RNNs with State Expansion\"\n\n4. **GLA (Gated Linear Attention)** - NOT FOUND\n   - No entry specifically for GLA, though there are entries about \"Gated Linear\" concepts in titles\n\n5. **DeltaNet** - NOT FOUND as standalone\n   - Only appears in the context of \"Gated Delta Networks\" (yang2024gateddeltanet)\n\n### Benchmarks:\n1. **LAMBADA** - FOUND: `paperno2016lambada` (line 272)\n   - Title: \"The LAMBADA Dataset: Word Prediction Requiring a Broad Discourse Context\"\n\n2. **HellaSwag** - NOT FOUND\n\n3. **PIQA** - NOT FOUND\n\n4. **ARC-Easy** - FOUND: `clark2018arc` (line 287)\n   - Title: \"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge\"\n\n### Other Concepts:\n1. **Jaccard similarity** - NOT FOUND\n   - No entry for this metric\n\n## Summary Table:\n| Item | Found | Citation Key |\n|------|-------|--------------|\n| GatedDeltaNet | Yes | yang2024gateddeltanet |\n| RetNet | Yes | sun2023retnet |\n| HGRN2 | Yes | qin2024hgrn2 |\n| GLA | No | - |\n| DeltaNet | No | - |\n| LAMBADA | Yes | paperno2016lambada |\n| HellaSwag | No | - |\n| PIQA | No | - |\n| ARC-Easy | Yes | clark2018arc |\n| Jaccard similarity | No | - |\n\nThe bib file is quite comprehensive with 493 lines, containing references related to hybrid architectures, linear recurrent models, predictive multiplicity, and model agreement. However, HellaSwag, PIQA, and GLA are notably missing and would need to be added if they're needed for citations."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2923df48-5e06-4789-9fdf-ec9c61fec301",
+            "isSidechain": true,
+            "agentId": "a9dd6b1167d14272e",
+            "requestId": "req_011CbP4QvWU9m1HVk5a1P7jE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7d02ac39-ba98-4897-8eaa-e174d9a6aeff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789",
+            "sessionId": "9aa19bf8-cb5b-42e3-9abb-cce2d701182a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "toasty-tinkering-galaxy",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013A3fn8LHEdrsiTRUNguJfq",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10051,
+                "cache_read_input_tokens": 39782,
+                "output_tokens": 667,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10051
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 667,
+                    "cache_read_input_tokens": 39782,
+                    "cache_creation_input_tokens": 10051,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10051,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-find-all-citation-keys-available-in-the-references-bib-file-for-this.md"
+}
