@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "cc4fcef832710e327a50",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## memory.md 中已有的 Evidence Tax 数据 ### Evidence Tax (LLaMA) — D134 决策：用 fair comparison 报告 - RSFT 3-seed:",
+  "task_key": "8ac8f8ae-44c6-4626-8ebe-c70f91645eec",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/8ac8f8ae-44c6-4626-8ebe-c70f91645eec.jsonl",
+    "occurrence": 1,
+    "bytes": 829005,
+    "sha256": "ee6ab0e08d3202f0cc2ffbefa284eb84b282b7830c1d578420812f51bd29d215"
+  },
+  "statistics": {
+    "messages": 96,
+    "user_turns": 1,
+    "tool_calls": 31,
+    "roles": {
+      "record": 20,
+      "user": 1,
+      "assistant": 13,
+      "tool_call": 31,
+      "tool_result": 31
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "cc4fcef832710e327a50-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "cc4fcef832710e327a50-part-0001.json",
+          "message_count": 28
+        },
+        {
+          "path": "cc4fcef832710e327a50-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-memory-md-evidence-tax-evidence-tax-llama-d134-fair-comparison-r.md"
+}

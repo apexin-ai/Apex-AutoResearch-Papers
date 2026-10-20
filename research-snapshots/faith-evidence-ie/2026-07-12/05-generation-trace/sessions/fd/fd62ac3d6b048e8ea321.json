@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "id": "fd62ac3d6b048e8ea321",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 关键参数参考 inference.py 参数：--base_model, --sft_adapter, --model_path(adapter path), --data_path, --output",
+  "task_key": "c7a5d54b-b100-4da2-ad58-d422d02853d0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/c7a5d54b-b100-4da2-ad58-d422d02853d0.jsonl",
+    "occurrence": 1,
+    "bytes": 1420710,
+    "sha256": "3f639efd2ea8deaf6cfe3d9526c456805fc6b6e1687e9dfa27a5178fe346afea"
+  },
+  "statistics": {
+    "messages": 727,
+    "user_turns": 3,
+    "tool_calls": 243,
+    "roles": {
+      "record": 125,
+      "user": 3,
+      "assistant": 112,
+      "tool_call": 243,
+      "tool_result": 243,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 677,
+      "chunks": [
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0004.json",
+          "message_count": 139
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0004.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0004.json",
+          "message_count": 17
+        },
+        {
+          "path": "fd62ac3d6b048e8ea321-part-0005.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-inference-py-base-model-sft-adapter-model-path-adapter-path-data.md"
+}

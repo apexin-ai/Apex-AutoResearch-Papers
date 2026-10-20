@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "id": "ec538cb7de5488684c32",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_check_gpu-status-all_20260515T005840]: Worker worker_check_gpu-status-all_20260515T005840 已完成",
+  "task_key": "5f83c4d4-6f01-47e3-a7fb-df342cc46162",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/5f83c4d4-6f01-47e3-a7fb-df342cc46162.jsonl",
+    "occurrence": 1,
+    "bytes": 778020,
+    "sha256": "7dc45bc990de892b5c1740fb094f2d8ddcbc0224ff0d913ddead95f26d622e88"
+  },
+  "statistics": {
+    "messages": 218,
+    "user_turns": 13,
+    "tool_calls": 48,
+    "roles": {
+      "record": 66,
+      "user": 13,
+      "assistant": 44,
+      "tool_call": 48,
+      "tool_result": 47
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 54,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0001.json",
+          "message_count": 5
+        },
+        {
+          "path": "ec538cb7de5488684c32-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "ec538cb7de5488684c32-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-check-gpu-status-all-20260515t005840-worker-worker-check-gp.md"
+}

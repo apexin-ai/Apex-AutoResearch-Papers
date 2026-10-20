@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "c27172912280fb9409c5",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> RSFT Pivot (D031). SFT baseline: rel_f1=0.406, evi_f1=0.798, edcr=0.712. SFT model at /root/autodl-tmp/s",
+  "task_key": "498543d5-382f-4056-a034-6ee4f07c7151",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/498543d5-382f-4056-a034-6ee4f07c7151.jsonl",
+    "occurrence": 1,
+    "bytes": 1559897,
+    "sha256": "477024d78fdaf97dd490a5dac01670e8633d7eb5e0f5ac3423210eb0812b0843"
+  },
+  "statistics": {
+    "messages": 856,
+    "user_turns": 2,
+    "tool_calls": 300,
+    "roles": {
+      "record": 140,
+      "user": 2,
+      "assistant": 113,
+      "tool_call": 300,
+      "tool_result": 300,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c27172912280fb9409c5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 808,
+      "chunks": [
+        {
+          "path": "c27172912280fb9409c5-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "c27172912280fb9409c5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c27172912280fb9409c5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c27172912280fb9409c5-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "c27172912280fb9409c5-part-0005.json",
+          "message_count": 90
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "c27172912280fb9409c5-part-0005.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-rsft-pivot-d031-sft-baseline-rel-f1-0-406-evi-f1-0-798-edcr-0-71.md"
+}

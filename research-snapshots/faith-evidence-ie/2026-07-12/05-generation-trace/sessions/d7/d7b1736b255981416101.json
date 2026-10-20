@@ -1,0 +1,869 @@
+{
+  "schema_version": "1.0",
+  "id": "d7b1736b255981416101",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/, find the LaTeX source for: 1.",
+  "task_key": "agent-ac03697e9217c2bbf",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ac03697e9217c2bbf.jsonl",
+    "occurrence": 1,
+    "bytes": 40814,
+    "sha256": "b8bf3417094e3fde04d708814bace81fdc650796facaeb6873b86533f73a17ee"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T12:59:17.978Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/, find the LaTeX source for:\n\n1. Table 2 - \"RSFT performance and inference-time evidence tax across model scales\" (likely in sections/results.tex or sections/experiments.tex or similar)\n2. Table 6 - \"95% confidence intervals for training variance\" (likely in sections/appendix.tex)\n\nFor each, show the complete table environment code and exact file path + line numbers.\n\nSearch breadth: quick"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e60fb10f-1b8e-4280-ba52-e647918c8405",
+            "agentId": "ac03697e9217c2bbf",
+            "type": "user",
+            "uuid": "4a15cbb8-23cb-48f9-85e8-bc5cb0a049d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T12:59:20.353Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for these LaTeX tables in the paper directory. Let me start by exploring the structure and then locating the specific tables."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a15cbb8-23cb-48f9-85e8-bc5cb0a049d5",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMS9q8eiBg757VgvXSGU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cf168333-70e4-436b-9c74-beba7244c9dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VvWdzv682qaS3meoycnae3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39655,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39655,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T12:59:20.618Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DdDL8FpPT5P68PjyNY8mUi",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/**/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf168333-70e4-436b-9c74-beba7244c9dc",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMS9q8eiBg757VgvXSGU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b4210b8d-03c0-4650-af71-ff9bab782cc0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VvWdzv682qaS3meoycnae3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39655,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39655,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T12:59:20.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DdDL8FpPT5P68PjyNY8mUi",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/acl-style/acl_lualatex.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/acl-style/acl_latex.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4210b8d-03c0-4650-af71-ff9bab782cc0",
+            "isSidechain": true,
+            "promptId": "e60fb10f-1b8e-4280-ba52-e647918c8405",
+            "agentId": "ac03697e9217c2bbf",
+            "type": "user",
+            "uuid": "15342892-eaf8-4fa4-9786-ae48912e2982",
+            "sourceToolAssistantUUID": "b4210b8d-03c0-4650-af71-ff9bab782cc0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T12:59:20.954Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FJfrLCEqDg4R7J4QpCMZFs",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper -type f -name \"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15342892-eaf8-4fa4-9786-ae48912e2982",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMS9q8eiBg757VgvXSGU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "55913484-d1c9-49c0-b94f-3540a37f2a2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VvWdzv682qaS3meoycnae3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39655,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 193,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39655
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 193,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 39655,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39655,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T12:59:21.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FJfrLCEqDg4R7J4QpCMZFs",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/acl-style/acl_lualatex.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/acl-style/acl_latex.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/main.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55913484-d1c9-49c0-b94f-3540a37f2a2a",
+            "isSidechain": true,
+            "promptId": "e60fb10f-1b8e-4280-ba52-e647918c8405",
+            "agentId": "ac03697e9217c2bbf",
+            "type": "user",
+            "uuid": "1784cc26-4f6d-43f7-a49f-d9011c317355",
+            "sourceToolAssistantUUID": "55913484-d1c9-49c0-b94f-3540a37f2a2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T12:59:22.938Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for Table 2 and Table 6 by looking at the experiments and appendix sections:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1784cc26-4f6d-43f7-a49f-d9011c317355",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMSA4R7B9sbZTNWLxPA1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6fabebd6-b1ef-4b4a-82c5-d1482b603034",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DDoJFv6U8ncysDbvvQ6Ewq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 39655,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2027,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T12:59:23.590Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VnqovLrNRXEj1fLPn3WcrE",
+              "name": "Grep",
+              "input": {
+                "pattern": "Table 2|RSFT performance|inference-time evidence tax",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fabebd6-b1ef-4b4a-82c5-d1482b603034",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMSA4R7B9sbZTNWLxPA1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c8a2b1d0-4bdd-43b5-92fc-6b7dae13f89f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DDoJFv6U8ncysDbvvQ6Ewq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 39655,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2027,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T12:59:23.628Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VnqovLrNRXEj1fLPn3WcrE",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/analysis.tex:8:CED and flat-NLI produce comparable RSFT performance (Rel-F1 45.63 vs.\\ 45.61); stricter selection ($k{=}1$) outperforms $k{=}3$ by 1.02 Ign-F1 despite 2.96$\\times$ fewer examples; CED filtering is insensitive to NLI scorer capacity (+1.10pp with DeBERTa-v3-large vs.\\ v3-base, within seed noise; Appendix~\\ref{sec:ablation_full}).\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:59:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:67:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:73:\\caption{RSFT performance and inference-time evidence tax across model scales (DocRED dev Ign-F1). LLaMA-3.1-8B included for cross-family validation. Mean $\\pm$ std$^{(\\text{seeds})}$.}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:220:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:224:\\caption{SFT and RSFT performance on Re-DocRED test set (Ign-F1 \\%). Dev Ign-F1 (RSFT) from Table~\\ref{tab:scaling}. All test results use s42.}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:268:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:272:\\caption{RSFT inference-time evidence tax on Re-DocRED test set (Ign-F1 \\%). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Per-seed s42 except where noted.}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8a2b1d0-4bdd-43b5-92fc-6b7dae13f89f",
+            "isSidechain": true,
+            "promptId": "e60fb10f-1b8e-4280-ba52-e647918c8405",
+            "agentId": "ac03697e9217c2bbf",
+            "type": "user",
+            "uuid": "557ea09c-e5cf-4d6a-a5e5-fa80b661b68d",
+            "sourceToolAssistantUUID": "c8a2b1d0-4bdd-43b5-92fc-6b7dae13f89f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T12:59:23.860Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C22gPYHgcZWjYNMduaW69w",
+              "name": "Grep",
+              "input": {
+                "pattern": "Table 6|95% confidence intervals|training variance",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "557ea09c-e5cf-4d6a-a5e5-fa80b661b68d",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMSA4R7B9sbZTNWLxPA1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0b1a00fc-dd0f-475c-9862-d86ea2f62d71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DDoJFv6U8ncysDbvvQ6Ewq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 39655,
+                "output_tokens": 267,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2027
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 267,
+                    "cache_read_input_tokens": 39655,
+                    "cache_creation_input_tokens": 2027,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2027,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T12:59:23.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C22gPYHgcZWjYNMduaW69w",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex:63:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/conclusion.tex:5:RSFT improves mean extraction across all tested scales and reduces training variance at every evaluated configuration; a 1.7B RSFT model approaches 8B SFT performance at 4.7$\\times$ fewer parameters.\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex:126:\\caption{95\\% confidence intervals for training variance ($\\chi^2$ method, $N{=}3$ seeds). Compression is the ratio of SFT to RSFT point estimates (unrounded).}\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/introduction.tex:26:    \\item \\textbf{RSFT consistently reduces training variance.} NLI-based sample selection improves mean Ign-F1 across tested scales (+1.2 to +6.6pp); our 1.7B RSFT model (51.19 Ign-F1, std 0.09pp) approaches 8B SFT performance (50.19, std 3.23pp) at 4.7$\\times$ fewer parameters, enabling deployment-efficient evidence-grounded extraction."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b1a00fc-dd0f-475c-9862-d86ea2f62d71",
+            "isSidechain": true,
+            "promptId": "e60fb10f-1b8e-4280-ba52-e647918c8405",
+            "agentId": "ac03697e9217c2bbf",
+            "type": "user",
+            "uuid": "a99e857e-b651-47a9-8f99-0dd0119495d4",
+            "sourceToolAssistantUUID": "0b1a00fc-dd0f-475c-9862-d86ea2f62d71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T12:59:25.303Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found references to both tables. Now let me read the specific files to get the complete table environments:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a99e857e-b651-47a9-8f99-0dd0119495d4",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMSAGJEQf2zVcheRDpGv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d0a6a73e-b7ff-43a8-b076-07d9d61565e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TNKHM9JJV34E8R3ESFTR4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1389,
+                "cache_read_input_tokens": 41682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1389,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T12:59:25.729Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TbGqgryWU14vk694ujthzN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex",
+                "offset": 50,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0a6a73e-b7ff-43a8-b076-07d9d61565e0",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMSAGJEQf2zVcheRDpGv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "01ccc76b-3acb-4620-9fa3-dd653a393e98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TNKHM9JJV34E8R3ESFTR4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1389,
+                "cache_read_input_tokens": 41682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1389,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T12:59:25.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TbGqgryWU14vk694ujthzN",
+              "type": "tool_result",
+              "content": "50\t\\includegraphics[width=\\columnwidth]{fig_spectrum.pdf}\n51\t\\caption{Decoupling spectrum. Each method is plotted by Rel-F1 (x-axis) and Evi-F1 (y-axis). Arrows indicate training progression for DPO and GRPO bf16. Decoupled methods drift toward the upper-left.}\n52\t\\label{fig:spectrum}\n53\t\\end{figure}\n54\t\n55\t\n56\t\\subsection{Scale-Dependent Evidence Tax}\n57\t\\label{sec:scaling}\n58\t\n59\tThe evidence tax, defined as Ign-F1(no-evidence) $-$ Ign-F1(with-evidence) on the development set, is scale-dependent. Under matched evaluation conditions (\\texttt{max\\_new\\_tokens}$=$2048, format-compliant intersection; Appendix~\\ref{sec:training_tax}), the training-time tax reveals a within-family capacity threshold: evidence generation benefits 1.7B ($-$5.63pp; Appendix~\\ref{sec:training_tax}), where it also halves the output duplication rate (60.5\\%$\\to$33.0\\%; Table~\\ref{tab:mechanistic} in Appendix~\\ref{sec:fair_subset}), but is approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B, $n{=}3$; +0.04pp at 8B; +0.03pp at 14B). Table~\\ref{tab:scaling} and Figure~\\ref{fig:evidence_tax} present RSFT performance and inference-time evidence tax across five models (Figure~\\ref{fig:scaling} in Appendix). Evidence training also affects SFT seed variance in a scale-dependent manner: at 4B and 8B, with-evidence models show lower cross-seed spread than no-evidence models (25$\\times$ and 1.4$\\times$ compression, respectively), but at 1.7B the pattern reverses---with-evidence variance exceeds no-evidence variance, likely amplified by extreme truncation rates at this scale (Appendix~\\ref{sec:training_tax}).\n60\t\n61\tRSFT navigates this capacity landscape through quality-based data selection rather than gradient pressure. Mean Ign-F1 improves across tested scales: +6.55pp at 1.7B, +1.24pp at 4B, +4.14pp at 8B, and +3.44pp at 14B (Table~\\ref{tab:scaling}). RSFT from an independent SFT base (s44, Method B) achieves 51.52 Ign-F1 at 4B (+4.18pp over that base). This result confirms that RSFT gains are not contingent on a specific SFT checkpoint.\n62\t\n63\tBeyond mean performance, RSFT consistently reduces training variance (sign test: 4/4 scales, $p{=}0.0625$; $\\chi^2$ CI analysis confirms non-overlapping intervals at the 1.7B scale; Cohen's $d \\geq 1.79$ for 3/4 scales; Appendix~\\ref{sec:variance_ci}). Three RSFT seeds from a shared SFT checkpoint yield standard deviations of 0.09pp at 1.7B, 0.51pp at 4B, and 0.50pp at 8B ($n{=}3$ each), compared to SFT cross-seed variation of 2.79pp, 3.80pp, and 3.23pp respectively. While these measure different sources of variance (SFT reflects full training runs from different random seeds; RSFT reflects additional fine-tuning from a fixed base), the practical consequence is direct: across all Qwen3 scales with $\\geq$3 seeds, variance compression is 32.6$\\times$ at 1.7B, 7.5$\\times$ at 4B, and 6.5$\\times$ at 8B (point estimates from $N{=}3$ seeds; confidence intervals are wide, Appendix~\\ref{sec:variance_ci}). Per-scale Rel-F1, Evi-F1, and EDCR breakdowns appear in Table~\\ref{tab:cross_detail} (Appendix~\\ref{sec:scaling_details}). The 1.7B RSFT model (51.19 Ign-F1, std 0.09pp) approaches 8B SFT performance (50.19, std 3.23pp) at 4.7$\\times$ fewer parameters---comparable in mean yet 36$\\times$ more predictable.\n64\t\n65\tCross-family validation on LLaMA-3.1-8B confirms these patterns. All three RSFT seeds (55.87--57.14) exceed all three SFT seeds (48.02--53.84), yielding complete pairwise seed separation (Cohen's $d{=}2.58$) and 4.6$\\times$ variance compression (std 2.92pp $\\to$ 0.64pp). The SFT seed lottery is starkest at s44 (48.02 Ign-F1, 24.4\\% truncation, elevated Evi-F1 85\\%), a degenerate outcome that RSFT eliminates entirely (s44: 55.87). This robustness extends to inference-time format changes: LLaMA SFT models evaluated without evidence at 1024 tokens suffer 38--42\\% truncation with Ign-F1 collapsing to ${\\sim}$0.33 (s43/s44), while RSFT models truncate only 18--19\\% with stable performance (55.41$\\pm$0.13pp), indicating that CED filtering selects for compact output structure.\n66\t\n67\tFor RSFT models, the inference-time evidence tax (same model evaluated with vs.\\ without evidence output) preserves the benefit direction at 1.7B ($-$7.75pp, confirmed with 2048-token no-evidence evaluation that rules out truncation). At 4B, where the training-time tax is approximately neutral (+0.25$\\pm$0.47pp; Appendix~\\ref{sec:training_tax}), the RSFT inference-time tax is similarly small (+0.94pp). At 8B, the tax reverses to a benefit ($-$0.78pp), and at 14B a benefit is observed ($-$2.78$\\pm$2.49pp, two-seed mean), directionally consistent with the 8B pattern though the CI crosses zero at $n{=}2$. RSFT thus maintains or improves extraction quality with evidence across the Qwen3 family. LLaMA-3.1-8B RSFT shows a larger inference-time evidence benefit ($-$2.17$\\pm$0.76pp, three-seed mean, vs.\\ $-$0.78pp for Qwen3-8B), confirming that both performance gains and training reliability generalize across model families.\n68\t\n69\tThe effect of RSFT on inference-time evidence dependence is heterogeneous. At 1.7B, RSFT maintains strong evidence benefit ($-$5.01$\\pm$0.59pp, two-seed mean), comparable to SFT ($-$4.86pp). At 4B, RSFT introduces a mild evidence cost (+1.65$\\pm$0.29pp, three-seed mean), the Qwen3 scale with the largest positive RSFT test tax. Within the Qwen3 family at $\\geq$8B, RSFT approaches evidence neutrality ($-$0.91$\\pm$0.74pp at 8B, three-seed mean). Cross-architecture, LLaMA-3.1-8B shows partial compression: SFT tax of $-$4.94pp reduces to $-$1.46$\\pm$0.40pp (two-seed mean) under RSFT, consistent with the cross-family variation observed in SFT evidence tax (Appendix~\\ref{sec:training_tax}).\n70\t\n71\t\\begin{table}[t]\n72\t\\centering\n73\t\\caption{RSFT performance and inference-time evidence tax across model scales (DocRED dev Ign-F1). LLaMA-3.1-8B included for cross-family validation. Mean $\\pm$ std$^{(\\text{seeds})}$.}\n74\t\\label{tab:scaling}\n75\t\\small\n76\t\\resizebox{\\columnwidth}{!}{%\n77\t\\begin{tabular}{lcccc}\n78\t\\toprule\n79\t\\textbf{Model} & \\textbf{SFT w/ evi} & \\textbf{RSFT} & \\textbf{RSFT Tax}$^\\dagger$ & \\textbf{RSFT Gain} \\\\\n80\t\\midrule\n81\tQwen3-1.7B & 44.64{\\scriptsize$\\pm$2.79}$^{(3)}$ & 51.19{\\scriptsize$\\pm$0.09}$^{(3)}$ & $-$7.75 & +6.55 \\\\\n82\tQwen3-4B & 43.58{\\scriptsize$\\pm$3.80}$^{(3)}$ & 44.82{\\scriptsize$\\pm$0.51}$^{(3)}$ & +0.94 & +1.24 \\\\\n83\tQwen3-8B & 50.19{\\scriptsize$\\pm$3.23}$^{(3)}$ & 54.33{\\scriptsize$\\pm$0.50}$^{(3)}$ & $-$0.78 & +4.14 \\\\\n84\tQwen3-14B & 55.07$^{(1)}$ & 58.51{\\scriptsize$\\pm$0.50}$^{(2)}$ & $-$2.78{\\scriptsize$\\pm$2.49}$^{(2)}$ & +3.44 \\\\\n85\tLLaMA-3.1-8B & 51.09{\\scriptsize$\\pm$2.92}$^{(3)}$ & 56.54{\\scriptsize$\\pm$0.64}$^{(3)}$ & $-$2.17{\\scriptsize$\\pm$0.76}$^{(3)}$ & +5.45 \\\\\n86\t\\bottomrule\n87\t\\end{tabular}%\n88\t}\n89\t\\vspace{-2mm}\n90\t{\\raggedright\\footnotesize $^\\dagger$Inference-time: same RSFT model with vs.\\ without evidence output. No-evi eval uses \\texttt{max\\_new\\_tokens}$=$2048; with-evi eval uses 1024 (1.7B uses 2048 for both). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Seeds: 1.7B s42; 4B Method B s44; 8B s42; 14B two-seed mean; LLaMA three-seed mean. Training-time tax (matched@2048 fair evaluation) in Appendix~\\ref{sec:training_tax}.\\par}\n91\t\\end{table}\n92\t\n93\t\\begin{figure}[t]\n94\t\\centering\n95\t\\includegraphics[width=\\columnwidth]{fig_evidence_tax.pdf}\n96\t\\vspace{-2mm}\n97\t\\caption{Inference-time evidence tax across model scales (RSFT models, Re-DocRED test). Negative values indicate evidence \\emph{benefits} extraction. Error bars show $\\pm$1 std (all scales have $\\geq$2 seeds).}\n98\t\\label{fig:evidence_tax}\n99\t\\end{figure}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01ccc76b-3acb-4620-9fa3-dd653a393e98",
+            "isSidechain": true,
+            "promptId": "e60fb10f-1b8e-4280-ba52-e647918c8405",
+            "agentId": "ac03697e9217c2bbf",
+            "type": "user",
+            "uuid": "12fed439-f559-4fc6-ba6d-008bea40edaf",
+            "sourceToolAssistantUUID": "01ccc76b-3acb-4620-9fa3-dd653a393e98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T12:59:26.069Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D6xKUEjUnXRC4EH1uaCsy2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+                "offset": 110,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12fed439-f559-4fc6-ba6d-008bea40edaf",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMSAGJEQf2zVcheRDpGv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "008a7cd4-612a-4322-992a-55697d33ede2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TNKHM9JJV34E8R3ESFTR4M",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1389,
+                "cache_read_input_tokens": 41682,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1389
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 41682,
+                    "cache_creation_input_tokens": 1389,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1389,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T12:59:26.077Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D6xKUEjUnXRC4EH1uaCsy2",
+              "type": "tool_result",
+              "content": "110\t\n111\t\\begin{figure}[t]\n112\t\\centering\n113\t\\includegraphics[width=\\columnwidth]{fig_scaling.pdf}\n114\t\\caption{Evidence tax and RSFT gain across model scales. Bar heights show Ign-F1 for SFT with evidence (s42), SFT without evidence (s42), and RSFT (mean). The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the scale-dependent evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound.}\n115\t\\label{fig:scaling}\n116\t\\end{figure}\n117\t\n118\t\n119\t\\section{Variance Compression Confidence Intervals}\n120\t\\label{sec:variance_ci}\n121\t\n122\tTable~\\ref{tab:variance_ci} reports 95\\% confidence intervals for SFT and RSFT standard deviations using the $\\chi^2$ distribution ($N{=}3$ seeds per configuration). At 1.7B, the confidence intervals are fully non-overlapping (SFT lower bound 1.45pp $>$ RSFT upper bound 0.54pp), providing the strongest evidence for variance compression. At the remaining three scales, intervals overlap but point estimates are consistently in the same direction (SFT std $>$ RSFT std at all four scales; sign test $p = 0.0625$, one-sided binomial, $n = 4$, underpowered). Cohen's $d$ ranges from 0.46 (4B) to 3.31 (1.7B), with 1.7B and LLaMA-8B showing large effect sizes ($d > 2.5$).\n123\t\n124\t\\begin{table}[t]\n125\t\\centering\n126\t\\caption{95\\% confidence intervals for training variance ($\\chi^2$ method, $N{=}3$ seeds). Compression is the ratio of SFT to RSFT point estimates (unrounded).}\n127\t\\label{tab:variance_ci}\n128\t\\small\n129\t\\resizebox{\\columnwidth}{!}{%\n130\t\\begin{tabular}{lcccccc}\n131\t\\toprule\n132\t\\textbf{Scale} & \\textbf{SFT std} & \\textbf{SFT 95\\% CI} & \\textbf{RSFT std} & \\textbf{RSFT 95\\% CI} & \\textbf{Compr.} & \\textbf{Cohen's $d$} \\\\\n133\t\\midrule\n134\tQwen3-1.7B & 2.79 & [1.45, 17.55] & 0.09 & [0.04, 0.54] & 32.6$\\times$ & 3.31 \\\\\n135\tQwen3-4B & 3.80 & [1.98, 23.89] & 0.51 & [0.27, 3.21] & 7.5$\\times$ & 0.46 \\\\\n136\tQwen3-8B & 3.23 & [1.68, 20.31] & 0.50 & [0.26, 3.15] & 6.5$\\times$ & 1.79 \\\\\n137\tLLaMA-3.1-8B & 2.92 & [1.52, 18.37] & 0.64 & [0.33, 4.01] & 4.6$\\times$ & 2.58 \\\\\n138\t\\bottomrule\n139\t\\end{tabular}%\n140\t}\n141\t\\vspace{-2mm}\n142\t{\\raggedright\\footnotesize Sign test: $p = 0.0625$ (one-sided binomial, $n = 4$; underpowered). The consistent direction (4/4 SFT $>$ RSFT), non-overlapping CIs at 1.7B, and large Cohen's $d$ at 1.7B and LLaMA provide practical evidence for variance compression despite limited statistical power from $N{=}3$ seeds.\\par}\n143\t\\end{table}\n144\t\n145\t\n146\t\\section{Controlled Evaluation Subset}\n147\t\\label{sec:fair_subset}\n148\t\n149\tThe 1.7B evidence tax comparison (\\S\\ref{sec:scaling}) is confounded by differential truncation rates. At \\texttt{max\\_new\\_tokens}$=$1024, the no-evidence model truncates 50.9\\% of outputs (501/985 documents) versus 31.9\\% (314/985) for the evidence model. To address this, we adopt a matched@2048 fair evaluation: both configurations are evaluated at \\texttt{max\\_new\\_tokens}$=$2048, and the tax is computed on the intersection of documents where both produce format-compliant output. This yields 971/985 fair-subset documents, with a tax of $-$5.63pp (s42), confirming a genuine 1.7B evidence benefit. As additional validation, a stricter controlled subset at @1024 (excluding truncated or repetitive outputs; 442/985 documents) yields $-$6.2pp, with the stronger benefit attributable to the more aggressive filtering.\n150\t\n151\tTable~\\ref{tab:mechanistic} provides a mechanistic breakdown across three scales (evaluated at @1024). Output duplication rate (fraction of documents containing $\\geq$3 repeated triples or unique/total $< 0.5$) declines monotonically with scale for both training configurations, but the gap between no-evidence and with-evidence models narrows from 27.5pp at 1.7B to 3.7pp at 8B. This pattern supports the implicit regularization hypothesis: evidence generation forces smaller models to attend to supporting context, reducing degenerate repetition. At 4B, duplication is already moderate (31.1\\% with evidence), so the regularization benefit diminishes; under matched@2048 evaluation, the 4B training-time tax is approximately neutral (+0.25$\\pm$0.47pp, three-seed mean). The truncation asymmetry reverses across scales: at 1.7B the no-evidence model truncates 19pp more often; at 8B the evidence model truncates 9pp more often due to the longer output format.\n152\t\n153\t\\begin{table}[t]\n154\t\\centering\n155\t\\caption{Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\\Delta$: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more).}\n156\t\\label{tab:mechanistic}\n157\t\\small\n158\t\\begin{tabular}{lccccc}\n159\t\\toprule"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "008a7cd4-612a-4322-992a-55697d33ede2",
+            "isSidechain": true,
+            "promptId": "e60fb10f-1b8e-4280-ba52-e647918c8405",
+            "agentId": "ac03697e9217c2bbf",
+            "type": "user",
+            "uuid": "291b113f-3f93-4a36-8e52-d4939c476a6a",
+            "sourceToolAssistantUUID": "008a7cd4-612a-4322-992a-55697d33ede2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T12:59:42.508Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have found both tables. Let me provide you with the complete information:\n\n## Table 2 - \"RSFT performance and inference-time evidence tax across model scales\"\n\n**File path:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/experiments.tex`\n\n**Line numbers:** 71-91\n\n**Complete table environment code:**\n\n```latex\n\\begin{table}[t]\n\\centering\n\\caption{RSFT performance and inference-time evidence tax across model scales (DocRED dev Ign-F1). LLaMA-3.1-8B included for cross-family validation. Mean $\\pm$ std$^{(\\text{seeds})}$.}\n\\label{tab:scaling}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & \\textbf{SFT w/ evi} & \\textbf{RSFT} & \\textbf{RSFT Tax}$^\\dagger$ & \\textbf{RSFT Gain} \\\\\n\\midrule\nQwen3-1.7B & 44.64{\\scriptsize$\\pm$2.79}$^{(3)}$ & 51.19{\\scriptsize$\\pm$0.09}$^{(3)}$ & $-$7.75 & +6.55 \\\\\nQwen3-4B & 43.58{\\scriptsize$\\pm$3.80}$^{(3)}$ & 44.82{\\scriptsize$\\pm$0.51}$^{(3)}$ & +0.94 & +1.24 \\\\\nQwen3-8B & 50.19{\\scriptsize$\\pm$3.23}$^{(3)}$ & 54.33{\\scriptsize$\\pm$0.50}$^{(3)}$ & $-$0.78 & +4.14 \\\\\nQwen3-14B & 55.07$^{(1)}$ & 58.51{\\scriptsize$\\pm$0.50}$^{(2)}$ & $-$2.78{\\scriptsize$\\pm$2.49}$^{(2)}$ & +3.44 \\\\\nLLaMA-3.1-8B & 51.09{\\scriptsize$\\pm$2.92}$^{(3)}$ & 56.54{\\scriptsize$\\pm$0.64}$^{(3)}$ & $-$2.17{\\scriptsize$\\pm$0.76}$^{(3)}$ & +5.45 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\vspace{-2mm}\n{\\raggedright\\footnotesize $^\\dagger$Inference-time: same RSFT model with vs.\\ without evidence output. No-evi eval uses \\texttt{max\\_new\\_tokens}$=$2048; with-evi eval uses 1024 (1.7B uses 2048 for both). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Seeds: 1.7B s42; 4B Method B s44; 8B s42; 14B two-seed mean; LLaMA three-seed mean. Training-time tax (matched@2048 fair evaluation) in Appendix~\\ref{sec:training_tax}.\\par}\n\\end{table}\n```\n\n---\n\n## Table 6 - \"95% confidence intervals for training variance\"\n\n**File path:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex`\n\n**Line numbers:** 124-143\n\n**Complete table environment code:**\n\n```latex\n\\begin{table}[t]\n\\centering\n\\caption{95\\% confidence intervals for training variance ($\\chi^2$ method, $N{=}3$ seeds). Compression is the ratio of SFT to RSFT point estimates (unrounded).}\n\\label{tab:variance_ci}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\n\\textbf{Scale} & \\textbf{SFT std} & \\textbf{SFT 95\\% CI} & \\textbf{RSFT std} & \\textbf{RSFT 95\\% CI} & \\textbf{Compr.} & \\textbf{Cohen's $d$} \\\\\n\\midrule\nQwen3-1.7B & 2.79 & [1.45, 17.55] & 0.09 & [0.04, 0.54] & 32.6$\\times$ & 3.31 \\\\\nQwen3-4B & 3.80 & [1.98, 23.89] & 0.51 & [0.27, 3.21] & 7.5$\\times$ & 0.46 \\\\\nQwen3-8B & 3.23 & [1.68, 20.31] & 0.50 & [0.26, 3.15] & 6.5$\\times$ & 1.79 \\\\\nLLaMA-3.1-8B & 2.92 & [1.52, 18.37] & 0.64 & [0.33, 4.01] & 4.6$\\times$ & 2.58 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\vspace{-2mm}\n{\\raggedright\\footnotesize Sign test: $p = 0.0625$ (one-sided binomial, $n = 4$; underpowered). The consistent direction (4/4 SFT $>$ RSFT), non-overlapping CIs at 1.7B, and large Cohen's $d$ at 1.7B and LLaMA provide practical evidence for variance compression despite limited statistical power from $N{=}3$ seeds.\\par}\n\\end{table}\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "291b113f-3f93-4a36-8e52-d4939c476a6a",
+            "isSidechain": true,
+            "agentId": "ac03697e9217c2bbf",
+            "requestId": "req_011CbMSARgYBcytqC1dnsUvq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "81b408f1-239b-4bdb-981d-7781a64f6f5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "d27ae920-d2f9-42f2-ac0a-1d3743220d74",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "delegated-munching-dongarra",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N4NbKsacQ1ZVEdUYSC5UZ3",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4886,
+                "cache_read_input_tokens": 43071,
+                "output_tokens": 1526,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4886
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 1526,
+                    "cache_read_input_tokens": 43071,
+                    "cache_creation_input_tokens": 4886,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4886,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie-do.md"
+}

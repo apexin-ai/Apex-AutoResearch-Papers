@@ -1,0 +1,1362 @@
+{
+  "schema_version": "1.0",
+  "id": "fa89c698aa67be4ad465",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for the experiment registry file and cron data file for the project \"faith-evidence-ie\". Look in: 1. /home/ubuntu",
+  "task_key": "agent-aacdc938648ad3536",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aacdc938648ad3536.jsonl",
+    "occurrence": 1,
+    "bytes": 85937,
+    "sha256": "2444b48a6f30a425a54d0ad0839638f91ab661e0fcdc4b315feba99f567a50b7"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T02:38:58.472Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for the experiment registry file and cron data file for the project \"faith-evidence-ie\". Look in:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ for registry.yaml or registry.json\n2. /home/ubuntu/.agent-ml-research-idea_gen_0513_6/ for any cron data files (crons.yaml, crons.json)\n3. /home/ubuntu/agent-ml-research/ for where cron entries are stored\n\nSearch for files named registry*, cron*, and grep for \"test_eval_4b_rsft_s42_v2\" and \"test_eval_1_7b_sft_s42\" across YAML/JSON files.\n\nReport file paths and relevant content for these two experiment IDs."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "940fe418-1f5a-492d-bf87-c80211020c13",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T02:39:00.248Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the registry and cron data files, then look for the specific experiment IDs."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "940fe418-1f5a-492d-bf87-c80211020c13",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEPS8JbufSMF5TA32N",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "97cc3eab-391f-438d-b411-8bef5baf5b93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuyWjNE55zsGCydvegDo8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 614,
+                "cache_read_input_tokens": 17475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 614,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T02:39:00.468Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017gvgect6VYiv2hfE5cBXbh",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/*registry*"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97cc3eab-391f-438d-b411-8bef5baf5b93",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEPS8JbufSMF5TA32N",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "321144e2-383e-4035-8266-7e8f1cc122e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuyWjNE55zsGCydvegDo8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 614,
+                "cache_read_input_tokens": 17475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 614,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T02:39:00.511Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017gvgect6VYiv2hfE5cBXbh",
+              "type": "tool_result",
+              "content": "registry.lock\ndream_registry.lock\n.registry_6olabo_a.tmp\nlogs/workers/worker_ops_registry_fix_completed_experiments_20260516T083143.log\nlogs/workers/worker_ops_registry_fix_completed_experiments_20260516T083143_result.json\ndream_registry.yaml.bak\ndream_registry.yaml\n.venv/lib/python3.14/site-packages/matplotlib/backends/registry.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_backend_registry.py\n.venv/lib/python3.14/site-packages/matplotlib/backends/__pycache__/registry.cpython-314.pyc\n.venv/lib/python3.14/site-packages/matplotlib/tests/__pycache__/test_backend_registry.cpython-314.pyc\nlogs/workers/worker_diagnose_d112_cuda3_verify_and_fix_registry_20260518T231821.log\nlogs/workers/worker_diagnose_d112_cuda3_verify_and_fix_registry_20260518T231821_result.json\nlogs/workers/worker_fix_d112_shard_registry_entries_20260519T004337.log\nlogs/chats/worker_fix_d112_shard_registry_entries_20260519T004337.lock\nlogs/chats/worker_fix_d112_shard_registry_entries_20260519T004337.jsonl\nlogs/workers/worker_fix_d112_shard_registry_entries_20260519T004337_result.json\nlogs/workers/worker_diagnose_full_gpu_status_and_registry_audit_20260519T031518.log\nlogs/chats/worker_diagnose_full_gpu_status_and_registry_audit_20260519T031518.lock\nlogs/chats/worker_diagnose_full_gpu_status_and_registry_audit_20260519T031518.jsonl\nlogs/workers/worker_diagnose_full_gpu_status_and_registry_audit_20260519T031518_result.json\nlogs/workers/worker_diagnose_14b_sft_registry_fix_20260519T065038.log\nlogs/workers/worker_diagnose_14b_sft_registry_fix_20260519T065038_result.json\nlogs/workers/worker_ops_registry_plan_sync_20260519T221007.log\nlogs/workers/worker_ops_registry_plan_sync_20260519T221007_result.json\nlogs/workers/worker_diagnose_14b-registry-fix-and-qwen-check_20260521T030610.log\nlogs/workers/worker_diagnose_14b-registry-fix-and-qwen-check_20260521T030610_result.json\nlogs/workers/worker_diagnose_cuda3_and_registry_tail_20260521T194406.log\nlogs/chats/worker_diagnose_cuda3_and_registry_tail_20260521T194406.lock\nlogs/chats/worker_diagnose_cuda3_and_registry_tail_20260521T194406.jsonl\nlogs/workers/worker_diagnose_cuda3_and_registry_tail_20260521T194406_result.json\nlogs/workers/worker_ssh_registry-audit-and-status_20260521T234218.log\nlogs/workers/worker_ssh_registry-audit-and-status_20260521T234218_result.json\nlogs/workers/worker_ops_kill-v3-fix-registry_20260522T013227.log\nlogs/workers/worker_ops_kill-v3-fix-registry_20260522T013227_result.json\nregistry.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "321144e2-383e-4035-8266-7e8f1cc122e0",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "1d65104f-b849-41ae-8503-276906f41acc",
+            "sourceToolAssistantUUID": "321144e2-383e-4035-8266-7e8f1cc122e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T02:39:00.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Y4t6naPsG2KEsy9MoFugu",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/*cron*"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d65104f-b849-41ae-8503-276906f41acc",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEPS8JbufSMF5TA32N",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bbd3473a-a5c9-4e4d-8bda-5a7463f750aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuyWjNE55zsGCydvegDo8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 614,
+                "cache_read_input_tokens": 17475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 614,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T02:39:00.720Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Y4t6naPsG2KEsy9MoFugu",
+              "type": "tool_result",
+              "content": "logs/chats/cron_hook_mvp2_grpo_ced.lock\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_20260514T111812_407182.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_r2.lock\nlogs/chats/cron_hook_mvp2_grpo_extract.lock\nlogs/chats/cron_hook_mvp2_grpo_ced_r3.lock\nlogs/chats/cron_hook_mvp2_sft_eval.lock\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r2_20260514T145042_994525.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_20260514T145111_601177.jsonl\nlogs/chats/cron_hook_mvp2_sft_eval_r2.lock\nlogs/chats/cron_hook_mvp2_grpo_flatnli_r3.lock\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r3_20260514T151240_530732.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_kl001.lock\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_20260514T152629_486293.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_20260514T154949_816678.jsonl\nlogs/chats/cron_hook_mvp2_grpo_extract_r3.lock\nlogs/chats/cron_hook_mvp2_sft_eval_r3.lock\nlogs/chats/archive/cron_hook_mvp2_sft_eval_r2_20260514T175836_420794.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r2_20260514T175922_291142.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_kl001_r4.lock\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_20260514T181443_274445.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_flatnli_r3_20260514T181514_299064.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_20260514T183614_862364.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r3_20260514T183615_675347.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_kl001_20260514T184255_790488.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_r3_20260514T185646_726504.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_20260514T191229_816703.jsonl\nlogs/chats/cron_hook_mvp2_eval_ced_kl001_r4_step100.lock\nlogs/chats/archive/cron_hook_mvp2_sft_eval_r3_20260514T194524_408643.jsonl\nlogs/chats/cron_hook_mvp2_eval_ced_kl001_r4_step90.lock\nlogs/chats/cron_hook_mvp2_grpo_ced_lr5e6_rp_r1.lock\nlogs/chats/cron_hook_mvp2_eval_ced_kl001_r4_multi.lock\nlogs/chats/archive/cron_hook_mvp2_sft_eval_r2_20260514T212138_970699.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r2_20260514T212151_419889.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_20260514T212700_601764.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_flatnli_r3_20260514T212710_254094.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_kl001_r4_20260514T213141_515393.jsonl\nlogs/chats/cron_hook_mvp2_eval_lr5e6_r1_ckpt40.lock\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r3_20260514T214057_849917.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_kl001_20260514T215027_568096.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_20260514T215936_212192.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_r3_20260514T220813_914899.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_20260514T221929_403904.jsonl\nlogs/chats/cron_hook_mvp2_eval_lr5e6_r1_ckpt60.lock\nlogs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_step100_20260514T224247_829080.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_r3_20260514T225608_562205.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_step90_20260514T232737_117715.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_lr5e6_rp_r1_20260514T234622_096869.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_multi_20260515T002148_174293.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_kl001_20260515T005543_276061.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_20260515T005600_470060.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_flatnli_r3_20260515T005604_409834.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r2_20260515T005606_591181.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_r2_20260515T005630_187651.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_kl001_r4_20260515T005642_312424.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_lr5e6_r1_ckpt40_20260515T010120_619213.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r3_20260515T010615_889972.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_20260515T010825_689577.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_r3_20260515T011458_821340.jsonl\nlogs/chats/cron_hook_mvp2_eval_lr5e6_r1_ckpt100.lock\nlogs/chats/archive/cron_hook_mvp2_sft_eval_20260515T012408_338707.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_lr5e6_r1_ckpt60_20260515T013145_635358.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_step100_20260515T020559_855590.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_r3_20260515T022129_277553.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_step90_20260515T023223_152209.jsonl\nlogs/chats/cron_hook_mvp2_eval_ced_kl001_r4_step90.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_lr5e6_rp_r1_20260515T025316_797191.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_lr5e6_rp_r1.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_20260515T040150_424483.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_kl001_20260515T040201_886673.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_multi_20260515T040216_309897.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_flatnli_r3_20260515T040225_636478.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_kl001.jsonl\nlogs/chats/cron_hook_mvp2_grpo_flatnli_r3.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_r2_20260515T040640_581776.jsonl\nlogs/chats/cron_hook_mvp2_sft_eval_r2.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r3_20260515T041340_593992.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_r2_20260515T041833_590092.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_r2.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_ced_kl001_r4_20260515T042206_222440.jsonl\nlogs/chats/cron_hook_mvp2_eval_ced_kl001_r4_multi.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_kl001_r4.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_lr5e6_r1_ckpt100_20260515T042436_613846.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_lr5e6_r1_ckpt40_20260515T042519_331987.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_r3_20260515T042540_221729.jsonl\nlogs/chats/cron_hook_mvp2_eval_lr5e6_r1_ckpt40.jsonl\nlogs/chats/cron_hook_mvp2_eval_lr5e6_r1_ckpt100.jsonl\nlogs/chats/archive/cron_hook_mvp2_grpo_extract_20260515T043054_101173.jsonl\nlogs/chats/cron_hook_mvp2_grpo_extract.jsonl\nlogs/chats/cron_hook_mvp2_grpo_ced_r3.jsonl\nlogs/chats/archive/cron_hook_mvp2_sft_eval_20260515T043349_470608.jsonl\nlogs/chats/cron_hook_mvp2_sft_eval.jsonl\nlogs/chats/cron_hook_mvp2_rsft_gen_s2.lock\nlogs/chats/cron_hook_mvp2_rsft_gen_s2.jsonl\nlogs/chats/cron_hook_mvp2_grpo_extract_r3.jsonl\nlogs/chats/cron_hook_mvp2_rsft_gen_s3.lock\nlogs/chats/archive/cron_hook_mvp2_eval_lr5e6_r1_ckpt60_20260515T045413_151022.jsonl\nlogs/chats/cron_hook_mvp2_rsft_gen_s3.jsonl\nlogs/chats/archive/cron_hook_mvp2_eval_ced_kl001_r4_step100_20260515T051106_669967.jsonl\nlogs/chats/cron_hook_mvp2_eval_ced_kl001_r4_step100.jsonl\n(Results are truncated. Consider using a more specific path or pattern.)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbd3473a-a5c9-4e4d-8bda-5a7463f750aa",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "19f6c938-a2a2-4ada-aa70-7f5f5d414251",
+            "sourceToolAssistantUUID": "bbd3473a-a5c9-4e4d-8bda-5a7463f750aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T02:39:00.927Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014A2HzKLZDHiy9VjRfiaQqq",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/agent-ml-research/*cron*"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19f6c938-a2a2-4ada-aa70-7f5f5d414251",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEPS8JbufSMF5TA32N",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9bec7c6b-eee0-404d-a579-49fe44169200",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuyWjNE55zsGCydvegDo8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 614,
+                "cache_read_input_tokens": 17475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 614,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T02:39:01.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014A2HzKLZDHiy9VjRfiaQqq",
+              "type": "tool_result",
+              "content": "/home/ubuntu/agent-ml-research/core/api/routers/crons.py\n/home/ubuntu/agent-ml-research/tests/test_api_crons.py\n/home/ubuntu/agent-ml-research/tests/test_cron_session_integration.py\n/home/ubuntu/agent-ml-research/tests/test_cron_deep.py\n/home/ubuntu/agent-ml-research/tests/test_cron_registry_order.py\n/home/ubuntu/agent-ml-research/skills/global/dream-cron.skill.md\n/home/ubuntu/agent-ml-research/tests/test_cron.py\n/home/ubuntu/agent-ml-research/tests/test_cron_hooks.py\n/home/ubuntu/agent-ml-research/tests/test_dream_cron.py\n/home/ubuntu/agent-ml-research/core/api/routers/__pycache__/crons.cpython-314.pyc\n/home/ubuntu/agent-ml-research/core/cron_hooks.py\n/home/ubuntu/agent-ml-research/core/tools/cron.py\n/home/ubuntu/agent-ml-research/core/tools/__pycache__/cron.cpython-314.pyc\n/home/ubuntu/agent-ml-research/core/__pycache__/cron_hooks.cpython-314.pyc"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bec7c6b-eee0-404d-a579-49fe44169200",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "ffce0221-d5f5-47a1-9033-dd7fbd2d01eb",
+            "sourceToolAssistantUUID": "9bec7c6b-eee0-404d-a579-49fe44169200",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T02:39:01.350Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JmPLdxQnmRYYSkwNTQE9Af",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ffce0221-d5f5-47a1-9033-dd7fbd2d01eb",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEPS8JbufSMF5TA32N",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d1b6811b-9c04-423a-8a03-62614be17b6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuyWjNE55zsGCydvegDo8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 614,
+                "cache_read_input_tokens": 17475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 614,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T02:39:01.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JmPLdxQnmRYYSkwNTQE9Af",
+              "type": "tool_result",
+              "content": "total 1292\ndrwxr-xr-x 11 ubuntu ubuntu   4096 May 22 02:33 .\ndrwxrwxr-x  5 ubuntu ubuntu   4096 May 14 04:18 ..\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 14 04:18 .claude\n-rw-------  1 ubuntu ubuntu      0 May 16 00:04 .registry_6olabo_a.tmp\ndrwxr-xr-x  6 ubuntu ubuntu   4096 May 17 14:02 .venv\n-rw-r--r--  1 ubuntu ubuntu  14436 May 22 02:33 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:21 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu   4710 May 21 20:36 ROADMAP.md\ndrwxr-xr-x 28 ubuntu ubuntu   4096 May 22 02:33 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu 192512 May 22 02:33 checkpoints\n-rw-r--r--  1 ubuntu ubuntu      0 May 15 21:52 constraints.lock\n-rw-------  1 ubuntu ubuntu   1891 May 16 11:15 constraints.yaml\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:21 decisions.lock\n-rw-------  1 ubuntu ubuntu 145948 May 21 20:35 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 15 05:28 docs\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 15 05:28 dream_registry.lock\n-rw-------  1 ubuntu ubuntu   3135 May 16 16:31 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu   3140 May 16 16:31 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu      0 May 15 13:47 experiment_plan.lock\n-rw-------  1 ubuntu ubuntu  13571 May 19 23:16 experiment_plan.yaml\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 17 14:01 figures\n-rw-r--r--  1 ubuntu ubuntu    960 May 15 19:11 ideas.md\n-rw-r--r--  1 ubuntu ubuntu 137218 May 16 06:11 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 14 04:50 logs\n-rw-r--r--  1 ubuntu ubuntu  13665 May 21 19:50 memory.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 17 08:09 mistakes.lock\n-rw-------  1 ubuntu ubuntu  29249 May 21 18:49 mistakes.yaml\n-rw-r--r--  1 ubuntu ubuntu  34972 May 22 01:10 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 17 16:23 paper_provenance.lock\n-rw-------  1 ubuntu ubuntu  24829 May 20 09:12 paper_provenance.yaml\n-rw-r--r--  1 ubuntu ubuntu      0 May 14 04:48 registry.lock\n-rw-------  1 ubuntu ubuntu 585992 May 22 02:33 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  10330 May 22 02:23 report.md\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 14 04:19 study_status.lock\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 22 01:38 task_context\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 15 11:40 worker_outputs\n-rw-r--r--  1 ubuntu ubuntu  22562 May 17 15:28 writing_plan.yaml",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1b6811b-9c04-423a-8a03-62614be17b6b",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "bed4564f-072a-4e24-9261-21d379c36674",
+            "sourceToolAssistantUUID": "d1b6811b-9c04-423a-8a03-62614be17b6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T02:39:01.559Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EJpjTWVwMW7W9atjrfQWZV",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_6/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bed4564f-072a-4e24-9261-21d379c36674",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEPS8JbufSMF5TA32N",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c198875e-9746-4754-802b-bded1a28c760",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DuyWjNE55zsGCydvegDo8Q",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 614,
+                "cache_read_input_tokens": 17475,
+                "output_tokens": 330,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 614
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 330,
+                    "cache_read_input_tokens": 17475,
+                    "cache_creation_input_tokens": 614,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 614,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T02:39:01.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EJpjTWVwMW7W9atjrfQWZV",
+              "type": "tool_result",
+              "content": "total 52\ndrwxrwxr-x  9 ubuntu ubuntu  4096 May 14 03:43 .\ndrwxr-x--- 16 ubuntu ubuntu  4096 May 21 23:03 ..\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 14 03:43 .claude\n-rw-r--r--  1 ubuntu ubuntu   355 May 22 02:33 AGENTS.md\ndrwxrwxr-x  5 ubuntu ubuntu 12288 May 22 02:37 config\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 22 02:33 global\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 14 04:18 idea_generator\ndrwxrwxr-x  5 ubuntu ubuntu  4096 May 14 04:18 projects\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 13 11:23 skills\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 22 02:38 state\n-rw-r--r--  1 ubuntu ubuntu    13 May 13 11:23 workspace.yaml",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c198875e-9746-4754-802b-bded1a28c760",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "c5f32554-e01d-41e3-b0ec-e9bed0674087",
+            "sourceToolAssistantUUID": "c198875e-9746-4754-802b-bded1a28c760",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T02:39:03.132Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for the specific experiment IDs in the registry file and look for cron data files more broadly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5f32554-e01d-41e3-b0ec-e9bed0674087",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEcrGPZqHwr9AHaRaQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f8e7c45a-4808-44c7-a37f-64fe3d1219c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012PrN8kCg6GdKYmKD3iaYZt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7360,
+                "cache_read_input_tokens": 18089,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7360,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T02:39:04.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F5LjXZdsCVoiTuLs1ZW8sY",
+              "name": "Grep",
+              "input": {
+                "pattern": "test_eval_4b_rsft_s42_v2|test_eval_1_7b_sft_s42",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "type": "yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8e7c45a-4808-44c7-a37f-64fe3d1219c4",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEcrGPZqHwr9AHaRaQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4a39499d-d4a6-4fd3-9104-900a6be32b01",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012PrN8kCg6GdKYmKD3iaYZt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7360,
+                "cache_read_input_tokens": 18089,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7360,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T02:39:04.667Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F5LjXZdsCVoiTuLs1ZW8sY",
+              "type": "tool_result",
+              "content": "Found 1 file\nregistry.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a39499d-d4a6-4fd3-9104-900a6be32b01",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "ace39fa2-e94c-43bc-b952-692bc7bb720d",
+            "sourceToolAssistantUUID": "4a39499d-d4a6-4fd3-9104-900a6be32b01",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T02:39:04.907Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WmhhDYYjRPXPHJfQ6yARKr",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_6 -name \"*crons*\" -o -name \"*cron.yaml\" -o -name \"*cron.json\" 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ace39fa2-e94c-43bc-b952-692bc7bb720d",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEcrGPZqHwr9AHaRaQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1696e452-3289-4834-ba1e-3cfc3db121ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012PrN8kCg6GdKYmKD3iaYZt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7360,
+                "cache_read_input_tokens": 18089,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7360,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T02:39:05.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WmhhDYYjRPXPHJfQ6yARKr",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_diagnose_register_d112_shard_crons_20260518T234636.log\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_diagnose_register_d112_shard_crons_20260518T234636_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/worker_diagnose_register_d112_shard_crons_20260518T234636.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/chats/worker_diagnose_register_d112_shard_crons_20260518T234636.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/crons.yaml",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1696e452-3289-4834-ba1e-3cfc3db121ce",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "e7b6c583-efa0-47aa-825b-ca5da9b5ccf4",
+            "sourceToolAssistantUUID": "1696e452-3289-4834-ba1e-3cfc3db121ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T02:39:05.187Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WkXHVskkXgDwxgmFUGD9Yg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7b6c583-efa0-47aa-825b-ca5da9b5ccf4",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEcrGPZqHwr9AHaRaQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "54c89ea9-05d1-4991-a7e1-2dbf0c8b5eb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012PrN8kCg6GdKYmKD3iaYZt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7360,
+                "cache_read_input_tokens": 18089,
+                "output_tokens": 341,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7360
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 341,
+                    "cache_read_input_tokens": 18089,
+                    "cache_creation_input_tokens": 7360,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7360,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T02:39:05.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WkXHVskkXgDwxgmFUGD9Yg",
+              "type": "tool_result",
+              "content": "1\tbaseline: null\n2\texperiments:\n3\t  mvp1_ced_signal:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-14T04:48:46.220Z'\n7\t    updated_at: '2026-05-14T05:48:05.545Z'\n8\t    spec:\n9\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n10\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n11\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n12\t        && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES='' python\n13\t        -m freige.analysis.ced_signal_validation --data_dir /root/autodl-tmp/data/docred\n14\t        --output_dir /root/autodl-tmp/mvp1_results --split dev --nli_model cross-encoder/nli-deberta-v3-base\n15\t        --tau 0.5 --batch_size 32\"\n16\t      server: rtx5090-4x\n17\t      gpu:\n18\t      - cuda:0\n19\t      pid: '4491'\n20\t      log_path: ~/runs/faith-evidence-ie/mvp1_ced_signal.log\n21\t      submitted_at: '2026-05-14T05:21:30.878Z'\n22\t      submitted_via: submit_training_job\n23\t      backend: tmux\n24\t      account: root\n25\t      data_count: 6830\n26\t      model_name: cross-encoder/nli-deberta-v3-base\n27\t      data_path: /root/autodl-tmp/data/docred/\n28\t      seed: 42\n29\t      checkpoint_path: /root/autodl-tmp/mvp1_results/\n30\t      wall_clock_seconds: 1594.7\n31\t      gpu_hours: 0.44\n32\t    conclusion: success\n33\t    metrics:\n34\t      mean_margin: 0.48\n35\t      discrimination_accuracy: 0.815\n36\t      pearson_r_margin_jaccard: 0.34\n37\t      pass: true\n38\t    completed_at: '2026-05-14T05:48:05.545Z'\n39\t  smoke_test_grpo:\n40\t    status: DONE\n41\t    retry_count: 0\n42\t    created_at: '2026-05-14T05:20:00.970Z'\n43\t    updated_at: '2026-05-14T06:09:18.626Z'\n44\t    spec:\n45\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n46\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n47\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n48\t        && conda activate base && cd /root/autodl-tmp && accelerate launch --num_processes\n49\t        4 --mixed_precision bf16 -m freige.training.smoke_test\"\n50\t      server: rtx5090-4x\n51\t      gpu:\n52\t      - cuda:0\n53\t      - cuda:1\n54\t      - cuda:2\n55\t      - cuda:3\n56\t      pid: '9823'\n57\t      log_path: ~/runs/faith-evidence-ie/smoke_test_grpo.log\n58\t      submitted_at: '2026-05-14T05:54:45.178Z'\n59\t      submitted_via: submit_training_job\n60\t      backend: tmux\n61\t      account: root\n62\t      checkpoint_path: N/A (smoke test)\n63\t      wall_clock_seconds: 873.4\n64\t      gpu_hours: 0.97\n65\t    conclusion: success\n66\t    completed_at: '2026-05-14T06:09:18.626Z'\n67\t  mvp2_sft_warmup:\n68\t    status: DONE\n69\t    retry_count: 0\n70\t    created_at: '2026-05-14T06:09:47.819Z'\n71\t    updated_at: '2026-05-14T07:10:19.285Z'\n72\t    spec:\n73\t      command: accelerate launch --config_file freige/configs/accelerate_4gpu.yaml\n74\t        -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen3-4B\n75\t        --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output\n76\t        --deepspeed freige/configs/deepspeed_zero2.json --num_epochs 3 --per_device_batch_size\n77\t        1 --gradient_accumulation_steps 16 --learning_rate 2e-4 --max_length 4096\n78\t        --seed 42\n79\t      server: rtx5090-4x\n80\t      gpu:\n81\t      - cuda:0\n82\t      - cuda:1\n83\t      - cuda:2\n84\t      - cuda:3\n85\t      pid: '16221'\n86\t      log_path: ~/runs/faith-evidence-ie/mvp2_sft_warmup.log\n87\t      submitted_at: '2026-05-14T06:22:10.453Z'\n88\t      submitted_via: submit_training_job\n89\t      backend: tmux\n90\t      account: root\n91\t      data_path: /root/autodl-tmp/data/docred\n92\t      data_count:\n93\t        train: 3027\n94\t        dev: 985\n95\t      model_name: Qwen3-4B\n96\t      seed: 42\n97\t      gpu_model: RTX 5090 32GB x4\n98\t      lora_rank: 64\n99\t      lora_alpha: 128\n100\t      quantization: 4-bit NF4 QLoRA"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54c89ea9-05d1-4991-a7e1-2dbf0c8b5eb9",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "0681c61a-7a80-4af5-a7dd-c2255bf61a35",
+            "sourceToolAssistantUUID": "54c89ea9-05d1-4991-a7e1-2dbf0c8b5eb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T02:39:06.779Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me continue reading the registry file to find the specific experiment IDs and check the crons.yaml file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0681c61a-7a80-4af5-a7dd-c2255bf61a35",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEtEUyFsTcG3DZXj4S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "93613a08-5921-4467-af93-892934f73d26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WQmy1FGQ4Ugkt6M5mdPbSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2456,
+                "cache_read_input_tokens": 25449,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2456,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T02:39:08.026Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CTrXfpyKvRhb1LjZ98xU8p",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"test_eval_4b_rsft_s42_v2\\|test_eval_1_7b_sft_s42\" /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93613a08-5921-4467-af93-892934f73d26",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEtEUyFsTcG3DZXj4S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "255420dd-3844-4269-9287-6251266d4e0c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WQmy1FGQ4Ugkt6M5mdPbSL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2456,
+                "cache_read_input_tokens": 25449,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2456
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 25449,
+                    "cache_creation_input_tokens": 2456,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2456,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T02:39:08.033Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CL4uoND9UKnn3BcP1rBzTq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/crons.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "255420dd-3844-4269-9287-6251266d4e0c",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqEtEUyFsTcG3DZXj4S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ed65aed-a6a6-4766-8ced-3639572f4689",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WQmy1FGQ4Ugkt6M5mdPbSL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2456,
+                "cache_read_input_tokens": 25449,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2456
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 25449,
+                    "cache_creation_input_tokens": 2456,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2456,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T02:39:08.048Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CL4uoND9UKnn3BcP1rBzTq",
+              "type": "tool_result",
+              "content": "1\tactive_crons:\n2\t- chat_id: null\n3\t  created_at: '2026-05-21T23:26:51.462Z'\n4\t  exp_id: test_eval_14b_sft_s42_no_evi\n5\t  hooks: null\n6\t  interval_seconds: 120\n7\t  last_checked: '2026-05-22T02:37:23.144Z'\n8\t  log_path: /tmp/test_eval_14b_sft_s42_no_evi.log\n9\t  pid: '143166'\n10\t  project: faith-evidence-ie\n11\t  server: rtx5090-4x\n12\t  tracked_metrics: null\n13\t  wandb_run_id: null\n14\t- chat_id: null\n15\t  created_at: '2026-05-22T01:39:49.953Z'\n16\t  exp_id: test_eval_1_7b_sft_s42_no_evi\n17\t  hooks: null\n18\t  interval_seconds: 120\n19\t  last_checked: '2026-05-22T02:37:28.189Z'\n20\t  log_path: /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42_no_evi/log.txt\n21\t  pid: '147596'\n22\t  project: faith-evidence-ie\n23\t  server: rtx5090-4x\n24\t  tracked_metrics: null\n25\t  wandb_run_id: null\n26\t- chat_id: null\n27\t  created_at: '2026-05-22T02:07:37.479Z'\n28\t  exp_id: test_eval_8b_sft_s42_no_evi\n29\t  hooks: null\n30\t  interval_seconds: 120\n31\t  last_checked: '2026-05-22T02:37:31.160Z'\n32\t  log_path: null\n33\t  pid: '152873'\n34\t  project: faith-evidence-ie\n35\t  server: rtx5090-4x\n36\t  tracked_metrics: null\n37\t  wandb_run_id: null\n38\tcompleted_crons:\n39\t- chat_id: null\n40\t  completed_at: '2026-05-20T02:08:43Z'\n41\t  created_at: '2026-05-19T23:23:26.792Z'\n42\t  exp_id: plan010_nli_large_eval_r2\n43\t  hooks: null\n44\t  interval_seconds: 120\n45\t  last_checked: '2026-05-20T02:06:38.276Z'\n46\t  log_path: ~/runs/faith-evidence-ie/plan010_nli_large_eval.log\n47\t  pid: '733763'\n48\t  project: faith-evidence-ie\n49\t  server: rtx5090-4x\n50\t  status: completed\n51\t  tracked_metrics: null\n52\t  wandb_run_id: null\n53\t- chat_id: null\n54\t  completed_at: '2026-05-20T04:17:16Z'\n55\t  created_at: '2026-05-20T01:08:24.275Z'\n56\t  exp_id: llama_rsft_s44_pipeline\n57\t  hooks: null\n58\t  interval_seconds: 120\n59\t  last_checked: '2026-05-20T04:16:45.605Z'\n60\t  log_path: /root/autodl-tmp/freige/logs/llama_rsft_s44_pipeline.log\n61\t  pid: llama_rsft_s44\n62\t  project: faith-evidence-ie\n63\t  server: rtx5090-4x\n64\t  status: completed\n65\t  tracked_metrics: null\n66\t  wandb_run_id: null\n67\t- chat_id: null\n68\t  completed_at: '2026-05-20T04:24:28Z'\n69\t  created_at: '2026-05-20T02:12:45.018Z'\n70\t  exp_id: eval_llama_rsft_s43_no_evidence\n71\t  hooks: null\n72\t  interval_seconds: 120\n73\t  last_checked: '2026-05-20T04:23:10.503Z'\n74\t  log_path: /tmp/eval_llama_rsft_s43_no_evidence.log\n75\t  pid: '745299'\n76\t  project: faith-evidence-ie\n77\t  server: rtx5090-4x\n78\t  status: completed\n79\t  tracked_metrics: null\n80\t  wandb_run_id: null\n81\t- chat_id: null\n82\t  completed_at: '2026-05-20T05:54:25Z'\n83\t  created_at: '2026-05-19T17:41:33.418Z'\n84\t  exp_id: plan017_14b_rsft_generate\n85\t  hooks: null\n86\t  interval_seconds: 300\n87\t  last_checked: '2026-05-20T05:49:14.132Z'\n88\t  log_path: ~/runs/faith-evidence-ie/plan017_14b_rsft_generate.log\n89\t  pid: '712685'\n90\t  project: faith-evidence-ie\n91\t  server: rtx5090-4x\n92\t  status: completed\n93\t  tracked_metrics: null\n94\t  wandb_run_id: null\n95\t- chat_id: null\n96\t  completed_at: '2026-05-20T11:27:11Z'\n97\t  created_at: '2026-05-20T11:26:53.316Z'\n98\t  exp_id: eval_llama_sft_s42_no_evidence_std\n99\t  hooks: null\n100\t  interval_seconds: 120\n101\t  last_checked: null\n102\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s42_no_evidence_std.log\n103\t  pid: '16195'\n104\t  project: faith-evidence-ie\n105\t  server: rtx5090-4x\n106\t  status: completed\n107\t  tracked_metrics: null\n108\t  wandb_run_id: null\n109\t- chat_id: null\n110\t  completed_at: '2026-05-20T11:32:12Z'\n111\t  created_at: '2026-05-20T11:31:30.083Z'\n112\t  exp_id: plan017_14b_rsft_generate_r2\n113\t  hooks: null\n114\t  interval_seconds: 120\n115\t  last_checked: null\n116\t  log_path: ~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r2.log\n117\t  pid: '17267'\n118\t  project: faith-evidence-ie\n119\t  server: rtx5090-4x\n120\t  status: completed\n121\t  tracked_metrics: null\n122\t  wandb_run_id: null\n123\t- chat_id: null\n124\t  completed_at: '2026-05-20T14:05:28Z'\n125\t  created_at: '2026-05-20T11:23:42.329Z'\n126\t  exp_id: llama_sft_s43_train_eval_r3\n127\t  hooks: null\n128\t  interval_seconds: 120\n129\t  last_checked: '2026-05-20T14:03:06.287Z'\n130\t  log_path: ~/runs/faith-evidence-ie/llama_sft_s43_train_eval_r3.log\n131\t  pid: '15650'\n132\t  project: faith-evidence-ie\n133\t  server: rtx5090-4x\n134\t  status: completed\n135\t  tracked_metrics: null\n136\t  wandb_run_id: null\n137\t- chat_id: null\n138\t  completed_at: '2026-05-20T14:14:42Z'\n139\t  created_at: '2026-05-20T11:30:54.271Z'\n140\t  exp_id: llama_sft_s44_train_eval_r3\n141\t  hooks: null\n142\t  interval_seconds: 120\n143\t  last_checked: '2026-05-20T14:12:29.180Z'\n144\t  log_path: ~/runs/faith-evidence-ie/llama_sft_s44_train_eval_r3.log\n145\t  pid: '16658'\n146\t  project: faith-evidence-ie\n147\t  server: rtx5090-4x\n148\t  status: completed\n149\t  tracked_metrics: null\n150\t  wandb_run_id: null\n151\t- chat_id: null\n152\t  completed_at: '2026-05-20T15:17:29Z'\n153\t  created_at: '2026-05-20T11:35:29.695Z'\n154\t  exp_id: plan017_14b_rsft_generate_r3\n155\t  hooks: null\n156\t  interval_seconds: 120\n157\t  last_checked: '2026-05-20T15:14:45.825Z'\n158\t  log_path: ~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r3.log\n159\t  pid: '17644'\n160\t  project: faith-evidence-ie\n161\t  server: rtx5090-4x\n162\t  status: completed\n163\t  tracked_metrics: null\n164\t  wandb_run_id: null\n165\t- chat_id: null\n166\t  completed_at: '2026-05-20T16:09:53Z'\n167\t  created_at: '2026-05-20T14:08:28.865Z'\n168\t  exp_id: eval_llama_sft_s43_no_evidence\n169\t  hooks: null\n170\t  interval_seconds: 120\n171\t  last_checked: '2026-05-20T16:07:39.908Z'\n172\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence.log\n173\t  pid: '27322'\n174\t  project: faith-evidence-ie\n175\t  server: rtx5090-4x\n176\t  status: completed\n177\t  tracked_metrics: null\n178\t  wandb_run_id: null\n179\t- chat_id: null\n180\t  completed_at: '2026-05-20T16:41:43Z'\n181\t  created_at: '2026-05-20T14:50:56.824Z'\n182\t  exp_id: eval_llama_rsft_s44_no_evidence\n183\t  hooks: null\n184\t  interval_seconds: 120\n185\t  last_checked: '2026-05-20T16:39:14.460Z'\n186\t  log_path: ~/runs/faith-evidence-ie/eval_llama_rsft_s44_no_evidence.log\n187\t  pid: '30188'\n188\t  project: faith-evidence-ie\n189\t  server: rtx5090-4x\n190\t  status: completed\n191\t  tracked_metrics: null\n192\t  wandb_run_id: null\n193\t- chat_id: null\n194\t  completed_at: '2026-05-20T17:03:17Z'\n195\t  created_at: '2026-05-20T14:50:47.330Z'\n196\t  exp_id: eval_llama_sft_s44_no_evidence\n197\t  hooks: null\n198\t  interval_seconds: 120\n199\t  last_checked: '2026-05-20T17:01:15.572Z'\n200\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence.log\n201\t  pid: '29983'\n202\t  project: faith-evidence-ie\n203\t  server: rtx5090-4x\n204\t  status: completed\n205\t  tracked_metrics: null\n206\t  wandb_run_id: null\n207\t- chat_id: null\n208\t  completed_at: '2026-05-20T18:08:35Z'\n209\t  created_at: '2026-05-20T15:35:20.068Z'\n210\t  exp_id: plan017_14b_rsft_generate_r4\n211\t  hooks: null\n212\t  interval_seconds: 120\n213\t  last_checked: '2026-05-20T18:06:16.651Z'\n214\t  log_path: ~/runs/faith-evidence-ie/plan017_14b_rsft_generate_r4.log\n215\t  pid: '33608'\n216\t  project: faith-evidence-ie\n217\t  server: rtx5090-4x\n218\t  status: completed\n219\t  tracked_metrics: null\n220\t  wandb_run_id: null\n221\t- chat_id: null\n222\t  completed_at: '2026-05-20T18:24:28Z'\n223\t  created_at: '2026-05-20T16:13:15.910Z'\n224\t  exp_id: eval_llama_sft_s43_no_evidence_r2\n225\t  hooks: null\n226\t  interval_seconds: 120\n227\t  last_checked: '2026-05-20T18:22:11.064Z'\n228\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_r2.log\n229\t  pid: '36398'\n230\t  project: faith-evidence-ie\n231\t  server: rtx5090-4x\n232\t  status: completed\n233\t  tracked_metrics: null\n234\t  wandb_run_id: null\n235\t- chat_id: null\n236\t  completed_at: '2026-05-20T18:55:15Z'\n237\t  created_at: '2026-05-20T08:52:35.406Z'\n238\t  exp_id: migration_bjb2_to_westd\n239\t  hooks: null\n240\t  interval_seconds: 1800\n241\t  last_checked: '2026-05-20T18:24:50.723Z'\n242\t  log_path: /tmp/rsync_progress.log\n243\t  pid: '6660'\n244\t  project: faith-evidence-ie\n245\t  server: rtx5090-4x\n246\t  status: completed\n247\t  tracked_metrics: null\n248\t  wandb_run_id: null\n249\t- chat_id: null\n250\t  completed_at: '2026-05-20T19:10:30Z'\n251\t  created_at: '2026-05-20T18:10:22.358Z'\n252\t  exp_id: plan017_14b_ced_scoring\n253\t  hooks: null\n254\t  interval_seconds: 120\n255\t  last_checked: '2026-05-20T19:08:19.011Z'\n256\t  log_path: ~/runs/faith-evidence-ie/plan017_14b_ced_scoring.log\n257\t  pid: '44419'\n258\t  project: faith-evidence-ie\n259\t  server: rtx5090-4x\n260\t  status: completed\n261\t  tracked_metrics: null\n262\t  wandb_run_id: null\n263\t- chat_id: null\n264\t  completed_at: '2026-05-20T21:00:29Z'\n265\t  created_at: '2026-05-20T17:07:34.702Z'\n266\t  exp_id: eval_llama_sft_s44_no_evidence_2048\n267\t  hooks: null\n268\t  interval_seconds: 120\n269\t  last_checked: '2026-05-20T20:58:17.274Z'\n270\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s44_no_evidence_2048.log\n271\t  pid: '40255'\n272\t  project: faith-evidence-ie\n273\t  server: rtx5090-4x\n274\t  status: completed\n275\t  tracked_metrics: null\n276\t  wandb_run_id: null\n277\t- chat_id: null\n278\t  completed_at: '2026-05-20T21:11:37Z'\n279\t  created_at: '2026-05-20T17:41:28.073Z'\n280\t  exp_id: eval_llama_sft_s42_no_evidence_2048\n281\t  hooks: null\n282\t  interval_seconds: 120\n283\t  last_checked: '2026-05-20T21:09:22.409Z'\n284\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s42_no_evidence_2048.log\n285\t  pid: '42346'\n286\t  project: faith-evidence-ie\n287\t  server: rtx5090-4x\n288\t  status: completed\n289\t  tracked_metrics: null\n290\t  wandb_run_id: null\n291\t- chat_id: null\n292\t  completed_at: '2026-05-20T22:26:56Z'\n293\t  created_at: '2026-05-20T18:26:36.477Z'\n294\t  exp_id: eval_llama_sft_s43_no_evidence_2048\n295\t  hooks: null\n296\t  interval_seconds: 120\n297\t  last_checked: '2026-05-20T22:24:43.116Z'\n298\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048.log\n299\t  pid: '45587'\n300\t  project: faith-evidence-ie\n301\t  server: rtx5090-4x\n302\t  status: completed\n303\t  tracked_metrics: null\n304\t  wandb_run_id: null\n305\t- chat_id: null\n306\t  completed_at: '2026-05-21T02:40:30Z'\n307\t  created_at: '2026-05-20T22:29:52.452Z'\n308\t  exp_id: eval_llama_sft_s43_no_evidence_2048_r2\n309\t  hooks: null\n310\t  interval_seconds: 120\n311\t  last_checked: '2026-05-21T02:38:06.355Z'\n312\t  log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\n313\t  pid: '58417'\n314\t  project: faith-evidence-ie\n315\t  server: rtx5090-4x\n316\t  status: completed\n317\t  tracked_metrics: null\n318\t  wandb_run_id: null\n319\t- chat_id: null\n320\t  completed_at: '2026-05-21T03:52:49Z'\n321\t  created_at: '2026-05-21T00:48:01.593Z'\n322\t  exp_id: eval_llama_sft_s44_with_evidence_2048\n323\t  hooks: null\n324\t  interval_seconds: 120\n325\t  last_checked: '2026-05-21T03:51:40.811Z'\n326\t  log_path: /tmp/eval_llama_sft_s44_with_evidence_2048.log\n327\t  pid: '64023'\n328\t  project: faith-evidence-ie\n329\t  server: rtx5090-4x\n330\t  status: completed\n331\t  tracked_metrics: null\n332\t  wandb_run_id: null\n333\t- chat_id: null\n334\t  completed_at: '2026-05-21T04:16:45Z'\n335\t  created_at: '2026-05-21T00:49:00.572Z'\n336\t  exp_id: eval_llama_sft_s43_with_evidence_2048\n337\t  hooks: null\n338\t  interval_seconds: 120\n339\t  last_checked: '2026-05-21T04:14:27.674Z'\n340\t  log_path: /root/autodl-tmp/freige/eval_outputs/eval_llama_sft_s43_with_evidence_2048.log\n341\t  pid: '64391'\n342\t  project: faith-evidence-ie\n343\t  server: rtx5090-4x\n344\t  status: completed\n345\t  tracked_metrics: null\n346\t  wandb_run_id: null\n347\t- chat_id: null\n348\t  completed_at: '2026-05-21T06:01:36Z'\n349\t  created_at: '2026-05-21T03:59:11.687Z'\n350\t  exp_id: d140_1_7b_sft_s42_no_evi_2048\n351\t  hooks: null\n352\t  interval_seconds: 120\n353\t  last_checked: '2026-05-21T05:59:24.035Z'\n354\t  log_path: null\n355\t  pid: '74712'\n356\t  project: faith-evidence-ie\n357\t  server: rtx5090-4x\n358\t  status: completed\n359\t  tracked_metrics: null\n360\t  wandb_run_id: null\n361\t- chat_id: null\n362\t  completed_at: '2026-05-21T06:25:09Z'\n363\t  created_at: '2026-05-21T06:24:37.010Z'\n364\t  exp_id: d140_1_7b_sft_s42_with_evi_2048\n365\t  hooks: null\n366\t  interval_seconds: 120\n367\t  last_checked: null\n368\t  log_path: ~/runs/faith-evidence-ie/d140_1_7b_sft_s42_with_evi_2048.log\n369\t  pid: '76967'\n370\t  project: faith-evidence-ie\n371\t  server: rtx5090-4x\n372\t  status: completed\n373\t  tracked_metrics: null\n374\t  wandb_run_id: null\n375\t- chat_id: null\n376\t  completed_at: '2026-05-21T07:11:52Z'\n377\t  created_at: '2026-05-21T03:04:59.269Z'\n378\t  exp_id: eval_llama_rsft_s42_with_evidence_2048\n379\t  hooks: null\n380\t  interval_seconds: 120\n381\t  last_checked: '2026-05-21T07:09:24.419Z'\n382\t  log_path: /root/runs/faith-evidence-ie/eval_llama_rsft_s42_with_evidence_2048.log\n383\t  pid: '70706'\n384\t  project: faith-evidence-ie\n385\t  server: rtx5090-4x\n386\t  status: completed\n387\t  tracked_metrics: null\n388\t  wandb_run_id: null\n389\t- chat_id: null\n390\t  completed_at: '2026-05-21T07:35:09Z'\n391\t  created_at: '2026-05-21T07:14:13.352Z'\n392\t  exp_id: d140_8b_sft_s42_no_evi_2048\n393\t  hooks: null\n394\t  interval_seconds: 120\n395\t  last_checked: '2026-05-21T07:32:43.205Z'\n396\t  log_path: ~/runs/faith-evidence-ie/d140_8b_sft_s42_no_evi_2048.log\n397\t  pid: '83650'\n398\t  project: faith-evidence-ie\n399\t  server: rtx5090-4x\n400\t  status: completed\n401\t  tracked_metrics: null\n402\t  wandb_run_id: null\n403\t- chat_id: null\n404\t  completed_at: '2026-05-21T07:35:27Z'\n405\t  created_at: '2026-05-21T07:14:14.402Z'\n406\t  exp_id: d140_4b_sft_s42_no_evi_2048\n407\t  hooks: null\n408\t  interval_seconds: 120\n409\t  last_checked: '2026-05-21T07:32:48.002Z'\n410\t  log_path: /root/runs/faith-evidence-ie/d140_4b_sft_s42_no_evi_2048.log\n411\t  pid: '85668'\n412\t  project: faith-evidence-ie\n413\t  server: rtx5090-4x\n414\t  status: completed\n415\t  tracked_metrics: null\n416\t  wandb_run_id: null\n417\t- chat_id: null\n418\t  completed_at: '2026-05-21T07:42:36Z'\n419\t  created_at: '2026-05-21T03:04:40.670Z'\n420\t  exp_id: plan017_14b_rsft_eval_2048\n421\t  hooks: null\n422\t  interval_seconds: 120\n423\t  last_checked: '2026-05-21T07:40:25.992Z'\n424\t  log_path: /root/logs/plan017_14b_rsft_eval_2048.log\n425\t  pid: '70388'\n426\t  project: faith-evidence-ie\n427\t  server: rtx5090-4x\n428\t  status: completed\n429\t  tracked_metrics: null\n430\t  wandb_run_id: null\n431\t- chat_id: null\n432\t  completed_at: '2026-05-21T08:59:40Z'\n433\t  created_at: '2026-05-21T06:17:00.765Z'\n434\t  exp_id: d140_8b_sft_s42_with_evi_2048\n435\t  hooks: null\n436\t  interval_seconds: 120\n437\t  last_checked: '2026-05-21T08:57:19.644Z'\n438\t  log_path: ~/runs/faith-evidence-ie/d140_8b_sft_s42_with_evi_2048.log\n439\t  pid: '81857'\n440\t  project: faith-evidence-ie\n441\t  server: rtx5090-4x\n442\t  status: completed\n443\t  tracked_metrics: null\n444\t  wandb_run_id: null\n445\t- chat_id: null\n446\t  completed_at: '2026-05-21T09:33:21Z'\n447\t  created_at: '2026-05-21T07:38:17.670Z'\n448\t  exp_id: d140_1_7b_sft_s42_no_evi_2048_fix\n449\t  hooks: null\n450\t  interval_seconds: 120\n451\t  last_checked: '2026-05-21T09:31:08.775Z'\n452\t  log_path: ~/runs/faith-evidence-ie/d140_1_7b_sft_s42_no_evi_2048_fix.log\n453\t  pid: '87382'\n454\t  project: faith-evidence-ie\n455\t  server: rtx5090-4x\n456\t  status: completed\n457\t  tracked_metrics: null\n458\t  wandb_run_id: null\n459\t- chat_id: null\n460\t  completed_at: '2026-05-21T09:51:40Z'\n461\t  created_at: '2026-05-21T07:43:19.330Z'\n462\t  exp_id: d140_4b_sft_s42_no_evi_2048_fix\n463\t  hooks: null\n464\t  interval_seconds: 120\n465\t  last_checked: '2026-05-21T09:49:24.477Z'\n466\t  log_path: ~/runs/faith-evidence-ie/d140_4b_sft_s42_no_evi_2048_fix.log\n467\t  pid: '88987'\n468\t  project: faith-evidence-ie\n469\t  server: rtx5090-4x\n470\t  status: completed\n471\t  tracked_metrics: null\n472\t  wandb_run_id: null\n473\t- chat_id: null\n474\t  completed_at: '2026-05-21T10:30:14Z'\n475\t  created_at: '2026-05-21T07:38:18.785Z'\n476\t  exp_id: d140_8b_sft_s42_no_evi_2048_fix\n477\t  hooks: null\n478\t  interval_seconds: 120\n479\t  last_checked: '2026-05-21T10:28:00.285Z'\n480\t  log_path: ~/runs/faith-evidence-ie/d140_8b_sft_s42_no_evi_2048_fix.log\n481\t  pid: '87302'\n482\t  project: faith-evidence-ie\n483\t  server: rtx5090-4x\n484\t  status: completed\n485\t  tracked_metrics: null\n486\t  wandb_run_id: null\n487\t- chat_id: null\n488\t  completed_at: '2026-05-21T11:32:47Z'\n489\t  created_at: '2026-05-21T09:07:12.502Z'\n490\t  exp_id: d140_4b_sft_s42_with_evi_2048\n491\t  hooks: null\n492\t  interval_seconds: 120\n493\t  last_checked: '2026-05-21T11:30:27.837Z'\n494\t  log_path: ~/runs/faith-evidence-ie/d140_4b_sft_s42_with_evi_2048.log\n495\t  pid: '93402'\n496\t  project: faith-evidence-ie\n497\t  server: rtx5090-4x\n498\t  status: completed\n499\t  tracked_metrics: null\n500\t  wandb_run_id: null\n501\t- chat_id: null\n502\t  completed_at: '2026-05-21T14:02:36Z'\n503\t  created_at: '2026-05-21T09:39:40.584Z'\n504\t  exp_id: eval_llama_rsft_s42_no_evi_2048\n505\t  hooks: null\n506\t  interval_seconds: 120\n507\t  last_checked: '2026-05-21T14:00:16.907Z'\n508\t  log_path: ~/runs/faith-evidence-ie/eval_llama_rsft_s42_no_evi_2048.log\n509\t  pid: '95606'\n510\t  project: faith-evidence-ie\n511\t  server: rtx5090-4x\n512\t  status: completed\n513\t  tracked_metrics: null\n514\t  wandb_run_id: null\n515\t- chat_id: null\n516\t  completed_at: '2026-05-21T14:55:06Z'\n517\t  created_at: '2026-05-21T14:07:56.825Z'\n518\t  exp_id: test_eval_8b_rsft_s42\n519\t  hooks: null\n520\t  interval_seconds: 120\n521\t  last_checked: '2026-05-21T14:52:54.011Z'\n522\t  log_path: ~/runs/faith-evidence-ie/test_eval_8b_rsft_s42.log\n523\t  pid: '109958'\n524\t  project: faith-evidence-ie\n525\t  server: rtx5090-4x\n526\t  status: completed\n527\t  tracked_metrics: null\n528\t  wandb_run_id: null\n529\t- chat_id: null\n530\t  completed_at: '2026-05-21T15:28:10Z'\n531\t  created_at: '2026-05-21T10:07:59.264Z'\n532\t  exp_id: test_eval_14b_rsft_s42\n533\t  hooks: null\n534\t  interval_seconds: 120\n535\t  last_checked: '2026-05-21T15:26:00.061Z'\n536\t  log_path: ~/runs/faith-evidence-ie/test_eval_14b_rsft_s42.log\n537\t  pid: '97434'\n538\t  project: faith-evidence-ie\n539\t  server: rtx5090-4x\n540\t  status: completed\n541\t  tracked_metrics: null\n542\t  wandb_run_id: null\n543\t- chat_id: null\n544\t  completed_at: '2026-05-21T16:01:05Z'\n545\t  created_at: '2026-05-21T10:33:09.925Z'\n546\t  exp_id: test_eval_llama_rsft_s42\n547\t  hooks: null\n548\t  interval_seconds: 120\n549\t  last_checked: '2026-05-21T15:58:52.386Z'\n550\t  log_path: ~/runs/faith-evidence-ie/test_eval_llama_rsft_s42.log\n551\t  pid: '98968'\n552\t  project: faith-evidence-ie\n553\t  server: rtx5090-4x\n554\t  status: completed\n555\t  tracked_metrics: null\n556\t  wandb_run_id: null\n557\t- chat_id: null\n558\t  completed_at: '2026-05-21T17:31:55Z'\n559\t  created_at: '2026-05-21T15:03:45.737Z'\n560\t  exp_id: test_eval_1_7b_rsft_s42\n561\t  hooks: null\n562\t  interval_seconds: 120\n563\t  last_checked: '2026-05-21T17:29:28.095Z'\n564\t  log_path: ~/runs/faith-evidence-ie/test_eval_1_7b_rsft_s42.log\n565\t  pid: '102815'\n566\t  project: faith-evidence-ie\n567\t  server: rtx5090-4x\n568\t  status: completed\n569\t  tracked_metrics: null\n570\t  wandb_run_id: null\n571\t- chat_id: null\n572\t  completed_at: '2026-05-21T18:21:33Z'\n573\t  created_at: '2026-05-21T15:58:51.627Z'\n574\t  exp_id: d145_4b_sft_s43_no_evi_2048\n575\t  hooks: null\n576\t  interval_seconds: 120\n577\t  last_checked: '2026-05-21T18:21:25.418Z'\n578\t  log_path: ~/runs/faith-evidence-ie/d145_4b_sft_s43_no_evi_2048.log\n579\t  pid: '115948'\n580\t  project: faith-evidence-ie\n581\t  server: rtx5090-4x\n582\t  status: completed\n583\t  tracked_metrics: null\n584\t  wandb_run_id: null\n585\t- chat_id: null\n586\t  completed_at: '2026-05-21T18:24:42Z'\n587\t  created_at: '2026-05-21T16:06:05.482Z'\n588\t  exp_id: d145_4b_sft_s44_with_evi_2048\n589\t  hooks: null\n590\t  interval_seconds: 120\n591\t  last_checked: '2026-05-21T18:22:03.231Z'\n592\t  log_path: ~/runs/faith-evidence-ie/d145_4b_sft_s44_with_evi_2048.log\n593\t  pid: '116928'\n594\t  project: faith-evidence-ie\n595\t  server: rtx5090-4x\n596\t  status: completed\n597\t  tracked_metrics: null\n598\t  wandb_run_id: null\n599\t- chat_id: null\n600\t  completed_at: '2026-05-21T18:29:42Z'\n601\t  created_at: '2026-05-21T15:58:50.572Z'\n602\t  exp_id: d145_4b_sft_s43_with_evi_2048\n603\t  hooks: null\n604\t  interval_seconds: 120\n605\t  last_checked: '2026-05-21T18:27:29.167Z'\n606\t  log_path: ~/runs/faith-evidence-ie/d145_4b_sft_s43_with_evi_2048.log\n607\t  pid: '115868'\n608\t  project: faith-evidence-ie\n609\t  server: rtx5090-4x\n610\t  status: completed\n611\t  tracked_metrics: null\n612\t  wandb_run_id: null\n613\t- chat_id: null\n614\t  completed_at: '2026-05-21T19:35:20Z'\n615\t  created_at: '2026-05-21T17:34:03.927Z'\n616\t  exp_id: d145_4b_sft_s44_no_evi_2048\n617\t  hooks: null\n618\t  interval_seconds: 120\n619\t  last_checked: '2026-05-21T19:32:54.400Z'\n620\t  log_path: ~/runs/faith-evidence-ie/d145_4b_sft_s44_no_evi_2048.log\n621\t  pid: '121951'\n622\t  project: faith-evidence-ie\n623\t  server: rtx5090-4x\n624\t  status: completed\n625\t  tracked_metrics: null\n626\t  wandb_run_id: null\n627\t- chat_id: null\n628\t  completed_at: '2026-05-21T22:49:03Z'\n629\t  created_at: '2026-05-21T18:46:45.038Z'\n630\t  exp_id: test_eval_4b_sft_s42\n631\t  hooks: null\n632\t  interval_seconds: 120\n633\t  last_checked: '2026-05-21T22:46:46.711Z'\n634\t  log_path: /root/autodl-tmp/eval_results/test_eval_4b_sft_s42/run.log\n635\t  pid: '126048'\n636\t  project: faith-evidence-ie\n637\t  server: rtx5090-4x\n638\t  status: completed\n639\t  tracked_metrics: null\n640\t  wandb_run_id: null\n641\t- chat_id: null\n642\t  completed_at: '2026-05-21T23:05:42Z'\n643\t  created_at: '2026-05-21T18:46:46.384Z'\n644\t  exp_id: test_eval_8b_sft_s42\n645\t  hooks: null\n646\t  interval_seconds: 120\n647\t  last_checked: '2026-05-21T23:03:33.486Z'\n648\t  log_path: /root/autodl-tmp/eval_results/test_eval_8b_sft_s42/log.txt\n649\t  pid: '125615'\n650\t  project: faith-evidence-ie\n651\t  server: rtx5090-4x\n652\t  status: completed\n653\t  tracked_metrics: null\n654\t  wandb_run_id: null\n655\t- chat_id: null\n656\t  completed_at: '2026-05-21T23:12:33Z'\n657\t  created_at: '2026-05-21T19:43:24.720Z'\n658\t  exp_id: test_eval_llama_sft_s42\n659\t  hooks: null\n660\t  interval_seconds: 120\n661\t  last_checked: '2026-05-21T23:10:27.062Z'\n662\t  log_path: /root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log\n663\t  pid: '130446'\n664\t  project: faith-evidence-ie\n665\t  server: rtx5090-4x\n666\t  status: completed\n667\t  tracked_metrics: null\n668\t  wandb_run_id: null\n669\t- chat_id: null\n670\t  completed_at: '2026-05-21T23:56:52Z'\n671\t  created_at: '2026-05-21T23:26:50.608Z'\n672\t  exp_id: retrain_4b_rsft_ced_s42_v2\n673\t  hooks: null\n674\t  interval_seconds: 120\n675\t  last_checked: '2026-05-21T23:55:03.766Z'\n676\t  log_path: /tmp/rsft_ced_s42_v2.log\n677\t  pid: '142872'\n678\t  project: faith-evidence-ie\n679\t  server: rtx5090-4x\n680\t  status: completed\n681\t  tracked_metrics: null\n682\t  wandb_run_id: null\n683\t- chat_id: null\n684\t  completed_at: '2026-05-22T00:02:17Z'\n685\t  created_at: '2026-05-22T00:01:32.786Z'\n686\t  exp_id: test_eval_4b_rsft_s42_v2\n687\t  hooks: null\n688\t  interval_seconds: 120\n689\t  last_checked: null\n690\t  log_path: ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v2.log\n691\t  pid: '146146'\n692\t  project: faith-evidence-ie\n693\t  server: rtx5090-4x\n694\t  status: completed\n695\t  tracked_metrics: null\n696\t  wandb_run_id: null\n697\t- chat_id: null\n698\t  completed_at: '2026-05-22T00:17:59Z'\n699\t  created_at: '2026-05-21T18:46:48.385Z'\n700\t  exp_id: test_eval_14b_sft_s42\n701\t  hooks: null\n702\t  interval_seconds: 120\n703\t  last_checked: '2026-05-22T00:15:49.990Z'\n704\t  log_path: /root/autodl-tmp/eval_results/test_eval_14b_sft_s42/log.txt\n705\t  pid: '125321'\n706\t  project: faith-evidence-ie\n707\t  server: rtx5090-4x\n708\t  status: completed\n709\t  tracked_metrics: null\n710\t  wandb_run_id: null\n711\t- chat_id: null\n712\t  completed_at: '2026-05-22T01:14:01Z'\n713\t  created_at: '2026-05-22T00:06:02.499Z'\n714\t  exp_id: test_eval_4b_rsft_s42_v2\n715\t  hooks: null\n716\t  interval_seconds: 120\n717\t  last_checked: '2026-05-22T01:11:06.400Z'\n718\t  log_path: ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v2.log\n719\t  pid: '146485'\n720\t  project: faith-evidence-ie\n721\t  server: rtx5090-4x\n722\t  status: completed\n723\t  tracked_metrics: null\n724\t  wandb_run_id: null\n725\t- chat_id: null\n726\t  completed_at: '2026-05-22T02:23:43Z'\n727\t  created_at: '2026-05-21T22:53:42.670Z'\n728\t  exp_id: test_eval_1_7b_sft_s42\n729\t  hooks: null\n730\t  interval_seconds: 120\n731\t  last_checked: '2026-05-22T02:21:21.526Z'\n732\t  log_path: null\n733\t  pid: '140534'\n734\t  project: faith-evidence-ie\n735\t  server: rtx5090-4x\n736\t  status: completed\n737\t  tracked_metrics: null\n738\t  wandb_run_id: null\n739\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ed65aed-a6a6-4766-8ced-3639572f4689",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "6cb1ec6b-0d4e-43fa-b156-7ad947936175",
+            "sourceToolAssistantUUID": "8ed65aed-a6a6-4766-8ced-3639572f4689",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T02:39:08.093Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CTrXfpyKvRhb1LjZ98xU8p",
+              "type": "tool_result",
+              "content": "13646:  test_eval_1_7b_sft_s42:\n13657:        --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42\n13754:  test_eval_4b_rsft_s42_v2:\n13781:        --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2 --batch_size\n13792:      log_path: ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v2.log\n13807:    checkpoint_path: /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2\n13808:    log_path: /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2.log\n13809:  test_eval_1_7b_sft_s42_no_evi:\n13815:      (500 docs)。配对 test_eval_1_7b_sft_s42 (cuda:0 running) 计算 test set 上的 1.7B evidence\n13820:        --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42_no_evi\n13832:      log_path: /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42_no_evi/log.txt\n13841:        --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "255420dd-3844-4269-9287-6251266d4e0c",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "0ac76256-f3d4-4d9a-bd64-18b3c335f648",
+            "sourceToolAssistantUUID": "255420dd-3844-4269-9287-6251266d4e0c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T02:39:09.752Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me extract the detailed registry entries for both experiments from the registry.yaml file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ac76256-f3d4-4d9a-bd64-18b3c335f648",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqF6VRsRQAngujtRr9d",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "07af6e93-267f-4465-9032-580c91f081e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KAoECWwnyzsyzMMexAvC24",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 11437,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 27905,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 727,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T02:39:10.520Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016eRWMpRGEDpyXsASnfQMc7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+                "offset": 13640,
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07af6e93-267f-4465-9032-580c91f081e6",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqF6VRsRQAngujtRr9d",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "db05eafe-6440-4ccc-9009-d075f2d98d51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KAoECWwnyzsyzMMexAvC24",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 11437,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 27905,
+                "output_tokens": 139,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 727
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 11437,
+                    "output_tokens": 139,
+                    "cache_read_input_tokens": 27905,
+                    "cache_creation_input_tokens": 727,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 727,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T02:39:10.536Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016eRWMpRGEDpyXsASnfQMc7",
+              "type": "tool_result",
+              "content": "13640\t      evi_f1_tp: 0.5819\n13641\t      edcr: 0.8403\n13642\t      format_ok: 490/500\n13643\t      truncated: 327/500\n13644\t      n_predictions: 23821\n13645\t      codalab_converted: 9502\n13646\t  test_eval_1_7b_sft_s42:\n13647\t    status: DONE\n13648\t    retry_count: 0\n13649\t    created_at: '2026-05-21T19:46:40.933Z'\n13650\t    updated_at: '2026-05-22T02:33:33.974Z'\n13651\t    hypothesis: 'Re-DocRED test set eval: Qwen3-1.7B SFT s42 on test_revised.json\n13652\t      (500 docs)。补全 test table 最后一个 SFT 缺口。1.7B RSFT test=0.2933，需要 SFT baseline 配对。1.7B\n13653\t      SFT dev ign_f1=0.4464 (3-seed mean)。'\n13654\t    spec:\n13655\t      command: CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path\n13656\t        /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\n13657\t        --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42\n13658\t        --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n13659\t      server: rtx5090-4x\n13660\t      data_path: /root/autodl-tmp/data/re-docred-repo/data\n13661\t      data_count: 500\n13662\t      model_name: Qwen3-1.7B + SFT adapter s42\n13663\t      seed: 42\n13664\t      checkpoint_source: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\n13665\t      eval_data: re-docred test_revised\n13666\t      pid: 140534\n13667\t      gpu: cuda:0\n13668\t    reproduce:\n13669\t      finished_at: '2026-05-22T02:23:31.126Z'\n13670\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n13671\t    conclusion: success\n13672\t    completed_at: '2026-05-22T02:23:36.614Z'\n13673\t    extra:\n13674\t      hook_events:\n13675\t      - event: on_failed\n13676\t        action: agent\n13677\t        ts: '2026-05-22T02:23:44.022371+00:00'\n13678\t    metrics:\n13679\t      ign_f1: 0.2579\n13680\t      f1: 0.2579\n13681\t      precision: 0.3977\n13682\t      recall: 0.1908\n13683\t      evi_f1_tp: 0.5918\n13684\t      evi_f1: 0.1975\n13685\t      edcr: 0.8504\n13686\t      truncated: 409/500\n13687\t      format_ok: 500/500\n13688\t      n_docs: 500\n13689\t  retrain_4b_rsft_ced_s42_v2:\n13690\t    status: DONE\n13691\t    retry_count: 0\n13692\t    created_at: '2026-05-21T23:06:21.364Z'\n13693\t    updated_at: '2026-05-21T23:56:36.225Z'\n13694\t    hypothesis: 重训 4B RSFT s42 (CED k=1)。原 checkpoint 已永久丢失（rtx5090-4x + bjb2 均无备份）。使用现有训练数据\n13695\t      rsft_filtered/rsft_train.jsonl (2718 CED k=1 samples) 重训。完成后提交 test_eval_4b_rsft_s42\n13696\t      填充 test table 4B 数据点。\n13697\t    server: rtx5090-4x\n13698\t    gpu: cuda:2\n13699\t    account: root\n13700\t    reproduce:\n13701\t      server: rtx5090-4x\n13702\t      gpu: cuda:2\n13703\t      started_at: '2026-05-21T23:12:05.524Z'\n13704\t    spec:\n13705\t      command: CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_trainer --base_model\n13706\t        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n13707\t        --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir\n13708\t        /root/autodl-tmp/rsft_output_ced_s42_v2 --seed 42 --weighted_sampling --bf16\n13709\t        --wandb_run_name rsft-ced-s42-v2\n13710\t      server: rtx5090-4x\n13711\t      data_path: /root/autodl-tmp/rsft_filtered/rsft_train.jsonl\n13712\t      data_count: 2718\n13713\t      model_name: Qwen3-4B + SFT s42 → RSFT CED k=1\n13714\t      seed: 42\n13715\t      checkpoint_source: retrain (original permanently lost)\n13716\t      hyperparams: bf16, LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling\n13717\t      pid: 142867\n13718\t      log_path: /tmp/rsft_ced_s42_v2.log\n13719\t    conclusion: success\n13720\t    metrics:\n13721\t      final_loss: 0.5711\n13722\t      token_accuracy: 0.8639\n13723\t      train_loss_avg: 0.6114\n13724\t      total_steps: 510\n13725\t      epochs: 3\n13726\t      train_runtime_sec: 2348\n13727\t    checkpoint_path: /root/autodl-tmp/rsft_output_ced_s42_v2\n13728\t    log_path: /tmp/rsft_ced_s42_v2.log\n13729\t    completed_at: '2026-05-21T23:56:36.225Z'\n13730\t  test_eval_14b_sft_s42_no_evi:\n13731\t    status: RUNNING\n13732\t    retry_count: 0\n13733\t    created_at: '2026-05-21T23:13:44.514Z'\n13734\t    updated_at: '2026-05-21T23:15:43.419Z'\n13735\t    hypothesis: 'D147 evidence tax test spot-check: 14B SFT s42 no-evidence on test_revised.json\n13736\t      (500 docs)。配对 test_eval_14b_sft_s42 (with-evi, running on cuda:1) 计算 test set\n13737\t      上的 evidence tax。验证 dev matched@2048 fair_tax (+0.03pp ≈ 0) 在 test set 上是否一致。'\n13738\t    spec:\n13739\t      command: CUDA_VISIBLE_DEVICES=3 python -m freige.eval.test_inference --model_path\n13740\t        /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144\n13741\t        --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42_no_evi\n13742\t        --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n13743\t        --no_evidence\n13744\t      server: rtx5090-4x\n13745\t      data_path: /root/autodl-tmp/data/re-docred-repo/data\n13746\t      data_count: 500\n13747\t      model_name: Qwen3-14B + SFT adapter s42 (no-evidence)\n13748\t      seed: 42\n13749\t      checkpoint_source: /root/autodl-tmp/sft_output_14b/checkpoint-144\n13750\t      eval_data: re-docred test_revised\n13751\t      pid: 143161\n13752\t      gpu: cuda:3\n13753\t      log_path: /tmp/test_eval_14b_sft_s42_no_evi.log\n13754\t  test_eval_4b_rsft_s42_v2:\n13755\t    status: DONE\n13756\t    retry_count: 1\n13757\t    created_at: '2026-05-21T23:21:45.920Z'\n13758\t    updated_at: '2026-05-22T01:34:11.647Z'\n13759\t    hypothesis: 'Re-DocRED test set eval: Qwen3-4B RSFT s42 (CED k=1, 重训 v2) on test_revised.json\n13760\t      (500 docs)。配对 test_eval_4b_sft_s42 (ign_f1=0.2232)，填充 test table 4B RSFT 数据点。使用\n13761\t      retrain_4b_rsft_ced_s42_v2 产出的 checkpoint。Dev RSFT ign_f1 基准见原 4B RSFT 数据。'\n13762\t    reproduce:\n13763\t      finished_at: '2026-05-22T01:13:43.380Z'\n13764\t    failure_reason: EXIT_CODE=2 (shell misuse / syntax)\n13765\t    completed_at: '2026-05-22T00:02:09.586Z'\n13766\t    extra:\n13767\t      hook_events:\n13768\t      - event: on_failed\n13769\t        action: agent\n13770\t        ts: '2026-05-22T00:02:16.582942+00:00'\n13771\t      - event: on_failed\n13772\t        action: agent\n13773\t        ts: '2026-05-22T01:14:23.156945+00:00'\n13774\t      previous_failure:\n13775\t        conclusion: failed\n13776\t    spec:\n13777\t      command: bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n13778\t        base && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.test_inference --model_path\n13779\t        /root/autodl-tmp/models/Qwen/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n13780\t        --rsft_adapter /root/autodl-tmp/rsft_output_ced_s42_v2 --data_path /root/autodl-tmp/data/re-docred-repo/data\n13781\t        --output_dir /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2 --batch_size\n13782\t        1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised'\n13783\t      server: rtx5090-4x\n13784\t      data_path: /root/autodl-tmp/data/re-docred-repo/data\n13785\t      data_count: 500\n13786\t      model_name: Qwen3-4B + SFT s42 + RSFT CED k=1 (retrain v2)\n13787\t      seed: 42\n13788\t      checkpoint_source: /root/autodl-tmp/rsft_output_ced_s42_v2\n13789\t      eval_data: re-docred test_revised\n13790\t      gpu: cuda:2\n13791\t      pid: '146485'\n13792\t      log_path: ~/runs/faith-evidence-ie/test_eval_4b_rsft_s42_v2.log\n13793\t    pid: 146485\n13794\t    conclusion: success\n13795\t    metrics:\n13796\t      ign_f1: 0.2501\n13797\t      f1: 0.2501\n13798\t      precision: 0.3403\n13799\t      recall: 0.1977\n13800\t      evi_f1_tp: 0.6237\n13801\t      evi_f1: 0.1838\n13802\t      edcr: 0.8288\n13803\t      truncated: 214/500\n13804\t      format_ok: 499/500\n13805\t      n_predictions: 15835\n13806\t      n_docs: 500\n13807\t    checkpoint_path: /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2\n13808\t    log_path: /root/autodl-tmp/eval_results/test_eval_4b_rsft_s42_v2.log\n13809\t  test_eval_1_7b_sft_s42_no_evi:\n13810\t    status: RUNNING\n13811\t    retry_count: 0\n13812\t    created_at: '2026-05-21T23:21:48.946Z'\n13813\t    updated_at: '2026-05-22T00:18:47.483Z'\n13814\t    hypothesis: 'D147 evidence tax test spot-check: 1.7B SFT s42 no-evidence on test_revised.json\n13815\t      (500 docs)。配对 test_eval_1_7b_sft_s42 (cuda:0 running) 计算 test set 上的 1.7B evidence\n13816\t      tax。验证 dev matched@2048 fair_tax (-5.63pp, evidence helps) 在 test set 上是否一致。'\n13817\t    spec:\n13818\t      command: CUDA_VISIBLE_DEVICES=1 python -m freige.eval.test_inference --model_path\n13819\t        /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\n13820\t        --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42_no_evi\n13821\t        --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n13822\t        --no_evidence\n13823\t      server: rtx5090-4x\n13824\t      data_path: /root/autodl-tmp/data/re-docred-repo/data\n13825\t      data_count: 500\n13826\t      model_name: Qwen3-1.7B + SFT adapter s42 (no-evidence)\n13827\t      seed: 42\n13828\t      checkpoint_source: /root/autodl-tmp/sft_output_qwen3_1_7b_bf16\n13829\t      eval_data: re-docred test_revised\n13830\t      gpu: cuda:1\n13831\t      pid: 147596\n13832\t      log_path: /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42_no_evi/log.txt\n13833\t  test_eval_4b_rsft_s42_v3:\n13834\t    status: DONE\n13835\t    retry_count: 0\n13836\t    created_at: '2026-05-22T01:17:15.536Z'\n13837\t    updated_at: '2026-05-22T01:36:25.427Z'\n13838\t    spec:\n13839\t      command: python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_ced_s42_v2"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db05eafe-6440-4ccc-9009-d075f2d98d51",
+            "isSidechain": true,
+            "promptId": "57c9f97c-79e0-4001-914c-0bc3e099db1a",
+            "agentId": "aacdc938648ad3536",
+            "type": "user",
+            "uuid": "6f3c3385-387a-49c7-87b4-ded551a976f8",
+            "sourceToolAssistantUUID": "db05eafe-6440-4ccc-9009-d075f2d98d51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T02:39:18.165Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! I've found all the relevant information. Let me compile the final report.\n\n## Summary\n\nI successfully located the experiment registry and cron data files for the \"faith-evidence-ie\" project. Here are the key findings:\n\n### File Locations\n\n1. **Registry File (main experiment data):**\n   - `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml`\n\n2. **Cron Data File:**\n   - `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/config/crons.yaml`\n\n### Experiment Details\n\n#### 1. test_eval_1_7b_sft_s42\n**Location in registry:** Lines 13646-13688\n\n**Status:** DONE\n\n**Key Metadata:**\n- Created: 2026-05-21T19:46:40.933Z\n- Completed: 2026-05-22T02:23:36.614Z\n- Model: Qwen3-1.7B + SFT adapter s42\n- Seed: 42\n- GPU: cuda:0\n- PID: 140534\n- Data: re-docred test_revised (500 docs)\n\n**Metrics:**\n- ign_f1: 0.2579\n- f1: 0.2579\n- precision: 0.3977\n- recall: 0.1908\n- evi_f1_tp: 0.5918\n- evi_f1: 0.1975\n- edcr: 0.8504\n\n**Cron Entry:** Lines 726-738 in crons.yaml\n- Status: completed\n- Completed at: 2026-05-22T02:23:43Z\n\n#### 2. test_eval_4b_rsft_s42_v2\n**Location in registry:** Lines 13754-13808\n\n**Status:** DONE\n\n**Key Metadata:**\n- Created: 2026-05-21T23:21:45.920Z\n- Completed: 2026-05-22T01:34:11.647Z (after retry)\n- Model: Qwen3-4B + SFT s42 + RSFT CED k=1 (retrain v2)\n- Seed: 42\n- GPU: cuda:2\n- PID: 146485\n- Data: re-docred test_revised (500 docs)\n- Retry Count: 1 (initial failure: EXIT_CODE=2)\n\n**Metrics:**\n- ign_f1: 0.2501\n- f1: 0.2501\n- precision: 0.3403\n- recall: 0.1977\n- evi_f1_tp: 0.6237\n- evi_f1: 0.1838\n- edcr: 0.8288\n\n**Cron Entries:** Lines 684-696 and 714-724 in crons.yaml\n- Two completed cron entries (first at 2026-05-22T00:02:17Z, second at 2026-05-22T01:14:01Z)\n\nBoth experiments are evaluations on the Re-DocRED test set, with test_eval_1_7b_sft_s42 providing a baseline for the 1.7B model and test_eval_4b_rsft_s42_v2 evaluating the 4B RSFT retrained model."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f3c3385-387a-49c7-87b4-ded551a976f8",
+            "isSidechain": true,
+            "agentId": "aacdc938648ad3536",
+            "requestId": "req_011CbGqFGxDgBDUm8SECCX6H",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2a137523-f22b-4ea4-9540-deec6d8c2c4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "932758f3-fac3-4964-9685-ea2176b16010",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PDjqPwYLd6qMJBos18T78q",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 15927,
+                "cache_read_input_tokens": 28632,
+                "output_tokens": 827,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15927
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 827,
+                    "cache_read_input_tokens": 28632,
+                    "cache_creation_input_tokens": 15927,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15927,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-the-experiment-registry-file-and-cron-data-file-for-the-project-fai.md"
+}

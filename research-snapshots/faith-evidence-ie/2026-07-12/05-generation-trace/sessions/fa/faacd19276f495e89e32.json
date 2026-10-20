@@ -1,0 +1,290 @@
+{
+  "schema_version": "1.0",
+  "id": "faacd19276f495e89e32",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read lines 1-250 of /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appen",
+  "task_key": "agent-a9f9e70a81951bdd8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a9f9e70a81951bdd8.jsonl",
+    "occurrence": 1,
+    "bytes": 52401,
+    "sha256": "7feeb55789cfcac653e0900988064da97e5b5a5ffb3283b8180ba939aa974bf1"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 1,
+      "tool_result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T19:42:08.770Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read lines 1-250 of /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex and extract EVERY numerical value that appears. For each number, report:\n- The exact value as it appears in the text\n- The line number\n- Whether it's in a table, figure caption, or body text\n- What it represents (metric name, statistic type, etc.)\n\nBe exhaustive - include percentages, counts, p-values, correlation coefficients, ratios, standard deviations, everything. Group them by table/section for clarity."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "00884a06-3250-4c87-b491-3b7baf3c5516",
+            "agentId": "a9f9e70a81951bdd8",
+            "type": "user",
+            "uuid": "0dad51d3-a125-496e-b0c9-26d61e86c6e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T19:42:12.403Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the appendix file and extract all numerical values from the first 250 lines."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0dad51d3-a125-496e-b0c9-26d61e86c6e7",
+            "isSidechain": true,
+            "agentId": "a9f9e70a81951bdd8",
+            "requestId": "req_011CbPrgUbYaj1HyZ8oiHe8P",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1723b418-f76e-41a3-82ed-d78723da559e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AAxMGnPvGZj7n2F3Wvnie2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 39102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 567,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T19:42:12.672Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B3hTJFgngiKLeCNxDNSqkg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+                "limit": 250
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1723b418-f76e-41a3-82ed-d78723da559e",
+            "isSidechain": true,
+            "agentId": "a9f9e70a81951bdd8",
+            "requestId": "req_011CbPrgUbYaj1HyZ8oiHe8P",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d3561d08-69a7-4569-8d39-6c0d75de9ed9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AAxMGnPvGZj7n2F3Wvnie2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 39102,
+                "output_tokens": 128,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 567
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 128,
+                    "cache_read_input_tokens": 39102,
+                    "cache_creation_input_tokens": 567,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 567,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T19:42:12.684Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B3hTJFgngiKLeCNxDNSqkg",
+              "type": "tool_result",
+              "content": "1\t\\section{Training Hyperparameters}\n2\t\\label{sec:hyperparams}\n3\t\n4\tTable~\\ref{tab:hyperparams} lists the hyperparameters for all training configurations. All methods use LoRA with rank $r{=}64$ and $\\alpha{=}128$ applied to all linear projections (attention and feed-forward). SFT and RSFT share the same optimizer settings; RSFT differs only in data construction (top-1 CED-selected outputs from $N{=}8$ candidates). GRPO and DPO use lower learning rates to stabilize post-SFT optimization.\n5\t\n6\t\\begin{table*}[t]\n7\t\\centering\n8\t\\caption{Training hyperparameters for all optimization paradigms. All experiments use Qwen3-4B with LoRA. A dash indicates non-applicable parameters. \\textsuperscript{$\\star$}DPO is trained for both 1 and 3 epochs to observe temporal dynamics of the evidence-extraction trade-off (\\S\\ref{sec:spectrum}).}\n9\t\\label{tab:hyperparams}\n10\t\\small\n11\t\\begin{tabular}{l@{\\hspace{8pt}}c@{\\hspace{8pt}}c@{\\hspace{8pt}}c@{\\hspace{8pt}}c@{\\hspace{8pt}}c}\n12\t\\toprule\n13\t\\textbf{Parameter} & \\textbf{SFT} & \\textbf{RSFT} & \\textbf{GRPO QLoRA} & \\textbf{GRPO bf16} & \\textbf{DPO} \\\\\n14\t\\midrule\n15\t\\multicolumn{6}{l}{\\textit{Model \\& Adapter}} \\\\\n16\t\\quad LoRA rank $r$ / $\\alpha$ & 64 / 128 & 64 / 128 & 64 / 128 & 64 / 128 & 64 / 128 \\\\\n17\t\\quad Quantization & -- & -- & NF4 4-bit & bf16 & bf16 \\\\\n18\t\\midrule\n19\t\\multicolumn{6}{l}{\\textit{Optimization}} \\\\\n20\t\\quad Learning rate & 2e-5 & 2e-5 & 5e-6 & 5e-6 & 5e-7 \\\\\n21\t\\quad Batch size (effective) & 16 & 16 & 4 & 8 & 4 \\\\\n22\t\\quad Gradient accumulation & 4 & 4 & 16 & 4 & 4 \\\\\n23\t\\quad Epochs / Max steps & 3 / -- & 3 / -- & -- / 100 & -- / 100 & 1, 3\\textsuperscript{$\\star$} / -- \\\\\n24\t\\midrule\n25\t\\multicolumn{6}{l}{\\textit{RL / Selection}} \\\\\n26\t\\quad Group size $G$ & -- & -- & 4 & 8 & -- \\\\\n27\t\\quad KL coeff.\\ / $\\beta$ & -- & -- & 0.01 & 0.01 & 0.1 \\\\\n28\t\\quad Candidates $N$ / Top-$k$ & -- & 8 / 1 & -- & -- & 8 / -- \\\\\n29\t\\midrule\n30\t\\multicolumn{6}{l}{\\textit{Data}} \\\\\n31\t\\quad Max new tokens & 1024 & 1024 & 1024 & 1024 & 1024 \\\\\n32\t\\quad Training samples & 3,053 & 2,718 & 3,053 & 3,053 & 3,053 \\\\\n33\t\\quad Scoring function & -- & CED & CED & CED & CED \\\\\n34\t\\bottomrule\n35\t\\end{tabular}\n36\t\\end{table*}\n37\t\n38\t\n39\t\\section{Full Ablation Results}\n40\t\\label{sec:ablation_full}\n41\t\n42\tTable~\\ref{tab:ablation_full} reports the complete RSFT ablation across scoring functions, top-$k$ values, and random seeds. RSFT CED $k{=}1$ achieves a four-seed mean Ign-F1 of 44.66 (standard deviation 0.53), confirming robust improvement over the SFT s42 baseline (39.74). The three-seed mean reported in Table~\\ref{tab:main} (44.82, seeds 42/43/44) is slightly higher because it excludes the lowest seed (s45: 44.16). Random selection RSFT $k{=}1$ (41.14 Ign-F1), which samples from the same candidate pool without CED scoring, improves only +1.40pp over SFT s42 versus +4.92pp for CED RSFT, confirming that CED scoring precision drives the majority of the RSFT gain. Increasing $k$ to 3 slightly degrades performance (43.64 Ign-F1), consistent with the intuition that stricter selection yields higher-quality training data. The flat-NLI scoring variant produces comparable Rel-F1 (mean 45.61 vs.\\ 45.63 for CED, a difference of 0.02pp). Both CED and flat-NLI improve substantially over the SFT baseline while maintaining or improving Evi-F1, confirming that the RSFT gains are driven by quality-based data selection rather than by the specific contrastive formulation.\n43\t\n44\t\\paragraph{NLI scoring comparison.} Across all available seeds, CED RSFT achieves mean Rel-F1 of 45.63 (seeds 42, 43, 44, 45: range 45.14--46.21), and flat-NLI RSFT achieves mean Rel-F1 of 45.61 (seeds 42, 43: range 45.35--45.86). The 0.02pp difference suggests comparable performance: CED's contrastive design does not substantially outperform simpler NLI scoring for RSFT data selection. We adopt CED as the default because its contrastive formulation produces per-triple discrimination scores that support interpretable error analysis.\n45\t\n46\t\\paragraph{Top-$k$ selection.} Best-of-8 ($k{=}1$) yields mean Ign-F1 44.66 and Rel-F1 45.63, while top-3-of-8 ($k{=}3$) produces 43.64 and 44.54. The selected training data confirms the quality gap: $k{=}1$ data has mean extraction F1 of 61.57 and mean CED of 0.6683, versus 57.61 and 0.6205 for $k{=}3$. Despite $k{=}3$ providing 2.96$\\times$ more training examples, the additional lower-ranked samples introduce noise that degrades final performance.\n47\t\n48\t\\paragraph{NLI scorer capacity.} CED filtering is robust to NLI model capacity: replacing the default scorer (DeBERTa-v3-base, 86M parameters) with DeBERTa-v3-large (304M) yields only +1.10pp Ign-F1 (45.33 vs.\\ 44.23, s42), a difference within the v3-base seed noise of 0.88pp (s42: 44.23, s44: 45.11). Other metrics confirm the pattern: Rel-F1 improves by +1.19pp (46.36 vs.\\ 45.17), Evi-F1 by +0.20pp (81.94 vs.\\ 81.74), while EDCR shifts by $-$0.39pp (0.6530 vs.\\ 0.6569)---the inconsistent direction across metrics rules out systematic improvement from a larger scorer. This insensitivity supports v3-base as a cost-effective default, as a 3.5$\\times$ larger scorer does not materially improve CED-based data selection.\n49\t\n50\t\\begin{table}[t]\n51\t\\centering\n52\t\\caption{Full RSFT ablation on DocRED dev set (Qwen3-4B). CED and flat-NLI denote the scoring function used for candidate selection. Best Ign-F1 among evidence-generating methods in \\textbf{bold}.}\n53\t\\label{tab:ablation_full}\n54\t\\small\n55\t\\resizebox{\\columnwidth}{!}{%\n56\t\\begin{tabular}{lcccc}\n57\t\\toprule\n58\t\\textbf{Configuration} & \\textbf{Ign-F1} & \\textbf{Rel-F1} & \\textbf{Evi-F1} & \\textbf{EDCR} \\\\\n59\t\\midrule\n60\tSFT baseline (s42) & 39.74 & 40.49 & 79.86 & 0.6982 \\\\\n61\tSFT no-evidence & \\textbf{47.21} & 48.76 & -- & -- \\\\\n62\t\\midrule\n63\tRSFT random $k{=}1$ & 41.14 & 41.98 & 79.64 & 0.6971 \\\\\n64\t\\midrule\n65\tRSFT CED $k{=}1$ (s42) & 44.23 & 45.17 & 81.74 & 0.6569 \\\\\n66\tRSFT CED $k{=}1$ (s43) & 45.12 & 46.01 & 80.63 & 0.6542 \\\\\n67\tRSFT CED $k{=}1$ (s44) & 45.11 & 46.21 & 80.50 & 0.6350 \\\\\n68\tRSFT CED $k{=}1$ (s45) & 44.16 & 45.14 & 81.74 & 0.6550 \\\\\n69\tRSFT CED $k{=}1$ (mean) & 44.66 & 45.63 & 81.15 & 0.6503 \\\\\n70\t\\midrule\n71\tRSFT CED $k{=}3$ & 43.64 & 44.54 & 80.88 & 0.6635 \\\\\n72\t\\midrule\n73\tRSFT flat-NLI (s42) & -- & 45.35 & 80.43 & 0.6431 \\\\\n74\tRSFT flat-NLI (s43) & -- & 45.86 & 81.58 & 0.6505 \\\\\n75\tRSFT flat-NLI (mean) & -- & 45.61 & 81.01 & 0.6468 \\\\\n76\t\\midrule\n77\tRSFT CED $k{=}1$ v3-large (s42) & 45.33 & 46.36 & 81.94 & 0.6530 \\\\\n78\t\\bottomrule\n79\t\\end{tabular}%\n80\t}\n81\t\\end{table}\n82\t\n83\t\n84\t\\section{Scaling Details}\n85\t\\label{sec:scaling_details}\n86\t\n87\tTable~\\ref{tab:cross_detail} supplements Table~\\ref{tab:scaling} in the main text with per-scale Rel-F1 and Evi-F1 breakdowns. At 1.7B, RSFT improves Rel-F1 from 45.86 to 52.81 (+6.95, multi-seed mean) while achieving Evi-F1 82.63 and EDCR 0.6217. The 4B model shows the same pattern: Rel-F1 increases from 44.39 to 45.80 (+1.41, three-seed mean). For 8B, RSFT brings Rel-F1 from 51.87 to 56.07 (three-seed mean) with Evi-F1 of 81.54 and EDCR 0.6186, confirming tight coupling between extraction and evidence at this scale. At 14B, the SFT baseline achieves strong Rel-F1 (56.11) and Evi-F1 (82.92); RSFT improves Rel-F1 to 59.17 (three-seed mean) with Evi-F1 83.37 and EDCR 0.5796.\n88\t\n89\t\\begin{table}[t]\n90\t\\centering\n91\t\\caption{Detailed Rel-F1 and Evi-F1 across model scales on DocRED dev set. SFT and RSFT columns show multi-seed means where available (Qwen3 1.7B/4B/8B/14B: 3-seed; LLaMA SFT Rel-F1/Evi-F1: s42 only; LLaMA RSFT: 3-seed).}\n92\t\\label{tab:cross_detail}\n93\t\\small\n94\t\\resizebox{\\columnwidth}{!}{%\n95\t\\begin{tabular}{lccccc}\n96\t\\toprule\n97\t\\textbf{Model} & \\textbf{SFT Rel-F1} & \\textbf{SFT Evi-F1} & \\textbf{RSFT Rel-F1} & \\textbf{RSFT Evi-F1} & \\textbf{RSFT EDCR} \\\\\n98\t\\midrule\n99\tQwen3-1.7B & 45.86 & 82.85 & 52.81 & 82.63 & 0.6217 \\\\\n100\tQwen3-4B & 44.39 & 79.61 & 45.80 & 80.96 & 0.6487 \\\\\n101\tQwen3-8B & 51.87 & 82.94 & 56.07 & 81.54 & 0.6186 \\\\\n102\tQwen3-14B & 56.11 & 82.92 & 59.17 & 83.37 & 0.5796 \\\\\n103\tLLaMA-3.1-8B & 55.14 & 81.51 & 57.75 & 82.84 & 0.5804 \\\\\n104\t\\bottomrule\n105\t\\end{tabular}%\n106\t}\n107\t\\end{table}\n108\t\n109\t\\begin{figure}[t]\n110\t\\centering\n111\t\\includegraphics[width=\\columnwidth]{fig_scaling.pdf}\n112\t\\caption{Evidence tax and RSFT gain across model scales. Bar heights show Ign-F1 for SFT with evidence (s42), SFT without evidence (s42), and RSFT (mean). The gap between no-evidence and SFT bars reverses direction between 1.7B and 4B, revealing the scale-dependent evidence tax. RSFT consistently narrows the gap toward the no-evidence upper bound.}\n113\t\\label{fig:scaling}\n114\t\\end{figure}\n115\t\n116\t\n117\t\\section{Variance Compression Confidence Intervals}\n118\t\\label{sec:variance_ci}\n119\t\n120\tTable~\\ref{tab:variance_ci} reports 95\\% confidence intervals for SFT and RSFT standard deviations using the $\\chi^2$ distribution ($N{=}3$ seeds per configuration). At 1.7B, the confidence intervals are fully non-overlapping (SFT lower bound 1.45pp $>$ RSFT upper bound 0.54pp), providing the strongest evidence for variance compression. At the remaining three scales, intervals overlap but point estimates are consistently in the same direction (SFT std $>$ RSFT std at all four scales; sign test $p = 0.0625$, one-sided binomial, $n = 4$, underpowered). Cohen's $d$ ranges from 0.46 (4B) to 3.31 (1.7B), with 1.7B and LLaMA-8B showing large effect sizes ($d > 2.5$).\n121\t\n122\t\\begin{table}[t]\n123\t\\centering\n124\t\\caption{95\\% confidence intervals for training variance ($\\chi^2$ method, $N{=}3$ seeds). Compression is the ratio of SFT to RSFT point estimates (unrounded).}\n125\t\\label{tab:variance_ci}\n126\t\\small\n127\t\\resizebox{\\columnwidth}{!}{%\n128\t\\begin{tabular}{lcccccc}\n129\t\\toprule\n130\t\\textbf{Scale} & \\textbf{SFT std} & \\textbf{SFT 95\\% CI} & \\textbf{RSFT std} & \\textbf{RSFT 95\\% CI} & \\textbf{Compr.} & \\textbf{Cohen's $d$} \\\\\n131\t\\midrule\n132\tQwen3-1.7B & 2.79 & [1.45, 17.55] & 0.09 & [0.04, 0.54] & 32.6$\\times$ & 3.31 \\\\\n133\tQwen3-4B & 3.80 & [1.98, 23.89] & 0.51 & [0.27, 3.21] & 7.5$\\times$ & 0.46 \\\\\n134\tQwen3-8B & 3.23 & [1.68, 20.31] & 0.50 & [0.26, 3.15] & 6.5$\\times$ & 1.79 \\\\\n135\tLLaMA-3.1-8B & 2.92 & [1.52, 18.37] & 0.64 & [0.33, 4.01] & 4.6$\\times$ & 2.58 \\\\\n136\t\\bottomrule\n137\t\\end{tabular}%\n138\t}\n139\t\\vspace{1mm}\n140\t{\\raggedright\\footnotesize Sign test: $p{=}0.0625$ (one-sided binomial, $n{=}4$). Consistent direction (4/4 SFT${>}$RSFT), non-overlapping CIs at 1.7B, and large Cohen's $d$ at 1.7B/LLaMA support variance compression despite limited $N{=}3$.\\par}\n141\t\\end{table}\n142\t\n143\t\n144\t\\section{Controlled Evaluation Subset}\n145\t\\label{sec:fair_subset}\n146\t\n147\tThe 1.7B evidence tax comparison (\\S\\ref{sec:scaling}) is confounded by differential truncation rates. At \\texttt{max\\_new\\_tokens}$=$1024, the no-evidence model truncates 50.9\\% of outputs (501/985 documents) versus 31.9\\% (314/985) for the evidence model. To address this, we adopt a matched@2048 fair evaluation: both configurations are evaluated at \\texttt{max\\_new\\_tokens}$=$2048, and the tax is computed on the intersection of documents where both produce format-compliant output. This yields 971/985 fair-subset documents, with a tax of $-$5.63pp (s42), confirming a genuine 1.7B evidence benefit. As additional validation, a stricter controlled subset at @1024 (excluding truncated or repetitive outputs; 442/985 documents) yields $-$6.2pp, with the stronger benefit attributable to the more aggressive filtering.\n148\t\n149\tTable~\\ref{tab:mechanistic} provides a mechanistic breakdown across three scales (evaluated at @1024). Output duplication rate (fraction of documents containing $\\geq$3 repeated triples or unique/total $< 0.5$) declines monotonically with scale for both training configurations, but the gap between no-evidence and with-evidence models narrows from 27.5pp at 1.7B to 3.7pp at 8B. This pattern supports the implicit regularization hypothesis: evidence generation forces smaller models to attend to supporting context, reducing degenerate repetition. At 4B, duplication is already moderate (31.1\\% with evidence), so the regularization benefit diminishes; under matched@2048 evaluation, the 4B training-time tax is approximately neutral (+0.25$\\pm$0.47pp, three-seed mean). The truncation asymmetry reverses across scales: at 1.7B the no-evidence model truncates 19pp more often; at 8B the evidence model truncates 9pp more often due to the longer output format.\n150\t\n151\t\\begin{table}[t]\n152\t\\centering\n153\t\\caption{Mechanistic breakdown of output quality across scales. Duplication rate: fraction of documents with degenerate outputs. Truncation $\\Delta$: no-evidence rate minus with-evidence rate (positive means no-evidence truncates more).}\n154\t\\label{tab:mechanistic}\n155\t\\small\n156\t\\begin{tabular}{lccccc}\n157\t\\toprule\n158\t& \\multicolumn{3}{c}{\\textbf{Duplication Rate}} & \\multicolumn{2}{c}{\\textbf{Truncation}} \\\\\n159\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\n160\t\\textbf{Scale} & \\textbf{w/ evi} & \\textbf{no-evi} & \\textbf{Gap} & \\textbf{$\\Delta$} & \\textbf{Pattern} \\\\\n161\t\\midrule\n162\t1.7B & 33.0 & 60.5 & 27.5 & +19 & no-evi worse \\\\\n163\t4B & 31.1 & 43.2 & 12.1 & +2 & neutral \\\\\n164\t8B & 29.2 & 32.9 & 3.7 & $-$9 & evi worse \\\\\n165\t\\bottomrule\n166\t\\end{tabular}\n167\t\\end{table}\n168\t\n169\t\n170\t\\section{Training-Time Evidence Tax}\n171\t\\label{sec:training_tax}\n172\t\n173\tThe evidence tax can be measured in two ways. The \\emph{training-time} tax compares separately trained models (SFT with evidence vs.\\ SFT without evidence in the training output format). The \\emph{inference-time} tax (reported in Table~\\ref{tab:scaling}) evaluates the same RSFT model with and without evidence at inference time.\n174\t\n175\tNa\\\"ive comparisons at \\texttt{max\\_new\\_tokens}$=$1024 are confounded by differential truncation rates (e.g., 50.9\\% vs.\\ 31.9\\% at 1.7B). To control for this, we adopt a \\emph{matched@2048 fair evaluation}: both configurations are evaluated at \\texttt{max\\_new\\_tokens}$=$2048, and the tax is computed on the intersection of documents where both models produce format-compliant output. Table~\\ref{tab:training_tax} reports the matched@2048 training-time tax across Qwen3 scales.\n176\t\n177\tThe tax reveals a within-family capacity threshold: evidence generation benefits 1.7B ($-$5.63pp on 971/985 fair-subset documents) but is approximately neutral at $\\geq$4B (+0.25$\\pm$0.47pp at 4B across three seeds, +0.04pp at 8B, +0.03pp at 14B). At 1.7B, s42 is the strongest SFT seed (47.86 Ign-F1, +3.22pp above the three-seed mean of 44.64), so the benefit may be amplified relative to the population mean. LLaMA-3.1-8B SFT training-time tax is consistently negative but with high magnitude variance ($-$1.53 to $-$11.20pp, mean $-$5.19$\\pm$5.25pp under matched@2048) and omitted from the table due to the s43 outlier (16.3\\% no-evidence format failure inflates its tax); cross-architecture patterns are addressed in \\S\\ref{sec:generalization_full}.\n178\t\n179\t\\begin{table}[t]\n180\t\\centering\n181\t\\caption{Training-time evidence tax under matched@2048 fair evaluation (DocRED dev Ign-F1). Tax $=$ no-evi $-$ with-evi; positive $=$ cost.}\n182\t\\label{tab:training_tax}\n183\t\\small\n184\t\\resizebox{\\columnwidth}{!}{%\n185\t\\begin{tabular}{lcccc}\n186\t\\toprule\n187\t\\textbf{Model} & \\textbf{Fair w/ evi} & \\textbf{Fair no-evi} & \\textbf{Evi Tax} & \\textbf{Subset} \\\\\n188\t\\midrule\n189\tQwen3-1.7B & 48.38 & 42.75 & $-$5.63 & 971 \\\\\n190\tQwen3-4B & -- & -- & +0.25{\\scriptsize$\\pm$0.47} & $\\geq$982 \\\\\n191\tQwen3-8B & 50.15 & 50.19 & +0.04 & 984 \\\\\n192\tQwen3-14B & 55.07 & 55.10 & +0.03 & 985$^\\dagger$ \\\\\n193\t\\bottomrule\n194\t\\end{tabular}%\n195\t}\n196\t\\vspace{1mm}\n197\t{\\raggedright\\footnotesize Both evaluated at @2048 on format-compliant intersection. 1.7B/8B: s42; 4B: three-seed mean$\\pm$std; $^\\dagger$14B at @1024, 0\\% truncation.\\par}\n198\t\\end{table}\n199\t\n200\t\\paragraph{Evidence training and SFT seed variance.}\n201\tEvidence training's effect on SFT seed variance is also scale-dependent. At 4B, with-evidence SFT models show near-identical cross-seed spread (0.02pp) compared to no-evidence models (0.50pp), yielding 25$\\times$ variance compression. At 8B, the compression is more modest (0.35pp vs.\\ 0.48pp, 1.4$\\times$). However, at 1.7B the pattern reverses: with-evidence seed spread (0.63pp) exceeds no-evidence spread (0.20pp). This reversal likely reflects the extreme truncation rates at 1.7B (75.6\\% with-evidence, 94.4\\% no-evidence at \\texttt{max\\_new\\_tokens}$=$1024): truncated outputs produce noisy extraction results whose variance depends on which triples appear before the cutoff point. The RSFT variance compression reported in \\S\\ref{sec:scaling} is measured relative to SFT with-evidence baselines and holds at all scales regardless of this SFT-internal pattern.\n202\t\n203\t\n204\t\\section{Why RSFT Avoids Decoupling}\n205\t\\label{sec:rsft_theory}\n206\t\n207\tThe structural difference between selection and optimization explains why RSFT does not exhibit the decoupling observed in gradient-based methods. GRPO and DPO update model parameters through gradients that optimize a reward signal. When two sub-tasks (extraction and evidence) compete for gradient capacity, the optimizer can discover and exploit the trade-off between them, improving one at the expense of the other. RSFT operates differently: it selects complete outputs and trains on them with standard supervised loss. Because the selection is discrete (accept or reject a full response), there is no gradient pathway through which the model can learn to sacrifice extraction for evidence quality. Only outputs where both extraction and evidence are jointly strong survive the CED filter. This property is not specific to RSFT's design but is a structural consequence of discrete selection over complete outputs: any selection-based method that filters on a joint quality criterion will inherit the same coupling guarantee. The implication for practitioners is direct: when optimizing for multiple coupled generation objectives, selection-based methods preserve inter-objective balance that gradient-based methods disrupt.\n208\t\n209\t\n210\t\\section{Full Generalization Results}\n211\t\\label{sec:generalization_full}\n212\t\n213\t\\paragraph{Cross-family transfer.}\n214\tLLaMA-3.1-8B confirms the scaling patterns observed with Qwen3. Its SFT baseline achieves a three-seed mean of 51.09 Ign-F1 (std 2.92pp; s42: 53.84, s43: 51.42, s44: 48.02). Under matched@2048 fair evaluation, the training-time tax is consistently negative across all three seeds (s42: $-$1.53, s43: $-$11.20, s44: $-$2.83; mean $-$5.19$\\pm$5.25pp), indicating that evidence generation consistently benefits LLaMA-3.1-8B. This contrasts with Qwen3-8B's approximately neutral tax (+0.04pp), suggesting that the evidence tax may be architecture-dependent at the 8B scale; however, the high magnitude variance (driven by s43, whose no-evidence configuration has a 16.3\\% format failure rate that inflates the tax estimate) precludes precise quantification. RSFT CED improves LLaMA to a three-seed mean of 56.54 Ign-F1 (std 0.64pp; s42: 57.14, s43: 56.62, s44: 55.87), a +5.45 point gain over SFT mean (51.09), with 4.6$\\times$ variance compression (2.92pp $\\to$ 0.64pp), consistent with the pattern at the 8B scale (Qwen3-8B: +4.14, 6.5$\\times$ compression).\n215\t\n216\t\\paragraph{Cross-dataset robustness.}\n217\tOn Re-DocRED~\\citep{tan2022redocred}, the SFT baseline achieves 36.59 Ign-F1 (Evi-F1 81.70, EDCR 0.6674). RSFT CED improves this to 41.45 Ign-F1 (Evi-F1 81.82, EDCR 0.6210), a +4.86pp gain that closely matches the +5.08pp improvement on DocRED (RSFT three-seed mean minus SFT s42). This consistency across datasets with different annotation protocols confirms that RSFT's benefit generalizes beyond training-set-specific artifacts. Evidence quality remains stable across datasets (Evi-F1 81.82 vs.\\ 81.15 on DocRED), and the EDCR reduction ($-0.046$) mirrors the DocRED pattern, further supporting the robustness of CED-based selection.\n218\t\n219\t\\paragraph{Re-DocRED test set evaluation.}\n220\tTable~\\ref{tab:test_results} reports SFT and RSFT performance on the Re-DocRED test set. We observe a consistent performance gap between dev and test sets, with test Ign-F1 approximately 20 percentage points lower (RSFT: 1.7B 51.2$\\to$29.3, 4B 44.8$\\to$25.0, 8B 54.3$\\to$33.5, 14B 57.9$\\to$38.5, LLaMA-8B 56.5$\\to$35.5; SFT 1.7B: 44.6$\\to$25.8). This gap is attributable to annotation density: the test set contains 34.7 gold triples per document versus 12.3 in the dev set (a 2.82$\\times$ ratio), imposing a harder recall requirement. The gap magnitude is stable across scales and architectures (range: 18.9--21.9pp), and model ranking is perfectly preserved (Spearman $\\rho{=}1.0$), indicating that the absolute drop reflects the test annotation scheme rather than a model-specific deficiency. At 14B, the RSFT advantage observed on dev (+2.78pp) reverses on test ($\\Delta{=}{-}0.37$pp); we note that the SFT model's 50.6\\% truncation rate implies longer outputs that generate more candidate triples to match the test set's dense annotation scheme.\n221\t\n222\t\\begin{table}[t]\n223\t\\centering\n224\t\\caption{SFT and RSFT performance on Re-DocRED test set (Ign-F1 \\%). Dev Ign-F1 (RSFT) from Table~\\ref{tab:scaling}. All test results use s42.}\n225\t\\label{tab:test_results}\n226\t\\small\n227\t\\resizebox{\\columnwidth}{!}{%\n228\t\\begin{tabular}{lccccccc}\n229\t\\toprule\n230\t\\textbf{Model} & \\textbf{Dev} & \\textbf{SFT} & \\textbf{RSFT} & \\textbf{$\\Delta$} & \\textbf{Tr. SFT} & \\textbf{Tr. RSFT} & \\textbf{Evi-F1} \\\\\n231\t\\midrule\n232\tQwen3-1.7B & 51.19 & 25.79 & 29.33 & +3.54 & 81.8 & 73.8 & 23.20 \\\\\n233\tQwen3-4B & 44.82$^\\dagger$ & 22.32 & 25.01 & +2.69 & 64.6 & 42.8 & 18.38 \\\\\n234\tQwen3-8B & 54.33 & 31.06 & 33.53 & +2.47 & 82.0 & 1.8 & 25.26 \\\\\n235\tQwen3-14B & 57.85 & 38.86 & 38.49 & $-$0.37 & 50.6 & 13.4 & 26.88 \\\\\n236\tLLaMA-3.1-8B & 56.54 & 34.20 & 35.54 & +1.34 & 65.4 & 60.0 & 24.57 \\\\\n237\t\\bottomrule\n238\t\\end{tabular}%\n239\t}\n240\t\\vspace{1mm}\n241\t{\\raggedright\\footnotesize $^\\dagger$4B dev is three-seed mean; test uses retrained checkpoint (comparable dev: 43.88 vs.\\ 44.23). $\\Delta$: RSFT$-$SFT. Evi-F1: RSFT joint (DREEAM). Tr.: truncation (\\%). Dev: multi-seed mean from Table~\\ref{tab:scaling}.\\par}\n242\t\\end{table}\n243\t\n244\t\\paragraph{Test-set evidence tax.}\n245\tTable~\\ref{tab:test_tax} reports the evidence tax on the Re-DocRED test set, comparing SFT models trained with and without evidence in the output format. Test-set evaluation confirms the directional pattern observed on development data across all five model configurations: the tax is negative (beneficial) at 1.7B ($-$4.86pp) and LLaMA-8B ($-$4.94pp), and near-neutral at mid-scales ($-$0.13pp at 4B, $-$0.32pp at 14B). The 8B test tax ($-$1.71pp) shows slight variation from its near-neutral dev counterpart (+0.04pp), though both remain modest relative to the 1.7B and LLaMA benefits.\n246\t\n247\t\\begin{table}[t]\n248\t\\centering\n249\t\\caption{Evidence tax on Re-DocRED test set (Ign-F1 \\%). Tax $=$ no-evi $-$ with-evi; negative $=$ benefit. All results use s42. Dev tax from Table~\\ref{tab:training_tax}.}\n250\t\\label{tab:test_tax}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3561d08-69a7-4569-8d39-6c0d75de9ed9",
+            "isSidechain": true,
+            "promptId": "00884a06-3250-4c87-b491-3b7baf3c5516",
+            "agentId": "a9f9e70a81951bdd8",
+            "type": "user",
+            "uuid": "1cd7aa25-c4b8-4549-81d8-e2318fd45e72",
+            "sourceToolAssistantUUID": "d3561d08-69a7-4569-8d39-6c0d75de9ed9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T19:43:18.510Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll extract all numerical values from the file systematically. Let me organize them by section:\n\n## EXTRACTED NUMERICAL VALUES (Lines 1-250)\n\n### SECTION 1: Training Hyperparameters (Lines 1-36)\n\n**Table 1 (tab:hyperparams) - Model & Adapter Section:**\n- Line 16: `64` (LoRA rank r across all methods)\n- Line 16: `128` (LoRA alpha across all methods)\n\n**Table 1 - Optimization Section:**\n- Line 20: `2e-5` (SFT learning rate)\n- Line 20: `2e-5` (RSFT learning rate)\n- Line 20: `5e-6` (GRPO QLoRA learning rate)\n- Line 20: `5e-6` (GRPO bf16 learning rate)\n- Line 20: `5e-7` (DPO learning rate)\n- Line 21: `16` (SFT batch size, effective)\n- Line 21: `16` (RSFT batch size, effective)\n- Line 21: `4` (GRPO QLoRA batch size)\n- Line 21: `8` (GRPO bf16 batch size)\n- Line 21: `4` (DPO batch size)\n- Line 22: `4` (SFT gradient accumulation)\n- Line 22: `4` (RSFT gradient accumulation)\n- Line 22: `16` (GRPO QLoRA gradient accumulation)\n- Line 22: `4` (GRPO bf16 gradient accumulation)\n- Line 22: `4` (DPO gradient accumulation)\n- Line 23: `3` (SFT epochs)\n- Line 23: `3` (RSFT epochs)\n- Line 23: `100` (GRPO QLoRA max steps)\n- Line 23: `100` (GRPO bf16 max steps)\n- Line 23: `1` (DPO epochs, first setting)\n- Line 23: `3` (DPO epochs, second setting with asterisk)\n\n**Table 1 - RL/Selection Section:**\n- Line 26: `4` (GRPO QLoRA group size)\n- Line 26: `8` (GRPO bf16 group size)\n- Line 27: `0.01` (GRPO QLoRA KL coefficient)\n- Line 27: `0.01` (GRPO bf16 KL coefficient)\n- Line 27: `0.1` (DPO beta)\n- Line 28: `8` (RSFT candidates N)\n- Line 28: `1` (RSFT top-k)\n- Line 28: `8` (GRPO candidates)\n\n**Table 1 - Data Section:**\n- Line 31: `1024` (Max new tokens - all methods)\n- Line 32: `3,053` (SFT training samples)\n- Line 32: `2,718` (RSFT training samples)\n- Line 32: `3,053` (GRPO QLoRA training samples)\n- Line 32: `3,053` (GRPO bf16 training samples)\n- Line 32: `3,053` (DPO training samples)\n\n**Body text (lines 4, 6, 8):**\n- Line 4: `64` (LoRA rank)\n- Line 4: `128` (LoRA alpha)\n- Line 4: `8` (N candidates for RSFT)\n- Line 8: `1` (DPO epochs for first training)\n- Line 8: `3` (DPO epochs for second training)\n\n### SECTION 2: Full Ablation Results (Lines 39-81)\n\n**Body text (lines 42, 44, 46):**\n- Line 42: `44.66` (RSFT CED k=1 four-seed mean Ign-F1)\n- Line 42: `0.53` (Standard deviation of 44.66)\n- Line 42: `39.74` (SFT s42 baseline Ign-F1)\n- Line 42: `44.82` (RSFT three-seed mean from Table 1)\n- Line 42: `42` (Seed 42)\n- Line 42: `43` (Seed 43)\n- Line 42: `44` (Seed 44)\n- Line 42: `44.16` (RSFT s45 Ign-F1)\n- Line 42: `41.14` (Random selection RSFT k=1 Ign-F1)\n- Line 42: `1.40` (pp improvement for random selection)\n- Line 42: `4.92` (pp improvement for CED RSFT)\n- Line 42: `43.64` (RSFT CED k=3 Ign-F1)\n- Line 42: `45.61` (flat-NLI Rel-F1 mean)\n- Line 42: `45.63` (CED Rel-F1 mean)\n- Line 42: `0.02` (pp difference between CED and flat-NLI)\n\n**Body text continued (line 44):**\n- Line 44: `45.63` (CED RSFT mean Rel-F1)\n- Line 44: `42` (Seed 42)\n- Line 44: `43` (Seed 43)\n- Line 44: `44` (Seed 44)\n- Line 44: `45` (Seed 45)\n- Line 44: `45.14` (Range lower bound)\n- Line 44: `46.21` (Range upper bound)\n- Line 44: `45.61` (flat-NLI RSFT mean Rel-F1)\n- Line 44: `42` (Seed 42)\n- Line 44: `43` (Seed 43)\n- Line 44: `45.35` (Range lower bound)\n- Line 44: `45.86` (Range upper bound)\n- Line 44: `0.02` (pp difference)\n\n**Body text continued (line 46):**\n- Line 46: `8` (Denominator for best-of-8)\n- Line 46: `1` (k value)\n- Line 46: `44.66` (k=1 mean Ign-F1)\n- Line 46: `45.63` (k=1 Rel-F1)\n- Line 46: `3` (k value for top-3)\n- Line 46: `8` (Denominator for top-3)\n- Line 46: `43.64` (k=3 Ign-F1)\n- Line 46: `44.54` (k=3 Rel-F1)\n- Line 46: `61.57` (Mean extraction F1 for k=1 data)\n- Line 46: `0.6683` (Mean CED for k=1 data)\n- Line 46: `57.61` (Mean extraction F1 for k=3 data)\n- Line 46: `0.6205` (Mean CED for k=3 data)\n- Line 46: `2.96` (Multiplication factor for more examples)\n\n**Body text (line 48):**\n- Line 48: `304` (DeBERTa-v3-large parameters - millions)\n- Line 48: `86` (DeBERTa-v3-base parameters - millions)\n- Line 48: `1.10` (pp improvement Ign-F1)\n- Line 48: `45.33` (v3-large Ign-F1, s42)\n- Line 48: `44.23` (v3-base Ign-F1)\n- Line 48: `0.88` (pp v3-base seed noise)\n- Line 48: `42` (Seed 42)\n- Line 48: `44.23` (v3-base s42)\n- Line 48: `45.11` (v3-base s44)\n- Line 48: `1.19` (pp improvement Rel-F1)\n- Line 48: `46.36` (v3-large Rel-F1)\n- Line 48: `45.17` (v3-base Rel-F1)\n- Line 48: `0.20` (pp improvement Evi-F1)\n- Line 48: `81.94` (v3-large Evi-F1)\n- Line 48: `81.74` (v3-base Evi-F1)\n- Line 48: `0.39` (pp shift EDCR)\n- Line 48: `0.6530` (v3-large EDCR)\n- Line 48: `0.6569` (v3-base EDCR)\n- Line 48: `3.5` (Multiplication factor - larger scorer)\n\n**Table 2 (tab:ablation_full) - Body text and table:**\n- Line 52: (Caption references evidence-generating methods)\n- Line 60: `39.74` (SFT baseline s42 Ign-F1, table)\n- Line 60: `40.49` (SFT baseline s42 Rel-F1, table)\n- Line 60: `79.86` (SFT baseline s42 Evi-F1, table)\n- Line 60: `0.6982` (SFT baseline s42 EDCR, table)\n- Line 61: `47.21` (SFT no-evidence Ign-F1, table)\n- Line 61: `48.76` (SFT no-evidence Rel-F1, table)\n- Line 63: `41.14` (RSFT random k=1 Ign-F1, table)\n- Line 63: `41.98` (RSFT random k=1 Rel-F1, table)\n- Line 63: `79.64` (RSFT random k=1 Evi-F1, table)\n- Line 63: `0.6971` (RSFT random k=1 EDCR, table)\n- Line 65: `44.23` (RSFT CED k=1 s42 Ign-F1, table)\n- Line 65: `45.17` (RSFT CED k=1 s42 Rel-F1, table)\n- Line 65: `81.74` (RSFT CED k=1 s42 Evi-F1, table)\n- Line 65: `0.6569` (RSFT CED k=1 s42 EDCR, table)\n- Line 66: `45.12` (RSFT CED k=1 s43 Ign-F1, table)\n- Line 66: `46.01` (RSFT CED k=1 s43 Rel-F1, table)\n- Line 66: `80.63` (RSFT CED k=1 s43 Evi-F1, table)\n- Line 66: `0.6542` (RSFT CED k=1 s43 EDCR, table)\n- Line 67: `45.11` (RSFT CED k=1 s44 Ign-F1, table)\n- Line 67: `46.21` (RSFT CED k=1 s44 Rel-F1, table)\n- Line 67: `80.50` (RSFT CED k=1 s44 Evi-F1, table)\n- Line 67: `0.6350` (RSFT CED k=1 s44 EDCR, table)\n- Line 68: `44.16` (RSFT CED k=1 s45 Ign-F1, table)\n- Line 68: `45.14` (RSFT CED k=1 s45 Rel-F1, table)\n- Line 68: `81.74` (RSFT CED k=1 s45 Evi-F1, table)\n- Line 68: `0.6550` (RSFT CED k=1 s45 EDCR, table)\n- Line 69: `44.66` (RSFT CED k=1 mean Ign-F1, table)\n- Line 69: `45.63` (RSFT CED k=1 mean Rel-F1, table)\n- Line 69: `81.15` (RSFT CED k=1 mean Evi-F1, table)\n- Line 69: `0.6503` (RSFT CED k=1 mean EDCR, table)\n- Line 71: `43.64` (RSFT CED k=3 Ign-F1, table)\n- Line 71: `44.54` (RSFT CED k=3 Rel-F1, table)\n- Line 71: `80.88` (RSFT CED k=3 Evi-F1, table)\n- Line 71: `0.6635` (RSFT CED k=3 EDCR, table)\n- Line 73: `45.35` (RSFT flat-NLI s42 Rel-F1, table)\n- Line 73: `80.43` (RSFT flat-NLI s42 Evi-F1, table)\n- Line 73: `0.6431` (RSFT flat-NLI s42 EDCR, table)\n- Line 74: `45.86` (RSFT flat-NLI s43 Rel-F1, table)\n- Line 74: `81.58` (RSFT flat-NLI s43 Evi-F1, table)\n- Line 74: `0.6505` (RSFT flat-NLI s43 EDCR, table)\n- Line 75: `45.61` (RSFT flat-NLI mean Rel-F1, table)\n- Line 75: `81.01` (RSFT flat-NLI mean Evi-F1, table)\n- Line 75: `0.6468` (RSFT flat-NLI mean EDCR, table)\n- Line 77: `45.33` (RSFT CED k=1 v3-large s42 Ign-F1, table)\n- Line 77: `46.36` (RSFT CED k=1 v3-large s42 Rel-F1, table)\n- Line 77: `81.94` (RSFT CED k=1 v3-large s42 Evi-F1, table)\n- Line 77: `0.6530` (RSFT CED k=1 v3-large s42 EDCR, table)\n\n### SECTION 3: Scaling Details (Lines 84-107)\n\n**Body text (line 87):**\n- Line 87: `1.7` (Model scale - 1.7B)\n- Line 87: `52.81` (RSFT Rel-F1 at 1.7B)\n- Line 87: `45.86` (SFT Rel-F1 at 1.7B)\n- Line 87: `6.95` (Improvement in Rel-F1)\n- Line 87: `82.63` (RSFT Evi-F1 at 1.7B)\n- Line 87: `0.6217` (RSFT EDCR at 1.7B)\n- Line 87: `4` (Model scale - 4B)\n- Line 87: `44.39` (SFT Rel-F1 at 4B)\n- Line 87: `45.80` (RSFT Rel-F1 at 4B)\n- Line 87: `1.41` (Improvement in Rel-F1 at 4B, three-seed mean)\n- Line 87: `8` (Model scale - 8B)\n- Line 87: `51.87` (SFT Rel-F1 at 8B)\n- Line 87: `56.07` (RSFT Rel-F1 at 8B, three-seed mean)\n- Line 87: `81.54` (RSFT Evi-F1 at 8B)\n- Line 87: `0.6186` (RSFT EDCR at 8B)\n- Line 87: `14` (Model scale - 14B)\n- Line 87: `56.11` (SFT Rel-F1 at 14B)\n- Line 87: `59.17` (RSFT Rel-F1 at 14B, three-seed mean)\n- Line 87: `82.92` (SFT Evi-F1 at 14B)\n- Line 87: `83.37` (RSFT Evi-F1 at 14B)\n- Line 87: `0.5796` (RSFT EDCR at 14B)\n\n**Table 3 (tab:cross_detail):**\n- Line 99: `45.86` (Qwen3-1.7B SFT Rel-F1, table)\n- Line 99: `82.85` (Qwen3-1.7B SFT Evi-F1, table)\n- Line 99: `52.81` (Qwen3-1.7B RSFT Rel-F1, table)\n- Line 99: `82.63` (Qwen3-1.7B RSFT Evi-F1, table)\n- Line 99: `0.6217` (Qwen3-1.7B RSFT EDCR, table)\n- Line 100: `44.39` (Qwen3-4B SFT Rel-F1, table)\n- Line 100: `79.61` (Qwen3-4B SFT Evi-F1, table)\n- Line 100: `45.80` (Qwen3-4B RSFT Rel-F1, table)\n- Line 100: `80.96` (Qwen3-4B RSFT Evi-F1, table)\n- Line 100: `0.6487` (Qwen3-4B RSFT EDCR, table)\n- Line 101: `51.87` (Qwen3-8B SFT Rel-F1, table)\n- Line 101: `82.94` (Qwen3-8B SFT Evi-F1, table)\n- Line 101: `56.07` (Qwen3-8B RSFT Rel-F1, table)\n- Line 101: `81.54` (Qwen3-8B RSFT Evi-F1, table)\n- Line 101: `0.6186` (Qwen3-8B RSFT EDCR, table)\n- Line 102: `56.11` (Qwen3-14B SFT Rel-F1, table)\n- Line 102: `82.92` (Qwen3-14B SFT Evi-F1, table)\n- Line 102: `59.17` (Qwen3-14B RSFT Rel-F1, table)\n- Line 102: `83.37` (Qwen3-14B RSFT Evi-F1, table)\n- Line 102: `0.5796` (Qwen3-14B RSFT EDCR, table)\n- Line 103: `55.14` (LLaMA-3.1-8B SFT Rel-F1, table)\n- Line 103: `81.51` (LLaMA-3.1-8B SFT Evi-F1, table)\n- Line 103: `57.75` (LLaMA-3.1-8B RSFT Rel-F1, table)\n- Line 103: `82.84` (LLaMA-3.1-8B RSFT Evi-F1, table)\n- Line 103: `0.5804` (LLaMA-3.1-8B RSFT EDCR, table)\n\n**Figure 1 (fig:scaling) caption (line 112):**\n- Line 112: `1.7` (Model scale comparison - 1.7B)\n- Line 112: `4` (Model scale - 4B)\n\n### SECTION 4: Variance Compression Confidence Intervals (Lines 117-141)\n\n**Body text (line 120):**\n- Line 120: `95` (Confidence interval percentage)\n- Line 120: `3` (Number of seeds per configuration)\n- Line 120: `1.7` (Model scale - 1.7B)\n- Line 120: `1.45` (SFT lower CI bound)\n- Line 120: `0.54` (RSFT upper CI bound)\n- Line 120: `0.0625` (Sign test p-value)\n- Line 120: `4` (Number of scales tested)\n- Line 120: `2.5` (Cohen's d threshold)\n\n**Table 4 (tab:variance_ci):**\n- Line 132: `2.79` (Qwen3-1.7B SFT std, table)\n- Line 132: `1.45` (Qwen3-1.7B SFT 95% CI lower, table)\n- Line 132: `17.55` (Qwen3-1.7B SFT 95% CI upper, table)\n- Line 132: `0.09` (Qwen3-1.7B RSFT std, table)\n- Line 132: `0.04` (Qwen3-1.7B RSFT 95% CI lower, table)\n- Line 132: `0.54` (Qwen3-1.7B RSFT 95% CI upper, table)\n- Line 132: `32.6` (Qwen3-1.7B compression factor, table)\n- Line 132: `3.31` (Qwen3-1.7B Cohen's d, table)\n- Line 133: `3.80` (Qwen3-4B SFT std, table)\n- Line 133: `1.98` (Qwen3-4B SFT 95% CI lower, table)\n- Line 133: `23.89` (Qwen3-4B SFT 95% CI upper, table)\n- Line 133: `0.51` (Qwen3-4B RSFT std, table)\n- Line 133: `0.27` (Qwen3-4B RSFT 95% CI lower, table)\n- Line 133: `3.21` (Qwen3-4B RSFT 95% CI upper, table)\n- Line 133: `7.5` (Qwen3-4B compression factor, table)\n- Line 133: `0.46` (Qwen3-4B Cohen's d, table)\n- Line 134: `3.23` (Qwen3-8B SFT std, table)\n- Line 134: `1.68` (Qwen3-8B SFT 95% CI lower, table)\n- Line 134: `20.31` (Qwen3-8B SFT 95% CI upper, table)\n- Line 134: `0.50` (Qwen3-8B RSFT std, table)\n- Line 134: `0.26` (Qwen3-8B RSFT 95% CI lower, table)\n- Line 134: `3.15` (Qwen3-8B RSFT 95% CI upper, table)\n- Line 134: `6.5` (Qwen3-8B compression factor, table)\n- Line 134: `1.79` (Qwen3-8B Cohen's d, table)\n- Line 135: `2.92` (LLaMA-3.1-8B SFT std, table)\n- Line 135: `1.52` (LLaMA-3.1-8B SFT 95% CI lower, table)\n- Line 135: `18.37` (LLaMA-3.1-8B SFT 95% CI upper, table)\n- Line 135: `0.64` (LLaMA-3.1-8B RSFT std, table)\n- Line 135: `0.33` (LLaMA-3.1-8B RSFT 95% CI lower, table)\n- Line 135: `4.01` (LLaMA-3.1-8B RSFT 95% CI upper, table)\n- Line 135: `4.6` (LLaMA-3.1-8B compression factor, table)\n- Line 135: `2.58` (LLaMA-3.1-8B Cohen's d, table)\n- Line 140: `0.0625` (Sign test p-value, footnote)\n- Line 140: `4` (n value for binomial test, footnote)\n\n### SECTION 5: Controlled Evaluation Subset (Lines 144-167)\n\n**Body text (lines 147-149):**\n- Line 147: `1024` (max_new_tokens value)\n- Line 147: `50.9` (Truncation percentage at 1.7B, no-evidence)\n- Line 147: `501` (Numerator for truncation)\n- Line 147: `985` (Denominator for truncation - total documents)\n- Line 147: `31.9` (Truncation percentage at 1.7B, evidence)\n- Line 147: `314` (Numerator for truncation, evidence)\n- Line 147: `2048` (max_new_tokens for fair evaluation)\n- Line 147: `971` (Fair-subset documents)\n- Line 147: `5.63` (Evidence tax at 1.7B)\n- Line 147: `1024` (max_new_tokens for stricter subset)\n- Line 147: `6.2` (Evidence benefit with stricter filtering)\n- Line 147: `442` (Filtered documents count)\n\n**Body text (line 149):**\n- Line 149: `27.5` (Duplication gap at 1.7B)\n- Line 149: `3.7` (Duplication gap at 8B)\n- Line 149: `31.1` (Duplication rate at 4B with evidence)\n- Line 149: `0.25` (4B training-time tax mean)\n- Line 149: `0.47` (4B training-time tax std)\n- Line 149: `0.63` (With-evidence seed spread at 1.7B)\n- Line 149: `0.20` (No-evidence seed spread at 1.7B)\n- Line 149: `75.6` (Truncation percentage at 1.7B with-evidence)\n- Line 149: `94.4` (Truncation percentage at 1.7B no-evidence)\n- Line 149: `1024` (max_new_tokens reference)\n\n**Table 5 (tab:mechanistic):**\n- Line 162: `33.0` (1.7B duplication rate with evidence, table)\n- Line 162: `60.5` (1.7B duplication rate no-evidence, table)\n- Line 162: `27.5` (1.7B duplication gap, table)\n- Line 162: `19` (1.7B truncation delta, table)\n- Line 163: `31.1` (4B duplication rate with evidence, table)\n- Line 163: `43.2` (4B duplication rate no-evidence, table)\n- Line 163: `12.1` (4B duplication gap, table)\n- Line 163: `2` (4B truncation delta, table)\n- Line 164: `29.2` (8B duplication rate with evidence, table)\n- Line 164: `32.9` (8B duplication rate no-evidence, table)\n- Line 164: `3.7` (8B duplication gap, table)\n- Line 164: `9` (8B truncation delta, table)\n\n### SECTION 6: Training-Time Evidence Tax (Lines 170-202)\n\n**Body text (line 177):**\n- Line 177: `1024` (max_new_tokens)\n- Line 177: `50.9` (Truncation at 1.7B %)\n- Line 177: `31.9` (Truncation at 1.7B with-evidence %)\n- Line 177: `2048` (max_new_tokens for fair evaluation)\n- Line 177: `1.7` (Model scale - 1.7B)\n- Line 177: `5.63` (Evidence tax at 1.7B)\n- Line 177: `971` (Fair-subset documents at 1.7B)\n- Line 177: `985` (Total documents)\n- Line 177: `4` (Model scale - 4B)\n- Line 177: `0.25` (4B tax mean)\n- Line 177: `0.47` (4B tax std)\n- Line 177: `8` (Model scale - 8B)\n- Line 177: `0.04` (8B tax)\n- Line 177: `14` (Model scale - 14B)\n- Line 177: `0.03` (14B tax)\n- Line 177: `1.53` (LLaMA tax minimum)\n- Line 177: `11.20` (LLaMA tax maximum)\n- Line 177: `5.19` (LLaMA tax mean)\n- Line 177: `5.25` (LLaMA tax std)\n\n**Body text (line 201):**\n- Line 201: `4` (Model scale - 4B)\n- Line 201: `0.02` (With-evidence seed spread at 4B)\n- Line 201: `0.50` (No-evidence seed spread at 4B)\n- Line 201: `25` (Variance compression factor at 4B)\n- Line 201: `8` (Model scale - 8B)\n- Line 201: `0.35` (With-evidence seed spread at 8B)\n- Line 201: `0.48` (No-evidence seed spread at 8B)\n- Line 201: `1.4` (Compression factor at 8B)\n- Line 201: `1.7` (Model scale - 1.7B)\n- Line 201: `0.63` (With-evidence seed spread at 1.7B)\n- Line 201: `0.20` (No-evidence seed spread at 1.7B)\n- Line 201: `75.6` (Truncation with-evidence %)\n- Line 201: `94.4` (Truncation no-evidence %)\n- Line 201: `1024` (max_new_tokens reference)\n\n**Table 6 (tab:training_tax):**\n- Line 189: `48.38` (Qwen3-1.7B fair with evidence, table)\n- Line 189: `42.75` (Qwen3-1.7B fair no-evidence, table)\n- Line 189: `5.63` (Qwen3-1.7B tax, table)\n- Line 189: `971` (Qwen3-1.7B subset count, table)\n- Line 190: `0.25` (Qwen3-4B tax mean, table)\n- Line 190: `0.47` (Qwen3-4B tax std, table)\n- Line 190: `982` (Qwen3-4B subset count, table)\n- Line 191: `50.15` (Qwen3-8B fair with evidence, table)\n- Line 191: `50.19` (Qwen3-8B fair no-evidence, table)\n- Line 191: `0.04` (Qwen3-8B tax, table)\n- Line 191: `984` (Qwen3-8B subset count, table)\n- Line 192: `55.07` (Qwen3-14B fair with evidence, table)\n- Line 192: `55.10` (Qwen3-14B fair no-evidence, table)\n- Line 192: `0.03` (Qwen3-14B tax, table)\n- Line 192: `985` (Qwen3-14B subset count, table)\n- Line 197: `2048` (max_new_tokens reference)\n- Line 197: `1024` (max_new_tokens reference)\n- Line 197: `0` (Truncation percentage for 14B at 1024)\n\n### SECTION 7: Full Generalization Results (Lines 210-242)\n\n**Body text (line 214):**\n- Line 214: `51.09` (LLaMA-3.1-8B three-seed mean Ign-F1)\n- Line 214: `2.92` (LLaMA-3.1-8B std)\n- Line 214: `53.84` (LLaMA s42 Ign-F1)\n- Line 214: `51.42` (LLaMA s43 Ign-F1)\n- Line 214: `48.02` (LLaMA s44 Ign-F1)\n- Line 214: `2048` (max_new_tokens for fair evaluation)\n- Line 214: `1.53` (LLaMA s42 training-time tax)\n- Line 214: `11.20` (LLaMA s43 training-time tax)\n- Line 214: `2.83` (LLaMA s44 training-time tax)\n- Line 214: `5.19` (LLaMA mean tax)\n- Line 214: `5.25` (LLaMA tax std)\n- Line 214: `8` (Architecture scale - 8B)\n- Line 214: `56.54` (LLaMA RSFT three-seed mean Ign-F1)\n- Line 214: `0.64` (LLaMA RSFT std)\n- Line 214: `57.14` (LLaMA s42 RSFT)\n- Line 214: `56.62` (LLaMA s43 RSFT)\n- Line 214: `55.87` (LLaMA s44 RSFT)\n- Line 214: `5.45` (Gain over SFT mean)\n- Line 214: `4.6` (Variance compression factor)\n- Line 214: `2.92` (Compression numerator)\n- Line 214: `0.64` (Compression denominator)\n- Line 214: `4.14` (Qwen3-8B gain)\n- Line 214: `6.5` (Qwen3-8B compression)\n\n**Body text (line 217):**\n- Line 217: `36.59` (Re-DocRED SFT baseline Ign-F1)\n- Line 217: `81.70` (Re-DocRED SFT Evi-F1)\n- Line 217: `0.6674` (Re-DocRED SFT EDCR)\n- Line 217: `41.45` (Re-DocRED RSFT Ign-F1)\n- Line 217: `81.82` (Re-DocRED RSFT Evi-F1)\n- Line 217: `0.6210` (Re-DocRED RSFT EDCR)\n- Line 217: `4.86` (Gain on Re-DocRED)\n- Line 217: `5.08` (Gain on DocRED)\n- Line 217: `81.15` (DocRED Evi-F1)\n- Line 217: `0.046` (EDCR reduction)\n\n**Body text (line 220):**\n- Line 220: `20` (Percentage points difference between dev/test)\n- Line 220: `1.7` (Model scale - 1.7B)\n- Line 220: `51.2` (1.7B dev Ign-F1)\n- Line 220: `29.3` (1.7B test Ign-F1)\n- Line 220: `4` (Model scale - 4B)\n- Line 220: `44.8` (4B dev Ign-F1)\n- Line 220: `25.0` (4B test Ign-F1)\n- Line 220: `8` (Model scale - 8B)\n- Line 220: `54.3` (8B dev Ign-F1)\n- Line 220: `33.5` (8B test Ign-F1)\n- Line 220: `14` (Model scale - 14B)\n- Line 220: `57.9` (14B dev Ign-F1)\n- Line 220: `38.5` (14B test Ign-F1)\n- Line 220: `56.5` (LLaMA dev Ign-F1)\n- Line 220: `35.5` (LLaMA test Ign-F1)\n- Line 220: `44.6` (SFT 1.7B dev)\n- Line 220: `25.8` (SFT 1.7B test)\n- Line 220: `34.7` (Gold triples per document in test set)\n- Line 220: `12.3` (Gold triples per document in dev set)\n- Line 220: `2.82` (Ratio of test to dev density)\n- Line 220: `18.9` (Min gap range)\n- Line 220: `21.9` (Max gap range)\n- Line 220: `1.0` (Spearman rho value)\n\n**Body text (line 221):**\n- Line 221: `2.78` (14B RSFT advantage on dev)\n- Line 221: `0.37` (14B RSFT disadvantage on test)\n- Line 221: `50.6` (14B SFT truncation rate %)\n\n**Table 7 (tab:test_results):**\n- Line 232: `51.19` (Qwen3-1.7B dev, table)\n- Line 232: `25.79` (Qwen3-1.7B SFT test, table)\n- Line 232: `29.33` (Qwen3-1.7B RSFT test, table)\n- Line 232: `3.54` (Qwen3-1.7B delta, table)\n- Line 232: `81.8` (Qwen3-1.7B SFT truncation %, table)\n- Line 232: `73.8` (Qwen3-1.7B RSFT truncation %, table)\n- Line 232: `23.20` (Qwen3-1.7B RSFT Evi-F1, table)\n- Line 233: `44.82` (Qwen3-4B dev, table)\n- Line 233: `22.32` (Qwen3-4B SFT test, table)\n- Line 233: `25.01` (Qwen3-4B RSFT test, table)\n- Line 233: `2.69` (Qwen3-4B delta, table)\n- Line 233: `64.6` (Qwen3-4B SFT truncation %, table)\n- Line 233: `42.8` (Qwen3-4B RSFT truncation %, table)\n- Line 233: `18.38` (Qwen3-4B RSFT Evi-F1, table)\n- Line 234: `54.33` (Qwen3-8B dev, table)\n- Line 234: `31.06` (Qwen3-8B SFT test, table)\n- Line 234: `33.53` (Qwen3-8B RSFT test, table)\n- Line 234: `2.47` (Qwen3-8B delta, table)\n- Line 234: `82.0` (Qwen3-8B SFT truncation %, table)\n- Line 234: `1.8` (Qwen3-8B RSFT truncation %, table)\n- Line 234: `25.26` (Qwen3-8B RSFT Evi-F1, table)\n- Line 235: `57.85` (Qwen3-14B dev, table)\n- Line 235: `38.86` (Qwen3-14B SFT test, table)\n- Line 235: `38.49` (Qwen3-14B RSFT test, table)\n- Line 235: `0.37` (Qwen3-14B delta (negative), table)\n- Line 235: `50.6` (Qwen3-14B SFT truncation %, table)\n- Line 235: `13.4` (Qwen3-14B RSFT truncation %, table)\n- Line 235: `26.88` (Qwen3-14B RSFT Evi-F1, table)\n- Line 236: `56.54` (LLaMA-3.1-8B dev, table)\n- Line 236: `34.20` (LLaMA-3.1-8B SFT test, table)\n- Line 236: `35.54` (LLaMA-3.1-8B RSFT test, table)\n- Line 236: `1.34` (LLaMA-3.1-8B delta, table)\n- Line 236: `65.4` (LLaMA-3.1-8B SFT truncation %, table)\n- Line 236: `60.0` (LLaMA-3.1-8B RSFT truncation %, table)\n- Line 236: `24.57` (LLaMA-3.1-8B RSFT Evi-F1, table)\n- Line 241: `43.88` (4B comparable dev, footnote)\n- Line 241: `44.23` (4B test checkpoint dev, footnote)\n\n### SECTION 8: Test-set Evidence Tax (Lines 244-250)\n\n**Body text (line 245):**\n- Line 245: `4.86` (1.7B test tax)\n- Line 245: `4.94` (LLaMA-8B test tax)\n- Line 245: `0.13` (4B test tax)\n- Line 245: `0.32` (14B test tax)\n- Line 245: `1.71` (8B test tax)\n- Line 245: `0.04` (8B dev tax)\n\n---\n\n## SUMMARY BY CATEGORY\n\n**Learning Rates:** 2e-5, 5e-6, 5e-7, 1.53, 11.20\n\n**Batch Sizes:** 4, 8, 16\n\n**Model Scales (B):** 1.7, 4, 8, 14\n\n**Performance Metrics (Ign-F1/Rel-F1/Evi-F1):** 38.49 to 59.17, 40.49 to 48.76, 79.61 to 83.37\n\n**EDCR Scores:** 0.5796 to 0.6982\n\n**Improvement Points (pp):** 0.02, 0.03, 0.04, 0.25, 0.47, 1.40, 1.41, 2.47, 2.69, 2.78, 3.54, 4.14, 4.86, 4.92, 5.08, 5.45, 5.63, 6.95\n\n**Standard Deviations/Variance:** 0.09 to 3.80, compression ratios of 4.6x to 32.6x\n\n**Truncation Rates (%):** 1.8, 13.4, 31.9, 42.8, 50.6, 50.9, 60.0, 64.6, 73.8, 75.6, 81.8, 82.0, 94.4\n\n**Cohen's d Values:** 0.46, 1.79, 2.58, 3.31\n\n**Confidence Intervals:** Multiple ranges spanning [0.04, 23.89]\n\n**Sample Counts:** 442, 501, 971, 982, 984, 985, 3,053, 2,718"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cd7aa25-c4b8-4549-81d8-e2318fd45e72",
+            "isSidechain": true,
+            "agentId": "a9f9e70a81951bdd8",
+            "requestId": "req_011CbPrgmYWpyJyRgieNqadG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3a7c0095-238b-4286-8395-3f6bc84851a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FXJHrTSaZqchBKwAKTLYLY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 10154,
+                "cache_read_input_tokens": 39669,
+                "output_tokens": 11136,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10154
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 11136,
+                    "cache_read_input_tokens": 39669,
+                    "cache_creation_input_tokens": 10154,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10154,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-lines-1-250-of-home-ubuntu-agent-ml-research-idea-gen-0513-6-projects-fai.md"
+}

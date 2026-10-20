@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "id": "ff5e030bea138ed66ccd",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #8。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 项目 GPU 白名单：rtx5090-4x 的 cuda:0-3 ",
+  "task_key": "d3774b52-b49a-41aa-bec4-d35b48682d08",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/d3774b52-b49a-41aa-bec4-d35b48682d08.jsonl",
+    "occurrence": 1,
+    "bytes": 612310,
+    "sha256": "3ee6e6c5ad8136e72178970d772ea681187992a02d18e19e037261e14931bc26"
+  },
+  "statistics": {
+    "messages": 163,
+    "user_turns": 9,
+    "tool_calls": 40,
+    "roles": {
+      "record": 39,
+      "user": 9,
+      "assistant": 35,
+      "tool_call": 40,
+      "tool_result": 40
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 72
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "ff5e030bea138ed66ccd-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-8-task-context-1-gpu-rtx5090-4x-cuda-0-3-copy-2.md"
+}

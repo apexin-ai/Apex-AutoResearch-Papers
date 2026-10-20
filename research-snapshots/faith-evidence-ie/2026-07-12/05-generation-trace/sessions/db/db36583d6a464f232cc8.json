@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "db36583d6a464f232cc8",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: faith-evidence-ie ## 运行环境 - 服务器名: rtx5090-4x - SSH 账户: root（调用 ssh_execute / submit_training_job",
+  "task_key": "0fd11c64-66be-42d4-ba3a-0fc2a2247d0c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/0fd11c64-66be-42d4-ba3a-0fc2a2247d0c.jsonl",
+    "occurrence": 1,
+    "bytes": 1025625,
+    "sha256": "677dbea3fbe65e467960ea20a5051c0a524354baa33dd9cc46005466b5549d12"
+  },
+  "statistics": {
+    "messages": 88,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "record": 26,
+      "user": 1,
+      "assistant": 13,
+      "tool_call": 24,
+      "tool_result": 24
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "db36583d6a464f232cc8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "db36583d6a464f232cc8-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "db36583d6a464f232cc8-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-faith-evidence-ie-rtx5090-4x-ssh-root-ssh-execute-submit-train-copy-618.md"
+}
