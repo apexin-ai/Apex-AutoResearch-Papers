@@ -127,6 +127,19 @@
       }
     },
     {
+      "project": "causal_style_decomp_judge--export-20260712",
+      "title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)",
+      "catalog": "../research-snapshots/causal_style_decomp_judge/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1313,
+        "messages": 144810,
+        "user_turns": 4632,
+        "tool_calls": 40693,
+        "unparsed_lines": 0,
+        "conversation": 1313
+      }
+    },
+    {
       "project": "cert_manip_resist_eval",
       "title": "The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation",
       "catalog": "../paper-assets/cert_manip_resist_eval/05-generation-trace/catalog.json",

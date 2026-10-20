@@ -221,6 +221,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1133
+        },
+        "causal_style_decomp_judge": {
+          "status": "uploaded",
+          "project": "causal_style_decomp_judge",
+          "collection": "causal_style_decomp_judge--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "6a46d926e70e96b6ed3840a2033dffe5d5f2fb6e1b5c4784a622580f833b40ec",
+          "indexed_members": 1318,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1313
         }
       },
       "status": "in_progress",
