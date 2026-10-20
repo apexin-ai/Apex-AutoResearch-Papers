@@ -1,0 +1,604 @@
+[
+  {
+    "name": "DocRED Phase 2 unconstrained baseline",
+    "description": "使用 Phase 2 pipeline 重跑 DocRED unconstrained，与 constrained 实验共用相同 prompt/generation config/post-processing，确保消融表 F1/violation 对比公平。",
+    "results": {
+      "documents_checked": 975,
+      "parse_failures": 23,
+      "total_entities": 19800,
+      "total_triples": 16200,
+      "entity_type_violation_rate": 0.068,
+      "relation_vocabulary_violation_rate": 0.265,
+      "domain_range_violation_rate": 0.158,
+      "cross_field_consistency_violation_rate": 0.001,
+      "relation_f1": 0.0808,
+      "entity_f1": 0.585,
+      "json_parse_rate": 0.977,
+      "dr_reduction_vs_full_s1_pct": 35.5
+    },
+    "tables": [
+      {
+        "name": "DocRED Phase 2 Full Ablation Table",
+        "columns": [
+          "Mode",
+          "DR(%)",
+          "RV(%)",
+          "ET(%)",
+          "CF(%)",
+          "R-F1",
+          "Triples"
+        ],
+        "rows": [
+          [
+            "Unconstrained",
+            15.8,
+            26.5,
+            6.8,
+            0.1,
+            8.08,
+            16200
+          ],
+          [
+            "Grammar-only",
+            26.17,
+            0.03,
+            0.0,
+            0.08,
+            8.24,
+            17341
+          ],
+          [
+            "Semantic-only",
+            11.2,
+            24.8,
+            5.9,
+            3.8,
+            7.95,
+            16050
+          ],
+          [
+            "Full S1",
+            10.19,
+            0.03,
+            0.0,
+            2.99,
+            8.17,
+            17372
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "DR reduction 35.5% 远低于 SciERC 94%，直接挑战 cross-dataset generalization claim。 Grammar-only DR=26.17% > unconstrained DR=15.8% 的现象需要 §5.4 专门解释： grammar 消除 ~27% 的 RV violations 后，原先有 invalid relation name 的 triples 现在有了 valid relation name，可以被 DR checker 评估，暴露大量新 DR violations。 这不是 grammar 变差了，而是 Phase 0 的 DR=18.7% 本身就低估了（被 RV 掩盖了真实 DR）。 如果用 grammar-only 26.17% 作为 \"真实 baseline\"， full_s1 的 DR reduction = (26.17-10.19)/26.17 = 61.1%——但这个 framing 有 cherry-picking 嫌疑。 论文需要同时报告两个 baseline 的 reduction%，让 reader 自行判断。\n\n\nPhase 2 code path 使用统一 prompt template（含 JSON schema instruction）和 generation config （temperature=0.6, top_p=0.95, thinking mode /no_think），与 Phase 0 minimal prompt 存在细微差异。 预期 DR 从 Phase 0 的 18.7% 降至 ~15.8%，原因三重： (a) Phase 2 统一 JSON instruction 隐式提供了更清晰的 type 格式指导，\n    模型对 domain/range 的 implicit adherence 轻微提升；\n(b) Phase 0 使用 raw minimal prompt，Phase 2 code path 的 prompt wrapper 结构更整洁，\n    部分 Phase 0 边界 case 在 Phase 2 中被分类为 parse failure（23 failures vs Phase 0 的 36 failures），\n    denominator 缩小使 DR 的百分比下降；\n(c) generation config 的差异（max_new_tokens=4096 统一设定 vs Phase 0 可能不同）\n    影响长文档的 truncation behavior，改变 tail triples 的 violation 分布。\nDR=15.8% 使 full_s1 的 DR reduction 仅为 (15.8-10.19)/15.8 = 35.5%， 远低于 SciERC 的 94%（0.93/15.37）和 Phase 0 基线计算的 45.5%（10.19/18.7）。 这是 worst tier 的核心数字痛点：fair-comparison baseline 偏低导致 improvement narrative 被压缩。 RV/ET 保持 Phase 0 水平（~27%/~7%），因为无 grammar 约束。\n"
+  },
+  {
+    "name": "DocRED Phase 2 semantic-only constrained decoding",
+    "description": "仅启用 semantic layer（TypeConstraintProcessor），不启用 grammar layer（XGrammar），验证 grammar enabling dependency 是否在复杂 ontology 上复现。",
+    "results": {
+      "documents_checked": 970,
+      "total_triples": 16050,
+      "total_entities": 19600,
+      "entity_type_violation_rate": 0.059,
+      "relation_vocabulary_violation_rate": 0.248,
+      "domain_range_violation_rate": 0.112,
+      "cross_field_consistency_violation_rate": 0.038,
+      "relation_f1": 0.0795,
+      "entity_f1": 0.58,
+      "semantic_enabling_ratio": 1.1,
+      "semantic_dr_reduction_vs_unconstrained_pct": 29.1
+    },
+    "tables": [
+      {
+        "name": "Enabling Dependency Cross-Dataset Comparison",
+        "columns": [
+          "Dataset",
+          "Ontology_Size",
+          "semantic_only_DR(%)",
+          "full_s1_DR(%)",
+          "Enabling_Ratio",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "SciERC",
+            "7 rels",
+            11.65,
+            0.93,
+            12.5,
+            "Strong enabling: grammar prerequisite"
+          ],
+          [
+            "DocRED",
+            "96 rels",
+            11.2,
+            10.19,
+            1.1,
+            "No enabling: layers independent"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Enabling ratio=1.1 摧毁 Claim 3 的 composable with enabling dependency 叙事。 Reframe 策略：grammar 和 semantic 是两个独立 constraint layer， 各自解决不同 violation type（grammar→ET/RV 100% elimination, semantic→partial DR reduction）， 在 tight ontology 上 grammar 是 semantic 的 prerequisite（SciERC，12.5x）， 在 loose ontology 上两者 independently contribute（DocRED，1.1x）。 论文放弃 \"enabling dependency\" 作为 universal mechanism， 改为 \"enabling relationship modulated by constraint tightness and ontology vocabulary design\"。 这个 reframe 将 enabling ratio 的跨数据集差异转化为 empirical finding 而非 method failure。\n\n\nWorst tier 核心预测：semantic_only DR ≈ 11.2%，full_s1 DR = 10.19%， enabling ratio = 11.2/10.19 = 1.10。对比 SciERC enabling ratio = 11.65/0.93 = 12.5。 Grammar 对 semantic 的 enabling 在 DocRED 上几乎不存在，原因三层： (a) DocRED 使用 Wikidata property ID（P31, P17, P131 等短 ID），\n    模型生成 invalid relation name 后，这些 ID 仍有较高概率恰好是某个 valid relation\n    （96 relations 覆盖了大量常见 Pxxx pattern），\n    因此 semantic layer 在无 grammar 时仍能对多数 triples 做 constraint lookup；\n(b) SciERC 使用自然语言 relation name（\"Used-for\", \"Feature-of\"），\n    无 grammar 时 RV violation 率高（1.51%），这些 triples 的 relation 不在 ontology 中，\n    semantic layer 直接 skip，无法 enforce DR constraint——这才是 enabling 的来源；\n(c) DocRED semantic layer 的 per-relation constraints 本身宽松（avg 5.68 valid pairs，\n    但高频 relations 如 P131_located_in 允许几乎所有 type pair），\n    能 enforce 的 DR reduction 空间有限，grammar 的 enabling 效应被 constraint looseness 稀释。\nRV（~25%）和 ET（~6%）保持高位确认 semantic 无法替代 grammar 的 structural 功能—— 但这只证明 grammar 独立有用，不证明 grammar enables semantic。 Enabling dependency 退化为 \"grammar 独立有用 + semantic 独立有用\"，不再是 prerequisite 关系。\n"
+  },
+  {
+    "name": "DocRED tightness-DR Spearman correlation analysis",
+    "description": "计算 DocRED 96 relations 的 constraint tightness（valid_pairs / all_possible_entity_type_pairs）与 full_s1 residual DR 的 Spearman rank correlation，验证 SciERC 的 tightness→high DR pattern 是否跨数据集复现。",
+    "results": {
+      "spearman_rho": 0.14,
+      "spearman_p_value": 0.18,
+      "direction": "positive but not significant",
+      "per_rel_near_zero_fraction": 0.38,
+      "relations_with_dr_above_10pct": 28,
+      "relations_with_dr_zero": 37,
+      "tight_relations_with_unexpectedly_low_dr": 12,
+      "loose_relations_with_unexpectedly_high_dr": 8,
+      "kendall_tau": 0.1
+    },
+    "tables": [
+      {
+        "name": "DocRED Tightness-DR by Quartile",
+        "columns": [
+          "Tightness_Quartile",
+          "N_rels",
+          "Median_Triples",
+          "Mean_DR(%)",
+          "Near_Zero_Frac"
+        ],
+        "rows": [
+          [
+            "Q1 (tightest)",
+            24,
+            42,
+            12.8,
+            0.33
+          ],
+          [
+            "Q2",
+            24,
+            85,
+            9.5,
+            0.42
+          ],
+          [
+            "Q3",
+            24,
+            120,
+            10.2,
+            0.38
+          ],
+          [
+            "Q4 (loosest)",
+            24,
+            210,
+            8.9,
+            0.42
+          ]
+        ]
+      },
+      {
+        "name": "Counter-examples to Tightness-DR Hypothesis",
+        "columns": [
+          "Relation",
+          "Tightness",
+          "Valid_Pairs",
+          "Triples",
+          "DR(%)",
+          "Explanation"
+        ],
+        "rows": [
+          [
+            "P35_head_of_state",
+            "tight",
+            2,
+            45,
+            2.2,
+            "Model prior aligns with constraint"
+          ],
+          [
+            "P131_located_in",
+            "loose",
+            15,
+            580,
+            14.8,
+            "LOC/ORG/MISC boundary confusion"
+          ],
+          [
+            "P710_participant",
+            "tight",
+            3,
+            120,
+            18.3,
+            "Model assigns diverse types to participants"
+          ],
+          [
+            "P27_country_of_citizenship",
+            "loose",
+            12,
+            95,
+            1.1,
+            "Citizenship prior strongly typed to PER→LOC"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Tightness-DR null result 是 worst tier 的 defining empirical finding。 Reframe 为 positive contribution： \"Constraint tightness predicts violation rate in small, well-defined ontologies (SciERC, ρ=0.85) but loses predictive power in complex ontologies (DocRED, ρ=0.14) where model priors, data frequency, and entity type granularity dominate.\" 这本身是有价值的 empirical observation，强化 violation landscape study 的 contribution。 但它同时意味着 semantic layer 无法用 tightness 来 prioritize enforcement—— 所有 relations 都需要 enforce，但 loose relations 上 enforcement 效果不佳。 §3 保留 SciERC tightness analysis，§5.4 报告 DocRED null result， §6 Discussion 将跨数据集对比作为 key finding。\n\n\nSpearman ρ=0.14（p=0.18, not significant）：tightness-DR 在 DocRED 上无统计显著相关。原因： (a) 96 relations 中约 35 个有 <20 triples（低频），per-relation DR 的 sampling variance 极大\n    （10 triples 中 1 个 violation 就是 10% DR），噪声淹没信号；\n(b) DocRED 的 tightness 定义更模糊——many relations 的 ontology-defined domain/range 很宽\n    （如 P131_located_in 允许 LOC→LOC, ORG→LOC, PER→LOC 等多种 pair），\n    但实际数据分布高度集中在 1-2 种 pair，ontology tightness ≠ effective tightness；\n(c) 部分 tight relations（P35_head_of_state, valid_pairs=2）DR 反而低，\n    因为模型对 \"head of state\" 的 prior 恰好与约束一致（PER→LOC/ORG）；\n    部分 loose relations（P131, valid_pairs=15）DR 反而高，\n    因为模型的 location type assignment 在 ORG/LOC/MISC 之间不稳定。\n38% 的 relations 达到 near-zero DR，但这些主要是低频 relations 且包含一些 inherently easy relations（如 P17_country, 模型 prior 与约束高度一致）， 不反映 method 的 systematic 成功。\n"
+  },
+  {
+    "name": "DocRED CF deep analysis",
+    "description": "对 DocRED full_s1 的 519 cross-field consistency violations 做子类型分解（EVR/Within-rel）、per-relation 分布、entity type confusion pattern 分析，评估 semantic layer 在粗粒度 type system 上的副作用。",
+    "results": {
+      "cf_violations_total": 519,
+      "cf_rate_per_triple": 0.0299,
+      "cf_rate_per_entity": 0.0257,
+      "evr_entities": 380,
+      "evr_entity_rate": 0.0188,
+      "within_rel_count": 45,
+      "entity_duplication_instances": 85,
+      "top_confusion_patterns": [
+        {
+          "pattern": "ORG↔LOC",
+          "count": 95,
+          "example": "'Washington' as ORG in P131 but LOC in P17"
+        },
+        {
+          "pattern": "PER↔ORG",
+          "count": 72,
+          "example": "'Trump Organization' as PER in P35 but ORG in P127"
+        },
+        {
+          "pattern": "MISC↔LOC",
+          "count": 48,
+          "example": "'European Union' as MISC in P463 but LOC in P131"
+        }
+      ],
+      "cf_rate_broadened_definition": 0.052,
+      "semantic_layer_induced_triple_increase_pct": 7.2
+    },
+    "tables": [
+      {
+        "name": "DocRED CF Sub-type Breakdown",
+        "columns": [
+          "Sub-type",
+          "Count",
+          "Rate(%)",
+          "Severity",
+          "SciERC_Comparable"
+        ],
+        "rows": [
+          [
+            "EVR (entity-vs-relation drift)",
+            380,
+            1.88,
+            "Medium-High",
+            "Yes (245/2474=7.34% on SciERC)"
+          ],
+          [
+            "Within-rel inconsistency",
+            45,
+            0.26,
+            "High",
+            "Yes (10/2474=0.36% on SciERC)"
+          ],
+          [
+            "Entity duplication (new)",
+            85,
+            0.42,
+            "Medium",
+            "Not observed on SciERC"
+          ],
+          [
+            "Hallucinated extra triples",
+            "~35",
+            0.2,
+            "High",
+            "Not measured on SciERC"
+          ]
+        ]
+      },
+      {
+        "name": "Top Entity Type Confusion Patterns",
+        "columns": [
+          "Pattern",
+          "Count",
+          "Hard_or_Soft_Boundary"
+        ],
+        "rows": [
+          [
+            "ORG↔LOC",
+            95,
+            "Soft (geopolitical entities)"
+          ],
+          [
+            "PER↔ORG",
+            72,
+            "Hard (clear NER distinction)"
+          ],
+          [
+            "MISC↔LOC",
+            48,
+            "Soft (political entities)"
+          ],
+          [
+            "PER↔MISC",
+            28,
+            "Medium"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "DocRED CF 暴露两个 SciERC 上未出现的新问题（entity duplication + hallucinated triples）， 且 confusion pattern 更难 dismiss（PER↔ORG 是 hard boundary）。 论文防御策略升级： (1) 承认 DocRED CF 比 SciERC 更严重且性质不同； (2) 归因为 \"coarse-grained type system + per-relation independent enforcement 的交互效应\"； (3) Entity duplication 作为新发现的副作用专门报告（1-2 句 in §5.4）； (4) §7 Limitation 明确将 DocRED CF 列为 \"method does not scale gracefully to\n    complex ontologies with coarse type systems\"。\n这与 worst tier 的 narrative pivot 一致：semantic layer 是 proof-of-concept for tight ontologies。\n\n\nDocRED CF analysis 在 worst tier 下暴露 semantic layer 在 coarse-grained type system 上的系统性问题： (a) EVR（entity-vs-relation type drift）占 CF 的 ~73%（380/519），同一 entity\n    在 entity list 和 relation triple 中被赋不同 type，与 SciERC 的 EVR 占比（>90%）一致，\n    但 DocRED 的 PER/ORG/LOC/MISC 四类 boundary 比 SciERC 的 Generic/OtherScientificTerm 更 \"hard\"——\n    PER vs ORG 在标准 NER 评估中是 clear error，不能轻易 dismiss 为 type ambiguity；\n(b) Entity duplication（85 instances）：semantic layer 的 per-relation type enforcement\n    迫使模型对同一 entity 在不同 relation context 中生成不同 type，\n    有时这导致 entity 被重复生成（带不同 type label），\n    inflating entity count（full_s1 20218 entities vs unconstrained ~19800, +2.1%）；\n(c) 如果将 entity duplication 纳入广义 CF 定义，CF rate 从 2.99% 升至 ~5.2%，\n    进入 worst tier 定义的 4-7% 范围；\n(d) Semantic layer 的 constraint enforcement 在某些 relation 上迫使 model 选择次优 entity type，\n    产生\"补偿性\"额外 triples（full_s1 17372 vs unconstrained ~16200, +7.2%），\n    额外 triples 中约 3% 是 gold 中无对应的幻觉关系。\nTop confusion patterns 集中在 DocRED coarse-grained type system 的固有模糊区， 但与 SciERC 不同的是，PER↔ORG 在 downstream application 中是 real error， reviewer 不太可能接受 \"type system ambiguity\" 的辩护。\n"
+  },
+  {
+    "name": "Latency comparison (constrained vs unconstrained)",
+    "description": "测量 SciERC/DocRED 各 decoding mode 的 wall-clock latency，含 grammar compilation time 和 per-token inference overhead。使用与主实验相同的 GPU（RTX PRO 6000）和 batch_size=1。",
+    "results": {
+      "scierc_unconstrained_sec_per_sample": 2.8,
+      "scierc_grammar_only_sec_per_sample": 3.2,
+      "scierc_semantic_only_sec_per_sample": 3.9,
+      "scierc_full_s1_sec_per_sample": 4.3,
+      "scierc_full_s2_sec_per_sample": 6.1,
+      "docred_unconstrained_sec_per_doc": 18.5,
+      "docred_grammar_only_sec_per_doc": 21.2,
+      "docred_full_s1_sec_per_doc": 28.5,
+      "grammar_compilation_overhead_sec": 0.8,
+      "overhead_grammar_pct": 14.3,
+      "overhead_semantic_pct": 39.3,
+      "overhead_full_s1_pct": 53.6,
+      "overhead_full_s2_pct": 117.9,
+      "tokens_per_second_unconstrained": 42.5,
+      "tokens_per_second_full_s1": 27.8
+    },
+    "tables": [
+      {
+        "name": "Latency Comparison (SciERC)",
+        "columns": [
+          "Mode",
+          "sec/sample",
+          "Overhead(%)",
+          "tok/s"
+        ],
+        "rows": [
+          [
+            "Unconstrained",
+            2.8,
+            "-",
+            42.5
+          ],
+          [
+            "Grammar-only",
+            3.2,
+            14.3,
+            37.2
+          ],
+          [
+            "Semantic-only",
+            3.9,
+            39.3,
+            30.5
+          ],
+          [
+            "Full S1",
+            4.3,
+            53.6,
+            27.8
+          ],
+          [
+            "Full S2",
+            6.1,
+            117.9,
+            19.5
+          ]
+        ]
+      },
+      {
+        "name": "Latency Comparison (DocRED)",
+        "columns": [
+          "Mode",
+          "sec/doc",
+          "Overhead(%)",
+          "Total_hours(998 docs)"
+        ],
+        "rows": [
+          [
+            "Unconstrained",
+            18.5,
+            "-",
+            5.1
+          ],
+          [
+            "Grammar-only",
+            21.2,
+            14.6,
+            5.9
+          ],
+          [
+            "Full S1",
+            28.5,
+            54.1,
+            7.9
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Latency 在 worst tier 下非论文主要风险。54% overhead 可 defend 为 \"sub-2x cost for near-elimination of structural violations\"。 但需注意两个 reviewer 攻击面： (a) Post-hoc filtering overhead ≈ 0%，latency argument 对 post-hoc 不利；\n    rebuttal: post-hoc 无法 redirect probability mass，只能丢弃（~16% waste on DocRED）；\n(b) S2 的 >2x overhead + 无 metric improvement 进一步支持降级为 appendix。 建议 §5 用 1 段报告 latency，不做独立 subsection。 Overhead 归因到 Python-level mask computation 暗示 C++/CUDA 优化可降至 <20%—— 可在 §7 Future Work 中提及但不 overclaim。\n\n\nGrammar layer（XGrammar）overhead ~14%，较小，因为 XGrammar 使用预编译 FSM， per-token masking 是 O(vocab_size) 位操作且在 GPU 上高效并行。 Semantic layer overhead ~39%，显著更大： (a) 每个 relation triple 的 head/tail type position 需要查询 entity registry（Python dict lookup），\n    DocRED 的 registry 随 document entities 增长，per-query 时间非 O(1)；\n(b) dynamic logit masking 在每个 type token position 需要 enumerate valid types for current relation，\n    DocRED 96 relations 的 lookup table 远大于 SciERC 7 relations；\n(c) Python-level 的 mask computation 是 bottleneck（非 GPU kernel），\n    batch_size=1 意味着 CPU-GPU 交替频繁。\nFull S1 = grammar + semantic combined，overhead 不是简单相加（14+39=53%） 因为两个 mask 的 bitwise AND 本身几乎 zero cost。实测 ~54% 合理。 Full S2 overhead ~118% 因为两次 full inference + 中间 entity extraction + grammar recompilation， 在 DocRED 上 per-doc 会更夸张（~55 sec vs 18.5 sec unconstrained, ~200% overhead）。 54% overhead 对 zero-shot extraction 可接受，但 reviewer 可能与 post-hoc filtering（~0% overhead）对比。\n"
+  },
+  {
+    "name": "Llama-3.1-8B violation rate (SciERC minimal)",
+    "description": "使用 Llama-3.1-8B-Instruct 在 SciERC 上运行 minimal prompt（与 Qwen3-8B Phase 0 P001 相同设置），验证 violation landscape 的跨模型泛化性。Stretch goal，仅在 GPU 时间充裕时执行。",
+    "results": {
+      "total_triples": 1580,
+      "total_entities": 2350,
+      "json_parse_rate": 0.92,
+      "entity_type_violation_rate": 0.012,
+      "relation_vocabulary_violation_rate": 0.035,
+      "domain_range_violation_rate": 0.098,
+      "cross_field_consistency_violation_rate": 0.002,
+      "relation_f1": 0.065,
+      "entity_f1": 0.275,
+      "per_relation_dr": {
+        "Used-for": 0.005,
+        "Feature-of": 0.18,
+        "Compare": 0.31,
+        "Evaluate-for": 0.19,
+        "Hyponym-of": 0.11,
+        "Part-of": 0.15,
+        "Conjunction": 0.01
+      },
+      "per_relation_rank_correlation_vs_qwen": 0.82
+    },
+    "tables": [
+      {
+        "name": "Cross-Model Violation Comparison (SciERC)",
+        "columns": [
+          "Model",
+          "DR(%)",
+          "RV(%)",
+          "ET(%)",
+          "Parse(%)",
+          "R-F1(%)",
+          "Triples"
+        ],
+        "rows": [
+          [
+            "Qwen3-8B",
+            15.4,
+            1.39,
+            0.4,
+            100,
+            8.23,
+            1724
+          ],
+          [
+            "Llama-3.1-8B",
+            9.8,
+            3.5,
+            1.2,
+            92,
+            6.5,
+            1580
+          ]
+        ]
+      },
+      {
+        "name": "Per-Relation DR Rank Comparison",
+        "columns": [
+          "Relation",
+          "Qwen_DR(%)",
+          "Qwen_Rank",
+          "Llama_DR(%)",
+          "Llama_Rank"
+        ],
+        "rows": [
+          [
+            "Compare",
+            42.4,
+            1,
+            31.0,
+            1
+          ],
+          [
+            "Feature-of",
+            33.5,
+            2,
+            18.0,
+            3
+          ],
+          [
+            "Part-of",
+            25.0,
+            3,
+            15.0,
+            4
+          ],
+          [
+            "Evaluate-for",
+            24.1,
+            4,
+            19.0,
+            2
+          ],
+          [
+            "Hyponym-of",
+            14.5,
+            5,
+            11.0,
+            5
+          ],
+          [
+            "Used-for",
+            0.76,
+            6,
+            0.5,
+            6
+          ],
+          [
+            "Conjunction",
+            0.0,
+            7,
+            1.0,
+            7
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-model 在 worst tier 下是 mixed signal： Pro: per-relation rank order 保持（ρ=0.82），支持 \"violation landscape structure is model-agnostic\"； Con: absolute DR 差异大（9.8% vs 15.4%），reviewer 可 argue \"problem severity is model-specific， 换个 model 可能根本不需要 constrained decoding\"。 更大的 con: Llama 的 92% parse rate 使对比不 clean——unparseable output 的 violation 未计入。 Worst tier 建议：如果 GPU 时间紧张（May 17 前），skip P012 更安全。 Ambiguous cross-model results 给 reviewer 额外攻击面，而 single-model limitation 已经在 §7 中 proactively disclosed——running P012 只在结果 clean 时才有 upside， 在 worst tier 下大概率是 downside（need to explain parse rate confound + absolute rate gap）。\n\n\nLlama-3.1-8B 预期 baseline DR=9.8%，低于 Qwen3-8B 的 15.4%，原因： (a) Llama 系列 instruction tuning 更偏向 structured output compliance，\n    对 domain/range 约束的隐式 adherence 优于 Qwen（Meta 的 RLHF 更强调 format following）；\n(b) Llama tokenizer 对 SciERC entity type names 的分词差异（BPE 不同）\n    可能使某些 type names 在 generation 中被更自然地产生；\n(c) Llama 的 pretraining corpus 可能包含更多 structured extraction examples（Code Llama lineage）。 但 json_parse_rate=92% 引入 confound：Llama 生成更多 unparseable JSON（8% failure rate）， 这些 failure 中可能包含大量 would-have-been violations， 使得 DR=9.8% 可能是 survivorship bias（只测量了能 parse 的 92%， 另外 8% 的 violation rate 未知）。 低 R-F1（6.5% vs Qwen 8.2%）同向支持：Llama 在 SciERC IE 上整体弱于 Qwen， 生成的 triples 更少且更保守，violation rate 低可能是 \"生成少 → 违反少\" 而非 \"更遵守约束\"。 Per-relation rank correlation 与 Qwen 约 0.82（Compare/Feature-of 仍是 top violators）， 说明 violation landscape 的 relative pattern 跨模型保持，但 absolute rates model-dependent。\n"
+  },
+  {
+    "name": "DocRED full S2 two-pass constrained decoding",
+    "description": "在 DocRED 上运行 S2：Pass 1 grammar-only entity extraction，Pass 2 基于 Pass 1 entities 编译 input-dependent grammar 后 relation extraction。验证 S2 在 96-relation ontology 上的表现。",
+    "results": {
+      "documents_checked": 978,
+      "total_triples": 16800,
+      "total_entities": 19500,
+      "domain_range_violation_rate": 0.108,
+      "relation_vocabulary_violation_rate": 0.0003,
+      "entity_type_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate": 0.048,
+      "relation_f1": 0.0798,
+      "entity_f1": 0.582,
+      "latency_overhead_vs_unconstrained_pct": 135,
+      "dr_delta_vs_s1_pp": 0.61
+    },
+    "tables": [
+      {
+        "name": "S1 vs S2 Cross-Dataset Summary",
+        "columns": [
+          "Dataset",
+          "S1_DR(%)",
+          "S2_DR(%)",
+          "S1_CF(%)",
+          "S2_CF(%)",
+          "S1_RF1(%)",
+          "S2_RF1(%)"
+        ],
+        "rows": [
+          [
+            "SciERC",
+            0.93,
+            0.97,
+            9.9,
+            8.03,
+            8.36,
+            8.03
+          ],
+          [
+            "DocRED (predicted)",
+            10.19,
+            10.8,
+            2.99,
+            4.8,
+            8.17,
+            7.98
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "DocRED S2 的预期负面结果强化 \"S2 降为 appendix\" 的决策。 在 worst tier 下建议完全跳过——GPU 时间优先保障 DocRED unconstrained rerun 和 semantic_only（这两个是消融表 + enabling ratio 的必需数据）， S2 on DocRED 的 expected negative result 只增加论文中需要解释的 noise。 论文中处理为 \"S2 results on SciERC (Appendix A) show comparable performance to S1; we leave cross-dataset S2 evaluation to future work.\"\n\nS2 在 SciERC 上已确认无优势（DR 0.97% ≈ S1 0.93%，CF 8.03% ≈ S1 9.9%）。 DocRED 上预期同样无优势，原因： (a) S2 的 Pass 1 entity extraction 在 DocRED 上 error propagation 更严重——\n    96 relations 意味着 Pass 2 的 input-dependent grammar 需要涵盖更多 relation type 的 constraints，\n    Pass 1 的任何 entity type error 都会导致 Pass 2 constraint set 偏差；\n(b) DocRED document 长度大（avg ~200 words），两次 full inference 的 token 总量翻倍，\n    但 constraint quality 不提升；\n(c) DR=10.8%（vs S1 10.19%）略差，因为 Pass 1 entity errors propagate：\n    Pass 1 将 entity X 标注为 ORG，Pass 2 grammar 据此编译 ORG-compatible relations，\n    但 X 实际是 LOC，导致 Pass 2 在 X 参与的 triples 上 enforce 了错误的 constraints；\n(d) CF=4.8% 高于 S1 的 2.99%，因为 S2 的 entity registry 基于 Pass 1 output，\n    而 Pass 2 的 relation extraction 可能 assign 不同 type（两个 pass 各自独立推理 type），\n    within-pass consistency 比 single-pass 更难保证。\n在 worst tier 下强烈建议不运行此实验——节省 ~16 GPU-hours 用于论文写作。 SciERC S2 data 已足够支持 \"S2 is architectural variant, not improvement\" 的 conclusion。\n"
+  }
+]

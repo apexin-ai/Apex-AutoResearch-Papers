@@ -1,0 +1,22 @@
+{
+  "exp_id": "sft_baseline_v1",
+  "project": "prov_grounded_uie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:32:55.818Z",
+    "updated_at": "2026-05-12T12:32:55.818Z",
+    "spec": {
+      "hypothesis": "Qwen3-8B with LoRA can learn to co-predict relations and evidence spans from DocRED supervised data",
+      "model_name": "Qwen/Qwen3-8B",
+      "data_path": "/root/autodl-tmp/prov_grounded_uie/data/docred_train.jsonl",
+      "data_count": 3027,
+      "server": "autodl-rtxpro6000",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-12T12:32:55.830279+00:00",
+  "trigger": "update_registry"
+}

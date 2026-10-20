@@ -1,0 +1,135 @@
+\section{Related Work}
+\label{sec:related_work}
+
+% ===========================================================================
+% Paradigm 1: Grammar-Constrained Decoding
+% ===========================================================================
+\paragraph{Grammar-Constrained Decoding.}
+Recent work has established efficient algorithms for restricting LLM outputs to conform to context-free grammars, ensuring structural validity of generated text.
+%
+XGrammar~\cite{dong2025xgrammar} partitions the vocabulary into context-independent and context-dependent tokens, achieving 100$\times$ speedup over prior CFG-constrained decoding via persistent pushdown automata.
+%
+Outlines~\cite{willard2023outlines} reformulates constrained generation as finite-state machine transitions with offline vocabulary indexing, while LMQL~\cite{beurer-kellner2023lmql} introduces a declarative query language that compiles type, length, and regex constraints into token-level masks.
+%
+A parallel line addresses the \emph{distribution distortion} introduced by naive token masking: DOMINO~\cite{beurer-kellner2024domino} minimizes distributional divergence during CFG enforcement, and ASAp~\cite{park2024grammar} provides an unbiased sampling algorithm that preserves the original LM distribution under grammar constraints.
+%
+\textbf{Distinction:} OntoCoDec's grammar layer builds on XGrammar for structural (JSON schema + enum) constraints, but these methods operate exclusively at the syntactic level---they ensure format validity but cannot enforce cross-field semantic constraints such as ontology domain/range rules.
+
+% TODO: Expand with 2-3 sentences on how grammar-constrained decoding has become
+% the de facto standard for structured output, and why the syntactic-only limitation
+% motivates our semantic extension.
+
+% ===========================================================================
+% Paradigm 1.5: Semantic Constrained Decoding for Code
+% ===========================================================================
+\paragraph{Semantic Constrained Decoding for Code.}
+In programming-language generation, constrained decoding has been extended beyond syntax to enforce semantic properties such as type correctness.
+%
+Synchromesh~\cite{synchromesh_iclr2022} pioneers Constrained Semantic Decoding (CSD), which enforces syntax, type, and scope constraints simultaneously during code generation from pre-trained LMs, establishing that semantic constraints can be compiled into token-level filtering without fine-tuning.
+%
+MGD~\cite{mgd_neurips2023} uses static-analysis monitors to perform type checking at decode time, enabling SantaCoder-1.1B to outperform text-davinci-003 on repository-level code completion by enforcing type-correct identifier usage.
+%
+Most recently, \citet{pldi2025_type_constrained_codegen} compile full type systems into prefix automata for token-level logits masking, reducing compilation errors by over 50\%---the closest mechanistic analog to OntoCoDec, applying the same ``type system $\to$ automaton $\to$ logits mask'' pipeline.
+%
+\textbf{Distinction:} These methods demonstrate that semantic (type) constraints at decode time are both feasible and highly effective---but exclusively in the code domain, where type systems are formally specified. OntoCoDec is the first to migrate this paradigm to information extraction, compiling IE ontology axioms (domain/range constraints) into an analogous decoding-time enforcement mechanism.
+
+% TODO: Expand with 1-2 sentences on the technical differences between PL type
+% systems and IE ontology axioms (e.g., subtyping vs. domain/range), and how
+% OntoCoDec bridges this gap.
+
+% ===========================================================================
+% Paradigm 2: Vocabulary/Type-Constrained Generation
+% ===========================================================================
+\paragraph{Vocabulary and Type-Constrained Generation.}
+The idea of enforcing entity-type compatibility constraints for IE dates back to pre-neural methods: \citet{roth_yih_2004} formulate joint entity and relation identification as an integer linear program (ILP) that enforces type constraints---e.g., EMP-ORG only between PER and ORG entities---establishing the principle that relational type compatibility should be a hard constraint, not a soft preference.
+%
+In the autoregressive era, GENRE~\cite{decao2021genre} pioneers trie-based constrained beam search for autoregressive entity retrieval, limiting each decoding step to tokens consistent with valid entity names.
+%
+GenIE~\cite{josifoski2022genie} extends this to end-to-end IE with state-based constraints that enforce valid triple structures, though it requires task-specific fine-tuning.
+%
+AdaKGC~\cite{adakgc_emnlp2023} introduces schema-constrained dynamic decoding with trie-based prefix trees that adapt to the target schema, enforcing that generated entity and relation names belong to a predefined inventory---a vocabulary-level constraint that ensures name validity but not type compatibility.
+%
+GCD~\cite{geng2023gcd} provides a unified grammar-constrained decoding framework for structured NLP tasks including IE, introducing input-dependent grammars for greater flexibility.
+%
+NeuroLogic Decoding~\cite{lu2021neurologic} expresses lexical inclusion/exclusion constraints as predicate logic formulas enforced during beam search.
+%
+\textbf{Distinction:} These approaches constrain \emph{which tokens} can appear (vocabulary membership) but not \emph{which type combinations} are valid for a given relation. OntoCoDec's semantic layer enforces relational constraints---e.g., that the head entity of relation $R$ must belong to type set $\mathcal{D}(R)$---which cannot be expressed as static vocabulary restrictions. Roth \& Yih's ILP formulation shares the same type-compatibility motivation but operates as a post-hoc reranker over discrete candidates, whereas OntoCoDec integrates enforcement directly into autoregressive decoding.
+
+% TODO: Add 1-2 sentences positioning GCD as the closest precursor (same logits-masking
+% mechanism for IE) and clarifying that OntoCoDec extends from syntactic to semantic constraints.
+
+% ===========================================================================
+% Paradigm 3: Structural Constraints for IE
+% ===========================================================================
+\paragraph{Structural Constraints via Training and Prompting.}
+An orthogonal approach encodes IE output structure through model training or prompt design rather than decoding-time enforcement.
+%
+UIE~\cite{lu2022uie} defines a Structured Extraction Language and trains a unified text-to-structure model across 13 IE datasets, relying on large-scale pre-training to produce schema-compliant outputs.
+%
+GoLLIE~\cite{sainz2024gollie} expresses annotation guidelines as Python dataclass definitions, fine-tuning Code-LLaMA to generate typed code, achieving strong zero-shot transfer to unseen IE schemas.
+%
+KnowCoder~\cite{knowcoder_acl2024} takes this further by encoding 29K entity types from Wikidata as a Python class hierarchy, training a Code-LLM to generate structured extraction code that implicitly respects type inheritance---the most comprehensive schema-as-code approach to date.
+%
+CodeIE~\cite{li2023codeie} reformulates IE as code generation, leveraging the implicit type structure of programming languages.
+%
+ADELIE~\cite{qi2024adelie} uses SFT and DPO to align LLMs on IE tasks, achieving SOTA among open-source models while preserving general capabilities.
+%
+EnriCo~\cite{zaratiana2024enrico} applies Answer Set Programming (ASP) constraints during decoding of joint entity-relation extraction models, enforcing structural type compatibility at generation time---a decoding-time approach, though with model-specific (non-ontology-driven) constraints.
+%
+\textbf{Distinction:} Training-based methods provide \emph{soft} structural guidance---the model learns to prefer valid outputs but offers no compliance guarantee at inference time. EnriCo's ASP constraints are hard but model-specific and require manual rule authoring. OntoCoDec provides \emph{hard} decoding-time enforcement that is training-free, automatically compiled from ontology schemas, and composable with any of these approaches.
+
+% TODO: Expand with discussion of how training-based and decoding-time approaches
+% are complementary (e.g., GoLLIE + OntoCoDec), not competing.
+
+% ===========================================================================
+% Paradigm 4: Type-Checking / Ontology Validation
+% ===========================================================================
+\paragraph{Post-hoc Ontology Validation.}
+Rather than constraining generation, several methods validate LLM outputs against ontological rules after generation.
+%
+ODKE+~\cite{khorshidi2025odke} dynamically generates ontology snippets containing domain/range constraints as prompt context, achieving 98.8\% precision across 195 predicates at web scale---but constraint adherence relies on prompt-level guidance, not enforcement.
+%
+SPIRES/OntoGPT~\cite{spires_2024} provides an ontology-based extraction framework that grounds LLM outputs against OBO ontologies post-generation, representing the prompt-then-validate paradigm in the biomedical domain.
+%
+OntoLogX~\cite{ontologx_2025} applies SHACL validation to LLM-generated knowledge graphs, iteratively correcting constraint violations and reducing them by approximately 10$\times$---demonstrating the detect-then-fix paradigm's effectiveness but also its inherent multi-pass cost.
+%
+\citet{upadhyay2023openie} inject entity-type knowledge as constraints into Open IE via both constrained inference and constraint-aware training, improving F1 by 29\% on CaRB.
+%
+\citet{regino2025kgcurator} propose a multi-stage LLM pipeline for validating RDF triple insertions against domain/range constraints, representing the post-hoc validation paradigm.
+%
+\citet{ekaw2024_ontology_beam} introduce ontology-constrained beam scoring for clinical summarization, applying soft biases (not hard masks) during beam search to steer outputs toward ontology-compliant terms---a middle ground between unconstrained generation and hard enforcement.
+%
+\textbf{Distinction:} Post-hoc validation detects violations after generation, requiring rejection or correction cycles that waste compute (14--15\% of generated triples contain domain/range violations in our setting). OntoCoDec \emph{prevents} violations during decoding, redirecting probability mass to valid alternatives rather than discarding invalid outputs. Soft-constraint approaches like EKAW'24 reduce but cannot eliminate violations, whereas OntoCoDec achieves near-complete type compliance (domain/range violations reduced from 15.37\% to 0.93\%).
+
+% TODO: Add quantitative comparison of compute cost: post-hoc rejection vs.
+% preventive enforcement (marginal overhead of logits masking vs. wasted tokens).
+
+% ===========================================================================
+% Paradigm 5: Constrained Decoding Quality Concerns
+% ===========================================================================
+\paragraph{Quality Impact of Constrained Decoding.}
+A growing body of work raises concerns that constrained decoding degrades LLM generation quality, particularly for reasoning-intensive tasks.
+%
+\citet{tam2024letmespeak} show that rigid format constraints (JSON, XML) harm performance on math and multi-hop QA but benefit classification-style tasks such as slot filling.
+%
+CRANE~\cite{banerjee2025crane} provides theoretical analysis of why restricting outputs to narrow grammars suppresses chain-of-thought reasoning, proposing an alternating strategy between unconstrained reasoning and constrained output phases.
+%
+\citet{schall2025hiddencost} conduct a systematic study across 11 models, finding 10--30\% semantic correctness degradation on reasoning tasks under structural constraints.
+%
+\citet{zhou2026snowballing} identify ``structure snowballing''---a failure mode where format compliance cognitive load traps models in structural patterns rather than improving reasoning during self-correction.
+%
+\textbf{Distinction:} OntoCoDec addresses this concern empirically: on SciERC, domain/range violations decrease from 15.4\% to 0.93\% ($\downarrow$94\%) with \emph{zero} F1 degradation (R-F1 +0.13pp, not significant). IE is an extraction task where constrained decoding's impact is minimal~\cite{tam2024letmespeak}, and OntoCoDec's constraints target only type tokens, leaving free-text spans unconstrained.
+
+% TODO: Add 1-2 sentences connecting to S2 strategy as an instantiation of
+% CRANE's alternating approach, and noting that IE's extraction nature
+% inherently avoids the reasoning-degradation regime.
+
+% ===========================================================================
+% Our Approach
+% ===========================================================================
+\paragraph{Our Approach.}
+OntoCoDec occupies a unique position in this landscape: it is the first system to automatically compile IE ontology schemas---including domain/range axioms---into decoding-time semantic constraints, extending grammar-constrained decoding from syntactic to semantic enforcement.
+%
+Unlike vocabulary-constrained methods that restrict individual tokens, OntoCoDec enforces \emph{cross-field relational constraints} through a stateful entity registry that tracks extracted types during autoregressive generation.
+%
+Unlike training-based IE systems, OntoCoDec is training-free and substantially reduces type violations (up to 94\% DR reduction); unlike post-hoc validation, it prevents violations rather than detecting them, redirecting probability mass to valid alternatives at zero quality cost.

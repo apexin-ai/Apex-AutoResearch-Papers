@@ -1,0 +1,20 @@
+\section{Sampling Robustness}\label{app:sampling}
+
+\begin{table}[h]
+\centering
+\caption{Constraint robustness under nucleus sampling ($T$=0.7, $p$=0.9) vs.\ greedy decoding (Qwen3-8B, S1 constraints).}
+\label{tab:sampling-robustness}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+Dataset & Decoding & ET\% & RV\% & DR\% & CF\% & E-F1 & R-F1 \\
+\midrule
+\multirow{2}{*}{SciERC (551)} & Greedy & 0 & 0 & 0.93 & 9.90 & 30.98 & 8.36 \\
+& Sampling & 0 & 0 & 0.75 & 9.90 & 31.28 & 7.42 \\
+\midrule
+\multirow{2}{*}{DocRED (114$^\dagger$)} & Greedy & 0 & 0.03 & 10.21 & 2.57 & 59.37 & 8.23 \\
+& Sampling & 0 & 0 & 10.31 & 12.63 & 57.05 & 7.92 \\
+\bottomrule
+\end{tabular}}
+\par\smallskip\footnotesize $^\dagger$Subset of 114 documents; full DocRED sampling requires ${\sim}300$h due to extended generation under high-temperature sampling with complex schemas.
+\end{table}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29d43ab20027319c1111",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh fix thinking retest",
+  "task_key": "worker_ssh_fix-thinking-retest_20260512T224617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-thinking-retest_20260512T224617_result.json",
+    "occurrence": 1,
+    "bytes": 75,
+    "sha256": "96e7ccfd1edae2bb33ac9fe56896ac83897f99c6e6a2085a37d9a6409bd51c6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "（后台计时器完成，结果已在上方报告中。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-thinking-retest.md"
+}

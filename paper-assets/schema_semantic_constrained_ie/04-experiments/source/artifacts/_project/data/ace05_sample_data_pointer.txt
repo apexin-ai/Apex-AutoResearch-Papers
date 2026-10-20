@@ -1,0 +1,2 @@
+Remote file: westd-16980:/root/schema_semantic_constrained_ie/data/ace05/sample_data.jsonl
+10 synthetic examples covering 10 different event types with proper entity-role-type constraints.

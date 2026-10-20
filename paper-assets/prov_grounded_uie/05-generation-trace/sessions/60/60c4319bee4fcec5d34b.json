@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60c4319bee4fcec5d34b",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh check truncation rate",
+  "task_key": "worker_ssh_check-truncation-rate_20260512T233152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-truncation-rate_20260512T233152_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "bbd13206a81c9f41b3b6173cc081844b70ba72c380b34fc611fd6e103b391b31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. 进度\n112/985 样本（batch 14/124），约 11.4%。\n\n### 2. 截断率分析\n\n基于 gold output 的 token 长度分布（用实际 tokenizer 计数）：\n\n| 指标 | 值 |\n|------|-----|\n| 样本数 | 985 |\n| Gold 输出平均 tokens | **1138** |\n| 中位数 | 907 |\n| p75 | 1461 |\n| p95 | 2764 |\n| **gold output >= 1024 tokens** | **441/985 (44.8%)** |\n\n**预估截断率：~44.8%**。近半数样本的 gold output 超过 1024 tokens。SFT 模型输出长度与 gold 高度相关，因此实际截断率应在这个量级。\n\n注意：这是下界估计。模型生成可能比 gold 更冗长（你提到平均 1362 tokens vs gold 平均 1138），实际截断率可能更高。\n\n### 3. 间接证据\n- 日志无 token count 信息，无法直接从已完成样本测量\n- 命令行确认 `--max_new_tokens 1024`（config.py 默认 2048，被启动参数覆盖）\n\n### 4. 输出保存机制\n**最后批量写入**。`generate_predictions()` 将所有结果收集到内存 list，全部生成完成后才进入 NLI scoring，最终写入 `outputs/posthoc_nli_v2/nli_reranking_results.json`。没有中间结果文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-truncation-rate.md"
+}

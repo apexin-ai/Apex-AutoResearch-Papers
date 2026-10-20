@@ -1,0 +1,87 @@
+paper_key: "xgrammar"
+title: "XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models"
+venue: "MLSys 2025"
+full_text_available: true
+
+research:
+  baselines: [Outlines_v1.0, llama.cpp_b3998, lm-format-enforcer_v0.10.9, vLLM_v0.6.3, SGLang_with_Outlines]
+  metrics:
+    - {name: "Per-token mask generation latency (us)", direction: "lower_better"}
+    - {name: "Time Per Output Token (ms)", direction: "lower_better"}
+    - {name: "Syntactic correctness (%)", direction: "higher_better"}
+  datasets:
+    - {name: "JSON Schema (JSON-mode-eval)", size: "structured output"}
+    - {name: "Unconstrained JSON (ECMA-404)", size: "structured output"}
+    - {name: "XML 1.0", size: "structured output"}
+    - {name: "Python DSL", size: "code generation"}
+    - {name: "Function calling", size: "tool use"}
+  ablation_dimensions: [node_merging, adaptive_token_mask_cache, rule_inlining, context_expansion]
+  training_recipe:
+    optimizer: "N/A (inference engine)"
+    lr: "N/A"
+    hardware: "AMD Ryzen 9 7950X + RTX 4090 (mask gen); AMD EPYC 7R13 + H100 (end-to-end)"
+    models_evaluated: "Llama-3.1-8B, DeepSeek-V2-Lite-16B"
+  method_family: "Accelerated context-free grammar execution engine with vocabulary partitioning"
+
+positioning:
+  core_claim: "将词表分为 context-independent（可预计算）和 context-dependent（<1%）两类 token，实现近零开销的约束解码"
+  key_results: "Per-token: >100x speedup over Outlines/llama.cpp on CFG; End-to-end: up to 80x on H100; Memory: 160MB→0.46MB (0.2%); Function calling: 62%→100% correctness"
+  limitations:
+    - "Context expansion 不跟踪 rule-reference edges，依赖 rule inlining 缓解"
+    - "预处理开销对超大语法未充分评估"
+    - "评估集中在 JSON/XML/Python DSL，对任意 CFG 的泛化不确定"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "结构化生成需要在每步检查整个词表（128K tokens），这是不可接受的瓶颈"
+  tension: "CFG 解释需要栈状态追踪，无法预计算所有模式；token-字符不对齐导致运行时递归"
+  key_insight: "绝大多数 token（>99%）的合法性仅由栈顶节点决定（context-independent），可完全预计算；仅<1% 需要运行时检查"
+  argument_chain: "结构化生成是瓶颈 → token 分类发现99%可预计算 → adaptive cache + persistent stack → GPU-CPU 重叠 → 近零开销"
+  contribution_framing: "3项贡献：adaptive token mask cache、persistent execution stack、GPU co-design"
+  intro_structure: "5段：结构化生成需求→CFG 约束解码挑战→关键洞察（token 分类）→系统贡献→性能预览"
+  notable_technique: "用系统级实证（99% context-independent）支撑设计决策，而非纯理论论证"
+
+figures:
+  figure_count: 10
+  figure1:
+    type: "method_overview"
+    description: "PDA 解析 → 栈顶索引 adaptive cache → 预计算 mask（context-independent）+ 运行时检查（context-dependent）→ 约束采样"
+    narrative_role: "一图展示核心架构和 token 分类思想"
+    design_elements: ["PDA 状态图", "cache 索引", "token 分类颜色标注"]
+    visual_style: "左到右流程，绿色/红色/黄色区分三类 token"
+  result_figures:
+    - figure_id: "Figure 9"
+      viz_type: "bar_chart"
+      what_compared: "XGrammar vs Outlines vs llama.cpp vs lm-format-enforcer across 4 grammar types"
+      how_gain_highlighted: "对数坐标下 XGrammar 柱极短（延迟极低）"
+      design_note: "对数刻度放大差异，4种语法类型并排"
+    - figure_id: "Figure 10"
+      viz_type: "line_plot"
+      what_compared: "End-to-end TPOT across batch sizes 1-32"
+      how_gain_highlighted: "其他系统随 batch 增大而退化，XGrammar 保持平稳"
+      design_note: "展示系统在高负载下的可扩展性"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (overview) → Figures 3-7 (technique details) → Figure 8 (GPU overlap) → Figure 9-10 (results)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "systems (SGLang variants)"
+    col_axis: "models × tasks"
+    row_organization: "flat"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single measurement (ms/token)"
+    num_baselines: 3
+    design_note: "跨模型架构展示一致的性能优势"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["node merging", "adaptive cache", "rule inlining", "context expansion"]
+      variation_style: "delta_from_base"
+      design_note: "逐步叠加优化，展示每步的 speedup 倍数（248.6x for cache）"
+  supplementary_tables:
+    in_appendix: true
+    content: "zero-overhead 验证 (Table 2), downstream task accuracy (Table 4)"
+    reason: "主表展示系统性能，附表验证'零开销'主张和下游任务效果"

@@ -1,0 +1,38 @@
+% Appendix: Quantization Robustness (SF2 response)
+
+\section{Quantization Robustness}
+\label{app:quantization}
+
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{3.2pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l rrr rrr@{}}
+\toprule
+& \multicolumn{3}{c}{\textbf{Qwen3-8B}} & \multicolumn{3}{c}{\textbf{Llama-3.1-8B}} \\
+\cmidrule(lr){2-4} \cmidrule(l){5-7}
+& FP16 & INT4 & $\Delta$ & FP16 & INT4 & $\Delta$ \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{SciERC (551 docs)}} \\[2pt]
+DR\,(\%)\,$\downarrow$  & 0     & 0     & 0      & 0.09  & 0     & $-$0.09 \\
+R-F1\,$\uparrow$ & 43.77 & 41.71 & $-$2.06 & 45.47 & 43.98 & $-$1.49 \\
+E-F1\,$\uparrow$ & 67.05 & 67.05 & 0.00   & 67.76 & 67.54 & $-$0.22 \\
+\addlinespace[4pt]
+\multicolumn{7}{@{}l}{\textit{DocRED (200 docs)}} \\[2pt]
+DR\,(\%)\,$\downarrow$  & 0     & 0     & 0      & 0     & 0     & 0 \\
+R-F1\,$\uparrow$ & 40.79\textsuperscript{\dag} & 40.07 & $-$0.72 & 47.35 & 48.04 & $+$0.69 \\
+E-F1\,$\uparrow$ & 81.87\textsuperscript{\dag} & 74.84 & $-$7.03\textsuperscript{\ddag} & 85.43 & 84.18 & $-$1.25 \\
+PF\,(\%) & 8.5\textsuperscript{\dag}  & 18.5  & $+$10.0\textsuperscript{\ddag} & 2.0   & 2.5   & $+$0.5 \\
+\bottomrule
+\end{tabular}}
+\caption{FP16 vs.\ INT4 (AWQ) quantization under LoRA + S1 on SciERC and DocRED. F1 $\times$ 100; PF = parse-failure rate.
+\textsuperscript{\dag}Qwen DocRED FP16 evaluated on 998 docs (all other configurations use matched subsets).
+\textsuperscript{\ddag}E-F1 drop primarily attributable to increased parse failures under INT4 quantization on long documents rather than constraint interference (DR remains 0\%).}
+\label{tab:quantization}
+\end{table}
+
+INT4 (AWQ) quantization preserves constraint enforcement across both datasets: DR remains at 0\% for all four model--dataset configurations under INT4, with the sole FP16 violation (Llama SciERC, 0.09\%) disappearing after quantization.
+R-F1 changes range from $-$2.06 to $+$0.69\,pp, consistent with expected quantization quality costs independent of the constraint layers.
+On DocRED, Qwen INT4 exhibits elevated parse failures (18.5\% vs.\ 8.5\% FP16) due to timeout on long documents under quantized inference; the resulting E-F1 gap ($-$7.03\,pp) reflects generation-length degradation rather than constraint-layer interference, as DR remains 0\%.
+These results provide indirect evidence that the 70B AWQ INT4 results (\S\ref{sec:70b-results}) are not confounded by quantization artifacts in the constraint enforcement mechanism.

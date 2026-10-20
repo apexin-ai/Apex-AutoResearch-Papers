@@ -1,0 +1,65 @@
+% Runtime overhead (inline paragraph, no subsection header to save space)
+
+\paragraph{Runtime overhead.}
+\label{sec:runtime}
+\emph{What is the practical overhead?}
+S1 overhead is $+$13.1\% on SciERC, lower on DocRED due to amortization over longer sequences; under LoRA, $+$10.0\% with 37\% lower absolute latency (Appendix~\ref{app:ft-latency}).
+Constraint compilation is one-time $<$0.5\,s; scaling benchmarks confirm constant overhead (2--3\%) up to 200 entity types and 1{,}000 relations (Appendix~\ref{app:scalability}).
+
+\paragraph{Beam search compatibility.}
+\label{sec:beam-results}
+\emph{Can beam search mitigate CF violations?}
+With LoRA, beam search~\cite{anderson2017guided} achieves near-zero violations at 8B on both SciERC and DocRED (DR${=}$RV${=}$ET${=}$0\% for Llama-3.1-8B; $\leq$0.01\% residual CF for Qwen3-8B); at 70B, beam $k{=}4$ achieves DR${=}$RV${=}$ET${=}$0\% with one residual CF on SciERC (Appendix~\ref{app:beam-search}).
+A beam-width sweep ($k \in \{1,2,4,8\}$) reveals $k{=}2$ as Pareto-optimal: R-F1 44.60, CF 0.11\%, at 1.18$\times$ greedy S1 latency; $k{=}4$ achieves CF${=}$0\% at 1.39$\times$ (Figure~\ref{fig:beam-pareto}; Appendix~\ref{app:beam-search}).
+This yields three deployment tiers: greedy S1 ($+$10\%, DR${\leq}$0.21\%, CF${\leq}$1.4\%), beam $k{=}2$ (1.18$\times$, near-zero CF), and beam $k{=}4$ (1.39$\times$, near-zero violations at 8B).
+
+% ──────────────────────────────────────────
+%  Table: Fine-tuning composability (moved here for page 8 placement)
+% ──────────────────────────────────────────
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lll rrrr r@{}}
+\toprule
+\textbf{Model} & \textbf{Dataset} & \textbf{Mode}
+  & \textbf{DR\,$\downarrow$} & \textbf{CF}
+  & \textbf{R-F1\,$\uparrow$} & \textbf{E-F1\,$\uparrow$}
+  & \textbf{$\Delta$DR} \\
+\midrule
+\multirow{4}{*}{Qwen3-8B}
+  & \multirow{2}{*}{SciERC}
+    & Unconstr.\ &  1.95 & 0    & 43.86 & 67.05 & --- \\
+  & & S1    & \textbf{0} & 1.18 & 43.77 & 67.05 & $\downarrow$100\% \\
+\cmidrule(l){2-8}
+  & \multirow{2}{*}{DocRED}
+    & Unconstr.\ &  0.76 & 0.12 & 40.86 & 82.15 & --- \\
+  & & S1    & 0.01 & 0.41 & 40.56 & 81.43 & $\downarrow$98.7\% \\
+\midrule
+\multirow{4}{*}{\shortstack[l]{Llama\\3.1-8B}}
+  & \multirow{2}{*}{SciERC}
+    & Unconstr.\ &  1.11 & 0    & 45.45 & 67.76 & --- \\
+  & & S1    &  0.09 & 0.46 & 45.47 & 67.76 & $\downarrow$92\% \\
+\cmidrule(l){2-8}
+  & \multirow{2}{*}{DocRED}
+    & Unconstr.\ &  0.49 & 0.08 & 43.72 & 83.93 & --- \\
+  & & S1    &  0.21 & 0.21 & 43.78 & 83.94 & $\downarrow$57\% \\
+\bottomrule
+\end{tabular}}%
+\caption{Fine-tuning composability: LoRA $\times$ unconstrained vs.\ S1 on SciERC (551 docs) and DocRED (998 dev docs).
+F1 (\%). No $\Delta$R-F1 is significant (Bonferroni-corrected; details in text); all DR reductions are ($p{<}0.001$; power analysis in Appendix~\ref{app:power-analysis-full}).
+E-F1 (entity F1) includes parse-failure documents (Qwen PF (parse failure): 7--8\%; Llama PF: 2--3\%).}
+\label{tab:composability}
+\end{table}
+
+\paragraph{70B-class validation.}
+\label{sec:70b-results}
+\emph{Does the layer interaction change with model scale?}
+On Llama-3.1-70B (AWQ INT4), zero-shot S1 eliminates DR on both datasets (SciERC 6.41\%\,$\to$\,0\%, DocRED 14.98\%\,$\to$\,0\%); semantic-only achieves 84\% DR reduction vs.\ 8B's 24\% (Figure~\ref{fig:scale-dependency}).
+LoRA confirms composability: DR\,$\to$\,0\% on both datasets (R-F1 44--45; Appendices~\ref{app:70b-ablation},~\ref{app:70b-docred-zs},~\ref{app:70b-docred},~\ref{app:quantization}).
+
+\paragraph{GCD comparison.}
+\label{sec:constrained-baselines}
+Our grammar-only row (Table~\ref{tab:scierc-ablation}) is analytically equivalent to GCD~\cite{geng2023gcd}/BoostCD~\cite{boostcd2025}; vLLM \texttt{guided\_json}~\cite{kwon2023vllm} confirms this (DR${=}$15.26\%; Appendix~\ref{app:gcd-comparison}).
+The ${\sim}$15\% residual DR is the gap our semantic layer addresses (94\% total reduction).

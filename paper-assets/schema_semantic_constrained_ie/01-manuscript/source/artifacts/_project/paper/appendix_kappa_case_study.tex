@@ -1,0 +1,37 @@
+% Appendix: Constraint Tightness Case Study
+
+\section{Constraint Tightness Case Study}
+\label{app:kappa-case-study}
+
+\begin{table*}[h]
+\centering
+\small
+\begin{tabular}{@{}llccc l@{}}
+\toprule
+\textbf{Relation} & \textbf{Dataset} & $\kappa$ & \textbf{DR\%} & $n$ & \textbf{Explanation} \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Highest DR violation rate}} \\
+basin country        & DocRED & .97 & 74.6 &  63 & Sole valid pair \textsc{loc}$\to$\textsc{loc}; head mistyped as \textsc{org}/\textsc{misc} \\
+product produced     & DocRED & .94 & 67.2 &  61 & Requires \textsc{org} head; model assigns \textsc{loc}/\textsc{per} \\
+participant of       & DocRED & .81 & 58.6 & 326 & Hallucinated \textsc{event} type; \textsc{per}$\leftrightarrow$event confusion \\
+\textsc{Compare}     & SciERC & .53 & 42.4 &  66 & Cross-category pairs violate same-type constraint \\
+\textsc{Feature-of}  & SciERC & .28 & 33.5 & 486 & Fuzzy Task/OtherScientificTerm boundary \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{High $\kappa$ with zero violations (DR = 0\%)}} \\
+lyrics by            & DocRED & .94 &  0.0 &   9 & Unambiguous \textsc{per}$\to$\textsc{misc}; creative roles rarely mistyped \\
+place of birth       & DocRED & .92 &  0.0 & 157 & Unambiguous \textsc{per}$\to$\textsc{loc}; no type confusion \\
+place of death       & DocRED & .89 &  0.0 &  60 & Strong \textsc{per}$\to$\textsc{loc} prior; mirrors place of birth \\
+subsidiary           & DocRED & .86 &  0.0 &   5 & Clear \textsc{org}$\to$\textsc{org} corporate semantics \\
+father               & DocRED & .81 &  0.0 &  69 & Clear \textsc{per}$\to$\textsc{per} kinship semantics \\
+\bottomrule
+\end{tabular}
+\caption{Per-relation $\kappa$ vs.\ DR violation rate (Qwen3-8B, zero-shot, unconstrained).
+High $\kappa$ is necessary but not sufficient for high DR: relations with unambiguous entity types (place of birth, $\kappa{=}0.92$) have zero violations, while equally tight relations with confusable types (basin country, $\kappa{=}0.97$) show 74.6\% DR.}
+\label{tab:kappa-case-study}
+\end{table*}
+
+\paragraph{Analysis.}
+The case study confirms that violation susceptibility is driven by the interaction of constraint tightness and entity type confusability, not tightness alone.
+Among DocRED relations with $\kappa \geq 0.81$, those involving semantically unambiguous type pairs (\textsc{per}$\to$\textsc{loc} for kinship/geographic relations) achieve DR${=}$0\%, while those requiring the model to distinguish frequently confused types (\textsc{loc} vs.\ \textsc{org}, \textsc{per} vs.\ \textsc{misc}) show DR${>}$50\%.
+On SciERC, the highest-DR relation (\textsc{Compare}, 42.4\%) has only moderate $\kappa$ (0.53) but high type confusability across scientific categories.
+This two-factor pattern motivates constrained decoding: the largest gains come from high-$\kappa$, confusable-type relations where the model's type uncertainty is channeled into valid pairs.

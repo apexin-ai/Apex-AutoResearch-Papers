@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40a484a625cbaff6ecb7",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ops rename server path",
+  "task_key": "worker_ops_rename-server-path_20260513T151105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rename-server-path_20260513T151105_result.json",
+    "occurrence": 1,
+    "bytes": 2031,
+    "sha256": "6a12d4a9b41ad8a8f408753109fe3f1f3e731ef10931eea36e816112a5bed518"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### 1. 进程信息\n\n| Job | PID | 状态 | 工作目录 |\n|-----|-----|------|----------|\n| dpo_candgen_v2_gpu0 | 106510 (tmux shell) | 已完成，仅剩 shell | `/root/autodl-tmp/trace-verdict-study` |\n| dpo_candgen_v2_gpu1_r3 | 107213 (python) | 运行中，100% CPU，已运行 3h54m | `/root/autodl-tmp/trace-verdict-study` |\n\nlsof 无绝对路径锁定，进程通过相对路径访问文件。\n\n### 2. 重命名和 symlink\n\n- `mv` 成功：`/root/autodl-tmp/trace-verdict-study` → `/root/autodl-tmp/prov_grounded_uie`\n- symlink 创建成功：`/root/autodl-tmp/trace-verdict-study -> /root/autodl-tmp/prov_grounded_uie`\n\n### 3. 扫描到的旧名引用\n\n**服务器代码文件（3 处）：**\n- `src/analyze_reward_distribution.py:104` — `os.chdir(\"/root/autodl-tmp/trace-verdict-study\")`\n- `src/analyze_reward_distribution_v2.py:104` — `os.chdir(\"/root/autodl-tmp/trace-verdict-study\")`\n- `eval_grpo_v2.sh:6` — `cd /root/autodl-tmp/trace-verdict-study`\n\n**本地配置文件（1 处关键）：**\n- `config/projects/prov_grounded_uie.yaml:10` — `project_path: /root/autodl-tmp/trace-verdict-study`\n\n### 4. 修改了哪些文件\n\n| 文件 | 修改内容 |\n|------|----------|\n| 服务器 `src/analyze_reward_distribution.py:104` | `trace-verdict-study` → `prov_grounded_uie` |\n| 服务器 `src/analyze_reward_distribution_v2.py:104` | 同上 |\n| 服务器 `eval_grpo_v2.sh:6` | 同上 |\n| 本地 `prov_grounded_uie.yaml:10` | `project_path` 更新 |\n\nPython 文件语法验证通过。\n\n### 5. 跳过的文件\n\n- `crons.yaml` 中的 `~/runs/trace-verdict-study/` 路径 — 这是独立的日志目录，不在重命名范围内\n- `crons.yaml` 中已完成 cron 的历史路径 — 通过 symlink 仍可访问，无需修改\n- 无 IDEA_BRIEF 相关内容\n\n### 6. 运行中实验影响\n\nPID 107213（dpo_candgen_v2_gpu1_r3）重命名后仍正常运行，未受影响。symlink 保证旧路径继续解析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rename-server-path.md"
+}

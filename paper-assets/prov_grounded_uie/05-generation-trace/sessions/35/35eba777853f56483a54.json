@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35eba777853f56483a54",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ops bugfix rewards restart r2",
+  "task_key": "worker_ops_bugfix-rewards-restart-r2_20260513T151818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bugfix-rewards-restart-r2_20260513T151818_result.json",
+    "occurrence": 1,
+    "bytes": 1703,
+    "sha256": "b64f4c5d2243ae39b0d32155ff353c0db4ed5e25125cb9b2ca779baaf5cb4ff9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务已成功启动并正在运行。\n\n---\n\n## 汇报\n\n### 1. 已完成行数\n- **Part 1**: 378 行 (last source_index=379)\n- **Part 2**: 409 行 (last source_index=1924)\n\n### 2. rewards.py 修复内容\n两处修改，均在 `/root/autodl-tmp/prov_grounded_uie/rewards.py`：\n\n**Line 216** — `pred_ev` 可能包含整数（模型输出 sentence indices 如 `[0, 2, 5]`）：\n```diff\n- pred_ev_text = \" \".join(pred_ev) if isinstance(pred_ev, list) else str(pred_ev)\n+ pred_ev_text = \" \".join(str(e) for e in pred_ev) if isinstance(pred_ev, list) else str(pred_ev)\n```\n\n**Line 224** — `gold_ev` 同理可能包含非字符串元素：\n```diff\n- gold_ev_text = \" \".join(gold_map[key].get(\"evidence\", []))\n+ gold_ev_text = \" \".join(str(e) for e in gold_map[key].get(\"evidence\", []))\n```\n\n### 3. 冒烟测试\n通过。4/50 样本成功处理，4 行输出，无 TypeError 或其他错误。~32s/样本。\n\n### 4. resume_from 含义\n`resume_from` 是**数据索引**（不是输出行数）。代码在 `load_data()` 加载完整数据后，从 `range(resume_from, total)` 开始迭代。`resume_from > 0` 时以 append 模式打开输出文件。\n\n### 5. 提交结果\n\n| 任务 | exp_id | GPU | resume_from | 剩余样本 | 状态 |\n|------|--------|-----|-------------|----------|------|\n| Part 1 | `dpo_candgen_v3_gpu0` | cuda:0 | 380 | 1134 | 运行中 |\n| Part 2 | `dpo_candgen_v3_gpu1` | cuda:1 | 1925 | 1102 | 运行中 |\n\n### 6. 额外发现\n- GPU 1 上 Part 2 原进程（PID 107213）启动时还在运行（未崩溃），已手动 kill 后重启\n- 数据集共 3027 行，Part 1 覆盖 0-1513，Part 2 覆盖 1514-3026"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bugfix-rewards-restart-r2.md"
+}

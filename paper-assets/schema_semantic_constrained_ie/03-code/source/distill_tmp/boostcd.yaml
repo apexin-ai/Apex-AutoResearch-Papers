@@ -1,0 +1,88 @@
+paper_key: "boostcd"
+title: "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines: [SynthIE 400k, ReLiK, GenIE]
+  metrics:
+    - {name: "micro-F1", direction: "higher_better"}
+    - {name: "macro-F1", direction: "higher_better"}
+    - {name: "precision", direction: "higher_better"}
+    - {name: "recall", direction: "higher_better"}
+  datasets:
+    - {name: "Wiki-cIE Code", size: "300K train + 100K boost + 10K val + 10K test"}
+    - {name: "REBEL", size: "~600 DPO + 100 val"}
+    - {name: "Wikipedia manual", size: "50 articles"}
+  ablation_dimensions: [constrained_vs_unconstrained, with_without_DPO, entity_removal_simulation]
+  training_recipe:
+    optimizer: "Adam"
+    lr: "3e-4 base, 5e-5 DPO"
+    batch_size: "80 base, 2 DPO"
+    max_steps: "10K base"
+    hardware: "Single NVIDIA Titan X, 24h base + 16h boost"
+    base_model: "FlanT5-base (~250M)"
+    weight_decay: "0.05"
+    lr_scheduler: "polynomial with 1K warmup"
+    gradient_clipping: "0.1"
+    inference_beams: "10"
+  method_family: "Ensemble boosting for constrained decoding"
+
+positioning:
+  core_claim: "约束解码和无约束解码的错误模式互补，用 boosting 学习融合两者可大幅提升 closed IE 性能"
+  key_results: "Wiki-cIE micro-F1: 52.35 vs SynthIE 35.30 (+17.05 abs); macro-F1: 48.81 vs 36.25 (+12.56 abs)"
+  limitations:
+    - "无法消歧实体表面变体（缩写/别名）"
+    - "推理需 3 次模型调用（可并行但仍比 SynthIE 慢）"
+    - "合成训练数据与真实分布不匹配"
+    - "Wikipedia 评估不够充分，真实场景性能不确定"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "约束解码保证结构合规但可能引入新错误——训练时不知道约束的模型在推理时被强制约束"
+  tension: "约束解码和无约束解码各有系统性缺陷，单独改进任一方都不够"
+  key_insight: "Figure 1 用具体例子展示互补错误：unconstrained 找对实体但不在 KB 中，constrained 选了 KB 中的错误实体"
+  argument_chain: "约束解码有系统性错误 → 无约束解码有互补错误 → boosting 融合两者 → Phase 2 模型学习利用互补性 → 大幅提升"
+  contribution_framing: "3项贡献：BoostCD 框架、BoostIE 应用、错误分析"
+  intro_structure: "5段：约束解码背景→约束-无约束错误互补→BoostCD 方案→结果预览→贡献列表"
+  notable_technique: "用具体实例展示互补错误模式，使 boosting 动机极为直观"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "motivation"
+    description: "BoostCD 流程：Phase 1 产生约束/无约束两个预测，Phase 2 boosted 模型融合"
+    narrative_role: "用具体 cIE 示例说明互补错误模式和融合方案"
+    design_elements: ["双路径对比", "错误标注", "真实示例", "两阶段流程"]
+    visual_style: "左右对比布局，红色标注错误，绿色标注正确"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "BoostIE vs SynthIE vs ReLiK across conditions"
+      how_gain_highlighted: "巨大的柱高差异直观展示优势"
+      design_note: "分 overall/removed/same 三组展示鲁棒性"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation + method) → Tables (quantitative results) → Table 3 (error analysis)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "conditions (Overall/Removed/Same) × metrics (P/R/F1)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + confidence intervals"
+    statistical_reporting: "95% confidence intervals"
+    num_baselines: 3
+    design_note: "通过 entity removal 条件展示 OOD 鲁棒性"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["error types across methods"]
+      variation_style: "full_numbers"
+      design_note: "错误分类表（不是传统消融），分析错误类型分布"
+  supplementary_tables:
+    in_appendix: true
+    content: "Wikipedia 文本上的详细评估、DPO 训练细节"
+    reason: "OOD 评估是补充验证"

@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Case study: constraint tightness $\kappa$ and DR violation rate for selected relations under Qwen-2.5-7B zero-shot greedy decoding (unconstrained). Violation susceptibility is driven by the interaction of constraint tightness and entity type confusability, not tightness alone. All bottom-group relations have $\kappa \geq 0.81$ yet DR $= 0$\%.}
+\label{tab:kappa-case-study}
+\begin{tabular}{@{}llccc l@{}}
+\toprule
+\textbf{Relation} & \textbf{Dataset} & $\kappa$ & \textbf{DR\%} & $n$ & \textbf{Explanation} \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Highest DR violation rate}} \\
+basin country        & DocRED & .97 & 74.6 &  63 & Sole valid pair \textsc{loc}$\to$\textsc{loc}; head mistyped as \textsc{org}/\textsc{misc} \\
+product produced     & DocRED & .94 & 67.2 &  61 & Requires \textsc{org} head; model assigns \textsc{loc}/\textsc{per} to producers \\
+participant of       & DocRED & .81 & 58.6 & 326 & Hallucinated \textsc{event} type; \textsc{per}$\leftrightarrow$event role confusion \\
+\textsc{Compare}     & SciERC & .53 & 42.4 &  66 & Cross-category pairs (Method$\leftrightarrow$Task) violate same-type constraint \\
+\textsc{Feature-of}  & SciERC & .28 & 33.5 & 486 & Fuzzy Task/OtherScientificTerm boundary inflates violations \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{High $\kappa$ with zero violations (DR = 0\%)}} \\
+lyrics by            & DocRED & .94 &  0.0 &   9 & Unambiguous \textsc{per}$\to$\textsc{misc}; creative roles rarely mistyped \\
+place of birth       & DocRED & .92 &  0.0 & 157 & Unambiguous \textsc{per}$\to$\textsc{loc}; high $\kappa$ but no type confusion \\
+place of death       & DocRED & .89 &  0.0 &  60 & Strong \textsc{per}$\to$\textsc{loc} prior; mirrors place of birth \\
+subsidiary           & DocRED & .86 &  0.0 &   5 & Clear \textsc{org}$\to$\textsc{org} corporate semantics \\
+father               & DocRED & .81 &  0.0 &  69 & Clear \textsc{per}$\to$\textsc{per} kinship semantics \\
+\bottomrule
+\end{tabular}
+\end{table}

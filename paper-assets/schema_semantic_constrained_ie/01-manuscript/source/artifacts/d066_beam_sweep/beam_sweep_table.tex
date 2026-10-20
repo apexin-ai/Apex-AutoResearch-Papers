@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Effect of beam width ($k$) on SciERC with Qwen3-8B LoRA (beam size 8). \textsc{unc}: unconstrained decoding; \textsc{con}: schema-constrained decoding. Rel.\ Latency is relative to $k{=}1$ unconstrained baseline.}
+\label{tab:beam-sweep}
+\begin{tabular}{@{}cl cccc c@{}}
+\toprule
+$k$ & Mode & E-F1 & R-F1 & DR (\%) & CF (\%) & Latency (s) & Rel.\ Latency \\
+\midrule
+\multirow{2}{*}{1}
+ & \textsc{unc} & 66.88 & 42.95 & 2.11 & 0    & 2.494 & 1.00$\times$ \\
+ & \textsc{con} & 66.88 & 42.95 & \textbf{0} & 0.50 & 2.932 & 1.18$\times$ \\
+\midrule
+\multirow{2}{*}{2}
+ & \textsc{unc} & 67.79 & 44.75 & 1.54 & 0    & 2.954 & 1.18$\times$ \\
+ & \textsc{con} & \cellcolor{blue!8}\textbf{67.71} & \cellcolor{blue!8}\textbf{44.60} & \cellcolor{blue!8}\textbf{0} & \cellcolor{blue!8}\textbf{0.11} & \cellcolor{blue!8}\textbf{3.463} & \cellcolor{blue!8}\textbf{1.39$\times$} \\
+\midrule
+\multirow{2}{*}{4}
+ & \textsc{unc} & 67.49 & 43.72 & 1.89 & 0    & 3.485 & 1.40$\times$ \\
+ & \textsc{con} & 67.22 & 43.60 & \textbf{0} & 0    & 4.069 & 1.63$\times$ \\
+\midrule
+\multirow{2}{*}{8}
+ & \textsc{unc} & 66.40 & 43.17 & 1.77 & 0    & 4.194 & 1.68$\times$ \\
+ & \textsc{con} & 66.36 & 43.65 & \textbf{0} & 0    & 5.058 & 2.03$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}

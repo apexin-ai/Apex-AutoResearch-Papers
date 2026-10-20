@@ -1,0 +1,59 @@
+- id: art_20260512_390b83
+  name: MR-UIE 精读分析报告
+  type: report
+  description: MR-UIE (arXiv 2509.09082) 与 ProvUIE 的重叠评估。结论：faithfulness 同词异义，MR-UIE
+    是推理质量检查，ProvUIE 是 span-level evidence grounding，威胁等级低，建议继续。
+  path: projects/prov_grounded_uie/artifacts/_project/report/mruie_analysis_report.md
+  url: null
+  project: prov_grounded_uie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T11:24:03.796479+00:00'
+  tags:
+  - literature-review
+  - MR-UIE
+  - faithfulness
+  - novelty-check
+- id: art_20260512_e967dc
+  name: DocRED Processed Dataset
+  type: data
+  description: DocRED 预处理数据：train 3027条 / dev 985条 JSONL，含关系三元组和 evidence 句子标注。avg
+    12.5 relations/doc, 1.6 evidence sentences/relation。
+  path: projects/prov_grounded_uie/artifacts/_project/data/train.jsonl
+  url: null
+  project: prov_grounded_uie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T11:40:06.211976+00:00'
+  tags:
+  - docred
+  - data-prep
+  - mvp
+- id: art_20260512_dc54c1
+  name: DocRED Preprocessing Script
+  type: intermediate
+  description: DocRED 原始数据到 JSONL 格式的预处理脚本
+  path: projects/prov_grounded_uie/artifacts/_project/intermediate/prepare_docred.py
+  url: null
+  project: prov_grounded_uie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T11:40:14.186158+00:00'
+  tags:
+  - docred
+  - data-prep
+- id: art_20260512_df4897
+  name: Post-hoc NLI Reranking Script
+  type: intermediate
+  description: 'rerank_nli.py (453行): SFT输出的post-hoc NLI reranking。支持NLI-filter(4阈值扫描)、NLI-rerank(top-k截断)、NLI-oracle(gold上限)三种策略，输出RE
+    F1 + Evi F1 + Attribution Precision。'
+  path: projects/prov_grounded_uie/artifacts/_project/intermediate/rerank_nli.py
+  url: null
+  project: prov_grounded_uie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T11:55:02.342162+00:00'
+  tags:
+  - nli-reranking
+  - step3
+  - mvp

@@ -1,0 +1,15 @@
+{
+  "exp_id": "reward_diag_v2",
+  "project": "prov_grounded_uie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T03:11:40.646Z",
+    "updated_at": "2026-05-13T03:32:58.656Z",
+    "hypothesis": "Re-diagnose reward distribution on sft_eval_v5 outputs (fixed template, AP=0.9529). If provenance std < 0.05, provenance reward is also saturated and v2 weight design must change."
+  },
+  "timestamp": "2026-05-13T03:32:58.703322+00:00",
+  "trigger": "update_registry"
+}

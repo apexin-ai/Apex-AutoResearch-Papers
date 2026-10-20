@@ -1,0 +1,73 @@
+paper_key: "picard"
+title: "PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models"
+venue: "EMNLP 2021"
+full_text_available: false
+
+research:
+  baselines: [T5-base, T5-large, T5-3B, BRIDGE, RATSQL+GAP, SmBoP]
+  metrics:
+    - {name: "Exact Match (EM)", direction: "higher_better"}
+    - {name: "Execution Accuracy (EX)", direction: "higher_better"}
+  datasets:
+    - {name: "Spider", size: "~10K examples, 200 DBs"}
+    - {name: "CoSQL", size: "~3K dialogues"}
+  ablation_dimensions: [parsing_strictness_levels, beam_size, model_size]
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "1e-4"
+    hardware: "NVIDIA V100 GPUs"
+    base_model: "T5-3B"
+  method_family: "Incremental parsing-based constrained decoding"
+
+positioning:
+  core_claim: "通过增量解析在每个解码步骤拒绝不合法 token，将表现一般的 T5 模型提升为 SOTA"
+  key_results: "Spider EM: 75.5% (T5-3B + PICARD), 比 T5-3B 无约束提升 ~4 points; CoSQL 类似提升"
+  limitations:
+    - "仅适用于有明确语法规则的形式语言（如 SQL）"
+    - "解析器维护开销，对非 SQL 任务需要重新设计语法"
+    - "增量解析无法捕捉语义约束（如表名-列名一致性）"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLM 生成 SQL 时经常产生语法无效的输出"
+  tension: "微调后的 LLM 仍然生成大量不合法序列，浪费 beam search 容量"
+  key_insight: "用增量 SQL 解析器在每一步过滤非法 token，无需重新训练"
+  argument_chain: "LLM 生成无效 SQL → 增量解析器逐步验证 → 拒绝非法 token → 仅额外推理开销 → SOTA"
+  contribution_framing: "2项贡献：PICARD 方法、Spider/CoSQL SOTA"
+  intro_structure: "4段：问题→现有方案不足→本文方法→结果总结"
+  notable_technique: "将约束解码框架化为'免费午餐'——无需重训，只需推理时约束"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: "PICARD 在解码过程中增量解析 SQL 的流程图"
+    narrative_role: "展示方法的直觉——在每步用解析器过滤"
+    design_elements: ["解码步骤序列", "合法/非法 token 标注", "解析器状态"]
+    visual_style: "流程图风格，step-by-step 展示解码与解析交互"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (method) → Tables (results)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × metrics (EM, EX)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 6
+    design_note: "对比 PICARD 开/关的效果，展示约束解码的纯增益"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["parsing strictness level"]
+      variation_style: "full_numbers"
+      design_note: "展示不同严格度级别对性能的影响"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "短论文，所有结果在主文中"

@@ -1,0 +1,129 @@
+% =============================================================
+% Paper Tables Draft — Schema-Semantic Constrained IE
+% Generated from experiment registry, 2026-05-14
+% Model: Qwen3-8B (zero-shot), all percentages to 1 d.p.
+% =============================================================
+
+% ------------------------------------------------------------
+% Table 1: SciERC 5-way Ablation
+% ------------------------------------------------------------
+\begin{table}[t]
+\centering
+\caption{Ablation study on SciERC test set (551 samples, Qwen3-8B zero-shot).
+DR = Domain/Range violation rate, RV = Relation Vocabulary violation rate,
+ET = Entity Type violation rate, CF = Cross-Field consistency violation rate.
+$\downarrow$: lower is better; $\uparrow$: higher is better.
+$\Delta$DR shows the absolute change (pp) relative to the unconstrained baseline.}
+\label{tab:scierc-ablation}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l cccc cc c}
+\toprule
+Mode & DR$\downarrow$ & RV$\downarrow$ & ET$\downarrow$ & CF$\downarrow$ & R-F1$\uparrow$ & E-F1$\uparrow$ & $\Delta$DR (pp) \\
+\midrule
+Unconstrained      & 15.4 & 1.4          & 0.4          & \textbf{0.1} & 8.2          & 31.0          & ---                    \\
+Grammar-only       & 14.8 & \textbf{0.0} & \textbf{0.0} & \textbf{0.1} & 8.2          & 31.0          & $-$0.5                 \\
+Semantic-only      & 11.7 & 1.5          & 0.4          & 2.7          & 8.2          & 31.0          & $-$3.7                 \\
+Full (S1)          & \textbf{0.9} & \textbf{0.0} & \textbf{0.0} & 9.9  & \textbf{8.4} & 31.0          & \textbf{$-$14.4}       \\
+Full (S2)          & 1.0  & \textbf{0.0} & \textbf{0.0} & 8.0          & 8.0          & \textbf{31.9} & $-$14.4                \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{2pt}
+{\footnotesize
+\textit{Exp IDs:}
+\texttt{phase2\_scierc\_unconstrained},
+\texttt{phase2\_scierc\_grammar\_only},
+\texttt{phase2\_scierc\_semantic\_only},
+\texttt{phase2\_scierc\_full\_s1},
+\texttt{phase2\_scierc\_full\_s2}.
+}
+\end{table}
+
+
+% ------------------------------------------------------------
+% Table 2: Per-Relation DR Violation Analysis (SciERC)
+% ------------------------------------------------------------
+\begin{table}[t]
+\centering
+\caption{Per-relation Domain/Range violation rates on SciERC:
+Unconstrained baseline vs.\ Full (S1) constrained decoding.
+$n$ = predicted triples of that relation type (unconstrained).
+$\Delta$ = absolute change in violation rate (pp).}
+\label{tab:scierc-per-relation-dr}
+\begin{tabular}{l r rr r}
+\toprule
+Relation & $n$ & Uncon.\ (\%) & S1 (\%) & $\Delta$ (pp) \\
+\midrule
+Compare      &  66 & 42.4 &  2.8 & $-$39.6 \\
+Feature-of   & 486 & 33.5 &  1.2 & $-$32.3 \\
+Part-of      &  72 & 25.0 & \textbf{0.0} & $-$25.0 \\
+Evaluate-for & 133 & 24.1 &  5.8 & $-$18.3 \\
+Hyponym-of   & 124 & 14.5 & \textbf{0.0} & $-$14.5 \\
+Used-for     & 787 &  0.8 & \textbf{0.0} & $-$0.8  \\
+Conjunction  &  32 &  0.0 & \textbf{0.0} &    0.0  \\
+\midrule
+\textit{Overall} & \textit{1724} & \textit{15.4} & \textit{0.9} & \textit{$-$14.4} \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+{\footnotesize
+\textit{Exp IDs:}
+\texttt{phase2\_scierc\_unconstrained} (Uncon.),
+\texttt{phase2\_scierc\_full\_s1} (S1).
+}
+\end{table}
+
+
+% ------------------------------------------------------------
+% Table 3: DocRED Phase 0 — Prompt-level Intervention
+% ------------------------------------------------------------
+\begin{table}[t]
+\centering
+\caption{Prompt-level intervention on DocRED dev set (998 documents, 96 relation types, Qwen3-8B zero-shot).
+Comparing minimal prompt vs.\ schema-informed prompt that explicitly lists valid relation types
+and domain/range constraints.}
+\label{tab:docred-phase0}
+\begin{tabular}{l cccc}
+\toprule
+Mode & DR$\downarrow$ & RV$\downarrow$ & ET$\downarrow$ & JSON Parse$\uparrow$ \\
+\midrule
+Minimal          & 18.5          & 29.7          & 2.5          & \textbf{96.4} \\
+Schema-informed  & \textbf{12.8} & \textbf{18.4} & \textbf{0.2} & 94.5          \\
+\midrule
+$\Delta$         & $-$5.7        & $-$11.3       & $-$2.3       & $-$1.9        \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+{\footnotesize
+\textit{Exp IDs:}
+\texttt{mvp\_phase0\_violation\_rate\_docred} (Minimal),
+\texttt{mvp\_phase0\_docred\_schema} (Schema-informed).
+}
+\end{table}
+
+
+% ------------------------------------------------------------
+% Table 4: Cross-dataset Violation Comparison
+% ------------------------------------------------------------
+\begin{table}[t]
+\centering
+\caption{Cross-dataset comparison of ontology violation rates.
+Baseline = unconstrained Qwen3-8B zero-shot; S1 = Grammar + Semantic constrained decoding.}
+\label{tab:cross-dataset}
+\begin{tabular}{l c ccc cc}
+\toprule
+Dataset & \#Rels & DR\textsubscript{base} & RV\textsubscript{base} & ET\textsubscript{base} & DR\textsubscript{S1} & $\Delta$DR (pp) \\
+\midrule
+SciERC & 7  & 15.4 & 1.4  & 0.4 & 0.9          & $-$14.4 \\
+DocRED & 96 & 18.5 & 29.7 & 2.5 & 10.21 & $-$8.3 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+{\footnotesize
+\textit{Exp IDs:}
+SciERC base = \texttt{phase2\_scierc\_unconstrained},
+SciERC S1 = \texttt{phase2\_scierc\_full\_s1},
+DocRED base = \texttt{mvp\_phase0\_violation\_rate\_docred},
+DocRED S1 = \texttt{phase2\_docred\_full\_s1}.
+}
+\end{table}

@@ -1,0 +1,113 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wadhwa2023revisiting,wan2023gpt}
+\citation{gao2023exploring}
+\citation{li2023evaluating}
+\citation{willard2023efficient,zheng2024xgrammar}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{(1) A violation landscape study.}{1}{section*.1}\protected@file@percent }
+\citation{wadhwa2023revisiting,wei2023zero}
+\citation{wan2023gpt}
+\citation{xu2023unleash}
+\citation{willard2023efficient,zheng2024xgrammar}
+\citation{ugare2024pldi}
+\citation{lin2020joint}
+\citation{zhong2021frustratingly}
+\@writefile{toc}{\contentsline {paragraph}{(2) An analysis of mitigation insufficiency.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) A mitigation tool.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM-based Information Extraction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constrained Decoding for Structured Generation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ontology Constraint Enforcement in IE.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Violation Taxonomy}{2}{section.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3}{2}{Violation Taxonomy}{section.3}{}}
+\citation{zheng2024xgrammar}
+\citation{luan2018multi}
+\citation{yao2019docred}
+\citation{li2021document}
+\@writefile{toc}{\contentsline {section}{\numberline {4}OntoCoDec{}: A Mitigation Tool}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{\sys {}: A Mitigation Tool}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Grammar Layer.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Semantic Layer.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Composition.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{3}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{3}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:setup}{{5.1}{3}{Setup}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Zero-Shot Event Extraction: Violation Landscape}{3}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:ee_landscape}{{5.2}{3}{Zero-Shot Event Extraction: Violation Landscape}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces WikiEvents zero-shot unconstrained baselines (246 documents). Violations are pervasive: RoV exceeds 63\% across all models, and Entity-F1 is 0\% uniformly.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:ee_unconstrained}{{1}{4}{WikiEvents zero-shot unconstrained baselines (246 documents). Violations are pervasive: RoV exceeds 63\% across all models, and Entity-F1 is 0\% uniformly}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Post-hoc filtering discard rates. For EE on WikiEvents, post-hoc filtering is destructive: 99.6--100\% of generated arguments are discarded.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:posthoc}{{2}{4}{Post-hoc filtering discard rates. For EE on WikiEvents, post-hoc filtering is destructive: 99.6--100\% of generated arguments are discarded}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Post-hoc Filtering: When Removal is Not Viable}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:posthoc}{{5.3}{4}{Post-hoc Filtering: When Removal is Not Viable}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Post-hoc vs.\ constrained decoding on RE.}{4}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Zero-shot RE: post-hoc filtering vs.\ constrained decoding (R-F1). Post-hoc achieves higher F1 in 5 of 6 configurations by aggressively removing false positives.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:posthoc_vs_constrained}{{3}{5}{Zero-shot RE: post-hoc filtering vs.\ constrained decoding (R-F1). Post-hoc achieves higher F1 in 5 of 6 configurations by aggressively removing false positives}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces WikiEvents grammar-only ablation across three models. Grammar eliminates EV (event vocabulary violations) but RoV persists at 64--76\%: CFG constraints cannot encode event-type-conditioned role restrictions.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:grammar_only_ee}{{4}{5}{WikiEvents grammar-only ablation across three models. Grammar eliminates EV (event vocabulary violations) but RoV persists at 64--76\%: CFG constraints cannot encode event-type-conditioned role restrictions}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Grammar-Only Ablation: Why Syntax is Insufficient}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:grammar_ablation}{{5.4}{5}{Grammar-Only Ablation: Why Syntax is Insufficient}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Scale Generalization: 8B vs.\ 70B}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:scale}{{5.5}{5}{Scale Generalization: 8B vs.\ 70B}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Mistral WikiEvents: unconstrained vs.\ grammar-only vs.\ full constraint (S1). Adding the semantic layer eliminates RoV but increases CF from 1.1\% to 14.9\%.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:grammar_mistral_ee}{{5}{6}{Mistral WikiEvents: unconstrained vs.\ grammar-only vs.\ full constraint (S1). Adding the semantic layer eliminates RoV but increases CF from 1.1\% to 14.9\%}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scale comparison on SciERC (zero-shot). 70B achieves DR=0\% under constraints but baseline violations are already lower, reducing the marginal value of constrained decoding.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:scale_scierc}{{6}{6}{Scale comparison on SciERC (zero-shot). 70B achieves DR=0\% under constraints but baseline violations are already lower, reducing the marginal value of constrained decoding}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Fine-Tuned Regime: Composability with LoRA}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ft}{{5.6}{6}{Fine-Tuned Regime: Composability with LoRA}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Event extraction composability.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA scale experiment: 70B on RE.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Statistical Significance of EE Improvements}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:bootstrap}{{5.7}{6}{Statistical Significance of EE Improvements}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Latency Overhead}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:latency}{{5.8}{6}{Latency Overhead}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces DocRED cross-scale comparison (zero-shot). CF does not decrease with scale (70B CF=7.01\% vs.\ Qwen-8B CF=2.57\%), suggesting CF is an inherent property of per-relation enforcement, not a model artifact.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:scale_docred}{{7}{7}{DocRED cross-scale comparison (zero-shot). CF does not decrease with scale (70B CF=7.01\% vs.\ Qwen-8B CF=2.57\%), suggesting CF is an inherent property of per-relation enforcement, not a model artifact}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces EE fine-tuned composability (WikiEvents). Constrained decoding eliminates RoV but reduces Trigger-F1 by 5.4pp on Qwen. Arg-F1 changes are within noise.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:ee_ft}{{8}{7}{EE fine-tuned composability (WikiEvents). Constrained decoding eliminates RoV but reduces Trigger-F1 by 5.4pp on Qwen. Arg-F1 changes are within noise}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Error Analysis}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:error_analysis}{{5.9}{7}{Error Analysis}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{CF root causes.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{The violation landscape as a research contribution.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The limits of per-relation enforcement.}{7}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces LoRA SciERC: 8B vs.\ 70B constrained impact. The 70B quantized model shows 0\% DR reduction (constrained DR equals unconstrained DR) and 5\% parse failures.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:lora_scierc}{{9}{8}{LoRA SciERC: 8B vs.\ 70B constrained impact. The 70B quantized model shows 0\% DR reduction (constrained DR equals unconstrained DR) and 5\% parse failures}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces LoRA DocRED: 8B vs.\ 70B constrained. The 70B quantized model shows DR=2.80\%, R-F1 drop of 2.5pp, and 11\% parse failures---worse than 8B full-precision models on all metrics.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:lora_docred}{{10}{8}{LoRA DocRED: 8B vs.\ 70B constrained. The 70B quantized model shows DR=2.80\%, R-F1 drop of 2.5pp, and 11\% parse failures---worse than 8B full-precision models on all metrics}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{When is constrained decoding the right tool?}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quantization and scale.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\newlabel{sec:limitations}{{7}{8}{Limitations}{section*.22}{}}
+\bibstyle{plainnat}
+\bibcite{gao2023exploring}{{1}{2023}{{Gao et~al.}}{{}}}
+\bibcite{li2021document}{{2}{2021}{{Li et~al.}}{{}}}
+\bibcite{li2023evaluating}{{3}{2023}{{Li et~al.}}{{}}}
+\bibcite{lin2020joint}{{4}{2020}{{Lin et~al.}}{{}}}
+\bibcite{luan2018multi}{{5}{2018}{{Luan et~al.}}{{}}}
+\bibcite{ugare2024pldi}{{6}{2024}{{Ugare et~al.}}{{}}}
+\bibcite{wadhwa2023revisiting}{{7}{2023}{{Wadhwa et~al.}}{{}}}
+\bibcite{wan2023gpt}{{8}{2023}{{Wan et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces EE bootstrap significance (10,000 iterations). Entity-F1 improvements are significant but reflect format compliance recovery (0\%$\to $11--17\%), not semantic extraction gains. Trigger-F1 and Arg-F1 changes are not significant.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:bootstrap_ee}{{11}{9}{EE bootstrap significance (10,000 iterations). Entity-F1 improvements are significant but reflect format compliance recovery (0\%$\to $11--17\%), not semantic extraction gains. Trigger-F1 and Arg-F1 changes are not significant}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Latency overhead of constrained decoding. Overhead ranges from 10--16.5\%, modest in absolute terms.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:latency}{{12}{9}{Latency overhead of constrained decoding. Overhead ranges from 10--16.5\%, modest in absolute terms}{table.12}{}}
+\bibcite{wei2023zero}{{9}{2023}{{Wei et~al.}}{{}}}
+\bibcite{willard2023efficient}{{10}{2023}{{Willard and Louf}}{{}}}
+\bibcite{xu2023unleash}{{11}{2023}{{Xu et~al.}}{{}}}
+\bibcite{yao2019docred}{{12}{2019}{{Yao et~al.}}{{}}}
+\bibcite{zheng2024xgrammar}{{13}{2024}{{Zheng et~al.}}{{}}}
+\bibcite{zhong2021frustratingly}{{14}{2021}{{Zhong and Chen}}{{}}}
+\gdef \@abspage@last{10}

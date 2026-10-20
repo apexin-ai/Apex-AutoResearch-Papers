@@ -1,0 +1,18 @@
+OntoCoDec: Two-Layer Constrained Decoding for Type-Valid Information Extraction
+
+OntoCoDec compiles IE ontology schemas into two composable constraint layers for autoregressive LLM decoding.
+
+STAGE 1 — Schema Compilation (offline, once per schema):
+Input: An IE ontology O = (ε, R, σ) containing entity types ε, relation types R, and type signature function σ mapping each relation to valid (head_type, tail_type) pairs.
+Path A: The ontology's JSON output schema is compiled via XGrammar into a Grammar Automaton M_G — a pushdown automaton that enforces valid JSON structure and vocabulary membership at every decoding step.
+Path B: The type signature pairs σ(r) are processed by a Type Constraint (TC) Processor to produce Semantic Rules — a lookup table mapping each relation type to its valid domain/range entity type combinations.
+
+STAGE 2 — Constraint Layers (runtime, computed per decoding step t):
+Grammar Layer (Level 1: Context-Free): Computes G(t) ⊆ V, the set of tokens allowed by the grammar automaton at step t. Enforces JSON structure and ensures entity/relation tokens belong to the schema vocabulary.
+Semantic Layer (Level 2: Prefix-Decidable with State): Maintains an entity registry Σ_t that tracks entity-to-type mappings accumulated during generation. Computes S(t) ⊆ V, the set of tokens consistent with domain/range type constraints given the current registry state.
+
+STAGE 3 — Token Masking (online, per decoding step t):
+The final allowed token set is the intersection: M_mask(t) = G(t) ∩ S(t).
+If the intersection is non-empty, the model samples from G(t) ∩ S(t).
+If the intersection is empty (G ∩ S = ∅), a graceful fallback activates: the model samples from G(t) only, accepting a potential CF (constraint-fallback) violation to avoid blocking generation. This fallback is logged for post-hoc analysis.
+The selected token y_t is appended and decoding continues to step t+1.

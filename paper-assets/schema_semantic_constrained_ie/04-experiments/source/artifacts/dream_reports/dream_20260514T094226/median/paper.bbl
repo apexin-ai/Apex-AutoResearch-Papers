@@ -1,0 +1,92 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Dong et~al.(2024)Dong, Shi, Shrivastava, Li, Wang, and
+  Chen]{dong2024xgrammar}
+Yixin Dong, Charlie Shi, Anirudh Shrivastava, Yiming Li, Zhuonan Wang, and
+  Tianqi Chen.
+\newblock {XGrammar}: Flexible and efficient structured generation engine for
+  large language models.
+\newblock \emph{arXiv preprint arXiv:2411.15100}, 2024.
+
+\bibitem[Geng et~al.(2024)Geng, Pailoor, Tan, and Dillig]{geng2024grammar}
+Kanghee Geng, Sumanth Pailoor, Shankara~Pailoor Tan, and Isil Dillig.
+\newblock Grammar-aligned decoding.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Li et~al.(2023)Li, Sun, Tang, Yan, Wu, Huang, and Qiu]{li2023codeie}
+Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and
+  Xipeng Qiu.
+\newblock {CodeIE}: Large code generation models are better few-shot
+  information extractors.
+\newblock In \emph{ACL}, 2023.
+
+\bibitem[Luan et~al.(2018)Luan, He, Ostendorf, and Hajishirzi]{luan2018multi}
+Yi~Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi.
+\newblock Multi-task identification of entities, relations, and coreference for
+  scientific knowledge graph construction.
+\newblock In \emph{EMNLP}, 2018.
+
+\bibitem[{Qwen Team}(2025)]{qwen2025qwen3}
+{Qwen Team}.
+\newblock Qwen3 technical report.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Sainz et~al.(2024)Sainz, Garc{\'\i}a-Ferrero, Agerri, de~Lacalle,
+  Rigau, and Agirre]{sainz2024gollie}
+Oscar Sainz, Iker Garc{\'\i}a-Ferrero, Rodrigo Agerri, Oier~Lopez de~Lacalle,
+  German Rigau, and Eneko Agirre.
+\newblock {GoLLIE}: Annotation guidelines improve zero-shot
+  information-extraction.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Scholak et~al.(2021)Scholak, Schucher, and
+  Bahdanau]{scholak2021picard}
+Torsten Scholak, Nathan Schucher, and Dzmitry Bahdanau.
+\newblock {PICARD}: Parsing incrementally for constrained auto-regressive
+  decoding from language models.
+\newblock In \emph{EMNLP}, 2021.
+
+\bibitem[Wang et~al.(2023)Wang, Zhou, Zu, Xia, Chen, Zhang, Zheng, Ye, Zhang,
+  Gui, et~al.]{wang2023instructuie}
+Xiao Wang, Weikang Zhou, Can Zu, Han Xia, Tianze Chen, Yuan Zhang, Rui Zheng,
+  Junjie Ye, Qi~Zhang, Tao Gui, et~al.
+\newblock {InstructUIE}: Multi-task instruction tuning for unified information
+  extraction.
+\newblock In \emph{ACL}, 2023.
+
+\bibitem[Wei et~al.(2023)Wei, Cui, Cheng, Wang, Zhang, Huang, Xie, Xu, Chen,
+  Zhang, Jiang, and Han]{wei2023zeroshot}
+Xiang Wei, Xingyu Cui, Ning Cheng, Xiaobin Wang, Xin Zhang, Shen Huang, Pengjun
+  Xie, Jinan Xu, Yufeng Chen, Meishan Zhang, Yong Jiang, and Wenjuan Han.
+\newblock Zero-shot information extraction via chatting with {ChatGPT}.
+\newblock \emph{arXiv preprint arXiv:2302.10205}, 2023.
+
+\bibitem[Willard and Louf(2023)]{willard2023efficient}
+Brandon~T Willard and R{\'e}mi Louf.
+\newblock Efficient guided generation for large language models.
+\newblock \emph{arXiv preprint arXiv:2307.09702}, 2023.
+
+\bibitem[Wu et~al.(2024)]{wu2024structure}
+Yifan Wu et~al.
+\newblock Structure snowballing in grammar-constrained decoding.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Yao et~al.(2019)Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and
+  Sun]{yao2019docred}
+Yuan Yao, Deming Ye, Peng Li, Xu~Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu,
+  Lixin Huang, Jie Zhou, and Maosong Sun.
+\newblock {DocRED}: A large-scale document-level relation extraction dataset.
+\newblock In \emph{ACL}, 2019.
+
+\bibitem[Zheng et~al.(2024)]{zheng2024openchat}
+Kangrui Zheng et~al.
+\newblock {CRANE}: Mitigating structural hallucination in grammar-constrained
+  large language model decoding.
+\newblock \emph{arXiv preprint}, 2024.
+
+\end{thebibliography}

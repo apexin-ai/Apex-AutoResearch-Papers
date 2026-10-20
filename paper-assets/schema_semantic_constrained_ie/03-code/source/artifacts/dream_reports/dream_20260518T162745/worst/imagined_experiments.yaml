@@ -1,0 +1,652 @@
+tier: worst
+narrative_guidance: '核心叙事需要从 "method paper with empirical validation" 重构为 "empirical
+  study with method validation"。 三个 reframe 策略组合使用：(A) Violation Landscape 升级为论文主体贡献——70B
+  低违规反而是 positive finding （"scale partially mitigates but task complexity determines
+  violation severity — EE RoV 64-89% regardless of model size"）；(B) prefix-decidability
+  taxonomy formalize 为 theorem；(C) FT composability 作为 practical selling point（"decoding-time
+  type checking for neural generation"）。 worst 档下审稿人平均分 2.75-3.25（Borderline Findings），核心攻击面：70B
+  近乎消除违规使方法动机被 削弱；novelty 仍被视为 incremental；CF 15-21% 在 EE 上被标记为 "method introduces
+  more problems than it solves"。需要 rebuttal 期全面回应 + AC meta-review 争取 Findings 录用。
+
+  '
+imagined_experiments:
+- name: 70B SciERC unconstrained + constrained
+  plan_id: P029
+  description: 'Llama-3.1-70B-Instruct AWQ-INT4 on SciERC 551 docs。已完成，实际结果需在 worst
+    tier 下解读。 实际结果：unconstrained DR=6.5%, constrained DR=0%, CF=3.66%。
+
+    '
+  expected_results:
+    70b_scierc_uncon_DR_pct: 6.5
+    70b_scierc_uncon_RV_pct: 0.6
+    70b_scierc_uncon_ET_pct: 0
+    70b_scierc_uncon_R_F1: 11.22
+    70b_scierc_uncon_E_F1: 35.17
+    70b_scierc_con_DR_pct: 0.0
+    70b_scierc_con_RV_pct: 0.0
+    70b_scierc_con_CF_pct: 3.66
+    70b_scierc_con_R_F1: 11.24
+    70b_scierc_con_E_F1: 35.14
+    DR_reduction_pct: 100.0
+    R_F1_delta_pp: 0.02
+    E_F1_delta_pp: -0.03
+  result_rationale: '70B SciERC 结果对 worst tier 叙事是双刃剑。一方面，unconstrained DR=6.5% 远低于
+    8B 的 15.4% （Qwen）和 13.3%（Llama-8B），证明 scale 确实大幅缓解违规。另一方面，6.5% 仍非零——7 个 relation
+    type 中 constraint tightness 高的（Feature-of τ=0.143, Compare τ=0.194）在 70B 下 仍有残留违规。审稿人会抓住
+    "6.5%→0% 在 SciERC 是有意义的"，但随即质问 "DocRED 呢？"。 worst tier 下 SciERC 被视为 cherry-pick（小
+    ontology，tight constraints 人为放大违规率）， DocRED 才是 litmus test。CF=3.66% 比 8B（Qwen
+    9.9%）低但仍非零，审稿人认为 "even at 70B scale, the method still introduces new violation
+    types (CF)"。 R_F1 delta +0.02pp 在 noise 范围内——无法声明 F1 improvement，只能声明 neutral。
+
+    '
+  tables:
+  - name: 'Table: 70B SciERC Cross-Scale Comparison'
+    columns:
+    - Model
+    - Scale
+    - DR%↓
+    - RV%
+    - ET%
+    - CF%
+    - R-F1
+    - ΔR-F1
+    rows:
+    - - Qwen3-8B
+      - 8B
+      - 15.37→0.93 (↓94%)
+      - 1.39→0
+      - 0.40→0
+      - 0.08→9.90
+      - 8.23→8.36
+      - '+0.13'
+    - - Llama-3.1-8B
+      - 8B
+      - 13.34→0.08 (↓99%)
+      - 0.55→0
+      - 0→0
+      - 0.49→6.56
+      - 2.68→2.54
+      - '-0.14'
+    - - Llama-3.1-70B
+      - 70B
+      - 6.50→0.00 (↓100%)
+      - 0.60→0
+      - 0→0
+      - 0→3.66
+      - 11.22→11.24
+      - '+0.02'
+  figures_description:
+  - 'Bar chart: DR% by model scale (8B Qwen, 8B Llama, 70B Llama) showing monotonic
+    decrease with scale, constrained overlay showing all near-zero'
+  analysis: 'worst tier 审稿人解读：SciERC unconstrained DR 从 8B 的 13-15% 降至 70B 的 6.5%，
+    自然 scaling 已削减 50-57%。OntoCoDec 将剩余 6.5%→0%（绝对 Δ=6.5pp）， 但审稿人可能认为 "this remaining
+    6.5% would likely disappear at 405B or with better prompting"。防线：指出 DR=6.5% 仍然意味着
+    97 个 triples 含有结构性违规， 下游 KG 不可用。但此防线在 DocRED 上会崩溃（见 P030）。
+
+    '
+- name: 70B DocRED unconstrained + constrained
+  plan_id: P030
+  description: 'Llama-3.1-70B-Instruct AWQ-INT4 on DocRED 998 docs。 8B baseline: Qwen
+    DR=18.46%, Llama-8B DR=26.07%。 worst tier 预测 70B unconstrained DR 在 0.5-3.0% 之间，constrained
+    0-0.5%。
+
+    '
+  expected_results:
+    70b_docred_uncon_DR_pct: 1.8
+    70b_docred_uncon_RV_pct: 2.3
+    70b_docred_uncon_ET_pct: 0.0
+    70b_docred_uncon_CF_pct: 0.04
+    70b_docred_uncon_parse_fail_rate: 2.1
+    70b_docred_uncon_E_F1: 64.2
+    70b_docred_uncon_E_P: 63.8
+    70b_docred_uncon_E_R: 64.6
+    70b_docred_uncon_R_F1: 10.1
+    70b_docred_uncon_R_P: 8.6
+    70b_docred_uncon_R_R: 12.3
+    70b_docred_uncon_total_triples: 17200
+    70b_docred_con_DR_pct: 0.3
+    70b_docred_con_RV_pct: 0.0
+    70b_docred_con_ET_pct: 0.0
+    70b_docred_con_CF_pct: 3.8
+    70b_docred_con_parse_fail_rate: 2.8
+    70b_docred_con_E_F1: 64.0
+    70b_docred_con_E_P: 63.5
+    70b_docred_con_E_R: 64.5
+    70b_docred_con_R_F1: 9.9
+    70b_docred_con_R_P: 8.4
+    70b_docred_con_R_R: 12.1
+    70b_docred_DR_reduction_pct: 83.3
+    70b_docred_R_F1_delta_pp: -0.2
+    70b_docred_E_F1_delta_pp: -0.2
+    70b_docred_absolute_DR_delta_pp: 1.5
+    70b_docred_DR_eligible_triples_with_violations_uncon: ~265
+    70b_docred_DR_eligible_triples_with_violations_con: ~44
+  result_rationale: '70B DocRED 是 worst tier 的核心打击点。预测 unconstrained DR=1.8%，基于以下推理：
+    (1) 8B→70B SciERC DR 从 13.3%→6.5%（↓51%），但 SciERC 只有 7 types 且 constraint tightness
+    更高（τ̄=0.571），70B 的 distributional prior 仍频繁违反 tight constraints； (2) DocRED 96
+    types，τ̄=0.842（loose），大多数 relation 的 domain/range 覆盖多种 entity type——70B 的更好 type
+    assignment 能力在 loose constraints 下几乎不违规； (3) 对标 FT 场景：Qwen FT DocRED DR=0.76%，Llama
+    FT DocRED DR=0.49%——FT 让 8B 模型 "学会" schema，70B 的 in-context learning 能力接近但略弱于
+    FT，预期 DR 在 1-3% 区间； (4) RV=2.3% 远低于 8B 的 16-30%，因为 70B 对 96 个 relation name 的
+    recall 更强—— 但仍有少量 paraphrase/abbreviation（如 P710_participant → "participant_in"）；
+    (5) Constrained DR=0.3% 因为 70B 本身违规少，semantic mask 的 fallback 频率极低 （估计 <5 次/doc
+    vs Llama-8B 的 57 次/doc），几乎所有 token 位置 semantic mask 生效； (6) R_F1 delta=-0.2pp
+    因为 70B 的 RV baseline 已很低（2.3%），grammar 层消除 OOV 带来的 FP reduction 微乎其微（对比 Qwen-8B
+    RV=29.66% → grammar 消除产生显著 F1 提升）； (7) CF=3.8% 比 8B 低但仍存在——semantic layer 的 per-relation
+    independent type enforcement 在 70B 上仍产生 cross-relation inconsistency，只是频率更低； (8)
+    Parse fail rate 2.1-2.8% 比 Llama-8B (6.8-9.1%) 低，70B 指令遵循能力更强。
+
+    审稿人攻击线："70B unconstrained DR=1.8%，your method brings it to 0.3% — a 1.5pp absolute
+    improvement on a 17000-triple dataset means ~265→44 violating triples。 This is
+    a marginal cleanup, not a methodological contribution。At this scale, better prompting
+    or a 405B model would likely eliminate the remaining 1.8% entirely。"
+
+    更致命的是百分比 reduction 虽为 83.3%，但审稿人会指出 "83% reduction of 1.8% is 1.5 percentage points
+    — statistically indistinguishable from noise on individual documents"。 这与 Qwen-8B
+    DocRED 的 18.46%→10.21% (Δ=8.25pp) 形成鲜明对比。
+
+    '
+  tables:
+  - name: 'Table: 70B DocRED Cross-Scale DR Trajectory'
+    columns:
+    - Model
+    - Uncon DR%
+    - Con DR%
+    - Absolute Δ
+    - Relative ↓%
+    - ΔR-F1
+    rows:
+    - - Qwen3-8B
+      - '18.46'
+      - '10.21'
+      - 8.25pp
+      - 44.7%
+      - '+0.50'
+    - - Llama-3.1-8B
+      - '26.07'
+      - '2.55'
+      - 23.52pp
+      - 90.2%
+      - '+0.29'
+    - - Llama-3.1-70B
+      - '1.8'
+      - '0.3'
+      - 1.5pp
+      - 83.3%
+      - '-0.2'
+  - name: 'Table: 70B DocRED Full Violation Profile'
+    columns:
+    - Condition
+    - ET%
+    - RV%
+    - DR%
+    - CF%
+    - E-F1
+    - R-F1
+    - Parse%
+    rows:
+    - - 70B unconstrained
+      - '0.0'
+      - '2.3'
+      - '1.8'
+      - '0.04'
+      - '64.2'
+      - '10.1'
+      - '97.9'
+    - - 70B constrained
+      - '0.0'
+      - '0.0'
+      - '0.3'
+      - '3.8'
+      - '64.0'
+      - '9.9'
+      - '97.2'
+  figures_description:
+  - 'Line plot: DR% vs model scale (8B Qwen, 8B Llama, 70B Llama) for DocRED, showing
+    exponential decay — unconstrained DR drops from ~22% average at 8B to <2% at 70B,
+    undermining the motivation for decoding-time constraint enforcement'
+  - 'Stacked bar: Absolute violation count (not rate) at 70B — showing ~265 unconstrained
+    → ~44 constrained, visually small numbers on a 17K-triple base'
+  analysis: "这是 worst tier 的致命攻击面。审稿人会构建如下论证链： (1) \"Violations are a scaling phenomenon:\
+    \ 8B→70B reduces DR by 86-93% on DocRED without any method intervention\"; (2)\
+    \ \"The residual 1.8% at 70B is within the range achievable by prompt engineering\
+    \ (schema-informed prompt on 8B already achieves DR↓32%, better prompting on 70B\
+    \ should do more)\"; (3) \"OntoCoDec's absolute contribution at 70B is 1.5pp —\
+    \ smaller than the confidence interval of most IE metrics\"; (4) \"Meanwhile,\
+    \ the method introduces CF violations (0.04%→3.8%), creating a new problem to\
+    \ solve a vanishing one\"。\n防御策略（reframe A 为主）： - 不争论 70B 数字本身，承认 \"scale partially\
+    \ mitigates violations on loose-constraint\n  ontologies\" 作为 positive finding\n\
+    - 将论点转向 task complexity：SciERC 70B DR=6.5%（tight constraints 下 scale 不够），\n  EE\
+    \ RoV=64-89%（role constraints 下 scale 完全无效）\n- 70B DocRED 低 DR 恰好证明 \"tightness\
+    \ determines violation severity\" 的理论 claim——\n  DocRED τ̄=0.842 是 loose ontology\
+    \ 的代表，结论是 \"loose ontology + large model = low\n  violation, but tight ontology\
+    \ or complex task structure requires enforcement regardless\n  of scale\"\n- 但审稿人可能不买账：worst\
+    \ tier 下 2/3 审稿人仍标记 novelty incremental\n"
+- name: Error analysis / case study (EE + RE)
+  plan_id: P031
+  description: '10-20 representative cases from WikiEvents v3 EE results + DocRED
+    RE residuals。 分析 AC residual root causes, CF systematic patterns, qualitative
+    evidence for paper。
+
+    '
+  expected_results:
+    ee_ac_residual_cases_analyzed: 15
+    ee_ac_root_cause_semantic_confusion_pct: 72
+    ee_ac_root_cause_annotation_ambiguity_pct: 18
+    ee_ac_root_cause_tokenizer_residual_pct: 10
+    ee_cf_pattern_top1: same entity assigned PER in one event and SID in another
+    ee_cf_pattern_top2: GPE vs FAC for location-type arguments across co-located events
+    ee_cf_pattern_top3: ORG vs SID for group entities in Movement vs Conflict events
+    ee_cf_systematic_type_pair_count: 5
+    re_docred_residual_dr_per_relation_top3:
+    - 'P31_instance_of: DR still ~3-5% even at constrained'
+    - 'P17_country: loose constraint but edge-case entity types'
+    - 'P131_located_in: GPE vs LOC boundary confusion'
+    qualitative_insight_novelty: low
+  result_rationale: 'worst tier 下 error analysis 不会产生 surprising findings。AC 残留（Qwen
+    2.1%, Llama 3.8%, Mistral 1.3%）的根因已在 BPE collision diagnostic 中部分解释： Mistral 有
+    2 个 collision group 贡献了大部分 AC，Qwen/Llama 0 collision 但仍有 AC， 说明是模型本身的 semantic
+    confusion（如 SID vs SEN 语义相近，模型难以在 constrained 空间中区分）。分析 15 个 case 后，预期 72% 属于
+    "similar entity types that the model confuses under constraint pressure"（如 PER/SID/SEN
+    在 WikiEvents 中语义重叠）， 18% 属于 annotation 本身的 ambiguity（gold label 也可争议），10% 是 tokenizer
+    residual（collision fix 后仍有边缘 case）。 CF 分析会揭示与 RE CF 相同的模式：type system 语义边界模糊导致同一
+    entity 在 不同 event context 中被合理归类为不同 type。但 worst tier 审稿人不接受 "type ambiguity 解释"——认为这是
+    method limitation 而非 type system 问题。 qualitative insight 缺乏 novelty：所有发现都是 "method
+    works as designed, residuals are expected boundary cases"，不会产生 "我没想到" 的 insight。
+
+    '
+  tables: []
+  figures_description:
+  - 'Case study figure: 2-3 annotated examples showing AC residual (entity type confusion
+    under constraint), CF pattern (cross-event type drift), and one success case (constraint
+    correctly preventing invalid argument assignment)'
+  analysis: 'error analysis 在 worst tier 下是 necessary but not sufficient。审稿人 comment：
+    "The error analysis confirms that residual violations are due to model confusion
+    between semantically similar types, which is expected. The CF analysis shows the
+    method systematically introduces a new violation category. Neither finding is
+    surprising or provides actionable insight for improving the method." 防御：将 error
+    analysis 定位为 "empirical validation of the decidability taxonomy" ——AC residuals
+    是 category (b) constraints 的 boundary cases，CF 是 category (c) non-local constraints
+    的 concrete manifestation。但这在 worst tier 下仅获得 "adequate but not compelling" 评价。
+
+    '
+- name: EE FT composability
+  plan_id: P032
+  description: 'Fine-tuned model + OntoCoDec on WikiEvents Event Extraction。 验证 FT
+    regime 下 constrained decoding 的 composability。 估算 ~30 GPU-hours，仅时间允许时执行。
+
+    '
+  expected_results:
+    ee_ft_uncon_EV_pct: 0.5
+    ee_ft_uncon_RoV_pct: 8.2
+    ee_ft_uncon_AC_pct: 0.4
+    ee_ft_uncon_CF_pct: 0.1
+    ee_ft_uncon_trigger_f1: 62.5
+    ee_ft_uncon_argument_f1: 38.0
+    ee_ft_uncon_entity_f1: 71.3
+    ee_ft_con_EV_pct: 0.0
+    ee_ft_con_RoV_pct: 0.0
+    ee_ft_con_AC_pct: 0.1
+    ee_ft_con_CF_pct: 1.8
+    ee_ft_con_trigger_f1: 62.3
+    ee_ft_con_argument_f1: 37.8
+    ee_ft_con_entity_f1: 71.0
+    RoV_reduction_pct: 100.0
+    AC_reduction_pct: 75.0
+    argument_f1_delta_pp: -0.2
+    ee_ft_total_violations_uncon_pct: 9.2
+    ee_ft_total_violations_con_pct: 1.9
+  result_rationale: "FT composability 在 RE 上已验证（Qwen DocRED: DR 0.76%→0.01%, R_F1\
+    \ -0.30pp； Llama DocRED: DR 0.49%→0.20%, R_F1 +0.51pp）。EE FT 预期模式类似但更复杂：\n(1)\
+    \ FT 大幅降低 EV 和 RoV（模型学会了 event type 和 role vocabulary），预期 EV 0.5%、RoV 8.2%（比 ZS\
+    \ 的 24-37% 和 64-89% 大幅下降但不为零——EE 的 56 event types × 80 roles 比 RE 的 96 relation\
+    \ types 更复杂，长尾 event types 训练样本不足）； (2) AC 从 ZS 的 0-3.8% 降至 0.4%（FT 改善 entity\
+    \ type assignment）； (3) Constrained 消除所有 EV/RoV（grammar+semantic 层直接生效），AC 降至\
+    \ 0.1%； (4) CF 从 0.1%→1.8%（semantic layer 引入的系统性副作用，但比 ZS 的 14-21% 低很多—— FT 模型本身更一致，cross-event\
+    \ type drift 减少）； (5) F1 基本 neutral（delta <0.5pp），因为 FT 模型 RoV baseline 已低，grammar/semantic\
+    \ 消除 OOV 带来的 FP reduction 有限。\nworst tier 审稿人反应： - \"FT regime is the realistic\
+    \ deployment scenario. FT already reduces violations\n  to <10%. The additional\
+    \ 7pp reduction from OntoCoDec (9.2%→1.9%) is useful but\n  incremental — the\
+    \ heavy lifting is done by fine-tuning, not your method.\"\n- \"F1 delta is negative\
+    \ (-0.2pp), so the method doesn't even preserve quality.\" - 但 \"decoding-time\
+    \ type checking\" angle 对 industry reviewers 仍有吸引力\n  （类比 static typing for neural\
+    \ generation），这是 reframe C 的核心卖点。\n"
+  tables:
+  - name: 'Table: EE FT Composability (WikiEvents, Qwen3-8B)'
+    columns:
+    - Condition
+    - EV%
+    - RoV%
+    - AC%
+    - CF%
+    - Trig-F1
+    - Arg-F1
+    - Ent-F1
+    rows:
+    - - FT unconstrained
+      - '0.5'
+      - '8.2'
+      - '0.4'
+      - '0.1'
+      - '62.5'
+      - '38.0'
+      - '71.3'
+    - - FT constrained
+      - '0.0'
+      - '0.0'
+      - '0.1'
+      - '1.8'
+      - '62.3'
+      - '37.8'
+      - '71.0'
+    - - ZS unconstrained (ref)
+      - '24.0'
+      - '74.9'
+      - '0.3'
+      - '0.0'
+      - '11.8'
+      - '0.1'
+      - '0.0'
+    - - ZS constrained (ref)
+      - '0.0'
+      - '0.0'
+      - '2.1'
+      - '21.1'
+      - '13.4'
+      - '1.7'
+      - '14.1'
+  figures_description: []
+  analysis: 'worst tier 下 EE FT composability 是 reframe C 的关键支撑。即使审稿人质疑 ZS 场景的 practical
+    relevance，FT 结果展示 "even well-trained models benefit from decoding-time type checking"。但攻击面是
+    F1 delta 为负——虽然微小（-0.2pp），在 worst tier 下会被 放大为 "method degrades the model it''s
+    supposed to help"。 如果时间不够（May 25 前），此实验可能无法完成。没有此数据，论文缺少 EE+FT 交叉 验证，reframe C
+    在 EE 维度的支撑变弱。建议如果必须砍实验，保留 RE FT 数据即可， EE FT 降级为 future work，但这会被审稿人标记为 "incomplete
+    evaluation"。
+
+    '
+- name: Grammar-only cross-model validation (Qwen/Llama EE)
+  plan_id: P033
+  description: 'WikiEvents grammar_only ablation on Qwen3-8B 和 Llama-3.1-8B， 补全 Mistral
+    grammar_only v3 已有的消融证据。
+
+    '
+  expected_results:
+    qwen_ee_grammar_only_EV_pct: 0.0
+    qwen_ee_grammar_only_RoV_pct: 71.5
+    qwen_ee_grammar_only_AC_pct: 8.4
+    qwen_ee_grammar_only_CF_pct: 0.2
+    qwen_ee_grammar_only_trigger_f1: 12.8
+    qwen_ee_grammar_only_entity_f1: 0.5
+    llama_ee_grammar_only_EV_pct: 0.0
+    llama_ee_grammar_only_RoV_pct: 77.2
+    llama_ee_grammar_only_AC_pct: 11.6
+    llama_ee_grammar_only_CF_pct: 0.1
+    llama_ee_grammar_only_trigger_f1: 6.9
+    llama_ee_grammar_only_entity_f1: 1.2
+    grammar_only_RoV_range: 64-77%
+    grammar_only_AC_surfacing_range: 8-14%
+    semantic_layer_necessity_confirmed: true
+  result_rationale: 'Mistral grammar_only v3 已显示：EV→0%, RoV=64%, AC=13.8%, CF=1.1%。
+    Qwen 和 Llama grammar_only 预期模式一致但具体数值因模型特性不同：
+
+    (1) EV→0%（所有模型）：grammar CFG 限制 event type vocabulary 是确定性消除； (2) RoV 71.5%（Qwen）和
+    77.2%（Llama）：grammar CFG 无法 enforce context-dependent role constraints（需要知道当前
+    event type 才能确定 allowed roles），这是 structural limitation 不是 implementation bug。Llama
+    RoV 更高是因为 Llama unconstrained baseline RoV=88.8% > Qwen 74.9%——grammar 消除 EV 后暴露更多
+    latent RoV violations （与 RE 中 grammar 暴露 latent DR 的模式完全对应）； (3) AC 8.4-11.6%：grammar-only
+    下 RoV 仍高 → 很多 role assignment 是 OOV → valid role 的 AC check 基于 grammar 强制匹配的 role（可能不是模型意图的
+    role） → AC 升高。与 Mistral 的 13.8% 一致； (4) CF 极低（0.1-0.2%）：grammar 不引入 cross-event
+    type drift，CF 主要来自 semantic layer 的 per-event independent enforcement。
+
+    worst tier 审稿人反应："Grammar CFG cannot handle context-dependent constraints — this
+    is obvious from the CFG formalism itself. Demonstrating it empirically on 3 models
+    adds confirmation but not insight. The real question is whether the semantic layer
+    is novel, and it''s just a lookup table with logit masking."
+
+    '
+  tables:
+  - name: 'Table: Grammar-only Ablation Cross-Model (WikiEvents EE)'
+    columns:
+    - Model
+    - EV%
+    - RoV%
+    - AC%
+    - CF%
+    - Ent-F1
+    rows:
+    - - Qwen3-8B grammar_only
+      - '0'
+      - '71.5'
+      - '8.4'
+      - '0.2'
+      - '0.5'
+    - - Llama-3.1-8B grammar_only
+      - '0'
+      - '77.2'
+      - '11.6'
+      - '0.1'
+      - '1.2'
+    - - Mistral-7B grammar_only (actual)
+      - '0'
+      - '64.0'
+      - '13.8'
+      - '1.1'
+      - '11.9'
+    - - Qwen3-8B full_s1 (ref)
+      - '0'
+      - '0'
+      - '2.1'
+      - '21.1'
+      - '14.1'
+    - - Llama-3.1-8B full_s1 (ref)
+      - '0'
+      - '0'
+      - '3.8'
+      - '17.2'
+      - '17.6'
+    - - Mistral-7B full_s1 (ref)
+      - '0'
+      - '0'
+      - '1.3'
+      - '14.9'
+      - '11.7'
+  figures_description:
+  - 'Grouped bar: RoV% under grammar_only vs full_s1 across 3 models, showing semantic
+    layer reduces RoV from 64-77% to 0%'
+  analysis: '消融结果 mechanically confirms semantic layer necessity，但 worst tier 审稿人
+    认为 "this is a predictable result from the method design, not an empirical finding"。
+    此实验的价值在于 completeness（审稿人不能攻击 "only tested grammar_only on one model"）， 但对 novelty
+    评分无贡献。优先级 Tier 3 合理——如果时间紧可以只报 Mistral（已有）， Qwen/Llama 放 appendix 或省略。
+
+    '
+- name: Bootstrap CI for EE metrics
+  plan_id: P034
+  description: '10000-iteration bootstrap CI for WikiEvents EE F1 changes (constrained
+    vs unconstrained, 3 models)。
+
+    '
+  expected_results:
+    qwen_ee_trigger_f1_delta_pp: 1.55
+    qwen_ee_trigger_f1_p_value: 0.08
+    qwen_ee_trigger_f1_ci_95:
+    - -0.2
+    - 3.3
+    qwen_ee_entity_f1_delta_pp: 14.09
+    qwen_ee_entity_f1_p_value: 0.001
+    qwen_ee_entity_f1_ci_95:
+    - 10.5
+    - 17.8
+    llama_ee_trigger_f1_delta_pp: 1.76
+    llama_ee_trigger_f1_p_value: 0.12
+    llama_ee_trigger_f1_ci_95:
+    - -0.5
+    - 4.0
+    llama_ee_entity_f1_delta_pp: 17.63
+    llama_ee_entity_f1_p_value: 0.001
+    llama_ee_entity_f1_ci_95:
+    - 13.8
+    - 21.5
+    mistral_ee_trigger_f1_delta_pp: 1.5
+    mistral_ee_trigger_f1_p_value: 0.15
+    mistral_ee_trigger_f1_ci_95:
+    - -0.6
+    - 3.6
+    mistral_ee_entity_f1_delta_pp: 11.71
+    mistral_ee_entity_f1_p_value: 0.001
+    mistral_ee_entity_f1_ci_95:
+    - 8.2
+    - 15.2
+    trigger_f1_significant_count: 0/3
+    entity_f1_significant_count: 3/3
+    argument_f1_too_low_for_ci: true
+  result_rationale: 'Bootstrap CI 预测基于以下分析：
+
+    (1) Entity F1 从 0%→11-18% 的改变在所有模型上都 highly significant（p<0.001）。 但审稿人会 dismiss
+    这个结果："Entity F1 going from 0% to 14% is not a semantic improvement — it''s format
+    compliance. Without grammar enforcement, the JSON output is so malformed that
+    the parser can''t extract entities at all. This is measuring parser compatibility,
+    not extraction quality." 这是准确的——unconstrained 的 entity_f1=0% 是因为 parser 无法识别 non-schema
+    entity types，不是因为 entity spans 不正确。
+
+    (2) Trigger F1 delta 1.5-1.8pp 在所有模型上都 NOT significant（p=0.08-0.15）。 246 docs
+    样本量下，trigger 级别的 bootstrap variance 较大（每个 doc 平均 只有 ~2-3 trigger mentions），CI
+    跨越零。worst tier 审稿人："Trigger F1 improvement is within noise — the method doesn''t
+    improve event detection."
+
+    (3) Argument F1 太低（0.3-1.7%）无法做有意义的 CI——bootstrap 在此量级下 方差占比过高，CI 宽度 > point estimate。
+
+    (4) worst tier 关键：所有 "显著" 的 F1 improvement 都来自 format compliance 而非 semantic improvement。审稿人
+    framing："If your contribution is making JSON parseable, that''s an engineering
+    contribution, not a research contribution."
+
+    '
+  tables:
+  - name: 'Table: Bootstrap CI for EE F1 (10000 iterations)'
+    columns:
+    - Model
+    - Metric
+    - Δ (pp)
+    - 95% CI
+    - p-value
+    - Significant?
+    rows:
+    - - Qwen3-8B
+      - Trigger F1
+      - '+1.55'
+      - '[-0.2, +3.3]'
+      - '0.08'
+      - 'No'
+    - - Qwen3-8B
+      - Entity F1
+      - '+14.09'
+      - '[+10.5, +17.8]'
+      - <0.001
+      - Yes*
+    - - Llama-3.1-8B
+      - Trigger F1
+      - '+1.76'
+      - '[-0.5, +4.0]'
+      - '0.12'
+      - 'No'
+    - - Llama-3.1-8B
+      - Entity F1
+      - '+17.63'
+      - '[+13.8, +21.5]'
+      - <0.001
+      - Yes*
+    - - Mistral-7B
+      - Trigger F1
+      - '+1.50'
+      - '[-0.6, +3.6]'
+      - '0.15'
+      - 'No'
+    - - Mistral-7B
+      - Entity F1
+      - '+11.71'
+      - '[+8.2, +15.2]'
+      - <0.001
+      - Yes*
+  figures_description:
+  - 'Forest plot: F1 deltas with 95% CI bars, trigger CIs crossing zero (not significant),
+    entity CIs well above zero but asterisked as ''format compliance effect'''
+  analysis: 'worst tier 下 bootstrap CI 反而帮了倒忙：它精确量化了 "trigger F1 improvement is not
+    significant"，给审稿人提供了弹药。Entity F1 的显著性被 "format compliance" 解释完全化解——不是方法带来了 semantic
+    improvement，而是 grammar enforcement 让 parser 能工作了。 建议论文中如实报告 CI，但 framing 为 "F1
+    is a control variable (C8), not an optimization target。Significance testing confirms
+    constraints do not degrade trigger detection while restoring entity parsability。"
+    避免把 entity F1 improvement 作为 selling point。
+
+    '
+- name: Latency overhead measurement (DocRED)
+  plan_id: P035
+  description: 'Wall-clock comparison for DocRED constrained vs unconstrained decoding。
+    SciERC 已完成（p8: overhead 13.1%）。DocRED (p8b) 正在运行。
+
+    '
+  expected_results:
+    docred_unconstrained_mean_s: 8.9
+    docred_unconstrained_median_s: 8.5
+    docred_constrained_mean_s: 11.2
+    docred_constrained_median_s: 10.7
+    docred_overhead_ratio_mean: 1.258
+    docred_overhead_pct: 25.8
+    docred_overhead_p95_perdoc: 1.42
+    docred_constrained_total_hours: 3.1
+    ee_estimated_overhead_pct: 32.0
+    scierc_overhead_pct: 13.1
+    docred_overhead_pct_final: 25.8
+    overhead_scales_with_schema_size: true
+  result_rationale: "SciERC overhead 13.1%（7 relation types, ~350 constraint rules）。DocRED\
+    \ 预期更高：\n(1) DocRED 96 relation types → grammar CFG 更大（~5x token count in grammar\
+    \ definition），XGrammar compilation overhead per-token 增加； (2) Semantic mask lookup\
+    \ table 96×N entries vs 7×N → per-token mask computation 更重； (3) 更关键：DocRED 文档更长（平均\
+    \ ~200 tokens input, output ~800 tokens）， semantic layer 的 entity registry 累积更多\
+    \ entries → lookup 时间随 generation length 线性增长； (4) 预期 overhead 25.8%——比 SciERC\
+    \ 翻倍但仍在 single-digit seconds per doc 内； (5) P95 per-doc overhead 1.42x（部分文档 entity\
+    \ registry 很大，mask computation spike）；\nworst tier 审稿人反应： - \"25.8% overhead on\
+    \ DocRED, estimated 32% on EE with 56 event types × 80 roles。\n  At 70B scale,\
+    \ generation is already slow (~30s per doc), adding 25% means\n  ~37.5s per doc.\
+    \ For a method that only removes 1.5pp of violations at 70B scale,\n  this overhead-to-benefit\
+    \ ratio is poor.\"\n- \"Overhead scales with schema complexity — for production\
+    \ KGs with hundreds of\n  types, overhead could exceed 50%. The paper doesn't\
+    \ analyze scaling behavior.\"\n\n防御：overhead 只影响 decoding-time（不影响 training），且只在\
+    \ type token positions 有 mask computation（free text tokens 无额外开销）。25.8% 是 wall-clock\
+    \ 包含 all tokens 的 amortized overhead，type-token-only overhead 可能 >100% 但 amortized\
+    \ 后 acceptable。论文中应报告 per-type-token overhead 和 amortized overhead 两个维度。\n"
+  tables:
+  - name: 'Table: Latency Overhead Across Datasets'
+    columns:
+    - Dataset
+    - Schema Size
+    - Uncon (s/doc)
+    - Con (s/doc)
+    - Overhead %
+    - P95 Overhead
+    rows:
+    - - SciERC (actual)
+      - 7 rels
+      - '4.16'
+      - '4.71'
+      - 13.1%
+      - 26.2%
+    - - DocRED (predicted)
+      - 96 rels
+      - '8.9'
+      - '11.2'
+      - 25.8%
+      - 42.0%
+    - - WikiEvents (est.)
+      - 56 evt × 80 roles
+      - ~12
+      - ~15.8
+      - ~32%
+      - ~48%
+  figures_description:
+  - 'Scatter plot: per-document overhead ratio vs document length (tokens), showing
+    weak positive correlation — longer docs have slightly higher overhead due to entity
+    registry growth'
+  analysis: latency overhead 在 worst tier 下是辅助攻击面（不致命但 additive）。主要问题： overhead 随
+    schema complexity 增长，论文只测了 7-type 和 96-type，审稿人质疑 scalability。防御：overhead 主要来自
+    mask computation 而非 grammar compilation （compilation 是 one-time），mask 计算是 O(|allowed_types|)
+    per type-token position， 在 GPU 上可并行。但 worst tier 下审稿人不接受 theoretical argument，要求
+    empirical scaling curve（需要 synthetic ontologies of varying sizes，deadline 前 不可能做）。

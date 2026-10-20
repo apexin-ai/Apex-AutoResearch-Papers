@@ -1,0 +1,525 @@
+tier: best
+narrative_guidance: '原始 framing 成立，微调定位。Title 保持 ''Near-Complete''，abstract 明确限定：
+
+  ''near-complete for tightly-constrained ontologies (94% DR reduction on SciERC),
+
+  with predictable partial reduction for complex ontologies (46-55% on DocRED)''。
+
+  核心 novelty 三叉：(1) 首个 violation landscape 系统研究，
+
+  (2) grammar 层完美跨数据集泛化（ET/RV→0%），
+
+  (3) tightness-DR 相关性作为独立 analytical contribution。
+
+  DocRED 10.19% 残留 DR 不是弱点而是 tightness theory 的验证数据点。Claims 无需降级。
+
+  CF rate 在 DocRED 上显著低于 SciERC（~2.6% vs 9.9%），
+
+  进一步支持 "CF 根因是 type system 模糊性" 论点。
+
+  '
+imagined_experiments:
+- name: DocRED Phase 2 unconstrained baseline
+  plan_id: P_docred_unconstrained
+  description: 'DocRED 998 文档，Phase2 code path 无约束运行。
+
+    验证 Phase2 环境下的 unconstrained DR 与 Phase0 一致（18-20%），
+
+    为计算 DR reduction 提供可比基线。
+
+    '
+  expected_results:
+    documents: 998
+    documents_checked: 962
+    parse_failures: 36
+    json_parse_rate: 0.964
+    total_triples: 16600
+    total_entities: 19200
+    entity_type_violation_rate: 0.075
+    relation_vocabulary_violation_rate: 0.289
+    domain_range_violation_rate: 0.19
+    domain_range_violations: 3154
+    cross_field_consistency_violation_rate: 0.001
+    entity_f1: 59.0
+    relation_f1: 8.2
+    relation_precision: 7.0
+    relation_recall: 9.9
+    dr_reduction_full_s1_vs_unconstrained_pct: 46.4
+  result_rationale: 'Phase2 SciERC unconstrained 与 Phase0 完全一致（DR=15.37%），
+
+    证明 Phase2 code path 不引入偏差。DocRED 应同样复现 Phase0 数字。
+
+    DR 预测 19.0%（vs Phase0 18.7%）：Phase2 unconstrained 使用相同 generation 参数，
+
+    但 code path 中的 JSON 后处理可能与 Phase0 略有差异（如 unicode 处理），
+
+    导致少量 triples 解析方式不同，~0.3pp 方差在正常范围。
+
+    Parse rate 保持 ~96.4%——无 grammar 约束时 JSON 格式错误率是模型固有属性。
+
+    RV=28.9% 和 ET=7.5% 复现 Phase0，均为模型在无约束下的自然错误率。
+
+    F1 与 grammar_only(8.24) 和 full_s1(8.17) 持平，确认约束 F1-neutral。
+
+    dr_reduction 46.4% = (19.0-10.19)/19.0，落入 best 档 [46,55] 下界。
+
+    '
+  tables:
+  - 'Table 3: DocRED Constrained Decoding Ablation — unconstrained column'
+  - 'Table 1: Cross-dataset Violation Landscape — DocRED Phase2 unconstrained row'
+  figures_description:
+  - 'Figure 4: Enabling dependency grouped bar chart — unconstrained 作为基线参照'
+  analysis: '关键验证点：Phase2 unconstrained DR ≈ Phase0 DR（±1pp），
+
+    确保 reduction 计算分母可比。若偏差 >2pp 需审查 code path 差异。
+
+    46.4% reduction 支持 "predictable partial reduction for complex ontologies" 叙事。
+
+    '
+- name: DocRED Phase 2 semantic-only constrained decoding
+  plan_id: P_docred_semantic_only
+  description: '仅启用 semantic 层（TypeConstraintProcessor），不启用 grammar 层。
+
+    验证 enabling dependency 在复杂 ontology 上跨数据集复现：
+
+    无 grammar 保障 relation vocabulary → semantic 层大面积盲区 → DR reduction 显著弱于 full_s1。
+
+    '
+  expected_results:
+    documents: 998
+    documents_checked: 958
+    parse_failures: 40
+    json_parse_rate: 0.96
+    total_triples: 16500
+    total_entities: 19100
+    entity_type_violation_rate: 0.073
+    relation_vocabulary_violation_rate: 0.287
+    domain_range_violation_rate: 0.155
+    domain_range_violations: 2558
+    cross_field_consistency_violation_rate: 0.025
+    entity_f1: 58.5
+    relation_f1: 8.0
+    relation_precision: 6.9
+    relation_recall: 9.5
+    dr_reduction_vs_unconstrained_pct: 18.4
+    semantic_enabling_ratio: 2.52
+  result_rationale: "Enabling dependency 机制：\n1. DocRED unconstrained RV=29%，即 ~29%\
+    \ triples 使用不在 ontology 中的 relation type。\n   Semantic 层对这些 triples 完全无法检查——未知\
+    \ relation 查不到 domain/range 规则。\n2. 在剩余 ~71% 合法 relation type 的 triples 中，semantic\
+    \ 执行 domain/range 检查。\n   但无 grammar 结构保障，JSON 解析失败率 ~4%（vs grammar_only 1.5%），\n\
+    \   进一步削弱 semantic 的有效覆盖面。实际 semantic 能检查的 triples 约 67-68%。\n3. DR 从 19.0% 降至\
+    \ 15.5%（-18.4%），远弱于 full_s1 的 46.4%。\n   SciERC 上 semantic_only reduction=24.2%，DocRED\
+    \ 更低（18.4%）正因 RV 更高\n   （29% vs 1.4%），semantic 盲区更大。\n4. enabling_ratio = (19.0-10.19)/(19.0-15.5)\
+    \ = 8.81/3.5 = 2.52。\n   Full_s1 的 DR reduction 效力是 semantic_only 的 2.52 倍。\n\
+    \   SciERC ratio=3.88 更高是因为 SciERC full_s1 几乎完全消除了 DR（0.93%）。\n5. CF 升至 2.5%（vs\
+    \ unconstrained ~0.1%），模式与 SciERC semantic_only(2.71%) 一致：\n   semantic per-relation\
+    \ 独立 enforcement 引入跨 relation type 不一致。\n   DocRED CF 略低因为 DocRED entity types\
+    \ 语义边界更清晰。\n"
+  tables:
+  - 'Table 3: DocRED Constrained Decoding Ablation — semantic_only column'
+  figures_description:
+  - 'Figure 4: Enabling dependency grouped bar chart — semantic_only 柱明显高于 full_s1'
+  - 'Figure S1 (Appendix): SciERC vs DocRED enabling ratio 对比'
+  analysis: 'enabling_ratio=2.52 在 best 档 [2.0, 3.5] 内。
+
+    与 SciERC(3.88) 对比，DocRED ratio 更低的原因可量化归因于 RV 差异：
+
+    DocRED 29% triples 使用无效 relation（SciERC 仅 1.4%），semantic 盲区面积成比例增大。
+
+    论文核心论述：grammar-enables-semantic 在 ontology 复杂度增加时**更加必要**——
+
+    DocRED 29% RV 使 semantic 层近三分之一 triples 完全无法检查。
+
+    '
+- name: Latency comparison (constrained vs unconstrained)
+  plan_id: P011
+  description: '测量 unconstrained / grammar_only / semantic_only / full_s1 / full_s2
+
+    的 tokens/second 和 wall-clock time，量化约束开销的实用性边界。
+
+    '
+  expected_results:
+    scierc:
+      unconstrained_tok_per_sec: 13.0
+      grammar_only_tok_per_sec: 11.5
+      semantic_only_tok_per_sec: 9.8
+      full_s1_tok_per_sec: 9.5
+      full_s2_tok_per_sec: 6.0
+      overhead_ratio:
+        grammar_only: 1.13
+        semantic_only: 1.33
+        full_s1: 1.37
+        full_s2: 2.17
+    docred:
+      unconstrained_tok_per_sec: 12.5
+      grammar_only_tok_per_sec: 11.0
+      full_s1_tok_per_sec: 9.0
+      overhead_ratio:
+        grammar_only: 1.14
+        full_s1: 1.39
+    wall_clock_per_sample_sec:
+      scierc_unconstrained: 16
+      scierc_full_s1: 22
+      docred_unconstrained: 64
+      docred_full_s1: 89
+  result_rationale: "1. Grammar-only 开销 ~13%：XGrammar 用 pushdown automaton + C++ backend\
+    \ 计算 token mask，\n   高度优化。文献报告 overhead <10%（Dong et al. 2024），但 IE schema 嵌套结构\n\
+    \   比纯 JSON grammar 复杂（entity list + relation list + nested types），实际稍高。\n2. Semantic\
+    \ 层额外开销 ~20%：TypeConstraintProcessor 是 Python 实现，\n   每 token 需检查 entity registry\
+    \ 状态 + 判断生成位置 + 动态计算 logit mask。\n   Python GIL 与 GPU inference 的交互是主要瓶颈。\n3.\
+    \ Full_s1 ≈ semantic 开销：bitwise AND 两个 mask 是 O(vocab_size) 操作，\n   可忽略不计，所以 full_s1\
+    \ ≈ max(grammar, semantic) ≈ semantic。\n4. Full_s2 ~2.2x：两个完整 forward pass，\n\
+    \   Pass 2 还需编译 input-dependent grammar，额外消耗 ~0.1-0.2x。\n5. DocRED 和 SciERC 的\
+    \ overhead ratio 接近（1.37 vs 1.39），\n   说明开销是 per-token 而非 per-document，与文档长度无关。\n"
+  tables:
+  - 'Table 6: Inference Latency Overhead (或 Appendix Table A2)'
+  figures_description:
+  - 'Figure S2 (Appendix): Latency overhead bar chart'
+  analysis: '1.37x overhead 完全可接受。Post-hoc filtering 需重新生成 ~15% 被拒 triples
+
+    （等效 ~1.15x 但无法引导到有效输出，且对 streaming 场景不可用）。
+
+    S2 的 2.2x 开销 + 无质量优势，进一步确认 S1 为推荐策略。
+
+    建议在 §5 用 1 句话报告 overhead，不需单独 section。
+
+    '
+- name: Llama-3.1-8B cross-model violation rate (SciERC)
+  plan_id: P012
+  description: '在 Llama-3.1-8B 上复现 SciERC minimal prompt + 可选 full_s1，
+
+    验证 violation landscape 和 grammar 泛化性的模型无关性。
+
+    '
+  expected_results:
+    unconstrained:
+      total_triples: 1550
+      total_entities: 2200
+      json_parse_rate: 0.98
+      entity_type_violation_rate: 0.006
+      relation_vocabulary_violation_rate: 0.025
+      domain_range_violation_rate: 0.145
+      cross_field_consistency_violation_rate: 0.001
+      relation_f1: 6.5
+      entity_f1: 28.0
+      per_relation_dr:
+        Used-for: 0.005
+        Feature-of: 0.3
+        Compare: 0.38
+        Evaluate-for: 0.22
+        Part-of: 0.2
+        Hyponym-of: 0.12
+        Conjunction: 0.0
+    grammar_only:
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.14
+    full_s1:
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.012
+      cross_field_consistency_violation_rate: 0.085
+      relation_f1: 6.8
+    cross_model_dr_delta_pp:
+      unconstrained: -0.9
+      full_s1: 0.3
+    per_relation_rank_spearman: 0.89
+  result_rationale: "1. Llama DR ≈ 14.5%（vs Qwen 15.4%，delta=-0.9pp）：\n   Violations\
+    \ 主要由 ontology constraint structure 驱动。两个 8B 模型在相同 ontology 上\n   的 violation\
+    \ rate 高度相关——差异来源于训练数据分布（Llama 学术文本比例可能不同），\n   而非根本性的 type assignment 差异。±3pp\
+    \ 范围内变动。\n2. Grammar 层 ET→0%, RV→0%：grammar 约束是 CFG-expressible，\n   只依赖 tokenizer\
+    \ vocabulary mapping。XGrammar 自动适配 Llama 的 SentencePiece tokenizer\n   （vs Qwen\
+    \ 的 tiktoken-based）。ET/RV 消除是 grammar 固有能力，完全模型无关。\n3. Full_s1 DR ≈ 1.2%（vs Qwen\
+    \ 0.93%）：\n   残留 DR 略高因为 Llama 的 logit distribution 与 Qwen 不同——\n   semantic mask\
+    \ 后次优 token 是否仍违反约束，取决于模型特定的 token 概率排序。\n   但量级一致（均 <2%），确认方法泛化性。\n4. F1 略低（6.5\
+    \ vs 8.23）：Llama-3.1-8B 在 zero-shot structured output 上\n   弱于 Qwen3-8B（后者有 code/structured\
+    \ output 针对性训练）。不影响约束效果评估。\n5. Per-relation rank Spearman ρ=0.89：两个模型的 per-relation\
+    \ violation 排序\n   高度一致（Compare > Feature-of > Evaluate-for > ...），因为排序由 constraint\
+    \ tightness 驱动。\n"
+  tables:
+  - 'Table 5: Cross-model Violation Rate Comparison'
+  figures_description:
+  - 'Figure 5: Cross-model per-relation DR scatter (Qwen x, Llama y), R²>0.75'
+  analysis: '若 per-relation rank Spearman ρ>0.8，可额外 claim：
+
+    "per-relation violation susceptibility is a property of ontology constraint structure,
+
+    not the generating model"。Grammar ET/RV→0% 是最干净的跨模型证据。
+
+    注意：P012 是 stretch goal，若时间不足可降级为 appendix 或 future work，
+
+    不影响 core claims。
+
+    '
+- name: DocRED per-relation tightness-DR Spearman correlation
+  plan_id: P_analytical_tightness
+  description: '从 phase2_docred_full_s1 per-relation DR 数据 + DocRED ontology constraint
+    tightness
+
+    计算 Spearman rank correlation。已有 Pearson r=0.3682 (n=90)。
+
+    Spearman ρ 预期更高因为关系为单调非线性。
+
+    '
+  expected_results:
+    pearson_r: 0.3682
+    pearson_r_note: 已实测（来自 root cause analysis）
+    spearman_rho: 0.52
+    spearman_p_value: 2.0e-06
+    n_relations_analyzed: 82
+    filter_criterion: ≥10 triples per relation（排除低频噪声）
+    bucket_level_trend:
+      tightness_0.95_1.00:
+        n_rels: 4
+        agg_dr: 0.306
+      tightness_0.90_0.94:
+        n_rels: 15
+        agg_dr: 0.193
+      tightness_0.85_0.89:
+        n_rels: 28
+        agg_dr: 0.129
+      tightness_0.80_0.84:
+        n_rels: 23
+        agg_dr: 0.07
+      tightness_0.70_0.79:
+        n_rels: 18
+        agg_dr: 0.09
+      tightness_lt_0.70:
+        n_rels: 2
+        agg_dr: 0.007
+    bucket_level_note: Bucket data 已实测（来自 root cause analysis），展示清晰单调趋势
+    top10_violation_concentration: 0.78
+    extreme_relations:
+      P1198_unemployment_rate:
+        tightness: 0.944
+        dr: 0.833
+        n: 6
+      P6_head_of_government:
+        tightness: 0.889
+        dr: 0.846
+        n: 13
+      P35_head_of_state:
+        tightness: 0.889
+        dr: 0.647
+        n: 17
+      P582_end_time:
+        tightness: 0.917
+        dr: 0.435
+        n: 186
+      P205_basin_country:
+        tightness: 0.972
+        dr: 0.37
+        n: 108
+  result_rationale: "1. Pearson r=0.37 已实测。Spearman ρ 预期更高（~0.52）因为：\n   (a) 关系是单调但非线性的——bucket\
+    \ 数据清晰展示从 0.7% 到 30.6% 的单调上升\n       （仅 0.70-0.79 bucket 有轻微 inversion，agg_DR=9.0%\
+    \ vs 0.80-0.84 的 7.0%）；\n   (b) Spearman 使用 rank，消除了 DR 右偏分布的 outlier 影响；\n  \
+    \ (c) 过滤 ≥10 triples 排除了低频关系的小样本噪声（这些关系 DR 要么 0% 要么 100%）。\n2. Pearson r 被低频高\
+    \ DR 关系拉低：P1198_unemployment_rate（6 triples, DR=83.3%）\n   等极端值在 Pearson 下产生高杠杆效应。Spearman\
+    \ rank transformation 削弱此影响。\n3. 0.70-0.79 bucket inversion 的原因：该区间包含 P463_member_of（tightness=0.722,\n\
+    \   DR=9.5%, n=745）——高频关系的 DR 拉高了整个 bucket 的聚合值。\n   这是个别关系的特性，不破坏整体单调趋势。\n4.\
+    \ ρ=0.52 位于 best 档 [0.5, 0.8] 下端，反映了 tightness 不是 DR 的唯一决定因素：\n   relation frequency、entity\
+    \ type distribution、model-specific prior 也有贡献。\n   但 tightness 是最强的单一预测因子，ρ=0.52\
+    \ 在 n=82 下 p<0.001 显著。\n"
+  tables:
+  - 'Table 4: DocRED Per-relation DR by Tightness Bucket（已有 bucket 实测数据）'
+  figures_description:
+  - 'Figure 3: Scatter plot — x=tightness, y=full_s1 DR, point_size=log(n_triples).
+    拟合线 + ρ=0.52 annotation. 左下密集聚集（低 tightness, DR≈0%）vs 右上散布（高 tightness, DR 10-85%）'
+  analysis: 'ρ=0.52 + bucket 单调趋势 + top 15 贡献 76.3% violations = 三重证据支持 tightness
+    theory。
+
+    论文 framing：不强调 ρ 的绝对值（0.52 不算 "strong"），
+
+    而强调 (a) bucket 趋势的清晰单调性，(b) violation 的极度集中性（top 15 = 76.3%），
+
+    (c) 实用 insight：practitioners 可从 ontology 定义直接预估约束效果。
+
+    Fig 3 scatter plot 是 paper 最重要的 figure 之一——一图讲清核心 story。
+
+    '
+- name: DocRED CF violation root cause analysis
+  plan_id: P_analytical_cf
+  description: '对 phase2_docred_full_s1 的 519 个 CF violations 进行子类型分解，
+
+    与 SciERC CF 模式对比验证 type system ambiguity 假说。
+
+    '
+  expected_results:
+    cf_violations: 519
+    cf_denominator_entities: 20218
+    cf_rate: 0.0257
+    evr_count: 460
+    evr_fraction_of_cf: 0.886
+    evr_entity_rate: 0.023
+    within_rel_count: 50
+    within_rel_fraction: 0.096
+    top_conflict_patterns:
+    - pattern: ORG↔LOC
+      count: 120
+      pct_of_cf: 0.231
+      example: 国家名在 country_of_citizenship 中标 LOC, 在 headquarters 中标 ORG
+    - pattern: PER↔ORG
+      count: 85
+      pct_of_cf: 0.164
+      example: 王朝/政权名在 head_of_state 中标 ORG, 在 instance_of 中标 PER
+    - pattern: TIME↔NUM
+      count: 65
+      pct_of_cf: 0.125
+      example: 年份在 date_of_birth 中标 TIME, 在 P571_inception 中标 NUM
+    ablation_evidence:
+      grammar_only_cf: 14
+      grammar_only_cf_rate: 0.0007
+      full_s1_cf: 519
+      full_s1_cf_rate: 0.0257
+      delta: 505
+      semantic_attribution: 100% — 505/505 增量 CF 来自 semantic 层
+    cross_dataset_comparison:
+      scierc_cf: 0.099
+      docred_cf: 0.026
+      ratio: 3.8
+      explanation: DocRED entity types (PER/ORG/LOC/TIME/NUM/MISC) 语义边界远清晰于 SciERC
+        (Generic/OtherScientificTerm/Material/Method)
+    trade_off_ratio:
+      dr_reduction_pp: 8.81
+      cf_increase_pp: 2.47
+      benefit_cost: 3.57
+  result_rationale: "1. CF=2.57% 远低于 SciERC 9.9%：核心原因是 type system 语义清晰度差异。\n   DocRED\
+    \ 的 PER/ORG/LOC/TIME/NUM/MISC 在绝大多数上下文中有明确分类标准\n   （人名=PER, 组织=ORG, 地名=LOC），边界模糊区域有限（主要是\
+    \ ORG↔LOC 的国家实体）。\n   SciERC 的 Generic/OtherScientificTerm/Material/Method 在学术领域大量重叠\n\
+    \   （\"neural network\" 可以是 Method 也可以是 OtherScientificTerm）。\n2. EVR 占 89%（vs\
+    \ SciERC >90%）：子类型分布一致。EVR = 同一 entity 在 entity list\n   和 relation triple 中被赋予不同\
+    \ type，根因是 semantic 层按 relation-specific\n   domain/range 约束选择 type，不维护全局 entity-type\
+    \ 一致性。\n3. ORG↔LOC 是最大冲突模式（23%）：这是 NER 领域公认的困难 case——\n   国家/城市作为政治实体(ORG) vs\
+    \ 地理实体(LOC) 是 type system 设计的固有模糊区。\n4. Grammar_only CF=14（0.07%）→ full_s1 CF=519（2.57%），增量\
+    \ 100% 来自 semantic 层。\n   干净的消融证据：grammar 不引入 CF，CF 是 semantic type enforcement\
+    \ 的系统性副作用。\n5. Trade-off ratio 3.57:1（每增加 1pp CF 换取 3.57pp DR reduction）。\n  \
+    \ 结合 DR=hard constraint（triple 不可用）vs CF=soft preference（individual triples 仍\
+    \ valid），\n   trade-off 高度有利。DocRED 上比 SciERC（93pp/10pp=9.3:1）差但仍 positive。\n"
+  tables:
+  - 'Table 5: CF Analysis — Sub-type Breakdown and Cross-dataset Comparison'
+  figures_description:
+  - 'Figure S3 (Appendix): CF conflict pattern distribution (DocRED vs SciERC 并列)'
+  analysis: 'DocRED CF=2.57% 在 best 档 [2%, 3%] 内。
+
+    Cross-dataset CF 对比（2.57% vs 9.9%）为 "CF 根因是 type system ambiguity" 提供强证据：
+
+    type system 边界越模糊 → CF 越高。这个 finding 应在 §5.3 展开（独立 insight 价值），
+
+    同时 §7 保留 CF 作为 limitation + future work（global entity-type consensus）。
+
+    论文绝不能暗示 "因为 DocRED CF 低所以 CF 问题不重要"——SciERC 9.9% 仍然 non-trivial。
+
+    '
+- name: Cross-dataset grammar layer generalization verification
+  plan_id: P_analytical_grammar_gen
+  description: '系统性汇总 grammar 层在 SciERC（7 relations）和 DocRED（96 relations）上
+
+    的 ET/RV 消除率，确认完美泛化作为独立贡献。
+
+    '
+  expected_results:
+    scierc_grammar_only:
+      et_violation_rate: 0.0
+      rv_violation_rate: 0.0
+      et_violations: 0
+      rv_violations: 0
+      total_triples: 1725
+    docred_grammar_only:
+      et_violation_rate: 0.0
+      rv_violation_rate: 0.0003
+      et_violations: 0
+      rv_violations: 5
+      total_triples: 17341
+    scierc_full_s1:
+      et_violation_rate: 0.0
+      rv_violation_rate: 0.0
+    docred_full_s1:
+      et_violation_rate: 0.0
+      rv_violation_rate: 0.0003
+    cross_dataset_summary:
+      et_elimination: 100% on both datasets (0/1725 SciERC, 0/17341 DocRED)
+      rv_elimination: 100% SciERC (0/1725), 99.97% DocRED (5/17341)
+      ontology_size_invariance: 7 relations → 96 relations (14x) with no degradation
+  result_rationale: "1. ET/RV 是 CFG-expressible constraints：entity_type ∈ {valid_types},\n\
+    \   relation_type ∈ {valid_relations}。XGrammar pushdown automaton 可精确 enforce，\n\
+    \   不依赖生成历史或语义状态，因此与模型和 ontology 大小无关。\n2. SciERC ET=0, RV=0 完美。DocRED ET=0 完美；RV=5/17341=0.03%\
+    \ 有微小残留。\n   这 5 个 RV 可能源于 tokenizer 边界效应——DocRED 某些 relation name\n   （如 P1001_applies_to_jurisdiction）在\
+    \ tokenization 时可能触发 XGrammar\n   的 token boundary edge case。5/17341 是 noise level，不影响结论。\n\
+    3. 从 7 relations 到 96 relations（14x），ET/RV 消除率保持 99.97-100%。\n   Grammar compilation\
+    \ 自动将 ontology schema 转化为 CFG，\n   schema size 只增加 production rule 数量，不降低 enforcement\
+    \ 精确性。\n4. 数据已全部就位（来自 phase2_scierc_grammar_only 和 phase2_docred_grammar_only），\n\
+    \   这是 compilation + formatting，不需新实验。\n"
+  tables:
+  - 'Table 2/3: ET 和 RV 列横跨所有配置和数据集'
+  figures_description:
+  - 无需独立 figure——Table 中 ET/RV 列的 0%/0.03% 已足够说明
+  analysis: 'Grammar 完美泛化是 paper 的 "clean win"，无需 caveat。
+
+    建议 §5 第一段就报告此 finding（ET/RV→0% across datasets），
+
+    先给 reviewer 一个 unambiguously positive result，建立信任后再讨论 DR 的 nuance。
+
+    论文可 claim："Grammar-constrained decoding is a solved problem for ontology vocabulary
+
+    and entity type compliance in IE—it scales perfectly from 7 to 96 relation types."
+
+    '
+- name: DocRED per-relation DR bimodal distribution analysis
+  plan_id: P_analytical_bimodal
+  description: '分析 96 个 DocRED relations 的 full_s1 per-relation DR 分布形态，
+
+    验证 >65% 关系 DR<2% 的双峰假设。
+
+    '
+  expected_results:
+    total_relations: 96
+    active_relations: 87
+    filter_5plus_triples: 82
+    dr_distribution:
+      dr_eq_0pct: 18
+      dr_lt_2pct: 55
+      dr_2_to_10pct: 12
+      dr_10_to_20pct: 7
+      dr_20_to_40pct: 6
+      dr_gt_40pct: 8
+    near_zero_fraction: 0.67
+    near_zero_fraction_note: 55/82 = 67%（≥5 triples 的 relations 中 DR<2%）
+    distribution_statistics:
+      median_dr: 0.008
+      mean_dr: 0.102
+      mean_median_ratio: 12.75
+      std_dr: 0.18
+      skewness: 2.1
+      gini_coefficient: 0.82
+    top15_concentration: 0.763
+    top15_concentration_note: 已实测：top 15 relations 贡献 1352/1771 = 76.3% 总违规
+  result_rationale: "1. 67% relations DR<2%（best 档下界 65%）：DocRED 虽然 avg tightness=0.842（高），\n\
+    \   但 tightness 分布也有 variance——0.70-0.84 区间的 41 个 relations 中，\n   许多的实际 DR 较低是因为\
+    \ (a) 高频 entity types（PER, ORG, LOC）自然匹配这些 relation\n   的 domain/range，(b) 模型的\
+    \ distributional prior 与 ontology 约束高度对齐。\n   仅在 tightness 极高（>0.90）时，prior-constraint\
+    \ mismatch 才产生显著 DR。\n2. Mean>>Median（12.75x）：经典 heavy-tail 特征。\n   8 个 DR>40%\
+    \ 的 extreme relations（P1198, P6, P171, P35 等，全部 tightness>0.88）\n   将 mean 拉至\
+    \ 10.2%（= overall 10.19%），但 median 0.8% 代表 \"典型\" relation 体验。\n3. Gini=0.82：violation\
+    \ 分布极不平等。类比帕累托法则：~12% 的 relations 贡献 ~80% violations。\n   这不是随机噪声，而是 ontology\
+    \ constraint structure 的系统性产物。\n4. 双峰形成机制：constraint tightness 作为 bifurcation\
+    \ parameter——\n   tightness < ~0.80 时 semantic mask 只排除少量 low-probability tokens，\n\
+    \   model 自然分布已近乎合法，DR→0%（左峰）；\n   tightness > ~0.90 时 mask 必须排除 high-probability\
+    \ tokens，\n   model 被迫使用低概率 token，DR 急剧上升（右尾）。\n   0.80-0.90 是 transition zone，DR\
+    \ 分散，中间 bin 较薄。\n"
+  tables:
+  - 'Table 4: DocRED Per-relation DR Summary Statistics'
+  figures_description:
+  - 'Figure 2: Histogram — 96 relations 的 full_s1 DR 分布. 左峰 (0-2%, ~55 relations)
+    显著高于右尾 (>20%, ~14 relations). Vertical dashed line at DR=2%. Inset: log-scale
+    清晰展示右尾结构'
+  analysis: 'near_zero_fraction=67% 在 best 档 [65%, 80%] 下端。
+
+    这个分布图的论文价值：visually 传达 "10.19% overall DR 不是均匀分布的失败"——
+
+    对 2/3 的 relations，constrained decoding 已实现 near-complete compliance；
+
+    残留 DR 集中在可预测的少数 high-tightness relations。
+
+    Fig 2 + Fig 3 (tightness scatter) 构成核心 evidence pair：
+
+    分布展示现象（双峰），scatter 解释机制（tightness 驱动）。'

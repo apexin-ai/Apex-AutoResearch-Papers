@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "879fd4c62c145152401d",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code pipeline framework",
+  "task_key": "worker_code_pipeline-framework_20260512T110142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pipeline-framework_20260512T110142_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "fad1addef91ef2c20c0f97ad736510a374d4743944b99014621634c371ae2cba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "框架搭建完成，所有验证通过：\n\n| 文件 | 行数 | 功能 |\n|------|------|------|\n| `config.py` | ~150 | 6 个 dataclass（Model/SFT/GRPO/Reward/Data/Eval），全部支持 CLI 覆盖 |\n| `data_utils.py` | ~230 | DocRED JSON→JSONL 转换 + SFT/GRPO Dataset 加载，含 96 个关系类型映射 |\n| `rewards.py` | ~270 | 三类奖励 + composite：provenance fidelity（char-IoU + batched NLI + length penalty）、structural F1（partial matching）、format compliance |\n| `train_sft.py` | ~120 | SFTTrainer + LoRA，训练后自动 merge 输出到 `{output_dir}/merged/` |\n| `train_grpo.py` | ~110 | GRPOTrainer，从 merged SFT 加载 + 新 LoRA，reward 权重从 RewardArgs 注入 |\n| `evaluate.py` | ~200 | 生成 + 计算 RE F1 / Evi F1 / Attribution Precision，支持 PEFT adapter 自动检测 |\n| `requirements.txt` | 9 | torch/transformers/trl/peft/datasets/wandb/accelerate/bitsandbytes/sentencepiece |\n\n关键设计点：\n- NLI 模型 lazy loading，不阻塞 import\n- SFT 结束后自动 merge LoRA → full model，GRPO 直接加载无需 adapter stacking\n- reward kwargs 透传 dataset 列（gold_relations/sentences/document_text），GRPO 训练时自动注入\n- 所有 gold metadata 存为 JSON 字符串（兼容 HuggingFace Dataset 序列化）\n\nGPU 到位后执行顺序：`data_utils.py --raw_dir ...` → `train_sft.py` → `train_grpo.py` → `evaluate.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pipeline-framework.md"
+}

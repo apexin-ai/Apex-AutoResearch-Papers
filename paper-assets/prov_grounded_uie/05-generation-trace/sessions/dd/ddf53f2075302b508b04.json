@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf53f2075302b508b04",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code batch inference",
+  "task_key": "worker_code_batch-inference_20260512T200713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch-inference_20260512T200713_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "dfa8172d71c54461a50aac507a5e9b96c666308822dcb69647cecf77b5cc9ec2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件都已验证，改动正确。\n\n## 改动摘要\n\n### evaluate.py\n\n| 位置 | 变更 |\n|------|------|\n| 文件头 docstring | 添加 batch generation 说明 |\n| `main()` L126-128 | 新增 `tokenizer.padding_side = \"left\"` + 注释说明 why |\n| `main()` L154-222 | **核心变更**：将逐条 `model.generate()` 重写为 batch 循环。先预处理所有 prompt/gold 数据到列表，再按 `eval_args.batch_size` 分批 tokenize（`padding=True`）→ `model.generate` → 按 `prompt_len` 切生成部分 → 逐条解码评估。进度日志改为每 50 条 batch 边界打印 |\n\n输出格式（`eval_results.json` 的 `metrics` + `predictions` 结构）**完全不变**。\n\n### rerank_nli.py\n\n| 位置 | 变更 |\n|------|------|\n| 文件头 docstring | 添加 batch generation 说明 |\n| `generate_predictions()` L67-170 | 同上模式改为 batch 推理：预处理 prompt + metadata → 分批 generate → 逐条解码。保留 GPU 释放逻辑 |\n| `--predictions_file` 逻辑 | **已确认完整正确**：`load_predictions()` 读取 `eval_results.json`，合并 dataset 元数据，`main()` 中正确分支跳过 generate 直接进 NLI 评分。无需修改 |\n| NLI 评分 | `_batch_nli_scores` 已经是 batch 调用，无需修改 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-batch-inference.md"
+}

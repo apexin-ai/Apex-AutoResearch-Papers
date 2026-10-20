@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98a7823613c81899ea8d",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code nli reranking script",
+  "task_key": "worker_code_nli-reranking-script_20260512T115028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli-reranking-script_20260512T115028_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "97a170fb511827fbdceb20c9d2d3f29daec010cb25861ec697bf128670b677e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 和参数解析正常，`--help` 输出所有参数及默认值。\n\n脚本实现了：\n- **NLI-filter**: 按 4 个阈值 (0.3/0.5/0.7/0.9) 扫描，移除低分 evidence span，报告 Evi F1/Precision/Recall/Attribution Precision/retention rate\n- **NLI-rerank**: top-1 和 top-3 两个变体（纯重排不改变 set-based Evi F1，所以做了 top-k 截断）\n- **NLI-oracle**: 对 gold evidence 计算 NLI 分数分布作为上限参考\n- 支持 `--predictions_file` 跳过生成直接 rerank；生成后自动释放 GPU 再加载 NLI 模型"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-nli-reranking-script.md"
+}

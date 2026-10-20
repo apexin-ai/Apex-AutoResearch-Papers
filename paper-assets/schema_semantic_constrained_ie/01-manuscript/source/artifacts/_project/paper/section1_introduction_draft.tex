@@ -1,0 +1,31 @@
+% Section 1: Introduction (compressed, 669→~550 words)
+
+\section{Introduction}
+\label{sec:introduction}
+
+Large language models (LLMs) are increasingly used for information extraction (IE)~\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity necessarily carries a type consistent with the ontology's domain/range constraints for $r$.
+We call such outputs \emph{domain/range violations} (DR): structurally valid triples that are ontologically invalid.
+Violations are pervasive (15--18\% of triples under zero-shot decoding and 0.5--2\% even after LoRA fine-tuning) and correlate with schema restrictiveness rather than model scale.
+At competitive quality, even low residual violation rates compound across thousands of documents into systematic knowledge graph corruption, making reliable constraint enforcement necessary.
+
+Existing approaches leave a fundamental gap.
+Schema-informed prompting reduces violations by 62\% on SciERC but is per-relation unreliable (violations for \textsc{Evaluate-for} actually \emph{increase} by 5.8\,pp).
+Grammar-constrained decoding~\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} ensures syntactic well-formedness but cannot encode cross-field semantic constraints.
+Post-hoc filtering discards up to 74\% of predictions including true positives (Appendices~\ref{app:cross-model-zs},~\ref{app:posthoc-extended}).
+Training-based approaches~\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime enforcement.
+
+We propose \textbf{OntoCoDec}, a framework that translates IE ontologies into composable layers of decoding-time constraints.
+A decidability analysis of IE type constraints (\S\ref{sec:decidability}) yields a two-layer architecture: the \emph{grammar layer} compiles ontology constraints into context-free grammars (CFGs) via XGrammar (JSON structure, vocabulary membership); the \emph{semantic layer} enforces type constraints at runtime via dynamic logit masking over an entity registry.
+OntoCoDec compiles constraints automatically from IE ontologies, requires no constraint-specific training, and is applicable to any autoregressive LM with logits access.
+We validate across three model families, two relation extraction (RE) datasets (up to 96 relation types), and event extraction (EE; \S\ref{sec:wikievents}), with 70B-class supporting evidence (\S\ref{sec:70b-results}).
+Composed with LoRA, greedy decoding reduces DR to near-zero ($\leq$\,0.21\%) at relation F1 (R-F1) 40--46\% ($\pm$0.3 percentage points, $+$10\% latency), with 97.6--100\% of removed triples confirmed as false positives; beam ($k{=}4$) achieves near-zero violations at ${\sim}$1.5$\times$ latency.
+DR enforcement converts irrecoverable ontology violations into cross-field type inconsistencies (CF;\,$\leq$\,1.4\% under fine-tuning), a severity downgrade amenable to post-hoc resolution.
+
+OntoCoDec is orthogonal and complementary to training-based schema-aware approaches such as GoLLIE~\cite{sainz2024gollie} and KnowCoder~\cite{knowcoder_acl2024}; it can be composed with any generative IE system to improve schema compliance without retraining.
+
+Our contributions:
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+    \item A two-layer constrained decoding framework that reduces domain/range violations to near-zero ($\leq$\,0.21\%) without retraining or significant quality loss, showing that these type constraints require stateful enforcement beyond context-free grammars (Proposition~1; \S\ref{sec:decidability}).
+    \item An empirical finding of non-additive layer interaction: grammar-only reduces DR by 3\% and semantic-only by 24\%, yet their composition achieves 94\%, because grammar-enforced vocabulary membership creates the clean input the semantic layer requires.
+    \item Scale-dependent layer interaction: the semantic layer's independent DR reduction grows from 24\% (8B) to 84\% (70B; \S\ref{sec:70b-results}), because larger models better satisfy the vocabulary prerequisites that enable semantic enforcement. Beam $k{=}4$ achieves near-zero violations at 8B; event extraction on WikiEvents confirms cross-task generalization (\S\ref{sec:wikievents}).
+\end{enumerate}

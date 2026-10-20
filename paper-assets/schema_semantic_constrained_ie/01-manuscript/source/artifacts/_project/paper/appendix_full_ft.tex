@@ -1,0 +1,24 @@
+\section{Full Fine-Tuning Baseline}
+\label{app:full-ft}
+
+To verify that constraint effectiveness generalizes beyond LoRA, we evaluate Qwen3-8B with full-parameter fine-tuning on SciERC (same data, 3 epochs, lr=$2{\times}10^{-4}$, seed 42).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \textbf{E-F1} & \textbf{R-F1} & \textbf{DR\%} & \textbf{CF\%} \\
+\midrule
+Full FT unconstrained & 64.78 & 37.89 & 2.74 & 0 \\
+Full FT + S1 & 64.78 & 37.89 & \textbf{0} & 1.31 \\
+\midrule
+LoRA unconstrained & 67.05 & 43.86 & 1.95 & 0 \\
+LoRA + S1 & 67.05 & 43.77 & \textbf{0} & 1.18 \\
+\bottomrule
+\end{tabular}
+\caption{Full fine-tuning vs.\ LoRA on SciERC (Qwen3-8B, 551 docs). Constraints eliminate DR under both methods. Full FT underperforms LoRA, likely due to an untuned learning rate ($2{\times}10^{-4}$, standard for LoRA but high for full FT). F1 is unaffected by constraints in both cases.}
+\label{tab:full-ft}
+\end{table}
+
+Full fine-tuning retains 2.74\% DR violations (30 triples), concentrated in Part-of (14.6\%), Hyponym-of (9.6\%), and Evaluate-for (8.4\%). S1 eliminates all 30 violations with no F1 cost, demonstrating that constraint enforcement remains necessary even after full parameter updates. The CF$\leftrightarrow$DR trade-off persists (CF 0\%$\to$1.31\%), consistent with the LoRA pattern (1.18\%).

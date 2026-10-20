@@ -1,0 +1,187 @@
+% Section 5 — DocRED Results (Draft)
+% Data source: Phase 2 DocRED registry experiments (checker_version: fixed_20260514)
+% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,
+%          phase2_docred_semantic_only, phase2_docred_full_s1
+% All numbers verified against registry 2026-05-14.
+% F1 computed via all_set method with name→Wikidata PID normalization.
+
+\subsection{Cross-Dataset Validation on DocRED}
+\label{sec:docred-results}
+
+Table~\ref{tab:docred-ablation} presents the four-way ablation on DocRED,
+a document-level relation extraction benchmark with 96 Wikidata relation
+types---14$\times$ the ontology size of SciERC
+(Section~\ref{sec:scierc-results}).
+All experiments use Qwen3-8B in a zero-shot setting on 988 test documents
+with identical prompts and decoding parameters.
+Relation F1 is computed via name-to-Wikidata-PID normalization:
+each predicted relation name is mapped to its canonical PID before
+matching against gold annotations, and predictions that cannot be mapped
+to any valid PID are counted as false positives.
+
+% ──────────────────────────────────────────
+%  Table: DocRED four-way ablation
+% ──────────────────────────────────────────
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}l rrrrr rr@{}}
+\toprule
+& \multicolumn{5}{c}{\textbf{Violation Rates (\%)}}
+& \multicolumn{2}{c}{\textbf{F1}} \\
+\cmidrule(lr){2-6} \cmidrule(l){7-8}
+\textbf{Mode}
+  & DR\,$\downarrow$ & $\Delta$DR
+  & RV\,$\downarrow$ & ET\,$\downarrow$ & CF
+  & Rel.\,$\uparrow$ & Ent.\,$\uparrow$ \\
+\midrule
+Unconstrained
+  & 18.46 & ---
+  & 29.66 & 8.18
+  & 0.10
+  & 7.74  & 58.15 \\
+Grammar
+  & 26.17 & $\uparrow$42\%
+  & \textbf{0.03} & \textbf{0}
+  & 0.07
+  & \textbf{8.31}  & --- \\
+Semantic
+  & 13.84 & $\downarrow$25\%
+  & 29.87 & 10.44
+  & 1.05
+  & 7.70  & 57.81 \\
+Full (S1)
+  & \textbf{10.19} & $\downarrow$\textbf{45\%}
+  & \textbf{0.03} & \textbf{0}
+  & 2.57
+  & 8.23  & \textbf{59.37} \\
+\bottomrule
+\end{tabular}
+\caption{Four-way ablation on DocRED (988 documents, Qwen3-8B, zero-shot).
+DR: domain/range violation rate;
+RV: relation vocabulary violation rate;
+ET: entity type violation rate;
+CF: cross-field consistency violation rate.
+$\Delta$DR: relative change vs.\ the unconstrained baseline
+($\uparrow$: increase; $\downarrow$: decrease).
+Best per column in \textbf{bold} (CF excluded---see text).
+F1 scores are multiplied by 100.
+Grammar-only entity F1 is unavailable (---).}
+\label{tab:docred-ablation}
+\end{table}
+
+% ──────────────────────────────────────────
+%  (a) Core result
+% ──────────────────────────────────────────
+\paragraph{Core result: DR halved at zero F1 cost.}
+The full two-layer configuration reduces domain/range violations from
+18.46\% to 10.19\%, a 44.8\% relative reduction, while simultaneously
+eliminating entity type violations (8.18\%\,$\to$\,0\%) and
+near-eliminating relation vocabulary violations
+(29.66\%\,$\to$\,0.03\%).
+% phase2_docred_unconstrained: DR=0.1846, ET=0.0818, RV=0.2966
+% phase2_docred_full_s1: DR=0.1019, ET=0, RV=0.0003
+Relation F1 moves from 7.74 to 8.23 (+0.49\,pp) and entity F1 from
+58.15 to 59.37 (+1.22\,pp);
+% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815
+% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937
+as with SciERC, these differences are within noise for single-seed
+evaluation and are best characterized as F1-neutral.
+Cross-field consistency violations increase modestly from 0.10\% to
+2.57\%, substantially lower than the 9.90\% observed on SciERC;
+% phase2_docred_unconstrained: CF=0.0010; phase2_docred_full_s1: CF=0.0257
+we discuss this trade-off in Section~\ref{sec:discussion}.
+
+% ──────────────────────────────────────────
+%  (b) Grammar layer
+% ──────────────────────────────────────────
+\paragraph{Grammar layer: structural guarantees generalize, but surface latent violations.}
+Grammar-only constraints generalize to DocRED's 96-relation ontology,
+eliminating entity type violations (8.18\%\,$\to$\,0\%) and
+near-eliminating relation vocabulary violations
+(29.66\%\,$\to$\,0.03\%).
+% phase2_docred_grammar_only: ET=0, RV=0.0003
+However, domain/range violations \emph{increase} from 18.46\% to
+26.17\% (+42\% relative).
+% phase2_docred_grammar_only: DR=0.2617
+This counter-intuitive result has a structural explanation.
+In the unconstrained baseline, 29.66\% of triples contain
+out-of-vocabulary relation names and are classified as RV violations;
+because no schema entry exists for an invalid relation name,
+these triples \emph{cannot} be evaluated against domain/range rules
+and are therefore absent from the DR count.
+When grammar constraints force all relation names into the valid
+vocabulary, these formerly RV-classified triples receive valid
+relation names---but the associated entity types frequently violate
+the domain/range rules of the assigned relation, surfacing as new
+DR violations.
+The grammar layer thus \emph{reveals} latent type incompatibilities
+rather than creating them, directly motivating the semantic layer:
+without domain/range enforcement, grammar alone makes the type
+violation landscape worse, not better.
+
+% ──────────────────────────────────────────
+%  (c) Enabling dependency
+% ──────────────────────────────────────────
+\paragraph{Enabling dependency confirmed across datasets.}
+Semantic constraints alone reduce DR by 25\%
+(18.46\%\,$\to$\,13.84\%) but cannot eliminate relation vocabulary
+violations (RV\,=\,29.87\%) or entity type violations
+(ET\,=\,10.44\%).
+% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.1044
+The elevated ET under semantic-only decoding (10.44\% vs.\ 8.18\%
+unconstrained) arises because the domain/range mask blocks entity type
+tokens at \texttt{head\_type}/\texttt{tail\_type} positions without a
+grammar layer to constrain output to the type enum.
+On DocRED, where entity types are frequently excluded from relations
+(e.g., \textsc{NUM} is blocked in 92\% of relations), the model
+escapes to OOV strings (e.g., ``ORGB'', ``EVENT''), producing 355
+additional ET violations exclusively in relation type fields while
+entity-list violations remain unchanged.
+On SciERC, every entity type is a valid head and tail for all
+relations, so the mask is never triggered and ET stays at 0.40\%.
+Combining both layers (Full S1) reduces DR a further 26\% relative to
+the semantic-only configuration (13.84\%\,$\to$\,10.19\%),
+% phase2_docred_full_s1: DR=0.1019; delta=(13.84-10.19)/13.84=0.264
+replicating the enabling dependency observed on SciERC:
+without grammar-enforced vocabulary constraints, the semantic layer
+encounters out-of-vocabulary relation types for which no domain/range
+rules exist, limiting its enforcement capacity.
+The consistency of this pattern across two datasets with substantially
+different ontology sizes (7 vs.\ 96 relation types) and violation
+profiles (SciERC RV\,=\,1.39\% vs.\ DocRED RV\,=\,29.66\%) confirms
+that the grammar$\to$semantic enabling dependency is a general
+architectural property of the framework, not an artifact of a
+particular schema.
+
+% ──────────────────────────────────────────
+%  (d) Constraint tightness scaling
+% ──────────────────────────────────────────
+\paragraph{Constraint tightness governs enforcement ceiling.}
+The residual DR on DocRED (10.19\%) substantially exceeds that of
+SciERC (0.93\%, Section~\ref{sec:scierc-results}).
+This gap is explained by per-relation \emph{constraint tightness}:
+DocRED relations admit on average only 5.68 valid entity type pairs
+(mean tightness\,=\,0.842, i.e., 84.2\% of entity type pairs violate
+domain/range rules), compared to 23 valid pairs on SciERC
+(tightness\,=\,0.333).
+% DocRED: avg_valid_pairs=5.68, avg_tightness=0.842
+% SciERC: avg_valid_pairs=23, avg_tightness=0.333
+With tighter per-relation constraints, the semantic layer's logit mask
+eliminates a larger fraction of candidate tokens at each decoding step,
+increasing the probability that the intersection of grammar and
+semantic masks yields a narrow or empty candidate set.
+In the limiting case, the system falls back to grammar-only constraints,
+preserving structural validity but forgoing domain/range enforcement
+for that token position.
+Conversely, SciERC's looser constraints leave more valid alternatives
+for the model to redirect probability mass toward, enabling
+near-complete DR elimination.
+The DR reduction thus scales inversely with constraint tightness:
+45\% on DocRED (tight) vs.\ 94\% on SciERC (loose).
+% DocRED: DR_reduction=44.8%; SciERC: DR_reduction=93.9%
+This represents, to our knowledge, the first empirical characterization
+of how ontology constraint properties modulate decoding-time enforcement
+effectiveness; we develop this analysis further in
+Section~\ref{sec:discussion}.

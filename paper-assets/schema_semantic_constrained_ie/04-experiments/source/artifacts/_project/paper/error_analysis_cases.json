@@ -1,0 +1,274 @@
+{
+  "metadata": {
+    "source": "SciERC Qwen LoRA S1 constrained (w5_lora_scierc_full_s1_eval)",
+    "pred_file": "/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_full_s1_eval.jsonl",
+    "unc_file": "/root/schema_semantic_constrained_ie/outputs/w5_lora_scierc_unconstrained_eval.jsonl",
+    "gold_source": "SciERC test set (551 sentence-level samples, embedded in pred_file as gold_entities/gold_relations)",
+    "total_samples": 551,
+    "relation_stats": {
+      "precision": 40.78,
+      "recall": 47.23,
+      "f1": 43.77,
+      "tp": 460,
+      "fp": 668,
+      "fn": 514
+    },
+    "entity_stats": {
+      "precision": 65.23,
+      "recall": 68.98,
+      "f1": 67.05
+    },
+    "constraint_blocked_fn": 1,
+    "model_missed_fn": 513,
+    "cf_violations_total": 21,
+    "cf_violations_unique_entities": 8,
+    "date": "2026-05-22"
+  },
+  "false_negatives": [
+    {
+      "case_id": "fn_001",
+      "error_type": "false_negative",
+      "subtype": "constraint_interaction",
+      "doc_id": "P08-1105_sent4",
+      "context": "Experiments on the TREC Blog track test set show that both groups of credibility indicators significantly improve retrieval effectiveness; the best performance is achieved when combining them.",
+      "gold_triple": {"head": "retrieval effectiveness", "head_type": "Metric", "relation": "Evaluate-for", "tail": "credibility indicators", "tail_type": "OtherScientificTerm"},
+      "predicted_triple": null,
+      "in_unconstrained": true,
+      "unconstrained_triple": {"head": "retrieval effectiveness", "head_type": "Metric", "relation": "Evaluate-for", "tail": "credibility indicators", "tail_type": "OtherScientificTerm"},
+      "constrained_instead": {"head": "credibility indicators", "head_type": "OtherScientificTerm", "relation": "Used-for", "tail": "retrieval effectiveness", "tail_type": "Metric"},
+      "analysis": "The only constraint-blocked false negative in the dataset. Under constrained decoding, the model assigns conflicting types to 'credibility indicators' (OtherScientificTerm in entity list vs. Method in the Evaluate-for relation's tail_type), triggering a cross-field consistency violation. The unconstrained model generates the correct triple without this conflict, suggesting the constraint enforcement pathway redirected generation toward an alternative (reversed, wrong-type) relation."
+    },
+    {
+      "case_id": "fn_002",
+      "error_type": "false_negative",
+      "subtype": "missing_entity",
+      "doc_id": "X96-1059_sent0",
+      "context": "Recognition of proper nouns in Japanese text has been studied as a part of the more general problem of morphological analysis in Japanese text processing.",
+      "gold_triple": {"head": "proper nouns", "head_type": "OtherScientificTerm", "relation": "Part-of", "tail": "Japanese text", "tail_type": "Material"},
+      "predicted_triple": null,
+      "in_unconstrained": false,
+      "analysis": "The gold annotation marks 'proper nouns' as an OtherScientificTerm entity, but the model only recognizes the larger span 'Recognition of proper nouns' as a Task entity. The sub-span entity is never generated, making the associated Part-of relation unrecoverable. This illustrates how entity boundary granularity directly limits relation recall."
+    },
+    {
+      "case_id": "fn_003",
+      "error_type": "false_negative",
+      "subtype": "zero_relation_output",
+      "doc_id": "CVPR_2011_10_abs_sent3",
+      "context": "It models reflection as regions containing two different layers moving over each other.",
+      "gold_triple": {"head": "It", "head_type": "Generic", "relation": "Used-for", "tail": "reflection", "tail_type": "OtherScientificTerm"},
+      "predicted_triple": null,
+      "in_unconstrained": false,
+      "analysis": "The model predicts both entities ('It' as Generic, 'reflection' as OtherScientificTerm) correctly but generates zero relations. Pronoun-headed relations involving Generic entities are systematically harder for the model, as the pronoun provides minimal lexical signal for relation type disambiguation."
+    },
+    {
+      "case_id": "fn_004",
+      "error_type": "false_negative",
+      "subtype": "relation_type_confusion",
+      "doc_id": "X96-1059_sent5",
+      "context": "Amorph recognizes NE items in two stages: dictionary lookup and rule application.",
+      "gold_triple": {"head": "dictionary lookup", "head_type": "Method", "relation": "Part-of", "tail": "Amorph", "tail_type": "Method"},
+      "predicted_triple": null,
+      "in_unconstrained": false,
+      "paired_fp": "fp_001",
+      "analysis": "The model predicts (dictionary lookup, Used-for, Amorph) instead of the gold Part-of relation. The phrase 'recognizes NE items in two stages' strongly implies a Part-of (component) relationship, but the model defaults to Used-for, the most frequent relation type in SciERC. This Part-of vs. Used-for confusion is the dominant source of relation type errors."
+    },
+    {
+      "case_id": "fn_005",
+      "error_type": "false_negative",
+      "subtype": "relation_type_confusion",
+      "doc_id": "P03-1070_sent1",
+      "context": "We analyzed eye gaze, head nods and attentional focus in the context of a direction-giving task.",
+      "gold_triple": {"head": "eye gaze", "head_type": "OtherScientificTerm", "relation": "Part-of", "tail": "direction-giving task", "tail_type": "Task"},
+      "predicted_triple": null,
+      "in_unconstrained": false,
+      "paired_fp": "fp_003",
+      "analysis": "The gold annotation marks three Part-of relations (eye gaze, head nods, attentional focus → direction-giving task), but the model generates Used-for for all three. The phrase 'in the context of' is semantically ambiguous between 'used within' and 'part of', and the model systematically selects the more common Used-for interpretation. All three Part-of relations become FN while the three Used-for predictions become FP."
+    },
+    {
+      "case_id": "fn_006",
+      "error_type": "false_negative",
+      "subtype": "relation_type_confusion",
+      "doc_id": "C08-2010_sent0",
+      "context": "Language resource quality is crucial in NLP.",
+      "gold_triple": {"head": "Language resource quality", "head_type": "Metric", "relation": "Feature-of", "tail": "NLP", "tail_type": "Task"},
+      "predicted_triple": null,
+      "in_unconstrained": false,
+      "paired_fp": "fp_004",
+      "analysis": "Both entities are correctly identified (Metric and Task), but the model predicts Evaluate-for instead of Feature-of. 'Quality' as a Metric entity triggers the Evaluate-for heuristic, even though the sentence expresses a Feature-of relationship ('quality is crucial in' implies an inherent property rather than an evaluation metric applied to a task)."
+    },
+    {
+      "case_id": "fn_007",
+      "error_type": "false_negative",
+      "subtype": "relation_type_confusion",
+      "doc_id": "P86-1011_sent0",
+      "context": "We examine the relationship between the two grammatical formalisms: Tree Adjoining Grammars and Head Grammars.",
+      "gold_triple": {"head": "Tree Adjoining Grammars", "head_type": "Method", "relation": "Compare", "tail": "Head Grammars", "tail_type": "Method"},
+      "predicted_triple": null,
+      "in_unconstrained": false,
+      "paired_fp": "fp_005",
+      "analysis": "The model predicts Conjunction instead of Compare. Both relations involve co-occurring entities, but 'examine the relationship between' signals a comparison. The model conflates co-enumeration (Conjunction) with analytical comparison (Compare), a subtle distinction that requires understanding the discourse function rather than surface co-occurrence."
+    }
+  ],
+  "false_positives": [
+    {
+      "case_id": "fp_001",
+      "error_type": "false_positive",
+      "subtype": "wrong_relation_type",
+      "doc_id": "X96-1059_sent5",
+      "context": "Amorph recognizes NE items in two stages: dictionary lookup and rule application.",
+      "gold_triple": {"head": "dictionary lookup", "head_type": "Method", "relation": "Part-of", "tail": "Amorph", "tail_type": "Method"},
+      "predicted_triple": {"head": "dictionary lookup", "head_type": "Method", "relation": "Used-for", "tail": "Amorph", "tail_type": "Method"},
+      "paired_fn": "fn_004",
+      "analysis": "Schema-valid but incorrect: Used-for between two Method entities is permitted by the schema, so constraints cannot filter it. The model defaults to Used-for (56% of all SciERC relations) when the correct Part-of requires recognizing the 'stages' discourse structure. This is the most common FP pattern: within-schema freedom allows plausible but wrong relation types."
+    },
+    {
+      "case_id": "fp_002",
+      "error_type": "false_positive",
+      "subtype": "wrong_relation_type",
+      "doc_id": "ICCV_2001_47_abs_sent3",
+      "context": "Structural or numerical constraints can then be added locally to the reconstruction process through a constrained optimization scheme.",
+      "gold_triple": {"head": "Structural or numerical constraints", "head_type": "OtherScientificTerm", "relation": "Used-for", "tail": "reconstruction process", "tail_type": "Method"},
+      "predicted_triple": {"head": "Structural or numerical constraints", "head_type": "OtherScientificTerm", "relation": "Part-of", "tail": "reconstruction process", "tail_type": "Method"},
+      "analysis": "Inverse of the typical confusion: here the model predicts Part-of where the gold is Used-for. The verb 'added to' can imply either incorporation (Part-of) or instrumental use (Used-for). The bidirectional confusion between Part-of and Used-for suggests these relation types occupy overlapping semantic space in scientific text."
+    },
+    {
+      "case_id": "fp_003",
+      "error_type": "false_positive",
+      "subtype": "wrong_relation_type",
+      "doc_id": "P03-1070_sent1",
+      "context": "We analyzed eye gaze, head nods and attentional focus in the context of a direction-giving task.",
+      "predicted_triple": {"head": "eye gaze", "head_type": "OtherScientificTerm", "relation": "Used-for", "tail": "direction-giving task", "tail_type": "Task"},
+      "gold_triple": {"head": "eye gaze", "head_type": "OtherScientificTerm", "relation": "Part-of", "tail": "direction-giving task", "tail_type": "Task"},
+      "paired_fn": "fn_005",
+      "analysis": "The model predicts Used-for for all three OtherScientificTerm→Task pairs where gold labels Part-of. Both types are schema-valid for this entity type combination, so constraints provide no corrective signal. The model's systematic preference for Used-for over Part-of is consistent with the SciERC training distribution where Used-for constitutes the majority class."
+    },
+    {
+      "case_id": "fp_004",
+      "error_type": "false_positive",
+      "subtype": "wrong_relation_type",
+      "doc_id": "C08-2010_sent0",
+      "context": "Language resource quality is crucial in NLP.",
+      "gold_triple": {"head": "Language resource quality", "head_type": "Metric", "relation": "Feature-of", "tail": "NLP", "tail_type": "Task"},
+      "predicted_triple": {"head": "Language resource quality", "head_type": "Metric", "relation": "Evaluate-for", "tail": "NLP", "tail_type": "Task"},
+      "paired_fn": "fn_006",
+      "analysis": "Metric→Task pairs admit both Evaluate-for and Feature-of in the SciERC schema. The model selects Evaluate-for because 'quality' plus Metric type strongly activates the evaluation frame, even though the sentence describes an inherent property. This case demonstrates that schema constraints can narrow the candidate set but cannot resolve fine-grained semantic distinctions between permitted types."
+    },
+    {
+      "case_id": "fp_005",
+      "error_type": "false_positive",
+      "subtype": "wrong_relation_type",
+      "doc_id": "P86-1011_sent0",
+      "context": "We examine the relationship between the two grammatical formalisms: Tree Adjoining Grammars and Head Grammars.",
+      "gold_triple": {"head": "Tree Adjoining Grammars", "head_type": "Method", "relation": "Compare", "tail": "Head Grammars", "tail_type": "Method"},
+      "predicted_triple": {"head": "Tree Adjoining Grammars", "head_type": "Method", "relation": "Conjunction", "tail": "Head Grammars", "tail_type": "Method"},
+      "paired_fn": "fn_007",
+      "analysis": "Both Compare and Conjunction are valid for Method→Method pairs. The surface pattern of two methods listed together triggers Conjunction, which indicates co-occurrence. Compare requires deeper discourse understanding—'examine the relationship between' implies analytical comparison rather than simple co-enumeration. This Conjunction-vs-Compare confusion accounts for a non-trivial subset of Method→Method FPs."
+    },
+    {
+      "case_id": "fp_006",
+      "error_type": "false_positive",
+      "subtype": "hallucinated_relation",
+      "doc_id": "X96-1059_sent4",
+      "context": "The analyzer is called 'Amorph'.",
+      "gold_triple": null,
+      "predicted_triple": {"head": "`` Amorph ''", "head_type": "Method", "relation": "Hyponym-of", "tail": "analyzer", "tail_type": "Generic"},
+      "analysis": "No gold relation exists for this sentence. The model generates a Hyponym-of relation interpreting the naming construction 'is called' as a taxonomic relationship. While pragmatically reasonable (Amorph is indeed a specific analyzer), the gold annotation does not mark this as a relation. Hallucinated relations from copular constructions are a recurring FP pattern."
+    },
+    {
+      "case_id": "fp_007",
+      "error_type": "false_positive",
+      "subtype": "hallucinated_relation",
+      "doc_id": "E06-1022_sent4",
+      "context": "The classifiers show little gain from information about meeting context.",
+      "gold_triple": null,
+      "predicted_triple": {"head": "meeting context", "head_type": "OtherScientificTerm", "relation": "Used-for", "tail": "classifiers", "tail_type": "Method"},
+      "analysis": "The model generates a Used-for relation despite the sentence expressing a negative result ('show little gain from'). The model recognizes the entity pair and the instrumental preposition 'from' but fails to account for negation. Negation-insensitive relation extraction is a known limitation of generative IE models."
+    }
+  ],
+  "cf_violations": [
+    {
+      "case_id": "cf_001",
+      "error_type": "cf_violation",
+      "doc_id": "NIPS_2001_11_abs_sent4",
+      "context": "A basic reason behind this is that the overall approach extends the approach described in a companion paper, relaxing the assumption that all signals are represented by idealized spike trains.",
+      "entity_text": "approach",
+      "conflicting_types": ["Generic", "Method"],
+      "gold_entity_type": "Generic",
+      "involved_relations": [
+        {"head": "approach", "head_type": "Generic", "relation": "Used-for", "tail": "signals", "tail_type": "OtherScientificTerm"},
+        {"head": "approach", "head_type": "Method", "relation": "Used-for", "tail": "idealized spike trains", "tail_type": "OtherScientificTerm"}
+      ],
+      "analysis": "The entity 'approach' is assigned Generic in one relation and Method in another within the same sentence. The gold type is Generic. This ambiguity arises because 'approach' is a polysemous term that can refer to a specific method or a generic reference depending on context. The CF fallback mechanism resolves this via majority voting (Generic wins 2:1), but the inconsistency reveals the model's token-level type uncertainty."
+    },
+    {
+      "case_id": "cf_002",
+      "error_type": "cf_violation",
+      "doc_id": "P05-1056_sent3",
+      "context": "In our experiments, we demonstrate that statistical methods can compensate for this lack of data, and even approach the performance achieved using human transcriptions by making use of features derived from speech recognition output.",
+      "entity_text": "human transcriptions",
+      "conflicting_types": ["Generic", "Material"],
+      "gold_entity_type": "OtherScientificTerm",
+      "involved_relations": [
+        {"head": "human transcriptions", "head_type": "Material", "relation": "Compare", "tail": "speech recognition output", "tail_type": "Material"},
+        {"head": "human transcriptions", "head_type": "Generic", "relation": "Evaluate-for", "tail": "statistical methods", "tail_type": "Method"}
+      ],
+      "analysis": "The model assigns 'human transcriptions' both Material (when compared with 'speech recognition output') and Generic (when evaluated against 'statistical methods'). The gold type OtherScientificTerm is not predicted at all, representing a three-way disagreement. The CF violation here reflects genuine contextual ambiguity: 'human transcriptions' functions as data (Material) in one frame and as a benchmark reference (Generic) in another."
+    },
+    {
+      "case_id": "cf_003",
+      "error_type": "cf_violation",
+      "doc_id": "E89-1016_sent4",
+      "context": "We give in this paper a detailed analysis of a collected corpus of 750 ings coming from 60 task dialogues.",
+      "entity_text": "task dialogues",
+      "conflicting_types": ["Material", "OtherScientificTerm"],
+      "gold_entity_type": "Material",
+      "involved_relations": [
+        {"head": "corpus", "head_type": "Material", "relation": "Hyponym-of", "tail": "task dialogues", "tail_type": "Material"},
+        {"head": "task dialogues", "head_type": "OtherScientificTerm", "relation": "Used-for", "tail": "analysis", "tail_type": "Task"}
+      ],
+      "analysis": "The model assigns Material when 'task dialogues' functions as a data source (Hyponym-of corpus) but OtherScientificTerm when it serves as the object of analysis. The gold type Material is correct for both contexts. This CF violation illustrates how relation-conditioned type assignment can introduce inconsistencies when an entity participates in relations with different semantic roles."
+    },
+    {
+      "case_id": "cf_004",
+      "error_type": "cf_violation",
+      "doc_id": "CVPR_2008_256_abs_sent0",
+      "context": "This paper presents a novel tracking framework based on a black-box measure of similarity between images.",
+      "entity_text": "black-box measure of similarity",
+      "conflicting_types": ["Metric", "Task"],
+      "gold_entity_type": "Metric",
+      "involved_relations": [
+        {"head": "black-box measure of similarity", "head_type": "Metric", "relation": "Used-for", "tail": "tracking framework", "tail_type": "Method"},
+        {"head": "black-box measure of similarity", "head_type": "Task", "relation": "Used-for", "tail": "images", "tail_type": "Material"}
+      ],
+      "analysis": "The entity is assigned Metric when used instrumentally with 'tracking framework' but Task when applied to 'images'. The gold type Metric is correct. The phrase 'measure of similarity' contains lexical cues for both Metric ('measure') and Task ('similarity computation'). The type inconsistency does not affect the relation type (Used-for in both cases) but breaks entity type coherence."
+    },
+    {
+      "case_id": "cf_005",
+      "error_type": "cf_violation",
+      "doc_id": "ECCV_2016_204_abs_sent7",
+      "context": "Experimental evaluations on two challenging person re-identification datasets demonstrate the superiority of the proposed model over the state-of-the-art methods.",
+      "entity_text": "person re-identification datasets",
+      "conflicting_types": ["Material", "Task"],
+      "gold_entity_type": "Material",
+      "involved_relations": [
+        {"head": "person re-identification datasets", "head_type": "Material", "relation": "Evaluate-for", "tail": "proposed model", "tail_type": "Method"},
+        {"head": "person re-identification datasets", "head_type": "Task", "relation": "Evaluate-for", "tail": "state-of-the-art methods", "tail_type": "Method"}
+      ],
+      "analysis": "The compound noun 'person re-identification datasets' contains both a task component ('person re-identification') and a data component ('datasets'). The model vacillates between Material and Task across two Evaluate-for relations in the same sentence. The CF fallback correctly resolves to Material based on majority voting or the 'datasets' suffix, but the inconsistency reveals compositional entity type ambiguity."
+    },
+    {
+      "case_id": "cf_006",
+      "error_type": "cf_violation",
+      "doc_id": "H05-1095_sent2",
+      "context": "We measure translation accuracy of the extracted phrases using the NIST MT evaluation metric.",
+      "entity_text": "translation accuracy",
+      "conflicting_types": ["Method", "Metric"],
+      "gold_entity_type": null,
+      "involved_relations": [
+        {"head": "translation accuracy", "head_type": "Metric", "relation": "Evaluate-for", "tail": "extracted phrases", "tail_type": "OtherScientificTerm"},
+        {"head": "NIST MT evaluation metric", "head_type": "Metric", "relation": "Used-for", "tail": "translation accuracy", "tail_type": "Method"}
+      ],
+      "analysis": "The entity 'translation accuracy' receives Metric when it serves as an evaluation criterion and Method when it appears as the target of another metric. The gold annotation does not include this entity, making ground-truth resolution impossible. This case exemplifies a genuine semantic duality: 'accuracy' functions as both a measurable quantity (Metric) and a process being measured (Method), with the type depending on the relational context."
+    }
+  ]
+}

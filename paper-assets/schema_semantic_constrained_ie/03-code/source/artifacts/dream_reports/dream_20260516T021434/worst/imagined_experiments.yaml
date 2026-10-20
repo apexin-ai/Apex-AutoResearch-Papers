@@ -1,0 +1,257 @@
+tier: worst
+narrative_guidance: 'Composability claim becomes regime-dependent: OntoCoDec composes
+  at zero cost on SciERC FT (7 relations, low tightness diversity), but DocRED FT
+  (96 relations) reveals systematic constraint-model conflict. FT narrows output distribution
+  (entropy ~0.7) while semantic masks enforce per-relation type rules → frequent top-token
+  elimination → cascading quality loss. CF spikes because FT learns globally consistent
+  entity typing that per-relation enforcement disrupts. Paper reframe: §5 adds "regime-dependent
+  cost-benefit analysis" — OntoCoDec is most valuable in zero-shot/few-shot where
+  violations are high and model calibration is poor; as FT improves model calibration,
+  constraint overhead shifts from beneficial to detrimental on complex ontologies.
+  Core zero-shot contribution (§4) unchanged. Target venue unchanged (EMNLP) but position
+  as method + regime analysis paper.
+
+  '
+imagined_experiments:
+- name: Qwen DocRED LoRA + Full S1 Constrained Eval
+  plan_id: w5_qwen_docred_lora_constrained_eval
+  description: 'Evaluate Qwen3-8B LoRA-finetuned on DocRED with full_s1 (grammar+semantic)
+    constrained decoding. Tests whether OntoCoDec composes with FT on a 96-relation
+    ontology. Baseline: FT unconstrained DR=0.76%, R-F1=40.86%, E-F1=82.15%, parse_fail=7.11%,
+    CF=0.12%.
+
+    '
+  expected_results:
+    DR_pct: 0.25
+    RV_pct: 0.0
+    ET_pct: 0.0
+    CF_pct: 5.8
+    R_F1: 39.2
+    R_precision: 36.0
+    R_recall: 43.0
+    E_F1: 80.3
+    E_precision: 84.5
+    E_recall: 76.5
+    R_F1_delta_pp: -1.66
+    E_F1_delta_pp: -1.85
+    parse_fail_rate_pct: 12.0
+    parse_fail_increase_pp: 4.9
+    total_entities_pred: 17800
+    total_relations_pred: 15200
+    success_samples: 878
+    fail_samples: 120
+  result_rationale: 'DR 降至 0.25%（constraint 机制仍物理上阻止无效 domain-range 组合，不受 FT 影响），
+    但代价极高。三个降质机制并行作用：
+
+    (1) R-F1 下降 1.66pp：Qwen DocRED FT 的训练 entropy=0.715（registry 记录）， 说明模型学到了窄而尖的
+    output distribution。semantic mask 在 relation type token 位置频繁排除模型的 top-1/top-2
+    候选 → 迫使生成走低概率路径 → 后续 token 基于 非预期 prefix 生成 → cascade degradation。96 个 relation
+    type 意味着远多于 SciERC 的 conflict point（SciERC 7 relations，FT+constrained delta 仅
+    -0.09pp）。 DocRED 中高 tightness relation（如 P31_instance_of τ≈0.95、P17_country τ≈0.90）
+    的 semantic mask 最具限制性，恰好也是 FT 模型置信度最高的 relation → conflict 最严重。
+
+    (2) CF 从 0.12% 飙升至 5.8%：FT 模型学到了全局一致的 entity typing（训练数据中 同一 entity 在不同 relation
+    中 type 一致），但 semantic 层逐 relation 独立 enforce type constraint。FT 的 strong prior
+    与 per-relation enforcement 冲突 → 同一 entity 在不同 relation triple 中被 semantic mask
+    强制赋予不同 type（EVR drift）。 zero-shot Qwen DocRED CF 仅 2.57%，FT 使模型 prior 更强 → conflict
+    更系统化 → CF 翻倍。但低于 Llama 预期值，因为 Qwen FT parse_fail=7.11% 过滤掉了部分冲突严重的样本。
+
+    (3) parse_fail 从 7.11% 增至 12.0%（+4.9pp）：FT 的窄 distribution + semantic mask 的 token
+    排除 → 更频繁出现 grammar ∩ semantic = ∅ 的 empty intersection。fallback 到 grammar-only
+    后，部分 doc 的 JSON 结构在 constraint recovery 过程中损坏 → parse failure。Qwen 本身在 DocRED
+    上 parse_fail baseline 已偏高（unconstrained 7.11% vs Llama 2.3%），constraint 叠加后进一步恶化。
+
+    E-F1 下降 1.85pp 的机制：semantic mask 在 entity type token 位置强制修改 FT 学到的 type assignment
+    → entity list 中的 type 被改动 → all_set 评估下 type 变动导致 部分 entity match 失败 → recall
+    从 79.11% 降至 76.5%。precision 仅小幅下降因为 grammar 仍消除 OOV entity type（ET→0%）。
+
+    '
+  tables:
+  - name: 'Table: Qwen DocRED FT Composability (2×2)'
+    columns:
+    - Config
+    - DR_pct
+    - CF_pct
+    - R_F1
+    - E_F1
+    - parse_fail_pct
+    rows:
+    - - FT unconstrained
+      - 0.76
+      - 0.12
+      - 40.86
+      - 82.15
+      - 7.11
+    - - FT constrained (worst)
+      - 0.25
+      - 5.8
+      - 39.2
+      - 80.3
+      - 12.0
+    - - ZS unconstrained
+      - 18.46
+      - 0.1
+      - 7.74
+      - 58.15
+      - 1.2
+    - - ZS constrained
+      - 10.21
+      - 2.57
+      - 8.23
+      - 59.37
+      - 1.1
+  figures_description:
+  - 'Bar chart: R-F1 delta (constrained−unconstrained) for Qwen across 4 regimes:
+    ZS-SciERC (+0.13pp), ZS-DocRED (+0.50pp), FT-SciERC (-0.09pp), FT-DocRED (-1.66pp).
+    Shows clear regime dependence — positive in ZS, negative in FT-DocRED.'
+  - 'Scatter: CF rate (y) vs constraint tightness τ̄ (x) across {ZS, FT} × {SciERC,
+    DocRED}. FT-DocRED is the outlier in the upper-right quadrant.'
+  analysis: 'Qwen DocRED 的 worst-tier 核心发现：constraint 仍消除 DR（0.76%→0.25%，↓67%）， 但
+    R-F1 代价 1.66pp 在 FT regime 下不可接受——FT unconstrained 本身 DR 已很低（0.76%）， 为消除 0.51pp
+    残余 DR 付出 1.66pp R-F1 是 3.3:1 的不利交换比。 对比 zero-shot：DR 18.46%→10.21%（↓44.7%）同时 R-F1
+    +0.50pp，这是 win-win。 结论：OntoCoDec 的 ROI 在 FT regime 下急剧下降。parse_fail 增至 12% 进一步削弱
+    practical value。论文 framing 必须明确标注"FT+complex ontology"为 unfavorable regime。
+
+    '
+- name: Llama DocRED LoRA + Full S1 Constrained Eval
+  plan_id: w5_llama_docred_lora_constrained_eval
+  description: 'Evaluate Llama-3.1-8B LoRA-finetuned on DocRED with full_s1 (grammar+semantic)
+    constrained decoding. Baseline: FT unconstrained DR=0.49%, R-F1=43.72%, E-F1=83.93%,
+    parse_fail=2.3%. Llama zero-shot DocRED constrained CF already highest at 12.02%
+    — FT may amplify or partially mitigate depending on whether FT-learned patterns
+    align with ontology constraints.
+
+    '
+  expected_results:
+    DR_pct: 0.12
+    RV_pct: 0.0
+    ET_pct: 0.0
+    CF_pct: 8.5
+    R_F1: 42.4
+    R_precision: 37.8
+    R_recall: 48.5
+    E_F1: 82.1
+    E_precision: 84.0
+    E_recall: 80.3
+    R_F1_delta_pp: -1.32
+    E_F1_delta_pp: -1.83
+    parse_fail_rate_pct: 7.0
+    parse_fail_increase_pp: 4.7
+    total_entities_pred: 18700
+    total_relations_pred: 15800
+    documents_checked: 928
+    parse_failures: 70
+  result_rationale: 'DR 降至 0.12%（Llama FT unconstrained DR=0.49% 本就极低，constraint 几乎完全消除
+    残余），但 three-way degradation 与 Qwen 平行：
+
+    (1) R-F1 下降 1.32pp：Llama FT 的 R-F1=43.72% 高于 Qwen（40.86%），说明 Llama FT 学到了更优的 extraction
+    pattern。但这也意味着 constraint 干预对 Llama 造成的 绝对质量损失更 meaningful。机制同 Qwen：semantic mask
+    排除 FT top-token → 低概率 path → cascade。delta 略小于 Qwen（-1.32 vs -1.66）的原因：Llama FT
+    unconstrained RV=0.15%（vs Qwen 0.27%），说明 Llama FT 生成的 relation name 更规范 → grammar
+    层 干预更少 → cascade 起点更少。但仍在 worst tier 范围 [-2.0, -0.8] 内。
+
+    (2) CF 从 ~0% 飙升至 8.5%：这是 worst tier 的核心 signal。Llama zero-shot DocRED constrained
+    CF=12.02%（registry 实测），说明 Llama 的 entity typing prior 与 DocRED ontology 的 per-relation
+    type constraint 存在系统性 mismatch。FT 后 CF 降至 8.5% 而非继续上升，因为 FT 数据中包含 ontology-consistent
+    的 type assignment，部分 校正了 zero-shot 的 mismatch。但 8.5% 仍远高于 unconstrained（~0%）：FT
+    学到的 全局一致 typing 与 semantic 层的 per-relation enforcement 仍存在不可调和的冲突。 Llama CF >
+    Qwen CF（8.5 vs 5.8）的原因：Llama 在 DocRED 上的 entity typing 更 decisive（probability
+    mass 更集中），semantic mask override 时产生的 drift 更大。
+
+    (3) parse_fail 从 2.3% 增至 7.0%（+4.7pp）：Llama FT baseline parse_fail=2.3% 远 低于 Qwen（7.11%），说明
+    Llama FT 的 JSON 结构生成更稳定。但 constraint 叠加后 增幅与 Qwen 相当（+4.7 vs +4.9pp），证明 parse
+    failure 增量主要由 constraint mechanism 驱动而非模型固有能力。empty intersection fallback → grammar-only
+    recovery → 部分样本的 JSON 嵌套结构在 recovery 中断裂 → parse failure。
+
+    E-F1 下降 1.83pp（83.93→82.1）：Llama zero-shot constrained E-F1 也下降了 0.64pp （55.65→55.01），FT
+    下降幅度更大因为 FT 的 entity typing 更精确、被 override 时 损失更大。Llama 的 entity typing 在 FT 后达到
+    E-F1=83.93%（高于 Qwen 82.15%）， constraint 对高质量 typing 的干扰造成的绝对损失更大。
+
+    '
+  tables:
+  - name: 'Table: Llama DocRED FT Composability (2×2)'
+    columns:
+    - Config
+    - DR_pct
+    - CF_pct
+    - R_F1
+    - E_F1
+    - parse_fail_pct
+    rows:
+    - - FT unconstrained
+      - 0.49
+      - 0.0
+      - 43.72
+      - 83.93
+      - 2.3
+    - - FT constrained (worst)
+      - 0.12
+      - 8.5
+      - 42.4
+      - 82.1
+      - 7.0
+    - - ZS unconstrained
+      - 26.07
+      - 0.17
+      - 5.98
+      - 55.65
+      - 6.8
+    - - ZS constrained
+      - 2.55
+      - 12.02
+      - 6.27
+      - 55.01
+      - 9.1
+  - name: 'Table: Cross-Model FT Composability Summary (DocRED)'
+    columns:
+    - Metric
+    - Qwen_delta
+    - Llama_delta
+    - Interpretation
+    rows:
+    - - R-F1 delta (pp)
+      - -1.66
+      - -1.32
+      - Both models show significant degradation
+    - - E-F1 delta (pp)
+      - -1.85
+      - -1.83
+      - Comparable entity quality loss
+    - - CF increase (pp)
+      - 5.68
+      - 8.5
+      - Llama more CF-sensitive (consistent with ZS pattern)
+    - - DR residual (%)
+      - 0.25
+      - 0.12
+      - Constraint mechanism still works
+    - - parse_fail increase (pp)
+      - 4.9
+      - 4.7
+      - Similar mechanism-driven increase
+  figures_description:
+  - 'Grouped bar chart: R-F1 delta across all 8 conditions {Qwen,Llama} × {SciERC,DocRED}
+    × {ZS,FT}. ZS deltas cluster near 0/positive; FT-DocRED deltas are both negative.
+    Visual thesis: composability cost is regime × ontology-complexity dependent.'
+  - 'Line plot: CF rate trajectory across 4 configs (ZS-uncon → ZS-con → FT-uncon
+    → FT-con) for both models. Llama line spikes at ZS-con then partially recovers
+    at FT-con; Qwen line rises monotonically. Shows FT partially corrects ZS typing
+    mismatch but introduces new FT-specific conflicts.'
+  - 'Heatmap: 2×2 matrix (model × regime) with cell color = ''net value score'' defined
+    as DR_reduction_pp − R_F1_loss_pp. Green cells (ZS) = positive net value; red
+    cells (FT-DocRED) = negative net value. One-glance summary of when OntoCoDec helps
+    vs hurts.'
+  analysis: "Llama DocRED 的 worst-tier 结果与 Qwen 形成一致 pattern：constraint 仍消除 DR （0.49%→0.12%，↓76%），但\
+    \ R-F1 代价 1.32pp 同样不利。交换比：消除 0.37pp DR 付出 1.32pp R-F1 = 3.6:1 不利。CF=8.5% 虽低于 zero-shot（12.02%），但仍是\
+    \ unconstrained 的 ∞ 倍（0→8.5%）。\n跨模型一致性：两个模型在 FT-DocRED 上均展现 {DR↓, R-F1↓, CF↑,\
+    \ parse_fail↑} 的一致 pattern，且 delta 量级相当。这排除了\"单一模型 artifact\"的可能 —— 是 constraint-FT\
+    \ interaction 的系统性效应。\nSciERC vs DocRED 对比：SciERC FT+constrained 几乎零成本（两个模型 delta\
+    \ < 0.1pp）， DocRED 显著负面。决定性差异：ontology complexity（7 vs 96 relations）和 average\
+    \ tightness（SciERC τ̄≈0.65 vs DocRED τ̄≈0.84）。更多 relation + 更高 tightness = 更多\
+    \ constraint-model conflict point = 更大 cascade degradation。\n论文 §5 讨论建议的结构： (1)\
+    \ 定义 \"constraint ROI\" = DR_reduction_pp / R_F1_cost_pp (2) ZS regime：ROI >>\
+    \ 1（SciERC: ∞, DocRED: positive with F1 gain） (3) FT regime + simple ontology：ROI\
+    \ ≈ ∞（SciERC FT: zero cost） (4) FT regime + complex ontology：ROI < 1（DocRED FT:\
+    \ 3-4x unfavorable） (5) Recommendation：OntoCoDec for deployment without FT data\
+    \ or with simple ontology;\n    skip constraint decoding when FT + complex ontology（model\
+    \ self-calibration suffices）"

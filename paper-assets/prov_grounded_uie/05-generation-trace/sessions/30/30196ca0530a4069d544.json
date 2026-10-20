@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30196ca0530a4069d544",
+  "project": "prov_grounded_uie",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3602,
+    "sha256": "c1489e3b0f213819a2f576b9446765811349ed4d1bcb6423dda04dd0316cb634"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-12T15:35:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（`config/projects/prov_grounded_uie.yaml` line 6-8）\n- 服务器：autodl-rtxpro6000，账号 root——不要连其他服务器\n- NLI 模型路径必须传本地路径 `--nli_model_name /root/autodl-tmp/.hf_cache/ms_deberta/cross-encoder/nli-deberta-v3-large`，HF ID 在 AutoDL 离线环境会失败\n- 术语红线：用 \"evidence provenance reward\" 不用 \"faithfulness reward\"（防与 MR-UIE 撞词，D004 决策）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-rtxpro6000(root)，工作目录 `/root/autodl-tmp/prov_grounded_uie`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型 HF cache：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n- NLI 模型：`/root/autodl-tmp/.hf_cache/ms_deberta/cross-encoder/nli-deberta-v3-large`\n- SFT merged checkpoint：`/root/autodl-tmp/prov_grounded_uie/outputs/sft/merged`\n- 数据：`./data/docred_train.jsonl` (3027条), `./data/docred_dev.jsonl` (985条)\n- GPU：2×NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB (~96GB) each\n- 活跃进程（截至 handoff 时）：sft_eval_v3 推理中（PID 17587/17840 on GPU0, PID 17369 on GPU1）\n- W&B：SFT 训练用 `--report_to none`，未接入 wandb\n\n### 3. 📊 当前状态\n**刚完成**：SFT v3 训练成功审查 + cuda1-prep worker 审查 + GRPO max_prompt_length 修复验证。\n\n**Registry 实验状态**：\n- `sft_baseline_v1`: DONE/failed (OOM)\n- `sft_baseline_v2`: DONE/killed (截断问题，我警告后 Director 终止)\n- `sft_baseline_v3`: DONE/success (eval_loss=0.356, 570 steps, 1h18m, 双卡 DDP)\n- `sft_eval_v3`: PREPARING → 实际在运行（GPU 100%），等结果\n- `posthoc_nli_v1`: PREPARING → 可能等 eval 完后启动\n\n**等待中**：sft_eval_v3 完成回调（RE F1 + Evi F1 锚点）\n\n### 4. 📋 待办\n- sft_eval_v3 结果出来 → 核实 RE F1 和 Evi F1 数值，这是 kill criteria 基准。关注 Evi F1 是否合理（DocRED evidence 是 sentence-level，F1 应有可比文献参考值）\n- posthoc_nli_v1 结果出来 → 核实 NLI reranking 后 Evi F1 提升幅度，确认 ceiling 值。检查 `--nli_model_name` 是否用了本地路径\n- GRPO 训练启动时 → (1) GPU 边界检查 (2) 验证 vLLM 0.18.1 与 TRL 兼容性 (3) evidence span 长度分布监控（退化检查：avg length < 50% sentence → warning）\n- GRPO 结果出来 → kill criteria 判定：GRPO Evi F1 vs post-hoc NLI Evi F1 差值，<2pt kill / 2-4pt inconclusive / ≥5pt pass；RE F1 回归 ≤2pt\n\n### 5. 🎯 战略上下文\n- **决策链**：D001(MVP launch) → D002(加 post-hoc NLI baseline + 3-tier kill) → D003(MR-UIE 阻塞) → D004(阻塞解除，术语改名)\n- **核心假设**：GRPO with evidence provenance reward 能内化 NLI-quality evidence selection，超过 post-hoc reranking ≥5pt Evi F1 且 RE F1 回归 ≤2pt\n- **已验证差异化**：ProUIE(SFR 无 evidence 维度)、MR-UIE(faithfulness≠evidence grounding)、R2GRPO(真实但方向不同)\n- **易错点**：\n  - Worker 报告可能包含错误信息（如 \"24B 模型\" 实际是 8B）——始终用 registry + SSH 独立验证\n  - vLLM 版本不兼容是悬而未决的风险，GRPO 启动时可能突然崩\n  - DocRED token p99=4909, max=10140——如果 Agent 再次降 seq_length，要再次警告截断问题\n  - W&B 未接入——无法用 fetch_wandb_metrics 交叉验证，只能靠 registry + SSH 日志\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

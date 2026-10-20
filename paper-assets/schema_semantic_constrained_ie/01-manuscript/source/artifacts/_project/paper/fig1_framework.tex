@@ -1,0 +1,6 @@
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth,height=6.5cm,keepaspectratio]{figures/fig1_framework.pdf}
+\caption{Overview of OntoCoDec. An IE ontology is compiled into two constraint layers: a grammar layer (context-free) and a semantic layer (prefix-decidable with state). At each decoding step, the final mask $M_{\text{final}}(t) = G(t) \cap S(t)$ ensures both structural and type validity; when $S(t) \cap G(t) = \emptyset$, grammar-first fallback preserves JSON integrity.}
+\label{fig:framework}
+\end{figure*}

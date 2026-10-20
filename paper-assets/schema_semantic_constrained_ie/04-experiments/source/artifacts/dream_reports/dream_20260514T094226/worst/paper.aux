@@ -1,0 +1,102 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wei2023zeroshot}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contribution 1: Violation Landscape Study.}{1}{section*.1}\protected@file@percent }
+\citation{luan2018scierc}
+\citation{yao2019docred}
+\@writefile{toc}{\contentsline {paragraph}{Contribution 2: Grammar-Constrained Decoding as Universal Structural Validity Layer.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution 3: Semantic Constraint Layer as Proof-of-Concept.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Experimental Setup}{2}{section.2}\protected@file@percent }
+\newlabel{sec:setup}{{2}{2}{Experimental Setup}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Datasets and Ontologies}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SciERC}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DocRED}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Models}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Violation Taxonomy}{2}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{2.3}{2}{Violation Taxonomy}{subsection.2.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Unconstrained violation rates (Qwen3-8B, zero-shot). DR is the dominant violation type on both datasets. RV is low on SciERC (7 natural-language relation names) but high on DocRED (96 Wikidata property IDs).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:unconstrained}{{1}{3}{Unconstrained violation rates (Qwen3-8B, zero-shot). DR is the dominant violation type on both datasets. RV is low on SciERC (7 natural-language relation names) but high on DocRED (96 Wikidata property IDs)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DocRED per-relation DR by constraint tightness quartile. Unlike SciERC ($\rho {=}0.85$), tightness does not predict violation rate on DocRED ($\rho {=}0.14$, $p{=}0.18$).}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:tightness_quartile}{{2}{3}{DocRED per-relation DR by constraint tightness quartile. Unlike SciERC ($\rho {=}0.85$), tightness does not predict violation rate on DocRED ($\rho {=}0.14$, $p{=}0.18$)}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Violation Landscape Study}{3}{section.3}\protected@file@percent }
+\newlabel{sec:landscape}{{3}{3}{Violation Landscape Study}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Violation Rates Across Ontology Complexity}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:rates}{{3.1}{3}{Violation Rates Across Ontology Complexity}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Per-Relation Violation Distribution and Constraint Tightness}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:perrel}{{3.2}{3}{Per-Relation Violation Distribution and Constraint Tightness}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tightness as predictor: SciERC vs.\ DocRED.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implication.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Counter-examples to the tightness$\to $DR hypothesis on DocRED.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:counterexamples}{{3}{4}{Counter-examples to the tightness$\to $DR hypothesis on DocRED}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-model violation comparison on SciERC. Absolute rates differ, but per-relation rank order is preserved ($\rho {=}0.82$).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:crossmodel}{{4}{4}{Cross-model violation comparison on SciERC. Absolute rates differ, but per-relation rank order is preserved ($\rho {=}0.82$)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cross-Model Consistency}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:crossmodel}{{3.3}{4}{Cross-Model Consistency}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Grammar-Constrained Decoding for Structural Validity}{4}{section.4}\protected@file@percent }
+\newlabel{sec:grammar}{{4}{4}{Grammar-Constrained Decoding for Structural Validity}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Ontology-to-Grammar Compilation}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-relation DR rank comparison (SciERC). \texttt  {Compare} and \texttt  {Feature-of} are top violators for both models ($\rho {=}0.82$).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:perrel_rank}{{5}{5}{Per-relation DR rank comparison (SciERC). \texttt {Compare} and \texttt {Feature-of} are top violators for both models ($\rho {=}0.82$)}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Grammar-constrained decoding eliminates ET and RV violations universally, at zero F1 cost.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:grammar_results}{{6}{5}{Grammar-constrained decoding eliminates ET and RV violations universally, at zero F1 cost}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Results: Universal Elimination of ET and RV}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DR increases under grammar-only on DocRED.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Latency Analysis}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Latency comparison (SciERC, RTX PRO 6000, batch=1). Grammar-only adds 14\% overhead; the semantic layer adds 39\%; combined is 54\%.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:latency}{{7}{6}{Latency comparison (SciERC, RTX PRO 6000, batch=1). Grammar-only adds 14\% overhead; the semantic layer adds 39\%; combined is 54\%}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Constraint ablation on SciERC (7 relations). Grammar+Semantic achieves 94\% DR reduction at zero F1 cost. Semantic-only achieves only 24\% DR reduction due to enabling dependency.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:scierc_ablation}{{8}{6}{Constraint ablation on SciERC (7 relations). Grammar+Semantic achieves 94\% DR reduction at zero F1 cost. Semantic-only achieves only 24\% DR reduction due to enabling dependency}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Semantic Constraint Layer: Proof-of-Concept}{6}{section.5}\protected@file@percent }
+\newlabel{sec:semantic}{{5}{6}{Semantic Constraint Layer: Proof-of-Concept}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Architecture}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Results on Tight Ontology (SciERC)}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:scierc_results}{{5.2}{6}{Results on Tight Ontology (SciERC)}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Enabling dependency.}{6}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Constraint ablation on DocRED (96 relations). Grammar eliminates ET/RV universally. Semantic layer achieves limited DR reduction (35.5\%). The 10.19\% residual DR remains an open problem.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:docred_ablation}{{9}{7}{Constraint ablation on DocRED (96 relations). Grammar eliminates ET/RV universally. Semantic layer achieves limited DR reduction (35.5\%). The 10.19\% residual DR remains an open problem}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results on Complex Ontology (DocRED)}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:docred_results}{{5.3}{7}{Results on Complex Ontology (DocRED)}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Enabling dependency vanishes.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why semantic enforcement is weaker on DocRED.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Field Consistency Side Effects}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cf}{{5.4}{7}{Cross-Field Consistency Side Effects}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{CF sub-type analysis (DocRED).}{7}{section*.12}\protected@file@percent }
+\citation{dong2024xgrammar}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-field consistency violation breakdown (DocRED, Grammar+Semantic). EVR dominates; entity duplication is a newly identified side effect.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:cf_breakdown}{{10}{8}{Cross-field consistency violation breakdown (DocRED, Grammar+Semantic). EVR dominates; entity duplication is a newly identified side effect}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitation.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Grammar constraints as a universal no-regret layer.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DocRED residual DR: an open problem.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scaling semantic constraints remains open.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Violation landscape data as a reusable resource.}{8}{section*.17}\protected@file@percent }
+\citation{lu2022neurologic}
+\citation{li2023schema}
+\citation{krompass2015type}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Work}{9}{section.7}\protected@file@percent }
+\newlabel{sec:related}{{7}{9}{Related Work}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Grammar-constrained decoding.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constrained text generation.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ontology-aware IE.}{9}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Type-constrained knowledge base completion.}{9}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{9}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}S1 vs.\ S2 Decoding Strategies}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:s1s2}{{A}{9}{S1 vs.\ S2 Decoding Strategies}{appendix.A}{}}
+\bibstyle{plainnat}
+\bibcite{dong2024xgrammar}{{1}{2024}{{Dong et~al.}}{{}}}
+\bibcite{krompass2015type}{{2}{2015}{{Krompass et~al.}}{{}}}
+\bibcite{li2023schema}{{3}{2023}{{Li et~al.}}{{}}}
+\bibcite{lu2022neurologic}{{4}{2022}{{Lu et~al.}}{{}}}
+\bibcite{luan2018scierc}{{5}{2018}{{Luan et~al.}}{{}}}
+\bibcite{wei2023zeroshot}{{6}{2023}{{Wei et~al.}}{{}}}
+\bibcite{yao2019docred}{{7}{2019}{{Yao et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces S1 (single-pass) vs.\ S2 (two-pass) comparison. S2 shows no advantage on DR, CF, or F1.}}{10}{table.11}\protected@file@percent }
+\newlabel{tab:s1s2}{{11}{10}{S1 (single-pass) vs.\ S2 (two-pass) comparison. S2 shows no advantage on DR, CF, or F1}{table.11}{}}
+\gdef \@abspage@last{10}

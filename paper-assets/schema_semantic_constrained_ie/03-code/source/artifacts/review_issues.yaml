@@ -1,0 +1,512 @@
+# Review Issues Tracker — schema_semantic_constrained_ie
+# Updated: R27 fresh review, 2026-05-25
+
+# ============================================================
+# Round 27 — New / Recurred Issues
+# ============================================================
+
+- id: "R27-N1"
+  summary: "Ontology-Compiled framing 与 RE 实验约束来源不一致——abstract 承诺 'compile from IE ontologies' 但 SciERC/DocRED 约束从训练数据提取"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "R2 升级为 must-fix（方法论诚信），R1 认为 should-fix（framing 而非结构性问题）。Director 裁决 must-fix。"
+  action_items:
+    - round: 27
+      action: "Abstract 'from IE ontologies' → 'from IE schema specifications or training-set statistics'；§5 明确标注约束来源；讨论 completeness 差异"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-N2"
+  summary: "WikiEvents EE 验证（ZS n=246, FT n=20）不足以支撑标题 'Information Extraction' 的广泛声称——标题/abstract 应以 RE 为主"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "R1 critical, R2 agree-with-nuance (should-fix). Director 裁决 must-fix——标题 claim 与证据规模不匹配，但修改 framing 即可。R26-W2 修复了 §7 但标题/abstract 仍过宽。"
+  action_items:
+    - round: 27
+      action: "标题考虑限定为 RE 或弱化 EE claim；abstract 不将 EE 与 RE 并列为同等验证轴"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W1"
+  summary: "缺乏与现有语义约束 IE 系统（EnriCo/SPIRES/OntoGPT）的 head-to-head 对比"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "R1 critical, R2 降级 should-fix（跨领域复现非 trivial）。Director 裁决 should-fix (elevated)。"
+  action_items:
+    - round: 27
+      action: "Appendix S 增加定性对比表（约束类型、运行时开销、是否需重训练），明确 post-hoc vs decoding-time trade-off；可选：与 SPIRES validate-then-correct 在 SciERC 上做简单对比"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W2"
+  summary: "Figure 3 线性拟合基于 n=4 数据点（R²=0.886, p=0.058），统计效力不足，在正文中位置过突出"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "两位 Reviewer 完全一致 [AGREE]。"
+  action_items:
+    - round: 27
+      action: "Figure 3 caption 标注 n=4 和 p>0.05；或移至附录，正文用文字简述趋势"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W3"
+  summary: "70B 验证仅覆盖 Llama-3.1-70B AWQ INT4 一个模型，scale-dependent 结论泛化性不足"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "两位 Reviewer 一致。R2 额外指出 INT4 量化可能与 mask 机制有非平凡交互。"
+  action_items:
+    - round: 27
+      action: "Limitations 明确声明 70B 验证仅限单一模型族+量化；可选：补充 Qwen-72B 或非量化模型消融"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W4"
+  summary: "核心新颖性偏工程导向——各组件（XGrammar + logit masking + bitwise AND）为已有技术组合"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "R2 Excitement 2.5/5, R1 Excitement 3/5。两位均同意主要贡献是系统+实证。R1 认为 non-additive interaction 和 Proposition 1 有独立价值。"
+  action_items:
+    - round: 27
+      action: "贡献定位更明确为系统贡献+实证发现；强化 Proposition 1 和 non-additive interaction 的独立意义"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W5"
+  summary: "CF violations 在主文讨论不足——附录有 5+ 页分析但主文缺少 forward pointer"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "R2 raised, R1 rebutted（附录充分）。Director 判断：附录分析确实充分，但主文应增加 forward pointer。"
+  action_items:
+    - round: 27
+      action: "§3.3 或 Limitations 增加 1-2 句 CF failure mode 讨论 + forward pointer 到 Appendix C"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W6"
+  summary: "Entity registry first-seen 语义可能引入系统性偏差——58.1% CF 来自 hallucinated entity"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [2]
+      note: "R1 同意观察准确但 Appendix C 已有分析、fine-tuning 后 cascade errors 消除。"
+  action_items:
+    - round: 27
+      action: "§3.3 增加 1-2 句 first-seen failure mode 风险说明，引导读者至 Appendix C"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W7"
+  summary: "S2 在 70B 上 R-F1 退化 8.25pp 但分析分散——需在正文集中归因"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "R1 raised, R2 rebutted（Appendix F 已有分析但分散）。Director 判断 should-fix——增加正文集中归因。"
+  action_items:
+    - round: 27
+      action: "§5.1 70B 讨论处增加 1-2 句直接归因（over-constraining when baseline DR near zero）"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-M1"
+  summary: "评估覆盖范围有限——缺乏非英语语言、大规模 schema（>1000 relations）、小模型（<8B）评估"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [1, 2]
+      note: "两位均同意。R1 补充 Table 40 scalability 验证到 1000 relations 可在主文引用。"
+  action_items:
+    - round: 27
+      action: "主文引用 Appendix K scalability 结果；Limitations 更明确讨论覆盖范围限制"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-M2"
+  summary: "200-doc DocRED 子集代表性——是否覆盖足够 relation type 多样性未讨论"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [2]
+      note: "R2 交叉回应新增。96 relation types 长尾分布下 200-doc 子集可能遗漏低频 types。"
+  action_items:
+    - round: 27
+      action: "补充 200-doc 子集的 relation type coverage 统计"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-M3"
+  summary: "Beam search wall-clock latency scaling 未报告——Table 40 仅覆盖 greedy"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 27
+      reviewers: [2]
+      note: "R2 交叉回应新增。Beam search per-step entity registry 重建 O(n) 开销在长文档上可能显著。"
+  action_items:
+    - round: 27
+      action: "补充 beam search latency 数据或在 Limitations 讨论"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# ============================================================
+# Round 27 — Carried from R26 (status unchanged)
+# ============================================================
+
+- id: "R26-M2"
+  summary: "CF increase 缺少统计检验"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 26
+  last_seen_round: 27
+  action_items:
+    - round: 26
+      action: "低优先级，DDL 后可补"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R26-M4"
+  summary: "正文视觉密度不足"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 26
+  last_seen_round: 27
+  action_items:
+    - round: 26
+      action: "低优先级——页面紧张"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# ============================================================
+# Round 26 and earlier — Resolved
+# ============================================================
+
+- id: "R26-W1"
+  summary: "DR→CF trade-off 在 Abstract/正文中 framing 不平衡"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 26
+  resolution: "Abstract 改用 severity-framing，§7 修正。"
+  resolution_round: 26
+
+- id: "R26-W2"
+  summary: "WikiEvents n=20 不足以支撑 task generalization claim"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 27
+  resolution: "§7 已修正。但 R27 发现标题/abstract 仍过宽——升级为 R27-N2。"
+  resolution_round: 26
+
+- id: "R26-W3"
+  summary: "70B scale-dependent findings 仅基于单一模型族"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 26
+  resolution: "§7 vocabulary calibration hypothesis 标注 speculative。"
+  resolution_round: 26
+
+- id: "R26-W4"
+  summary: "Proposition 1 position-based proof vs name-based implementation gap"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "Appendix O 补充。"
+  resolution_round: 26
+
+- id: "R26-W5"
+  summary: "绝对 F1 低且缺失监督 baseline 参照"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "§5 添加 PL-Marker/PURE 参照。"
+  resolution_round: 26
+
+- id: "R26-W6"
+  summary: "GoLLIE 缺少 F1 参考数字"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 26
+  resolution: "§6 已添加。"
+  resolution_round: 26
+
+- id: "R26-W7"
+  summary: "Contribution 1 Mistral coverage overclaim"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "C1 修正。"
+  resolution_round: 26
+
+- id: "R26-W8"
+  summary: "Proposition 1 新颖性争议——PL theory known-ness"
+  category: framing
+  severity: info
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "§3 添加 PL theory acknowledge。"
+  resolution_round: 26
+
+- id: "R26-M1"
+  summary: "Abstract F1 范围 '40-46%' 验证"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 26
+  resolution: "Table 2 验证准确。"
+  resolution_round: 26
+
+- id: "R26-M3"
+  summary: "LoRA 超参迁移 caveat"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 24
+  last_seen_round: 26
+  resolution: "§5 Setup 已含 caveat。"
+  resolution_round: 26
+
+- id: "R16-W5"
+  summary: "Proposition 1 定位过高"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 25
+  resolution: "R26 未复发。"
+  resolution_round: 25
+
+- id: "R16-W1"
+  summary: "κ-DR 相关性 n=3 呈现不当"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 26
+  resolution: "R26 未复发。"
+  resolution_round: 26
+
+- id: "R23-W4"
+  summary: "WikiEvents overclaim"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 26
+  resolution: "合并到 R26-W2。"
+  resolution_round: 26
+
+- id: "R25-N2"
+  summary: "GoLLIE 比较不公平"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 26
+  resolution: "合并到 R26-W6。"
+  resolution_round: 26
+
+- id: "R25-W1"
+  summary: "DR↔CF trade-off framing"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 26
+  resolution: "合并到 R26-W1。"
+  resolution_round: 26
+
+- id: "R23-W5"
+  summary: "70B overclaim"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 26
+  resolution: "合并到 R26-W3。"
+  resolution_round: 26
+
+- id: "R25-W2"
+  summary: "Scale-dependent 缺因果解释"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 26
+  resolution: "合并到 R26-W3。"
+  resolution_round: 26
+
+- id: "R25-W3"
+  summary: "S1 vs S2 对比"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 26
+  resolution: "R26 未复发。"
+  resolution_round: 26
+
+- id: "R25-M4"
+  summary: "Figure 1 running example"
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 25
+  last_seen_round: 25
+  resolution: "空间限制。"
+  resolution_round: 25
+
+- id: "R25-M5"
+  summary: "Schema evolution 讨论"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 26
+  resolution: "Limitations 已覆盖。"
+  resolution_round: 26
+
+- id: "R23-W1"
+  summary: "CF 占残余违规 64%"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 23
+  resolution: "R26 未复发。"
+  resolution_round: 24
+
+- id: "R15-MF3"
+  summary: "正文溢出第 9 页"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 21
+  resolution: "主文 8 页内。"
+  resolution_round: 22
+
+- id: "R16-MF3"
+  summary: "Abstract CF framing 偏乐观"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 21
+  resolution: "已分层报告。"
+  resolution_round: 22
+
+- id: "R16-W4"
+  summary: "70B quantization 影响未隔离"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 21
+  resolution: "Appendix R 验证。"
+  resolution_round: 22

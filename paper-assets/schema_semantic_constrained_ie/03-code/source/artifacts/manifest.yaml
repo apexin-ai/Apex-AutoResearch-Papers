@@ -1,0 +1,3120 @@
+- id: art_20260514_3bc71e
+  name: paper_results_summary
+  type: report
+  description: 'Structured paper results summary: SciERC Phase 2 main table (5 modes),
+    DocRED Phase 0 comparison, per-relation DR breakdown, claim-evidence mapping,
+    CF root cause analysis, S1/S2 trade-off, pending experiments'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_results_summary.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T02:32:05.148204+00:00'
+  tags:
+  - paper
+  - results
+  - tables
+  - emnlp2026
+- id: art_20260514_rw_survey
+  name: related_work_survey
+  type: report
+  description: 'Related Work literature survey for OntoCoDec paper: 5 constraint paradigms
+    (grammar-constrained decoding, vocabulary/type-constrained generation, structural
+    constraints for IE, ontology validation, constrained decoding quality concerns),
+    20+ papers with differentiation analysis and positioning summary'
+  path: projects/schema_semantic_constrained_ie/artifacts/related_work_survey.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:00:00.000000+00:00'
+  tags:
+  - paper
+  - related-work
+  - literature-survey
+- id: art_20260519_mf2_coverage
+  name: mf2_constraint_coverage_results
+  type: report
+  description: 'MF2/Q1 Constraint Table Coverage: SciERC 92.2% type-level / 99.0%
+    instance-level, DocRED 86.9% / 99.4%. All uncovered triples are zero-shot (unseen
+    in training). Gap driven by MISC ambiguity (DocRED) and Evaluate-for flexibility
+    (SciERC). No constraint expansion needed.'
+  path: projects/schema_semantic_constrained_ie/artifacts/mf2_constraint_coverage_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T00:00:00.000000+00:00'
+  tags:
+  - analysis
+  - constraints
+  - coverage
+  - mf2
+  - emnlp2026
+- id: art_20260514_609a9c
+  name: fig1_overview
+  type: chart
+  description: 'OntoCoDec architecture overview: Input (Ontology Schema) → Compile
+    (Grammar Layer + Semantic Layer) → Decode (M_g ∧ M_s → Constrained Sampling).
+    Data source: manual.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/fig1_overview.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-14T03:20:26.667895+00:00'
+  tags:
+  - paper
+  - introduction
+  - conceptual
+- id: art_20260514_20f7e1
+  name: paper_writing_readiness
+  type: report
+  description: '论文写作准备状态报告: Core Claims证据映射、已有/缺失素材清单、写作顺序建议、Related Work覆盖度评估、风险评估。Overall
+    readiness ~75%。'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_writing_readiness.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T03:24:59.898998+00:00'
+  tags:
+  - paper
+  - writing
+  - readiness
+  - emnlp2026
+- id: art_20260514_868819
+  name: fig2_per_relation_dr
+  type: chart
+  description: 'Per-relation DR violation rate grouped bar chart (7 SciERC relations
+    × 4 modes). Data source: registry: phase2_scierc_unconstrained, phase2_scierc_grammar_only,
+    phase2_scierc_semantic_only, phase2_scierc_full_s1.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/fig2_per_relation_dr.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-14T04:29:43.613567+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+- id: art_20260514_7897eb
+  name: fig3_ablation_layers
+  type: chart
+  description: Violation Type × Decoding Mode heatmap showing violation rates across
+    4 constraint configurations. Highlights grammar layer eliminating RV/ET, semantic
+    layer reducing DR, and CF trade-off.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/fig3_ablation_layers.png
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:32:47.002506+00:00'
+  tags:
+  - paper
+  - appendix
+  - heatmap
+  - ablation
+  - violation-rate
+- id: art_20260514_b4fec2
+  name: paper_tables_draft
+  type: paper
+  description: 'LaTeX tables for Experiment Results section: Table 1 (SciERC 5-way
+    ablation), Table 2 (per-relation DR analysis), Table 3 (DocRED Phase 0 prompt
+    intervention), Table 4 (cross-dataset comparison). All data from registry, DocRED
+    S1 placeholder TBD.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/paper_tables_draft.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:33:29.612870+00:00'
+  tags:
+  - latex
+  - tables
+  - experiment-results
+  - phase2
+- id: art_20260514_b4113a
+  name: method_invariant_notes
+  type: report
+  description: Grammar-First Invariant 论文笔记 — Method section 双层交互模型形式化、Claim 3 enabling
+    dependency 证据链、CF violation 归因与 future work
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/method_invariant_notes.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:37:15.415195+00:00'
+  tags:
+  - paper
+  - method
+  - invariant
+  - claim3
+- id: art_20260514_4007b3
+  name: section5_scierc_draft
+  type: paper
+  description: Section 5 SciERC subsection LaTeX draft — five-way ablation table +
+    4 analysis paragraphs (core result, grammar layer, enabling dependency, S1 vs
+    S2). All numbers verified against registry.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:20:22.983654+00:00'
+  tags:
+  - paper
+  - section5
+  - scierc
+  - ablation
+  - draft
+- id: art_20260514_82ff3e
+  name: section4_composition_draft
+  type: paper
+  description: Section 4 constraint composition 子段落 LaTeX 初稿 — 双层交互模型形式化、Grammar-First
+    Invariant、Decidability Taxonomy
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:34:00.619537+00:00'
+  tags:
+  - paper
+  - method
+  - section4
+  - draft
+- id: art_20260514_4796e8
+  name: section5_scierc_draft
+  type: paper
+  description: Section 5 SciERC 实验结果 LaTeX 初稿 — 5-way 消融表 + 4 段解读 (core result, grammar
+    layer, enabling dependency, S1 vs S2)
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:34:47.545342+00:00'
+  tags:
+  - paper
+  - experiments
+  - section5
+  - scierc
+  - draft
+- id: art_20260514_s6rw
+  name: section6_relwork_outline
+  type: paper
+  description: 'Section 6 Related Work structural outline: 5 constraint paradigms
+    (grammar-constrained decoding, vocabulary/type-constrained generation, structural
+    IE constraints, post-hoc ontology validation, constrained decoding quality concerns)
+    + Our Approach positioning. Topic sentences, key citations, differentiation, TODO
+    placeholders.'
+  path: projects/schema_semantic_constrained_ie/artifacts/section6_relwork_outline.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:30:00.000000+00:00'
+  tags:
+  - paper
+  - related-work
+  - section6
+  - outline
+  - draft
+- id: art_20260514_s3method
+  name: section3_method_draft
+  type: paper
+  description: 'Section 3 Method LaTeX draft: Problem Formulation (IE as structured
+    generation, ontology compliance, constraint decidability taxonomy), Grammar Layer
+    (XGrammar CFG compilation, logit masking), Semantic Layer (entity registry, position
+    detection, dynamic masking, grammar-semantic interaction, grammar-first invariant),
+    Decoding Strategies (S1 single-pass vs S2 two-pass). All numbers from registry.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:00:00.000000+00:00'
+  tags:
+  - paper
+  - method
+  - section3
+  - draft
+- id: art_20260514_s1intro
+  name: section1_introduction_draft
+  type: paper
+  description: 'Section 1 Introduction LaTeX draft: 4-paragraph structure (problem/motivation,
+    existing limitations, method overview, contributions). All numbers from registry.
+    Citation keys consistent with section6_relwork_outline.'
+  path: projects/schema_semantic_constrained_ie/artifacts/section1_introduction_draft.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:00:00.000000+00:00'
+  tags:
+  - paper
+  - introduction
+  - section1
+  - draft
+- id: art_20260514_9e46de
+  name: reference_audit_relwork
+  type: report
+  description: Reference audit for 4 citations flagged by reviewer in Related Work
+    outline. All 4 confirmed real — no hallucinations found.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/reference_audit_relwork.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: reference-audit
+  created_at: '2026-05-14T05:47:32.292379+00:00'
+  tags:
+  - reference-audit
+  - related-work
+  - citation-verification
+- id: art_20260514_s6rw_full
+  name: section6_related_work
+  type: paper
+  description: 'Section 6 Related Work full LaTeX draft: 7 paragraphs (grammar-constrained
+    decoding, semantic CD for code, vocabulary/type-constrained generation, structural
+    constraints via training, post-hoc ontology validation, quality impact of CD,
+    our approach). All TODO comments resolved, registry numbers verified, zhou2026snowballing
+    marked PENDING AUDIT.'
+  path: projects/schema_semantic_constrained_ie/artifacts/section6_related_work.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:00:00.000000+00:00'
+  tags:
+  - paper
+  - related-work
+  - section6
+  - draft
+- id: art_20260514_08073c
+  name: section6_relwork_outline_v2
+  type: paper
+  description: 'Revised Related Work outline: added §Semantic Constrained Decoding
+    for Code (Synchromesh/MGD/PLDI''25), placed 6 must-cite papers (AdaKGC, KnowCoder,
+    SPIRES, OntoLogX, EKAW''24, Roth&Yih), moved EnriCo to §Structural Constraints,
+    fixed rejection-rate wording'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:48:21.970296+00:00'
+  tags:
+  - related-work
+  - revision
+  - must-cite
+- id: art_20260514_c726ce
+  name: section2_background
+  type: paper
+  description: '§2 Background section (LaTeX) for OntoCoDec paper: IE ontology structure,
+    grammar-constrained decoding, problem statement. ~580 words.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:14:45.724898+00:00'
+  tags:
+  - paper
+  - background
+  - section2
+  - latex
+- id: art_20260514_848163
+  name: section3_violation_landscape
+  type: paper
+  description: §3 Violation Landscape section (LaTeX) — systematic analysis of LLM
+    ontological constraint violations on SciERC and DocRED, covering violation distribution,
+    per-relation breakdown, and prompt insufficiency analysis
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:15:31.070797+00:00'
+  tags:
+  - paper
+  - section3
+  - violation-landscape
+  - latex
+- id: art_20260514_rw_bib
+  name: relwork_new_entries
+  type: paper
+  description: 'BibTeX entries for 9 new Related Work citations: Synchromesh (ICLR
+    2022), MGD (NeurIPS 2023), type-constrained codegen (PLDI 2025), Roth&Yih (CoNLL
+    2004), AdaKGC (EMNLP 2023), KnowCoder (ACL 2024), SPIRES (Bioinformatics 2024),
+    OntoLogX (arXiv 2025), EKAW 2024 ontology beam. All verified via WebSearch.'
+  path: projects/schema_semantic_constrained_ie/artifacts/relwork_new_entries.bib
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:00:00.000000+00:00'
+  tags:
+  - paper
+  - related-work
+  - bibtex
+  - references
+- id: art_20260514_b58b10
+  name: relwork_new_entries.bib
+  type: paper
+  description: 9 篇 Related Work 新增 bib 条目，WebSearch 验证通过。两处 venue 修正：synchromesh 实际是
+    ICLR 2022（非 NeurIPS），roth_yih 实际是 CoNLL 2004（非 AAAI）。
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:17:33.279241+00:00'
+  tags:
+  - paper
+  - bibliography
+  - related-work
+- id: art_20260514_new_ref
+  name: new_references
+  type: paper
+  description: 'BibTeX entries for 9 Related Work citations with source confirmation
+    comments and @misc+eprint for arXiv. Verified via WebSearch. Venue corrections:
+    Synchromesh=ICLR 2022, Roth&Yih=CoNLL 2004.'
+  path: projects/schema_semantic_constrained_ie/artifacts/new_references.bib
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:00:00.000000+00:00'
+  tags:
+  - paper
+  - related-work
+  - bibtex
+  - references
+- id: art_20260514_d3264e
+  name: abstract.tex
+  type: paper
+  description: Abstract 初稿 (~231 words)。覆盖 problem/prompt insufficiency/approach/results，DocRED
+    用 placeholder 占位待填。
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_d3264e.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:21:14.976453+00:00'
+  tags:
+  - paper
+  - abstract
+- id: art_20260514_550cbf
+  name: section7_conclusion.tex
+  type: paper
+  description: §7 Conclusion 初稿 (~400 words)。3 贡献 + CF limitation + future work (cross-model,
+    global consensus, multilingual)。DocRED placeholder 占位。
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:21:16.995188+00:00'
+  tags:
+  - paper
+  - conclusion
+- id: art_20260514_fd4b26
+  name: abstract.tex
+  type: paper
+  description: 论文 Abstract 草稿 ~231 words。覆盖 Problem/Prompt insufficiency/Approach/Results。DocRED
+    结果待填充（placeholder）。
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_fd4b26.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:21:18.690973+00:00'
+  tags:
+  - paper
+  - abstract
+- id: art_20260514_950132
+  name: DocRED full_s1 violation report
+  type: report
+  description: Violation analysis for DocRED full_s1 (grammar+semantic S1 constrained
+    decoding). DR=10.19%, ET=0%, RV=0.03%. 988 docs, 17372 triples.
+  path: projects/schema_semantic_constrained_ie/artifacts/phase2_docred_full_s1/report/violation_report_docred_full_s1.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: phase2_docred_full_s1
+  skill: ''
+  created_at: '2026-05-14T08:33:51.282594+00:00'
+  tags:
+  - docred
+  - full_s1
+  - violation
+  - phase2
+- id: art_20260514_7af54f
+  name: d009_llama_prep
+  type: report
+  description: 'D009 Cross-model validation preparation: Llama-3.1-8B model ID, compatibility
+    check, download plan, and time estimates for SciERC experiments'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/d009_llama_prep.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:38:11.359072+00:00'
+  tags:
+  - d009
+  - llama
+  - cross-model
+  - preparation
+- id: art_20260514_58d577
+  name: literature_docred_compare
+  type: report
+  description: 'DocRED full_s1 results vs literature comparison: no comparable violation
+    rate data exists; our results are first benchmark. Includes framing recommendations.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/literature_docred_compare.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:39:49.501390+00:00'
+  tags:
+  - literature
+  - docred
+  - comparison
+  - framing
+- id: art_20260514_49e74a
+  name: llama_scierc_experiment_commands
+  type: intermediate
+  description: 'Llama-3.1-8B cross-model validation experiment commands for SciERC
+    (D009). Two experiments: unconstrained baseline + full_s1 (grammar+semantic).
+    Dry-run verified 2025-05-14.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/intermediate/llama_scierc_experiment_commands.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:49:46.382227+00:00'
+  tags:
+  - d009
+  - cross-model
+  - llama
+  - scierc
+  - experiment-commands
+- id: art_20260514_docred_ablation
+  name: docred_phase2_ablation_analysis
+  type: report
+  description: 'DocRED Phase 2 ablation analysis: LaTeX table (3/4 modes, semantic_only
+    pending), grammar-only DR increase mechanism, F1-neutral finding, cross-dataset
+    SciERC vs DocRED comparison, reviewer attack surface defense (3 anticipated attacks)'
+  path: projects/schema_semantic_constrained_ie/artifacts/docred_phase2_ablation_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:00:00.000000+00:00'
+  tags:
+  - paper
+  - docred
+  - ablation
+  - phase2
+  - section5
+- id: art_20260514_47fb0c
+  name: cross_model_analysis_framework
+  type: report
+  description: Llama vs Qwen3 跨模型对比分析框架：表格layout、叙事策略、结果到达后的分析checklist
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/cross_model_analysis_framework.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:55:13.518128+00:00'
+  tags:
+  - D009
+  - cross-model
+  - llama
+  - qwen3
+  - analysis
+- id: art_20260514_0bb044
+  name: violation_report_docred_semantic_only
+  type: report
+  description: DocRED semantic-only constrained decoding violation report - DR 14.83%,
+    ET 2.47%, RV 29.87%, R-F1 7.70%, E-F1 57.81%
+  path: projects/schema_semantic_constrained_ie/artifacts/phase2_docred_semantic_only/report/violation_report_docred_semantic_only.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: phase2_docred_semantic_only
+  skill: ''
+  created_at: '2026-05-14T14:41:01.409839+00:00'
+  tags:
+  - docred
+  - semantic_only
+  - violation_report
+  - phase2
+- id: art_20260514_9b84f1
+  name: section5_docred_draft
+  type: paper
+  description: §5 DocRED cross-dataset validation subsection draft — 4-way ablation,
+    constraint tightness scaling analysis, grammar DR unmasking narrative
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:00:13.690600+00:00'
+  tags:
+  - paper
+  - section5
+  - docred
+  - ablation
+  - draft
+- id: art_20260514_3ce3a4
+  name: Qwen Fallback Estimation Results
+  type: data
+  description: Post-hoc estimation of Qwen semantic fallback frequency for DocRED
+    and SciERC full_s1
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/fallback_estimation_results.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:19:59.688972+00:00'
+  tags:
+  - fallback
+  - qwen
+  - docred
+  - scierc
+  - semantic-constraint
+- id: art_20260514_875054
+  name: bootstrap_ci_results
+  type: data
+  description: Bootstrap CI (N=10000, percentile method) for SciERC/DocRED F1 across
+    4 configs with paired tests. SciERC all non-significant. DocRED unconstrained→full_s1
+    significant (p<0.001) for both Ent and Rel F1.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/bootstrap_ci_results.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:20:09.447227+00:00'
+  tags:
+  - bootstrap
+  - statistical_significance
+  - f1
+  - confidence_interval
+- id: art_20260514_1c8f7b
+  name: posthoc_filter_comparison
+  type: report
+  description: 'Post-hoc filtering baseline comparison table for Dream rebuttal: SciERC
+    (16.8% rejection, recall -0.72pp) and DocRED (48.1% rejection, recall -1.06pp)
+    vs OntoCoDec recall gains'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/posthoc_filter_comparison.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:21:45.088515+00:00'
+  tags:
+  - posthoc
+  - baseline
+  - dream-rebuttal
+- id: art_20260514_cf83d1
+  name: discussion_paragraphs
+  type: paper
+  description: 'Three Discussion paragraphs for §7: (1) Low F1 practical significance,
+    (2) CF severity argument with ablation evidence, (3) F1 significance difference
+    explanation via RV mechanism'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/discussion_paragraphs_cf83d1.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:29:56.367360+00:00'
+  tags:
+  - paper
+  - discussion
+  - limitations
+  - section7
+- id: art_20260514_33c94a
+  name: bootstrap_ci_results_v2
+  type: data
+  description: Bootstrap CI results (10000×) with fixed Entity F1 computation. Includes
+    DocRED + SciERC per-config CIs, paired tests, grammar_only Entity F1, and registry
+    alignment verification.
+  path: null
+  url: westd-16980:/root/schema_semantic_constrained_ie/outputs/bootstrap_ci_results_v2.json
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:51:35.676659+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - entity_f1
+  - relation_f1
+  - fix
+- id: art_20260514_713cb2
+  name: llama_docred_full_s1_analysis
+  type: report
+  description: 'Llama-3.1-8B DocRED full_s1 constrained decoding analysis: violations
+    + F1 + 3-way comparison'
+  path: projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/llama_docred_full_s1_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: llama_docred_full_s1
+  skill: ''
+  created_at: '2026-05-14T20:29:22.932277+00:00'
+  tags:
+  - llama
+  - docred
+  - full_s1
+  - constrained-decoding
+  - evaluation
+- id: art_20260515_d875c7
+  name: Llama DocRED full_s1 DR Residual Analysis
+  type: report
+  description: 'Structured analysis of 418 residual DR violations in Llama DocRED
+    full_s1: per-relation breakdown, tightness correlation, non-local patterns, Qwen
+    comparison, rebuttal takeaways'
+  path: projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/dr_residual_analysis_d875c7.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: llama_docred_full_s1
+  skill: ''
+  created_at: '2026-05-15T06:40:38.422335+00:00'
+  tags:
+  - rebuttal
+  - dr-violation
+  - llama
+  - docred
+  - analysis
+- id: art_20260515_4e9f6d
+  name: CF Fallback Dry-Run Verification
+  type: report
+  description: 4个CF fallback实验的dry-run验证报告：代码/模型/数据/路径全部检查，发现3处路径错误并给出修正命令
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/dryrun_verification.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:48:39.311877+00:00'
+  tags:
+  - w1
+  - cf-fallback
+  - dryrun
+  - rebuttal
+- id: art_20260515_9edf5c
+  name: W4 Table 1 DocRED v2 Checker Data
+  type: data
+  description: W4审稿回复用：DocRED violation rates统一为v2 checker版本，JSON+CSV格式，含v1/v2对比
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/table1_docred_v2.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:49:08.383331+00:00'
+  tags:
+  - w4
+  - rebuttal
+  - violation-checker
+  - v2
+- id: art_20260515_6b8702
+  name: dual_factor_data
+  type: data
+  description: 'Dual-factor analysis JSON: tightness × baseline_RV vs residual_DR
+    for 4 model-dataset configs (Qwen/Llama × SciERC/DocRED)'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/dual_factor_data.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:34:10.857541+00:00'
+  tags:
+  - appendix
+  - dual-factor
+  - tightness
+  - D014
+- id: art_20260515_f4dba3
+  name: dual_factor_scatter
+  type: chart
+  description: 'Scatter plot: tightness × baseline_RV vs residual_DR (%), 4 points
+    with fitted line R²=0.886, for appendix'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/dual_factor_scatter.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:34:13.300638+00:00'
+  tags:
+  - appendix
+  - dual-factor
+  - figure
+  - D014
+- id: art_20260515_43485c
+  name: llama_docred_unconstrained_mt6144 analysis
+  type: report
+  description: 'max_new_tokens 4096 vs 6144 对比分析: Llama DocRED unconstrained 模式下 token
+    预算抬升对 parse failure / F1 / violation 的影响 (结论: 无实质影响)'
+  path: projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: llama_docred_unconstrained_mt6144
+  skill: ''
+  created_at: '2026-05-15T14:04:28.508306+00:00'
+  tags:
+  - docred
+  - llama
+  - unconstrained
+  - ablation
+  - max_new_tokens
+- id: art_20260515_f39df2
+  name: llama_docred_unconstrained_mt6144 analysis
+  type: report
+  description: mt6144 vs mt4096 对比分析：unconstrained Llama DocRED 实验，增加 max_new_tokens
+    无实质影响
+  path: projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis_f39df2.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: llama_docred_unconstrained_mt6144
+  skill: ''
+  created_at: '2026-05-15T14:06:50.324496+00:00'
+  tags:
+  - docred
+  - llama
+  - unconstrained
+  - max_new_tokens
+  - ablation
+- id: art_20260515_b83b23
+  name: runtime_benchmark
+  type: data
+  description: W3+W6 Runtime/Latency benchmark for 5 configurations on SciERC and
+    DocRED (Qwen3-8B). Total/avg/median seconds, tokens generated, tokens/sec, overhead
+    vs unconstrained. Timing extracted from inference_time_seconds in JSONL outputs;
+    posthoc filter measured by re-running posthoc_filter.py 3× (median).
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/runtime_benchmark.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:09:13.637429+00:00'
+  tags:
+  - runtime
+  - latency
+  - W3
+  - W6
+  - benchmark
+- id: art_20260515_a46108
+  name: runtime_benchmark
+  type: data
+  description: 'Runtime/latency benchmark for 5 decoding configurations across SciERC
+    and DocRED with Qwen3-8B. File on server: /root/schema_semantic_constrained_ie/outputs/runtime_benchmark.json'
+  path: null
+  url: file:///root/schema_semantic_constrained_ie/outputs/runtime_benchmark.json
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:14:45.753802+00:00'
+  tags:
+  - runtime
+  - benchmark
+  - latency
+  - paper-table
+- id: art_20260515_pair_enf
+  name: pair_based_enforcement_plan
+  type: report
+  description: Pair-based σ(r) enforcement 详细实现方案：数据结构改动(RelationConstraint._valid_pair_set,
+    ConstraintSpec.valid_relations_for_pair)、_mask_head_type pair-based增强、新增_mask_relation_type、
+    CF fallback交互矩阵、SciERC/DocRED dry-run test cases（84+290 OP pairs）、~98行改动量估计
+  path: projects/schema_semantic_constrained_ie/artifacts/pair_based_enforcement_plan.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:30:00.000000+00:00'
+  tags:
+  - pair-based
+  - enforcement
+  - implementation-plan
+  - semantic-constraint
+  - w1
+- id: art_20260515_0e1d86
+  name: w1_cf_fallback_scierc_pilot_analysis
+  type: report
+  description: 'Analysis of W1 (CF fallback) pilot on SciERC + Qwen3-8B. CF drops
+    9.90%→0.04% but DR explodes 0.93%→14.78%; R-F1/E-F1 essentially unchanged. Verdict:
+    NEGATIVE — fallback re-routes violations from CF to DR (+3.99pp budget). Includes
+    per-relation DR breakdown, fallback trigger rates, and rebuttal implications.'
+  path: projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_scierc_pilot_report.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w1_cf_fallback_scierc_pilot
+  skill: ''
+  created_at: '2026-05-15T14:53:26.494928+00:00'
+  tags:
+  - w1
+  - cf_fallback
+  - scierc
+  - qwen3-8b
+  - pilot
+  - negative
+- id: art_20260515_1d12fa
+  name: w1_cf_fallback_scierc_pilot_analysis
+  type: report
+  description: W1 CF fallback SciERC pilot experiment analysis - CF eliminated but
+    DR exploded, negative result
+  path: projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_scierc_pilot_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w1_cf_fallback_scierc_pilot
+  skill: ''
+  created_at: '2026-05-15T14:56:59.314461+00:00'
+  tags:
+  - w1
+  - cf_fallback
+  - scierc
+  - pilot
+  - negative
+- id: art_20260515_702ab3
+  name: llama_docred_full_s1_mt6144 analysis report
+  type: report
+  description: 'Llama-3.1-8B DocRED full_s1 with max_new_tokens=6144. Replicates mt4096
+    result: DR -90.2%, R-F1 +0.30pp vs unconstrained baseline. mt6144 vs mt4096 shows
+    no meaningful difference.'
+  path: projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1_mt6144/report/analysis_702ab3.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: llama_docred_full_s1_mt6144
+  skill: ''
+  created_at: '2026-05-15T15:04:33.898270+00:00'
+  tags:
+  - docred
+  - llama
+  - full_s1
+  - mt6144
+  - replication
+- id: art_20260515_218e02
+  name: w1_cf_fallback_pilot_detailed_analysis
+  type: report
+  description: 'Detailed analysis of W1 CF-fallback pilot vs baseline phase2_scierc_full_s1:
+    per-relation DR comparison (with tightness), attempted vs effective semantic masking
+    decomposition (58.9% effective / 36.6% grammar-overridden / 4.5% CF-overridden),
+    single CF residual case (eigenvectors typed Material+OST), DR escalation root
+    cause (tightness-correlated grammar-first fallback), and paper framing for Reviewer.'
+  path: projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_pilot_detailed_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w1_cf_fallback_scierc_pilot
+  skill: ''
+  created_at: '2026-05-15T15:27:44.785467+00:00'
+  tags:
+  - w1
+  - cf_fallback
+  - scierc
+  - pilot_analysis
+  - dr_vs_cf
+  - paper_material
+  - attempted_vs_effective
+- id: art_20260515_6b2c65
+  name: W1 CF Fallback Pilot Detailed Analysis
+  type: report
+  description: 'Detailed analysis of w1_cf_fallback_scierc_pilot vs baseline: per-relation
+    DR comparison, attempted vs effective semantic masking decomposition, CF residual
+    analysis, DR escalation root cause (pilot DR = 96.2% of unconstrained), paper
+    implications for Reviewer framing'
+  path: projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_pilot_detailed_analysis_6b2c65.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w1_cf_fallback_scierc_pilot
+  skill: ''
+  created_at: '2026-05-15T15:34:02.751394+00:00'
+  tags:
+  - paper
+  - negative-result
+  - cf-fallback
+  - violation-analysis
+  - reviewer-response
+- id: art_20260515_c536e4
+  name: cf_fallback_code_diff_analysis
+  type: report
+  description: 'W1 CF fallback pilot 代码 diff 与 reviewer 假设验证。结论: (A) 4.48% CF registry
+    覆盖 + (C) 36.64% grammar-first 跳过共同导致 semantic 层在 41.12% mask 调用上无效，端到端等价于 grammar_only；(B)
+    head_type 解析路径与 entity_registry 无关，未发生退化。论文应采用 "shared violation budget / trade-off"
+    而非 "enabling mechanism" 框架。'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/cf_fallback_code_diff_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:51:55.983207+00:00'
+  tags:
+  - w1_cf_fallback
+  - code_diff
+  - reviewer_response
+  - trade_off
+  - negative_result
+- id: art_20260515_fdf6e2
+  name: CF Fallback Code Diff 深度分析
+  type: report
+  description: CF fallback 代码逐行 diff 分析：两个 fallback 机制（grammar-first 36.64% + CF registry
+    4.48%），DR↔CF 零和权衡的根因，Reviewer 假设部分确认
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/cf_fallback_code_diff_analysis_fdf6e2.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:02:05.497369+00:00'
+  tags:
+  - cf_fallback
+  - code_diff
+  - w1
+  - trade-off
+  - dr_vs_cf
+- id: art_20260515_c2895a
+  name: DocRED SFT data generation report
+  type: report
+  description: 'Report for w5_docred_sft_data_gen: 3053 train + 998 dev SFT examples
+    generated from DocRED train_annotated.json / dev.json. All 6 entity types and
+    96 relation types match ontology_constraints_docred.json. Prompt uses Qwen3-8B
+    chat template with enable_thinking=False; relations P-code converted to readable
+    name.'
+  path: projects/schema_semantic_constrained_ie/artifacts/w5_docred_sft_data_gen/report/DocRED_SFT_data_generation_report.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w5_docred_sft_data_gen
+  skill: ''
+  created_at: '2026-05-15T17:57:03.578486+00:00'
+  tags: []
+- id: art_20260515_399c40
+  name: DocRED SFT Training Data
+  type: data
+  description: DocRED SFT JSONL for Qwen3-8B LoRA fine-tune. train=3053, dev=998 samples.
+  path: projects/schema_semantic_constrained_ie/artifacts/w5_docred_sft_data_gen/data/docred_sft_data_report.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w5_docred_sft_data_gen
+  skill: ''
+  created_at: '2026-05-15T17:59:27.443206+00:00'
+  tags:
+  - docred
+  - sft
+  - w5
+  - lora
+- id: art_20260515_79eb74
+  name: w5_llama_lora_scierc_constrained_eval_report
+  type: report
+  description: Llama-3.1-8B FT constrained eval on SciERC — completes Llama 2x2 composability
+    matrix
+  path: projects/schema_semantic_constrained_ie/artifacts/w5_llama_lora_scierc_constrained_eval/report/w5_llama_lora_scierc_constrained_eval_report.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w5_llama_lora_scierc_constrained_eval
+  skill: ''
+  created_at: '2026-05-15T18:02:19.642616+00:00'
+  tags:
+  - llama
+  - scierc
+  - constrained
+  - fine-tuned
+  - composability
+  - 2x2-matrix
+- id: art_20260516_docred_lora_eval_cmds
+  name: docred_lora_eval_commands
+  type: intermediate
+  description: 'DocRED LoRA merge + eval 命令清单: Qwen3-8B & Llama-3.1-8B 各 3 条命令 (merge/unconstrained/constrained)，路径已验证，含备用手动
+    merge'
+  path: projects/schema_semantic_constrained_ie/artifacts/docred_lora_eval_commands.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:30:00.000000+00:00'
+  tags:
+  - w5
+  - docred
+  - lora
+  - eval
+  - merge
+  - commands
+- id: art_20260515_cfa2be
+  name: w5_llama_docred_lora_training_report
+  type: report
+  description: Llama-3.1-8B DocRED LoRA training analysis report
+  path: projects/schema_semantic_constrained_ie/artifacts/w5_llama_docred_lora_training/report/w5_llama_docred_lora_training_report.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w5_llama_docred_lora_training
+  skill: ''
+  created_at: '2026-05-15T19:57:24.520063+00:00'
+  tags:
+  - llama
+  - docred
+  - lora
+  - training
+- id: art_20260515_4687fa
+  name: paper_tables_consolidated
+  type: report
+  description: Composability matrix numbers for Tables 3 & 5 of May 19 internal draft
+    — all zero-shot and fine-tuned experiments with deltas and evidence strength summary
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_tables_consolidated.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:06:56.939434+00:00'
+  tags:
+  - paper
+  - composability
+  - tables
+  - may19-draft
+- id: art_20260515_73e470
+  name: constrained_eval_readiness
+  type: report
+  description: DocRED constrained eval readiness verification — model/data/script
+    checks + 2-sample dry-run results + ready-to-submit commands for Qwen and Llama
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/constrained_eval_readiness.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:07:50.396230+00:00'
+  tags:
+  - docred
+  - constrained-eval
+  - readiness
+  - qwen
+  - llama
+- id: art_20260516_d100d9
+  name: docred_ft_paper_update_mapping
+  type: report
+  description: Mapping of all paper locations that need updating when DocRED fine-tuning
+    results are available
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/docred_ft_paper_update_mapping.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:20:49.864065+00:00'
+  tags:
+  - paper
+  - docred
+  - fine-tuning
+  - update-mapping
+- id: art_20260516_0425ff
+  name: third_model_compatibility_report
+  type: report
+  description: Mistral-7B-Instruct-v0.3 与 Gemma-2-9B-it 对 OntoCoDec pipeline 的兼容性调研报告
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/third_model_compatibility_report.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:38:22.542155+00:00'
+  tags:
+  - model-selection
+  - compatibility
+  - mistral
+  - gemma
+- id: art_20260516_003e67
+  name: docred_unconstrained_baseline_verify
+  type: report
+  description: Verification report for DocRED unconstrained eval baseline numbers
+    (Qwen & Llama) — cross-checks output files vs registry
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/docred_unconstrained_baseline_verify.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:41:09.305781+00:00'
+  tags:
+  - docred
+  - baseline
+  - verification
+  - w5
+- id: art_20260516_1793f3
+  name: paper_number_preaudit
+  type: report
+  description: 论文数字一致性预审：SciERC composability 53个数字全部与registry一致
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_number_preaudit.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:41:20.387517+00:00'
+  tags:
+  - paper
+  - audit
+  - composability
+  - scierc
+- id: art_20260516_a2b8b9
+  name: tacred_schema_analysis
+  type: report
+  description: TACRED数据集schema完整分析：entity types, relation types, domain/range constraints,
+    constraint tightness预估, OntoCoDec适配评估, 数据集版本推荐
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/tacred_schema_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:46:48.526520+00:00'
+  tags:
+  - tacred
+  - schema
+  - tightness
+  - adaptation
+- id: art_20260516_ff0395
+  name: latency_profiling_design
+  type: report
+  description: Latency profiling design doc for constrained decoding overhead measurement
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/latency_profiling_design.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:57:40.682308+00:00'
+  tags:
+  - latency
+  - profiling
+  - design-doc
+  - experiment-plan
+- id: art_20260516_d63f98
+  name: Mistral-7B-Instruct-v0.3 adaptation
+  type: intermediate
+  description: Code changes to run_constrained_extraction.py for Mistral-7B-Instruct-v0.3
+    support + download script
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/intermediate/mistral_adaptation_summary.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:01:49.230130+00:00'
+  tags:
+  - mistral
+  - model-adaptation
+  - phase2
+- id: art_20260516_51c51b
+  name: composability_update_template
+  type: intermediate
+  description: Structured template for updating paper with DocRED FT composability
+    results. Contains exact file locations, current text, target text with placeholders,
+    derived quantity formulas, and conditional adjustment guidelines.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/intermediate/composability_update_template.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:08:00.590230+00:00'
+  tags:
+  - paper
+  - composability
+  - docred
+  - template
+- id: art_20260516_e7f512
+  name: docred_composability_update_guide
+  type: intermediate
+  description: DocRED composability FT+constrained 结果到手后的论文更新指南：Table 5 结构、§5.5 文本、Limitations
+    修改、条件分支处理
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/intermediate/docred_composability_update_guide.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:19:24.557312+00:00'
+  tags:
+  - paper
+  - composability
+  - docred
+  - update-guide
+- id: art_20260516_0a36ae
+  name: w6_mistral_docred_constrained job launch
+  type: intermediate
+  description: DocRED constrained extraction (full_s1) launched on westd-21461:cuda:1,
+    PID 8347, tmux w6_mistral_docred_constrained. xgrammar 0.1.33, no errors after
+    4min.
+  path: projects/schema_semantic_constrained_ie/artifacts/w6_mistral_docred_constrained/intermediate/w6_mistral_docred_constrained_launch.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w6_mistral_docred_constrained
+  skill: ''
+  created_at: '2026-05-16T05:40:53.667216+00:00'
+  tags:
+  - docred
+  - constrained
+  - mistral
+  - westd-21461
+- id: art_20260516_1d8587
+  name: w8_ft_posthoc_baseline_report
+  type: report
+  description: 'FT Post-hoc Filtering Baseline: post-hoc DR filtering on 4 FT unconstrained
+    outputs (Qwen/Llama × SciERC/DocRED), comparing with constrained decoding'
+  path: projects/schema_semantic_constrained_ie/artifacts/w8_ft_posthoc_baseline/report/w8_ft_posthoc_baseline_report.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w8_ft_posthoc_baseline
+  skill: ''
+  created_at: '2026-05-16T06:38:37.141870+00:00'
+  tags: []
+- id: art_20260516_45daa2
+  name: latency_profiling_benchmark
+  type: data
+  description: 'Controlled latency benchmark: 100 SciERC samples, 4 modes, same model/GPU/session.
+    Qwen3-8B-LoRA fine-tuned, RTX PRO 6000 Blackwell.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/latency_profiling_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T09:14:47.456011+00:00'
+  tags:
+  - latency
+  - profiling
+  - benchmark
+  - constrained-decoding
+  - paper-section5
+- id: art_20260516_a3397b
+  name: latency_profiling_scierc_qwen_ft
+  type: data
+  description: 'Controlled latency benchmark: 100 SciERC samples, Qwen3-8B FT checkpoint,
+    4 modes (unconstrained/grammar_only/semantic_only/full_s1). CUDA sync timing on
+    RTX PRO 6000. Result: full_s1 adds only 2.3% overhead.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/latency_profiling_results_a3397b.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T09:15:35.435437+00:00'
+  tags:
+  - latency
+  - paper_section_5
+  - benchmark
+- id: art_20260516_8464b5
+  name: FT Ablation Analysis
+  type: report
+  description: Complete FT-regime ablation results (SciERC + DocRED) with tables,
+    key findings, and paper-ready narrative
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/ft_ablation_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T10:58:54.396438+00:00'
+  tags:
+  - ablation
+  - ft
+  - scierc
+  - docred
+  - paper
+- id: art_20260516_382ed5
+  name: paper_results_tables
+  type: report
+  description: 论文实验结果汇总表 — 6张表覆盖 zero-shot violation landscape, constrained vs unconstrained,
+    composability matrix, FT ablation, post-hoc filtering baseline, schema-informed
+    prompt baseline
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/paper_results_tables.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:42:28.983624+00:00'
+  tags:
+  - paper
+  - results
+  - tables
+  - compilation
+- id: art_20260516_cb61b8
+  name: latency_profiling_docred_qwen_ft
+  type: data
+  description: DocRED latency profiling results - Qwen3-8B FT model, 4 modes × 100
+    samples, paired t-test
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/latency_profiling_docred_qwen_ft.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T13:22:43.791695+00:00'
+  tags: []
+- id: art_20260516_c2a16a
+  name: residual_dr_error_analysis
+  type: report
+  description: FT+OntoCoDec full_s1 残余 DR violation 定性分析：36个violation的根因分类（ET错误39%、Schema覆盖不全33%、方向反转11%、错关系17%），按relation/entity
+    pair统计，含论文discussion启示
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/residual_dr_error_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:10:36.893217+00:00'
+  tags:
+  - dr_violation
+  - error_analysis
+  - discussion
+  - appendix
+- id: art_20260516_fd9ddf
+  name: 'Table 2: Main Results (ZS + FT)'
+  type: report
+  description: 'Main results table: 3 models × 2 datasets × 2 regimes (ZS/FT), showing
+    E_F1, R_F1, violation rates, parse_fail_rate'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/table2_main_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:48:13.317517+00:00'
+  tags:
+  - paper
+  - table
+  - main-results
+- id: art_20260516_70fda8
+  name: 'Table 3: Composability (FT+OntoCoDec)'
+  type: report
+  description: 'Composability table: FT models + OntoCoDec at inference, showing delta
+    metrics for Qwen/Llama × SciERC/DocRED'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/table3_composability.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:48:15.789978+00:00'
+  tags:
+  - paper
+  - table
+  - composability
+- id: art_20260516_10113d
+  name: 'Table 4: FT Ablation'
+  type: report
+  description: 'Ablation table: unconstrained/grammar_only/semantic_only/full for
+    2 models × 2 datasets in FT regime'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/table4_ft_ablation.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:48:17.765754+00:00'
+  tags:
+  - paper
+  - table
+  - ablation
+- id: art_20260516_921382
+  name: 'Table 5: Post-hoc Baseline'
+  type: report
+  description: 'Post-hoc filtering baseline comparison: rejection rates, TP loss,
+    R_F1 before/after for ZS and FT regimes'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/table5_posthoc.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:48:20.248209+00:00'
+  tags:
+  - paper
+  - table
+  - posthoc-baseline
+- id: art_20260516_c46a66
+  name: 'Table 6: Latency Profiling'
+  type: report
+  description: 'Latency profiling: SciERC and DocRED decoding overhead for each constraint
+    layer, tok/s, percentile timings'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/table6_latency.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:48:22.503254+00:00'
+  tags:
+  - paper
+  - table
+  - latency
+- id: art_20260516_fb55d8
+  name: parse_failure_denominator_analysis
+  type: report
+  description: Analysis of whether parse failures affect violation rate denominators.
+    Confirms current parsed-only calculation is appropriate and all-set adjustment
+    is non-material.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/parse_failure_denominator_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T18:21:04.839221+00:00'
+  tags:
+  - SF4
+  - violation_rates
+  - parse_failure
+  - denominator
+- id: art_20260516_a0ea2f
+  name: fuzzy_matching_threshold_analysis
+  type: report
+  description: Q5 分析报告：Fuzzy matching 阈值来源确认（a priori）、代码位置、所有实验 strict vs fuzzy R_F1
+    对比、审稿人回复建议
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/fuzzy_matching_threshold_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T18:24:46.537746+00:00'
+  tags:
+  - Q5
+  - fuzzy_matching
+  - evaluation
+  - rebuttal
+- id: art_20260516_482dba
+  name: rv_003_residual_investigation
+  type: report
+  description: Investigation of RV=0.03% residual in DocRED grammar/full_s1 experiments
+    - XGrammar enum bug
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/rv_003_residual_investigation.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T19:06:48.434311+00:00'
+  tags:
+  - rv
+  - xgrammar
+  - bug
+  - docred
+  - investigation
+- id: art_20260516_1f1860
+  name: rebuttal_draft_v1
+  type: report
+  description: Group C 审稿 Q1-Q5 逐�� rebuttal 草稿，含数据引用和论文修改建议。附 beam/sampling feasibility、RV
+    edge case、parse failure denominator 补充点��
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/rebuttal_draft_v1.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T19:25:00.742134+00:00'
+  tags:
+  - rebuttal
+  - review
+  - emnlp2026
+- id: art_20260516_75047e
+  name: w9_scierc_sampling_analysis
+  type: report
+  description: SciERC sampling vs greedy decoding analysis - violation metrics and
+    F1 comparison showing constraints are robust under sampling
+  path: projects/schema_semantic_constrained_ie/artifacts/w9_qwen_scierc_zs_sampling/report/w9_scierc_sampling_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: w9_qwen_scierc_zs_sampling
+  skill: ''
+  created_at: '2026-05-16T20:35:46.191780+00:00'
+  tags:
+  - scierc
+  - sampling
+  - violation
+  - f1
+  - ablation
+- id: art_20260516_86ebe7
+  name: rebuttal_draft_v2
+  type: report
+  description: 'Rebuttal v2: 修正 41-72%→39-72%, Q4 段落改为 dual-factor model (τ̄×RV_baseline,
+    n=4 R²=0.886) + Mistral boundary condition'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/rebuttal_draft_v2.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T20:57:18.956368+00:00'
+  tags:
+  - rebuttal
+  - review
+  - emnlp2026
+- id: art_20260516_d9627b
+  name: appendix_sampling_table
+  type: paper
+  description: 'Sampling robustness LaTeX table: SciERC (551 docs) + DocRED subset
+    (114 docs), greedy vs nucleus sampling constraint comparison'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_sampling_table.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T20:59:21.653924+00:00'
+  tags:
+  - paper
+  - appendix
+  - sampling
+  - latex
+- id: art_20260517_4412d4
+  name: data_consistency_audit
+  type: report
+  description: Full cross-verification of all numerical data in paper .tex files against
+    registry metrics. 1 error fixed (CF 9.82→9.90 in sampling table), 100+ data points
+    verified correct.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/data_consistency_audit.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T00:20:39.262686+00:00'
+  tags:
+  - paper
+  - audit
+  - data-consistency
+- id: art_20260517_8c7104
+  name: r4_sf1_matched_greedy_results
+  type: report
+  description: DocRED 50-doc matched greedy baseline results for beam search comparison
+    (Qwen, Llama, Mistral)
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r4_sf1_matched_greedy_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T10:59:23.043657+00:00'
+  tags:
+  - docred
+  - beam-search
+  - matched-baseline
+  - revision
+- id: art_20260517_6504da
+  name: r4_m6q4_cfdr_transferability
+  type: report
+  description: 'CF-DR trade-off transferability argument: 6-setting empirical pattern
+    (Spearman ρ=-0.77), structural mechanism analysis, SciERC/Qwen representativeness
+    justification, and suggested paper/rebuttal text'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r4_m6q4_cfdr_transferability.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:04:41.831450+00:00'
+  tags:
+  - rebuttal
+  - cf-dr
+  - transferability
+  - m6q4
+- id: art_20260517_sf5sf7
+  name: r4_sf5_sf7_results
+  type: report
+  description: 'SF5: Llama DocRED parse-failure-excluded analysis (91 parse failures,
+    E-F1 55.01→58.18, R-F1 6.27→6.51). SF7: DocRED fallback coverage = 99.9% (vs SciERC
+    63.4%), with analysis of why the discrepancy is due to single-token types.'
+  path: projects/schema_semantic_constrained_ie/artifacts/r4_sf5_sf7_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:00:00.000000+00:00'
+  tags:
+  - rebuttal
+  - sf5
+  - sf7
+  - fallback
+  - parse-failure
+- id: art_20260517_a37cdb
+  name: r4_doc_length_breakdown_results
+  type: report
+  description: 'Document length breakdown analysis: OntoCoDec constraint effectiveness
+    across short/medium/long documents for SciERC and DocRED (Qwen3-8B)'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r4_doc_length_breakdown_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:26:28.789955+00:00'
+  tags:
+  - analysis
+  - doc-length
+  - violation
+  - appendix
+- id: art_20260517_2bac4c
+  name: r4_doc_length_latex_table
+  type: paper
+  description: LaTeX appendix table for document length breakdown analysis
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/r4_doc_length_latex_table.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:26:52.592781+00:00'
+  tags:
+  - latex
+  - appendix
+  - doc-length
+  - table
+- id: art_20260517_681660
+  name: FT Bootstrap Significance Results
+  type: report
+  description: 'Bootstrap paired test (n=10000) for FT LoRA composability: constrained
+    vs unconstrained R-F1 and E-F1 across 4 settings (Qwen/Llama × SciERC/DocRED)'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r5_ft_bootstrap_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:58:00.596388+00:00'
+  tags:
+  - bootstrap
+  - significance
+  - ft
+  - composability
+  - lora
+- id: art_20260517_8b7fcd
+  name: r5_bootstrap_method_audit
+  type: report
+  description: Bootstrap F1 计算方式核查：确认所有脚本使用 corpus micro-F1，与主表一致
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r5_bootstrap_method_audit.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:13:36.911801+00:00'
+  tags:
+  - bootstrap
+  - audit
+  - micro-f1
+  - statistical-testing
+- id: art_20260517_2f2969
+  name: r4_prompt_sensitivity_results
+  type: report
+  description: 'Prompt sensitivity analysis: 3 prompt variants × 2 modes, violations
+    and F1 on SciERC 551 docs'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r4_prompt_sensitivity_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:13:44.028791+00:00'
+  tags: []
+- id: art_20260517_27c027
+  name: appendix_prompt_sensitivity
+  type: paper
+  description: LaTeX appendix section for prompt sensitivity analysis (app:prompt-sensitivity)
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompt_sensitivity.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:13:59.808315+00:00'
+  tags: []
+- id: art_20260517_da95d0
+  name: ACE05 Codebase Architecture Survey
+  type: report
+  description: OntoCoDec 代码架构调研报告，分析从 RE 扩展到 ACE05 Event Extraction 所需的修改
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/ace05_codebase_survey.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:17:06.994545+00:00'
+  tags: []
+- id: art_20260517_626008
+  name: ACE05 Schema Design Report
+  type: report
+  description: 'ACE05 event extraction schema design: complete ontology constraint
+    table (33 event types x roles x entity types), JSON output format compatible with
+    existing RE pipeline, SFT prompt template, data acquisition guide'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/ace05_schema_design_626008.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:23:49.370990+00:00'
+  tags:
+  - ace05
+  - event-extraction
+  - schema-design
+  - report
+- id: art_20260517_023e9d
+  name: ACE05 Event Ontology Constraints JSON
+  type: data
+  description: 'Complete ACE2005 event ontology constraints: 33 event types, 22 argument
+    roles, 7 entity types, with per-event-type role-entity constraints. Located at
+    westd-16980:/root/schema_semantic_constrained_ie/data/ace05/ontology_constraints_ace05.json'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/ace05_ontology_constraints_pointer.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:23:59.535906+00:00'
+  tags:
+  - ace05
+  - event-extraction
+  - ontology
+  - constraints
+- id: art_20260517_162ed4
+  name: ACE05 Synthetic Sample Data
+  type: data
+  description: 10 synthetic ACE05 event extraction examples in JSONL format for development/testing.
+    Covers Attack, Be-Born, Sentence, Transport, Arrest-Jail, Meet, Transfer-Ownership,
+    Die, Elect, Demonstrate.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/ace05_sample_data_pointer.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:24:02.077942+00:00'
+  tags:
+  - ace05
+  - event-extraction
+  - sample-data
+- id: art_20260517_6a7e38
+  name: event_dataset_feasibility
+  type: report
+  description: Event Extraction 数据集可行性研究：MAVEN/MAVEN-Arg/WikiEvents/RAMS 对比评估。结论：WikiEvents
+    (KAIROS ontology) 是唯一同时满足 role→entity type constraints + 免费下载的数据集，推荐作为 OntoCoDec
+    Event Extraction 扩展的主数据集。
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/event_dataset_feasibility_6a7e38.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:43:45.012107+00:00'
+  tags:
+  - event-extraction
+  - dataset
+  - wikievents
+  - maven
+  - feasibility
+- id: art_20260518_08adbb
+  name: R4-N3 Beam Runtime Profiling Report
+  type: report
+  description: 'Beam search runtime overhead analysis: Qwen DocRED matched 50-doc
+    greedy vs beam k=4 (1.69x avg, 1.35x median), beam width scaling (sub-linear),
+    FT vs ZS beam speed comparison'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r4_n3_runtime_profiling.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T12:36:07.780410+00:00'
+  tags:
+  - beam-search
+  - runtime
+  - R4-N3
+  - paper-review
+- id: art_20260518_7ca147
+  name: R2-N3 Llama DocRED Parse-Excluded Analysis
+  type: report
+  description: 'Llama DocRED constrained vs unconstrained metrics after excluding
+    parse failures: DR 31.21%→2.57%, RV 15.89%→0%, F1 unchanged. Proves violation
+    reduction is real effect not artifact of parse failure exclusion.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r2n3_parse_excluded_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T12:37:40.982446+00:00'
+  tags:
+  - R2-N3
+  - parse-failure
+  - paper-review
+  - llama
+  - docred
+- id: art_20260518_ea22d0
+  name: R2-N10 RV Root Cause Analysis
+  type: report
+  description: 'Root cause analysis of residual RV=0.03% in phase2_docred_full_s1:
+    xgrammar 0.1.33 enum automaton bug causing chimeric relation names'
+  path: projects/schema_semantic_constrained_ie/artifacts/phase2_docred_full_s1/report/r2n10_rv_root_cause.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: phase2_docred_full_s1
+  skill: ''
+  created_at: '2026-05-18T13:26:17.412807+00:00'
+  tags:
+  - r2n10
+  - rv
+  - xgrammar
+  - root-cause
+- id: art_20260518_3c538a
+  name: diagnosis_70b_scierc_failure
+  type: report
+  description: 70B SciERC 实验诊断报告 - 两个实验均已成功完成（非失败）
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/diagnosis_70b_scierc_failure.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T13:34:57.253355+00:00'
+  tags:
+  - diagnosis
+  - 70b
+  - scierc
+- id: art_20260518_54203d
+  name: P3 Error Analysis Report
+  type: report
+  description: 'Comprehensive error analysis of OntoCoDec violations: distribution
+    by type/relation, model comparison (Qwen/Llama/Mistral 8B + 70B), BPE collision
+    analysis, CF tradeoff quantification'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/p3_error_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:35:10.623608+00:00'
+  tags:
+  - error-analysis
+  - violations
+  - paper
+- id: art_20260518_ed7f71
+  name: P3 Case Studies LaTeX
+  type: paper
+  description: '4 LaTeX-ready case studies: DR correction (Feature-of), RV+DR elimination
+    (DocRED), 70B vs 8B scale effect, CF tradeoff limitation'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/p3_case_studies.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:35:12.149731+00:00'
+  tags:
+  - case-study
+  - latex
+  - paper
+- id: art_20260518_d95869
+  name: P3 Error Analysis Report
+  type: report
+  description: Structured error analysis of OntoCoDec violation patterns across 8B
+    (Qwen/Llama/Mistral) and 70B models on SciERC and DocRED. Covers DR violation
+    distribution, model comparison, 70B vs 8B, CF tradeoff quantification, Mistral
+    BPE collision analysis.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/p3_error_analysis_d95869.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:36:20.958405+00:00'
+  tags:
+  - p3
+  - error-analysis
+  - violation-patterns
+  - paper
+- id: art_20260518_861a0d
+  name: P3 Case Studies LaTeX
+  type: paper
+  description: '4 LaTeX-ready case studies for paper: (1) DR correction on Feature-of,
+    (2) RV+DR elimination on DocRED, (3) 70B vs 8B scale effect, (4) CF majority voting
+    limitation. Ready to \input in paper appendix.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/p3_case_studies_861a0d.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:36:44.350158+00:00'
+  tags:
+  - p3
+  - case-study
+  - latex
+  - paper
+- id: art_20260518_6e5b55
+  name: Literature Freshness Check (2025-2026)
+  type: report
+  description: OntoCoDec 竞品和相关工作新鲜度检查，覆盖 2025-2026 年 constrained decoding + IE 方向论文。发现
+    BoostCD (EMNLP 2025) 为主要遗漏竞品，另有 10+ 篇应引用工作。
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/literature_freshness_check.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:22:46.894967+00:00'
+  tags:
+  - literature-review
+  - competitive-analysis
+  - related-work
+- id: art_20260518_d4b948
+  name: New Citations BibTeX
+  type: paper
+  description: '9 BibTeX entries for new citations: BoostCD, Grammar-Aligned Decoding,
+    The Format Tax, The Hidden Cost of Structure, DCCD, SLOT, GUIDEX, Schema RL, JSONSchemaBench'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/new_citations.bib
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:30:11.109374+00:00'
+  tags:
+  - bibtex
+  - citations
+  - references
+- id: art_20260518_f5bcbf
+  name: enrico_itergen_comparison
+  type: report
+  description: EnriCo (ASP-based IE constraints) and IterGen (ICLR 2025, backtracking-based
+    constrained generation) vs OntoCoDec qualitative comparison. Three-way comparison
+    table + suggested Related Work paragraphs.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/enrico_itergen_comparison.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T17:55:41.342412+00:00'
+  tags:
+  - literature
+  - related-work
+  - reviewer-response
+  - P0
+- id: art_20260518_31ac45
+  name: wikievents_ee_sft_train
+  type: data
+  description: 'WikiEvents EE SFT training data (214 docs, 3586 events) for LoRA fine-tuning.
+    Path: /root/schema_semantic_constrained_ie/data/sft/wikievents_sft_train.jsonl
+    on westd-21461'
+  path: projects/schema_semantic_constrained_ie/artifacts/p1_ee_ft_composability/data/wikievents_sft_train_metadata.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: p1_ee_ft_composability
+  skill: ''
+  created_at: '2026-05-18T19:20:30.396401+00:00'
+  tags:
+  - wikievents
+  - sft
+  - ee
+  - training-data
+- id: art_20260518_1a2da2
+  name: P1 EE FT Qwen3-8B WikiEvents Eval+Violation Report
+  type: report
+  description: 'Qwen3-8B LoRA FT on WikiEvents EE: merge, unconstrained/full_s1 inference,
+    eval, violation check. High parse failure rate (75-90%). Constrained decoding
+    eliminates RoV+AC violations but worsens parse rate.'
+  path: projects/schema_semantic_constrained_ie/artifacts/p1_ee_ft_composability_r4/report/p1_ee_ft_eval_violation_report.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: p1_ee_ft_composability_r4
+  skill: ''
+  created_at: '2026-05-18T23:13:08.353828+00:00'
+  tags:
+  - p1
+  - ee
+  - ft
+  - qwen3-8b
+  - wikievents
+  - eval
+  - violation
+- id: art_20260518_e3da09
+  name: P1 Qwen EE FT Parse Failure Diagnosis
+  type: report
+  description: 'Root cause diagnosis of P1 Qwen EE FT (p1_ee_ft_composability_r4)
+    parse failure: 75% unconstrained / 90% constrained parse failure rate. Three root
+    causes identified: repetition degeneration, grammar-FT format mismatch, think
+    token prefix mismatch.'
+  path: projects/schema_semantic_constrained_ie/artifacts/p1_ee_ft_composability_r4/report/p1_qwen_parse_failure_diagnosis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: p1_ee_ft_composability_r4
+  skill: ''
+  created_at: '2026-05-18T23:23:26.751979+00:00'
+  tags:
+  - diagnosis
+  - parse-failure
+  - qwen-ft
+  - event-extraction
+  - P1
+- id: art_20260518_9f9ca9
+  name: P1 EE FT R2 Results (Llama WikiEvents)
+  type: report
+  description: Llama-8B LoRA WikiEvents EE results after schema fix (required entities→events
+    only) and repetition_penalty=1.2. Parse rate 100%, constrained Go/No-go 0.78%
+    (vs unconstrained 12.2%).
+  path: projects/schema_semantic_constrained_ie/artifacts/p1_ee_ft_llama_r2/report/p1_llama_ee_ft_r2_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: p1_ee_ft_llama_r2
+  skill: ''
+  created_at: '2026-05-18T23:44:13.512567+00:00'
+  tags:
+  - ee
+  - llama
+  - wikievents
+  - ft
+  - schema-fix
+- id: art_20260518_931f2a
+  name: P1 Qwen EE FT R5 Results
+  type: report
+  description: Qwen3-8B FT WikiEvents EE round 5 results after schema fix (required
+    entities removed). Unconstrained vs Full S1 constrained with repetition_penalty=1.2.
+  path: projects/schema_semantic_constrained_ie/artifacts/p1_ee_ft_composability_r5/report/p1_qwen_ee_ft_r5_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: p1_ee_ft_composability_r5
+  skill: ''
+  created_at: '2026-05-18T23:55:43.518343+00:00'
+  tags:
+  - ee
+  - wikievents
+  - qwen3-8b
+  - ft
+  - schema-fix
+  - constrained-decoding
+- id: art_20260519_d5f670
+  name: p2_ee_ft_bootstrap_ci
+  type: report
+  description: Bootstrap 95% CI for WikiEvents EE FT violation rates (Qwen + Llama,
+    constrained vs unconstrained, 10000 resamples over 20 docs)
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/p2_ee_ft_bootstrap_ci.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T00:49:39.421760+00:00'
+  tags:
+  - bootstrap
+  - confidence-interval
+  - wikievents
+  - ee
+  - fine-tuning
+  - D060
+- id: art_20260519_29a598
+  name: d062_cf_majority_voting_results
+  type: report
+  description: 'CF majority voting post-hoc correction results: CF reduced 18-96%
+    but DR increases 43-3300% across all 8 conditions. Negative result - naive majority
+    voting trades CF for DR.'
+  path: projects/schema_semantic_constrained_ie/artifacts/d062_cf_majority_voting/report/d062_cf_majority_voting_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d062_cf_majority_voting
+  skill: ''
+  created_at: '2026-05-19T03:22:57.574423+00:00'
+  tags:
+  - cf
+  - majority-voting
+  - post-hoc
+  - negative-result
+- id: art_20260519_5d2636
+  name: d062_ontology_scalability_results
+  type: report
+  description: 'Ontology scalability benchmark: compile time + inference overhead
+    across 4 ontology scales (6-200 entity types, 7-1000 relations)'
+  path: projects/schema_semantic_constrained_ie/artifacts/d062_ontology_scalability/report/d062_ontology_scalability_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d062_ontology_scalability
+  skill: ''
+  created_at: '2026-05-19T04:27:53.455579+00:00'
+  tags:
+  - scalability
+  - benchmark
+  - compilation
+  - inference-overhead
+- id: art_20260519_760ad2
+  name: d062_beam_latency_results
+  type: report
+  description: 'Beam search (k=4) latency benchmark: unconstrained 3.446 s/doc (1.32x
+    greedy), constrained 4.013 s/doc (1.40x greedy), constraint overhead 16.5% within
+    beam'
+  path: projects/schema_semantic_constrained_ie/artifacts/d062_beam_latency/report/d062_beam_latency_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d062_beam_latency
+  skill: ''
+  created_at: '2026-05-19T04:31:01.189751+00:00'
+  tags: []
+- id: art_20260519_37230b
+  name: d062_full_ft_scierc_results
+  type: report
+  description: 'Full fine-tuning vs LoRA FT comparison on SciERC: training config,
+    F1 metrics, violation rates, and key findings (negative result — Full FT worse
+    than LoRA FT)'
+  path: projects/schema_semantic_constrained_ie/artifacts/d062_full_ft_scierc/report/d062_full_ft_scierc_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d062_full_ft_scierc
+  skill: ''
+  created_at: '2026-05-19T05:11:31.356761+00:00'
+  tags:
+  - full-ft
+  - scierc
+  - qwen3-8b
+  - negative-result
+  - violation-analysis
+- id: art_20260519_c4cc68
+  name: w1c_wikievents_kappa_results
+  type: report
+  description: 'WikiEvents κ (constraint tightness) analysis: per-role κ distribution,
+    κ vs zero-shot AC violation rate correlation, qualitative analysis'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/w1c_wikievents_kappa_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T06:49:25.593407+00:00'
+  tags:
+  - kappa
+  - wikievents
+  - constraint-tightness
+  - ac-violation
+- id: art_20260519_93086e
+  name: w5_ee_ft_cf_results
+  type: report
+  description: EE FT cross-field consistency (CF) violation rates for Qwen and Llama,
+    constrained vs unconstrained, on WikiEvents test set
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/w5_ee_ft_cf_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T06:50:45.842643+00:00'
+  tags:
+  - ee
+  - ft
+  - cf
+  - violation
+  - wikievents
+- id: art_20260519_4a8ced
+  name: ontocodec_paper_r9_final
+  type: paper
+  description: OntoCoDec paper PDF after Round 9 fixes. 27 pages (8 body + Limitations/Ethics/References/Appendix).
+    Zero LaTeX errors, zero em-dash in prose, clean -ing patterns.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/ontocodec_paper_r9_final.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T07:48:18.768882+00:00'
+  tags:
+  - paper
+  - r9
+  - final-compile
+- id: art_20260519_73e1c8
+  name: ontocodec_paper_r10_final
+  type: paper
+  description: OntoCoDec paper PDF after Round 10 fixes. 29 pages (8 body + Limitations/Ethics/References/Appendix).
+    Zero errors, all quality checks passed.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/ontocodec_paper_r10_final.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T08:38:51.700412+00:00'
+  tags:
+  - paper
+  - r10
+  - final-compile
+- id: art_20260519_46e287
+  name: d063_gollie_scierc_violation_results
+  type: report
+  description: GoLLIE-7B schema violation rates on SciERC test set (100 docs), compared
+    with OntoCoDec. GoLLIE achieves 0% ET/RV/DR violations due to dataclass output
+    format, but extracts only 300 entities and 7 relations (very low coverage). CF=0.67%.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/d063_gollie_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T10:11:15.621992+00:00'
+  tags:
+  - gollie
+  - scierc
+  - schema-violation
+  - baseline-comparison
+- id: art_20260519_4ef7c6
+  name: D065 TCR Pilot Results
+  type: report
+  description: 'TCR (Type Consistency Resolution) pilot on 4 SciERC S1 outputs: 100%
+    CF elimination, minimal DR/F1 impact'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/d065_tcr_pilot_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:31:17.893255+00:00'
+  tags:
+  - tcr
+  - cf-violation
+  - pilot
+  - scierc
+- id: art_20260519_8c613f
+  name: D065 TCR Full Results
+  type: report
+  description: 'TCR full experiment results across 10 configurations: SciERC (5 configs)
+    + DocRED (5 configs). CF 100% elimination in all. Fundamental conflict analysis:
+    DocRED 12-23% vs SciERC 0-2%.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/d065_tcr_full_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:40:09.858963+00:00'
+  tags:
+  - tcr
+  - experiment
+  - docred
+  - scierc
+  - post-processing
+- id: art_20260519_2f855e
+  name: d064 DocRED Full Beam Status Report
+  type: report
+  description: d064 DocRED full dev set (998 docs) beam search status — all tasks
+    still running, Qwen beam-4 unc at 614/998, Llama greedy unc at 546/998, estimated
+    full completion May 20 16:40
+  path: projects/schema_semantic_constrained_ie/artifacts/d064/report/d064_docred_full_beam_results.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d064
+  skill: ''
+  created_at: '2026-05-19T12:49:13.845957+00:00'
+  tags:
+  - d064
+  - docred
+  - beam-search
+  - status
+- id: art_20260519_5ee027
+  name: d064_status_report_20260519
+  type: report
+  description: d064 DocRED full beam search 实验状态调查报告 - 进程运行中，非FAILED
+  path: projects/schema_semantic_constrained_ie/artifacts/d064_docred_full_beam/report/d064_status_report_20260519.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d064_docred_full_beam
+  skill: ''
+  created_at: '2026-05-19T12:51:05.160179+00:00'
+  tags:
+  - d064
+  - docred
+  - status
+  - beam-search
+- id: art_20260519_4e7e41
+  name: case_study_kappa_dr_table
+  type: paper
+  description: 'LaTeX case study table: κ vs DR violation rate for 10 selected relations
+    (5 high-DR + 5 high-κ-zero-DR), Qwen ZS greedy unconstrained, both datasets'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/case_study_kappa_dr.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:04:50.664304+00:00'
+  tags:
+  - kappa
+  - case-study
+  - appendix
+  - paper
+- id: art_20260519_dddc01
+  name: case_study_kappa_dr_data
+  type: report
+  description: Full per-relation κ and DR% data for SciERC (7 rels) + DocRED (80+
+    rels), Qwen ZS greedy unconstrained, with case study selection and qualitative
+    analysis
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/case_study_kappa_dr_dddc01.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:04:53.058353+00:00'
+  tags:
+  - kappa
+  - case-study
+  - analysis
+- id: art_20260520_cbf54f
+  name: d066_beam_sweep_eval
+  type: report
+  description: 'd066 SciERC beam sweep evaluation: Qwen3-8B LoRA, k=1,2,4 × unc/con.
+    k=2 con is Pareto optimal. k=8 pending.'
+  path: projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/report/d066_beam_sweep_eval.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d066_beam_sweep
+  skill: ''
+  created_at: '2026-05-20T02:25:09.232849+00:00'
+  tags:
+  - beam-sweep
+  - scierc
+  - qwen3-8b
+  - constrained-decoding
+- id: art_20260520_0d8109
+  name: d067_seed_variance_eval
+  type: report
+  description: 'Seed variance evaluation for d067: 3 seeds × 2 models × SciERC. Key
+    finding: greedy decoding is deterministic (σ=0 on same hardware), all σ < 0.5pp
+    including cross-server noise.'
+  path: projects/schema_semantic_constrained_ie/artifacts/d067_seed_variance/report/d067_seed_variance_eval.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d067_seed_variance
+  skill: ''
+  created_at: '2026-05-20T02:27:41.209650+00:00'
+  tags:
+  - seed-variance
+  - reproducibility
+  - scierc
+- id: art_20260520_39d8d8
+  name: d066_beam_sweep_scierc_analysis
+  type: report
+  description: SciERC beam width sweep analysis (Qwen3-8B, k=1,2,4,8 × unc/con) -
+    7/8 configs complete, k=8 con in progress
+  path: projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/report/d066_beam_sweep_scierc_analysis.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d066_beam_sweep
+  skill: ''
+  created_at: '2026-05-20T03:08:23.108436+00:00'
+  tags:
+  - beam_sweep
+  - scierc
+  - qwen3
+  - pareto
+- id: art_20260520_d074af
+  name: d066_beam_sweep_pareto
+  type: chart
+  description: 'd066 beam sweep Pareto curve: Relation F1 vs Relative Latency, constrained
+    (DR=0%) vs unconstrained, k=1/2/4/8, k=2 con marked as Pareto optimal'
+  path: projects/schema_semantic_constrained_ie/artifacts/d066/chart/beam_pareto.png
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d066
+  skill: ''
+  created_at: '2026-05-20T04:08:14.537798+00:00'
+  tags:
+  - beam_sweep
+  - pareto
+  - latency
+  - relation_f1
+- id: art_20260520_ff7687
+  name: d066_beam_sweep_pareto_pdf
+  type: chart
+  description: d066 beam sweep Pareto curve (PDF vector format) for paper inclusion
+  path: projects/schema_semantic_constrained_ie/artifacts/d066/chart/beam_pareto.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d066
+  skill: ''
+  created_at: '2026-05-20T04:08:16.696655+00:00'
+  tags:
+  - beam_sweep
+  - pareto
+  - latency
+  - relation_f1
+  - pdf
+- id: art_20260520_39efc2
+  name: d065_eval_llama_greedy_4096
+  type: data
+  description: d065 Llama greedy 4096 eval + violation results (unc & con) on DocRED
+    998-doc
+  path: projects/schema_semantic_constrained_ie/artifacts/d065/data/d065_eval_llama_unc_4096.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d065
+  skill: ''
+  created_at: '2026-05-20T08:23:06.763215+00:00'
+  tags:
+  - eval
+  - llama
+  - docred
+  - greedy
+  - '4096'
+- id: art_20260520_9b0037
+  name: SciERC w5 Unified Eval (d065)
+  type: report
+  description: 'SciERC w5 all configs unified re-evaluation using eval_d066_unified.py
+    (PF-as-FN, same logic as eval_d064). 6 files: Qwen/Llama x unc/con/con+cfcorr.'
+  path: projects/schema_semantic_constrained_ie/artifacts/d065/report/scierc_unified_eval.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d065
+  skill: ''
+  created_at: '2026-05-20T08:37:56.686906+00:00'
+  tags:
+  - eval
+  - scierc
+  - unified
+  - w5
+  - table2
+- id: art_20260520_060e45
+  name: DocRED Unified Eval (eval_d064)
+  type: report
+  description: Unified re-evaluation of all DocRED w5/d065/d064 JSONL files using
+    eval_d064.py. Found Table 2 Llama Con row used beam4 E-F1 (85.23) instead of greedy
+    (83.94). CF% values also wrong for Qwen rows.
+  path: projects/schema_semantic_constrained_ie/artifacts/d065/report/docred_unified_eval.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d065
+  skill: ''
+  created_at: '2026-05-20T09:04:16.417999+00:00'
+  tags:
+  - eval
+  - docred
+  - table2
+  - unified_eval
+- id: art_20260520_a5e177
+  name: root_cause_w5_vs_d065
+  type: report
+  description: 'Root cause analysis: Table 2 (w5) vs Appendix (d065) Llama DocRED
+    greedy constrained数字不一致的根因调查'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/root_cause_w5_vs_d065.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T14:14:56.579264+00:00'
+  tags:
+  - investigation
+  - w5
+  - d065
+  - consistency
+- id: art_20260520_0d5231
+  name: beam_pareto_dual_panel
+  type: chart
+  description: 'Dual-panel Pareto figure: Beam Width vs R-F1. Left: SciERC (Qwen+Llama
+    dual model). Right: DocRED (Llama). Bubble size=violation rate, green ring=zero
+    violation, red star=sweet spot (k=2).'
+  path: projects/schema_semantic_constrained_ie/artifacts/d066_beam_sweep/chart/beam_pareto.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: d066_beam_sweep
+  skill: ''
+  created_at: '2026-05-20T16:57:07.406858+00:00'
+  tags:
+  - beam_sweep
+  - pareto
+  - figure
+  - paper
+- id: art_20260520_f87fce
+  name: R12 Fallback Cascade Analysis
+  type: report
+  description: 'SciERC ZS S1 fallback cascade: S1-induced fallback minimal (3/1),
+    but Generic wildcard weakens 6-9% of DR checks. JSON on westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/r12_fallback_cascade_summary.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:51:25.976021+00:00'
+  tags:
+  - analysis
+  - fallback
+  - cascade
+  - scierc
+  - s1
+- id: art_20260520_ece746
+  name: R12 Fallback Cascade LaTeX
+  type: paper
+  description: 'Paper-ready LaTeX for §4: Generic wildcard cascade in SciERC DR enforcement.
+    On westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_text.txt'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/r12_fallback_cascade_text.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:51:31.264837+00:00'
+  tags:
+  - latex
+  - paper
+  - section4
+  - fallback
+- id: art_20260520_618ada
+  name: r12_dr_f1_impact
+  type: data
+  description: 'DR violation elimination F1 impact analysis: mechanism breakdown (type
+    correction vs triple removal) across 4 FT settings'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_dr_f1_impact_summary.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:54:09.738415+00:00'
+  tags:
+  - dr_violation
+  - f1_analysis
+  - table2
+  - composability
+- id: art_20260520_3501e2
+  name: r12_wikievents_bootstrap_ci
+  type: data
+  description: 'Bootstrap CI (B=1000, document-level) for WikiEvents EE FT experiments:
+    Qwen FT r5 + Llama FT r2, unconstrained vs constrained. Metrics: Trigger-F1, Argument-F1,
+    RoV%, AC%. Saved at westd-16980:/root/autodl-tmp/schema_outputs/r12_wikievents_bootstrap.json'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_wikievents_bootstrap.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:54:57.190874+00:00'
+  tags:
+  - bootstrap
+  - wikievents
+  - event_extraction
+  - confidence_interval
+- id: art_20260520_925821
+  name: r12_fallback_precision_recall
+  type: data
+  description: Fallback vs non-fallback triples precision/recall analysis for Qwen
+    ZS S1 on DocRED and SciERC. Fallback triples achieve 0% precision on both datasets.
+  path: null
+  url: westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_precision_recall.json
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:10:30.913402+00:00'
+  tags:
+  - fallback
+  - precision-recall
+  - r12
+  - analysis
+- id: art_20260520_69cf8e
+  name: r12_table2_bootstrap_ci
+  type: data
+  description: 'Bootstrap CI (10k iterations) for Table 2 composability: R-F1 delta
+    and DR% delta with p-values for all 4 model-dataset pairs'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_table2_bootstrap_ci_pointer.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:17:53.814948+00:00'
+  tags:
+  - bootstrap
+  - table2
+  - composability
+  - significance
+- id: art_20260520_34f7e5
+  name: r14_entity_ordering
+  type: data
+  description: 'R14 M3: Entity-before-relation ordering preservation rate across 8
+    settings (SciERC/DocRED x Qwen/Llama x ZS/FT). 100% guaranteed by grammar.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/r14_entity_ordering_summary.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T20:21:16.208789+00:00'
+  tags:
+  - r14
+  - ordering
+  - entity-before-relation
+- id: art_20260520_75ffbc
+  name: R14 WikiEvents Per-Document Variance
+  type: data
+  description: Per-document trigger F1, argument F1, RoV, AC for WikiEvents FT (Qwen+Llama,
+    unconstrained+constrained). Includes mean/std/median/IQR/min/max/per_doc breakdown
+    + bootstrap CI (B=1000). File on westd-16980:/root/autodl-tmp/schema_outputs/r14_wikievents_perdoc_variance.json
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/r14_wikievents_perdoc_variance_pointer.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T20:31:10.352330+00:00'
+  tags:
+  - r14
+  - wikievents
+  - per-doc-variance
+  - bootstrap-ci
+  - statistical-power
+- id: art_20260520_7e346e
+  name: r14_ft_fallback_rate
+  type: data
+  description: 'FT vs ZS semantic fallback rate: DR constraint violation at head_type/tail_type
+    positions. FT virtually eliminates fallback (0.00-0.11% vs ZS 0.04-5.68%). Root
+    cause: 100% model preference. Token-level 36.6% reconciled as continuation-token
+    artifact.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/r14_ft_fallback_rate.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T20:31:29.540244+00:00'
+  tags:
+  - fallback
+  - ft
+  - constrained-decoding
+  - rebuttal
+- id: art_20260521_ea00d4
+  name: R15 Task C - Fallback Causal Tracing
+  type: data
+  description: 'Per-triple causal attribution of DR violations to fallback events
+    in S1 constrained decoding. SciERC Qwen FT: 0 violations. ZS: 16 violations, all
+    caused by tail_type fallback (100% causal). All configs: dr_independent_of_fallback
+    = 0.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/task_c_fallback_trace.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:51:04.534826+00:00'
+  tags:
+  - r15
+  - fallback
+  - causal-tracing
+  - verification
+- id: art_20260521_617f08
+  name: R15 Regression Checklist v2
+  type: report
+  description: 10-item regression prevention checklist on latest .tex files after
+    Paper Agent R15 Patch. 8 PASS / 2 FAIL (κ̄ in contributions, main text 9 pages).
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/regression_checklist_v2.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:10:08.051069+00:00'
+  tags:
+  - r15
+  - regression
+  - verification
+  - paper
+- id: art_20260521_91626d
+  name: R15 Regression Checklist v3 FINAL
+  type: report
+  description: Final 10-item regression checklist on latest .tex after Paper Agent
+    R15 Patch. 10/10 PASS. Clean compile 33 pages, §7 ends p8, Limitations starts
+    p9.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/regression_checklist_v3.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:19:01.557261+00:00'
+  tags:
+  - r15
+  - regression
+  - verification
+  - paper
+  - final
+- id: art_20260521_08b865
+  name: R16 Task C Supplementary Computations
+  type: report
+  description: 'R16 verification: WikiEvents kappa-bar (0.029), 70B CF analysis, citation
+    verification (2x REAL), ±0.6pp R-F1 range check'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/task_c_supplementary.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T03:22:58.495897+00:00'
+  tags:
+  - r16
+  - verification
+  - kappa
+  - 70b
+  - citations
+- id: art_20260521_3f6e78
+  name: R16 Task C Supplementary Computations
+  type: report
+  description: '4 sub-tasks: WikiEvents κ̄=0.029, 70B CF breakdown (5-7% primarily
+    ZS effect), citations both REAL, ±0.6pp holds for RE only (WikiEvents Llama -1.07pp
+    exceeds but n.s.)'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/task_c_supplementary_3f6e78.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T03:23:59.130273+00:00'
+  tags:
+  - r16
+  - verification
+  - kappa
+  - citations
+  - 70b
+- id: art_20260521_50d2f3
+  name: task_e_triple_validity
+  type: data
+  description: 'Triple validity downstream analysis: classifies constrained vs unconstrained
+    predicted triples as DR-valid/invalid, computes precision@valid, lucky violation
+    rates, and triple overlap churn across SciERC and DocRED for Qwen-FT and Llama-FT'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/task_e_triple_validity.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T03:37:24.019405+00:00'
+  tags:
+  - r16
+  - verification
+  - triple-validity
+  - downstream-kg
+- id: art_20260521_e0fa11
+  name: R16 Task E Triple Validity Analysis
+  type: report
+  description: 'Triple validity downstream analysis: lucky violations avg 0.49% of
+    gold, Llama SciERC 0% churn (all 5 violations recovered), constraints = <0.5%
+    recall cost for 100% schema compliance'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/task_e_triple_validity.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T03:38:38.273853+00:00'
+  tags:
+  - r16
+  - triple-validity
+  - downstream
+  - kg-value
+- id: art_20260521_032ed9
+  name: r16_beam_wikievents_70b_verification
+  type: data
+  description: 'R16 verification: beam 998-doc progress (Qwen 80%, Llama 85%), WikiEvents
+    test=20 docs (full official split), 70B LoRA feasible on 96GB RTX PRO 6000'
+  path: projects/schema_semantic_constrained_ie/artifacts/r16/data/beam_wikievents_70b.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: r16
+  skill: ''
+  created_at: '2026-05-21T03:41:40.618985+00:00'
+  tags:
+  - beam-search
+  - wikievents
+  - 70b
+  - feasibility
+  - progress-check
+- id: art_20260521_72377f
+  name: R16 Beam + WikiEvents + 70B Status
+  type: report
+  description: 'Beam 998: Qwen 80%/Llama 85%. WikiEvents test=20 docs (full official
+    split). 70B LoRA feasible on RTX PRO 6000 96GB (~33GB headroom).'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/beam_wikievents_70b.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T03:42:49.892102+00:00'
+  tags:
+  - r16
+  - beam
+  - wikievents
+  - 70b
+  - feasibility
+- id: art_20260521_d07353
+  name: task_d_gollie_comparison
+  type: report
+  description: 'GoLLIE vs OntoCoDec head-to-head comparison on SciERC: F1 metrics,
+    violation rates, and complementarity analysis. Option 2 used (GoLLIE-7B experiment
+    + published numbers).'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/task_d_gollie_comparison.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T03:42:50.261155+00:00'
+  tags:
+  - gollie
+  - comparison
+  - scierc
+  - r16
+  - verification
+- id: art_20260521_19d511
+  name: R16 Task D GoLLIE Head-to-Head Comparison
+  type: report
+  description: 'GoLLIE vs OntoCoDec on SciERC: GoLLIE achieves 0% type violations
+    but E-F1=9.17/R-F1=0.0 (45% empty docs). OntoCoDec FT+S1: R-F1=45.47, DR=0.09%.
+    Original GoLLIE-7B experiment data.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/task_d_gollie_comparison_19d511.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T04:03:43.374912+00:00'
+  tags:
+  - r16
+  - gollie
+  - comparison
+  - baseline
+  - MF1
+- id: art_20260521_5d8de4
+  name: R16 Trie Baseline Verification
+  type: report
+  description: 'Trie DR=95.5% is expected (not bug): 83% outputs omit head_type/tail_type
+    fields, 9% broken JSON. Trie constrains vocabulary correctly (0% ET, 0% RV) but
+    without grammar layer, model skips type fields entirely. Definitive enabling dependency
+    proof.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/trie_verify.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T04:04:56.243442+00:00'
+  tags:
+  - r16
+  - trie
+  - verification
+  - enabling-dependency
+  - MF1
+- id: art_20260521_73b31a
+  name: r14_llama_docred_beam4_998_results
+  type: data
+  description: Full 998-doc DocRED beam4 constrained decoding results for ZS Llama-3.1-8B.
+    DR%=0, R-F1=8.83 (+2.56 vs greedy baseline 6.27). Hypothesis confirmed.
+  path: projects/schema_semantic_constrained_ie/artifacts/r14_llama_docred_beam4_998/data/llama_beam998_results.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: r14_llama_docred_beam4_998
+  skill: ''
+  created_at: '2026-05-21T04:51:07.610740+00:00'
+  tags:
+  - docred
+  - llama
+  - beam-search
+  - constrained-decoding
+  - zero-shot
+  - 998-doc
+- id: art_20260521_7b632e
+  name: r16_70b_scierc_zs_status_check
+  type: intermediate
+  description: 'Status check of r16 70B SciERC zero-shot experiment on westd-16980:
+    unconstrained 326/551 (59.2%), constrained not started, ~110 min remaining'
+  path: projects/schema_semantic_constrained_ie/artifacts/r16/intermediate/westd16980_check.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: r16
+  skill: ''
+  created_at: '2026-05-21T04:57:25.122630+00:00'
+  tags:
+  - 70b
+  - scierc
+  - zero-shot
+  - status-check
+- id: art_20260521_5e847d
+  name: westd21461_check_r16
+  type: data
+  description: Status check of trie baseline (completed) and Qwen beam 998 (93.1%)
+    experiments on westd-21461
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/westd21461_check.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T04:57:46.445170+00:00'
+  tags:
+  - r16
+  - trie-baseline
+  - experiment-status
+- id: art_20260521_e2b46f
+  name: trie_baseline_complete
+  type: report
+  description: 'Trie-only GCD-equivalent baseline: 4 configs complete. Proves enabling
+    dependency — vocabulary-only constraints eliminate ET/RV but DR remains 15-95%,
+    grammar layer is prerequisite.'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/trie_baseline_complete.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:01:38.085916+00:00'
+  tags:
+  - r16
+  - trie
+  - mf1
+  - enabling-dependency
+  - baseline
+- id: art_20260521_084281
+  name: r14_qwen_docred_beam4_998_results
+  type: data
+  description: Qwen2.5-7B beam-4 constrained decoding on DocRED dev (998 samples)
+    — E_F1=58.19, R_F1=8.72, DR/RV/ET=0%
+  path: projects/schema_semantic_constrained_ie/artifacts/r14_qwen_docred_beam4_998/data/qwen_beam998_results.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: r14_qwen_docred_beam4_998
+  skill: ''
+  created_at: '2026-05-21T05:42:00.282929+00:00'
+  tags: []
+- id: art_20260521_e44996
+  name: 70B SciERC ZS Evaluation Results
+  type: report
+  description: 'Llama-3.3-70B zero-shot SciERC evaluation: unconstrained vs S1 constrained,
+    with 8B comparison'
+  path: projects/schema_semantic_constrained_ie/artifacts/r16_70b_scierc_zs_s1/report/70b_scierc_zs_results.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: r16_70b_scierc_zs_s1
+  skill: ''
+  created_at: '2026-05-21T07:03:30.824269+00:00'
+  tags:
+  - 70B
+  - scierc
+  - zero-shot
+  - constrained-decoding
+  - evaluation
+- id: art_20260521_dc0c72
+  name: gpu_status_check_20260521
+  type: report
+  description: GPU utilization and experiment status check across westd-21461/westd-16980,
+    with idle GPU experiment recommendations
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/gpu_status_check.json
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T11:53:19.939377+00:00'
+  tags:
+  - gpu
+  - status
+  - r16
+  - planning
+- id: art_20260522_6f7b45
+  name: bootstrap_crossval_report
+  type: report
+  description: Bootstrap CI vs Registry R-F1 cross-validation for 4 FT constrained
+    configs. SciERC passes, DocRED has 0.04-0.05pp discrepancy from parse-failure
+    denominator handling difference.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/report/bootstrap_crossval_report.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:46:41.184183+00:00'
+  tags:
+  - bootstrap
+  - cross-validation
+  - eval
+  - parse-failure
+- id: art_20260522_7c65fb
+  name: vLLM guided_json GCD-equivalent comparison
+  type: report
+  description: 'Comparison table showing vLLM guided_json ≈ Grammar-Only ablation
+    on SciERC zero-shot: DR=15.26% vs 14.84%, RV=0%=0%, ET=0%=0%, CF=0.04% vs 0.08%,
+    E-F1=30.91 vs 30.98, R-F1=8.75 vs 8.23. All within noise.'
+  path: projects/schema_semantic_constrained_ie/artifacts/vllm_guided_json_scierc_zs/report/vllm_guided_json_comparison.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: vllm_guided_json_scierc_zs
+  skill: ''
+  created_at: '2026-05-22T13:30:28.231781+00:00'
+  tags:
+  - gcd
+  - vllm
+  - guided_json
+  - grammar-only
+  - scierc
+  - ablation
+- id: art_20260522_523cc9
+  name: appendix_power_analysis
+  type: paper
+  description: LaTeX appendix paragraph with power analysis table for WikiEvents n=20
+    (R19 reviewer response). Bootstrap CIs and MDE for all four evaluation settings.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_power_analysis_523cc9.tex
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:16:22.257955+00:00'
+  tags:
+  - paper
+  - appendix
+  - power-analysis
+  - wikievents
+  - rebuttal
+- id: art_20260522_b18566
+  name: beam4_tcr_qwen_scierc_output
+  type: data
+  description: Beam=4 + TCR reranking output on SciERC with Qwen3-8B LoRA. 551 samples,
+    all candidates TCR=1.0, TCR never changed selection. DR=1.84%, E-F1=67.26, R-F1=44.24.
+    File on westd-16980:/root/schema_semantic_constrained_ie/outputs/beam4_tcr_qwen_scierc.jsonl
+  path: projects/schema_semantic_constrained_ie/artifacts/tcr_beam4_qwen_scierc/data/beam4_tcr_qwen_scierc_meta.txt
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: tcr_beam4_qwen_scierc
+  skill: ''
+  created_at: '2026-05-22T15:38:09.075792+00:00'
+  tags:
+  - tcr
+  - beam-search
+  - scierc
+  - qwen
+  - negative-result
+- id: art_20260523_483b91
+  name: fig1_paperbanana_v3
+  type: chart
+  description: 'Paper Banana 生成的 Figure 1 (v3): OntoCoDec 三面板架构图 — Schema Compilation
+    / Runtime Constrained Decoding / Token Masking & Fallback。内容正确，Gemini 2.5 Flash
+    + Imagen 3 Pro 生成。'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/fig1_paperbanana_v3.png
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-23T09:00:09.484720+00:00'
+  tags:
+  - figure1
+  - paper-banana
+  - architecture-diagram
+- id: art_20260523_207bc8
+  name: fig1_paperbanana_v4
+  type: chart
+  description: 'Paper Banana Figure 1 v4 (premium): OntoCoDec 三面板架构图，低饱和度配色（steel
+    blue/teal/warm gray），虚线面板分隔，数据库形 Entity Registry，菱形 Intersection 节点。Gemini 2.5
+    Flash + Imagen 3 Pro。'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/fig1_paperbanana_v4.png
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-23T09:22:30.520664+00:00'
+  tags:
+  - figure1
+  - paper-banana
+  - architecture-diagram
+  - premium
+- id: art_20260523_a881fb
+  name: fig1_paperbanana_v5
+  type: chart
+  description: 'Paper Banana Figure 1 v5 (visual refinement): 纯白背景、低饱和度蓝/青/灰配色、虚线面板分隔和跨面板箭头、圆柱
+    Registry、菱形 Intersection。内容与 v4 完全一致，仅提升视觉品质。'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/fig1_paperbanana_v5.png
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-23T09:32:17.989343+00:00'
+  tags:
+  - figure1
+  - paper-banana
+  - architecture-diagram
+  - premium
+  - v5
+- id: art_20260523_c3144d
+  name: CF Cascade Error Analysis (ZS + FT SciERC S1)
+  type: data
+  description: First-seen type locking cascade error quantitative analysis for SF4
+    evidence. Analyzes 245 CF violations in Qwen ZS S1 and 21 in Qwen FT S1, classifying
+    each as cascade_error/correct_lock/both_wrong/no_gold_match with Generic involvement
+    breakdown.
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/data/cf_cascade_analysis_summary.md
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T09:51:36.518563+00:00'
+  tags:
+  - sf4
+  - cf_violation
+  - first_seen
+  - rebuttal
+  - evidence
+- id: art_20260525_4b0052
+  name: OntoCoDec_EMNLP2026_final_v2
+  type: paper
+  description: EMNLP 2026 ARR submission PDF - Related Work/Background/Conclusion
+    compressed, 8 pages main text, 0 errors
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/main_4b0052.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T08:16:12.095505+00:00'
+  tags:
+  - emnlp2026
+  - submission
+  - final
+- id: art_20260525_f268c4
+  name: fig_scale_dependency_v3_diagonal_arrow
+  type: chart
+  description: 'Figure 3: Scale-dependent layer interaction (diagonal arrow version)
+    — monochromatic blue, arrow from (0.38,32) to (0.62,78), "3.5×" label left of
+    arrow'
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/chart/fig_scale_dependency.png
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T11:10:22.891037+00:00'
+  tags:
+  - figure3
+  - scale-dependency
+  - monochromatic-blue
+  - diagonal-arrow
+- id: art_20260525_a51601
+  name: paper_final_20260525
+  type: paper
+  description: OntoCoDec 最终 PDF（数据审计 6 项修正后编译），EMNLP 2026 ARR 提交版，39页，主文8页
+  path: projects/schema_semantic_constrained_ie/artifacts/_project/paper/paper_final_20260525.pdf
+  url: null
+  project: schema_semantic_constrained_ie
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:53:59.205837+00:00'
+  tags:
+  - emnlp2026
+  - final
+  - audit-fixed

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa541e43535096aab213",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "analysis reward diag v2",
+  "task_key": "worker_analysis_reward_diag_v2_20260513T031210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reward_diag_v2_20260513T031210_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "bf690617c51c8580ba0b87f6b8be29a4f437fc7f7622d8112e6779fd469f12ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## reward_diag_v2 结果汇报\n\n### v1 vs v2 对比表\n\n| 分量 | v1 mean | v1 std | v2 mean | v2 std | 变化 |\n|------|---------|--------|---------|--------|------|\n| Composite (0.4p+0.4s+0.2f) | 0.646 | 0.136 | 0.647 | 0.138 | ≈不变 |\n| Provenance Fidelity | 0.547 | 0.172 | 0.546 | 0.173 | ≈不变 |\n| Structural F1 | 0.569 | 0.223 | 0.571 | 0.226 | ≈不变 |\n| Format Compliance | 1.000 | 0.000 | 1.000 | 0.000 | 不变 |\n\n### 关键结论\n\n**Provenance std = 0.173 >> 0.05，未饱和。** 三个有效分量（provenance, structural）在 v5 输出上的分布与 v4 几乎完全一致。\n\n这意味着：\n- v4→v5 的 AP 提升（0.51→0.95）主要是**格式修复**（thinking mode 污染消除），reward 函数对内容质量的评分本身没有受模板问题影响\n- **grpo_pilot_v2 的 weight 配置可以沿用原方案**：format_weight=0.05（已饱和），provenance/structural 各 0.475\n- GRPO 有充足的学习信号——composite top10-bottom10 gap = 0.489，provenance gap = 0.647，structural gap = 0.772"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reward-diag-v2.md"
+}

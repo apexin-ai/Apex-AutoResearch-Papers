@@ -1,0 +1,68 @@
+% ARR Responsible NLP Research Checklist
+% Sections A--E, per https://aclrollingreview.org/responsibleNLPresearch/
+
+\section*{Responsible NLP Research Checklist}
+
+\subsection*{A \hspace{0.5em} For Every Submission}
+
+\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=2.5em]
+\item \textbf{Did you describe the limitations of your work?}
+\\ Yes. See the Limitations section (after \S7), which covers constraint scope (CF trade-off, residual DR decomposition), evaluation coverage (model scales, decoding configurations), and engineering considerations (scalability bounds, tokenizer dependency).
+
+\item \textbf{Did you discuss any potential risks of your work?}
+\\ Yes. See the Ethics Statement. The method operates on model outputs using publicly available datasets with no PII. Constrained decoding does not introduce new privacy or safety risks beyond those of base LMs.
+
+\item \textbf{Do the abstract and introduction summarize the paper's main claims?}
+\\ Yes. The abstract states three main contributions; \S1 elaborates each with supporting evidence and section pointers.
+\end{enumerate}
+
+\subsection*{B \hspace{0.5em} Did you use or create scientific artifacts?}
+Yes. We use existing datasets (SciERC, DocRED, WikiEvents), pre-trained models (Qwen3-8B, Llama-3.1-8B, Mistral-7B, Llama-3.1-70B), and software libraries (XGrammar, vLLM, PEFT).
+
+\begin{enumerate}[label=\textbf{B\arabic*.},leftmargin=2.5em]
+\item \textbf{Did you cite the creators of artifacts you used?}
+\\ Yes. All datasets, models, and libraries are cited in \S2, \S5, and Appendix~\ref{app:reproducibility}.
+
+\item \textbf{Did you discuss the license or terms for use and/or distribution of any artifacts?}
+\\ Yes. SciERC (Apache 2.0), DocRED (MIT), WikiEvents (publicly released by \citet{li2021document}). Model licenses are noted in Appendix~\ref{app:reproducibility}.
+
+\item \textbf{Did you discuss if your use of existing artifacts was consistent with their intended use?}
+\\ Yes. All datasets are used for their intended NLP evaluation purpose. Pre-trained models are used for inference and fine-tuning, consistent with their release terms.
+
+\item \textbf{Did you discuss the steps taken to check whether the data contains information that names or uniquely identifies individual people or offensive content?}
+\\ N/A. We use established public benchmarks that have undergone prior review. No new data was collected.
+
+\item \textbf{Did you provide documentation of the artifacts?}
+\\ Yes. Dataset statistics (relation/entity type counts, document counts, constraint tightness) are reported in \S2, \S5, and Appendix~\ref{app:wikievents}.
+
+\item \textbf{Did you report relevant statistics like the number of examples, details of train/test/dev splits, etc.?}
+\\ Yes. SciERC: 551 test documents (\S\ref{sec:scierc-results}). DocRED: 998 dev documents (\S\ref{sec:docred-results}). WikiEvents: 246 documents (full corpus for zero-shot; 194/20/20 split for fine-tuning; \S\ref{sec:wikievents}).
+\end{enumerate}
+
+\subsection*{C \hspace{0.5em} Did you run computational experiments?}
+Yes.
+
+\begin{enumerate}[label=\textbf{C\arabic*.},leftmargin=2.5em]
+\item \textbf{Did you report the number of parameters in the models used, the total computational budget, and computing infrastructure used?}
+\\ Yes. Model sizes (7B--70B) in \S5. GPU infrastructure, LoRA configuration, and runtime overhead in \S\ref{sec:runtime} and Appendix~\ref{app:reproducibility}.
+
+\item \textbf{Did you discuss the experimental setup, including hyperparameter search and best-found hyperparameter values?}
+\\ Yes. LoRA rank, learning rate, training epochs, and batch size are reported in Appendix~\ref{app:reproducibility}. Prompt templates are in Appendix~\ref{app:prompts}.
+
+\item \textbf{Did you report descriptive statistics about your results?}
+\\ Yes. Bootstrap significance tests ($p$-values, 10{,}000 iterations) are reported for key comparisons (\S\ref{sec:scierc-results}, \S\ref{sec:docred-results}). Tables report F1, precision, recall, and violation rates across all configurations.
+
+\item \textbf{If you used existing packages, did you report the implementation, model, and parameter settings used?}
+\\ Yes. XGrammar (grammar-constrained decoding), vLLM (inference engine), PEFT/LoRA (fine-tuning) are cited with version information in Appendix~\ref{app:reproducibility}.
+\end{enumerate}
+
+\subsection*{D \hspace{0.5em} Did you use human annotators or research with human subjects?}
+No. All evaluations are automatic. No human annotation or human subjects research was conducted.
+
+\subsection*{E \hspace{0.5em} Did you use AI assistants (e.g., ChatGPT, Copilot) in your research, coding, or writing?}
+Yes.
+
+\begin{enumerate}[label=\textbf{E\arabic*.},leftmargin=2.5em]
+\item \textbf{Did you include information about your use of AI assistants?}
+\\ Yes. Claude (Anthropic) was used for code development assistance and manuscript drafting. All experimental results, analyses, and scientific claims were independently verified by the authors.
+\end{enumerate}

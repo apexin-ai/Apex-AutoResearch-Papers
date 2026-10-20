@@ -1,0 +1,33 @@
+% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)
+
+\section{Per-Relation Violation Analysis (Llama-3.1-8B)}\label{app:llama-per-relation}
+
+Table~\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under S1 constraints.
+The Llama baseline exhibits an RV rate of 16.03\%, substantially lower than Qwen's 29.66\%, which indicates stronger baseline vocabulary compliance.
+S1 completely eliminates RV violations and reduces the residual DR rate to 2.55\% (418/16{,}368 triples), with only three relations exceeding 10\%.
+
+\begin{table}[h]
+\centering
+\caption{Top 10 per-relation DR violation rates for Llama-3.1-8B on DocRED under S1 constraints. Relations with $>$20 triples and 0\% DR (e.g., P131, P206, P361, P170, P86) are omitted.}
+\label{tab:llama-per-relation-dr}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Relation & PID & Triples & DR Violations & DR Rate (\%) \\
+\midrule
+dissolved/demolished & P576 & 73 & 24 & 32.9 \\
+followed by          & P156 & 117 & 24 & 20.5 \\
+unemployment rate    & P1198 & 15 & 3 & 20.0 \\
+end time             & P582 & 130 & 21 & 16.2 \\
+instance of          & P31  & 290 & 37 & 12.8 \\
+product/material produced & P1056 & 98 & 11 & 11.2 \\
+location of formation & P740 & 81 & 8 & 9.9 \\
+head of state        & P35  & 41  & 3  & 7.3 \\
+applies to jurisdiction & P1001 & 637 & 45 & 7.1 \\
+conflict             & P607 & 453 & 30 & 6.6 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Compared with Qwen, which retains a 10.21\% residual DR under S1 concentrated in P1198 (83\% fallback) and P171 (78\% fallback), Llama's residual DR on the same relations is markedly lower (P1198 reaches only 20.0\%) and no relation-level fallback concentration comparable to Qwen is observed.
+The substantially lower residual DR for Llama (2.55\% vs.\ Qwen's 10.21\%) on the same ontology confirms that constraint tightness alone does not determine enforcement effectiveness: the model's baseline vocabulary compliance (RV) modulates the fraction of triples eligible for semantic-layer enforcement.

@@ -1,0 +1,75 @@
+paper_key: "itergen"
+title: "IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking"
+venue: "ICLR 2025"
+full_text_available: false
+
+research:
+  baselines: [Synchromesh, SGLang, Outlines, PICARD, standard unconstrained LLM]
+  metrics:
+    - {name: "Execution Accuracy", direction: "higher_better"}
+    - {name: "Privacy Leakage Rate", direction: "lower_better"}
+    - {name: "Validity Rate", direction: "higher_better"}
+  datasets:
+    - {name: "Spider", size: "text-to-SQL"}
+    - {name: "Vega-Lite generation", size: "visualization spec"}
+    - {name: "Privacy benchmark", size: "PII detection"}
+  ablation_dimensions: [backtracking_strategy, KV_cache_management, grammar_types]
+  training_recipe:
+    optimizer: "N/A (inference-time library)"
+    lr: "N/A"
+    hardware: "standard GPU inference"
+  method_family: "Grammar-guided generation with backtracking and KV cache state management"
+
+positioning:
+  core_claim: "现有约束解码库只能左到右生成，IterGen 支持基于语法符号的前进/回溯，允许生成过程中纠错"
+  key_results: "SQL 准确率提升；隐私泄露率降低；Vega-Lite 有效性提高"
+  limitations:
+    - "回溯增加推理延迟"
+    - "需要用户定义回溯策略（非全自动）"
+    - "KV cache 管理的内存开销"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "现有结构化生成库（Outlines, SGLang）只支持从左到右解码，无法纠正错误"
+  tension: "左到右约束解码是局部最优——早期错误会传播到整个序列"
+  key_insight: "引入 symbol-to-position mapping 和 KV cache 状态管理，使回溯高效可行"
+  argument_chain: "左到右局限 → 错误传播 → 需要回溯 → KV cache 管理使回溯高效 → 多任务验证"
+  contribution_framing: "3项贡献：IterGen 库、回溯机制、两个应用场景验证"
+  intro_structure: "5段：结构化生成背景→左到右局限→IterGen 方案→应用场景→贡献"
+  notable_technique: "用隐私泄露和 SQL 生成两个截然不同的应用展示通用性"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "IterGen 生成-回溯-重生成的迭代流程"
+    narrative_role: "展示与传统左到右解码的根本区别"
+    design_elements: ["前进/回溯箭头", "语法树", "KV cache 状态"]
+    visual_style: "流程图展示迭代过程"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "IterGen vs left-to-right baselines across tasks"
+      how_gain_highlighted: "accuracy 提升柱状对比"
+      design_note: "多任务统一展示"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (method) → application examples → result figures"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "tasks × metrics"
+    row_organization: "flat"
+    col_organization: "grouped_by_task"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 5
+    design_note: "跨任务展示回溯机制的通用优势"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "详细的回溯策略对比、延迟分析"
+    reason: "效率分析放附录"

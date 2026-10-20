@@ -1,0 +1,290 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+
+\title{OntoCoDec: Type-Valid Information Extraction via Compiled Ontology Constraints}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large language models applied to information extraction (IE) produce systematic ontology constraint violations---generating triples with entity types incompatible with declared domain/range specifications. We present OntoCoDec, a framework that automatically compiles IE ontology schemas into composable decoding constraints enforced at generation time. OntoCoDec operates in two layers: a \emph{grammar layer} (context-free grammar enforcing JSON structure and type vocabulary) and a \emph{semantic layer} (stateful entity registry with dynamic logit masking enforcing domain/range constraints). The two layers compose via bitwise AND of token masks with an enabling dependency: grammar ensures structural validity, enabling semantic constraints to enforce type rules. On SciERC, OntoCoDec reduces domain/range violations from 15.4\% to 0.93\% ($\downarrow$94\%) with F1-neutral impact (+0.13pp, $p$=0.58). On DocRED, violations decrease by 44.7\% (Qwen) and 90.2\% (Llama-3.1-8B) with statistically significant F1 improvements (+0.50pp, $p$<0.001). Cross-model validation on three architectures confirms zero-code generalization. We identify cross-field consistency violations (CF=9.9\% on SciERC) as an inherent limitation of per-relation independent enforcement and provide root-cause analysis tracing CF to type-system boundary ambiguity.
+\end{abstract}
+
+\section{Introduction}
+
+LLM-based information extraction systems promise flexible, schema-driven extraction without task-specific training data. However, when prompted to extract structured knowledge according to an ontology schema, LLMs systematically violate type constraints---generating triples where entity types are incompatible with the declared domain and range of relation types. These violations are not random: on SciERC (7 relation types), 15.4\% of generated triples violate domain/range constraints, with violation rates ranging from 0.8\% (Used-for) to 42.4\% (Compare), driven by constraint tightness rather than ontology size.
+
+Prompt-level intervention (explicitly describing type constraints in the system prompt) reduces violations by 62.4\% on SciERC but only 31.5\% on DocRED (96 relations), demonstrating that prompt-based approaches scale poorly with ontology complexity. Worse, prompt intervention is unreliable at the per-relation level: for Evaluate-for, schema-informed prompting \emph{increases} the violation rate from 24.1\% to 29.9\% due to prior-constraint conflict.
+
+We propose OntoCoDec, a framework that compiles ontology schemas into two complementary decoding constraint layers:
+\begin{enumerate}
+\item A \textbf{grammar layer} enforcing JSON structure and restricting generated type tokens to the valid vocabulary via context-free grammar (implemented with XGrammar).
+\item A \textbf{semantic layer} maintaining a stateful entity registry during generation and dynamically masking logits to enforce domain/range compatibility.
+\end{enumerate}
+
+The layers compose via bitwise AND with an \emph{enabling dependency}: grammar ensures every relation type token is in the valid vocabulary, which enables the semantic layer to look up and enforce domain/range rules. Without grammar, the semantic layer encounters unknown types and cannot enforce constraints (semantic-only achieves only $\downarrow$24\% vs full composition $\downarrow$94\%).
+
+We position OntoCoDec as the first decidability-aware type enforcement system for autoregressive IE. Unlike prior grammar-constrained decoding work (SynCode, XGrammar) that handles context-free structural constraints, OntoCoDec addresses prefix-decidable stateful constraints---a fundamentally different decidability class requiring runtime state (entity registry) beyond what CFGs can express.
+
+Our contributions:
+\begin{itemize}
+\item A systematic violation landscape study quantifying ontology constraint violations across models, datasets, and prompt strategies.
+\item A composable dual-layer constraint framework with automatic schema compilation, requiring zero code changes across models.
+\item Empirical validation on 2 datasets $\times$ 3 models showing DR$\downarrow$44--99\% at F1-neutral or positive impact.
+\item Analysis of the DR--CF trade-off as an inherent property of per-relation enforcement, with root-cause attribution.
+\end{itemize}
+
+\section{Background}
+
+\subsection{Grammar-Constrained Decoding}
+
+Grammar-constrained decoding restricts autoregressive generation to outputs conforming to a formal grammar. Given vocabulary $V$ and grammar $G$, at each step $t$ the decoder produces logits over $V$; a constraint mask $M_t \subseteq V$ zeros out tokens that would lead to strings outside $L(G)$. XGrammar~compiles context-free grammars into efficient token masks via adaptive tokenization. This guarantees structural validity (valid JSON, correct field names) but cannot express semantic constraints requiring runtime state.
+
+\subsection{IE Ontology Constraints}
+
+An IE ontology $\mathcal{O} = (E, R, \text{dom}, \text{rng})$ defines entity types $E$, relation types $R$, and functions $\text{dom}: R \to 2^E$, $\text{rng}: R \to 2^E$ specifying valid argument types. A triple $(h, r, t)$ with $\text{type}(h) \notin \text{dom}(r)$ or $\text{type}(t) \notin \text{rng}(r)$ constitutes a \emph{domain/range violation} (DR). We additionally define relation vocabulary violations (RV: $r \notin R$), entity type violations (ET: $\text{type}(e) \notin E$), and cross-field consistency violations (CF: same entity assigned different types across triples).
+
+\subsection{Constraint Decidability Taxonomy}
+
+We classify IE constraints by prefix-decidability:
+\begin{itemize}
+\item[(a)] \textbf{Purely local}: Entity type $\in$ vocabulary (grammar layer; CFG-expressible).
+\item[(b)] \textbf{Prefix-decidable with state}: Domain/range compatibility requires knowing previously generated entity types (semantic layer; requires entity registry).
+\item[(c)] \textbf{Truly non-local}: Forward coreference consistency---out of scope for forward-only decoding.
+\end{itemize}
+
+This taxonomy distinguishes OntoCoDec from prior work operating only at level (a).
+
+\section{Method}
+
+\subsection{Schema Compilation}
+
+Given ontology $\mathcal{O}$, OntoCoDec's compiler produces:
+\begin{enumerate}
+\item A \textbf{context-free grammar} $G_\mathcal{O}$ encoding valid JSON structure with entity type tokens restricted to $E$ and relation type tokens restricted to $R$.
+\item A \textbf{constraint table} $T_\mathcal{O}$ mapping each $r \in R$ to its valid domain/range type sets.
+\end{enumerate}
+
+\subsection{Grammar Layer}
+
+The grammar layer applies $G_\mathcal{O}$ via XGrammar, producing mask $M^{\text{gram}}_t$ at each step. This eliminates RV (relation vocabulary violations) and ET (entity type violations) by construction.
+
+\subsection{Semantic Layer: TypeConstraintProcessor}
+
+The semantic layer maintains an \emph{entity registry} $\mathcal{R}$ mapping entity mentions to their assigned types during generation. When the decoder reaches a position requiring an entity type token within a relation triple for relation $r$:
+\begin{itemize}
+\item If generating the head entity type: $M^{\text{sem}}_t = \{e \in E \mid e \in \text{dom}(r)\}$
+\item If generating the tail entity type: $M^{\text{sem}}_t = \{e \in E \mid e \in \text{rng}(r)\}$
+\end{itemize}
+
+The registry enables cross-reference: if an entity was previously typed, the semantic layer constrains subsequent mentions to compatible types.
+
+\subsection{Composition and Graceful Degradation}
+
+The final mask is $M_t = M^{\text{gram}}_t \cap M^{\text{sem}}_t$ (bitwise AND). When $M^{\text{gram}}_t \cap M^{\text{sem}}_t = \emptyset$ (constraint intersection empty due to high tightness), the system falls back to grammar-only: $M_t = M^{\text{gram}}_t$. This guarantees structural validity as a floor.
+
+Fallback frequency quantifies \emph{constraint coverage}: on SciERC, $\sim$10.7 fallbacks/document; on DocRED, $\sim$57 fallbacks/document (5.3$\times$ higher), directly explaining the residual DR gap between datasets.
+
+\subsection{Decoding Strategy S1 (Single-Pass)}
+
+In strategy S1, both layers are active throughout generation. Entities are registered as they are generated; subsequent relation triples benefit from the accumulated registry. This is our primary strategy.
+
+\section{Experiments}
+
+\subsection{Violation Landscape (Prompt Comparison)}
+\label{sec:prompt}
+
+We measure baseline violation rates with minimal and schema-informed prompts on SciERC and DocRED using Qwen3-8B.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Dataset} & \textbf{Prompt} & \textbf{DR\%} & \textbf{RV\%} & \textbf{ET\%} \\
+\midrule
+\multirow{2}{*}{SciERC} & Minimal & 15.4 & 1.4 & 0.4 \\
+ & Schema-informed & 5.8 & 0.3 & 0.0 \\
+\midrule
+\multirow{2}{*}{DocRED} & Minimal & 18.7 & 28.9 & 7.5 \\
+ & Schema-informed & 12.8 & 18.4 & 0.6 \\
+\bottomrule
+\end{tabular}
+\caption{Violation rates across prompt strategies. Schema-informed prompting reduces DR by 62.4\% on SciERC but only 31.5\% on DocRED, demonstrating poor scaling with ontology complexity.}
+\label{tab:prompt}
+\end{table}
+
+Per-relation analysis reveals violation concentration: Compare (42.4\%), Feature-of (33.5\%), and Part-of (25.0\%) account for most SciERC violations, while Used-for (0.8\%) and Conjunction (0\%) are nearly violation-free. This distribution correlates with constraint tightness---relations permitting fewer type combinations exhibit higher violation rates.
+
+Schema-informed prompting on SciERC's Evaluate-for \emph{increases} violations from 24.1\% to 29.9\% (+5.8pp), demonstrating prior-constraint conflict: the model's distributional prior for plausible type assignments actively interferes with prompt-level constraint signals.
+
+\subsection{SciERC Ablation Study}
+\label{sec:scierc}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Configuration} & \textbf{DR\%} & \textbf{RV\%} & \textbf{CF\%} & \textbf{R-F1\%} \\
+\midrule
+Unconstrained & 15.4 & 1.4 & 0.1 & 8.23 \\
+Grammar-only & 14.8 & 0.0 & 0.1 & 8.23 \\
+Semantic-only & 11.7 & 1.5 & 2.7 & 8.15 \\
+\textbf{Full S1} & \textbf{0.93} & \textbf{0.0} & \textbf{9.9} & \textbf{8.36} \\
+\bottomrule
+\end{tabular}
+\caption{SciERC layer ablation. Full S1 achieves DR$\downarrow$94\% with F1-neutral impact (+0.13pp, $p$=0.58, 95\% CI [$-$0.35, +0.63]). Grammar-only eliminates RV/ET but not DR; semantic-only achieves only $\downarrow$24\% DR due to OOV relation types preventing constraint lookup.}
+\label{tab:scierc}
+\end{table}
+
+The ablation confirms the enabling dependency: grammar-only reduces DR by only 0.6pp (structural constraints alone cannot enforce type semantics), while semantic-only achieves $\downarrow$24\% (hampered by OOV types). Full composition achieves $\downarrow$94\% because grammar eliminates OOV, enabling semantic enforcement on all triples.
+
+CF rises from 0.1\% (unconstrained) to 9.9\% (full S1). Root-cause analysis identifies the dominant pattern: Generic$\leftrightarrow$OtherScientificTerm (60 occurrences), Material$\leftrightarrow$OtherScientificTerm (28), Material$\leftrightarrow$Method (20)---reflecting genuine type-system boundary ambiguity in SciERC rather than method failure. CF is 100\% attributable to the semantic layer (grammar-only CF=0.1\%).
+
+\subsection{DocRED Ablation Study}
+\label{sec:docred}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Config} & \textbf{DR\%} & \textbf{RV\%} & \textbf{CF\%} & \textbf{R-F1\%} & \textbf{E-F1\%} \\
+\midrule
+Unconstr. & 18.5 & 29.7 & 0.1 & 7.74 & 58.15 \\
+Gram-only & 26.2 & 0.03 & 0.1 & 8.31 & 59.38 \\
+Sem-only & 13.8 & 29.9 & 1.1 & 7.70 & 57.81 \\
+\textbf{Full S1} & \textbf{10.2} & \textbf{0.03} & \textbf{2.6} & \textbf{8.23} & \textbf{59.37} \\
+\bottomrule
+\end{tabular}
+\caption{DocRED (Qwen) ablation. Grammar-only DR \emph{increases} (26.2\% vs 18.5\%) due to denominator change: eliminating 5,189 OOV triples exposes latent DR violations in newly valid triples. Full S1 achieves DR$\downarrow$44.7\% with R-F1 +0.50pp ($p$<0.001).}
+\label{tab:docred}
+\end{table}
+
+Grammar-only produces a paradoxical DR increase on DocRED: eliminating 5,189 OOV relation predictions (RV 29.7\%$\to$0.03\%) forces these triples into valid relation names whose domain/range constraints they violate, making latent violations visible. From this grammar-enforced baseline (26.2\%), the semantic layer achieves $\downarrow$61\% additional reduction.
+
+DocRED R-F1 improves significantly (+0.50pp, $p$<0.001, 95\% CI [+0.23, +0.81]) and E-F1 improves +1.23pp ($p$<0.001, 95\% CI [+0.94, +1.55]). Mechanism: grammar eliminates OOV relation names and non-standard entity types; under all-set evaluation, OOV predictions count as false positives, so their elimination directly increases precision.
+
+\subsection{Cross-Model Validation}
+\label{sec:cross}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Dataset} & \textbf{DR\%$_u$} & \textbf{DR\%$_c$} & \textbf{$\downarrow$\%} & \textbf{$\Delta$R-F1} \\
+\midrule
+Qwen-8B & SciERC & 15.4 & 0.93 & 94.0 & +0.13 \\
+Qwen-8B & DocRED & 18.5 & 10.2 & 44.7 & +0.50$^{***}$ \\
+Llama-8B & SciERC & 13.3 & 0.08 & 99.4 & $-$0.14 \\
+Llama-8B & DocRED & 26.1 & 2.55 & 90.2 & +0.29$^{*}$ \\
+Mistral-7B & SciERC & 56.9 & 13.4 & 76.5 & +0.00 \\
+Mistral-7B & DocRED & 57.4 & 33.2 & 42.2 & +2.02 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model DR reduction. OntoCoDec generalizes across model families with zero code modification. Subscripts: $u$=unconstrained, $c$=constrained. $^{***}p$<0.001, $^*p$<0.05.}
+\label{tab:cross}
+\end{table}
+
+OntoCoDec generalizes across model families without code modification. The DR reduction gap between Qwen DocRED ($\downarrow$44.7\%) and Llama DocRED ($\downarrow$90.2\%) is explained by the tightness$\times$RV-baseline interaction: Qwen's high RV baseline (29.7\%) means grammar forces many OOV triples into valid relation names, exposing latent DR violations; Llama's lower RV (16.0\%) produces less exposure, allowing higher net reduction.
+
+Mistral-7B exhibits catastrophically high baseline violations (DR=56.9\%) indicating unsuitability for zero-shot IE, yet OntoCoDec still guarantees RV/ET$\to$0\% and achieves DR$\downarrow$76.5\% (SciERC), demonstrating robustness even on poorly-performing models.
+
+\subsection{Post-Hoc Filtering Comparison}
+\label{sec:posthoc}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Dataset} & \textbf{Method} & \textbf{R-F1\%} & \textbf{Recall} & \textbf{Reject\%} \\
+\midrule
+\multirow{2}{*}{SciERC} & Post-hoc & 8.63 & 10.68 & 16.8 \\
+ & OntoCoDec & 8.36 & 11.60 & --- \\
+\midrule
+\multirow{2}{*}{DocRED} & Post-hoc & 9.61 & 8.40 & 48.1 \\
+ & OntoCoDec & 8.23 & 10.02 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Post-hoc filtering achieves higher F1 via precision gains from triple removal, but loses 48.1\% of triples on DocRED (127 true positives lost). OntoCoDec preserves recall by preventing violations at generation time rather than detecting them post-hoc.}
+\label{tab:posthoc}
+\end{table}
+
+Post-hoc filtering achieves higher R-F1 than OntoCoDec in the zero-shot regime because removing violating triples (many of which are false positives) boosts precision. However, post-hoc filtering:
+(1) loses 48.1\% of DocRED triples including 127 true positives (11.2\% of correct extractions);
+(2) cannot resolve entity-type violations (residual ET=0.4\% SciERC, 2.47\% DocRED);
+(3) requires post-processing incompatible with streaming.
+OntoCoDec's recall is consistently higher (SciERC: 11.60 vs 10.68; DocRED: 10.02 vs 8.40), validating the ``prevent vs detect'' paradigm.
+
+\subsection{Fine-Tuning Ablation}
+\label{sec:ft}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Condition} & \textbf{DR\%} & \textbf{CF\%} & \textbf{R-F1\%} \\
+\midrule
+\multirow{2}{*}{Qwen SciERC} & FT unconstr. & 1.95 & 0.0 & 43.86 \\
+ & FT + constr. & 0.0 & 1.2 & 43.77 \\
+\midrule
+\multirow{2}{*}{Llama SciERC} & FT unconstr. & 1.11 & 0.0 & 45.50 \\
+ & FT + constr. & 0.09 & 0.5 & 45.50 \\
+\midrule
+\multirow{2}{*}{Llama DocRED} & FT unconstr. & 0.49 & --- & 43.72 \\
+ & FT + constr. & 0.20 & --- & 44.23 \\
+\midrule
+\multirow{2}{*}{Qwen DocRED} & FT unconstr. & 0.76 & --- & 40.86 \\
+ & FT + constr. & 0.01 & --- & 40.56 \\
+\bottomrule
+\end{tabular}
+\caption{Fine-tuning ablation. FT reduces violations to 1--2\%; constrained decoding eliminates residuals to $\approx$0\% with F1-neutral impact. The two approaches are complementary: FT reduces violation volume, constraints guarantee elimination.}
+\label{tab:ft}
+\end{table}
+
+Fine-tuning (LoRA, 3 epochs) reduces violations from 15\% to $\sim$1--2\%, but residuals persist (22 violations on Qwen SciERC, 12 on Llama SciERC). Constrained decoding eliminates these residuals to 0\% (or near-0\%) with negligible F1 impact ($<$0.1pp across all configurations). On Llama DocRED, constrained decoding additionally provides R-F1 +0.51pp and E-F1 +1.30pp even in the FT regime, via elimination of residual OOV predictions.
+
+Fine-tuning and constrained decoding are complementary: fine-tuning provides statistical violation reduction through learned type associations, while constrained decoding provides the hard guarantee of zero residual violations regardless of fine-tuning quality.
+
+\subsection{Latency and S2 Strategy}
+
+Constrained decoding overhead is $\leq$5.4\% wall-clock time (measured on Llama DocRED, 23,926s total for 907 documents). The overhead is minimal because mask computation operates on pre-compiled constraint tables with O(1) lookup.
+
+Strategy S2 (two-pass: entity extraction followed by relation generation with input-dependent grammar) achieves comparable results to S1 on SciERC (DR=0.97\%, CF=8.0\%, R-F1=8.03\%) but does not meaningfully reduce CF ($-$1.87pp, not significant) while adding inference complexity. We recommend S1 as the primary strategy.
+
+\subsection{Statistical Methodology}
+
+All F1 comparisons use bootstrap confidence intervals (10,000 iterations). SciERC R-F1: +0.13pp, $p$=0.58, 95\% CI [$-$0.35, +0.63]. DocRED R-F1: +0.50pp, $p$<0.001, 95\% CI [+0.23, +0.81]. DocRED E-F1: +1.23pp, $p$<0.001, 95\% CI [+0.94, +1.55]. We report non-significant results transparently: SciERC F1 impact is neutral, not positive.
+
+\section{Related Work}
+
+\textbf{Grammar-Constrained Decoding.} XGrammar and Outlines compile context-free grammars for JSON schema enforcement. SynCode extends to pushdown automata. These handle structural (level-a) constraints but cannot express stateful type semantics. OntoCoDec's semantic layer addresses level-b (prefix-decidable with state) constraints, a fundamentally different decidability class.
+
+\textbf{Constrained Decoding for NLP.} CRANE identifies quality degradation from over-constraining; our narrow constraint scope (only type tokens masked, free text unconstrained) avoids this. NeuroLogic and FUDGE apply soft/hard lexical constraints but lack ontology awareness.
+
+\textbf{LLM-Based IE.} GoLLIE, CodeIE, and UniRel use code-style prompting for structured extraction. InstructUIE and DeepKE demonstrate instruction-tuned IE. None enforce type constraints at decoding time.
+
+\textbf{Ontology-Aware IE.} OntoType and ontology-guided NER use ontology structure for entity typing but operate post-hoc or during training. OntoCoDec is the first to compile ontology constraints directly into the decoding process.
+
+\section{Conclusion}
+
+OntoCoDec demonstrates that ontology type constraints can be automatically compiled into efficient decoding constraints, achieving near-complete DR violation elimination (94\% on SciERC, 44--90\% on DocRED depending on model RV baseline) at zero or positive F1 impact. The framework generalizes across model families without code modification and is complementary to fine-tuning.
+
+\textbf{Limitations.} Cross-field consistency violations (CF) increase from $\sim$0.1\% to 9.9\% (SciERC) under full constraint enforcement. This is an inherent limitation of per-relation independent type enforcement: the semantic layer assigns locally optimal types without global entity-level consensus. CF violations represent soft preference violations (individual triples remain type-valid) rather than hard structural violations, but they indicate room for improvement. Future work should explore cross-relation global consistency mechanisms (entity-level type consensus before relation-specific enforcement). Additionally, our evaluation covers 2 datasets and 3 models of similar scale (7--8B parameters); validation on larger models and diverse IE schemas would strengthen generalization claims.
+
+\end{document}

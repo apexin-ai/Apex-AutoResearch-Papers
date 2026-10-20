@@ -1,0 +1,36 @@
+% Section 7 — Conclusion
+% Data source: Phase 2 SciERC registry experiments + Phase 0 DocRED
+% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
+%          phase0_scierc_unconstrained, phase0_docred_unconstrained
+% All numbers verified against registry 2026-05-14.
+
+We presented OntoCoDec, a framework that automatically compiles IE ontology schemas into token-level decoding constraints to enforce type validity at generation time.
+Our work makes three contributions.
+
+First, we conducted the first systematic study of ontological constraint violations in LLM-based IE (\S\ref{sec:violation_landscape}).
+Across two benchmarks with substantially different ontology sizes---SciERC (7~relations) and DocRED (96~relations)---we found that domain/range violation rates are comparable (15.37\% vs.\ 18.70\%), % exp_ids: phase0_scierc_unconstrained, phase0_docred_unconstrained
+indicating that violation severity is driven by \emph{constraint tightness} (valid type pairs per relation) rather than ontology scale.
+
+Second, we introduced a two-layer constraint architecture that decomposes ontological enforcement into complementary mechanisms:
+a \emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\,$\to$\,0\%) and a \emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only
+The grammar layer serves as an enabling prerequisite for the semantic layer; the two compose via bitwise AND over candidate token sets.
+
+Third, we validated OntoCoDec empirically.
+On SciERC, the full system reduces domain/range violations from 15.37\% to 0.93\%---a 94\% relative reduction---while completely eliminating RV and ET violations, with no significant impact on relation F1 ($+$0.13 percentage points, $p > 0.05$). % exp_id: phase2_scierc_full_s1
+\placeholder{DocRED DR result: unconstrained DR=18.70\% $\to$ full system DR=??\%, with RV 28.90\%$\to$??\% and ET 7.50\%$\to$??\%.}
+
+\paragraph{Limitations.}
+Several limitations qualify these findings.
+The semantic layer introduces cross-field consistency (CF) violations: CF rises from 0.08\% under unconstrained decoding to 9.90\% with full constraints. % exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1
+This is a systematic consequence of per-relation independent type enforcement---when the same entity appears across multiple triples, each relation's domain/range constraint may assign it a different type, producing entity-versus-relation type drift.
+The grammar layer alone does not elevate CF (0.08\%, matching the unconstrained baseline), confirming that CF is entirely attributable to the semantic layer. % exp_id: phase2_scierc_grammar_only
+Resolving this cross-relation type coherence problem is an open challenge, not a trivial implementation fix.
+Beyond CF, all experiments use a single model (Qwen3-8B); while the constraint compiler is model-agnostic by design, cross-model validation remains incomplete.
+Results are reported on two datasets under zero-shot prompting only, and integration with fine-tuned models has not been explored.
+
+\paragraph{Future Work.}
+We identify four directions.
+(1)~Cross-model validation on architectures such as Llama-3.1-8B and quantized 70B-class models to verify model-agnostic generalization.
+(2)~Global entity-level type consensus during decoding---maintaining a shared entity registry across all relations within an instance---to resolve CF violations.
+(3)~Integration with fine-tuned models, combining constraint-aware training objectives with decoding-time enforcement.
+(4)~Extension to non-English ontologies to evaluate cross-lingual applicability.

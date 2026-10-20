@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5097f2df38f85b90a2cf",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "check v2 checkpoint50 status",
+  "task_key": "worker_check_v2_checkpoint50_status_20260513T074357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_v2_checkpoint50_status_20260513T074357_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "fe6f1391803238ae2ec50933770c1fc34accf30c17de707573d6187094f1bbe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**grpo_pilot_v2 状态：**\n\n| 项目 | 状态 |\n|------|------|\n| 当前进度 | **Step 47/100** (47%), 已运行 2h10m，预计还需 ~2h15m |\n| checkpoint-50 | **未生成**，约 7-8 min 后到达 (≈152s/step) |\n| 最新指标 | reward=**0.763**, loss=0.107, kl=0.004, clipped_ratio=0.0 |\n| Watcher | 已启动，正在轮询等待 checkpoint-50 (attempt 2) |\n| GPU | GPU 0 空闲; **GPU 1 活跃** 63%, 35.8/95.6 GB |\n\n训练正常运行中，reward 从 step 46 的 0.689 上升到 step 47 的 0.763，趋势向好。checkpoint-50 预计约 7-8 分钟后生成，届时 watcher 会自动触发 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-v2-checkpoint50-status.md"
+}

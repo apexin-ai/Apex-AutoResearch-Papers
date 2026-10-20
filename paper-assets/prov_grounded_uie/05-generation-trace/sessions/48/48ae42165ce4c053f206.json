@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48ae42165ce4c053f206",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "diagnose dpo candgen cuda1",
+  "task_key": "worker_diagnose_dpo_candgen_cuda1_20260513T110104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_dpo_candgen_cuda1_20260513T110104_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "27a0fc14d79e3558f5bbad1bfc713a3c52391091e523c451c81b1281fd4ed814"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因明确：**参数名错误**。\n\n脚本接受的是 `--data_file`，但启动命令传的是 `--train_file`。同时 `--seed` 也不是合法参数。\n\n具体错误：\n```\ngenerate_dpo_candidates.py: error: unrecognized arguments: --train_file ./data/docred_train.jsonl --seed 42\n```\n\n**修复**：将启动命令中的 `--train_file` 改为 `--data_file`，删除 `--seed 42`：\n```bash\npython -u generate_dpo_candidates.py \\\n  --model_path ./outputs/sft/merged \\\n  --data_file ./data/docred_train.jsonl \\\n  --num_candidates 8 \\\n  --max_new_tokens 2048 \\\n  --top_k 20 \\\n  --top_p 0.95 \\\n  --device cuda:0 \\\n  --resume_from 0 \\\n  --max_samples 1514 \\\n  --output_file ./outputs/dpo_candidates_part1.jsonl\n```\n\n脚本在参数解析阶段就退出了（EXIT_CODE=2 = argparse 报错），没有进入模型加载或推理，因此**无部分产出**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-dpo-candgen-cuda1.md"
+}

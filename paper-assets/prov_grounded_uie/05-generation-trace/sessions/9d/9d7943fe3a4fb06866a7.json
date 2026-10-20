@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d7943fe3a4fb06866a7",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh grpo e2e test",
+  "task_key": "worker_ssh_grpo-e2e-test_20260512T220128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_grpo-e2e-test_20260512T220128_result.json",
+    "occurrence": 1,
+    "bytes": 2532,
+    "sha256": "4ae960ccbe42a0f98effb810d16c7b799bdc7b790f9290edfb6025cf16e846ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRPO Mini-batch 端到端验证报告\n\n### 1. 退出码\n**0**（成功完成 2 步训练，模型已保存）\n\n### 2. 完整输出（关键部分）\n```\nGRPO train samples: 5\nLoading checkpoint shards: 100%|██████████| 4/4\n  0%|          | 0/2 → 50%|█████ | 1/2 [00:06] → 100%|██████████| 2/2 [00:12]\n\n{'train_runtime': 14.63, 'train_loss': 0.0, 'num_tokens': 2446.0,\n 'completions/mean_length': 128.0, 'completions/clipped_ratio': 1.0,\n 'rewards/reward_fn/mean': 0.0, 'reward': 0.0, 'kl': 0.0, 'entropy': 0.022}\n\nGRPO model saved to /tmp/grpo_test/final\n```\n\n### 3. 验证项\n\n| 验证项 | 结果 | 说明 |\n|--------|------|------|\n| **vLLM generation** | **失败** | `torch 2.10.0 + vllm 0.17.1` 不兼容：`AssertionError: duplicate template name` (torch._inductor)。用 `--use_vllm False` 绕过，HF 原生 generation 正常 |\n| **Reward 函数** | **通过（但值为 0）** | 修复 `parse_json_output` 后不再 crash。reward 全为 0 是因为 `max_completion_length=128` 太短，100% 生成被截断，无法产出完整 JSON |\n| **OOM / Crash** | **无** | 2 步训练正常完成，模型保存成功（LoRA adapter 349MB） |\n\n### 4. Reward 值\n- `rewards/reward_fn/mean`: **0.0**\n- `reward_std`: **0.0**\n- `frac_reward_zero_std`: **1.0**（所有 prompt 的多次生成 reward 方差为 0，无学习信号）\n\n原因：`max_completion_length=128` 导致所有生成被截断（`clipped_ratio=1.0`），JSON 不完整，三个 reward 组件全返回 0。正式训练用 `max_completion_length=2048` 应正常。\n\n### 5. 过程中发现并修复的问题\n\n| 问题 | 修复 |\n|------|------|\n| `--model_path` 参数不存在 | 改用 `--sft_checkpoint` |\n| `--max_steps` 不在 GRPOArgs 中 | 已添加到 `config.py` + `train_grpo.py` |\n| `gradient_accumulation_steps=8` 导致 sampler 需要 ≥16 样本 | mini-batch 测试用 `--gradient_accumulation_steps 1` |\n| `parse_json_output` 不兼容 TRL 1.1.0 chat message 格式 | 已修复：支持 `list[dict]` 输入 |\n| vLLM + torch 2.10.0 不兼容 | 暂用 `--use_vllm False`，正式训练需升级 vllm 或降级 torch |\n\n### 6. 正式训练前需处理\n1. **vLLM 兼容性**：升级 `vllm` 或降级 `torch`（否则只能用 HF 原生 generation，速度慢很多）\n2. **`max_completion_length`**：正式训练设 2048\n3. 代码改动（`config.py`, `train_grpo.py`, `rewards.py`）已直接在服务器上修改，需同步回 git"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-grpo-e2e-test.md"
+}

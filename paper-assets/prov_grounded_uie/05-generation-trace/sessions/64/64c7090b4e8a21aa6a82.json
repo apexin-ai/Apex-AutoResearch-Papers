@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64c7090b4e8a21aa6a82",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code fix max length",
+  "task_key": "worker_code_fix-max-length_20260512T200802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-max-length_20260512T200802_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "6d0d632da26b3d1308646008874c56df5f25ce06f99a61dc38ff3576e1dca45b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — `eval_args` is already in scope where `max_prompt_length` is used. All edits are correct.\n\n**改动摘要：**\n\n| 文件 | 改动 |\n|------|------|\n| `config.py` | `EvalArgs` 新增 `max_prompt_length=4096` 字段 |\n| `evaluate.py` | tokenizer 调用 `max_length=2048` → `eval_args.max_prompt_length`（默认4096）；文件开头加 `PYTHONUNBUFFERED=1` |\n| `rerank_nli.py` | tokenizer 调用 `max_length=2048` → `eval_args.max_prompt_length`（默认4096）；文件开头加 `PYTHONUNBUFFERED=1` |\n\n**备注：** `GRPOArgs.max_prompt_length` 仍为 2048（line 70），这是 GRPO 训练的 prompt 长度限制，与本次评估截断修复无关，未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-max-length.md"
+}

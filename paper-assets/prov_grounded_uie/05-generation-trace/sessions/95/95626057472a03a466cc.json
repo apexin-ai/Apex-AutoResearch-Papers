@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95626057472a03a466cc",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "monitor grpo v2 log v2",
+  "task_key": "worker_monitor_grpo_v2_log_v2_20260513T073257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_grpo_v2_log_v2_20260513T073257_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "5ff44662acc319622e14a5825e0e07c5b0e55539dfd8629b200ec82551c237cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n当前 step: 43/100（进程运行 2h02m，仍在跑）\n\nStep 25-43 reward 均值: 0.69 (vs 前 24 步 0.67) → 持平，无上升趋势\n  Step 30-43 单看: 0.70，方差大（0.52-0.83），本质噪声\nKL 范围: 0.0008 - 0.0030 → 围绕 0.0017 震荡，未继续走高，已企稳\nLoss 异常: 已回落（step 24 的 0.909 → step 25 回到 0.372，之后正常波动 [-0.41, 0.28]）\nCompletion clipped: 均值 ~19%，但波动大（0-62.5%），未稳定在低位\n预计 step 50 到达: ~20 min 后\n预计 step 100 完成: ~2h40m 后\n```\n\n**结论：Reward 在 43 步内无学习信号。** 均值从 0.67→0.70 的微升完全在噪声范围内，没有持续上升趋势。KL 企稳是好消息，但 reward 平坦说明 GRPO 目前未产生有效的策略改进。Director 需决定是否等到 step 50 checkpoint 做 eval，还是提前终止调参。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-grpo-v2-log-v2.md"
+}

@@ -1,0 +1,75 @@
+{
+  "description": "Dual-factor quantitative analysis: tightness × baseline_RV explains residual DR variation across model-dataset configurations",
+  "source": "registry experiments (phase2_scierc_*, phase2_docred_*, llama_scierc_*, llama_docred_*) + docred_full_s1_dr_root_cause_analysis.md",
+  "date": "2026-05-15",
+  "tightness_definition": "avg_tightness = 1 - (avg_valid_pairs / max_possible_pairs), where max_possible_pairs = 36 (6×6 entity types)",
+  "baseline_RV_definition": "Relation Vocabulary violation rate (%) in unconstrained mode — fraction of triples with out-of-vocabulary relation names",
+  "residual_DR_definition": "Domain/Range violation rate (%) in full_s1 (grammar+semantic) mode",
+  "DR_reduction_pct_definition": "(baseline_DR - residual_DR) / baseline_DR × 100",
+  "configurations": [
+    {
+      "label": "Qwen SciERC",
+      "model": "Qwen3-8B",
+      "dataset": "SciERC",
+      "n_relations": 7,
+      "tightness": 0.333,
+      "baseline_RV_pct": 1.39,
+      "baseline_DR_pct": 15.37,
+      "residual_DR_pct": 0.93,
+      "DR_reduction_pct": 93.95,
+      "tightness_x_RV": 0.463,
+      "exp_ids": {
+        "unconstrained": "phase2_scierc_unconstrained",
+        "full_s1": "phase2_scierc_full_s1"
+      }
+    },
+    {
+      "label": "Qwen DocRED",
+      "model": "Qwen3-8B",
+      "dataset": "DocRED",
+      "n_relations": 96,
+      "tightness": 0.842,
+      "baseline_RV_pct": 29.66,
+      "baseline_DR_pct": 18.46,
+      "residual_DR_pct": 10.21,
+      "DR_reduction_pct": 44.69,
+      "tightness_x_RV": 24.974,
+      "exp_ids": {
+        "unconstrained": "phase2_docred_unconstrained",
+        "full_s1": "phase2_docred_full_s1"
+      }
+    },
+    {
+      "label": "Llama SciERC",
+      "model": "Llama-3.1-8B-Instruct",
+      "dataset": "SciERC",
+      "n_relations": 7,
+      "tightness": 0.333,
+      "baseline_RV_pct": 0.55,
+      "baseline_DR_pct": 13.34,
+      "residual_DR_pct": 0.08,
+      "DR_reduction_pct": 99.40,
+      "tightness_x_RV": 0.183,
+      "exp_ids": {
+        "unconstrained": "llama_scierc_unconstrained",
+        "full_s1": "llama_scierc_full_s1"
+      }
+    },
+    {
+      "label": "Llama DocRED",
+      "model": "Llama-3.1-8B-Instruct",
+      "dataset": "DocRED",
+      "n_relations": 96,
+      "tightness": 0.842,
+      "baseline_RV_pct": 16.03,
+      "baseline_DR_pct": 26.07,
+      "residual_DR_pct": 2.55,
+      "DR_reduction_pct": 90.22,
+      "tightness_x_RV": 13.497,
+      "exp_ids": {
+        "unconstrained": "llama_docred_unconstrained",
+        "full_s1": "llama_docred_full_s1"
+      }
+    }
+  ]
+}

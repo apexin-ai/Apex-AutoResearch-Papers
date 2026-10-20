@@ -1,0 +1,7 @@
+{
+  "description": "The figure will present a three-panel academic framework diagram, flowing horizontally from left to right, maintaining consistent spacing between panels and components for a clean, modular look. The overall canvas background is pure white. Each of the three main panels will have a distinct, slightly recessed appearance with a *very subtle, almost white, cool gray* background and gently rounded corners with a moderate radius. All text will be in a clean, professional sans-serif font, clearly readable, with mathematical variables rendered in an italicized serif style (LaTeX-like).\n\n**Panel 1: 'Schema Compilation'**\n*   **Panel Title:** Centered at the top of this panel, in a bold, clear sans-serif font: \"Schema Compilation\".\n*   **Panel Annotation:** Directly below the title,",
+  "critique": {
+    "critic_suggestions": [],
+    "revised_description": null
+  }
+}

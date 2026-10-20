@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ceb2abf82713821b79",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh grpo fix and test",
+  "task_key": "worker_ssh_grpo-fix-and-test_20260512T222414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_grpo-fix-and-test_20260512T222414_result.json",
+    "occurrence": 1,
+    "bytes": 2471,
+    "sha256": "fc854b9b270298bed84c8d8e020ade75eb8317c8d8d2073c245d6d8518b091c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "sft_eval_v4 (PID 40391) 正常运行，已跑 55 分钟。\n\n---\n\n## 完整报告\n\n### 1. 代码修改摘要\n\n**config.py** — 删除 9 行：\n- 移除 `use_vllm` (default=True)\n- 移除 `vllm_mode` (default=\"colocate\")\n- 移除 `vllm_gpu_memory_utilization` (default=0.5)\n- 移除 `vllm_enable_sleep_mode` (default=True)\n- 移除相关注释行\n- `bf16=True` 和 `gradient_checkpointing=True` 已正确，未改动\n\n**train_grpo.py** — 删除 5 行：\n- 从 `GRPOConfig(...)` 中移除 `use_vllm`, `vllm_mode`, `vllm_gpu_memory_utilization`, `vllm_enable_sleep_mode` 四个参数及注释\n- `bf16`, `torch_dtype: torch.bfloat16`, `gradient_checkpointing` 已正确，未改动\n\n### 2. Config 验证结果\n```\nbf16=True ✓\ngradient_checkpointing=True ✓\nhas use_vllm: False ✓\nmax_completion_length=2048 ✓\n```\n\n### 3. 测试结果\n\n**max_completion_length=2048** — OOM\n- backward pass 时 OOM，需额外 2.32 GiB，GPU 只剩 1.33 GiB\n- 峰值显存 ~85 GiB / 95 GiB\n\n**max_completion_length=1024** — 成功完成 2 步\n```\ntrain_runtime: 88.48s\ntrain_loss: 0.0\nstep_time: ~44s/step\n```\n\n### 4. 三个目标确认\n\n| 目标 | 结果 |\n|------|------|\n| 无 OOM | ✓（1024 可跑通） |\n| mean_length > 128 | ✓（mean_length=1024） |\n| reward > 0 | ✗（reward=0.0） |\n\n### 5. Reward 各 component\n\n**全部为零。** `rewards/reward_fn/mean=0.0`, `rewards/reward_fn/std=0.0`。无法分拆 component——reward function 对所有生成返回 0。\n\n根本原因：`completions/clipped_ratio=1.0`——所有 10 个 completion 全部被截断在 1024 token，没有一个自然结束（`mean_terminated_length=0`）。模型输出被截断后可能不构成合法格式，reward function 判定为 0。\n\n### 6. OOM 明细\n\n| max_completion_length | GPU 峰值显存 | 结果 |\n|-----------------------|-------------|------|\n| 2048 | ~85 GiB | OOM（backward需2.32G, 余1.33G） |\n| 1024 | ~34 GiB | 成功（~60 GiB 余量） |\n\n### 7. sft_eval_v4 状态\nPID 40391，运行 55 分钟，状态 S（正常），GPU 0 显存 29.6 GiB，未受影响。\n\n### 后续问题\nreward 全零是核心问题。可能原因：\n1. 所有生成被截断，不含完整结构化输出 → format reward = 0\n2. 需要检查 reward function 对截断输出的处理逻辑\n3. 可能需要增大 max_completion_length（但 2048 会 OOM），或优化模型让它生成更短的输出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-grpo-fix-and-test.md"
+}

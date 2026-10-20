@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2eca76ccbe83dd9877a",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code best of n eval r2",
+  "task_key": "worker_code_best-of-n-eval-r2_20260513T162010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_best-of-n-eval-r2_20260513T162010_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "746fbccd2dfb5176d30c91012528eb31b191b28bb4b77ec8069f73371bbd42e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。5 样本 dry-run 结果：\n\n**脚本路径**: `/root/autodl-tmp/prov_grounded_uie/src/eval_best_of_n.py`\n\n**关键设计**:\n- 三层评估：Best-of-8 chosen（完整 metrics）、Worst-of-8 rejected（下限对照）、Monte Carlo score-based ablation（N=1,2,4,8）\n- 从 `evaluate.py` 直接 import `compute_re_f1`/`compute_evi_f1`/`compute_attribution_precision`，从 `rewards.py` import `parse_json_output`\n- 支持 `--max_samples` 做小规模测试，`--mc_trials` 控制 Monte Carlo 次数\n\n**Dry-run 结果（5 样本）**:\n\n|  | RE-F1 | Evi-F1 | AP |\n|---|---|---|---|\n| SFT Baseline | 0.4337 | 0.3652 | 0.9529 |\n| Worst-of-8 | 0.4027 | 0.2858 | 0.9333 |\n| Best-of-8 | 0.6799 | 0.5858 | 0.9667 |\n\nScore-based E[max]: N=1→0.728, N=2→0.758, N=4→0.779, N=8→0.798\n\n总共 975 个候选样本可用，全量运行用默认参数即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-best-of-n-eval-r2.md"
+}

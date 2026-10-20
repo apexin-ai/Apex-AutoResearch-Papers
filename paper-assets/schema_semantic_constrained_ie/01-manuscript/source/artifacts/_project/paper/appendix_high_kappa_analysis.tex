@@ -1,0 +1,83 @@
+% Appendix: Schema Ambiguity Analysis
+% High-kappa relations and their impact on DR enforcement
+
+\paragraph{Schema ambiguity analysis.}
+\label{app:kappa-analysis}
+
+We define the \emph{schema ambiguity} of a relation $r$ as the average fraction of relations that share each of $r$'s valid type pairs:
+\begin{equation}
+\alpha_r = \frac{1}{|\mathcal{P}_r|} \sum_{(h,t) \in \mathcal{P}_r} \frac{|\{r' \in \mathcal{R} : (h,t) \in \mathcal{P}_{r'}\}|}{|\mathcal{R}|}
+\label{eq:schema-ambiguity}
+\end{equation}
+where $\mathcal{P}_r$ is the set of valid entity type pairs for relation $r$ and $\mathcal{R}$ is the full relation set.
+High $\alpha_r$ indicates that $r$'s valid type pairs are shared by many other relations, limiting the discriminative power of type constraints for that relation.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Schema ambiguity $\alpha$ for all SciERC relations and the 12 DocRED relations with $\alpha \geq 0.36$. \textbf{Gold \%}: fraction of all gold triples belonging to this relation. All SciERC relations exceed the threshold due to the small schema (7 relations, 6 entity types); in DocRED, only 12 of 96 relations qualify, covering 3.8\% of gold triples.}
+\label{tab:high-kappa-rels}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\textbf{Dataset} & \textbf{Relation} & $\alpha$ & \textbf{$|\mathcal{P}_r|$} & \textbf{Gold} & \textbf{Gold \%} \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{SciERC (all 7 relations exceed $\alpha \geq 0.36$)}} \\
+SciERC & Hyponym-of    & 0.83 & 21 &  298 &  9.3 \\
+SciERC & Part-of       & 0.83 & 21 &  179 &  5.6 \\
+SciERC & Compare       & 0.82 & 17 &  166 &  5.2 \\
+SciERC & Conjunction   & 0.77 & 25 &  400 & 12.4 \\
+SciERC & Feature-of    & 0.76 & 26 &  173 &  5.4 \\
+SciERC & Evaluate-for  & 0.71 & 23 &  313 &  9.7 \\
+SciERC & Used-for      & 0.67 & 35 & 1{,}690 & 52.5 \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{DocRED (12 of 96 relations with $\alpha \geq 0.36$; 3.8\% of gold)}} \\
+DocRED & sister city (P190)          & 0.42 &  1 &    4 & 0.01 \\
+DocRED & basin country (P205)        & 0.42 &  1 &   85 & 0.22 \\
+DocRED & mouth of watercourse (P403) & 0.42 &  1 &   95 & 0.25 \\
+DocRED & separated from (P807)       & 0.41 &  2 &    2 & 0.01 \\
+DocRED & replaces (P1365)            & 0.39 &  4 &   18 & 0.05 \\
+DocRED & capital of (P1376)          & 0.37 &  3 &   76 & 0.20 \\
+DocRED & place of birth (P19)        & 0.37 &  3 &  511 & 1.34 \\
+DocRED & operator (P137)             & 0.36 &  7 &   95 & 0.25 \\
+DocRED & military branch (P241)      & 0.36 &  5 &  108 & 0.28 \\
+DocRED & production company (P272)   & 0.36 &  5 &   82 & 0.21 \\
+DocRED & place of death (P20)        & 0.36 &  4 &  203 & 0.53 \\
+DocRED & location (P276)             & 0.36 &  5 &  172 & 0.45 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{DR violation rates partitioned by schema ambiguity. High-$\alpha$ relations ($\alpha \geq 0.36$) start with substantially higher unconstrained DR on DocRED, and retain elevated residual DR under S1 for Qwen but not for Llama.}
+\label{tab:dr-by-ambiguity}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Unconstrained}} & \multicolumn{2}{c}{\textbf{S1 (Constrained)}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+\textbf{Model} & \textbf{Partition} & DR\% & $n$ & DR\% & $n$ \\
+\midrule
+\multirow{2}{*}{Llama-3.1-8B}
+ & High-$\alpha$ (12 rels) & 43.8 &   861 &  3.2 & 1{,}043 \\
+ & Low-$\alpha$ (84 rels)  & 29.9 & 12{,}809 &  2.5 & 15{,}325 \\
+\midrule
+\multirow{2}{*}{Qwen3-8B}
+ & High-$\alpha$ (12 rels) & 31.9 &   718 & 20.0 & 1{,}119 \\
+ & Low-$\alpha$ (84 rels)  & 21.2 & 10{,}898 &  9.5 & 16{,}217 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Table~\ref{tab:high-kappa-rels} reveals a structural asymmetry between datasets.
+In SciERC, all seven relations have $\alpha \geq 0.67$: with only 7 relations over $6^2 = 36$ entity type pair slots, extensive overlap is inevitable.
+For example, the pair (Method, Method) is valid for all 7 relations ($\alpha = 1.0$).
+In DocRED, 96 relations spread across the same 36 type pair slots yield much lower per-relation ambiguity; only 12 relations exceed $\alpha \geq 0.36$, and these collectively cover just 3.8\% of gold triples.
+
+Table~\ref{tab:dr-by-ambiguity} shows the DR impact stratified by ambiguity.
+On DocRED, high-$\alpha$ relations exhibit substantially higher unconstrained DR (43.8\% for Llama vs.\ 29.9\% for low-$\alpha$), reflecting the inherent difficulty of relations whose valid type pairs are shared by dozens of other relations---the model frequently assigns a type combination that, while valid for \emph{some} relation, violates the constraints of the target relation.
+Under S1 constraints, Llama reduces both groups to near-parity (3.2\% vs.\ 2.5\%), whereas Qwen retains a 2$\times$ gap (20.0\% vs.\ 9.5\%), indicating that constraint effectiveness on high-ambiguity relations depends on the model's baseline type accuracy.
+Excluding the 12 high-$\alpha$ relations from the DocRED evaluation changes the overall S1 DR only marginally---from 2.55\% to 2.51\% for Llama and from 10.21\% to 9.53\% for Qwen---confirming that their small gold footprint (3.8\%) limits their aggregate impact despite elevated per-relation rates.
+On SciERC, where all relations have high $\alpha$, the exclusion analysis is vacuous; yet OntoCoDec still reduces DR from 15.4\% to 0.9\% (Qwen) and from 13.3\% to 0.08\% (Llama), demonstrating that high schema ambiguity does not preclude effective constraint enforcement.

@@ -1,0 +1,47 @@
+{
+  "exp_id": "grpo_v1b_eval",
+  "project": "prov_grounded_uie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T00:20:18.726Z",
+    "updated_at": "2026-05-13T06:19:08.448Z",
+    "hypothesis": "Evaluate GRPO v1b LoRA adapter (merge + evaluate.py) to get RE-F1/Evi-F1/AP for kill criteria comparison against SFT baseline",
+    "parent": "grpo_pilot_v1b",
+    "note": "v1b 策略几乎未更新 (KL=8.3e-5)，eval 确认模型 ≈ SFT baseline：RE-F1 0.4264 vs 0.4337 (-1.7%)，Evi-F1 0.3593 vs 0.3652 (-1.6%)，AP 0.9540 vs 0.9529 (+0.1%)。差异在噪声范围内，符合 KL≈0 预期。v2 (10x LR + 4x batch) 才是真正的 GRPO 验证。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/prov_grounded_uie && PYTHONUNBUFFERED=1 python -u evaluate.py --model_path ./outputs/grpo_v1b/merged --batch_size 8 --max_prompt_length 4096 --output_file ./outputs/grpo_v1b/eval_results.json\"",
+      "server": "autodl-rtxpro6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "79684",
+      "log_path": "/root/runs/prov_grounded_uie/grpo_v1b_eval.log",
+      "submitted_at": "2026-05-13T03:09:44.636Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/prov_grounded_uie/data/docred_dev.jsonl",
+      "data_count": 985,
+      "model_name": "Qwen3-8B (GRPO v1b merged)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/prov_grounded_uie/outputs/grpo_v1b/merged",
+      "eval_data": "docred_dev.jsonl (985 samples)",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 11363.8,
+      "gpu_hours": 3.16
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "RE_F1": 0.4264,
+      "Evidence_F1": 0.3593,
+      "Attribution_Precision": 0.954,
+      "samples": 985
+    },
+    "completed_at": "2026-05-13T06:19:08.448Z"
+  },
+  "timestamp": "2026-05-13T06:19:08.494011+00:00",
+  "trigger": "update_registry"
+}

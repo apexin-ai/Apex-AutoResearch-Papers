@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc8f1d8a7739a672e243",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh vllm downgrade",
+  "task_key": "worker_ssh_vllm-downgrade_20260512T201446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_vllm-downgrade_20260512T201446_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "7fdbd9add145e34a496ab20b27e70e7f5ea5f7b69c03f85c2dcd22e15ff475a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，结果汇总：\n\n- **vLLM 0.17.1 已是当前版本**，无需降级操作\n- TRL 兼容性：`is_vllm_available() = True`，无警告\n- torch=2.10.0+cu128, transformers=4.57.6, trl=1.1.0，CUDA 正常\n- 两个推理进程（PID 17369, 17840）运行正常（状态 Rl）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-vllm-downgrade.md"
+}

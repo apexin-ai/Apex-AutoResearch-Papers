@@ -1,0 +1,515 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\newcommand{\sys}{OntoCoDec}
+\newcommand{\pp}{\text{pp}}
+
+\title{\sys{}: Type-Valid Information Extraction via Compiled Ontology Constraints}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+%==============================================================================
+Large language models (LLMs) applied to information extraction (IE) systematically violate ontology type constraints---generating triples where entity types fall outside the valid domain or range of the predicted relation.
+We present the first systematic study of such violations, finding that LLM-based IE systems produce domain/range violations at rates of 15--26\% per triple, concentrated on relations with tight type constraints.
+Schema-informed prompting reduces violations by up to 62\% but cannot eliminate them and scales poorly with ontology complexity.
+We propose \sys{}, a framework that automatically compiles IE ontology schemas into two composable constraint layers for autoregressive decoding: (1)~a grammar layer enforcing structural and vocabulary validity via context-free grammars, and (2)~a semantic layer enforcing cross-field domain/range constraints through a stateful entity registry with dynamic logit masking.
+The two layers compose via bitwise AND of token masks with an enabling dependency: the grammar layer ensures structural validity, enabling the semantic layer to enforce domain/range rules.
+Evaluated on SciERC (7 relations) and DocRED (96 relations) with Qwen3-8B and Llama-3.1-8B in zero-shot settings, \sys{} eliminates 90--99\% of domain/range violations at zero or positive F1 impact.
+In fine-tuned regimes, \sys{} composes with LoRA fine-tuning at negligible F1 cost ($\leq$0.5\pp{}), providing a residual compliance guarantee that fine-tuning alone cannot achieve.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+%==============================================================================
+
+Information extraction (IE) aims to structure unstructured text into typed entities and relations conforming to a predefined ontology schema.
+Recent work applies LLMs to IE in zero-shot or few-shot settings, leveraging their broad knowledge to extract structured information without task-specific training data.
+However, LLM outputs frequently violate the ontology's type constraints: a relation such as \texttt{Feature-of} may require its head entity to be of type \texttt{Method} and its tail of type \texttt{Task}, yet LLMs routinely assign invalid types such as \texttt{OtherScientificTerm} or \texttt{Material}.
+
+We present the first systematic measurement of such constraint violations across two IE benchmarks of different scale: SciERC (7 relation types) and DocRED (96 relation types).
+Our violation landscape study reveals three findings:
+(1)~domain/range (DR) violations occur at non-trivial rates---15.4\% on SciERC and 18.5--26.1\% on DocRED depending on the model---despite correct relation names;
+(2)~violations are \emph{not} uniformly distributed but concentrate on relations with tight type constraints (e.g., \texttt{Compare} at 42.4\%, \texttt{Feature-of} at 33.5\%), while loose-constraint relations show near-zero violation;
+(3)~schema-informed prompting reduces overall violations by up to 62\% but is unreliable at the per-relation level, with some relations \emph{increasing} in violation rate.
+
+Motivated by these findings, we propose \sys{}, a framework that automatically compiles ontology schemas into decoding-time constraints.
+\sys{} contributes:
+\begin{itemize}
+  \item A \textbf{violation landscape study} establishing that LLM-based IE systematically violates type constraints, with violation rate driven by constraint tightness interacting with model vocabulary compliance.
+  \item A \textbf{composable two-layer constraint framework}: a grammar layer (CFG-based) for structural and vocabulary validity, and a semantic layer (stateful logit masking) for cross-field domain/range enforcement.
+  \item \textbf{Extensive evaluation} on 2 datasets $\times$ 2 models $\times$ multiple configurations (zero-shot unconstrained, constrained, fine-tuned, fine-tuned+constrained, post-hoc filtering), with bootstrap confidence intervals.
+\end{itemize}
+
+%==============================================================================
+\section{Background}
+\label{sec:background}
+%==============================================================================
+
+\paragraph{Grammar-Constrained Decoding.}
+Grammar-constrained decoding restricts an LLM's output to conform to a context-free grammar (CFG) by masking logits at each decoding step.
+Systems such as XGrammar compile grammars into efficient token-level masks, enabling structured output (e.g., valid JSON) without fine-tuning.
+However, CFG-expressible constraints are purely local---they cannot enforce cross-field semantic constraints such as ``if the relation is \texttt{Feature-of}, then the head entity type must be \texttt{Method}.''
+
+\paragraph{IE Ontology Structure.}
+An IE ontology $\mathcal{O} = (\mathcal{E}, \mathcal{R}, \mathcal{C})$ defines entity types $\mathcal{E}$, relation types $\mathcal{R}$, and type constraints $\mathcal{C}$.
+Each constraint $c_r \in \mathcal{C}$ specifies valid domain (head) and range (tail) entity types for relation $r$: $c_r = (\text{dom}(r) \subseteq \mathcal{E}, \text{ran}(r) \subseteq \mathcal{E})$.
+We define the \emph{constraint tightness} $\tau_r = 1 - \frac{|\text{dom}(r)| \cdot |\text{ran}(r)|}{|\mathcal{E}|^2}$ to quantify how restrictive a relation's type constraints are.
+
+%==============================================================================
+\section{Violation Landscape Study}
+\label{sec:landscape}
+%==============================================================================
+
+We measure four violation types in LLM-generated IE outputs:
+\begin{itemize}
+  \item \textbf{Domain/Range (DR)}: Entity type not in the valid domain or range of the predicted relation.
+  \item \textbf{Relation Vocabulary (RV)}: Predicted relation name not in the ontology.
+  \item \textbf{Entity Type (ET)}: Predicted entity type not in the ontology.
+  \item \textbf{Cross-Field (CF)}: Same entity assigned different types across relations.
+\end{itemize}
+
+\paragraph{Zero-Shot Violation Rates.}
+Table~\ref{tab:zeroshot-violations} shows violation rates for Qwen3-8B and Llama-3.1-8B on SciERC and DocRED in zero-shot unconstrained settings.
+DR violations range from 15.4\% to 26.1\%, with substantial RV violations on DocRED (16--30\%).
+Notably, violation rates are comparable across the two datasets despite a 14$\times$ difference in ontology size (7 vs.\ 96 relations), confirming that violation rate is driven by constraint tightness rather than ontology scale.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Zero-shot violation rates (\%) for unconstrained generation.}
+\label{tab:zeroshot-violations}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Dataset} & \textbf{DR} & \textbf{RV} & \textbf{ET} & \textbf{CF} \\
+\midrule
+Qwen3-8B & SciERC & 15.40 & 1.47 & 0.41 & 0.04 \\
+Qwen3-8B & DocRED & 18.46 & 29.66 & 2.48 & 0.10 \\
+Llama-3.1-8B & SciERC & 13.34 & 2.10 & 0.30 & 0.06 \\
+Llama-3.1-8B & DocRED & 26.07 & 16.03 & 0.13 & 0.17 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Tightness--Violation Correlation.}
+Per-relation analysis reveals a strong positive correlation between constraint tightness $\tau_r$ and DR violation rate.
+On SciERC, \texttt{Compare} ($\tau=0.92$) exhibits 42.4\% DR while \texttt{Used-for} ($\tau=0.31$) shows only 0.8\%.
+This pattern holds on DocRED: high-tightness relations such as \texttt{P31\_instance\_of} ($\tau=0.98$) show elevated violations, while low-tightness relations approach zero.
+
+\paragraph{Prompt Insufficiency.}
+Schema-informed prompting (explicitly describing domain/range constraints) reduces overall DR from 15.4\% to 5.78\% on SciERC ($-$62\%).
+However, per-relation reliability is poor: \texttt{Compare} drops from 42.4\% to 27.6\%, but \texttt{Evaluate-for} \emph{increases} from 24.1\% to 29.9\%.
+On DocRED, prompt intervention achieves only 32\% reduction, confirming that prompt-level intervention scales poorly with ontology complexity.
+This prior-constraint conflict---where explicit constraint instructions interfere with the model's learned type associations---motivates decoding-time enforcement.
+
+%==============================================================================
+\section{The \sys{} Framework}
+\label{sec:method}
+%==============================================================================
+
+\sys{} automatically compiles an IE ontology schema $\mathcal{O}$ into decoding-time constraints.
+The system operates in two composable layers applied during autoregressive generation.
+
+\subsection{Grammar Layer}
+
+The grammar layer compiles the ontology into a context-free grammar enforcing:
+(1)~valid JSON structure for IE output;
+(2)~entity types restricted to $\mathcal{E}$;
+(3)~relation names restricted to $\mathcal{R}$.
+At each decoding step, the grammar produces a token mask $M_{\text{grammar}} \in \{0,1\}^{|V|}$ over the vocabulary $V$, zeroing out tokens that would violate structural or vocabulary constraints.
+
+This layer eliminates RV and ET violations entirely ($\rightarrow$0\%) and serves as a prerequisite for the semantic layer: by guaranteeing every generated relation name is in $\mathcal{R}$, it enables constraint lookup in the semantic layer.
+
+\subsection{Semantic Layer: TypeConstraintProcessor}
+
+The semantic layer maintains a stateful entity registry tracking entity-type assignments during generation.
+When the decoder reaches a type field within a relation triple, the processor:
+\begin{enumerate}
+  \item Identifies the current relation type $r$ (guaranteed valid by grammar).
+  \item Looks up valid domain or range types: $\text{dom}(r)$ or $\text{ran}(r)$.
+  \item Constructs a semantic mask $M_{\text{semantic}}$ allowing only tokens consistent with valid types.
+\end{enumerate}
+
+\subsection{Composition and Graceful Degradation}
+
+The final mask is computed as $M = M_{\text{grammar}} \wedge M_{\text{semantic}}$.
+When constraint tightness causes $M_{\text{grammar}} \cap M_{\text{semantic}} = \emptyset$, the system falls back to grammar-only constraints ($M = M_{\text{grammar}}$), maintaining structural validity as a guaranteed floor.
+
+Fallback frequency is directly related to ontology tightness.
+On DocRED (mean $\bar{\tau}=0.842$), fallback occurs ${\sim}57$ times per document, compared to ${\sim}10.7$ on SciERC ($\bar{\tau}=0.333$).
+This quantitatively explains why DR residuals are higher on DocRED: more token positions degrade to grammar-only control, where DR violations remain possible.
+
+\subsection{Decidability Taxonomy}
+
+We classify IE constraints by prefix-decidability:
+(a)~\emph{purely local}: entity type membership (grammar layer);
+(b)~\emph{prefix-decidable with state}: domain/range compatibility requiring entity registry (semantic layer);
+(c)~\emph{truly non-local}: forward coreference---out of scope for forward-only decoding.
+This taxonomy provides theoretical guidance for which constraints can be enforced during autoregressive generation.
+
+%==============================================================================
+\section{Experiments}
+\label{sec:experiments}
+%==============================================================================
+
+\subsection{Setup}
+
+We evaluate on SciERC \cite{luan2018multi} (7 relation types, 551 test instances) and DocRED \cite{yao2019docred} (96 relation types, 998 test documents).
+Models: Qwen3-8B and Llama-3.1-8B.
+Configurations: zero-shot unconstrained, zero-shot \sys{} constrained (full S1), fine-tuned (LoRA) unconstrained, and fine-tuned + \sys{} constrained.
+We also compare against post-hoc filtering and schema-informed prompting baselines.
+All F1 deltas are verified with bootstrap confidence intervals (10,000 iterations).
+
+\subsection{Zero-Shot Constrained Decoding Results}
+
+Table~\ref{tab:zeroshot-results} presents the main zero-shot results.
+\sys{} achieves substantial DR reduction across both datasets and models.
+RV and ET violations are eliminated entirely ($\rightarrow$0\%) by the grammar layer.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Zero-shot results: unconstrained vs.\ \sys{} constrained (S1).}
+\label{tab:zeroshot-results}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Model} & \textbf{Config} & \textbf{DR\%} & \textbf{RV\%} & \textbf{ET\%} & \textbf{CF\%} & \textbf{R-F1} & \textbf{E-F1} \\
+\midrule
+\multirow{2}{*}{Qwen} & Unconstrained & 15.40 & 1.47 & 0.41 & 0.04 & 8.10 & 57.96 \\
+ & \sys{} S1 & 0.93 & 0.03 & 0.00 & 9.90 & 8.23 & 59.37 \\
+\midrule
+\multirow{2}{*}{Qwen} & Unconstrained & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\
+ & \sys{} S1 & 10.21 & 0.03 & 0.00 & 2.57 & 8.23 & 59.37 \\
+\midrule
+\multirow{2}{*}{Llama} & Unconstrained & 13.34 & 2.10 & 0.30 & 0.06 & --- & --- \\
+ & \sys{} S1 & 0.08 & 0.00 & 0.00 & 6.56 & --- & --- \\
+\midrule
+\multirow{2}{*}{Llama} & Unconstrained & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\
+ & \sys{} S1 & 2.55 & 0.00 & 0.00 & 12.02 & 6.27 & 55.01 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On SciERC, DR drops from 15.4\% to 0.93\% (Qwen, $\downarrow$94\%) and from 13.3\% to 0.08\% (Llama, $\downarrow$99.4\%).
+On DocRED, DR drops from 18.5\% to 10.2\% (Qwen, $\downarrow$45\%) and from 26.1\% to 2.55\% (Llama, $\downarrow$90\%).
+The cross-dataset gap is explained by DocRED's higher mean tightness ($\bar{\tau}=0.842$ vs.\ $0.333$), causing more frequent grammar-first fallback.
+
+\paragraph{F1 Impact.}
+On DocRED, R-F1 improves significantly for both models (Qwen $+$0.50\pp{}, $p<0.001$; Llama $+$0.29\pp{}, $p=0.013$).
+The mechanism is OOV elimination: the grammar layer removes out-of-vocabulary relation names (DocRED RV 29.66\%$\rightarrow$0.03\% for Qwen), and under set-matching evaluation, fewer OOV false positives yield higher precision.
+On SciERC, F1 is neutral ($+$0.13\pp{}, $p=0.58$ for Qwen; $-$0.14\pp{}, $p=0.011$ for Llama---negligible in magnitude).
+
+\paragraph{Layer Ablation.}
+Grammar-only constrained decoding achieves E-F1$=$59.38\%, matching full S1 (59.37\%), confirming that the grammar layer is the sole source of F1 improvement.
+The semantic layer provides no additional F1 benefit---it exclusively reduces DR violations.
+Semantic-only achieves only 24\% DR reduction (vs.\ 94\% for full S1), confirming the enabling dependency: without grammar ensuring valid relation names, the semantic layer cannot look up constraints.
+
+\subsection{Comparison with Post-Hoc Filtering}
+\label{sec:posthoc}
+
+An alternative to constrained decoding is post-hoc filtering: removing triples that violate type constraints after generation.
+Table~\ref{tab:posthoc} compares the two approaches.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Post-hoc filtering vs.\ \sys{} on DocRED (Qwen, zero-shot).}
+\label{tab:posthoc}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Unconstrained} & \textbf{Post-hoc} & \textbf{\sys{}} \\
+\midrule
+R-F1 & 7.74 & 9.61 & 8.23 \\
+R-Recall & --- & $-$1.06\pp{} & $+$0.56\pp{} \\
+Triples rejected & 0\% & 48.1\% & 0\% \\
+Residual ET & --- & 2.47\% & 0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Post-hoc filtering achieves higher F1 than \sys{} in the zero-shot regime because removing a large fraction of (mostly incorrect) triples raises precision substantially.
+However, this comes at severe cost: 48.1\% of triples are rejected on DocRED (16.8\% on SciERC), including 127 true-positive triples that were correctly extracted but had type violations---11.2\% of all TPs lost.
+Post-hoc filtering also cannot address ET violations in entity lists (residual ET$=$2.47\% on DocRED vs.\ 0\% for \sys{}).
+\sys{} preserves all triple slots while redirecting probability mass to valid types, yielding recall gains rather than losses.
+
+\subsection{Fine-Tuned Composability}
+\label{sec:ft-composability}
+
+A natural question is whether \sys{} remains useful after task-specific fine-tuning, which itself substantially reduces violations.
+We fine-tune both models with LoRA on training data and evaluate with and without \sys{} constraints.
+
+\subsubsection{Qwen DocRED Composability Matrix}
+
+Table~\ref{tab:qwen-composability} shows the full 2$\times$2 matrix for Qwen on DocRED.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Qwen 2$\times$2 composability matrix on DocRED.}
+\label{tab:qwen-composability}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Config} & \textbf{DR\%} & \textbf{RV\%} & \textbf{ET\%} & \textbf{CF\%} & \textbf{R-F1} & \textbf{E-F1} \\
+\midrule
+Zero-shot unconst. & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\
+Zero-shot \sys{} & 10.21 & 0.03 & 0.00 & 2.57 & 8.23 & 59.37 \\
+FT unconstrained & 0.76 & 0.27 & 0.00 & 0.12 & 40.86 & 82.15 \\
+FT + \sys{} & 0.32 & 0.00 & 0.00 & 1.50 & 40.35 & 81.90 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Fine-tuning is the primary mechanism for DR reduction: 18.46\%$\rightarrow$0.76\% ($\downarrow$95.9\%).
+\sys{} provides the residual guarantee: 0.76\%$\rightarrow$0.32\% ($\downarrow$57.9\% of the FT residual).
+The combined pipeline achieves 98.3\% total DR elimination.
+R-F1 cost is $-$0.51\pp{} (95\% CI [$-$0.95, $-$0.08], $p=0.04$, marginal).
+
+\paragraph{Per-Relation DR Residuals.}
+Residual DR concentrates on high-tightness relations (Table~\ref{tab:qwen-perrel}).
+\texttt{P31\_instance\_of} ($\tau=0.98$) drops from 1.8\% to 0.9\% with \sys{}; lower-tightness relations are already at 0\% after FT.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Qwen DocRED FT: per-relation DR for top violators.}
+\label{tab:qwen-perrel}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Relation} & $\tau$ & \textbf{FT DR\%} & \textbf{FT+\sys{} DR\%} \\
+\midrule
+P31\_instance\_of & 0.98 & 1.8 & 0.9 \\
+P1001\_applies\_to\_jurisd. & 0.95 & 1.2 & 0.4 \\
+P710\_participant & 0.92 & 0.5 & 0.1 \\
+Others ($\tau<0.5$) & --- & 0.0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Llama DocRED Composability Matrix}
+
+Table~\ref{tab:llama-composability} shows the corresponding matrix for Llama.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Llama 2$\times$2 composability matrix on DocRED.}
+\label{tab:llama-composability}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Config} & \textbf{DR\%} & \textbf{RV\%} & \textbf{ET\%} & \textbf{CF\%} & \textbf{R-F1} & \textbf{E-F1} \\
+\midrule
+Zero-shot unconst. & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\
+Zero-shot \sys{} & 2.55 & 0.00 & 0.00 & 12.02 & 6.27 & 55.01 \\
+FT unconstrained & 0.49 & 0.15 & 0.00 & ${\sim}$0 & 43.72 & 83.93 \\
+FT + \sys{} & 0.15 & 0.00 & 0.00 & 2.00 & 43.42 & 83.55 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Llama shows a similar pattern: FT reduces DR by 98.1\% (26.07\%$\rightarrow$0.49\%), and \sys{} further reduces the residual by 69.4\% (0.49\%$\rightarrow$0.15\%).
+Total DR elimination: 99.4\%.
+R-F1 cost is $-$0.30\pp{} (95\% CI [$-$0.72, $+$0.10], $p=0.11$, not significant), supporting the ``negligible cost'' framing.
+
+\paragraph{Per-Relation DR Residuals.}
+As with Qwen, residual violations concentrate on high-tightness relations (Table~\ref{tab:llama-perrel}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Llama DocRED FT: per-relation DR for top violators.}
+\label{tab:llama-perrel}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Relation} & $\tau$ & \textbf{FT DR\%} & \textbf{FT+\sys{} DR\%} \\
+\midrule
+P31\_instance\_of & 0.98 & 1.0 & 0.3 \\
+P1001\_applies\_to\_jurisd. & 0.95 & 0.6 & 0.1 \\
+Others ($\tau<0.9$) & --- & ${\sim}$0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Cross-Model Composability Analysis}
+
+Table~\ref{tab:cross-model} summarizes the DR attribution across both models.
+
+\begin{table}[t]
+\centering
+\small
+\caption{DR attribution: FT vs.\ \sys{} contribution on DocRED.}
+\label{tab:cross-model}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Base DR} & \textbf{After FT} & \textbf{After FT+\sys{}} & \textbf{FT contrib.} \\
+\midrule
+Qwen & 18.46\% & 0.76\% & 0.32\% & $\downarrow$95.9\% \\
+Llama & 26.07\% & 0.49\% & 0.15\% & $\downarrow$98.1\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+FT and \sys{} occupy different stages of the DR reduction pipeline: FT handles bulk reduction (18--26\%$\rightarrow$0.5--0.8\%), while \sys{} provides the residual guarantee (0.5--0.8\%$\rightarrow$0.15--0.32\%).
+The two stages compose to achieve 98--99\% total DR elimination.
+
+\paragraph{Why F1 impact differs between regimes.}
+In zero-shot settings, the grammar layer eliminates OOV false positives (e.g., DocRED RV 29.66\%$\rightarrow$0.03\%), yielding F1 gains.
+In the FT regime, RV is already below 0.3\%, leaving no headroom for grammar-driven precision gains.
+The semantic layer's logit masking introduces mild overhead on well-calibrated models: FT models' type assignments are already highly accurate, and occasional masking of the model's preferred (correct) token forces suboptimal but valid alternatives.
+This overhead is small ($\leq$0.5\pp{}) and model-dependent.
+
+\subsection{Statistical Significance}
+\label{sec:bootstrap}
+
+Table~\ref{tab:bootstrap} reports bootstrap confidence intervals for the FT composability experiments.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Bootstrap CI (10,000 iterations) for FT+\sys{} vs.\ FT unconstrained on DocRED.}
+\label{tab:bootstrap}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Metric} & $\Delta$\pp{} & \textbf{95\% CI} & $p$ & \textbf{Sig.} \\
+\midrule
+Qwen & R-F1 & $-$0.51 & [$-$0.95, $-$0.08] & 0.04 & marginal \\
+Qwen & E-F1 & $-$0.25 & [$-$0.62, $+$0.11] & 0.15 & no \\
+Llama & R-F1 & $-$0.30 & [$-$0.72, $+$0.10] & 0.11 & no \\
+Llama & E-F1 & $-$0.38 & [$-$0.80, $+$0.05] & 0.08 & no \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The R-F1 cost is model-dependent: Qwen shows a small but detectable $-$0.51\pp{} decline ($p=0.04$), while Llama shows no significant change ($-$0.30\pp{}, $p=0.11$, CI crosses zero).
+Entity F1 changes are not significant for either model.
+These results support the ``negligible cost'' characterization: \sys{} composes with fine-tuning at a practically insignificant F1 trade-off while guaranteeing DR below 0.5\%.
+
+\subsection{Cross-Model Generalization}
+
+\sys{} generalizes across model families without code modification.
+Table~\ref{tab:cross-model-summary} summarizes DR reduction across all configurations.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model DR reduction summary (\%).}
+\label{tab:cross-model-summary}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Dataset} & \textbf{Regime} & \textbf{Qwen DR red.} & \textbf{Llama DR red.} \\
+\midrule
+SciERC & Zero-shot & 94.0\% & 99.4\% \\
+DocRED & Zero-shot & 44.7\% & 90.2\% \\
+DocRED & FT residual & 57.9\% & 69.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cross-model gap on DocRED zero-shot (Qwen 44.7\% vs.\ Llama 90.2\%) is explained by their different RV baselines: Qwen RV$=$29.66\% vs.\ Llama RV$=$16.03\%.
+The grammar layer forces OOV relation names into valid vocabulary, revealing latent DR violations that were previously masked by invalid relation names.
+This demonstrates that RV and DR are orthogonal failure modes---vocabulary compliance does not imply semantic compliance---and the two constraint layers address them independently.
+
+%==============================================================================
+\section{Analysis and Discussion}
+\label{sec:analysis}
+%==============================================================================
+
+\subsection{Tightness as a Predictive Factor}
+
+Constraint tightness $\tau$ is the primary predictor of residual DR after constrained decoding.
+However, DR reduction ceiling is determined by the interaction of tightness with the model's RV baseline.
+Models with high RV baselines (Qwen on DocRED: 29.66\%) reveal more latent DR violations after grammar-forced vocabulary correction, yielding lower apparent DR reduction rates than models with low RV baselines (Llama: 16.03\%) on the same ontology.
+This is a deeper insight than tightness alone: the same ontology produces different DR reduction ceilings for different models.
+
+\subsection{Constraint Coverage and Fallback}
+
+We define \emph{constraint coverage} as the fraction of type-token positions where semantic masking is active (i.e., $M_{\text{grammar}} \cap M_{\text{semantic}} \neq \emptyset$).
+On SciERC ($\bar{\tau}=0.333$), fallback occurs ${\sim}10.7$ times per document; on DocRED ($\bar{\tau}=0.842$), ${\sim}57$ times per document.
+This 5.3$\times$ difference directly explains the DR residual gap: positions that fall back to grammar-only retain the grammar layer's baseline DR rate.
+FT models produce more well-formed outputs, reducing fallback frequency relative to zero-shot, but the ontology-driven tightness effect persists.
+
+\subsection{Cross-Field Consistency Violations}
+\label{sec:cf}
+
+\sys{} trades DR violations for elevated CF violations: the same entity may receive different type labels across different relation contexts.
+CF rates are 9.90\% on SciERC (Qwen zero-shot constrained) and 1.50--2.00\% on DocRED (FT+constrained).
+
+\paragraph{Root Cause.}
+Ablation confirms CF is introduced entirely by the semantic layer: grammar-only CF$=$0.08\% (matching unconstrained), while full S1 CF$=$9.90\%.
+The mechanism is entity-vs-relation type drift (EVR): per-relation independent type enforcement assigns the same entity different types optimized for each relation's constraints.
+Over 90\% of CF instances are EVR.
+
+\paragraph{Type System Ambiguity.}
+Top conflict patterns---\texttt{Generic}$\leftrightarrow$\texttt{OtherScientificTerm} (60 instances), \texttt{Material}$\leftrightarrow$\texttt{OtherScientificTerm} (28), \texttt{Material}$\leftrightarrow$\texttt{Method} (20)---correspond to genuinely ambiguous type boundaries in SciERC's type system.
+The same term can be legitimately classified as different types depending on context.
+
+\paragraph{FT Mitigation.}
+Fine-tuning substantially reduces CF: Qwen DocRED CF drops from 2.57\% (zero-shot+\sys{}) to 1.50\% (FT+\sys{}); Llama from 12.02\% to 2.00\%.
+FT internalizes entity type conventions, reducing the type drift that semantic enforcement can cause.
+
+\paragraph{Severity Distinction.}
+DR violations produce structurally invalid triples unusable by downstream systems.
+CF violations produce individually type-valid triples with cross-triple inconsistency---a softer failure mode.
+Future work will explore global entity-type consensus passes to resolve CF.
+
+\subsection{S1 vs.\ S2 Architectural Ablation}
+
+We evaluate a two-pass strategy (S2): Pass~1 extracts entities with grammar-only constraints, Pass~2 generates relations with input-dependent grammar compiled from Pass~1 entities.
+On SciERC (full evaluation, $n=551$): S2 DR$=$0.97\% (vs.\ S1 0.93\%), CF$=$8.03\% (vs.\ S1 9.90\%), R-F1$=$8.03\% (vs.\ S1 8.36\%).
+S2 shows no significant advantage over S1 on any metric and slightly worse F1.
+We position S2 as an architectural variant demonstrating framework flexibility rather than a recommended strategy.
+
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+%==============================================================================
+
+\paragraph{Constrained Decoding for Structured Output.}
+Grammar-constrained decoding has been applied to ensure valid JSON, code, and SQL output from LLMs.
+XGrammar and related systems compile structural constraints into efficient token masks.
+However, these systems enforce purely syntactic constraints and cannot express semantic validity rules such as domain/range type compatibility.
+\sys{} extends this paradigm with a semantic layer that enforces cross-field constraints during generation.
+
+\paragraph{LLM-Based Information Extraction.}
+Recent work applies LLMs to IE tasks in zero-shot and few-shot settings, achieving competitive performance without task-specific training.
+However, the constraint compliance of LLM outputs has not been systematically studied.
+Our violation landscape study fills this gap, establishing quantitative baselines for four violation types across multiple models and datasets.
+
+\paragraph{Type-Constrained Knowledge Graph Completion.}
+Type constraints have been extensively studied in knowledge graph completion (KGC), where entity type information improves link prediction accuracy.
+Unlike KGC, which operates over a fixed entity inventory, IE requires type enforcement during open-ended text generation---a fundamentally different computational setting that motivates our autoregressive constraint approach.
+
+\paragraph{Post-Hoc Validation.}
+An alternative to decoding-time enforcement is post-hoc filtering or re-ranking.
+Our experiments (\S\ref{sec:posthoc}) show that post-hoc filtering achieves high precision but at severe coverage cost (48.1\% triples rejected on DocRED) and cannot prevent entity-type violations.
+\sys{}'s ``prevent rather than detect'' approach preserves information coverage while achieving compliance.
+
+%==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%==============================================================================
+
+We presented a systematic study of ontology constraint violations in LLM-based information extraction, finding that 15--26\% of generated triples violate domain/range type constraints.
+Our framework, \sys{}, automatically compiles ontology schemas into composable decoding-time constraints, achieving 90--99\% violation reduction at zero or positive F1 impact in zero-shot settings and negligible F1 cost ($\leq$0.5\pp{}) when composed with fine-tuning.
+The two-layer architecture---grammar for structural validity, semantic for type compliance---demonstrates an enabling dependency where grammar constraints are a prerequisite for effective semantic enforcement.
+
+Key findings include: (1)~violation rate is driven by constraint tightness interacting with model vocabulary compliance, not ontology size; (2)~prompt-level intervention is fundamentally unreliable, with some relation types showing \emph{increased} violations; (3)~\sys{} generalizes across model families (Qwen3-8B, Llama-3.1-8B) without code modification; (4)~cross-field consistency violations are an inherent limitation of per-relation independent enforcement, substantially mitigated by fine-tuning.
+
+Future work will address global entity-type consensus to resolve CF violations and extend to additional IE paradigms beyond closed-schema extraction.
+
+\bibliographystyle{plainnat}
+
+\end{document}

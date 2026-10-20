@@ -1,0 +1,60 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}IE Ontology Constraints}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:tightness}{{1}{2}{IE Ontology Constraints}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Grammar-Constrained Decoding}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Constraint Decidability Taxonomy}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Violation landscape: unconstrained LLM-based IE (Qwen3-8B, zero-shot). DR = domain/range violation rate. Schema = schema-informed prompt.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:landscape}{{1}{3}{Violation landscape: unconstrained LLM-based IE (Qwen3-8B, zero-shot). DR = domain/range violation rate. Schema = schema-informed prompt}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Violation Landscape Study}{3}{section.3}\protected@file@percent }
+\newlabel{sec:landscape}{{3}{3}{Violation Landscape Study}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Experimental Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Unconstrained Baseline Results}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Per-Relation Violation Distribution}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}The OntoCoDec{} Framework}{4}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{4}{The \sys {} Framework}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Ontology Compiler}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Grammar Layer}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Semantic Layer: TypeConstraintProcessor}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Grammar layer eliminates ET and RV violations across datasets. Grammar-only configuration; violations in constrained output.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:grammar}{{2}{5}{Grammar layer eliminates ET and RV violations across datasets. Grammar-only configuration; violations in constrained output}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Layer Composition}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{eq:compose}{{2}{5}{Layer Composition}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Decoding Strategies}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{5}{section.5}\protected@file@percent }
+\newlabel{sec:exp}{{5}{5}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Grammar Layer: Perfect Cross-Dataset Generalization}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SciERC constrained decoding ablation (Qwen3-8B, 551 sentences). DR = domain/range violation rate (\%), CF = cross-field consistency violation rate (\%), R-F1 = relation F1 (\%).}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:scierc}{{3}{6}{SciERC constrained decoding ablation (Qwen3-8B, 551 sentences). DR = domain/range violation rate (\%), CF = cross-field consistency violation rate (\%), R-F1 = relation F1 (\%)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces DocRED constrained decoding ablation (Qwen3-8B, 998 documents). ET/RV/DR/CF as violation rates (\%).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:docred}{{4}{6}{DocRED constrained decoding ablation (Qwen3-8B, 998 documents). ET/RV/DR/CF as violation rates (\%)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}SciERC: Near-Complete Violation Elimination}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}DocRED: Predictable Partial Reduction}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Per-Relation DR Distribution on DocRED}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:bimodal}{{5.5}{6}{Per-Relation DR Distribution on DocRED}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces DocRED full S1 per-relation DR distribution (82 relations with $\geq $5 triples). Violations are concentrated in a small minority of high-DR relations.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:bimodal}{{5}{7}{DocRED full S1 per-relation DR distribution (82 relations with $\geq $5 triples). Violations are concentrated in a small minority of high-DR relations}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces DocRED per-relation DR by constraint tightness bucket (full S1). Higher tightness $\to $ higher residual DR. Spearman $\rho $=0.52, $p<$0.001.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:tightness}{{6}{7}{DocRED per-relation DR by constraint tightness bucket (full S1). Higher tightness $\to $ higher residual DR. Spearman $\rho $=0.52, $p<$0.001}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Tightness--Violation Correlation}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:tightness}{{5.6}{7}{Tightness--Violation Correlation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Model Generalization}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:crossmodel}{{5.7}{7}{Cross-Model Generalization}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-model comparison on SciERC. Grammar enforcement (ET/RV$\to $0\%) and DR reduction generalize across models. $\rho $ = per-relation DR rank Spearman correlation between models.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:crossmodel}{{7}{8}{Cross-model comparison on SciERC. Grammar enforcement (ET/RV$\to $0\%) and DR reduction generalize across models. $\rho $ = per-relation DR rank Spearman correlation between models}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-field consistency (CF) analysis. CF increases with semantic enforcement but at a favorable trade-off ratio (DR reduction per CF increase). EVR = entity-vs-relation type drift (dominant CF sub-type).}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:cf}{{8}{8}{Cross-field consistency (CF) analysis. CF increases with semantic enforcement but at a favorable trade-off ratio (DR reduction per CF increase). EVR = entity-vs-relation type drift (dominant CF sub-type)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Cross-Field Consistency Analysis}{8}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:cf}{{5.8}{8}{Cross-Field Consistency Analysis}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Inference latency overhead (tokens/second relative to unconstrained).}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:latency}{{9}{9}{Inference latency overhead (tokens/second relative to unconstrained)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Inference Latency}{9}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\gdef \@abspage@last{10}

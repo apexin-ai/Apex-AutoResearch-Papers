@@ -1,0 +1,75 @@
+% Appendix: Full Proof of Proposition 1
+% Level 2 (prefix-decidable with state) constraints are not context-free.
+
+\section{Full Proof of Proposition 1}
+\label{app:pumping-lemma}
+
+We prove that domain/range type constraints for IE with unbounded entity sets cannot be expressed by any context-free grammar, using the pumping lemma for context-free languages.
+
+\begin{proof}
+Define the language $L$ of valid IE outputs over ontology $\mathcal{O} = (\mathcal{E}, \mathcal{R}, \sigma)$ with $\mathcal{E} = \{\tau_A, \tau_B\}$, $\mathcal{R} = \{r\}$, and $\sigma(r) = \{(\tau_A, \tau_A)\}$ (i.e., $r$ requires both head and tail to be type $\tau_A$).
+
+An output string has the form:
+\[
+w = e_1\, e_2\, \cdots\, e_n\;\; \texttt{REL}(h{=}e_k,\, r,\, \tau^h)
+\]
+where each $e_i$ is an entity with type $\tau_{a_i} \in \{\tau_A, \tau_B\}$, and $\tau^h$ is the head type field of a relation triple referencing entity $e_k$ ($1 \leq k \leq n$).
+
+The type-validity constraint requires $\tau^h = \tau_{a_k}$ (the head type must match the referenced entity's type) \emph{and} $\tau^h \in \operatorname{dom}(r) = \{\tau_A\}$.
+Combined: a string $w \in L$ if and only if $\tau_{a_k} = \tau_A$.
+
+Now consider strings of the specific form:
+\[
+w_n = \underbrace{\tau_B\; \tau_B\; \cdots\; \tau_B}_{n-1}\; \tau_A\;\; \texttt{REL}(h{=}e_n,\, r,\, \tau_A)
+\]
+where the first $n{-}1$ entities have type $\tau_B$ and only entity $e_n$ has type $\tau_A$.
+The relation references $e_n$, so $\tau^h = \tau_A = \tau_{a_n}$, satisfying both the registry consistency and domain constraint.
+Thus $w_n \in L$ for all $n$.
+
+Assume for contradiction that $L$ is context-free.
+By the pumping lemma, there exists a pumping length $p$ such that any $w \in L$ with $|w| \geq p$ can be written as $w = uvxyz$ where:
+\begin{enumerate}[label=(\roman*)]
+    \item $|vy| \geq 1$,
+    \item $|vxy| \leq p$,
+    \item $uv^i xy^i z \in L$ for all $i \geq 0$.
+\end{enumerate}
+
+Choose $w = w_n$ with $n > p$.
+The entity list portion $\tau_B^{n-1}\, \tau_A$ has length $n > p$, so the pumpable region $vxy$ (with $|vxy| \leq p$) must lie entirely within the entity list (it cannot span from the entity list to the relation reference, which is separated by $n - p > 0$ entity tokens from the start).
+
+\textbf{Case 1:} $v$ or $y$ contains entity tokens from the $\tau_B^{n-1}$ prefix.
+Pumping up ($i = 2$): $uv^2 xy^2 z$ inserts additional $\tau_B$ entities, increasing $n$ to some $n' > n$.
+But the relation reference still points to entity $e_n$ (at the original position), which is now at a different position in the longer entity list.
+The entity at position $n$ in the pumped string is $\tau_B$ (since we inserted $\tau_B$ tokens before position $n$, shifting $\tau_A$ to position $n' > n$).
+Thus $\tau^h = \tau_A \neq \tau_B = \tau_{a_n'}$, where $n'$ is the new position of entity $e_n$.
+More precisely: the relation references a fixed entity name $e_k$, but pumping changes the entity-type binding at that name's position.
+Since the pumped string assigns $\tau_B$ at position $k$ (which originally had $\tau_A$), the type-validity constraint $\tau^h = \tau_{a_k} \in \operatorname{dom}(r)$ is violated.
+Hence $uv^2 xy^2 z \notin L$, contradicting condition (iii).
+
+\textbf{Case 2:} $v$ or $y$ contains the $\tau_A$ token at position $n$.
+Pumping down ($i = 0$): $uxz$ removes the only $\tau_A$ entity.
+The relation's head entity reference now points to a position that either does not exist or has type $\tau_B$.
+In either case, $\tau^h = \tau_A \neq \tau_B$, violating type validity.
+Hence $uxz \notin L$, contradicting condition (iii).
+
+In both cases, the pumping lemma is violated, so $L$ is not context-free.
+The key insight is that type-validity requires a \emph{binding} between an entity's type (assigned at an earlier position) and the relation's type field (at a later position), with the binding target determined by the entity name.
+Pumping disrupts this binding by changing which entity occupies a given position, while the relation reference remains fixed---a cross-position dependency that pushdown automata cannot track with their LIFO stack discipline.
+
+OntoCoDec's semantic layer addresses this with a runtime entity registry $\mathcal{D}$ (a finite map), operating as a deterministic stateful transducer that provides random-access type lookups, beyond the expressive power of context-free grammars.
+\end{proof}
+
+\paragraph{Finite entity sets.}
+For a finite entity set $\mathcal{E}$ with canonical identifiers, the valid language $L_{\text{valid}} = \bigcap_i L_i$ is theoretically regular (a finite intersection of regular languages).
+However, the corresponding DFA requires $O(|\mathcal{T}|^{|\mathcal{E}|})$ states---for SciERC with 6 entity types and typical documents containing 20+ entities, this exceeds $10^{15}$ states, rendering explicit construction impractical.
+Moreover, real IE operates over open-vocabulary text spans rather than closed identifier sets, making the general (non-regular) formulation the appropriate model.
+Proposition~1 motivates the runtime state-tracking architecture for this general case.
+
+\paragraph{Position indexing vs.\ name referencing.}
+The proof above uses position-based entity indexing ($e_k$ at position $k$) for expository clarity.
+In OntoCoDec's actual JSON output, relation triples reference entities by name strings rather than positional indices.
+Specifically, Case~1 of the pumping argument (position shift) does not directly apply under name-based referencing, since pumping does not change which entity a name refers to. However, the non-context-free conclusion still holds via a stronger argument:
+validating type consistency requires a name$\to$type lookup over dynamically generated bindings, which is a random-access map operation.
+A PDA's LIFO stack cannot perform random-access retrieval by key (it can only inspect the top element), so the non-context-free result holds regardless of whether entities are referenced by position or by name.
+Name-based referencing strictly subsumes position-based indexing: any position-based constraint can be expressed via names (assign names $e_1, \ldots, e_n$ in order), but name-based constraints additionally permit cross-field coreference (the same entity name appearing in multiple triples must carry the same type), which position indexing cannot express.
+Thus, the position-based formulation is a simplification that makes the pumping argument more transparent without weakening the conclusion.

@@ -1,0 +1,30 @@
+{
+  "exp_id": "grpo_v2_final_eval",
+  "project": "prov_grounded_uie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T10:51:03.439Z",
+    "updated_at": "2026-05-13T10:59:02.965Z",
+    "spec": {
+      "hypothesis": "Final eval of GRPO v2 at step 100/100. Compare with step 50 mid-eval (Evi-F1=0.3705) to assess late-stage improvement. Same kill criteria: Evi-F1>=0.4152(pass), <0.3852(kill), RE-F1<0.4037(regress).",
+      "parent": "grpo_pilot_v2",
+      "method": "LoRA merge + evaluate.py on final checkpoint",
+      "server": "autodl-rtxpro6000",
+      "data_path": "/root/autodl-tmp/prov_grounded_uie/data/docred_dev.jsonl",
+      "data_count": 985,
+      "model_name": "Qwen3-8B (GRPO v2 final LoRA merged)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/prov_grounded_uie/outputs/grpo_v2/checkpoint-100",
+      "eval_data": "docred_dev.jsonl (985 samples)",
+      "command": "bash eval_grpo_v2.sh outputs/grpo_v2/checkpoint-100 grpo_v2_final",
+      "gpu": "cuda:0"
+    },
+    "conclusion": "success",
+    "note": "Final eval 自动被 watcher 脚本触发，在 cuda:0 上运行中。不影响 kill 决策（step 50 已确认 KILL），仅作完整性记录。"
+  },
+  "timestamp": "2026-05-13T10:59:03.017976+00:00",
+  "trigger": "update_registry"
+}

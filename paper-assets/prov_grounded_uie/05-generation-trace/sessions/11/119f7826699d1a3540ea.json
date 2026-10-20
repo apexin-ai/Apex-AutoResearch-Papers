@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "119f7826699d1a3540ea",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh posthoc nli v2 prep",
+  "task_key": "worker_ssh_posthoc-nli-v2-prep_20260512T231333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_posthoc-nli-v2-prep_20260512T231333_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "ff12a712c721b3910376a86c9726bdf51261d24387f32c9e2744cf1bb0d7488d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成正常运行，已完成 2/124 批次（16/985 样本）。\n\n**总结：**\n\n**v1 卡死根因：**\n1. **Qwen3 thinking mode 未禁用** — 每个样本生成大量 `<think>` tokens，极大拖慢速度\n2. **未设 CUDA_VISIBLE_DEVICES** — 可能与 cuda:0 上的任务竞争\n3. **NLI scoring 跑在 CPU** — 不必要的慢\n\n**v2 修复（共 4 处）：**\n1. `apply_chat_template` 加 `enable_thinking=False` — 跳过思考阶段，直接输出 JSON\n2. 进度日志改为每批打印（`batch 1/124`），而非每 50 样本\n3. NLI evidence scoring 改为 `device=\"cuda\"`（生成模型释放后）\n4. NLI oracle scoring 同样改为 GPU\n\n**posthoc_nli_v2 已在 cuda:1 上运行**，tmux session `posthoc_nli_v2`，日志 `/tmp/posthoc_nli_v2.log`，registry 已注册为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-posthoc-nli-v2-prep.md"
+}

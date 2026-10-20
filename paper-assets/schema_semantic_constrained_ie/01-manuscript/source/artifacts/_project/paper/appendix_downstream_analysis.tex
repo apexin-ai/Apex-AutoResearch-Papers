@@ -1,0 +1,34 @@
+\paragraph{Downstream impact of violation removal.}
+\label{app:downstream-impact}
+
+A natural concern with schema-constrained decoding is whether enforcing ontological validity removes \emph{lucky violations}---predictions that happen to be correct (true positives) yet violate the schema.
+To quantify this trade-off, we audit all true-positive relation triples produced by unconstrained fine-tuned models and check whether any of them carry a domain--range (DR) violation, i.e., an entity-type pair \mbox{$\langle h_\tau, t_\tau \rangle$} not sanctioned by the ontology for that relation.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llrrrl}
+\toprule
+\textbf{Dataset} & \textbf{Model} & \textbf{TP} & \textbf{Lucky} & \textbf{\%\,TP} & \textbf{R drop} \\
+\midrule
+SciERC & Qwen-LoRA  & 461  & 4 & 0.87\% & 0.41\,pp \\
+SciERC & Llama-LoRA & 467  & 5 & 1.07\% & 0.51\,pp \\
+DocRED & Qwen-LoRA  & 5746 & 1 & 0.02\% & 0.01\,pp \\
+DocRED & Llama-LoRA & 6226 & 1 & 0.02\% & 0.01\,pp \\
+\bottomrule
+\end{tabular}
+\caption{Lucky violations: true-positive triples that carry a domain--range violation. \textbf{Lucky} counts such triples; \textbf{R drop} is the recall decrease (in percentage points) if they were removed.}
+\label{tab:lucky-violations-detail}
+\end{table}
+
+Across all four configurations, lucky violations account for at most 1.07\% of true positives (5 out of 467 on SciERC with Llama-LoRA) and as few as 0.02\% on DocRED.
+The corresponding recall drop is negligible---at most 0.51 percentage points---while the vast majority of violated triples that constraints remove are false positives.
+For example, on DocRED with Qwen-LoRA, constraints eliminate 164 schema-violating predictions but only 1 of them is actually correct; the other 163 are errors that would pollute a downstream knowledge graph.
+
+Inspecting the lucky violations qualitatively, they arise from borderline entity-type assignments rather than genuine schema gaps.
+On SciERC, the recurring pattern involves \textsc{Metric}-typed entities (e.g., BLEU, NIST) appearing as heads of \texttt{Hyponym-of} relations, a pair absent from the training ontology because these metrics are rarely annotated as hyponyms.
+On DocRED, the single lucky violation stems from an entity typed as \textsc{Misc} instead of \textsc{Org} (``Assassin's Creed Unity''), making its \texttt{developer} relation invalid under the schema despite being factually correct.
+
+These findings confirm that schema-constrained decoding introduces a minimal recall cost while providing a substantial precision gain.
+Retaining these few lucky violations would allow schema-invalid triples into the knowledge graph, undermining the structural guarantees that motivate constrained decoding in the first place.
+The net effect is overwhelmingly positive: constraints act as a high-precision filter that removes far more erroneous triples than correct ones.

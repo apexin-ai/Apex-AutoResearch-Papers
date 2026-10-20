@@ -1,0 +1,26 @@
+{
+  "exp_id": "reward_diag_v2",
+  "project": "prov_grounded_uie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T03:11:40.646Z",
+    "updated_at": "2026-05-13T03:33:13.814Z",
+    "hypothesis": "Re-diagnose reward distribution on sft_eval_v5 outputs (fixed template, AP=0.9529). If provenance std < 0.05, provenance reward is also saturated and v2 weight design must change.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=\"\" python src/analyze_reward_distribution_v2.py",
+      "server": "autodl-rtxpro6000",
+      "data_path": "outputs/sft/eval_results_v5.json",
+      "data_count": 985,
+      "model_name": "N/A (analysis only)",
+      "seed": 0
+    },
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "outputs/reward_distribution_v2.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T03:33:13.840047+00:00",
+  "trigger": "update_registry"
+}

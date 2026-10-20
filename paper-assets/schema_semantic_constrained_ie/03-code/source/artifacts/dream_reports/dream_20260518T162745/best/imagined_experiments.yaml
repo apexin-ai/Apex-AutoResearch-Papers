@@ -1,0 +1,1150 @@
+tier: best
+narrative_guidance: 'Original framing 完全成立：OntoCoDec 是首个 universal ontology-constrained
+  structured generation framework，
+
+  跨 2 任务（RE+EE）× 4 模型（8B×3 + 70B）× 3 数据集验证。
+
+  70B DocRED unconstrained DR ~11% 彻底否定 "scale solves it"；constrained DR ~1.2% 确认跨规模有效性。
+
+  Enabling dependency + tightness×RV interaction + fallback frequency 三个非显然 finding
+
+  在 §5 analysis 中以量化数据支撑，审稿人会将其标注为 surprising。
+
+  Post-hoc EE 99.6% discard 作为 killer comparison 有效消除 "just filter" 替代方案。
+
+  CF tradeoff 通过 type ambiguity 论证 + proactive disclosure + semantic-layer 消融归因被接受为
+  inherent limitation。
+
+  Title 升级为 "universal" 或 "task-agnostic"，reviewer avg score 预期 3.75–4.0。
+
+  '
+imagined_experiments:
+- name: SciERC violation rate (minimal prompt)
+  plan_id: P001
+  description: Qwen3-8B zero-shot SciERC, minimal prompt, unconstrained. 已完成。
+  expected_results:
+    DR_pct: 15.37
+    RV_pct: 1.39
+    ET_pct: 0.4
+    CF_pct: 0.08
+    total_triples: 1724
+    total_entities: 2474
+    per_relation_DR_Used_for: 0.76
+    per_relation_DR_Compare: 42.42
+    per_relation_DR_Feature_of: 33.54
+  result_rationale: '7-relation SciERC ontology 中，tight-constraint relations (Feature-of
+    τ=0.24, Compare τ=0.18)
+
+    驱动高 DR，而 loose-constraint Used-for (τ=0.86) 几乎无违规。15.4% 整体 DR 在小 ontology 上
+
+    已非 trivial。Compare 42.4% 的极高违规率表明 model 对特定 relation 的 type assignment
+
+    存在系统性偏差，不是随机错误。Conjunction DR=0% (任意 entity type 均合法) 提供负对照。
+
+    '
+  tables:
+  - 'Table 2: Per-relation violation rates (SciERC Phase 0)'
+  figures_description:
+  - 'Figure 2 (left): Per-relation DR heatmap with constraint tightness (τ) annotation'
+  analysis: 'Per-relation variance (0–42.4%) 比整体 DR=15.4% 更有叙事价值。引出 Claim 1 核心 insight：
+
+    violation rate 由 constraint tightness 驱动，非 ontology size 或 model capability。
+
+    '
+- name: SciERC violation rate (schema-informed prompt)
+  plan_id: P002
+  description: Qwen3-8B SciERC, explicit constraint descriptions in prompt. 已完成。
+  expected_results:
+    DR_pct: 5.78
+    DR_reduction_pct: 62.4
+    Evaluate_for_DR: 29.9
+    Evaluate_for_delta: 5.8
+    Compare_DR: 27.6
+    Feature_of_DR: 11.3
+  result_rationale: 'Prompt-level intervention 在统计上有效 (↓62.4%) 但 per-relation 不可靠。Evaluate-for
+
+    从 24.1% 升到 29.9% (+5.8pp) 是 prior-constraint conflict 的直接证据：model 学到
+
+    避免 Method→Task (减少 46 个违规) 但剩余 boundary cases 的 type assignment 更不稳定。
+
+    三个 relation 保持 >10% DR 证明 prompt 方法无法提供 per-instance guarantee。
+
+    '
+  tables:
+  - 'Table 2: Schema-informed column'
+  figures_description: []
+  analysis: 'Evaluate-for regression 是整篇论文最有说服力的单个 data point：
+
+    prompt 不仅 insufficient 且可能 counterproductive。直接引出 decoding-time enforcement 动机。
+
+    '
+- name: DocRED violation rate (minimal prompt)
+  plan_id: P003
+  description: Qwen3-8B DocRED zero-shot unconstrained. 已完成。
+  expected_results:
+    DR_pct: 18.7
+    RV_pct: 28.9
+    ET_pct: 7.5
+    total_triples: 16540
+  result_rationale: '96-relation DocRED DR=18.7% ≈ 7-relation SciERC DR=15.4%，14×
+    ontology size 差异
+
+    未导致 violation rate 按比例增长。高 RV=28.9% 因 DocRED 使用 P-number 关系名
+
+    (P31_instance_of 等) 非自然语言，model 大量生成 OOV relation names。
+
+    ET=7.5% 因 DocRED 15 类 entity types 含 model 不熟悉的类别 (e.g., astronomical_body)。
+
+    '
+  tables:
+  - 'Table 3: DocRED violation landscape'
+  figures_description: []
+  analysis: 'DocRED 18.7% ≈ SciERC 15.4% 是 "tightness not size" 的定量证据。
+
+    RV=28.9% 预示 grammar 层在 DocRED 上将有巨大 impact。
+
+    '
+- name: DocRED violation rate (schema-informed prompt)
+  plan_id: P004
+  description: Qwen3-8B DocRED with schema-informed prompt. 已完成。
+  expected_results:
+    DR_pct: 12.8
+    DR_reduction_pct: 32
+  result_rationale: 'Prompt ↓32% (vs SciERC ↓62%) 量化了 prompt scalability failure：96
+    relations 的
+
+    约束信息在 context window 中被 diluted，model 无法有效利用。这不是 prompt quality 问题
+
+    (same prompt template)，而是 ontology complexity 的固有 ceiling。
+
+    '
+  tables:
+  - 'Table 3: Schema-informed column'
+  figures_description: []
+  analysis: 'SciERC ↓62% vs DocRED ↓32% 建立 prompt intervention 的 complexity-dependent
+    ceiling。
+
+    两个 data points 即足以论证趋势。
+
+    '
+- name: SciERC unconstrained baseline (Phase 2)
+  plan_id: P005a
+  description: Qwen3-8B SciERC unconstrained, v2 checker. 已完成。
+  expected_results:
+    DR_pct: 15.37
+    RV_pct: 1.39
+    ET_pct: 0.4
+    CF_pct: 0.08
+    R_F1: 8.23
+    E_F1: 31.01
+  result_rationale: "与 P001 一致（同一 inference output, 新 checker）。CF=0.08% 是 natural\
+    \ baseline —— \nunconstrained 下 model 的 type assignment 跨 relation 已基本一致。\nCF\
+    \ 升高是 constrained-only 现象。\n"
+  tables:
+  - 'Table 4: SciERC ablation matrix, unconstrained column'
+  figures_description: []
+  analysis: Ablation 基准点。
+- name: SciERC grammar-only
+  plan_id: P005
+  description: Qwen3-8B SciERC grammar constraints only (XGrammar CFG). 已完成。
+  expected_results:
+    DR_pct: 14.84
+    RV_pct: 0
+    ET_pct: 0
+    CF_pct: 0.08
+    R_F1: 8.23
+    E_F1: 30.98
+  result_rationale: 'Grammar 消灭 RV/ET (CFG 强制 vocabulary) 但 DR 基本不变 (14.84 vs 15.37)。
+
+    原因：domain/range 约束需要跨 field 状态信息 (entity registry)，grammar CFG 无此能力。
+
+    DR 微降 0.53pp 是统计噪音而非系统性效果。F1 完全不变——grammar 约束是结构性的，
+
+    不扭曲 probability distribution。CF=0.08% 与 unconstrained 持平，确认 CF 100%
+
+    由 semantic 层引入。
+
+    '
+  tables:
+  - 'Table 4: grammar_only column'
+  figures_description: []
+  analysis: 'Grammar 层功能精确：消灭 vocabulary-level violations (RV, ET)，不触及 semantic violations
+    (DR)。
+
+    为 enabling dependency 论证提供 clean baseline。
+
+    '
+- name: SciERC semantic-only
+  plan_id: P006
+  description: Qwen3-8B SciERC semantic constraints only (no grammar). 已完成。
+  expected_results:
+    DR_pct: 11.65
+    RV_pct: 1.51
+    ET_pct: 0.4
+    CF_pct: 2.71
+    R_F1: 8.15
+  result_rationale: 'Semantic layer alone 仅 ↓24% DR (vs full ↓94%)。关键机制：unconstrained
+    generation
+
+    产生 ~1.5% OOV relation names → semantic layer 无法 look up 这些 relation 的 domain/range
+
+    → 对这些 triples 完全无效。此外，non-standard entity types (ET=0.40%) 导致 type matching
+
+    失败，进一步削弱 semantic enforcement。这是 enabling dependency 的直接证据：
+
+    grammar 是 semantic 的前提条件，非反过来。
+
+    '
+  tables:
+  - 'Table 4: semantic_only column'
+  figures_description:
+  - 'Figure 3: DR reduction cascade diagram (unconstrained → grammar_only → semantic_only
+    → full_s1)'
+  analysis: '24% vs 94% 的巨大 gap 是 enabling dependency 论证的核心。Semantic alone 效果差
+
+    不是因为 semantic layer 弱，而是因为 input 不满足 semantic layer 的前提条件。
+
+    这区别于简单 "synergy"——是 asymmetric prerequisite。
+
+    '
+- name: SciERC full S1
+  plan_id: P007
+  description: Qwen3-8B SciERC full dual-layer S1 (grammar + semantic, single pass).
+    已完成。
+  expected_results:
+    DR_pct: 0.93
+    RV_pct: 0
+    ET_pct: 0
+    CF_pct: 9.9
+    R_F1: 8.36
+    E_F1: 30.98
+    DR_reduction_pct: 94.0
+    R_F1_delta_pp: 0.13
+    R_F1_p: 0.58
+  result_rationale: 'Grammar 确保每个 relation name 合法 → semantic layer 可查表执行 domain/range
+    enforcement
+
+    → DR 从 15.37 降至 0.93 (↓94%)。残余 0.93% 来自 fallback events：当 semantic∩grammar
+
+    mask 为空集时退化为 grammar-only (该 token 位置无 semantic protection)。
+
+    SciERC fallback ~10.7 次/doc，远低于 DocRED ~57 次/doc，解释 SciERC 残余更低。
+
+    R-F1 +0.13pp (p=0.58, NS)：约束不影响 extraction quality。
+
+    CF 从 0.08% 跃升至 9.90%：semantic 层 per-relation 独立 type enforcement 导致
+
+    同一 entity 在不同 relation 中被赋予不同 type (EVR 机制)。
+
+    '
+  tables:
+  - 'Table 4: full_s1 column'
+  figures_description: []
+  analysis: '0.93% residual + 0% RV/ET + F1-neutral 是 SciERC core result。
+
+    CF=9.90% 是已知 tradeoff，proactive disclosure + type ambiguity 论证 (Generic↔OtherScientificTerm)
+
+    + semantic-layer 消融归因 (grammar_only CF=0.08%) 构成三层防御。
+
+    '
+- name: SciERC full S2 (ablation)
+  plan_id: P008
+  description: Qwen3-8B SciERC two-pass S2. 已完成。降级为 ablation。
+  expected_results:
+    DR_pct: 0.97
+    CF_pct: 8.03
+    R_F1: 8.03
+    E_F1: 31.9
+  result_rationale: 'S2 DR=0.97% ≈ S1 0.93%；CF=8.03% vs S1 9.90% (↓1.87pp, 不显著)；
+
+    R-F1=8.03% < S1 8.36% (error propagation from Pass 1)。
+
+    S2 不解决 CF——两种策略的 CF 差异在统计噪音内。
+
+    降级为 §5/appendix architectural ablation，证明框架灵活性而非优越性。
+
+    '
+  tables:
+  - 'Table (appendix): S1 vs S2 comparison'
+  figures_description: []
+  analysis: 'S2 data confirms S1 as recommended strategy. S2 in paper serves as:
+
+    (1) architectural flexibility evidence, (2) confirmation CF is inherent (not S1-specific).
+
+    '
+- name: DocRED unconstrained baseline
+  plan_id: P009
+  description: Qwen3-8B DocRED unconstrained, v2 checker. 已完成。
+  expected_results:
+    DR_pct: 18.46
+    RV_pct: 29.66
+    ET_pct: 2.48
+    CF_pct: 0.1
+    R_F1: 7.74
+    E_F1: 58.15
+    total_triples: 17497
+    unrecognized_relations: 5189
+  result_rationale: '5189 个 OOV relation predictions (29.66%) 是 Qwen 在 DocRED 96-type
+    schema 上的
+
+    主要 failure mode。这些 OOV predictions 在 all_set F1 method 下计入 FP denominator，
+
+    压低 precision/F1。Grammar 层消灭 OOV 后将直接提升 F1。
+
+    '
+  tables:
+  - 'Table 5: DocRED ablation matrix, unconstrained column'
+  figures_description: []
+  analysis: High RV baseline is key to understanding DocRED dynamics.
+- name: DocRED grammar-only
+  plan_id: P010
+  description: Qwen3-8B DocRED grammar-only. 已完成。
+  expected_results:
+    DR_pct: 26.17
+    RV_pct: 0.03
+    ET_pct: 0
+    CF_pct: 0.07
+    R_F1: 8.31
+    E_F1: 59.38
+  result_rationale: 'DR 从 18.46% 上升到 26.17% (+7.71pp)——latent violation surfacing
+    effect。
+
+    机制：grammar 将 5189 个 OOV predictions 强制映射到 96 个合法 relation names →
+
+    这些 triple 现在可被 DR checker 检测 → 暴露大量原本隐藏在 OOV 背后的 domain/range
+
+    违规。这是比简单 "grammar reduces violations" 更深的 insight。
+
+    E-F1 从 58.15 升至 59.38 (+1.23pp)：grammar 消灭 ET violations (OOV entity types
+
+    计为 FP → E-F1 上升)。Grammar 是 F1 提升的唯一来源 (full_s1 E-F1=59.37 ≈ 59.38)。
+
+    '
+  tables:
+  - 'Table 5: grammar_only column'
+  figures_description: []
+  analysis: 'Latent violation surfacing 是 D014 的经验基础：同一 ontology tightness 下，
+
+    model RV baseline 决定 grammar 层暴露多少 latent DR → 决定 full_s1 residual DR 上限。
+
+    这个 finding 超出 "grammar helps" 的 trivial expectation。
+
+    '
+- name: DocRED semantic-only
+  plan_id: P011
+  description: Qwen3-8B DocRED semantic-only. 已完成。
+  expected_results:
+    DR_pct: 13.84
+    RV_pct: 29.87
+    ET_pct: 4.22
+    CF_pct: 1.05
+    R_F1: 7.7
+  result_rationale: '与 SciERC 同样的 enabling dependency pattern：RV=29.87% 持续 → semantic
+    layer
+
+    对 ~30% triples 无能力 → DR 仅 ↓25%。ET 上升到 4.22% (vs unconstrained 2.48%)
+
+    是补偿效应：semantic masking 压力下 model 转向生成非标准 entity types。
+
+    '
+  tables:
+  - 'Table 5: semantic_only column'
+  figures_description: []
+  analysis: Confirms enabling dependency on 96-relation schema — same mechanism as
+    SciERC.
+- name: DocRED full S1
+  plan_id: P012
+  description: Qwen3-8B DocRED full S1. 已完成。
+  expected_results:
+    DR_pct: 10.21
+    RV_pct: 0.03
+    ET_pct: 0
+    CF_pct: 2.57
+    R_F1: 8.23
+    E_F1: 59.37
+    DR_reduction_pct: 44.7
+    R_F1_delta_pp: 0.5
+    R_F1_p: <0.001
+    E_F1_delta_pp: 1.22
+    E_F1_p: <0.001
+    fallback_events_per_doc: 57
+  result_rationale: 'DR↓45% (vs SciERC ↓94%) 不是方法失败而是 D014 dual-factor 的预测结果：
+
+    DocRED τ̄=0.842 (tight) × Qwen RV=29.66% (high) → grammar surfacing 暴露大量 latent
+    DR
+
+    → residual 10.21%。Fallback ~57 次/doc (vs SciERC ~10.7) 量化了 constraint coverage
+    gap。
+
+    R-F1 +0.50pp (p<0.001) 显著正向：OOV relation names 被强制匹配合法名 → 部分原本被计为 FP
+
+    的 predictions 变为 TP → precision ↑。这是 grammar 层的 secondary benefit。
+
+    '
+  tables:
+  - 'Table 5: full_s1 column'
+  figures_description:
+  - 'Figure 4: tightness × RV baseline interaction plot (4 model-dataset combinations)'
+  analysis: '10.21% residual + 45% reduction 在 paper 中不作为 weakness 而是作为 D014 tightness×RV
+
+    interaction finding 的经验支撑。Fallback frequency (57/doc) 定义 "Constraint Coverage"
+
+    metric，把残余 DR 从 unexplained gap 变成 quantifiable phenomenon。
+
+    '
+- name: Llama SciERC unconstrained
+  plan_id: P013
+  description: Llama-3.1-8B SciERC unconstrained. 已完成。
+  expected_results:
+    DR_pct: 13.34
+    RV_pct: 0.55
+    ET_pct: 0
+    R_F1: 2.68
+    E_F1: 23.56
+  result_rationale: 'Llama violation profile 不同于 Qwen：RV 更低 (0.55% vs 1.39%)，DR 略低
+    (13.34% vs 15.37%)。
+
+    低 RV 意味着 grammar 层 latent surfacing 更少 → 预测 constrained DR 将显著低于 Qwen。
+
+    R-F1=2.68% (vs Qwen 8.23%) 反映 Llama-8B 在 SciERC zero-shot 上 extraction quality
+    较差，
+
+    但 F1 是控制变量不是优化目标。
+
+    '
+  tables:
+  - 'Table 6: Cross-model matrix'
+  figures_description: []
+  analysis: 'Llama 低 RV + 中 DR vs Qwen 中 RV + 中 DR → RV↓DR↑ orthogonality 的起点。
+
+    两层约束解决正交 failure modes。
+
+    '
+- name: Llama SciERC full S1
+  plan_id: P014
+  description: Llama-3.1-8B SciERC full S1, zero code modification. 已完成。
+  expected_results:
+    DR_pct: 0.08
+    DR_reduction_pct: 99.4
+    RV_pct: 0
+    ET_pct: 0
+    CF_pct: 6.56
+    R_F1: 2.54
+    R_F1_delta_pp: -0.14
+    R_F1_p: 0.011
+  result_rationale: '↓99.4% 因 Llama 低 RV (0.55%) → grammar surfacing minimal → semantic
+    layer 几乎对所有
+
+    triples 生效。DR=0.08% (仅 1 个违规) 实质上为零。R-F1 -0.14pp (p=0.011) 虽统计显著
+
+    但绝对值可忽略 (-0.14 out of 2.68, <1% relative change)。
+
+    CF=6.56% 高于 Qwen SciERC (9.90%) 的 per-entity rate 但方向一致——non-local constraint
+
+    问题在 Llama 上更突出。
+
+    '
+  tables:
+  - 'Table 6: Llama SciERC full_s1 column'
+  figures_description: []
+  analysis: '99.4% DR reduction 零代码修改是 cross-model 的 headline。"Generalizes across
+    model families
+
+    without code modification" 是程序性事实 (iron-clad claim)。
+
+    '
+- name: Llama DocRED unconstrained
+  plan_id: P015
+  description: Llama-3.1-8B DocRED unconstrained. 已完成。
+  expected_results:
+    DR_pct: 26.07
+    RV_pct: 16.03
+    ET_pct: 0.13
+    CF_pct: 0.17
+    R_F1: 5.98
+    E_F1: 55.65
+  result_rationale: 'Llama DocRED: RV=16.03% (vs Qwen 29.66%) 但 DR=26.07% (vs Qwen
+    18.46%)。
+
+    RV↓DR↑ 反向于 Qwen——vocabulary compliance ≠ semantic compliance 的直接证据。
+
+    Llama 更擅长记忆 P-number relation names (fewer OOV) 但对 domain/range 语义约束
+
+    理解更差 (more violations in valid relations)。这是 §5 cross-model independent finding。
+
+    '
+  tables:
+  - 'Table 6: Llama DocRED unconstrained column'
+  figures_description: []
+  analysis: 'RV↓DR↑ orthogonality: Llama 和 Qwen 在 DocRED 上失败模式正交 →
+
+    两层约束分别处理各自的 failure mode → 架构论证更有力。
+
+    '
+- name: Llama DocRED full S1
+  plan_id: P016
+  description: Llama-3.1-8B DocRED full S1. 已完成。
+  expected_results:
+    DR_pct: 2.55
+    DR_reduction_pct: 90.2
+    RV_pct: 0
+    ET_pct: 0
+    CF_pct: 12.02
+    R_F1: 6.27
+    R_F1_delta_pp: 0.29
+    R_F1_p: 0.013
+    E_F1: 55.01
+    E_F1_delta_pp: -0.64
+    parse_failures: 91
+  result_rationale: 'Llama DocRED ↓90.2% (vs Qwen 同 dataset ↓44.7%)——D014 dual-factor
+    的最强证据：
+
+    同一 ontology (τ̄=0.842) 但 Llama RV=16.03% << Qwen 29.66%，
+
+    grammar surfacing 更少 → residual DR 更低 (2.55% vs 10.21%)。
+
+    R-F1 +0.29pp (p=0.013) 正向且显著 (two models both positive on DocRED)。
+
+    CF=12.02% 高于 Qwen (2.57%)——model-dependent CF variation。
+
+    Parse failures 91/998 (9.1%) vs unconstrained 68 (6.8%)——constrained decoding
+
+    增加约束 token 导致 max_tokens 不足的概率上升。偏差方向保守 (不利于 constrained)。
+
+    '
+  tables:
+  - 'Table 6: Llama DocRED full_s1 column'
+  figures_description: []
+  analysis: 'Llama 90.2% vs Qwen 44.7% 在同一 dataset 上是 D014 的决定性证据。
+
+    Two data points fully explained by tightness × RV baseline model。
+
+    Paper 中应在 §5 展开 dual-factor analysis 并呈现 4-point interaction plot。
+
+    '
+- name: S2 pilot (50 docs)
+  plan_id: P017
+  description: S2 pilot run on 50 SciERC docs. 已完成，被 P008 full run superseded。
+  expected_results:
+    DR_pct: 2.05
+    R_F1: 10.08
+    samples: 50
+  result_rationale: '小样本 pilot 确认 S2 可运行，但 DR=2.05% (n=146 triples) 是高方差估计。
+
+    Full run P008 (n=1644 triples) DR=0.97% 是可靠值。不在论文中引用 pilot 数字。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: Superseded by P008. Do not cite pilot50 DR=0% (原始 dryrun artifact)。
+- name: Post-hoc filtering baseline
+  plan_id: P018
+  description: Post-hoc filtering on Qwen SciERC + DocRED. 已完成。
+  expected_results:
+    scierc_R_F1_posthoc: 8.63
+    scierc_R_F1_OntoCoDec: 8.36
+    scierc_reject_pct: 16.8
+    scierc_TP_lost: 7
+    docred_R_F1_posthoc: 9.61
+    docred_R_F1_OntoCoDec: 8.23
+    docred_reject_pct: 48.1
+    docred_TP_lost: 127
+    docred_ET_residual: 2.47
+  result_rationale: 'Post-hoc F1 > OntoCoDec F1 (SciERC 8.63 vs 8.36, DocRED 9.61
+    vs 8.23)，因 low-F1
+
+    regime 下删除 violating triples (大部分是 FP) 大幅提升 precision。
+
+    但 DocRED 丢弃 48.1% triples + 127 个 TP (11.2%)。
+
+    Framing: multi-dimensional (recall ↑ vs ↓, coverage, operational, ET residual)。
+
+    Post-hoc 无法解决 ET (残余 2.47%) 因它只删 triples 不改 entity list。
+
+    '
+  tables:
+  - 'Table 7: OntoCoDec vs post-hoc multi-dimensional comparison'
+  figures_description: []
+  analysis: '不以 F1 论高低。OntoCoDec recall 上升 + post-hoc recall 下降是核心论据。
+
+    127 个 lost TP 是 "prevent vs detect" 最具体的数据点。
+
+    '
+- name: Bootstrap CI (10000 iterations)
+  plan_id: P019
+  description: Bootstrap CI for all F1 metrics. 已完成。
+  expected_results:
+    qwen_scierc_R_F1_delta: 0.13
+    qwen_scierc_R_F1_p: 0.58
+    qwen_docred_R_F1_delta: 0.5
+    qwen_docred_R_F1_p: <0.001
+    qwen_docred_R_F1_CI: '[+0.23, +0.81]'
+    qwen_docred_E_F1_delta: 1.23
+    qwen_docred_E_F1_p: <0.001
+    llama_scierc_R_F1_delta: -0.14
+    llama_scierc_R_F1_p: 0.011
+    llama_docred_R_F1_delta: 0.29
+    llama_docred_R_F1_p: 0.013
+  result_rationale: 'DocRED R-F1 显著提升 (both models p<0.02) 因 OOV elimination reduces
+    FP。
+
+    SciERC R-F1 中性/可忽略 (Qwen NS, Llama borderline) 因 SciERC RV baseline 低，
+
+    grammar 层 FP reduction 效果有限。
+
+    Cross-model pattern: DocRED F1 positive (both), SciERC F1 neutral — consistent
+    story。
+
+    '
+  tables:
+  - 'Table (appendix): Full bootstrap CI table'
+  figures_description: []
+  analysis: Statistical rigor layer. All p-values reported in paper.
+- name: WikiEvents Qwen3-8B unconstrained
+  plan_id: P021
+  description: WikiEvents EE, Qwen3-8B unconstrained. 已完成。
+  expected_results:
+    parse_rate_pct: 88.6
+    EV_pct: 24.0
+    RoV_pct: 74.9
+    AC_pct: 0.3
+    CF_pct: 0
+    trigger_F1: 11.84
+    entity_F1: 0
+    argument_F1: 0.09
+  result_rationale: 'RoV=74.9% 是压倒性违规——EE 的 80 argument roles conditioned on 56 event
+    types
+
+    远超 model 从 prompt 学习的容量。EV=24% 因生成非 KAIROS event types。
+
+    Entity F1=0% 不是 model 无能力——是 unconstrained JSON 格式太 malformed，
+
+    parser 无法提取 entity mentions。AC=0.3% 极低因大部分 triples 都被 RoV 覆盖
+
+    (invalid role → 无法检查 argument type constraint)。
+
+    '
+  tables:
+  - 'Table 8: WikiEvents 3-model results'
+  figures_description: []
+  analysis: 'RoV 74.9% (EE) vs RV 1.4% (RE SciERC) 是最直观的 "EE needs constraint more
+    than RE" evidence。
+
+    Entity F1=0%→constrained 14.1% 是 format compliance recovery 的 dramatic demonstration。
+
+    '
+- name: WikiEvents Qwen3-8B constrained (full_s1 v3)
+  plan_id: P022
+  description: WikiEvents EE, Qwen3-8B, full S1, collision+exact-match fix. 已完成。
+  expected_results:
+    parse_rate_pct: 83.7
+    EV_pct: 0
+    RoV_pct: 0
+    AC_pct: 2.1
+    CF_pct: 21.1
+    trigger_F1: 13.39
+    entity_F1: 14.09
+    argument_F1: 1.68
+  result_rationale: '三层级联 Grammar→RoV→AC：grammar 消灭 EV→0% (CFG 强制 56 event types)；
+
+    semantic continuation masking 消灭 RoV→0% (80 roles per-event-type enforcement)；
+
+    AC=2.1% 残余来自 model 语义混淆 (SID vs SEN 等相近 entity types，non-collision related
+
+    因 Qwen 0 collision groups)。
+
+    Entity F1 从 0%→14.1%：纯粹 format compliance recovery——grammar 产生 schema-valid JSON，
+
+    parser 才能识别 entity mentions。不是语义改进。
+
+    CF=21.1% 高于 RE (9.9% SciERC)：EE argument structure 更复杂 (多个 event 共享 entity，
+
+    每个 event 独立 type assignment)，CF tradeoff 更明显。
+
+    '
+  tables:
+  - 'Table 8: Qwen constrained column'
+  figures_description: []
+  analysis: 'EV/RoV→0% across all 3 models 是 cross-task generalization 的核心证据。
+
+    三层级联 (Grammar→RoV→AC) 比 RE 两层 (Grammar→DR) 更丰富——architecture contribution 更强。
+
+    '
+- name: WikiEvents Llama-3.1-8B unconstrained
+  plan_id: P023
+  description: WikiEvents EE, Llama-3.1-8B unconstrained. 已完成。
+  expected_results:
+    parse_rate_pct: 91.9
+    EV_pct: 10.5
+    RoV_pct: 88.8
+    AC_pct: 0.1
+    CF_pct: 0
+    trigger_F1: 5.72
+    entity_F1: 0
+  result_rationale: 'Llama RoV=88.8% (highest across all experiments)——对 role vocabulary
+    的记忆最差。
+
+    但 EV=10.5% (lowest among 3 models)——对 event type vocabulary 记忆更好。
+
+    这与 RE 中 Llama 低 RV 但高 DR 的模式一致：vocabulary-level vs semantic-level
+
+    failure 因 model 而异。
+
+    '
+  tables:
+  - 'Table 8: Llama unconstrained column'
+  figures_description: []
+  analysis: RoV=88.8% is the highest violation rate in the paper — strongest evidence
+    for constraint necessity.
+- name: WikiEvents Llama-3.1-8B constrained (full_s1 v3)
+  plan_id: P024
+  description: WikiEvents EE, Llama-3.1-8B, full S1 v3. 已完成。
+  expected_results:
+    parse_rate_pct: 84.1
+    EV_pct: 0
+    RoV_pct: 0
+    AC_pct: 3.8
+    CF_pct: 17.2
+    trigger_F1: 7.48
+    entity_F1: 17.63
+  result_rationale: 'Pattern 与 Qwen 一致：EV/RoV→0%，AC 残余 3.8% (略高于 Qwen 2.1%)。
+
+    Llama AC 稍高因对 KAIROS entity types 的 semantic understanding 略弱
+
+    (但无 BPE collision 问题——Llama 0 collision groups)。
+
+    Entity F1=17.6% (highest among 3 models)：Llama entity mention 质量更好
+
+    (当 format valid 时)。
+
+    '
+  tables:
+  - 'Table 8: Llama constrained column'
+  figures_description: []
+  analysis: 'Cross-model consistency: EV/RoV→0% regardless of model. AC varies 2.1-3.8%.'
+- name: WikiEvents Mistral-7B unconstrained
+  plan_id: P025
+  description: WikiEvents EE, Mistral-7B-v0.3 unconstrained. 已完成。
+  expected_results:
+    parse_rate_pct: 78.9
+    EV_pct: 37.3
+    RoV_pct: 63.9
+    AC_pct: 0
+    CF_pct: 0
+    trigger_F1: 2.41
+    entity_F1: 0
+  result_rationale: 'Mistral EV=37.3% (highest)——最弱的 event type vocabulary 学习能力。
+
+    RoV=63.9% (lowest of 3, but still dominant)。AC=0% 因 37.3% invalid event types
+
+    使大量 triples 无法进行 argument constraint check。
+
+    Parse rate=78.9% (lowest) 反映 Mistral 在 complex JSON generation 上最弱。
+
+    '
+  tables:
+  - 'Table 8: Mistral unconstrained column'
+  figures_description: []
+  analysis: Mistral's high EV (37.3%) means grammar layer eliminates 37.3% vocabulary
+    violations for this model.
+- name: WikiEvents Mistral-7B constrained (full_s1 v3)
+  plan_id: P026
+  description: WikiEvents EE, Mistral-7B, full S1 v3 with collision fix. 已完成。
+  expected_results:
+    parse_rate_pct: 88.6
+    EV_pct: 0
+    RoV_pct: 0
+    AC_pct: 1.3
+    CF_pct: 14.9
+    trigger_F1: 3.87
+    entity_F1: 11.71
+  result_rationale: 'EV/RoV→0% consistent across all 3 models。AC=1.3% (lowest) after
+    collision fix
+
+    (v3 resolves SID/SEN/SIDE→''S'' and BAL/BOD→''B'' collisions)。
+
+    Parse rate 从 78.9%→88.6% 因 grammar 产生 well-formed JSON。
+
+    AC 残余 1.3% 是 pure semantic confusion (non-collision, 因 Mistral 有 2 collision groups
+
+    但 v3 已修复大部分——从 v2 16.6% 降至 v3 1.3%)。
+
+    '
+  tables:
+  - 'Table 8: Mistral constrained column'
+  figures_description: []
+  analysis: '3-model consistency on EV/RoV→0% 是 task-agnostic effectiveness 的决定性证据。
+
+    AC range 1.3-3.8% 反映 model-specific semantic confusion, not method limitation。
+
+    '
+- name: WikiEvents Mistral grammar_only v3
+  plan_id: P027
+  description: Grammar-only ablation on Mistral WikiEvents. 已完成。
+  expected_results:
+    EV_pct: 0
+    RoV_pct: 64.0
+    AC_pct: 13.8
+    CF_pct: 1.1
+  result_rationale: 'Grammar 消灭 EV→0% 但 RoV=64% 持续——grammar CFG 无法 encode per-event-type
+
+    role constraints (role validity 取决于 event context, 非 static vocabulary)。
+
+    AC 从 0%→13.8% 是 latent surfacing (同 RE DocRED grammar-only DR rise)：
+
+    grammar 强制有效 event types 后暴露原本隐藏的 role→entity type 违规。
+
+    Proves: semantic layer is essential for EE，two-layer architecture is necessary
+    not convenient。
+
+    '
+  tables:
+  - 'Table 9: EE ablation (grammar_only vs full_s1)'
+  figures_description: []
+  analysis: 'grammar_only RoV=64% vs full RoV=0% 是 semantic layer necessity 的单一最强证据。
+
+    比 RE 更 dramatic (RE grammar_only DR=14.84%, full DR=0.93%, 差距 14pp；EE 差距 64pp)。
+
+    '
+- name: WikiEvents EE post-hoc filtering (3 models)
+  plan_id: P028
+  description: Post-hoc filtering baseline for EE. 从现有数据计算得出。
+  expected_results:
+    qwen_args_before: 5467
+    qwen_args_after: 23
+    qwen_discard_pct: 99.6
+    llama_args_before: 5053
+    llama_args_after: 3
+    llama_discard_pct: 99.9
+    mistral_args_before: 6034
+    mistral_args_after: 0
+    mistral_discard_pct: 100
+  result_rationale: 'EE 的极高 violation rate (RoV 64-89%) 意味着 post-hoc 必须删除几乎所有 arguments。
+
+    Qwen: 5467→23 (99.6%)，因 RoV=74.9% + EV=24% 导致绝大部分 arguments 违规。
+
+    Llama: 5053→3 (99.9%)，RoV=88.8% 更高 → 更少幸存。
+
+    Mistral: 6034→0 (100%)，EV=37.3% + RoV=63.9% 的组合使零 argument 完全合规。
+
+    对比 RE post-hoc (SciERC 16.8%, DocRED 48.1%)——EE 的 constraint space 使 post-hoc
+
+    从 "expensive but functional" 变成 "completely non-viable"。
+
+    '
+  tables:
+  - 'Table 10: Post-hoc comparison RE vs EE'
+  figures_description:
+  - 'Figure 5: Post-hoc rejection rate bar chart (RE 2 datasets × EE, 3 models)'
+  analysis: '99.6-100% discard 是 killer comparison。审稿人 "why not just post-hoc filter?"
+    被
+
+    one number 消灭。EE post-hoc non-viability vs RE post-hoc partial viability
+
+    也展示了 constraint space complexity 的 monotonic effect。
+
+    '
+- name: 70B SciERC unconstrained + constrained
+  plan_id: P029
+  description: Llama-3.1-70B-Instruct AWQ-INT4, SciERC. 已完成。
+  expected_results:
+    unconstrained_DR_pct: 6.5
+    unconstrained_RV_pct: 0.6
+    unconstrained_ET_pct: 0
+    unconstrained_R_F1: 11.22
+    unconstrained_E_F1: 35.17
+    constrained_DR_pct: 0
+    constrained_RV_pct: 0
+    constrained_ET_pct: 0
+    constrained_CF_pct: 3.66
+    constrained_R_F1: 11.24
+    constrained_E_F1: 35.14
+    DR_reduction_pct: 100
+    R_F1_delta_pp: 0.02
+  result_rationale: '70B SciERC unconstrained DR=6.5%——是 8B 的约一半 (Qwen 15.4%, Llama
+    13.3%)。
+
+    Scale 减少违规但未消除：每 15 个 triple 仍有 1 个违反 type constraint。
+
+    这彻底否定 "scale solves it" 反驳 (7-relation 小 ontology 上 70B 仍有 6.5% DR)。
+
+    Constrained DR=0%：SciERC 7-relation schema 足够简单，70B + OntoCoDec = 完美消除。
+
+    R-F1 +0.02pp (neutral)。CF=3.66% 低于 8B (Qwen 9.90%, Llama 6.56%)——
+
+    70B 的 type assignment 更稳定，cross-relation consistency 更好。
+
+    '
+  tables:
+  - 'Table 11: 70B cross-scale results'
+  figures_description:
+  - 'Figure 6: DR across scales (8B×3 + 70B) for SciERC'
+  analysis: '6.5% at 70B 是 §1 motivation 的经验支撑：即使参数扩大 9×，violations 持续。
+
+    Constrained DR=0% 确认 OntoCoDec 在 70B 上不仅有效而且 perfect。
+
+    CF=3.66% (lowest across all models) 暗示 scale 可以缓解 CF tradeoff。
+
+    '
+- name: 70B DocRED unconstrained + constrained
+  plan_id: P030
+  description: Llama-3.1-70B-Instruct AWQ-INT4, DocRED. 当前 RUNNING。
+  expected_results:
+    unconstrained_DR_pct: 11.0
+    unconstrained_RV_pct: 5.2
+    unconstrained_ET_pct: 0.05
+    unconstrained_CF_pct: 0.12
+    unconstrained_R_F1: 9.8
+    unconstrained_E_F1: 62.5
+    unconstrained_parse_fail_pct: 2.0
+    unconstrained_total_triples: 17500
+    constrained_DR_pct: 1.2
+    constrained_RV_pct: 0
+    constrained_ET_pct: 0
+    constrained_CF_pct: 5.0
+    constrained_R_F1: 10.1
+    constrained_E_F1: 63.0
+    constrained_parse_fail_pct: 3.5
+    DR_reduction_pct: 89.1
+    R_F1_delta_pp: 0.3
+    E_F1_delta_pp: 0.5
+  result_rationale: "=== Unconstrained DR ~11% 预测逻辑 ===\n(1) Scale effect calibration:\
+    \ 70B SciERC DR=6.5% = 8B-Llama SciERC 13.3% × 0.49。\n    8B-Llama DocRED DR=26.07%\
+    \ × 0.49 ≈ 12.8%。但 DocRED tight constraints\n    (τ̄=0.842) 对 scale benefit 有\
+    \ ceiling——tight-constraint relations\n    (P31_instance_of DR=60%, P1001 DR=44%)\
+    \ 即使 70B 仍难以纠正。\n(2) Model-family consistency: 70B 是 Llama 家族，DocRED 上 8B-Llama\
+    \ DR=26.07%\n    (highest among 8B models)。Scale 减半但 DocRED 的绝对 floor 更高。\n(3)\
+    \ 预测 ~11% 落在 best tier [8, 15]：足以否定 \"scale solves it\"\n    (每 9 个 triple 仍有\
+    \ 1 个违规)，同时不太高以至于暗示 \"70B 完全无改善\"。\n\n=== RV ~5.2% ===\n70B 对 96 relation P-number\
+    \ names 记忆力远优于 8B (Qwen 29.7%, Llama 16%)，\n但 P-number 是非自然语言标识符，even 70B 会偶尔\
+    \ OOV。预测 ~5%：\n8B-Llama RV=16% × 0.33 (scale improvement ratio higher for vocabulary\
+    \ than semantics)。\n\n=== Constrained DR ~1.2% ===\n(1) Llama-8B DocRED constrained\
+    \ DR=2.55% with RV=16.03%。\n(2) 70B RV ~5.2% → grammar surfacing 更少 (fewer OOV\
+    \ → fewer latent violations exposed)。\n(3) 70B semantic understanding 更强 → semantic\
+    \ mask 决策更准确 → fewer fallback events。\n(4) 8B-Llama SciERC: unconstrained 13.3→constrained\
+    \ 0.08% (↓99.4%)。\n    8B-Llama DocRED: 26.07→2.55% (↓90.2%)。\n    70B DocRED:\
+    \ 11→1.2% (↓89.1%)——与 8B-Llama DocRED 同量级 reduction，\n    略低因 70B 的 lower RV baseline\
+    \ 意味着 residual DR 更多来自 genuinely hard cases\n    (tight constraints + model semantic\
+    \ confusion) 而非 latent surfacing。\n(5) 1.2% 落在 best tier [0.5, 2.0]。\n\n=== DR\
+    \ reduction ~89% ===\n在 best tier [85, 95]。Not as high as 8B-Llama SciERC 99.4%\
+    \ 因 DocRED \ntightness ceiling (同 D014 analysis)。\n\n=== R-F1 +0.3pp ===\n与 8B-Llama\
+    \ DocRED +0.29pp 一致——OOV elimination 带来的 precision gain。\n在 best tier [-0.3, 0.5]。\n\
+    \n=== CF ~5% ===\n低于 8B-Llama DocRED (12.02%) 因 70B type assignment 更稳定。\n高于 70B\
+    \ SciERC (3.66%) 因 DocRED 96-type schema 更复杂。\n"
+  tables:
+  - 'Table 11: 70B DocRED column'
+  - 'Table 12: Cross-scale summary (8B→70B, 2 datasets, 4 metrics)'
+  figures_description:
+  - 'Figure 6 (right): DR across scales for DocRED — 4-point curve (3×8B + 1×70B)'
+  - 'Figure 7: 2D plot: scale (x) vs DR (y), SciERC and DocRED as two curves — shows
+    ceiling effect on DocRED'
+  analysis: '70B DocRED 完成 cross-scale × cross-dataset 矩阵的最后一个 cell：
+
+
+    |           | SciERC (τ̄=0.40) | DocRED (τ̄=0.84) |
+
+    |-----------|-----------------|-----------------|
+
+    | 8B uncon  | 13.3-15.4%      | 18.5-26.1%      |
+
+    | 8B con    | 0-0.93%         | 2.55-10.21%     |
+
+    | 70B uncon | 6.5%            | ~11%            |
+
+    | 70B con   | 0%              | ~1.2%           |
+
+
+    Three findings from this matrix:
+
+    (1) Scale halves violations but doesn''t eliminate them (row comparison)
+
+    (2) Tightness creates ceiling for both unconstrained and constrained DR (column
+    comparison)
+
+    (3) OntoCoDec is effective across both scales (8B reduction 90-99%, 70B reduction
+    89-100%)
+
+
+    Combined with WikiEvents cross-task data, this gives:
+
+    2 tasks × 4 models × 3 datasets = complete evidence matrix for "universal framework"
+    claim。
+
+    '
+- name: Error analysis / case study
+  plan_id: P031
+  description: 10-20 representative cases from v3 EE results + RE residual analysis
+  expected_results:
+    ee_ac_residual_total: 35
+    ac_semantic_confusion_pct: 72
+    ac_collision_residual_pct: 12
+    ac_boundary_case_pct: 16
+    cf_evr_dominated_pct: 88
+    cf_type_ambiguity_examples: 5
+    re_docred_residual_dr_tight_relation_pct: 80
+    representative_cases: 15
+  result_rationale: "AC residual (2-4%) 预测根因分布：\n(1) ~72% semantic confusion：model\
+    \ 混淆语义相近 entity types (SID vs SEN = \"side\" vs\n    \"sentence\"，PER vs GPE =\
+    \ 人名 vs 地名 in ambiguous contexts)。\n    这些是 genuine 语义 boundary cases, 非 tokenizer/engineering\
+    \ 问题。\n(2) ~12% BPE collision 残余：Mistral 的 2 collision groups (S-prefix, B-prefix)\n\
+    \    v3 修复后仍有少量 edge cases (multi-token entity types where first token disambiguates\n\
+    \    but model hasn't fully adapted to new constraint)。\n(3) ~16% 真正 boundary\
+    \ cases：annotation-disagreement-level ambiguity，\n    即人类标注者也可能不同意的 type assignment。这类错误不可能消除。\n\
+    \nCF root cause (15-21%)：>88% 是 EVR (entity-vs-relation type drift)——\n同一 entity\
+    \ 在 entity list 中的 type 与 relation argument 中的 type 不一致。\n这是 per-relation 独立 type\
+    \ enforcement 的直接后果。\nTop 冲突模式将平行 RE SciERC 的 Generic↔OtherScientificTerm pattern，\n\
+    但 EE 中是 PER↔SID、LOC↔GPE 等更细粒度的混淆。\n\nCase study 将提供 5 个 CF type ambiguity examples，让审稿人直观理解\n\
+    \"CF 是 type system 语义边界模糊的体现，非方法 bug\"。\n"
+  tables: []
+  figures_description:
+  - 'Figure (appendix): 3-panel error case illustration (AC semantic confusion, CF
+    type ambiguity, boundary case)'
+  analysis: 'Case study 的论文功能：(1) 为 AC residual 提供 qualitative evidence 支撑
+
+    "inherent model semantic confusion" framing; (2) 为 CF 提供 "type system ambiguity"
+
+    的具体 examples; (3) 展示 OntoCoDec 的 debugging 价值——约束让 violation pattern
+
+    变得可分析 (unconstrained 的 >70% RoV 掩盖了所有细粒度 pattern)。
+
+    '
+- name: EE FT composability
+  plan_id: P032
+  description: Fine-tuned model + OntoCoDec on WikiEvents EE. Priority 2, 时间紧。
+  expected_results:
+    ft_unconstrained_trigger_F1: 42
+    ft_unconstrained_argument_F1: 22
+    ft_unconstrained_entity_F1: 55
+    ft_unconstrained_EV_pct: 0.5
+    ft_unconstrained_RoV_pct: 3.0
+    ft_unconstrained_AC_pct: 1.8
+    ft_constrained_trigger_F1: 42
+    ft_constrained_argument_F1: 22.3
+    ft_constrained_entity_F1: 55
+    ft_constrained_EV_pct: 0
+    ft_constrained_RoV_pct: 0
+    ft_constrained_AC_pct: 0.2
+    ft_constrained_CF_pct: 2.5
+    delta_arg_F1_pp: 0.3
+  result_rationale: "RE FT composability 已确认：4 个 FT 实验 (Qwen/Llama × SciERC/DocRED)\n\
+    均显示 DR reduction + F1 neutral/positive。\nEE FT 预期类似 pattern：\n(1) FT 大幅提升 F1 (zero-shot\
+    \ trigger ~12% → FT ~42%, argument ~0% → ~22%)。\n(2) FT 后 violations 大幅降低但不归零：RoV\
+    \ 从 75-89% 降至 ~3%\n    (FT learns role vocabulary but still makes occasional errors)。\n\
+    \    AC 从 ~0.3% 升至 ~1.8% (FT 产生更多 valid role assignments → 更多可被 AC check 覆盖)。\n\
+    (3) Constrained 后 RoV→0%, AC→0.2%, F1 neutral (+0.3pp)。\n(4) CF ~2.5% (远低于 zero-shot\
+    \ 15-21%) 因 FT 稳定了 type assignment。\n\n如果 ~30 GPU-hours budget 不够或时间不足 (May 25\
+    \ deadline)：\nRE FT 4 实验 + EE zero-shot 3 实验已足够支撑 \"composability\" claim。\nP032\
+    \ 是 bonus evidence，非 critical path。\n"
+  tables:
+  - 'Table (appendix): FT+OntoCoDec composability (RE 4 experiments + EE 1 experiment)'
+  figures_description: []
+  analysis: 'FT composability 回应 "only works in zero-shot?" 潜在质疑。
+
+    RE 数据已充分 (4/4 positive)；EE FT 是 completeness bonus。
+
+    即使 skip P032，论文仍可声明 "composable with fine-tuned models (verified on RE)"。
+
+    '
+- name: Grammar-only cross-model validation (Qwen/Llama EE)
+  plan_id: P033
+  description: Grammar-only ablation on Qwen and Llama WikiEvents for completeness
+  expected_results:
+    qwen_grammar_only_EV: 0
+    qwen_grammar_only_RoV: 68
+    qwen_grammar_only_AC: 11
+    qwen_grammar_only_CF: 0.5
+    llama_grammar_only_EV: 0
+    llama_grammar_only_RoV: 76
+    llama_grammar_only_AC: 14
+    llama_grammar_only_CF: 0.3
+  result_rationale: "Mistral grammar-only 已确认 pattern (RoV=64%, AC=13.8%)。\nQwen/Llama\
+    \ 预测 RoV 67-77%：\n- Qwen unconstrained RoV=74.9% → grammar-only 应稍降 (grammar 强制\
+    \ valid event types\n  改变生成 context → 可能略影响 role generation) → ~68%。\n- Llama\
+    \ unconstrained RoV=88.8% → grammar-only ~76% (比 Qwen 高因 baseline 更高)。\nAC 上升到\
+    \ 11-14% (latent surfacing: grammar 强制 valid event types → 更多 triples\n可被 AC checker\
+    \ 检测 → 暴露 latent argument type violations)。\n\nPriority 3：Mistral 单模型 ablation\
+    \ 已足够支撑 \"semantic layer essential for EE\"。\n3 模型一致性增加 robustness 但非 critical。\n"
+  tables:
+  - 'Table (appendix): EE grammar-only ablation (3 models)'
+  figures_description: []
+  analysis: '3-model grammar-only consistency: EV→0% (grammar works), RoV stays 64-77%
+    (grammar insufficient),
+
+    AC rises (latent surfacing). Same pattern across models strengthens claim。
+
+    '
+- name: Bootstrap CI for EE metrics
+  plan_id: P034
+  description: 10000-iteration bootstrap CI for EE F1 changes
+  expected_results:
+    qwen_entity_F1_delta: 14.09
+    qwen_entity_F1_p: <0.001
+    qwen_trigger_F1_delta: 1.55
+    qwen_trigger_F1_p: 0.015
+    llama_entity_F1_delta: 17.63
+    llama_entity_F1_p: <0.001
+    llama_trigger_F1_delta: 1.76
+    llama_trigger_F1_p: 0.03
+    mistral_entity_F1_delta: 11.71
+    mistral_entity_F1_p: <0.001
+    mistral_trigger_F1_delta: 1.46
+    mistral_trigger_F1_p: 0.05
+  result_rationale: 'Entity F1 从 0→11-18% 的 recovery 必然高度显著 (p≪0.001)——
+
+    变化量远大于 bootstrap variance (binomial CI at 246 docs is narrow)。
+
+    Trigger F1 +1.5-1.8pp 在 borderline significant：
+
+    246 docs 的 bootstrap CI width ~±1pp，+1.5pp 勉强超出但 p 在 0.01-0.05 之间。
+
+    Argument F1 changes 太小 (<2pp absolute on near-zero baseline) → 可能 NS。
+
+
+    Priority 3：Entity F1 significance 是 guaranteed (trivial to prove)；
+
+    trigger F1 significance 是 borderline (nice-to-have)；
+
+    argument F1 significance 无关紧要 (near-zero baseline)。
+
+    不影响 core claims (mechanism generalization 是 contribution, not SOTA F1)。
+
+    '
+  tables:
+  - 'Table (appendix): Bootstrap CI for EE metrics (3 models × 3 metrics)'
+  figures_description: []
+  analysis: 'Statistical rigor layer for EE. Entity F1 recovery significance is guaranteed.
+
+    对 acceptance decision 影响小但增加 soundness perception。
+
+    '
+- name: Latency overhead measurement
+  plan_id: P035
+  description: Wall-clock latency comparison. SciERC 已完成, DocRED RUNNING。
+  expected_results:
+    scierc_overhead_pct: 13.1
+    scierc_mean_unconstrained_s: 4.16
+    scierc_mean_constrained_s: 4.71
+    docred_overhead_pct: 17.5
+    docred_mean_unconstrained_s: 23.5
+    docred_mean_constrained_s: 27.6
+    ee_overhead_pct_estimated: 20
+  result_rationale: "SciERC 已测 13.1% overhead (4.16s→4.71s, 7-relation schema)。\n\
+    DocRED 预测 ~17.5%：\n(1) 96 relations → semantic mask lookup 需遍历更多 type rules per\
+    \ token。\n(2) 更多 fallback events (~57/doc vs ~10.7/doc) → fallback handling overhead。\n\
+    (3) 但 mask computation 是 O(|R|) per token, |R|=96 vs 7 = 13.7× more lookups，\n\
+    \    而 mask computation 仅占总 inference time 的 ~10% → overhead 增量有限。\n(4) 预测 17-18%，仍\
+    \ <20%。\n\nEE 估计 ~20%：56 event types × 80 roles × 27 entity types 的三层 mask\n(RE\
+    \ 只有 grammar→semantic 两层，EE 有 grammar→role→argument 三层)\n但 token generation 仍是瓶颈，mask\
+    \ computation 占比小。\n\n总体 framing：<25% overhead for guaranteed type compliance。\n\
+    相比 post-hoc filtering 需额外 pipeline + 人工审查的成本，微不足道。\n"
+  tables:
+  - 'Table (appendix): Latency overhead (SciERC, DocRED, EE estimated)'
+  figures_description:
+  - 'Figure (appendix): Per-document latency distribution (violin plot, unconstrained
+    vs constrained)'
+  analysis: '13-20% overhead 是 practical deployment 的可接受范围。
+
+    Paper framing: "comparable inference cost with guaranteed compliance" —
+
+    the alternative (post-hoc filtering) requires additional pipeline + discards 16-100%
+    of output。'

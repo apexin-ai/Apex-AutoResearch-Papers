@@ -1,0 +1,22 @@
+% Section 2: Background (compressed)
+
+\section{Background}
+\label{sec:background}
+
+\paragraph{IE Ontology Structure.}
+\label{sec:bg:ontology}
+An IE ontology $\mathcal{O} = (\mathcal{E}, \mathcal{R}, \sigma)$ defines entity types $\mathcal{E}$, relation types $\mathcal{R}$, and a mapping $\sigma: \mathcal{R} \to \mathcal{P}(\mathcal{E} \times \mathcal{E})$, where $\mathcal{P}(\cdot)$ denotes the power set, specifying valid (head type, tail type) pairs per relation.
+A triple $(h, r, t)$ is \emph{type-valid} if $(\mathrm{type}(h), \mathrm{type}(t)) \in \sigma(r)$.
+We quantify constraint restrictiveness via \emph{constraint tightness} $\kappa(r)$ (\S\ref{sec:composition}): tighter constraints leave fewer valid type pairs per relation.
+OntoCoDec compiles schema-level type constraints---whether from ontology specifications or empirically derived type pairs in annotated data---into the same representation; empirical constraints achieve 99\%+ instance-level coverage (SciERC 99.0\%, DocRED 99.4\%), with grammar-first fallback (\S\ref{sec:composition}) ensuring no valid triples are blocked.
+
+\paragraph{Grammar-Constrained Decoding.}
+\label{sec:bg:gcd}
+Grammar-constrained decoding restricts each token $y_t$ to a mask $M_g \in \{0, 1\}^{|V|}$ derived from a target grammar.
+Systems such as XGrammar~\citep{dong2025xgrammar}, Outlines~\citep{willard2023outlines}, and SGLang~\citep{zheng2024sglang} compile JSON Schemas into pushdown automata for structural enforcement, but are limited to context-free constraints and cannot enforce cross-field semantic rules (e.g., ``if $r$ = \textsc{Feature-of}, then $\mathrm{type}(h) \in \{\textsc{Method}, \textsc{OtherScientificTerm}\}$'') that depend on previously generated field values.
+
+\paragraph{Problem Statement.}
+\label{sec:bg:problem}
+Given $\mathcal{O}$ and an autoregressive LM $\mathcal{M}$, we seek constraints $\mathcal{C}$ ensuring: (a)~\textbf{structural validity}, i.e., well-formed JSON with $\mathcal{E}$/$\mathcal{R}$ membership; and (b)~\textbf{type validity}, i.e., $(\mathrm{type}(h), \mathrm{type}(t)) \in \sigma(r)$ for every triple.
+Condition (a) is context-free; (b) is context-sensitive but \emph{prefix-decidable}: at the point where a type token is generated, all information needed (relation type, entity registry) is available in the decoded prefix.
+This requires that each entity type name maps to a distinguishable token sequence (\S\ref{sec:dynamic-masking}).

@@ -1,0 +1,51 @@
+% Appendix — Prompt Templates
+
+\section{Prompt Templates}
+\label{app:prompts}
+
+All experiments use the same prompts across constrained and unconstrained decoding; constraints are applied at the logit level, not through prompt modification.
+Table~\ref{tab:prompts} shows the system and user prompts for each dataset.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\toprule
+\textbf{SciERC --- System Prompt (Unconstrained \& Constrained)} \\
+\midrule
+\texttt{You are an expert information extraction system for scientific texts. Extract entities and relations from the given text.} \\[4pt]
+\texttt{Entity types: Task, Method, Material, Metric, OtherScientificTerm, Generic} \\
+\texttt{Relation types: Used-for, Feature-of, Hyponym-of, Part-of, Compare, Conjunction, Evaluate-for} \\[4pt]
+\texttt{Output a JSON object with:} \\
+\texttt{- "entities": list of \{"text": "...", "type": "..."\}} \\
+\texttt{- "relations": list of \{"head": "...", "tail": "...", "type": "...", "head\_type": "...", "tail\_type": "..."\}} \\[4pt]
+\texttt{Output ONLY valid JSON, no explanation.} \\
+\midrule
+\textbf{SciERC --- User Prompt} \\
+\midrule
+\texttt{Extract all entities and relations from this scientific text:} \\
+\texttt{"\{text\}"} \\
+\texttt{Output JSON:} \\
+\midrule
+\midrule
+\textbf{DocRED --- System Prompt (Unconstrained \& Constrained)} \\
+\midrule
+\texttt{You are an information extraction system. Extract all entities and relations from the following document.} \\[4pt]
+\texttt{Entity types: PER, ORG, LOC, TIME, NUM, MISC} \\[4pt]
+\texttt{Relation types: country, instance of, performer, ...\ (96 Wikidata relation types; full list omitted for space)} \\[4pt]
+\texttt{Output a JSON object with exactly this structure:} \\
+\texttt{\{"entities": [\{"text": "entity name", "type": "ENTITY\_TYPE"\}],} \\
+\texttt{\ "relations": [\{"head": "head entity", "tail": "tail entity", "type": "relation name",} \\
+\texttt{\ \ "head\_type": "ENTITY\_TYPE", "tail\_type": "ENTITY\_TYPE"\}]\}} \\[4pt]
+\texttt{Output ONLY the JSON, no other text.} \\
+\midrule
+\textbf{DocRED --- User Prompt} \\
+\midrule
+\texttt{(Document text provided inline in the user message.)} \\
+\bottomrule
+\end{tabular}
+\caption{Extraction prompts used in all experiments.
+The same prompts are used for both unconstrained and constrained decoding; OntoCoDec's constraints operate at the logit level during generation.
+Schema-informed prompts (\S\ref{sec:violation_landscape}) additionally include valid (head type, tail type) pairs per relation.}
+\label{tab:prompts}
+\end{table*}

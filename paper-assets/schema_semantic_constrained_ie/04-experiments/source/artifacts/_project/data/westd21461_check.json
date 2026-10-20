@@ -1,0 +1,78 @@
+{
+  "check_time": "2026-05-21T21:00:00+08:00",
+  "server": "westd-21461",
+  "experiments": {
+    "trie_baseline": {
+      "pid": 241846,
+      "status": "completed",
+      "device": "cuda:1",
+      "dataset": "scierc",
+      "total_samples": 551,
+      "configs": {
+        "qwen_ft": {
+          "file": "r16_trie_qwen_ft.jsonl",
+          "lines": 551,
+          "entity_f1": {"P": 0.6680, "R": 0.6667, "F1": 0.6673},
+          "relation_f1": {"P": 0.3824, "R": 0.4801, "F1": 0.4257},
+          "violations": {
+            "parse_fail_pct": 9.1,
+            "entity_type_pct": 0.0,
+            "relation_vocab_pct": 0.0,
+            "domain_range_pct": 95.5,
+            "cross_field": 1
+          }
+        },
+        "qwen_zs": {
+          "file": "r16_trie_qwen_zs.jsonl",
+          "lines": 551,
+          "entity_f1": {"P": 0.2598, "R": 0.3831, "F1": 0.3097},
+          "relation_f1": {"P": 0.0675, "R": 0.1201, "F1": 0.0864},
+          "violations": {
+            "parse_fail_pct": 0.0,
+            "entity_type_pct": 0.0,
+            "relation_vocab_pct": 0.0,
+            "domain_range_pct": 29.3,
+            "cross_field": 0
+          }
+        },
+        "llama_ft": {
+          "file": "r16_trie_llama_ft.jsonl",
+          "lines": 551,
+          "entity_f1": {"P": 0.6747, "R": 0.6340, "F1": 0.6537},
+          "relation_f1": {"P": 0.4142, "R": 0.4142, "F1": 0.4142},
+          "violations": {
+            "parse_fail_pct": 50.8,
+            "entity_type_pct": 0.0,
+            "relation_vocab_pct": 0.0,
+            "domain_range_pct": 15.2,
+            "cross_field": 0
+          }
+        },
+        "llama_zs": {
+          "file": "r16_trie_llama_zs.jsonl",
+          "lines": 551,
+          "entity_f1": {"P": 0.1980, "R": 0.2809, "F1": 0.2323},
+          "relation_f1": {"P": 0.0266, "R": 0.0318, "F1": 0.0290},
+          "violations": {
+            "parse_fail_pct": 0.0,
+            "entity_type_pct": 0.0,
+            "relation_vocab_pct": 0.0,
+            "domain_range_pct": 84.4,
+            "cross_field": 4
+          }
+        }
+      }
+    },
+    "qwen_beam_998": {
+      "pid": 226609,
+      "status": "running",
+      "elapsed": "8h36m",
+      "device": "cuda:0",
+      "dataset": "docred",
+      "target_lines": 998,
+      "current_lines": 929,
+      "progress_pct": 93.1,
+      "file": "r14_qwen_docred_beam4_998.jsonl"
+    }
+  }
+}

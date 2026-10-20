@@ -1,0 +1,72 @@
+\section{Effect of Document Length on Constraint Effectiveness}
+\label{app:doc-length}
+
+To examine whether OntoCoDec's constraint effectiveness varies with document complexity, we partition test documents into three length bins (tertile split by word count) and report per-bin violation counts and F1.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Document length breakdown on SciERC (Qwen3-8B). Tertile boundaries: Short $\leq$ 19 words, Medium $\leq$ 27, Long $>$ 27.}
+\label{tab:doc-length-scierc}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ll rrrrr rr}
+\toprule
+\textbf{Bin} & \textbf{Mode} & \textbf{ET} & \textbf{RV} & \textbf{DR} & \textbf{CF} & \textbf{Total} & \textbf{E-F1} & \textbf{R-F1} \\
+\midrule
+Short (196)  & Uncon. &  1 &  5 &  57 & 0 &  63 & 32.4 &  8.9 \\
+             & Const. &  0 &  0 &   5 & 5 &  10 & 32.4 &  8.9 \\
+\midrule
+Medium (180) & Uncon. &  6 &  9 & 104 & 0 & 119 & 27.8 &  6.7 \\
+             & Const. &  0 &  0 &   7 & 15 & 22 & 27.8 &  6.7 \\
+\midrule
+Long (175)   & Uncon. &  3 & 10 & 104 & 1 & 118 & 29.9 &  7.0 \\
+             & Const. &  0 &  0 &   4 & 20 & 24 & 30.0 &  7.3 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Document length breakdown on DocRED (Qwen3-8B). Tertile boundaries: Short $\leq$ 160 words, Medium $\leq$ 208, Long $>$ 208.}
+\label{tab:doc-length-docred}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ll rrrrr rr}
+\toprule
+\textbf{Bin} & \textbf{Mode} & \textbf{ET} & \textbf{RV} & \textbf{DR} & \textbf{CF} & \textbf{Total} & \textbf{E-F1} & \textbf{R-F1} \\
+\midrule
+Short (336)  & Uncon. & 177 & 1238 & 1021 &   9 & 2445 & 61.1 &  9.3 \\
+             & Const. &   0 &    0 &  495 & 138 &  633 & 62.6 &  9.6 \\
+\midrule
+Medium (332) & Uncon. & 147 & 1742 & 1047 &   5 & 2941 & 59.3 &  7.9 \\
+             & Const. &   0 &    5 &  544 & 180 &  729 & 60.7 &  8.5 \\
+\midrule
+Long (330)   & Uncon. & 176 & 2209 & 1162 &   3 & 3550 & 53.9 &  5.6 \\
+             & Const. &   0 &    0 &  731 & 200 &  931 & 54.8 &  5.8 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Violation reduction percentage by document length bin (Qwen3-8B, S1 constraints).}
+\label{tab:doc-length-reduction}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l rr rr}
+\toprule
+& \multicolumn{2}{c}{\textbf{SciERC}} & \multicolumn{2}{c}{\textbf{DocRED}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Bin} & \textbf{Viols (U$\to$C)} & \textbf{Red.\%} & \textbf{Viols (U$\to$C)} & \textbf{Red.\%} \\
+\midrule
+Short  & 63 $\to$ 10  & 84.1 & 2445 $\to$ 633  & 74.1 \\
+Medium & 119 $\to$ 22 & 81.5 & 2941 $\to$ 729  & 75.2 \\
+Long   & 118 $\to$ 24 & 79.7 & 3550 $\to$ 931  & 73.8 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The violation reduction rate is consistent across all length bins: 80--84\% for SciERC and 74--75\% for DocRED.
+Longer documents produce more violations in the unconstrained setting (e.g., DocRED long-bin: 3,550 vs.\ short-bin: 2,445), yet OntoCoDec achieves proportionally similar reduction; the constraint framework scales reliably with document complexity.
+ET and RV violations are fully eliminated across all bins.
+F1 scores are preserved or slightly improved under constrained decoding, with DocRED showing +0.9--1.5 E-F1 and +0.2--0.6 R-F1 improvement in the constrained setting.

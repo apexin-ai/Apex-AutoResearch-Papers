@@ -1,0 +1,1 @@
+See full JSON at westd-16980:/root/autodl-tmp/schema_outputs/r14_ft_fallback_rate.json. Summary: FT DR violation rates - SciERC Qwen 0.00% (0/2256), SciERC Llama 0.05% (1/2162), DocRED Qwen 0.01% (2/31126), DocRED Llama 0.11% (34/32148). ZS baselines - SciERC Qwen 0.46%, DocRED Qwen 5.68%. 100% root cause = model preference.

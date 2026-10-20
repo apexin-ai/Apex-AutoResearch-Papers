@@ -1,0 +1,37 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Effect of beam width on DocRED (200 documents) with LoRA fine-tuned Qwen3-8B and Llama-3.1-8B. \textsc{unc}: unconstrained; \textsc{con}: schema-constrained decoding. $k{=}1$ corresponds to greedy decoding.}
+\label{tab:beam-docred-sweep}
+\begin{tabular}{@{}l cl ccccc@{}}
+\toprule
+Model & $k$ & Mode & E-F1 & R-F1 & DR (\%) & CF (\%) & PF (\%) \\
+\midrule
+\multirow{8}{*}{Qwen}
+ & \multirow{2}{*}{1} & \textsc{unc} & 81.34 & 44.56 & 0.20 & 0.03 & 6.5 \\
+ &                     & \textsc{con} & 80.54 & 43.64 & 0    & 0.12 & 7.5 \\
+\cmidrule(l){2-8}
+ & \multirow{2}{*}{2} & \textsc{unc} & 84.25 & 47.39 & 0.43 & 0    & 1.5 \\
+ &                     & \textsc{con} & 84.46 & 47.30 & 0    & 0.08 & 1.0 \\
+\cmidrule(l){2-8}
+ & \multirow{2}{*}{4} & \textsc{unc} & ---   & ---   & ---  & ---  & --- \\
+ &                     & \textsc{con} & ---   & ---   & ---  & ---  & --- \\
+\cmidrule(l){2-8}
+ & \multirow{2}{*}{8} & \textsc{unc} & 83.95 & 47.84 & 0.33 & 0    & 2.0 \\
+ &                     & \textsc{con} & 84.54 & 48.43 & \textbf{0} & \textbf{0} & 1.0 \\
+\midrule
+\multirow{8}{*}{Llama}
+ & \multirow{2}{*}{1} & \textsc{unc} & 85.29 & 47.28 & 0.30 & 0.19 & 2.0 \\
+ &                     & \textsc{con} & 85.43 & 47.35 & 0    & 0.19 & 2.0 \\
+\cmidrule(l){2-8}
+ & \multirow{2}{*}{2} & \textsc{unc} & 85.34 & 51.31 & 0.11 & 0.05 & 1.0 \\
+ &                     & \cellcolor{blue!8}\textsc{con} & \cellcolor{blue!8}85.60 & \cellcolor{blue!8}51.17 & \cellcolor{blue!8}\textbf{0} & \cellcolor{blue!8}\textbf{0} & \cellcolor{blue!8}0.5 \\
+\cmidrule(l){2-8}
+ & \multirow{2}{*}{4} & \textsc{unc} & 85.67 & 52.65 & 0.04 & 0.08 & 0.5 \\
+ &                     & \textsc{con} & 85.61 & 51.89 & \textbf{0} & \textbf{0} & 0.5 \\
+\cmidrule(l){2-8}
+ & \multirow{2}{*}{8} & \textsc{unc} & 85.77 & 51.97 & 0    & 0.05 & 0.5 \\
+ &                     & \textsc{con} & 85.76 & 51.74 & \textbf{0} & \textbf{0} & 0.5 \\
+\bottomrule
+\end{tabular}
+\end{table}

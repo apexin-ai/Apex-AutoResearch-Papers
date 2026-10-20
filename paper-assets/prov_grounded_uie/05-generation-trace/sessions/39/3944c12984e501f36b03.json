@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3944c12984e501f36b03",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh sync and dryrun",
+  "task_key": "worker_ssh_sync-and-dryrun_20260512T203642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-and-dryrun_20260512T203642_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "d264f2b1a9c90172fa1cb2a1858d765f2eb37d4a6321a61a79f12de0326bd579"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。报告：\n\n### 1. 代码同步\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| evaluate.py | 256 | OK |\n| config.py | 131 | OK |\n| train_grpo.py | 121 | OK |\n| rerank_nli.py | 480 | OK |\n\n原文件已备份到 `_backup_v1/`。文件头确认包含 \"Batch generation via left-padded tokenization\" 变更说明。\n\n### 2. GRPO dry-run\n```\nuse_vllm=True\nvllm_mode=colocate\nvllm_gpu_memory_utilization=0.5\nvllm_enable_sleep_mode=True\nGRPOConfig with vLLM: OK\n```\n\n### 3. EvalArgs batch 配置\n```\nbatch_size=8\nmax_prompt_length=4096\nEvalArgs: OK\n```\n\n### 4. 异常/警告\n无。所有验证均通过，推理进程未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-and-dryrun.md"
+}

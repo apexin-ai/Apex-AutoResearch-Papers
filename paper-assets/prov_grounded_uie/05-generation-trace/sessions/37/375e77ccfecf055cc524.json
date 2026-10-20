@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "375e77ccfecf055cc524",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "research trl grpo truncation",
+  "task_key": "worker_research_trl-grpo-truncation_20260512T170426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_trl-grpo-truncation_20260512T170426_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "4b30fb452befaa22f8c2b216ea1f2a055325c7c1bad56917199a86c4b4d5e920"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/autodl-tmp/prov_grounded_uie/artifacts/trl_truncation_analysis.md`。\n\n核心结论：**TRL 1.1.0 GRPOTrainer 没有任何内置 prompt 截断机制。** `max_prompt_length` 参数不存在，`_tokenize_prompts()` 对 prompt 不做截断，`max_completion_length`（默认 256）仅控制 completion 长度。过长 prompt 在 vLLM 模式下会直接报错，在 transformers 模式下行为未定义。需要在 data_utils.py 中手动实现左截断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-trl-grpo-truncation.md"
+}

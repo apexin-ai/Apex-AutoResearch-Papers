@@ -1,0 +1,24 @@
+{
+  "exp_id": "dpo_candgen_cuda0",
+  "project": "prov_grounded_uie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T10:52:56.667Z",
+    "updated_at": "2026-05-13T10:52:56.667Z",
+    "spec": {
+      "hypothesis": "Generate DPO preference candidates (first half of training prompts, 1-1514) using SFT model, 8 candidates per prompt, scored by composite reward.",
+      "parent": "dpo_pilot_v1",
+      "method": "generate_dpo_candidates.py on cuda:0",
+      "server": "autodl-rtxpro6000",
+      "data_path": "/root/autodl-tmp/prov_grounded_uie/data/docred_train.jsonl",
+      "data_count": 1514,
+      "model_name": "Qwen3-8B (SFT merged)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T10:52:56.700874+00:00",
+  "trigger": "update_registry"
+}

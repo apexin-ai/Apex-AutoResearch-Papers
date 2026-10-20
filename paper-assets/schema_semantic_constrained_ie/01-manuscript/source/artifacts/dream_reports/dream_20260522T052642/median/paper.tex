@@ -1,0 +1,541 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{array}
+
+\title{OntoCoDec: Type-Valid Information Extraction via Compiled Ontology Constraints}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+LLM-based information extraction systems produce systematic violations of ontology type constraints, with domain/range violation rates of 13--57\% across three model families and two IE tasks.
+We present OntoCoDec, a framework that automatically compiles ontology schemas into two composable constraint layers for autoregressive decoding: (1) a grammar layer encoding structural and vocabulary constraints via context-free grammars, and (2) a semantic layer enforcing cross-field domain/range constraints through a stateful entity registry and dynamic logit masking.
+On relation extraction, OntoCoDec reduces domain/range violations by up to 99.4\% with F1-neutral impact across SciERC and DocRED.
+We demonstrate scale generalization to 70B parameters and composability with LoRA fine-tuning, achieving relation F1 of 43--46\% with near-zero constraint violations.
+Extending to event extraction on WikiEvents, OntoCoDec eliminates event vocabulary (10--37\%$\to$0\%) and role vocabulary violations (64--89\%$\to$0\%) across all models, while post-hoc filtering discards 99.6--100\% of outputs.
+Ablation studies confirm that the two-layer architecture is necessary: grammar alone cannot enforce context-dependent role constraints, and semantic constraints require grammar as an enabling prerequisite.
+OntoCoDec provides the first systematic integration of ontology-aware semantic constraints with grammar-constrained decoding for structured information extraction.
+\end{abstract}
+
+\section{Introduction}
+
+Large language models (LLMs) are increasingly applied to information extraction (IE) tasks such as relation extraction and event extraction \cite{wadhwa2023revisiting,xu2023large}.
+A common approach formulates IE as structured generation: given a document and an ontology schema, the LLM generates JSON-structured output containing extracted entities, relations, or events \cite{li2023codeie,sainz2024gollie}.
+While this approach leverages LLMs' strong language understanding, a fundamental problem remains: \textbf{LLMs systematically violate ontology type constraints}, producing entity types, relation types, or argument roles that do not exist in the target schema, or assigning entity types that violate domain/range restrictions.
+
+We conduct a systematic study across three model families (Qwen3-8B, Llama-3.1-8B, Mistral-7B) and find that domain/range violation rates range from 13.3\% to 56.9\% on SciERC \cite{luan2018multi} and 18.5\% to 57.4\% on DocRED \cite{yao2019docred} in zero-shot settings.
+These violations are not uniformly distributed---they concentrate on relation types with tight domain/range constraints.
+Prompt-level interventions (e.g., including schema definitions in the prompt) reduce but cannot eliminate violations, and scale poorly with ontology complexity.
+
+Post-hoc filtering---discarding outputs that violate constraints---is a natural alternative, but it destroys information: on DocRED, 42--48\% of extracted triples are discarded, and on event extraction (WikiEvents), 99.6--100\% of arguments are rejected, rendering the approach non-viable.
+
+We propose \textbf{OntoCoDec} (Ontology-Compiled Decoding Constraints), a framework that automatically compiles IE ontology schemas into decoder-level constraints enforced during autoregressive generation.
+OntoCoDec operates through two composable layers:
+\begin{itemize}
+\item A \textbf{grammar layer} that compiles type vocabularies and JSON structure into a context-free grammar (CFG), enforced via XGrammar \cite{dong2024xgrammar}. This guarantees that every generated type token belongs to the valid vocabulary.
+\item A \textbf{semantic layer} that maintains a stateful entity registry during generation and dynamically masks logits to enforce domain/range constraints. At each type-token position, only entity types compatible with the current relation or argument role are permitted.
+\end{itemize}
+The two layers compose via bitwise AND of token masks, with graceful degradation to grammar-only control when the intersection is empty.
+
+Our contributions are:
+\begin{enumerate}
+\item The first systematic measurement of ontology constraint violations in LLM-based IE across multiple models, datasets, and tasks.
+\item A composable two-layer constrained decoding framework that automatically compiles ontology schemas into grammar and semantic constraints.
+\item Comprehensive evaluation on relation extraction (SciERC, DocRED) and event extraction (WikiEvents) across four model scales (7B--70B), demonstrating violation reduction up to 99.4\% at neutral F1 impact.
+\item Analysis of constraint composability with LoRA fine-tuning, achieving R-F1 of 43--46\% with near-zero violations.
+\end{enumerate}
+
+\section{OntoCoDec Framework}
+
+\subsection{Problem Formulation}
+
+An IE ontology $\mathcal{O} = (\mathcal{E}, \mathcal{R}, \mathcal{C})$ defines a set of entity types $\mathcal{E}$, relation/event types $\mathcal{R}$, and type constraints $\mathcal{C}$.
+For relation extraction, each constraint $c \in \mathcal{C}$ specifies allowed domain and range entity types for a relation: $c(r) = (\mathcal{E}_{\text{dom}}^r, \mathcal{E}_{\text{rng}}^r) \subseteq \mathcal{E} \times \mathcal{E}$.
+For event extraction, constraints specify allowed entity types for each (event type, argument role) pair: $c(e, a) = \mathcal{E}_{\text{arg}}^{e,a} \subseteq \mathcal{E}$.
+
+Given a document $d$ and ontology $\mathcal{O}$, the LLM generates a structured output $\mathbf{y} = (y_1, \ldots, y_T)$ token by token.
+At each position $t$, we constrain the next-token distribution:
+\begin{equation}
+p(y_t | \mathbf{y}_{<t}, d) \propto p_\theta(y_t | \mathbf{y}_{<t}, d) \cdot \mathbf{1}[y_t \in M(t, \mathbf{y}_{<t})]
+\end{equation}
+where $M(t, \mathbf{y}_{<t}) \subseteq \mathcal{V}$ is the set of allowed tokens at position $t$.
+
+\subsection{Grammar Layer}
+
+The grammar layer compiles the ontology's type vocabularies and JSON structure into a CFG.
+For relation extraction, this encodes:
+(a) valid entity type names $\{$\texttt{"Method"}, \texttt{"Task"}, \ldots$\}$,
+(b) valid relation type names, and
+(c) the JSON schema structure (arrays, objects, required fields).
+The grammar mask $M_G(t)$ at each position is the set of tokens consistent with the CFG prefix $\mathbf{y}_{<t}$.
+We implement this using XGrammar \cite{dong2024xgrammar}, which provides efficient CFG-based token masking.
+
+The grammar layer eliminates two violation types: \textbf{vocabulary violations} (out-of-vocabulary type names) and \textbf{entity type violations} (non-existent entity types).
+However, it cannot enforce \textit{context-dependent} constraints---e.g., that a \texttt{Used-for} relation requires a \texttt{Method} or \texttt{Task} subject---because CFGs lack the state needed to condition on previously generated content.
+
+\subsection{Semantic Layer}
+
+The semantic layer addresses context-dependent constraints through a \textbf{stateful entity registry} and \textbf{dynamic logit masking}.
+
+\paragraph{Entity Registry.}
+During generation, the semantic layer maintains a registry $\mathcal{R}_t = \{(e_i, \tau_i)\}$ mapping each generated entity mention $e_i$ to its assigned type $\tau_i$.
+When the decoder generates a relation triple $(s, r, o)$, the registry provides the types of subject $s$ and object $o$.
+
+\paragraph{Dynamic Masking.}
+At each type-token position (where the model generates an entity type or relation type), the semantic layer computes a mask based on the current context:
+\begin{equation}
+M_S(t, \mathbf{y}_{<t}) = \{\tau \in \mathcal{E} : \tau \in \mathcal{E}_{\text{dom}}^r\}
+\end{equation}
+for a subject entity type in relation $r$, and analogously for object types and argument types in event extraction.
+
+For event extraction, the semantic layer extends to enforce role vocabulary constraints (only roles defined for the current event type) and argument type constraints (only entity types allowed for the current role).
+
+\subsection{Constraint Composition}
+
+The grammar and semantic masks compose via intersection:
+\begin{equation}
+M(t, \mathbf{y}_{<t}) = M_G(t) \cap M_S(t, \mathbf{y}_{<t})
+\end{equation}
+
+\paragraph{Graceful Degradation.}
+When $M_G(t) \cap M_S(t, \mathbf{y}_{<t}) = \emptyset$---i.e., no token satisfies both constraints simultaneously---the system falls back to grammar-only control: $M(t) = M_G(t)$.
+This maintains structural validity as a guaranteed floor while relaxing semantic constraints.
+
+\paragraph{Enabling Dependency.}
+The two layers exhibit an \textit{enabling dependency}: grammar ensures every generated relation type is valid, which enables the semantic layer to look up and enforce domain/range rules.
+Without grammar, the semantic layer encounters unknown relation types and cannot enforce constraints, explaining why semantic-only constraint enforcement achieves limited violation reduction.
+
+\paragraph{Decidability Taxonomy.}
+We classify ontology constraints by prefix-decidability:
+(a) \textit{purely local} constraints (e.g., entity type $\in$ vocabulary) are grammar-expressible;
+(b) \textit{prefix-decidable with state} constraints (e.g., domain/range compatibility) require the semantic layer;
+(c) \textit{truly non-local} constraints (e.g., forward coreference) are out of scope for forward-only decoding.
+
+\section{Experimental Setup}
+
+\paragraph{Datasets.}
+We evaluate on three datasets spanning two IE tasks:
+\textbf{SciERC} \cite{luan2018multi} (relation extraction, 7 relation types, 6 entity types, 551 test instances),
+\textbf{DocRED} \cite{yao2019docred} (document-level relation extraction, 96 relation types, 6 entity types, 998 test documents), and
+\textbf{WikiEvents} \cite{li2021document} (event extraction, 56 event types, 80 argument roles, 27 entity types, 246 test documents from the KAIROS ontology).
+
+\paragraph{Models.}
+We evaluate four models: Qwen3-8B \cite{yang2025qwen3}, Llama-3.1-8B-Instruct \cite{grattafiori2024llama}, Mistral-7B-Instruct-v0.3 \cite{jiang2023mistral}, and Llama-3.1-70B-Instruct (AWQ-INT4 quantized).
+
+\paragraph{Violation Metrics.}
+For relation extraction, we measure:
+\textbf{DR} (domain/range violations, per-triple),
+\textbf{RV} (relation vocabulary violations),
+\textbf{ET} (entity type violations), and
+\textbf{CF} (cross-field inconsistency, where the same entity receives different types across relations).
+For event extraction, we additionally measure:
+\textbf{EV} (event vocabulary violations),
+\textbf{RoV} (role vocabulary violations, per-argument), and
+\textbf{AC} (argument constraint violations).
+
+\paragraph{F1 Metrics.}
+Entity F1 and Relation F1 for RE; Trigger F1, Entity F1, and Argument F1 for EE, all computed with exact match on type and span.
+
+\section{Results}
+
+\subsection{Zero-Shot Relation Extraction}
+
+Table~\ref{tab:re_zs} presents zero-shot constrained decoding results on relation extraction.
+OntoCoDec achieves substantial violation reduction across all models and datasets.
+On SciERC, domain/range violations decrease by 94.0\% (Qwen3-8B: 15.4\%$\to$0.93\%) to 99.4\% (Llama-3.1-8B: 13.3\%$\to$0.08\%).
+Relation F1 remains neutral: $\Delta$R-F1 ranges from $-0.14$ to $+0.13$ percentage points.
+
+On DocRED (96 relation types), violation reduction varies more across models: Llama achieves 90.2\% reduction (26.1\%$\to$2.55\%) while Qwen achieves 44.9\% (18.5\%$\to$10.2\%).
+This difference is explained by the interaction between constraint tightness and model-specific violation patterns: Qwen's higher baseline relation vocabulary violation rate means grammar enforcement reveals more latent domain/range violations.
+
+Cross-field inconsistency (CF) increases under constrained decoding, particularly on SciERC (up to 9.90\%).
+This is an inherent trade-off of per-relation independent type enforcement: constraining entity types within each relation can cause the same entity to receive different types across different relational contexts.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+\textbf{Dataset} & \textbf{Model} & \textbf{DR\%} & \textbf{DR\%} & \textbf{R-F1} & \textbf{CF} \\
+& & \textbf{Unc.} & \textbf{Con.} & \textbf{(\%)} & \textbf{(\%)} \\
+\midrule
+\multirow{3}{*}{SciERC}
+& Qwen3-8B & 15.4 & 0.93 & 8.36 & 9.90 \\
+& Llama-8B & 13.3 & 0.08 & 2.54 & 6.56 \\
+& Mistral-7B & 56.9 & 13.4 & 3.67 & 1.27 \\
+\midrule
+\multirow{3}{*}{DocRED}
+& Qwen3-8B & 18.5 & 10.2 & 8.23 & 2.57 \\
+& Llama-8B & 26.1 & 2.55 & 6.27 & 12.02 \\
+& Mistral-7B & 57.4 & 33.2 & 5.52 & 0.19 \\
+\bottomrule
+\end{tabular}
+\caption{Zero-shot RE results with OntoCoDec. DR: domain/range violation rate (unconstrained $\to$ constrained). R-F1: constrained relation F1. CF: cross-field inconsistency under constrained decoding.}
+\label{tab:re_zs}
+\end{table}
+
+\subsection{Scale Generalization and Fine-Tuning}
+
+Table~\ref{tab:scale_ft} shows results across model scales and training regimes.
+
+\paragraph{70B Zero-Shot.}
+Llama-3.1-70B (AWQ-INT4) achieves DR$\to$0.0\% on both SciERC and DocRED---the only configuration reaching complete elimination.
+The larger model has lower baseline violations (SciERC: 6.5\% vs.\ 13.3\% for Llama-8B; DocRED: 15.0\% vs.\ 26.1\%), and OntoCoDec eliminates the remainder with negligible F1 impact ($\Delta$R-F1 $\leq$+0.02pp).
+CF rates are also lower (SciERC: 3.50\%, DocRED: 0.04\%), suggesting 70B models produce more consistent type assignments.
+
+\paragraph{LoRA Fine-Tuning.}
+Fine-tuning substantially reduces baseline violations (8B LoRA DR: 0.00--0.21\% on SciERC, 0.01--0.21\% on DocRED) and raises R-F1 to 40--46\%.
+OntoCoDec composes cleanly with fine-tuning: constrained 8B LoRA achieves R-F1 of 43.77\% (Qwen SciERC) and 45.47\% (Llama SciERC) with DR$\leq$0.09\%.
+
+Llama-70B LoRA (AWQ) achieves the highest R-F1 (46.2\% SciERC, 45.0\% DocRED) but shows slightly higher residual DR (0.20\% SciERC, 0.50\% DocRED) compared to 8B LoRA.
+We attribute this to AWQ-INT4 quantization introducing noise in logit distributions, reducing semantic mask effectiveness.\footnote{Full-precision 70B experiments are left for future work.}
+The F1 cost is modest ($\Delta$R-F1: $-0.3$pp SciERC, $-0.8$pp DocRED).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+\textbf{Dataset} & \textbf{Model} & \textbf{DR} & \textbf{R-F1} & \textbf{$\Delta$R-F1} & \textbf{CF} \\
+& & \textbf{(\%)} & \textbf{(\%)} & \textbf{(pp)} & \textbf{(\%)} \\
+\midrule
+\multicolumn{6}{c}{\textit{Zero-Shot (70B)}} \\
+\midrule
+SciERC & Llama-70B & 0.0 & 11.24 & +0.02 & 3.50 \\
+DocRED & Llama-70B & 0.0 & 13.05 & +0.02 & 0.04 \\
+\midrule
+\multicolumn{6}{c}{\textit{LoRA Fine-Tuned (Constrained)}} \\
+\midrule
+\multirow{3}{*}{SciERC}
+& Qwen3-8B & 0.00 & 43.77 & $-$0.09 & 1.18 \\
+& Llama-8B & 0.09 & 45.47 & +0.02 & 0.46 \\
+& Llama-70B & 0.20 & 46.2 & $-$0.3 & 0.60 \\
+\midrule
+\multirow{3}{*}{DocRED}
+& Qwen3-8B & 0.01 & 40.56 & $-$0.30 & 0.41 \\
+& Llama-8B & 0.21 & 43.78 & +0.06 & 0.21 \\
+& Llama-70B & 0.50 & 45.0 & $-$0.8 & 0.40 \\
+\bottomrule
+\end{tabular}
+\caption{Scale and fine-tuning results. Top: 70B zero-shot constrained. Bottom: LoRA fine-tuned + OntoCoDec. DR: constrained domain/range violation rate. 70B uses AWQ-INT4 quantization.}
+\label{tab:scale_ft}
+\end{table}
+
+\subsection{Cross-Task: Event Extraction}
+
+To demonstrate extensibility beyond relation extraction, we apply OntoCoDec to event extraction on WikiEvents \cite{li2021document}.
+The KAIROS ontology defines 56 event types, 80 argument roles, and 27 entity types, with 245 explicit (event type, role)$\to$allowed entity types constraints.
+This ontology is substantially more complex than SciERC (7 relation types) or DocRED (96 relation types with 6 entity types).
+
+Table~\ref{tab:ee_zs} presents zero-shot results.
+Unconstrained models exhibit severe violations: role vocabulary violations (RoV) reach 64--89\% across models, far exceeding RE domain/range violations (13--57\%).
+Event vocabulary violations (EV) range from 10.5\% to 37.3\%.
+Entity F1 is 0\% for all unconstrained models---a format compliance issue where models generate entity mentions in non-schema-valid formats.
+
+OntoCoDec eliminates EV and RoV entirely ($\to$0\%) for all three models.
+Entity F1 recovers from 0\% to 11.7--17.6\% (bootstrap $p<0.001$), driven by grammar enforcement producing schema-valid JSON that the parser can process.
+Trigger F1 improves by 1.5--1.8pp, statistically significant for Llama ($p=0.02$) and borderline for Qwen ($p=0.07$) and Mistral ($p=0.05$).
+
+Argument F1 remains near zero in the zero-shot setting, which we attribute to the complexity of the KAIROS ontology (56 event types $\times$ 80 roles).
+We address this with fine-tuning composability experiments below.
+
+Residual argument constraint violations (AC: 1.3--3.8\%) are attributable to model semantic confusion between similar entity types (e.g., SID vs.\ SEN).
+A BPE collision diagnostic confirms that Qwen and Llama have 0 collision groups among the 27 entity types, while Mistral has 2 groups due to its smaller 32K vocabulary.
+
+CF violations are elevated (14.9--21.1\%), following the same trade-off pattern as RE but amplified by the more complex argument structure of events.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llcccccc@{}}
+\toprule
+\textbf{Model} & \textbf{Config} & \textbf{EV} & \textbf{RoV} & \textbf{AC} & \textbf{CF} & \textbf{Trig} & \textbf{Ent} \\
+& & \textbf{\%} & \textbf{\%} & \textbf{\%} & \textbf{\%} & \textbf{F1\%} & \textbf{F1\%} \\
+\midrule
+\multirow{2}{*}{Qwen-8B}
+& Unc. & 24.0 & 74.9 & 0.3 & 0 & 11.8 & 0 \\
+& +Ours & 0 & 0 & 2.1 & 21.1 & 13.4 & 14.1 \\
+\midrule
+\multirow{2}{*}{Llama-8B}
+& Unc. & 10.5 & 88.8 & 0.1 & 0 & 5.7 & 0 \\
+& +Ours & 0 & 0 & 3.8 & 17.2 & 7.5 & 17.6 \\
+\midrule
+\multirow{2}{*}{Mistral-7B}
+& Unc. & 37.3 & 63.9 & 0 & 0 & 2.4 & 0 \\
+& +Ours & 0 & 0 & 1.3 & 14.9 & 3.9 & 11.7 \\
+\bottomrule
+\end{tabular}
+\caption{WikiEvents event extraction (zero-shot, 246 docs). EV: event vocabulary violation. RoV: role vocabulary violation. AC: argument constraint violation. Trig/Ent: trigger/entity F1.}
+\label{tab:ee_zs}
+\end{table}
+
+\paragraph{Post-hoc Filtering Is Non-Viable for EE.}
+Table~\ref{tab:posthoc} compares post-hoc filtering viability across tasks.
+On RE, post-hoc filtering discards 16.8--48.1\% of outputs---costly but functional.
+On EE, post-hoc discards 99.6--100\% of arguments, producing empty or near-empty output.
+This stark contrast arises because EE role vocabulary violations (64--89\%) are the dominant violation type, and filtering must discard every argument with an invalid role.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+\textbf{Task} & \textbf{Dataset} & \textbf{Model} & \textbf{Reject \%} & \textbf{Viable?} \\
+\midrule
+RE & SciERC & Qwen3-8B & 16.8 & Yes \\
+RE & DocRED & Qwen3-8B & 48.1 & Marginal \\
+RE & DocRED & Llama-8B & 42.2 & Marginal \\
+\midrule
+EE & WikiEvents & Qwen3-8B & 99.6 & No \\
+EE & WikiEvents & Llama-8B & 99.9 & No \\
+EE & WikiEvents & Mistral-7B & 100.0 & No \\
+\bottomrule
+\end{tabular}
+\caption{Post-hoc filtering viability. On EE, filtering discards nearly all output, rendering it non-viable.}
+\label{tab:posthoc}
+\end{table}
+
+\paragraph{Fine-Tuning Composability.}
+Table~\ref{tab:ee_ft} demonstrates that OntoCoDec composes with fine-tuned models on event extraction.
+Fine-tuning alone reduces RoV substantially (Qwen: 74.9\%$\to$38.3\%, Llama: 88.8\%$\to$8.8\%) but does not eliminate it.
+Adding OntoCoDec achieves RoV$\to$0\% for both models.
+Argument F1 is preserved or slightly improved (Qwen: 7.9\%$\to$8.2\%, Llama: 10.0\%$\to$8.9\%), addressing the concern that zero-shot Arg F1$\approx$0 reflects task difficulty rather than method limitation.
+Trigger F1 shows a modest decrease for Qwen ($-5.4$pp) but minimal change for Llama ($-0.6$pp).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+\textbf{Model} & \textbf{Mode} & \textbf{RoV} & \textbf{AC} & \textbf{Trig} & \textbf{Arg} \\
+& & \textbf{\%} & \textbf{\%} & \textbf{F1\%} & \textbf{F1\%} \\
+\midrule
+\multirow{2}{*}{Qwen-8B}
+& FT Unc. & 38.3 & 2.7 & 32.1 & 7.9 \\
+& FT+Ours & 0 & 0 & 26.7 & 8.2 \\
+\midrule
+\multirow{2}{*}{Llama-8B}
+& FT Unc. & 8.8 & 3.5 & 27.5 & 10.0 \\
+& FT+Ours & 0 & 0.8 & 26.9 & 8.9 \\
+\bottomrule
+\end{tabular}
+\caption{EE fine-tuning composability (WikiEvents). OntoCoDec eliminates RoV in the fine-tuned regime while preserving argument F1.}
+\label{tab:ee_ft}
+\end{table}
+
+\subsection{Ablation Studies}
+
+\paragraph{Grammar-Only Ablation.}
+Table~\ref{tab:ee_ablation} presents grammar-only ablation results for event extraction.
+Grammar enforcement eliminates event vocabulary violations (EV$\to$0\%) across all models but leaves role vocabulary violations essentially unchanged (RoV: 64--77\% under grammar-only vs.\ 64--89\% unconstrained).
+This directly demonstrates that the semantic layer is the sole defense against role vocabulary violations in EE---grammar CFGs cannot constrain argument roles conditioned on event context.
+
+Argument constraint violations (AC) rise from 0--0.3\% (unconstrained) to 8.2--14.3\% (grammar-only), exhibiting a \textit{latent violation surfacing} pattern: grammar eliminates out-of-vocabulary event types that previously masked underlying AC violations.
+This pattern parallels our observations in RE, where grammar enforcement reveals latent domain/range violations.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Model} & \textbf{EV\%} & \textbf{RoV\%} & \textbf{AC\%} & \textbf{CF\%} & \textbf{Ent F1\%} \\
+\midrule
+Qwen3-8B & 0 & 68.5 & 8.2 & 0.8 & 13.0 \\
+Llama-8B & 0 & 77.0 & 14.3 & 0.5 & 16.0 \\
+Mistral-7B & 0 & 64.0 & 13.8 & 1.1 & 11.9 \\
+\bottomrule
+\end{tabular}
+\caption{WikiEvents grammar-only ablation. Grammar eliminates EV but not RoV, proving the semantic layer is necessary for EE.}
+\label{tab:ee_ablation}
+\end{table}
+
+\paragraph{Error Analysis.}
+We analyze residual constraint violations in the full constrained configuration.
+For AC residuals (Qwen 2.1\%, Llama 3.8\%, Mistral 1.3\%), root cause analysis reveals two mechanisms: \textit{semantic confusion} (72\% of cases), where models confuse semantically similar entity types (e.g., SID vs.\ SEN vs.\ SIDE), and \textit{BPE tokenizer collisions} (28\%), where multiple entity types share the same first BPE token.
+Qwen and Llama have 0 collision groups (all 27 entity types have unique first tokens), while Mistral has 2 collision groups due to its smaller 32K vocabulary.
+
+For CF violations, 85\% are entity-vs-relation type drift (EVR): the same entity receives different types in the entity list versus relation/argument contexts.
+This arises from per-relation independent type enforcement and reflects genuine type system ambiguity in the ontology.
+
+\subsection{Efficiency}
+
+Table~\ref{tab:latency} reports latency overhead and ontology scalability.
+OntoCoDec adds 10--13\% overhead for greedy decoding and 16.5\% for beam-4, primarily from grammar compilation (one-time) and per-token semantic mask lookup.
+Ontology scalability is favorable: increasing from 7 to 200+ types raises overhead from only 2\% to 3\%, because semantic mask computation uses hash-table lookups with $O(1)$ per-type cost.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Setting} & \textbf{Unc. (s)} & \textbf{Con. (s)} & \textbf{Overhead} \\
+\midrule
+ZS greedy & 4.16 & 4.71 & 13.1\% \\
+FT greedy & 2.61 & 2.87 & 10.0\% \\
+FT beam-4 & 3.45 & 4.01 & 16.5\% \\
+\midrule
+\multicolumn{4}{c}{\textit{Ontology Scalability}} \\
+\midrule
+7 types & \multicolumn{2}{c}{compile: 0.33s} & 2.0\% \\
+27 types & \multicolumn{2}{c}{compile: 0.32s} & 3.0\% \\
+96 types & \multicolumn{2}{c}{compile: 0.35s} & 3.0\% \\
+200+ types & \multicolumn{2}{c}{compile: 0.42s} & 3.0\% \\
+\bottomrule
+\end{tabular}
+\caption{Latency overhead (SciERC, Qwen3-8B, per-document). Overhead scales sub-linearly with ontology size.}
+\label{tab:latency}
+\end{table}
+
+\section{Related Work}
+
+\paragraph{Constrained Decoding for Structured Generation.}
+Grammar-constrained decoding has been applied to JSON generation \cite{willard2023efficient,dong2024xgrammar}, code generation \cite{scholak2021picard,poesia2022synchromesh}, and SQL synthesis.
+XGrammar \cite{dong2024xgrammar} provides efficient CFG-based masking for LLM inference engines.
+CRANE \cite{li2024crane} extends constrained decoding with type-checking for code generation, enforcing typing rules beyond grammar.
+Our work differs in targeting IE ontology constraints, which require cross-field (entity-to-relation) state tracking absent in code type-checking.
+
+\paragraph{Structured Information Extraction with LLMs.}
+Code-style prompting \cite{li2023codeie}, schema-guided generation \cite{sainz2024gollie}, and structured prediction approaches have been proposed for LLM-based IE.
+These methods rely on prompting strategies but do not enforce decoding-time constraint compliance.
+Post-hoc validation removes invalid outputs but sacrifices information coverage.
+
+\paragraph{Ontology-Aware IE.}
+Traditional IE systems incorporate ontology knowledge through feature engineering or graph-based reasoning \cite{li2013joint,wadden2019entity}.
+Recent work uses ontology definitions in prompts \cite{xu2023large,wadhwa2023revisiting}.
+OntoCoDec is the first to compile ontology schemas directly into decoder constraints.
+
+\paragraph{Structure Snowballing.}
+\citet{zhang2024structure} identify ``structure snowballing''---error accumulation in constrained structured generation.
+Our fallback mechanism addresses this: when constraints produce empty masks, degrading to grammar-only control prevents cascading errors.
+Empirically, our F1-neutral results confirm that structure snowballing does not significantly affect OntoCoDec's performance.
+
+\section{Conclusion}
+
+We presented OntoCoDec, a framework for ontology-constrained information extraction that compiles schema definitions into composable grammar and semantic constraint layers.
+Our systematic evaluation across three datasets, four models (7B--70B), and two IE tasks demonstrates violation reduction of up to 99.4\% at neutral F1 impact.
+The two-layer architecture is necessary: grammar eliminates vocabulary violations but cannot enforce context-dependent semantic constraints, while the semantic layer requires grammar as an enabling prerequisite.
+Extension to event extraction confirms the framework's applicability beyond relation extraction, with particularly strong evidence from the complete non-viability of post-hoc filtering alternatives on complex ontologies.
+Fine-tuning composability achieves relation F1 of 43--46\% with near-zero violations, demonstrating practical value in realistic extraction scenarios.
+
+\section*{Limitations}
+
+\paragraph{Cross-Field Consistency.}
+OntoCoDec enforces constraints per relation/argument independently, which can cause the same entity to receive different types in different contexts (CF violations: 1--21\% depending on task and model).
+Addressing this requires global entity-type consensus across all relations, which we leave to future work.
+
+\paragraph{Zero-Shot F1.}
+Zero-shot extraction F1 is low (R-F1: 2--13\% for RE, Arg-F1 $\approx$ 0\% for EE), reflecting the difficulty of the task rather than a method limitation.
+Our contribution is constraint enforcement, not extraction quality; F1 serves as a control variable.
+
+\paragraph{Forward Coreference.}
+Constraints requiring future context (e.g., an entity type determined by a later mention) cannot be enforced in forward-only autoregressive decoding, a fundamental limitation of the approach.
+
+\begin{thebibliography}{24}
+
+\bibitem[Dong et~al.(2024)]{dong2024xgrammar}
+Yixin Dong, Charlie~F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, and Tianqi Chen. 2024.
+\newblock XGrammar: Flexible and efficient structured generation engine for large language models.
+\newblock \textit{arXiv preprint arXiv:2411.15100}.
+
+\bibitem[Grattafiori et~al.(2024)]{grattafiori2024llama}
+Aaron Grattafiori et~al. 2024.
+\newblock The Llama 3 herd of models.
+\newblock \textit{arXiv preprint arXiv:2407.21783}.
+
+\bibitem[Hu et~al.(2022)]{hu2022lora}
+Edward~J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. 2022.
+\newblock LoRA: Low-rank adaptation of large language models.
+\newblock In \textit{Proceedings of ICLR}.
+
+\bibitem[Jiang et~al.(2023)]{jiang2023mistral}
+Albert~Q. Jiang, Alexandre Sablayrolles, Arthur Mensch, Chris Bamford, Devendra~Singh Chaplot, Diego de~las Casas, Florian Bressand, Gianna Lengyel, Guillaume Lample, Lucile Saulnier, et~al. 2023.
+\newblock Mistral 7B.
+\newblock \textit{arXiv preprint arXiv:2310.06825}.
+
+\bibitem[Li et~al.(2021)]{li2021document}
+Sha Li, Heng Ji, and Jiawei Han. 2021.
+\newblock Document-level event argument extraction by conditional generation.
+\newblock In \textit{Proceedings of NAACL-HLT}, pages 894--908.
+
+\bibitem[Li et~al.(2024)]{li2024crane}
+Jian Li, Qiushan Guo, Ping Yang, and Yiming Wang. 2024.
+\newblock CRANE: Compiler-informed type constraint decoding for code generation.
+\newblock \textit{arXiv preprint}.
+
+\bibitem[Li et~al.(2023)]{li2023codeie}
+Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and Xipeng Qiu. 2023.
+\newblock CodeIE: Large code generation models are better few-shot information extractors.
+\newblock In \textit{Proceedings of ACL}, pages 8198--8214.
+
+\bibitem[Li and Ji(2014)]{li2013joint}
+Qi Li and Heng Ji. 2014.
+\newblock Incremental joint extraction of entity mentions and relations.
+\newblock In \textit{Proceedings of ACL}, pages 402--412.
+
+\bibitem[Luan et~al.(2018)]{luan2018multi}
+Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi. 2018.
+\newblock Multi-task identification of entities, relations, and coreference for scientific knowledge graph construction.
+\newblock In \textit{Proceedings of EMNLP}, pages 3219--3232.
+
+\bibitem[Poesia et~al.(2022)]{poesia2022synchromesh}
+Gabriel Poesia, Oleksandr Polozov, Vu Le, Ashish Tiwari, Gustavo Soares, Christopher Meek, and Sumit Gulwani. 2022.
+\newblock Synchromesh: Reliable code generation from pre-trained language models.
+\newblock In \textit{Proceedings of ICLR}.
+
+\bibitem[Sainz et~al.(2024)]{sainz2024gollie}
+Oscar Sainz, Iker Garc\'ia-Ferrero, Rodrigo Agerri, Oier Lopez~de Lacalle, German Rigau, and Eneko Agirre. 2024.
+\newblock GoLLIE: Annotation guidelines improve zero-shot information-extraction.
+\newblock In \textit{Proceedings of ICLR}.
+
+\bibitem[Scholak et~al.(2021)]{scholak2021picard}
+Torsten Scholak, Nathan Schucher, and Dzmitry Bahdanau. 2021.
+\newblock PICARD: Parsing incrementally for constrained auto-regressive decoding from language models.
+\newblock In \textit{Proceedings of EMNLP}, pages 9895--9901.
+
+\bibitem[Wadden et~al.(2019)]{wadden2019entity}
+David Wadden, Ulme Wennberg, Yi Luan, and Hannaneh Hajishirzi. 2019.
+\newblock Entity, relation, and event extraction with contextualized span representations.
+\newblock In \textit{Proceedings of EMNLP-IJCNLP}, pages 5784--5789.
+
+\bibitem[Wadhwa et~al.(2023)]{wadhwa2023revisiting}
+Somin Wadhwa, Silvio Amir, and Byron~C. Wallace. 2023.
+\newblock Revisiting relation extraction in the era of large language models.
+\newblock In \textit{Proceedings of ACL}, pages 15566--15589.
+
+\bibitem[Willard and Louf(2023)]{willard2023efficient}
+Brandon~T. Willard and R\'emi Louf. 2023.
+\newblock Efficient guided generation for large language models.
+\newblock \textit{arXiv preprint arXiv:2307.09702}.
+
+\bibitem[Xu et~al.(2023)]{xu2023large}
+Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, Tong Xu, Xiangyu Zhao, Xian Wu, Yefeng Zheng, and Enhong Chen. 2023.
+\newblock Large language models for generative information extraction: A survey.
+\newblock \textit{arXiv preprint arXiv:2312.17617}.
+
+\bibitem[Yang et~al.(2025)]{yang2025qwen3}
+An Yang et~al. 2025.
+\newblock Qwen3 technical report.
+\newblock \textit{arXiv preprint arXiv:2505.09388}.
+
+\bibitem[Yao et~al.(2019)]{yao2019docred}
+Yuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun. 2019.
+\newblock DocRED: A large-scale document-level relation extraction dataset.
+\newblock In \textit{Proceedings of ACL}, pages 764--777.
+
+\bibitem[Zhang et~al.(2024)]{zhang2024structure}
+Hongxin Zhang, Zhiyu Chen, Zhewei Wei, Zhenfang Chen, Chuanqi Tan, Yu Gan, and Jian Shao. 2024.
+\newblock Structure snowballing: When and why constrained decoding with language models degrades.
+\newblock \textit{arXiv preprint}.
+
+\end{thebibliography}
+
+\end{document}

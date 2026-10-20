@@ -1,0 +1,12 @@
+{
+  "documents_checked": 975,
+  "parse_failures": 23,
+  "entities": 19106,
+  "triples": 16171,
+  "entity_type_violations": 0,
+  "relation_vocab_violations": 24,
+  "domain_range_violations": 80,
+  "cross_field_consistency_violations": 16,
+  "fuzzy_relation_matches": 0,
+  "dr_violation_rate": 0.0049
+}

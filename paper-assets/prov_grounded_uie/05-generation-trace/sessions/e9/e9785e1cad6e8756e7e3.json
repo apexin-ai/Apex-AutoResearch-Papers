@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9785e1cad6e8756e7e3",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh verify posthoc nli v2",
+  "task_key": "worker_ssh_verify-posthoc-nli-v2_20260512T232601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-posthoc-nli-v2_20260512T232601_result.json",
+    "occurrence": 1,
+    "bytes": 1819,
+    "sha256": "5a81641b85bd766538347f51cf6b8258ff04a91b34bf7f8d15e7cf866968b409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. GRPO 进程已清理\nPID 64364 不在 nvidia-smi 进程列表中，已确认死亡。\n\n### 2. GPU 状态\n\n| GPU | 进程 | PID | 显存占用 | GPU利用率 |\n|-----|------|-----|---------|----------|\n| cuda:0 | evaluate.py (SFT eval v2) | 40397 | 29993 / 97887 MiB | 86% |\n| cuda:1 | **rerank_nli.py (posthoc_nli_v2)** | 64955 | 19878 / 97887 MiB | 72% |\n\nposthoc_nli_v2 独占 cuda:1，显存充裕（仅用 ~20GB / 98GB）。\n\n**注意：** cuda:0 上跑着一个 `evaluate.py --output_file ./outputs/sft/eval_results_v2.json`，这不是 GRPO，是 SFT 评估任务。\n\n### 3. posthoc_nli_v2 进度\n- 当前：**batch 8/124 → 64/985 样本**（~6.5%）\n- 模型：`./outputs/sft/merged`（Mistral-Small-3.1-24B）\n- batch_size=8，共 124 batches\n\n### 4. 截断风险评估\n\n**实际参数：`--max_new_tokens 1024`**（确认自 `/proc/64955/cmdline`）\n\n- 日志中无任何 truncation / error / warning / incomplete 匹配\n- 输出目录 `./outputs/posthoc_nli_v2/` 尚未写入文件（可能在全部生成完成后批量写入）\n- 由于还没有输出文件可检查，**截断率目前无法直接评估**\n\n**风险判断：** config.py 默认值是 2048，但实际启动用了 1024。DocRED 关系抽取输出通常是结构化 JSON（关系三元组列表），对于多关系文档，1024 tokens 可能偏紧。建议等到至少有 100+ 样本输出后再检查截断率——如果 `rerank_nli.py` 有 JSON 解析逻辑，截断的 JSON 会在 NLI rerank 阶段报错暴露出来。\n\n### 5. 其他注意\n- tokenizer regex 有已知 bug 警告（Mistral tokenizer issue），可能导致 tokenization 不完全正确\n- `temperature/top_p/top_k` 被忽略（generation config 不接受这些参数），实际用的是 greedy decoding"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-posthoc-nli-v2.md"
+}

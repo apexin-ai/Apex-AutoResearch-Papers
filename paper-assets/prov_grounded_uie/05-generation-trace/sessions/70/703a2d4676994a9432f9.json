@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "703a2d4676994a9432f9",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "check cuda0 eval status",
+  "task_key": "worker_check_cuda0_eval_status_20260513T105353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cuda0_eval_status_20260513T105353_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "49c7beffda9e1f2ce325cbb7a82caa1b368386a71ab1fa7f61daf4123bfba02a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 被 eval 占用，正在运行中。**\n\n| 指标 | 值 |\n|------|-----|\n| GPU 0 利用率 | 100% |\n| GPU 0 显存占用 | 59665 MiB |\n| GPU 1 | 空闲 (0%, 0 MiB) |\n\nGPU 0 上有 3 个 python 进程（PID 104325/104686/104918），合计占用 ~60GB 显存。\n\n日志 `/tmp/grpo_v2_final_eval.log` 显示模型 checkpoint 刚加载完（4/4 shards loaded），eval 刚启动不久。`eval_results.json` 尚未生成——eval 仍在进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cuda0-eval-status.md"
+}

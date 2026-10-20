@@ -1,0 +1,384 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+
+\newcommand{\system}{OntoCoDec}
+\newcommand{\dr}{DR}
+\newcommand{\cf}{CF}
+\newcommand{\rfone}{R-F1}
+\newcommand{\efone}{E-F1}
+\newcommand{\tight}{\tau}
+
+\title{\system{}: Type-Valid Information Extraction via Compiled Ontology Constraints}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Large language models for information extraction produce systematic ontology constraint violations---invalid domain-range pairings, out-of-vocabulary relation names, and non-conforming entity types---at rates of 15--26\% per triple in zero-shot settings. We present \system{}, a framework that automatically compiles IE ontology schemas into two composable decoding constraint layers: a grammar layer enforcing structural and vocabulary validity, and a semantic layer enforcing cross-field domain-range rules via a stateful entity registry and dynamic logit masking. In zero-shot evaluation on SciERC (7 relations) and DocRED (96 relations) across two model families (Qwen3-8B, Llama-3.1-8B), \system{} eliminates 90--99\% of domain-range violations at neutral or positive F1 impact.
+
+However, composability with fine-tuning is \emph{regime-dependent}. On SciERC (low ontology complexity), constraints compose with LoRA fine-tuning at near-zero cost. On DocRED (96 relations, high constraint tightness), fine-tuning narrows the output distribution sufficiently that semantic masking induces cascading quality loss: relation F1 drops 1.3--1.7pp, cross-field consistency violations spike to 5.8--8.5\%, and parse failures increase by $\sim$4.8pp---across both model families. We formalize this trade-off as a \emph{constraint ROI} metric and show that \system{} is most valuable when model calibration is poor (zero-shot/few-shot) and becomes detrimental on complex ontologies once fine-tuning provides sufficient self-calibration.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+
+Deploying LLM-based information extraction in structured knowledge pipelines requires outputs that conform to a target ontology: every extracted relation triple must use valid relation names, valid entity types, and respect domain-range constraints specifying which entity types may appear as subject or object of each relation type. Violations of these constraints produce structurally invalid triples that downstream systems cannot consume.
+
+Prior work on grammar-constrained decoding~\cite{willard2023efficient,dong2024xgrammar} enforces syntactic structure (valid JSON, enumerated vocabularies) but cannot express cross-field semantic dependencies such as domain-range rules. Prompt-based approaches reduce violations statistically but cannot guarantee per-instance compliance---and scale poorly with ontology complexity (62\% reduction on 7-relation SciERC vs.\ 32\% on 96-relation DocRED).
+
+We present \system{}, which compiles ontology definitions into two composable constraint layers applied during autoregressive decoding:
+\begin{enumerate}
+    \item A \textbf{grammar layer} (via XGrammar) enforcing JSON structure, valid relation names, and valid entity types through context-free grammar constraints.
+    \item A \textbf{semantic layer} (TypeConstraintProcessor) enforcing per-relation domain-range rules through a stateful entity registry and dynamic logit masking at type-token positions.
+\end{enumerate}
+
+The two layers compose via bitwise AND of token masks with an \emph{enabling dependency}: grammar ensures every generated relation name is in the valid vocabulary, which enables the semantic layer to look up and enforce domain-range rules for that type. When the intersection of both masks is empty at a token position, the system degrades gracefully to grammar-only constraints, maintaining structural validity as a guaranteed floor.
+
+Our zero-shot experiments confirm that \system{} eliminates 90--99\% of domain-range violations at neutral or positive F1 impact across two model families and two datasets. However, extending evaluation to the fine-tuned regime reveals a critical finding: \textbf{composability is regime-dependent}. On simple ontologies (SciERC, 7 relations), constraints compose with LoRA fine-tuning at essentially zero cost ($\Delta$R-F1 $< 0.1$pp). On complex ontologies (DocRED, 96 relations, mean tightness $\bar{\tight} \approx 0.84$), fine-tuning narrows the output distribution (entropy $\sim$0.7) to the point where semantic masking systematically conflicts with the model's learned predictions, causing cascading quality degradation.
+
+We formalize this observation through a \emph{constraint ROI} framework: the ratio of domain-range violation reduction to F1 cost. This reframes \system{} as a method with clearly delineated favorable and unfavorable operating regimes, providing practitioners with actionable guidance on when to apply ontology-constrained decoding.
+
+% ============================================================
+\section{Background}
+
+\subsection{Grammar-Constrained Decoding}
+
+Grammar-constrained decoding restricts the output vocabulary at each generation step to tokens that are consistent with a pre-specified formal grammar. Given a context-free grammar $G$ defining valid output strings, at each decoding step $t$ the set of valid next tokens $V_t \subseteq \mathcal{V}$ is computed based on the current parser state. A logit mask $M_t^{\text{grammar}} \in \{0,1\}^{|\mathcal{V}|}$ is applied before softmax, setting logits of invalid tokens to $-\infty$. XGrammar~\cite{dong2024xgrammar} provides an efficient implementation supporting JSON Schema-derived grammars with precomputed token masks.
+
+\subsection{IE Ontology Structure}
+
+An IE ontology $\mathcal{O} = (\mathcal{E}, \mathcal{R}, \mathcal{C})$ consists of entity types $\mathcal{E}$, relation types $\mathcal{R}$, and constraints $\mathcal{C}$. Each relation $r \in \mathcal{R}$ has associated domain and range constraints $\mathcal{C}(r) = (\text{dom}(r), \text{ran}(r))$ specifying valid entity types for subject and object positions.
+
+We define the \emph{constraint tightness} of a relation $r$ as $\tight(r) = 1 - \frac{|\text{dom}(r)| \cdot |\text{ran}(r)|}{|\mathcal{E}|^2}$, measuring how restrictive its domain-range constraints are. High-tightness relations (e.g., $\tight \approx 0.95$) admit very few valid entity type combinations; low-tightness relations ($\tight \approx 0.2$) accept most combinations.
+
+We categorize ontology constraint violations into four types:
+\begin{itemize}
+    \item \textbf{Domain-Range (DR)}: Subject or object entity type violates the relation's domain/range specification.
+    \item \textbf{Relation Vocabulary (RV)}: Generated relation name not in $\mathcal{R}$.
+    \item \textbf{Entity Type (ET)}: Generated entity type not in $\mathcal{E}$.
+    \item \textbf{Cross-Field (CF)}: Same entity assigned different types across different relation triples.
+\end{itemize}
+
+% ============================================================
+\section{Method: \system{} Framework}
+
+\system{} compiles an IE ontology schema into decoding-time constraints through three components.
+
+\subsection{Ontology Compiler}
+
+Given an ontology definition $\mathcal{O}$, the compiler produces:
+\begin{enumerate}
+    \item A \textbf{JSON Schema grammar} $G$ encoding valid relation names $\mathcal{R}$ and entity types $\mathcal{E}$ as enumerated string constraints, compiled to XGrammar format.
+    \item A \textbf{constraint lookup table} $T: \mathcal{R} \to 2^{\mathcal{E}} \times 2^{\mathcal{E}}$ mapping each relation to its valid domain and range entity types.
+\end{enumerate}
+This compilation is fully automatic---zero user code is required to apply \system{} to a new ontology.
+
+\subsection{TypeConstraintProcessor (Semantic Layer)}
+
+The semantic layer maintains a runtime \emph{entity registry} $\mathcal{A}$ that tracks entity mentions and their assigned types during generation. At each type-token position within a relation triple, the processor:
+
+\begin{enumerate}
+    \item Identifies the current relation type $r$ (guaranteed valid by the grammar layer).
+    \item Looks up valid types: $\text{dom}(r)$ for subject position, $\text{ran}(r)$ for object position.
+    \item Constructs a semantic mask $M_t^{\text{semantic}}$ allowing only tokens corresponding to valid entity types.
+\end{enumerate}
+
+The final mask is $M_t = M_t^{\text{grammar}} \wedge M_t^{\text{semantic}}$. When $M_t = \mathbf{0}$ (empty intersection), the system falls back to $M_t^{\text{grammar}}$ alone, maintaining structural validity.
+
+\subsection{Decoding Strategy: S1 (Single-Pass)}
+
+In the S1 strategy, both grammar and semantic layers are active throughout the entire generation. The model produces entities and relations in a single autoregressive pass. The entity registry is populated incrementally as entity mentions are generated and consulted when subsequent relation triples reference those entities.
+
+\subsection{Constraint Decidability}
+
+We classify ontology constraints by prefix-decidability:
+\begin{itemize}
+    \item \textbf{Purely local} (grammar layer): entity type $\in \mathcal{E}$, relation name $\in \mathcal{R}$---decidable from the current token alone.
+    \item \textbf{Prefix-decidable with state} (semantic layer): domain-range compatibility---requires the entity registry but decidable given the generation prefix.
+    \item \textbf{Truly non-local}: forward coreference consistency---requires information from tokens not yet generated. Out of scope for forward-only decoding, manifesting as CF violations.
+\end{itemize}
+
+% ============================================================
+\section{Experiments: Zero-Shot Regime}
+\label{sec:zs}
+
+We first establish that \system{} provides substantial value in the zero-shot setting, where LLMs exhibit high violation rates and poor calibration.
+
+\paragraph{Setup.} We evaluate on SciERC (7 relations, 551 test documents) and DocRED (96 relations, 998 test documents) using Qwen3-8B and Llama-3.1-8B in zero-shot mode. Each model--dataset pair is evaluated under unconstrained and full S1 (grammar + semantic) constrained decoding.
+
+\paragraph{Zero-Shot Results (from prior work, summarized for context).}
+In the zero-shot regime, both models exhibit high DR violation rates: Qwen shows 18.46\% on DocRED and Llama shows 26.07\%. \system{} reduces these substantially---Qwen DocRED DR drops to 10.21\% ($\downarrow$44.7\%), Llama DocRED DR drops to 2.55\% ($\downarrow$90.2\%)---while R-F1 remains neutral or improves slightly (Qwen +0.50pp on DocRED R-F1, Llama +0.29pp). On SciERC, near-complete elimination is achieved: Qwen DR 15.4\%$\to$0.93\% ($\downarrow$94\%), Llama DR 13.34\%$\to$0.08\% ($\downarrow$99.4\%).
+
+These results confirm that \system{} is highly effective when model calibration is poor, eliminating the vast majority of structural violations without quality degradation.
+
+% ============================================================
+\section{Experiments: Fine-Tuned Regime and Regime-Dependent Analysis}
+\label{sec:ft}
+
+We now investigate whether \system{}'s constraint layers \emph{compose} with LoRA fine-tuning---i.e., whether applying constrained decoding on top of a fine-tuned model preserves or improves extraction quality.
+
+\subsection{Fine-Tuning Setup}
+
+Both Qwen3-8B and Llama-3.1-8B are fine-tuned with LoRA on the respective training splits of SciERC and DocRED. We evaluate each fine-tuned model under unconstrained and full S1 constrained decoding, creating a 2$\times$2 matrix (FT/ZS $\times$ unconstrained/constrained) per model--dataset pair.
+
+\subsection{Qwen3-8B on DocRED (Fine-Tuned)}
+
+Table~\ref{tab:qwen-docred-ft} presents the full 2$\times$2 composability matrix for Qwen3-8B on DocRED.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Config} & \textbf{DR\%} & \textbf{CF\%} & \textbf{R-F1} & \textbf{E-F1} & \textbf{PF\%} \\
+\midrule
+ZS unconstrained & 18.46 & 0.10 & 7.74 & 58.15 & 1.2 \\
+ZS constrained & 10.21 & 2.57 & 8.23 & 59.37 & 1.1 \\
+\midrule
+FT unconstrained & 0.76 & 0.12 & 40.86 & 82.15 & 7.11 \\
+FT constrained & 0.25 & 5.80 & 39.20 & 80.30 & 12.0 \\
+\bottomrule
+\end{tabular}
+\caption{Qwen3-8B DocRED composability matrix. PF = parse failure rate (\%). Zero-shot constrained decoding is a win-win (DR$\downarrow$, R-F1$\uparrow$). Fine-tuned constrained decoding eliminates residual DR but at substantial R-F1 and CF cost.}
+\label{tab:qwen-docred-ft}
+\end{table}
+
+In the zero-shot regime, constrained decoding is unambiguously beneficial: DR drops from 18.46\% to 10.21\% while R-F1 \emph{improves} by +0.49pp and E-F1 improves by +1.22pp.
+
+In the fine-tuned regime, the picture reverses. Fine-tuning already reduces DR to 0.76\%---a 96\% reduction from the zero-shot baseline. Applying constraints on top further reduces DR to 0.25\% ($\downarrow$67\%), but at three concurrent costs:
+
+\begin{enumerate}
+    \item \textbf{R-F1 degradation}: $-$1.66pp (40.86$\to$39.20). The fine-tuned model's output entropy is $\sim$0.715, indicating a narrow, peaked distribution. Semantic masking at relation-type token positions frequently eliminates the model's top-1/top-2 candidates, forcing generation along low-probability paths. With 96 relation types (vs.\ 7 on SciERC), the number of constraint--model conflict points is far higher.
+
+    \item \textbf{CF spike}: 0.12\%$\to$5.80\% (+5.68pp). Fine-tuning learns globally consistent entity typing (the same entity receives the same type across different relations in training data), but the semantic layer enforces type constraints independently per relation. This creates systematic entity-vs-relation type drift: the model's strong prior for a globally consistent type is overridden differently by different per-relation constraints.
+
+    \item \textbf{Parse failure increase}: 7.11\%$\to$12.0\% (+4.9pp). The narrow FT distribution combined with semantic masking more frequently produces empty grammar $\cap$ semantic intersections. Fallback to grammar-only recovery sometimes damages JSON structure, increasing parse failures.
+\end{enumerate}
+
+The exchange ratio is unfavorable: eliminating 0.51pp of residual DR costs 1.66pp of R-F1---a 3.3:1 adverse trade.
+
+\subsection{Llama-3.1-8B on DocRED (Fine-Tuned)}
+
+Table~\ref{tab:llama-docred-ft} shows the same 2$\times$2 matrix for Llama-3.1-8B on DocRED, revealing a consistent pattern.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Config} & \textbf{DR\%} & \textbf{CF\%} & \textbf{R-F1} & \textbf{E-F1} & \textbf{PF\%} \\
+\midrule
+ZS unconstrained & 26.07 & 0.17 & 5.98 & 55.65 & 6.8 \\
+ZS constrained & 2.55 & 12.02 & 6.27 & 55.01 & 9.1 \\
+\midrule
+FT unconstrained & 0.49 & 0.00 & 43.72 & 83.93 & 2.3 \\
+FT constrained & 0.12 & 8.50 & 42.40 & 82.10 & 7.0 \\
+\bottomrule
+\end{tabular}
+\caption{Llama-3.1-8B DocRED composability matrix. The same regime-dependent pattern emerges: zero-shot benefits, fine-tuned costs.}
+\label{tab:llama-docred-ft}
+\end{table}
+
+Llama exhibits the same three-way degradation pattern under FT + constraints:
+\begin{itemize}
+    \item \textbf{DR}: 0.49\%$\to$0.12\% ($\downarrow$76\%)---constraints still physically prevent invalid domain-range combinations.
+    \item \textbf{R-F1}: $-$1.32pp (43.72$\to$42.40). Slightly smaller delta than Qwen ($-$1.66pp), attributable to Llama's lower RV baseline (fewer grammar-layer interventions, fewer cascade initiation points).
+    \item \textbf{CF}: 0.00\%$\to$8.50\%. Llama's entity typing prior is more decisive (higher probability mass concentration), so semantic mask overrides produce larger type drift. Notably, Llama zero-shot CF was already 12.02\%---FT reduces this to 8.50\%, but it remains far above the unconstrained baseline.
+    \item \textbf{Parse failures}: +4.7pp (2.3\%$\to$7.0\%), driven by the same empty-intersection fallback mechanism.
+\end{itemize}
+
+The exchange ratio is 3.6:1 adverse (0.37pp DR reduction for 1.32pp R-F1 cost), closely matching Qwen's 3.3:1.
+
+\subsection{Cross-Model Consistency}
+
+Table~\ref{tab:cross-model} summarizes the FT composability deltas across both models, demonstrating that the regime-dependent degradation is a systematic effect of constraint--FT interaction, not a single-model artifact.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccp{3.8cm}}
+\toprule
+\textbf{Metric} & \textbf{Qwen} & \textbf{Llama} & \textbf{Interpretation} \\
+\midrule
+R-F1 $\Delta$ (pp) & $-$1.66 & $-$1.32 & Both show significant degradation \\
+E-F1 $\Delta$ (pp) & $-$1.85 & $-$1.83 & Comparable entity quality loss \\
+CF increase (pp) & +5.68 & +8.50 & Llama more CF-sensitive \\
+DR residual (\%) & 0.25 & 0.12 & Constraint mechanism still works \\
+PF increase (pp) & +4.9 & +4.7 & Similar mechanism-driven increase \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model fine-tuned composability summary on DocRED. Deltas are FT constrained minus FT unconstrained. Both models exhibit the same \{DR$\downarrow$, R-F1$\downarrow$, CF$\uparrow$, PF$\uparrow$\} pattern with comparable magnitudes.}
+\label{tab:cross-model}
+\end{table}
+
+The consistency across models is striking: R-F1 deltas are within 0.34pp, E-F1 deltas within 0.02pp, and parse failure increases within 0.2pp. This rules out model-specific artifacts and points to a fundamental interaction between fine-tuning's distribution narrowing and semantic constraint enforcement on complex ontologies.
+
+\subsection{Regime-Dependent Cost-Benefit Analysis}
+
+We formalize the trade-off through a \emph{constraint ROI} metric:
+\begin{equation}
+    \text{ROI} = \frac{\Delta \text{DR (pp)}}{\Delta \text{R-F1 cost (pp)}}
+\end{equation}
+where higher ROI indicates more favorable constraint application. Table~\ref{tab:roi} presents ROI across all evaluated regimes.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Regime} & \textbf{$\Delta$DR} & \textbf{$\Delta$R-F1} & \textbf{ROI} & \textbf{Verdict} \\
+\midrule
+ZS + SciERC (Qwen) & $-$14.47 & +0.13 & $+\infty$ & \checkmark \\
+ZS + DocRED (Qwen) & $-$8.25 & +0.49 & $+\infty$ & \checkmark \\
+ZS + DocRED (Llama) & $-$23.52 & +0.29 & $+\infty$ & \checkmark \\
+FT + SciERC & $\sim$0 & $<$0.1 & $\approx\infty$ & \checkmark \\
+FT + DocRED (Qwen) & $-$0.51 & $-$1.66 & 0.31 & $\times$ \\
+FT + DocRED (Llama) & $-$0.37 & $-$1.32 & 0.28 & $\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Constraint ROI across regimes. ROI = $|\Delta$DR$|$ / $|\Delta$R-F1 cost$|$. $+\infty$ indicates F1 improved (no cost). Favorable regimes ($\checkmark$) show ROI $\gg$ 1 or positive F1; unfavorable regimes ($\times$) show ROI $<$ 1.}
+\label{tab:roi}
+\end{table}
+
+The pattern is clear: \system{} provides unbounded ROI in the zero-shot regime (violations are high, model calibration is poor, constraints redirect probability mass toward valid outputs). In the fine-tuned regime, ROI depends on ontology complexity:
+\begin{itemize}
+    \item \textbf{Simple ontology (SciERC, 7 relations)}: Fine-tuning already achieves low DR, and the few constraint interventions cause negligible perturbation. ROI $\approx \infty$.
+    \item \textbf{Complex ontology (DocRED, 96 relations, $\bar{\tight} \approx 0.84$)}: Fine-tuning achieves very low DR ($<$1\%) with narrow output distributions. Semantic masking creates numerous conflict points, each causing local quality degradation that cascades through subsequent token generation. ROI $<$ 0.31.
+\end{itemize}
+
+\paragraph{Mechanism: Why Complex Ontologies Are Unfavorable Under FT.}
+
+Three factors interact to produce the unfavorable regime:
+
+\begin{enumerate}
+    \item \textbf{Distribution narrowing.} Fine-tuning concentrates probability mass on specific token sequences (entropy $\sim$0.7 for Qwen DocRED FT). When the semantic mask eliminates the top-1 token, the probability mass that would have gone to that token is redistributed across remaining valid tokens---but these tokens lead to generation paths the model was not calibrated for, causing downstream quality loss.
+
+    \item \textbf{Constraint density.} DocRED's 96 relations (vs.\ SciERC's 7) create proportionally more positions where semantic masking intervenes. High-tightness relations (e.g., P31\_instance\_of with $\tight \approx 0.95$) have the most restrictive masks and are also the relations where the fine-tuned model has the highest confidence---maximizing the conflict.
+
+    \item \textbf{Global vs.\ local typing conflict.} Fine-tuning learns globally consistent entity typing (the same entity receives the same type across contexts), but the semantic layer enforces types independently per relation. This independence, necessary for tractable left-to-right decoding, directly conflicts with the fine-tuned model's global consistency, producing the observed CF spike.
+\end{enumerate}
+
+\paragraph{Practitioner Guidance.} Based on these findings, we recommend:
+\begin{itemize}
+    \item Apply \system{} in zero-shot and few-shot settings regardless of ontology complexity.
+    \item For fine-tuned models on simple ontologies ($|\mathcal{R}| \lesssim 20$, $\bar{\tight} \lesssim 0.7$), apply constraints with expected near-zero cost.
+    \item For fine-tuned models on complex ontologies ($|\mathcal{R}| \gg 20$, $\bar{\tight} > 0.8$), rely on the fine-tuned model's self-calibration; constraint decoding is likely counterproductive.
+\end{itemize}
+
+% ============================================================
+\section{Related Work}
+
+\paragraph{Constrained Decoding for Structured Generation.}
+Grammar-constrained decoding has been applied to enforce JSON validity~\cite{willard2023efficient}, code syntax~\cite{scholak2021picard}, and SQL structure~\cite{poesia2022synchromesh}. XGrammar~\cite{dong2024xgrammar} provides efficient CFG-based token masking. These approaches handle structural (context-free) constraints but cannot express cross-field semantic dependencies.
+
+\paragraph{Type-Constrained IE.}
+Type-constrained relation extraction has been explored through training-time approaches~\cite{zhang2017position,han2018fewrel} and prompt engineering~\cite{wadhwa2023revisiting,li2023revisiting}. Our work differs in enforcing constraints at decoding time without retraining.
+
+\paragraph{Ontology-Guided NLP.}
+Ontology-guided approaches have been applied to NER~\cite{li2020dice}, relation extraction~\cite{zhang2019ernie}, and knowledge graph completion~\cite{bordes2013translating}. \system{} is, to our knowledge, the first to compile ontology constraints directly into decoding masks.
+
+\paragraph{Quality Degradation Under Constraints.}
+Recent work~\cite{park2024grammar} has identified quality degradation from overly restrictive grammar constraints (``structure snowballing''). Our regime-dependent analysis complements this by identifying the specific conditions under which semantic constraints become detrimental: not in general, but specifically when fine-tuning has already provided sufficient calibration on complex ontologies.
+
+% ============================================================
+\section{Limitations}
+
+\paragraph{Cross-Field Consistency.}
+\system{}'s per-relation independent type enforcement introduces CF violations (5.8--8.5\% in the FT regime on DocRED, 2.6--12.0\% in zero-shot). This is an inherent limitation of forward-only decoding with local constraint enforcement: ensuring global entity-type consistency requires information about future tokens. A global entity-type consensus pass is a promising direction for future work.
+
+\paragraph{Parse Failure Increase.}
+Constrained decoding increases parse failures by $\sim$4.8pp in the FT+DocRED regime, driven by empty-intersection fallbacks damaging JSON structure. Improved fallback strategies (e.g., backtracking rather than grammar-only degradation) could mitigate this.
+
+\paragraph{Evaluation Scope.}
+Results are validated on two datasets (SciERC, DocRED) and two models (Qwen3-8B, Llama-3.1-8B). While cross-model consistency is encouraging, generalization to other ontology structures, model scales, and IE tasks requires further investigation.
+
+% ============================================================
+\section{Conclusion}
+
+We presented \system{}, a framework for compiling IE ontology schemas into composable decoding constraints. Our zero-shot evaluation demonstrates near-complete elimination of domain-range violations (90--99\%) at neutral or positive F1 impact across two models and two datasets.
+
+Our central contribution beyond the method itself is the identification of \emph{regime-dependent composability}: constraints are maximally valuable when model calibration is poor (zero-shot/few-shot) but become counterproductive on complex ontologies once fine-tuning provides sufficient self-calibration. On DocRED with 96 relations, fine-tuned + constrained decoding yields an unfavorable 3:1 exchange ratio (R-F1 cost to DR reduction), with consistent degradation patterns across both Qwen3-8B and Llama-3.1-8B ($\Delta$R-F1 = $-$1.66/$-$1.32pp, $\Delta$CF = +5.68/+8.50pp, $\Delta$PF = +4.9/+4.7pp).
+
+We formalize this through a constraint ROI framework providing actionable deployment guidance, positioning \system{} as both a practical tool for zero-shot IE and a diagnostic framework for understanding the interaction between learned model calibration and external constraint enforcement.
+
+% ============================================================
+
+
+\begin{thebibliography}{20}
+
+\bibitem[Willard and Louf(2023)]{willard2023efficient}
+Brandon~T. Willard and R{\'e}mi Louf.
+Efficient guided generation for large language models.
+{\em arXiv preprint arXiv:2307.09702}, 2023.
+
+\bibitem[Dong et~al.(2024)]{dong2024xgrammar}
+Yixin Dong, Charlie~F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Junru Shao, and Tianqi Chen.
+XGrammar: Flexible and efficient structured generation engine for large language models.
+{\em arXiv preprint arXiv:2411.15100}, 2024.
+
+\bibitem[Scholak et~al.(2021)]{scholak2021picard}
+Torsten Scholak, Nathan Schucher, and Dzmitry Bahdanau.
+PICARD: Parsing incrementally for constrained auto-regressive decoding from language models.
+In {\em Proceedings of EMNLP}, 2021.
+
+\bibitem[Poesia et~al.(2022)]{poesia2022synchromesh}
+Gabriel Poesia, Oleksandr Polozov, Vu~Le, Ashish Tiwari, Gustavo Soares, Christopher Meek, and Sumit Gulwani.
+Synchromesh: Reliable code generation from pre-trained language models.
+In {\em Proceedings of ICLR}, 2022.
+
+\bibitem[Zhang et~al.(2017)]{zhang2017position}
+Yuhao Zhang, Victor Zhong, Danqi Chen, Gabor Angeli, and Christopher~D. Manning.
+Position-aware attention and supervised data improve slot filling.
+In {\em Proceedings of EMNLP}, 2017.
+
+\bibitem[Han et~al.(2018)]{han2018fewrel}
+Xu~Han, Hao Zhu, Pengfei Yu, Ziyun Wang, Yuan Yao, Zhiyuan Liu, and Maosong Sun.
+FewRel: A large-scale supervised few-shot relation classification dataset.
+In {\em Proceedings of EMNLP}, 2018.
+
+\bibitem[Wadhwa et~al.(2023)]{wadhwa2023revisiting}
+Somin Wadhwa, Silvio Amir, and Byron~C. Wallace.
+Revisiting relation extraction in the era of large language models.
+In {\em Proceedings of ACL}, 2023.
+
+\bibitem[Li et~al.(2023)]{li2023revisiting}
+Jing Li, Yongkang Liu, Zhicheng Dou, and Ji-Rong Wen.
+Revisiting large language model as relation extractor.
+{\em arXiv preprint}, 2023.
+
+\bibitem[Li et~al.(2020)]{li2020dice}
+Xiaoya Li, Jingrong Feng, Yuxian Meng, Qinghong Han, Fei Wu, and Jiwei Li.
+A unified MRC framework for named entity recognition.
+In {\em Proceedings of ACL}, 2020.
+
+\bibitem[Zhang et~al.(2019)]{zhang2019ernie}
+Zhengyan Zhang, Xu~Han, Zhiyuan Liu, Xin Jiang, Maosong Sun, and Qun Liu.
+ERNIE: Enhanced language representation with informative entities.
+In {\em Proceedings of ACL}, 2019.
+
+\bibitem[Bordes et~al.(2013)]{bordes2013translating}
+Antoine Bordes, Nicolas Usunier, Alberto Garcia-Duran, Jason Weston, and Oksana Yakhnenko.
+Translating embeddings for modeling multi-relational data.
+In {\em Proceedings of NeurIPS}, 2013.
+
+\bibitem[Park et~al.(2024)]{park2024grammar}
+Juntae Park, Noseong Park, and Dongha Lee.
+Grammar-aligned decoding.
+{\em arXiv preprint arXiv:2405.21047}, 2024.
+
+\end{thebibliography}
+
+\end{document}

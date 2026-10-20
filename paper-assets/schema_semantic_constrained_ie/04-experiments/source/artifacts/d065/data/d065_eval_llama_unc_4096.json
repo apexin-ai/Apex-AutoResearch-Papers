@@ -1,0 +1,22 @@
+{
+  "label": "d065_llama_greedy_unc_4096",
+  "total_samples": 998,
+  "parse_failures": 23,
+  "parse_fail_pct": 2.3,
+  "total_entities_pred": 19106,
+  "total_relations_pred": 16171,
+  "ET_pct": 0.0,
+  "RV_pct": 0.15,
+  "DR_pct": 0.49,
+  "CF_pct": 0.08,
+  "E_P": 85.75,
+  "E_R": 83.82,
+  "E_F1": 84.77,
+  "R_P": 39.31,
+  "R_R": 51.39,
+  "R_F1": 44.55,
+  "et_violations": 0,
+  "rv_violations": 24,
+  "dr_violations": 80,
+  "cf_violations": 16
+}

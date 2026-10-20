@@ -1,0 +1,389 @@
+# OntoCoDec Literature Map
+# Generated: 2026-05-13
+# Scope: Constrained Decoding for IE / Schema-Guided IE / Type Constraint Enforcement (2020-2026)
+
+novelty_assessment:
+  claim: "Compile ontology domain/range axioms into decoding-time semantic constraints (LogitsProcessor) for LLM-based IE"
+  verdict: "Novel — no prior work does this"
+  gap_table:
+    - level: "Syntactic (valid JSON)"
+      ie_task: true
+      decode_time: true
+      prior_work: "GCD (EMNLP'23), XGrammar, Outlines, SGLang"
+    - level: "Vocabulary (valid entity/relation names)"
+      ie_task: true
+      decode_time: true
+      prior_work: "GENRE (ICLR'21), iNERD (SLT'24), AdaKGC (EMNLP'23)"
+    - level: "Structural (generation order)"
+      ie_task: true
+      decode_time: true
+      prior_work: "ATG (AAAI'24), JoinER-BART (TASLP'23), EnriCo (2024)"
+    - level: "Semantic (domain/range type compatibility)"
+      ie_task: false  # <-- THE GAP
+      decode_time: false
+      prior_work: "NONE for IE"
+    - level: "Semantic (type checking)"
+      ie_task: false  # code gen only
+      decode_time: true
+      prior_work: "MGD (NeurIPS'23), Synchromesh (NeurIPS'22), PLDI'25"
+    - level: "Semantic (ontology compliance)"
+      ie_task: true  # KG construction
+      decode_time: false  # post-hoc only
+      prior_work: "RELATE (2025), ODKE+ (Apple 2025), OntoLogX (2025)"
+  composability_gap:
+    claim: "No prior work systematically studies composability of constrained decoding + LoRA fine-tuning for IE (2×2 matrix across models and datasets)"
+    verdict: "Novel — confirmed 2026-05-16"
+    evidence:
+      - "Frei & Kramer (2024): tested FT+constrained but no 2×2 matrix, no cross-model validation"
+      - "BoostCD (EMNLP'25): combines constrained/unconstrained outputs but does not study FT composability"
+      - "Schall & de Melo (RANLP'25): studied instruction-tuning + constrained interaction, found degradation"
+      - "DORE (SIGDIAL'24): ontology-constrained RE but no fine-tuning composability"
+    f1_improvement_mechanism: >
+      R-F1 +0.51pp under FT+OntoCoDec is explained by grammar layer eliminating OOV relation
+      names (DocRED RV high), which under all_set evaluation = FP removal → precision↑ → F1↑.
+      Supported by Frei & Kramer (massive F1 gain with grammar constraints on FT models) and
+      BoostCD (constrained > unconstrained by 5-13pp). Contrasts with Schall & de Melo who find
+      degradation in tasks without OOV→FP mechanism.
+  framing: >
+    OntoCoDec brings type-constrained generation — previously applied only to
+    programming languages — to information extraction, by compiling IE ontology
+    axioms into decoding-time semantic constraints that prevent, rather than
+    detect, type violations.
+
+most_relevant_papers:
+  - id: pldi2025_type_constrained_codegen
+    title: "Type-Constrained Code Generation via Prefix Automata"
+    venue: PLDI
+    year: 2025
+    arxiv: "2504.09246"
+    method: "Compiles type systems into prefix automata for token-level logits masking during code generation. Reduces compilation errors >50%."
+    relation: "Closest analog — same mechanism (type system → automaton → logits mask) but for programming language types, not IE ontology types."
+    category: competitor_analog
+    must_cite: true
+
+  - id: mgd_neurips2023
+    title: "Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context"
+    venue: NeurIPS
+    year: 2023
+    method: "Uses static analysis monitors to enforce type-checking during code generation. SantaCoder-1.1B + MGD outperforms text-davinci-003."
+    relation: "Type checking at decode time for code; OntoCoDec does type checking at decode time for IE."
+    category: competitor_analog
+    must_cite: true
+
+  - id: synchromesh_iclr2022
+    title: "Synchromesh: Reliable Code Generation from Pre-trained Language Models"
+    venue: ICLR
+    year: 2022
+    method: "Constrained Semantic Decoding (CSD) enforcing syntax + types + scope simultaneously for code generation."
+    relation: "Pioneer of semantic constraints at decode time. Foundational reference."
+    category: foundational
+    must_cite: true
+
+  - id: geng_emnlp2023
+    title: "Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning"
+    venue: EMNLP
+    year: 2023
+    method: "Input-dependent CFGs for NER, RE, entity disambiguation. Syntactic constraints only."
+    relation: "Direct precursor for constrained decoding in IE, but no semantic constraints."
+    category: precursor
+    must_cite: true
+
+  - id: odke_apple2025
+    title: "ODKE+: Ontology-Driven Knowledge Extraction at Scale"
+    venue: arXiv (Apple)
+    year: 2025
+    method: "Ontology snippet prompting + Grounder LLM post-validation. 98.8% precision on 19M facts."
+    relation: "Production-scale ontology-guided IE, but post-processing not decode-time. Key baseline."
+    category: competitor_baseline
+    must_cite: true
+
+papers_by_dimension:
+
+  constrained_decoding_for_ie:
+    - id: boostcd_emnlp2025
+      title: "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD"
+      venue: EMNLP 2025
+      arxiv: "2506.14901"
+      constraint_level: boosted_hybrid
+      note: "Most direct competitor. Boosts constrained+unconstrained outputs. Reports constrained > unconstrained by 5-13pp F1. No FT composability."
+      must_cite: true
+
+    - id: geng_emnlp2023
+      title: "Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning"
+      venue: EMNLP 2023
+      constraint_level: syntactic
+      must_cite: true
+
+    - id: inerd_slt2024
+      title: "iNERD: Token Masking for NER with Constrained Decoding"
+      venue: IEEE SLT 2024
+      constraint_level: vocabulary
+      must_cite: false
+
+    - id: adakgc_emnlp2023
+      title: "AdaKGC: Schema-Constrained Dynamic Decoding"
+      venue: EMNLP 2023 Findings
+      constraint_level: vocabulary_trie
+      must_cite: true
+
+    - id: atg_aaai2024
+      title: "ATG: Joint Entity-RE with Autoregressive Text Generation"
+      venue: AAAI 2024
+      constraint_level: structural
+      must_cite: false
+
+    - id: codeie_acl2023
+      title: "CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors"
+      venue: ACL 2023
+      constraint_level: code_structure
+      must_cite: false
+
+    - id: gollie_iclr2024
+      title: "GoLLIE: Annotation Guidelines as Code for Zero-Shot IE"
+      venue: ICLR 2024
+      constraint_level: code_structure
+      must_cite: true
+
+    - id: grammar_cd_clinical_2024
+      title: "Grammar-Constrained Decoding for Clinical Trial IE"
+      venue: Frontiers in AI 2024
+      doi: "10.3389/frai.2024.1406857"
+      constraint_level: syntactic
+      note: "Closest composability evidence: FT+grammar-constrained F1 jumps 0.062→0.413. Supports our FT+OntoCoDec R-F1 improvement finding."
+      must_cite: true
+
+    - id: slot_emnlp2025
+      title: "SLOT: Structured LLM Output Toolkit"
+      venue: EMNLP 2025 Industry
+      constraint_level: syntactic
+      must_cite: false
+
+    - id: enrico_2024
+      title: "EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction"
+      venue: 2024
+      constraint_level: structural_asp
+      must_cite: false
+
+  constrained_decoding_frameworks:
+    - id: xgrammar
+      title: "XGrammar: Flexible and Efficient Grammar-Guided Generation"
+      year: 2024
+      constraint_level: syntactic
+      note: "100x faster than prior methods. JSON Schema / CFG."
+      must_cite: true
+
+    - id: outlines
+      title: "Outlines: Structured Text Generation"
+      year: 2024
+      constraint_level: syntactic
+      must_cite: false
+
+    - id: guidance
+      title: "Guidance (Microsoft): Constrained Generation"
+      year: 2023
+      constraint_level: syntactic
+      must_cite: false
+
+    - id: lmql
+      title: "LMQL: Programming Large Language Models"
+      year: 2023
+      constraint_level: syntactic_scripting
+      must_cite: false
+
+  semantic_constrained_decoding_non_ie:
+    - id: pldi2025_type_constrained_codegen
+      title: "Type-Constrained Code Generation via Prefix Automata"
+      venue: PLDI 2025
+      constraint_level: semantic_type_checking
+      must_cite: true
+
+    - id: mgd_neurips2023
+      title: "Monitor-Guided Decoding"
+      venue: NeurIPS 2023
+      constraint_level: semantic_type_checking
+      must_cite: true
+
+    - id: synchromesh_neurips2022
+      title: "Synchromesh: Constrained Semantic Decoding"
+      venue: NeurIPS 2022
+      constraint_level: semantic_full
+      must_cite: true
+
+    - id: itergen_iclr2025
+      title: "IterGen: Grammar-Guided Generation with Semantic-Aware Backtracking"
+      venue: ICLR 2025
+      constraint_level: semantic_backtracking
+      must_cite: false
+
+    - id: crane_icml2025
+      title: "CRANE: Balancing Syntactic+Semantic Constraints with Reasoning"
+      venue: ICML 2025
+      constraint_level: semantic
+      note: "Shows strict constraints can degrade reasoning — relevant risk for OntoCoDec."
+      must_cite: true
+
+    - id: smc_iclr2025
+      title: "SMC-based Syntactic+Semantic Control for LLM Generation"
+      venue: ICLR 2025 Oral
+      constraint_level: semantic
+      note: "Small models beat 8x larger ones with constraints."
+      must_cite: false
+
+    - id: grammar_aligned_neurips2024
+      title: "Grammar-Aligned Decoding"
+      venue: NeurIPS 2024
+      note: "Addresses distribution distortion from naive grammar masking."
+      must_cite: true
+
+  schema_ontology_guided_ie:
+    - id: odke_apple2025
+      title: "ODKE+: Ontology-Driven Knowledge Extraction"
+      venue: arXiv 2025 (Apple)
+      schema_usage: prompt + post_validation
+      must_cite: true
+
+    - id: knowcoder_acl2024
+      title: "KnowCoder: Coding Structured Knowledge from LLMs"
+      venue: ACL 2024
+      schema_usage: training_code_hierarchy
+      note: "29K entity types from Wikidata as Python class hierarchy"
+      must_cite: true
+
+    - id: spires_2024
+      title: "SPIRES/OntoGPT: Ontology-Based LLM Extraction"
+      venue: Bioinformatics 2024
+      schema_usage: prompt + post_grounding
+      must_cite: true
+
+    - id: oneke_www2025
+      title: "OneKE: Multi-Agent Knowledge Extraction"
+      venue: WWW 2025
+      schema_usage: agent_reflection
+      must_cite: false
+
+    - id: ontology_rag_docred_2025
+      title: "Document-Level Relation Extraction with Ontology-Guided RAG"
+      venue: IOS Press 2025
+      schema_usage: ontology_rag
+      note: "Ontology-aware DocRED RE via RAG (not constrained decoding). Different approach, same target."
+      must_cite: false
+
+    - id: relate_2025
+      title: "RELATE: Biomedical Relation Extraction with Ontology Mapping"
+      venue: arXiv 2025
+      schema_usage: post_mapping
+      must_cite: false
+
+    - id: ontologx_2025
+      title: "OntoLogX: SHACL Validation for LLM-Generated KGs"
+      venue: arXiv 2025
+      schema_usage: post_validation_shacl
+      note: "Iterative correction reduces violations ~10x"
+      must_cite: true
+
+    - id: instructuie_2023
+      title: "InstructUIE: Multi-Task Instruction Tuning for UIE"
+      venue: 2023
+      schema_usage: instruction_prompt
+      must_cite: false
+
+    - id: ekaw2024_ontology_beam
+      title: "Ontology-Constrained Clinical Summaries"
+      venue: EKAW 2024
+      arxiv: "2411.15666"
+      schema_usage: soft_beam_bias
+      note: "Soft constraint via beam scoring, not hard logits masking. Summarization not IE."
+      must_cite: true
+
+    - id: scidc_2026
+      title: "SciDC: Scientific Knowledge as Constrained Decoding Rules"
+      venue: arXiv 2026
+      arxiv: "2604.06603"
+      schema_usage: rule_to_decoding
+      note: "+12% accuracy. Scientific reasoning not IE. No domain/range type constraints."
+      must_cite: false
+
+    - id: dialogue_ontology_re_sigdial2024
+      title: "Ontology-Constrained RE for Dialogue"
+      venue: SIGDIAL 2024
+      arxiv: "2408.02361"
+      schema_usage: vocabulary_constraint
+      note: "Constrains which relation names are valid, not which entity type combos satisfy domain/range."
+      must_cite: false
+
+  type_constraint_enforcement:
+    - id: roth_yih_2004
+      title: "Global Inference for Entity and Relation Identification via a Linear Programming Formulation"
+      venue: "AAAI 2004 / MIT 2007"
+      method: "ILP enforcing type compatibility (e.g., EMP-ORG only between PER+ORG)"
+      constraint_time: inference_ilp
+      note: "Pre-LLM. The original domain/range enforcement idea for IE."
+      must_cite: true
+
+    - id: li_ji_2014
+      title: "Incremental Joint Extraction with Type Constraints"
+      venue: AIJ 2014
+      method: "Mines type+cardinality constraints from data, ILP encoding"
+      constraint_time: inference_ilp
+      must_cite: false
+
+    - id: knowprompt_www2022
+      title: "KnowPrompt: Knowledge-aware Prompt-tuning"
+      venue: WWW 2022
+      method: "Virtual type words + synergistic optimization with structural constraints"
+      constraint_time: training
+      must_cite: false
+
+    - id: etcgn_2024
+      title: "Entity Type-Constrained Graph Networks for Doc-level RE"
+      venue: IJMLC 2024
+      constraint_time: training_architecture
+      must_cite: false
+
+    - id: genre_iclr2021
+      title: "GENRE: Autoregressive Entity Retrieval"
+      venue: ICLR 2021
+      method: "Trie-based constrained beam search for entity linking"
+      constraint_time: decoding_vocabulary
+      must_cite: false
+
+    - id: hidden_cost_ranlp2025
+      title: "The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance"
+      authors: "Schall & de Melo"
+      venue: RANLP 2025
+      acl: "2025.ranlp-1.124"
+      note: >
+        Finds constrained decoding degrades performance. Opposing our R-F1 improvement.
+        Reconciliation: their tasks lack OOV→FP mechanism; in IE with OOV relation names,
+        grammar elimination of OOV = FP removal → F1↑. Also finds instruction-tuning may
+        reduce structured output capability → supports need for constrained decoding even after FT.
+      must_cite: true
+
+suggested_related_work_citations:
+  must_cite:
+    - "Synchromesh (NeurIPS'22) — pioneer of semantic constrained decoding"
+    - "MGD (NeurIPS'23) — type checking at decode time for code"
+    - "Type-Constrained Code Gen (PLDI'25) — type system → automaton → logits mask"
+    - "GCD for IE (EMNLP'23) — grammar-constrained decoding applied to NER/RE"
+    - "AdaKGC (EMNLP'23) — schema-constrained trie decoding for IE"
+    - "GoLLIE (ICLR'24) — annotation guidelines as code for IE"
+    - "KnowCoder (ACL'24) — Wikidata type hierarchy as Python classes"
+    - "ODKE+ (Apple'25) — ontology-guided IE at scale (post-processing baseline)"
+    - "SPIRES/OntoGPT (Bioinformatics'24) — ontology-based LLM extraction"
+    - "OntoLogX (2025) — SHACL post-validation (detect-then-fix baseline)"
+    - "EKAW'24 — ontology-constrained beam search (soft constraint baseline)"
+    - "XGrammar (2024) — fastest grammar-constrained decoding framework"
+    - "CRANE (ICML'25) — constraint vs reasoning tradeoff"
+    - "Grammar-Aligned Decoding (NeurIPS'24) — distribution distortion from masking"
+    - "Roth & Yih (AAAI'04) — original ILP type constraint enforcement for IE"
+    - "Hidden Cost of Structure (RANLP'25) — risks of constrained decoding"
+    - "BoostCD (EMNLP'25) — boosted constrained+unconstrained for IE, direct competitor"
+    - "Grammar-Constrained Clinical IE (Frontiers'24) — FT+grammar composability evidence"
+  should_cite:
+    - "Outlines/Guidance — constrained decoding ecosystem"
+    - "iNERD (SLT'24) — token masking for NER"
+    - "CodeIE (ACL'23) — code generation for IE"
+    - "RELATE (2025) — biomedical ontology mapping"
+    - "OneKE (WWW'25) — multi-agent IE with reflection"
+    - "IterGen (ICLR'25) — semantic-aware backtracking"
+    - "SMC-based control (ICLR'25 Oral) — probabilistic semantic control"

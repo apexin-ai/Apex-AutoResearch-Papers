@@ -1,0 +1,24 @@
+{
+  "exp_id": "dpo_pilot_v1",
+  "project": "prov_grounded_uie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T10:52:49.700Z",
+    "updated_at": "2026-05-13T10:52:49.700Z",
+    "spec": {
+      "hypothesis": "DPO with reward-ranked preference pairs can improve evidence quality where GRPO failed (credit assignment on long sequences). Use SFT model to generate N=8 candidates per prompt, rank by composite reward, construct (chosen, rejected) pairs.",
+      "parent": "grpo_pilot_v2",
+      "method": "DPO with reward-ranked preference pairs from SFT model",
+      "server": "autodl-rtxpro6000",
+      "data_path": "/root/autodl-tmp/prov_grounded_uie/data/docred_train.jsonl",
+      "data_count": 3027,
+      "model_name": "Qwen3-8B (SFT merged)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T10:52:49.731123+00:00",
+  "trigger": "update_registry"
+}

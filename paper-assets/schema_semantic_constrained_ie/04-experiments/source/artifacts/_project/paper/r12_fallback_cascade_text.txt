@@ -1,0 +1,7 @@
+% R12 Fallback Cascade Analysis — SciERC ZS S1
+
+While S1-induced entity fallback is minimal (Qwen: 3 entities, Llama: 1), the \textsc{Generic} type itself creates a structural weakness in DR enforcement.
+For Qwen, 235 relations (13.6\% of total) involve at least one \textsc{Generic}-typed entity; of these, 109 (46.4\%) pass the domain-range check \emph{only} because \textsc{Generic} acts as a type wildcard—a pair that would be rejected under at least one specific type substitution.
+For Llama, the effect is stronger: 237 relations (18.0\%) involve \textsc{Generic} entities, and 123 (51.9\% of involved) are weakened.
+Certain relations are particularly vulnerable: \textsc{Hyponym-of} and \textsc{Compare} see 100\% weakening when \textsc{Generic} is present, as their DR tables are narrower; \textsc{Used-for}, with the broadest valid-pair set, shows zero weakening.
+This permissiveness is structural: across SciERC's 7 relation types, \textsc{Generic} participates in 38\% of valid pairs on average, rendering DR checks largely vacuous for relations involving \textsc{Generic} endpoints.

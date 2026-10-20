@@ -1,0 +1,14 @@
+% Appendix: GoLLIE Comparison (D4 response)
+
+\section{GoLLIE Comparison}
+\label{app:gollie-comparison}
+
+GoLLIE~\cite{sainz2024gollie} and OntoCoDec represent complementary paradigms for schema compliance in IE:
+
+\begin{itemize}[nosep,leftmargin=*]
+\item \emph{Training-time internalization} (GoLLIE, KnowCoder): Schema knowledge is encoded into model parameters via annotation-guideline-aware training. This achieves compliance through learned generation patterns but cannot guarantee zero violations at inference time, and requires schema-specific retraining when ontologies evolve.
+\item \emph{Runtime constraint enforcement} (OntoCoDec): Schema constraints are compiled into decoding-time masks applied to any generative model. This provides formal enforcement without schema-specific training, but operates per-triple and cannot resolve cross-triple type consistency (CF) within a single pass.
+\end{itemize}
+
+The two approaches are orthogonal: OntoCoDec can be composed with GoLLIE or similar training-based systems to add runtime enforcement atop learned schema compliance.
+Direct numerical comparison is methodologically constrained by incompatible evaluation settings (code-style schema encoding vs.\ natural language prompting, different model families and sizes); a controlled comparison would require running both approaches on the same model with matched prompting, which we leave to future work.

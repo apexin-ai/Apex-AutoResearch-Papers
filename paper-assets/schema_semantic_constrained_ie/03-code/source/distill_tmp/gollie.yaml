@@ -1,0 +1,86 @@
+paper_key: "gollie"
+title: "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines: [Instruct-UIE, PromptNER (GPT-3.5), Entailment-based IE, Code-LLaMA (7B/13B/34B)]
+  metrics:
+    - {name: "F1", direction: "higher_better"}
+  datasets:
+    - {name: "ACE05", size: "train split"}
+    - {name: "CoNLL 2003", size: "train split"}
+    - {name: "CrossNER (AI/Literature/Music/Politics/Science)", size: "test splits"}
+    - {name: "CASIE", size: "test split"}
+    - {name: "FabNER", size: "test split"}
+    - {name: "MultiNERD", size: "test split"}
+    - {name: "MIT Movie/Restaurant", size: "test splits"}
+    - {name: "WikiEvents", size: "train+test"}
+    - {name: "RAMS", size: "train+test"}
+    - {name: "TACRED", size: "train+test"}
+  ablation_dimensions: [class_order_shuffling, guideline_paraphrasing, class_name_masking, class_dropout, representative_candidates]
+  training_recipe:
+    optimizer: "QLoRA fine-tuning on all linear layers"
+    lr: "3e-4 cosine scheduler"
+    batch_size: "32 effective"
+    epochs: "3"
+    hardware: "2x NVIDIA A100 80GB"
+  method_family: "Code-based schema representation with annotation guidelines as Python class docstrings"
+
+positioning:
+  core_claim: "将人类标注指南编码为 Python 类 docstring 并通过正则化训练使 LLM 遵循指南，实现零样本 IE 泛化"
+  key_results: "Zero-shot NER avg F1: 55.3 (vs baseline 42.3, +13 points); CrossNER Music: 67.8; MultiNERD: 76.0"
+  limitations:
+    - "歧义标签（如 Miscellaneous）限制性能"
+    - "细粒度与粗粒度实体类型冲突"
+    - "模型对训练数据中未出现的标签类型存在强先验偏见"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM 在 IE 任务上落后于任务特定模型，尽管在其他任务上已取得重大进展"
+  tension: "现有 LLM 无法开箱即用地遵循复杂标注指南，即使是最大模型也做不到"
+  key_insight: "Section 3 揭示：关键不是指南本身，而是训练模型遵循指南的正则化策略（shuffling、dropout、masking）"
+  argument_chain: "LLM IE 落后 → 标注指南是人类专家的秘密 → 直接给 LLM 指南无效 → 微调+正则化使模型学会遵循指南 → 零样本大幅提升"
+  contribution_framing: "3项贡献：GoLLIE 模型、基于指南的微调框架、全面消融研究"
+  intro_structure: "5段：现状→问题→已有尝试失败→本文方案→贡献列表"
+  notable_technique: "用消融实验量化每个正则化组件的贡献，用 p-value 证明显著性"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "跨 CrossNER 5个领域的零样本 NER F1 对比：GoLLIE vs baseline vs Instruct-UIE"
+    narrative_role: "一图展示核心优势——在多个域上的零样本泛化能力"
+    design_elements: ["多域分组", "柱状对比", "GPT 缺失数据标注"]
+    visual_style: "分组柱状图，每个域一组，3种方法不同颜色"
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "bar_chart"
+      what_compared: "GoLLIE vs baseline vs Instruct-UIE across CrossNER domains"
+      how_gain_highlighted: "GoLLIE 柱明显高于其他两者"
+      design_note: "选择柱状图直观展示跨域泛化优势"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (teaser result) → method overview → detailed results tables"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "datasets"
+    col_axis: "models (SoTA, GoLLIE 7B/13B/34B)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean ± std across runs"
+    num_baselines: 4
+    design_note: "18个数据集按域分组，模型尺寸递增排列，展示 scaling 趋势"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["regularization components (5 dimensions)"]
+      variation_style: "delta_from_base"
+      design_note: "逐步去除正则化组件，展示 F1 下降和 p-value"
+  supplementary_tables:
+    in_appendix: true
+    content: "监督学习设置下的完整结果、LoRA vs full fine-tuning 对比"
+    reason: "主表聚焦零样本核心贡献，监督结果作为补充"

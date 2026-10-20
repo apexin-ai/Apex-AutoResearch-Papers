@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "5aad757a118729b67074",
+  "project": "prov_grounded_uie",
+  "kind": "worker",
+  "title": "ssh mvp env setup v2",
+  "task_key": "worker_ssh_mvp-env-setup-v2_20260512T115300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mvp-env-setup-v2_20260512T115300.log",
+    "occurrence": 1,
+    "bytes": 1382893,
+    "sha256": "1169f52b90c2f5343fe00fe07fcbcb578e38d366ed0697476c2b460a1387a646"
+  },
+  "statistics": {
+    "messages": 878,
+    "user_turns": 1,
+    "tool_calls": 325,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 221,
+      "tool_call": 325,
+      "tool_result": 325,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 561,
+      "chunks": [
+        {
+          "path": "5aad757a118729b67074-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5aad757a118729b67074-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5aad757a118729b67074-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "5aad757a118729b67074-part-0004.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "5aad757a118729b67074-part-0004.json",
+          "message_count": 159
+        },
+        {
+          "path": "5aad757a118729b67074-part-0005.json",
+          "message_count": 158
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-mvp-env-setup-v2.md"
+}

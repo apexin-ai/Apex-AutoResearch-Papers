@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d669b2cda5c00fecb9ff",
+  "project": "prov_grounded_uie",
+  "kind": "worker",
+  "title": "analysis reward diag v2",
+  "task_key": "worker_analysis_reward_diag_v2_20260513T031210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reward_diag_v2_20260513T031210.log",
+    "occurrence": 1,
+    "bytes": 702671,
+    "sha256": "04ed042c2581b089a249133ac87af769f5abffcf27a193c216193317594be053"
+  },
+  "statistics": {
+    "messages": 582,
+    "user_turns": 0,
+    "tool_calls": 273,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 273,
+      "tool_result": 273,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 582,
+      "chunks": [
+        {
+          "path": "d669b2cda5c00fecb9ff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d669b2cda5c00fecb9ff-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d669b2cda5c00fecb9ff-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d669b2cda5c00fecb9ff-part-0004.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-reward-diag-v2.md"
+}

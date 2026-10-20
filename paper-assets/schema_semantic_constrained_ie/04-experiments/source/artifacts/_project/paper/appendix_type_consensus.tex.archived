@@ -1,0 +1,58 @@
+\section{Type Consensus Constraint (Layer 3)}\label{app:type-consensus}
+
+\paragraph{Motivation.}
+We define a \emph{consistency-failure} (CF) violation as the case where the same entity text span receives different type labels across relation triples within a single document.
+Per-relation domain/range constraints (Layer 2) operate independently on each relation and cannot enforce cross-relation type consistency.
+As a result, even well-calibrated models exhibit CF rates as high as 9.90\% on SciERC under the \texttt{full\_s1} decoding mode.
+
+\paragraph{Implementation.}
+We maintain a document-level entity registry that maps each entity text to the type first assigned during decoding.
+The registry is populated from the \texttt{entities} section and from head/tail types already generated in completed relation blocks.
+When the decoder reaches a \texttt{head\_type} or \texttt{tail\_type} position, it queries the registry: if the corresponding entity text has a stored type, the model is forced to emit that type token.
+
+A critical detail is \emph{domain/range-aware skipping}: if the consensus type conflicts with the allowed types for the current relation (i.e., the stored type falls outside the relation's domain or range set), the consensus constraint is not applied.
+This prevents the introduction of new DR violations in exchange for resolving CF violations.
+
+The procedure is summarized below:
+
+\begin{enumerate}
+    \item Detect that the current decoding position is an entity type field.
+    \item Query the registry for the current entity text $\rightarrow$ \texttt{stored\_type}.
+    \item Query the ontology for the current relation $\rightarrow$ \texttt{allowed\_types}.
+    \item If \texttt{stored\_type} $\in$ \texttt{allowed\_types}: force \texttt{stored\_type}.
+    \item Else: skip consensus enforcement and log a warning.
+\end{enumerate}
+
+\paragraph{Results.}
+% TODO: fill with 551-doc (SciERC) + 50-doc (DocRED) full results
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Configuration} & \textbf{CF (\%)} & \textbf{DR (\%)} \\
+\midrule
+\texttt{full\_s1} (no GTC) & 9.90 & 0.93 \\
+\texttt{full\_s1} + GTC     & ---  & ---  \\
+\bottomrule
+\end{tabular}
+\caption{Effect of Global Type Consensus (GTC) on consistency-failure and domain/range violation rates. % TODO: fill with 551-doc results
+}
+\label{tab:gtc-results}
+\end{table}
+
+Preliminary results from a 10-document dry-run confirm the mechanism works as intended: CF drops from 7.69\% to 0\%, with 3 DR-conflict skips triggered across the subset.
+The DR violation rate remains at 0.0\%, improving over the baseline rate of 0.93\%.
+% TODO: replace with full 551-doc numbers once available
+
+\paragraph{Discussion.}
+% TODO: fill after full evaluation
+% Points to cover:
+% - Skip frequency across full dataset (how often does DR-conflict arise?)
+% - Conditions under which GTC provides the largest gain
+% - Interaction with beam search (Layer 4): does GTC reduce the search space beam must explore?
+% - Limitations: GTC assumes first-assigned type is correct; error propagation risk
+
+\end{antml:parameter>
+</invoke>

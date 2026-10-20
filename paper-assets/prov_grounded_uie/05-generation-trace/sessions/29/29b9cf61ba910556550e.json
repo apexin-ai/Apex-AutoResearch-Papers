@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29b9cf61ba910556550e",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ops sft eval v4 log check",
+  "task_key": "worker_ops_sft_eval_v4_log_check_20260513T000918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft_eval_v4_log_check_20260513T000918_result.json",
+    "occurrence": 1,
+    "bytes": 274,
+    "sha256": "70699f8b55476c21bacf2c7775cec18ea48aa3ec26871ba9d13261c043e058c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。sft_eval_v4 状态已更新为 **DONE/success**，cron 已清除。\n\n**SFT baseline 评估指标（985 samples, DocRED dev）：**\n\n| 指标 | 值 |\n|------|-----|\n| RE F1 | 0.2726 |\n| Evidence F1 | 0.2380 |\n| Attribution Precision | 0.5139 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-eval-v4-log-check.md"
+}

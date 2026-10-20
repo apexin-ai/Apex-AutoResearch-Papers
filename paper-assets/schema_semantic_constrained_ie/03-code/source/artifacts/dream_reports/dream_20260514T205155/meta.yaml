@@ -1,0 +1,3907 @@
+dream_id: dream_20260514T205155
+project: schema_semantic_constrained_ie
+venue: EMNLP 2026
+focus: 'All 20 experiments complete with 2 models × 2 datasets full matrix. Key narrative
+  updates: D014 dual-factor tightness × RV baseline, D013 post-hoc multi-dimensional
+  framing, D012 bootstrap CI (dataset-dependent F1 impact), cross-model generalization
+  confirmed but with model-specific effects (Llama E-F1 decline, parse failure increase,
+  CF=12.02%). Paper has complete related work (42 refs), discussion paragraphs, and
+  cross-model subsection draft.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 所有核心假设经受审稿检验；CF 被接受为 honest limitation 而非致命缺陷；novelty 认定充分
+      key_assumptions:
+      - 审稿人接受 'near-complete' framing（DR 0.93% SciERC / 2.55% Llama DocRED 足够接近 0%）
+      - CF trade-off 被视为 interesting finding（type system ambiguity analysis 被认可为独立贡献）
+      - 2 模型 × 2 数据集被接受为 sufficient generalization evidence
+      - zero-shot 低 F1 framing 无异议（F1 作为 control variable 而非 optimization target）
+      - tightness × RV baseline dual-factor 被视为比单因素 tightness 更深的 insight
+      - enabling dependency 机制（grammar enables semantic）被认为比 'bitwise AND' 有方法论深度
+      number_ranges:
+        arr_overall:
+        - 3.5
+        - 4.0
+        arr_soundness:
+        - 3.5
+        - 4.0
+        arr_novelty:
+        - 3.0
+        - 3.5
+        major_weaknesses_per_reviewer:
+        - 0
+        - 1
+        reviewers_flagging_cf_fatal:
+        - 0
+        - 0
+        reviewers_flagging_novelty_insufficient:
+        - 0
+        - 1
+        reviewers_accepting_zero_shot_framing:
+        - 2
+        - 3
+        acceptance_probability_pct:
+        - 55
+        - 75
+        revision_effort_days:
+        - 3
+        - 7
+      narrative_direction: 原始 framing 完全成立。Title 'Near-Complete Type-Valid IE' 无需修改。4
+        个 core claims 全部保留原始强度。CF 在 §5.3 作为 analysis finding + §7 limitation 双重定位即可。Violation
+        landscape (Claim 1) + prompt insufficiency (Claim 2) 作为独立贡献获认可。Cross-model
+        subsection 证明 generalizability。Post-hoc baseline 多维对比 (recall preservation
+        + information coverage) 令审稿人信服。论文以 'systematic constraint enforcement framework
+        with principled decidability taxonomy' 叙事通过。
+    median:
+      tier: median
+      meaning: 1-2 个审稿人对 CF / novelty / DocRED Qwen DR 提出 major concern；需补充实验或调整 claims
+        但不需重构叙事
+      key_assumptions:
+      - 至少 1 个审稿人认为 CF 9.9%-12.02% 是 non-trivial 缺陷，要求更强的 mitigation 而非仅 limitation
+        声明
+      - DocRED Qwen DR↓44.7% 被质疑（'方法在复杂 ontology 上效果大幅下降'），dual-factor 解释部分说服
+      - novelty 被 1 个审稿人标记为 incremental（'XGrammar + logit masking 的直接组合'）
+      - zero-shot F1 framing 被 1 个审稿人质疑（'如何知道约束不会在更高 F1 regime 下 degrade？'）
+      - cross-model 2 模型被接受但被标注为 limitation（'need more models for generalization claim'）
+      - Llama parse failure 9.1% 被要求在正文而非 footnote 讨论
+      number_ranges:
+        arr_overall:
+        - 2.5
+        - 3.5
+        arr_soundness:
+        - 3.0
+        - 3.5
+        arr_novelty:
+        - 2.5
+        - 3.0
+        major_weaknesses_per_reviewer:
+        - 1
+        - 2
+        reviewers_flagging_cf_fatal:
+        - 0
+        - 1
+        reviewers_flagging_novelty_insufficient:
+        - 1
+        - 2
+        reviewers_accepting_zero_shot_framing:
+        - 1
+        - 2
+        acceptance_probability_pct:
+        - 25
+        - 50
+        revision_effort_days:
+        - 7
+        - 14
+      narrative_direction: 部分 claims 需降级。(1) 'Near-Complete' title 可能需加 qualifier（'Near-Complete
+        … under Single-Relation Scope'）以诚实框定 CF 局限。(2) Claim 1 tightness insight 需从
+        'violation rate driven by tightness' 调整为 'driven by tightness × model vocabulary
+        compliance interaction'，降低因果强度为 correlational。(3) 补充 ablation：fallback 频率作为
+        Constraint Coverage 指标正式引入 §5，量化 semantic layer 实际生效比例（SciERC ~89% vs DocRED
+        ~43%），将 DocRED 弱效果从 weakness 转化为 'predictable from coverage metric' 的 positive
+        finding。(4) Novelty defense 需强化 §3 violation landscape 的独立贡献价值 + decidability
+        taxonomy 的 formalism。(5) 增加 1-2 段 discussion 讨论 F1 regime sensitivity 的理论预期（约束越紧
+        + F1 越高 → 约束碰到更多 correct predictions 的概率上升 → 需要更细粒度约束）。Rebuttal 工作量中等。
+    worst:
+      tier: worst
+      meaning: ≥2 个审稿人给出 reject-level 评分；CF 被视为方法根本缺陷；novelty 被判定不足；需要找到新 angle 重构叙事
+      key_assumptions:
+      - CF 被多数审稿人判定为 'method introduces new violation type to fix another'——net benefit
+        存疑
+      - novelty 被判定为 engineering contribution（XGrammar 已有 + logit masking 已有 → 组合非
+        novel）
+      - DocRED Qwen DR↓44.7% + Llama CF=12.02% 被合并论证为 '方法在复杂场景下 unreliable'
+      - zero-shot 低 F1 setting 被认为 'toy setting，无法验证方法在实际 IE 系统中的有效性'
+      - Llama parse failure 9.1% + E-F1 下降被视为 'constrained decoding hurts model stability'
+      - post-hoc baseline F1 更高被审稿人简单解读为 'post-hoc is strictly better'
+      number_ranges:
+        arr_overall:
+        - 1.5
+        - 2.5
+        arr_soundness:
+        - 2.0
+        - 3.0
+        arr_novelty:
+        - 1.5
+        - 2.5
+        major_weaknesses_per_reviewer:
+        - 2
+        - 4
+        reviewers_flagging_cf_fatal:
+        - 1
+        - 2
+        reviewers_flagging_novelty_insufficient:
+        - 2
+        - 3
+        reviewers_accepting_zero_shot_framing:
+        - 0
+        - 1
+        acceptance_probability_pct:
+        - 5
+        - 20
+        revision_effort_days:
+        - 14
+        - 30
+      narrative_direction: 核心 framing 需重构，但仍冲 EMNLP 不降级。两条可行 reframe 路径——(A) Pivot
+        to Violation Landscape as primary contribution：将 §3 violation landscape study
+        升级为论文核心（首个 systematic 的 LLM IE ontology violation 实证研究），OntoCoDec 降级为 'one
+        possible mitigation approach'。叙事变为 'we characterize the problem space + demonstrate
+        that decoding-time enforcement is a viable direction with specific trade-offs
+        (DR↓ vs CF↑)'。这规避了 'method must be complete solution' 的审稿预期。(B) Pivot to Constraint-Quality
+        Trade-off Analysis：将 CF 从 limitation 升级为 core research question。叙事变为 'we discover
+        a fundamental DR-CF trade-off in constrained IE decoding'——per-relation 独立
+        enforcement 消除 DR 但引入 CF，这是 constraint scope 的固有张力（local constraint satisfaction
+        vs global consistency）。Tightness × fallback × CF 三因素交互分析成为 main contribution。方法论贡献定位从
+        'solving type violations' 变为 'revealing and quantifying the constraint design
+        space for IE'。两条路径都保留全部实验数据（无浪费），只改叙事结构和 claims 权重分配。Path A 对 novelty 质疑免疫（landscape
+        study 本身是 novel contribution），Path B 对 CF 质疑免疫（CF 是研究对象而非缺陷）。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/dream_reports/dream_20260514T205155/best/paper.pdf
+  imagined_experiments:
+  - name: SciERC violation rate (minimal prompt)
+    plan_id: P001
+    description: 'Qwen3-8B 零样本抽取 SciERC 551 篇摘要，minimal prompt（仅给 relation list），
+      运行 violation_checker 统计四类违规率，建立 unconstrained baseline。
+
+      '
+    expected_results:
+      total_triples: 1724
+      total_entities: 2474
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.004
+      relation_vocabulary_violation_rate: 0.0139
+      domain_range_violation_rate: 0.1537
+      cross_field_consistency_violation_rate: 0.0008
+      entity_f1: 0.3101
+      relation_f1: 0.0823
+      per_relation_dr_Used-for: 0.0076
+      per_relation_dr_Conjunction: 0.0
+      per_relation_dr_Hyponym-of: 0.1452
+      per_relation_dr_Evaluate-for: 0.2406
+      per_relation_dr_Part-of: 0.25
+      per_relation_dr_Feature-of: 0.3354
+      per_relation_dr_Compare: 0.4242
+    result_rationale: 'best 档下 15.4% 的 DR 是建立 Claim 1 的关键锚点。审稿人接受这一数值为 "non-trivial"
+      而非 "marginal"， 因为 per-relation 分布呈现清晰的 tightness-driven 模式：loose-constraint
+      的 Used-for (0.76%)  vs tight-constraint 的 Compare (42.4%) 形成 56× 差异。这一分布非均匀性本身构成独立
+      finding， 而非简单的 "LLM 会犯错"。7-relation 的 SciERC 作为小而精的 ontology，提供了可解读的 per-relation  细粒度分析基础。审稿人在
+      best 档不会质疑 15.4% 的实际意义——这个数值足够大以激发方法动机， 又足够结构化以支撑 tightness 分析。
+
+      '
+    tables:
+    - table_id: T1
+      caption: Per-relation DR violation rates on SciERC (Qwen3-8B, minimal prompt)
+      description: '7 行（每 relation 一行），列: Relation | #Triples | #DR_Violations | DR_Rate(%)
+        | τ̄ (constraint tightness)。 按 DR rate 降序排列。展示 violation 与 tightness 的正相关。
+
+        '
+    figures_description:
+    - 'Fig 1: Bar chart of per-relation DR rates overlaid with constraint tightness
+      τ̄ (dual y-axis)，视觉化 Claim 1 的 tightness-violation 正相关'
+    analysis: '15.4% 整体 DR 为方法提供强动机。关键 insight 不在均值而在分布： Compare (42.4%) 和 Feature-of
+      (33.5%) 各只有 2-3 个有效 (head_type, tail_type) 对（高 tightness）， 而 Used-for 接受 5/6
+      entity types 做 head（低 tightness），DR 仅 0.76%。 这直接支撑 "violation rate driven by
+      constraint tightness, not ontology size" 的 Claim 1 措辞。
+
+      '
+  - name: SciERC violation rate (schema-informed prompt)
+    plan_id: P002
+    description: '同一模型/数据集，prompt 中显式描述每个 relation 的 domain/range 约束， 测试 prompt-level
+      intervention 的违规消减效果。
+
+      '
+    expected_results:
+      total_triples: 1661
+      domain_range_violation_rate: 0.0578
+      relation_vocabulary_violation_rate: 0.003
+      entity_type_violation_rate: 0.0
+      overall_dr_reduction_pct: -62.4
+      per_relation_Feature-of_delta_pp: -22.3
+      per_relation_Part-of_delta_pp: -22.5
+      per_relation_Compare_delta_pp: -14.8
+      per_relation_Evaluate-for_delta_pp: 5.8
+      mcnemar_all_significant: true
+    result_rationale: 'best 档下审稿人接受 62.4% reduction 是 "substantial but insufficient"
+      的 framing。 关键说服力来自 Evaluate-for 的 +5.8pp 回归——这不是噪声而是 prior-constraint conflict
+      的系统性表现： schema prompt 让模型 "知道" 约束但在 boundary case 上反而 destabilize type assignment。
+      3 个 relation 保留 >10% DR（Compare 27.6%, Evaluate-for 29.9%, Feature-of 11.3%）
+      直接证伪 "prompt 足够" 的反驳。best 档审稿人不会纠缠 "5.78% 刚过 5% 阈值"—— 因为论文 framing 不依赖阈值而依赖
+      per-relation unreliability。
+
+      '
+    tables:
+    - table_id: T2
+      caption: Schema-informed prompt effect on DR by relation type (SciERC)
+      description: '7 行, 列: Relation | DR_minimal(%) | DR_schema(%) | Δpp | Direction。
+        Evaluate-for 行高亮为红色（回归）。
+
+        '
+    figures_description:
+    - 'Fig 2: Paired bar chart (minimal vs schema-informed) per relation，Evaluate-for
+      标注 regression arrow + prior-constraint conflict 注释'
+    analysis: 'schema-informed prompt 在 overall 层面有效（-62.4%）但 per-relation 不可靠。 Evaluate-for
+      回归是 Claim 2 最强论据：即使告诉模型正确约束， Method→Task 的分布先验（"Method X evaluates for Task
+      Y" 语义合理）与 schema 约束冲突， 导致 type assignment 不稳定。这为 decoding-time enforcement 提供理论动机——
+      logit masking 不干扰模型推理过程，因此不存在 prior-constraint conflict。
+
+      '
+  - name: DocRED violation rate (minimal prompt)
+    plan_id: P003
+    description: 'Qwen3-8B 零样本抽取 DocRED 998 篇文档（96 relation types）， minimal prompt，测试大
+      ontology 下的违规 landscape。
+
+      '
+    expected_results:
+      total_docs: 998
+      parsed_docs: 962
+      json_parse_rate: 0.964
+      total_entities: 19099
+      total_triples: 16540
+      entity_type_violation_rate: 0.075
+      relation_vocabulary_violation_rate: 0.289
+      domain_range_violation_rate: 0.187
+      cross_field_consistency_violation_rate: 0.0008
+      top_dr_by_rate_P35: 1.0
+      top_dr_by_rate_P710: 0.919
+      top_dr_by_count_P31_instance_of: 0.604
+    result_rationale: '18.7% DR 与 SciERC 的 15.4% 可比（despite 14× ontology size difference），
+      直接支撑 "violation rate driven by tightness, not ontology size"。 best 档审稿人接受这一对比为
+      Claim 1 的关键证据。 28.9% RV（OOV relation names）在 96-relation ontology 中符合预期—— 模型在大
+      vocabulary 下更容易 hallucinate 不存在的 relation name。 这也预示了 grammar 层在 DocRED 上的 F1
+      提升机制（消除 OOV=FP）。 7.5% ET 同理，模型在 DocRED 的 entity type system 上表现更差。
+
+      '
+    tables:
+    - table_id: T3a
+      caption: DocRED violation landscape (Qwen3-8B, minimal prompt) — top DR by rate
+        and count
+      description: '两个子表：top-10 by rate, top-10 by absolute count。 展示 long-tail 分布（P35
+        100% 但仅几个 instance vs P31 60.4% 但 322 violations）。
+
+        '
+    figures_description:
+    - 'Fig 3: Scatter plot of per-relation DR rate vs constraint tightness τ̄ across
+      all 96 DocRED relations，size=triple count，color=violation count'
+    analysis: 'DocRED 的 18.7% DR 与 SciERC 15.4% 在同一量级，而 ontology 复杂度差 14×， 证明 violation
+      rate 不随 ontology scale 线性增长。真正的驱动因素是 per-relation tightness。 RV 28.9% 是 DocRED
+      特有问题（SciERC 仅 1.39%），因为 96 个 Wikidata property ID  远超模型的 zero-shot vocabulary
+      记忆能力。这个 RV-DR 正交性在后续 cross-model 分析中 成为 D014 dual-factor insight 的基础。
+
+      '
+  - name: DocRED violation rate (schema-informed prompt)
+    plan_id: P004
+    description: 'DocRED + schema-informed prompt，测试 prompt-level intervention 在大
+      ontology 上的 scaling。
+
+      '
+    expected_results:
+      total_docs: 998
+      documents_checked: 943
+      parse_failures: 55
+      json_parse_rate: 0.9449
+      total_entities: 19524
+      total_triples: 16782
+      entity_type_violation_rate: 0.0061
+      relation_vocabulary_violation_rate: 0.1841
+      domain_range_violation_rate: 0.1284
+      cross_field_consistency_violation_rate: 0.0015
+      dr_reduction_pct: -31.3
+    result_rationale: 'DocRED 上 schema prompt 仅降 DR 31.3%（vs SciERC 62.4%），直接证明 "prompt-level
+      intervention scales poorly with ontology complexity"。 best 档审稿人接受此 scaling gap
+      为 Claim 2 在大 ontology 上的推广证据。 机制清晰：96 个 relation 的约束信息在 prompt 中形成 information
+      overload， 模型无法同时维持所有约束的 working memory。RV 仅从 28.9%→18.4%（-36%） 说明 prompt 对 vocabulary
+      问题的帮助也有限。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 4: Grouped bar chart comparing DR reduction (%) across SciERC vs DocRED
+      for minimal→schema transition，标注 scaling gap'
+    analysis: 'SciERC -62.4% vs DocRED -31.3% 的 scaling gap 是 Claim 2 的跨数据集验证。 论文中
+      frame 为："Prompt-level constraint enforcement shows diminishing returns  with
+      ontology scale: 62% reduction on a 7-relation schema vs 31% on 96 relations."
+      这建立了 decoding-time enforcement 的 necessity argument。
+
+      '
+  - name: SciERC unconstrained baseline
+    plan_id: P005a
+    description: 'Phase 2 baseline：与 Phase 0 minimal prompt 相同配置但使用 Phase 2 pipeline，
+      确保 ablation 各组共享同一推理环境。
+
+      '
+    expected_results:
+      total_triples: 1724
+      total_entities: 2474
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.004
+      relation_vocabulary_violation_rate: 0.0139
+      domain_range_violation_rate: 0.1537
+      cross_field_consistency_violation_rate: 0.0008
+      entity_f1: 0.3101
+      relation_f1: 0.0823
+    result_rationale: '与 P001 数值一致（同 seed、同 prompt、同 checker v2），验证 Phase 2 pipeline  未引入额外差异。best
+      档下这种内部一致性增强 reviewer 对实验严谨性的信心。 R-F1=8.23% 在 zero-shot setting 下是 expected baseline——supervised
+      SOTA ~40-50%， zero-shot 下 8% 符合 "F1 as control variable" framing。
+
+      '
+    tables:
+    - table_id: T4
+      caption: SciERC 4-way ablation results
+      description: '4 行 (unconstrained / grammar_only / semantic_only / full_s1)，
+        列: Config | ET(%) | RV(%) | DR(%) | CF(%) | E-F1(%) | R-F1(%) | #Triples。
+        full_s1 行加粗。
+
+        '
+    figures_description: []
+    analysis: 'Baseline 复现确认 Phase 0 → Phase 2 pipeline 无偏差。 所有后续 ablation Δ 均以此为锚。
+
+      '
+  - name: SciERC grammar-only
+    plan_id: P005
+    description: '仅启用 grammar 层（XGrammar CFG：JSON structure + type/relation vocabulary
+      约束）， semantic 层关闭。测试 grammar 层的独立贡献。
+
+      '
+    expected_results:
+      total_triples: 1725
+      total_entities: 2474
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.1484
+      cross_field_consistency_violation_rate: 0.0008
+      entity_f1: 0.3098
+      relation_f1: 0.0823
+    result_rationale: 'grammar 层完美消除 ET 和 RV（均→0%），但 DR 基本不变（14.84% vs 15.37%，-3.4%）。
+      这在 best 档下是 enabling dependency argument 的核心证据：grammar 确保 vocabulary 合规， 但无法执行
+      cross-field 的 domain/range 约束——这需要 semantic 层的 stateful entity registry。 CF
+      不变（0.08%）证明 grammar 层不引入 CF（后续确认 CF 100% 来自 semantic 层）。 F1 几乎不变（-0.03pp E-F1,
+      0pp R-F1），证明 grammar 约束不降质—— 因为 SciERC 的 RV baseline 很低（1.39%），消除少量 OOV 对 F1
+      影响微小。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 5: Stacked bar chart showing violation composition (ET/RV/DR/CF) across
+      4 ablation configs，visualize each layer''s specific contribution'
+    analysis: 'grammar_only 是 ablation 设计中的 "structural floor"：保证 JSON 格式正确 + vocabulary
+      合规， 但 DR 几乎不降。这与 semantic_only 的 DR↓24% 形成对比——但 semantic_only 无法消除 RV/ET。 两层的
+      complementary coverage 在此清晰展现。 grammar_only CF=0.08% ≈ unconstrained 0.08%，是后续
+      "CF 100% 由 semantic 层引入" 消融的关键锚点。
+
+      '
+  - name: SciERC semantic-only
+    plan_id: P006
+    description: '仅启用 semantic 层（TypeConstraintProcessor + entity registry + logit
+      masking）， grammar 层关闭。测试 semantic 层在无 vocabulary 保障下的独立效果。
+
+      '
+    expected_results:
+      total_triples: 1726
+      total_entities: 2474
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.004
+      relation_vocabulary_violation_rate: 0.0151
+      domain_range_violation_rate: 0.1165
+      cross_field_consistency_violation_rate: 0.0271
+      entity_f1: 0.3101
+      relation_f1: 0.0815
+    result_rationale: 'semantic_only DR=11.65%（↓24%），远弱于 full_s1 的 ↓94%。 best 档下这是
+      enabling dependency 的决定性证据：semantic 层遇到 OOV relation name 时 无法查找对应的 domain/range
+      rule → 退化为无约束。RV 不变（1.51%）因为 semantic 层 不管 vocabulary——这是 grammar 层的职责。CF 升至
+      2.71%（从 0.08%）， 首次显示 semantic 层引入 CF 的趋势（full_s1 将升至 9.9%）。 R-F1 微降 0.08pp，在统计误差范围内。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'semantic_only ↓24% vs full_s1 ↓94% 的 70pp gap 是 "grammar enables semantic"  enabling
+      dependency 的量化证据。Without grammar ensuring valid relation names， semantic layer
+      只能在它碰巧能识别的 relation name 上执行 DR masking。 这排除了 "两层独立 additive" 的解释——如果独立， full_s1
+      DR 应约等于 grammar_DR × semantic_DR / unconstrained_DR ≈ 11.3%， 而实际 0.93% 远低于此，证明
+      enabling 而非 additive composition。
+
+      '
+  - name: SciERC full S1 (grammar + semantic, single-pass)
+    plan_id: P007
+    description: '两层同时启用，single-pass decoding。主要配置，全指标 comprehensive 评估。
+
+      '
+    expected_results:
+      total_triples: 1729
+      total_entities: 2474
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.0093
+      cross_field_consistency_violation_rate: 0.099
+      entity_f1: 0.3098
+      relation_f1: 0.0836
+      rel_f1_delta_pp: 0.13
+      rel_f1_p_value: 0.58
+      ent_f1_delta_pp: -0.03
+      ent_f1_p_value: 0.53
+      dr_reduction_pct: 94.0
+      residual_dr_triples: 16
+      fallback_events_total: 5882
+      fallback_per_doc: 10.7
+    result_rationale: 'DR=0.93%（↓94%）是论文 title "Near-Complete" 的锚定数值。 best 档审稿人接受
+      0.93% 为 "near-complete"——16 个残余 DR violation 中 大部分发生在 Compare 和 Evaluate-for
+      等 high-tightness relations， 对应 fallback 事件（semantic mask ∩ grammar mask = ∅
+      → 退化为 grammar-only）。 fallback ~10.7 次/doc 说明 semantic masking 覆盖率合理（SciERC 7
+      relations 相对简单）。
+
+      CF=9.9% 是 trade-off 的体现。best 档下审稿人接受这是 honest limitation 而非 fatal flaw， 因为：(1)
+      DR violation 产生 structurally invalid triples，CF violation 的 individual triples  仍然
+      type-valid；(2) CF 根因是 type system ambiguity（Generic↔OtherScientificTerm 等），
+      有独立 analysis 价值；(3) proactive disclosure + severity distinction 防御策略到位。
+
+      R-F1 +0.13pp（p=0.58）统计不显著，frame 为 "F1-neutral"。 best 档下这正是期望结果——constraint enforcement
+      的价值在 compliance 而非 F1 提升。
+
+      '
+    tables:
+    - table_id: T4_full
+      caption: SciERC full ablation with bootstrap CI
+      description: '扩展 T4 增加 95% CI 列和 p-value 列。full_s1 行标注 "primary configuration"。
+
+        '
+    - table_id: T5
+      caption: SciERC CF subtype analysis
+      description: '3 行: EVR (entity-vs-relation drift) | Within-rel | Total。 列: Subtype
+        | #Entities | Rate(%) | Top conflict pattern。
+
+        '
+    figures_description:
+    - 'Fig 6: Waterfall chart showing DR reduction path: unconstrained (15.37%) →
+      grammar_only (14.84%) → semantic_only (11.65%) → full_s1 (0.93%)，标注 enabling
+      dependency'
+    analysis: 'SciERC full_s1 是论文的 flagship result。DR ↓94% at F1-neutral 完美支撑 Claim
+      3。 CF 9.9% 需要在 §5.3 和 §7 双重处理：§5.3 展开 EVR subtype 分析（>90% 是 EVR， top pattern
+      Generic↔OtherScientificTerm 60 次），§7 列为 explicit limitation + future work。 fallback
+      数据（10.7/doc）支撑 "Constraint Coverage" 指标的引入—— 在 SciERC 上约 85-90% 的 type-token
+      positions 得到 semantic masking 保护。
+
+      '
+  - name: SciERC full S2 (two-pass, ablation)
+    plan_id: P008
+    description: '两遍解码：Pass 1 仅抽 entity（grammar-only），Pass 2 编译 input-dependent grammar
+      + semantic， 测试 S2 架构变体。已降级为 ablation。
+
+      '
+    expected_results:
+      total_triples: 1644
+      total_entities: 2228
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.0097
+      cross_field_consistency_violation_rate: 0.0803
+      entity_f1: 0.319
+      relation_f1: 0.0803
+      entity_precision: 0.2797
+      entity_recall: 0.3712
+    result_rationale: 'S2 DR=0.97% ≈ S1 0.93%，CF=8.03% vs S1 9.90%（-1.87pp，不显著）。 best
+      档下 S2 作为 architectural variant 展示 framework flexibility， 但不构成 CF solution。审稿人看到
+      S2 在所有 metric 上 ≤ S1： fewer triples (1644 vs 1729)、lower R-F1 (8.03% vs 8.36%)、
+      DR 略高——这支持 S1 作为 primary 的决策。 S2 的存在价值是证明 framework 支持多种 decoding strategy compilation，
+      而非锁定在单一架构上。less-is-more：demoting S2 to ablation  反而增强了论文的 intellectual honesty，best
+      档审稿人对此评价正面。
+
+      '
+    tables:
+    - table_id: T6
+      caption: S1 vs S2 comparison (SciERC)
+      description: '2 行 (S1/S2), 列: Strategy | #Triples | DR(%) | CF(%) | R-F1(%)
+        | E-F1(%)。 附 footnote: S2 positioned as ablation, not primary.
+
+        '
+    figures_description: []
+    analysis: 'S2 确认 "does NOT solve CF"。在 best 档下这是重要的 null result—— 防止审稿人追问 "why
+      not just use S2 to fix CF"。 CF 的 EVR subtype 在 S2 下降 27%（245→178 entities），但
+      within-rel 反增（10→18）， 说明 two-pass 的 entity-first strategy 稳定了 entity-level types  但
+      relation-level type assignment 反而更不一致。 这个 nuanced trade-off 在 appendix 中 1-2
+      段解释即可。
+
+      '
+  - name: DocRED unconstrained baseline
+    plan_id: P009
+    description: 'Qwen3-8B DocRED 998 docs unconstrained baseline（Phase 2 pipeline，checker
+      v2）。
+
+      '
+    expected_results:
+      documents_checked: 986
+      parse_failures: 12
+      total_entities: 20171
+      total_triples: 17497
+      entity_type_violation_rate: 0.0248
+      relation_vocabulary_violation_rate: 0.2966
+      domain_range_violation_rate: 0.1846
+      cross_field_consistency_violation_rate: 0.001
+      entity_f1: 58.15
+      relation_f1: 7.74
+      unrecognized_relations: 5189
+    result_rationale: 'DocRED unconstrained 呈现与 SciERC 不同的 violation profile： RV=29.66%
+      远高于 SciERC 1.39%（96 个 Wikidata property ID 超出模型 vocabulary 记忆）， ET=2.48% 远高于
+      SciERC 0.4%。DR=18.46% 与 SciERC 15.37% 可比。 best 档下这个 RV-DR 正交性（RV 高但 DR comparable）是
+      D014 dual-factor insight 的基础： grammar 消除 RV 后会揭露 latent DR violations，使得 "grammar
+      enables semantic"  在 DocRED 上呈现更复杂的动态。5189 个 OOV relations 在 all_set F1 方法下全计为
+      FP， 解释了为什么 grammar 层消除 OOV 能直接提升 DocRED F1。
+
+      '
+    tables:
+    - table_id: T7
+      caption: DocRED 4-way ablation results
+      description: '4 行 (unconstrained / grammar_only / semantic_only / full_s1)，
+        列同 T4 但增加 #Unrecognized_Rels 列。all_set F1 method 标注。
+
+        '
+    figures_description: []
+    analysis: 'DocRED baseline 建立了大 ontology 的 violation profile。 RV 29.66% 将是 grammar
+      层 F1 提升的机制来源—— 5189 个 OOV relations 被 grammar 强制映射为有效 name 后， FP 大幅减少 → precision
+      提升 → F1 提升。
+
+      '
+  - name: DocRED grammar-only
+    plan_id: P010
+    description: 'DocRED 仅 grammar 层，测试 vocabulary/ET 消除效果和 F1 影响。
+
+      '
+    expected_results:
+      documents_checked: 985
+      parse_failures: 13
+      total_entities: 20150
+      total_triples: 17341
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0003
+      domain_range_violation_rate: 0.2617
+      cross_field_consistency_violation_rate: 0.0007
+      entity_f1: 59.38
+      relation_f1: 8.31
+      relation_recall: 10.12
+      unrecognized_relations: 5
+    result_rationale: 'grammar_only 完美消除 ET（→0%）和 RV（→0.03%，仅 5 个残余，可能是 alias 边界情况）。
+      关键 finding：DR 从 18.46% 升至 26.17%（+7.71pp）。 best 档下审稿人理解此反直觉结果的机制：grammar 将 OOV
+      relation names 强制映射为 有效 vocabulary → 暴露了之前隐藏在 OOV triples 中的 latent DR violations。
+      之前这些 triple 的 relation name 无效，checker 可能无法评估其 DR→  现在 relation name 有效了，DR
+      check 才能执行，揭露大量 domain/range 不匹配。
+
+      E-F1=59.38%（+1.23pp vs unconstrained 58.15%）直接来自 ET→0% 消除 FP。 R-F1=8.31%（+0.57pp）来自
+      RV→0% 消除 OOV FP。 grammar_only 是 "grammar drives all F1 gain" 的关键证据—— 后续 full_s1
+      E-F1=59.37%（Δ=-0.01pp, p=0.66）证明 semantic 层对 F1 无贡献。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 7: Sankey diagram showing triple flow: unconstrained OOV triples (5189)
+      → grammar remapping → revealed DR violations'
+    analysis: 'grammar_only DR↑至 26.17% 是整个 ablation 中最反直觉的数据点。 论文中需要 1 段解释 "latent
+      DR violation reveal" 机制。 这也是 D014 dual-factor insight 的关键数据： Qwen RV=29.66%
+      >> Llama RV=16.03% → Qwen grammar 揭露更多 latent DR →  Qwen full_s1 残余 DR 更高（10.21%
+      vs 2.55%）。 grammar_only CF=0.07% ≈ unconstrained，再次确认 grammar 不引入 CF。
+
+      '
+  - name: DocRED semantic-only
+    plan_id: P011
+    description: 'DocRED 仅 semantic 层，测试无 vocabulary 保障下 semantic 层在大 ontology 上的效果。
+
+      '
+    expected_results:
+      documents_checked: 987
+      parse_failures: 11
+      total_entities: 20185
+      total_triples: 17571
+      entity_type_violation_rate: 0.0422
+      relation_vocabulary_violation_rate: 0.2987
+      domain_range_violation_rate: 0.1384
+      cross_field_consistency_violation_rate: 0.0105
+      entity_f1: 57.81
+      relation_f1: 7.7
+    result_rationale: 'semantic_only DR=13.84%（↓25%），与 SciERC semantic_only ↓24% 一致，
+      进一步验证 "semantic alone without grammar prerequisite" 的 ceiling ~25%。 RV 不变（29.87%）——semantic
+      层不管 vocabulary，与预期一致。 ET 上升至 4.22%（from 2.48%），因为 semantic 层的 logit masking  在遇到
+      OOV relation 时的 fallback 行为可能干扰 entity type generation。 CF=1.05%（from 0.10%），semantic
+      层即使在 degraded mode 也开始引入 CF。 E-F1 微降 0.34pp，R-F1 微降 0.04pp——semantic_only 在
+      DocRED 上略有负面影响， 因为没有 grammar 层保障 vocabulary，semantic masking 在 OOV context 中产生
+      noise。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'semantic_only 在两个数据集上一致展现 ~25% DR ceiling， 强化 "grammar is prerequisite"
+      的 enabling dependency argument。 ET 上升（2.48%→4.22%）是 semantic 层 "在 OOV 环境中挣扎"
+      的信号—— 当 relation name 不在 valid vocabulary 中，TypeConstraintProcessor  无法查找 domain/range
+      rule，其 fallback 行为可能 inadvertently  影响相邻的 entity type token generation。 这个 negative
+      interaction 在 full system 中被 grammar 层 prevent。
+
+      '
+  - name: DocRED full S1
+    plan_id: P012
+    description: 'DocRED grammar+semantic single-pass，主要配置，完整评估。
+
+      '
+    expected_results:
+      documents_checked: 987
+      parse_failures: 11
+      total_entities: 20187
+      total_triples: 17341
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0003
+      domain_range_violation_rate: 0.1021
+      cross_field_consistency_violation_rate: 0.0257
+      entity_f1: 59.37
+      relation_f1: 8.23
+      rel_f1_delta_pp: 0.5
+      rel_f1_p_value: <0.001
+      rel_f1_ci_95: '[+0.23, +0.81]'
+      ent_f1_delta_pp: 1.23
+      ent_f1_p_value: <0.001
+      ent_f1_ci_95: '[+0.94, +1.55]'
+      dr_reduction_pct: 44.7
+      fallback_events_per_doc_est: ~57
+      unrecognized_relations: 5
+    result_rationale: 'DR=10.21%（↓44.7%）远弱于 SciERC ↓94%。best 档下审稿人接受 D014 dual-factor
+      解释： 不是方法在 DocRED 上失败，而是 Qwen 的高 RV baseline（29.66%）经 grammar 消除后 暴露大量 latent
+      DR violations，加上 DocRED ontology 高 tightness（τ̄=0.842） 导致更多 semantic mask ∩
+      grammar mask = ∅ 的 fallback 事件（~57 次/doc vs SciERC 10.7 次/doc）。 fallback 退化为
+      grammar-only（DR ~26.17%）→ 高 fallback = 高残余 DR。
+
+      F1 双双显著提升：R-F1 +0.50pp (p<0.001), E-F1 +1.23pp (p<0.001)。 best 档下这是 bonus finding（不升级为
+      core claim）：机制清晰， grammar 消除 OOV → 减少 FP → precision 提升。grammar_only E-F1=59.38%
+      ≈ full_s1 59.37% 确认 semantic 层对 F1 零贡献——F1 提升完全来自 grammar 层。
+
+      CF=2.57% 远低于 SciERC 9.9%。DocRED 的 entity type system（PER/LOC/ORG 等） 比 SciERC（Generic/OtherScientificTerm
+      等）语义边界更清晰， 因此 type assignment 跨 relation 更一致。
+
+      '
+    tables:
+    - table_id: T7_full
+      caption: DocRED full ablation with bootstrap CI and significance tests
+      description: '扩展 T7 增加 CI 和 p-value 列。full_s1 R-F1/E-F1 significance 用 ** 标注。
+
+        '
+    - table_id: T8
+      caption: Fallback frequency comparison (SciERC vs DocRED)
+      description: '2 行 (SciERC/DocRED), 列: Dataset | Fallback_total | Fallback_per_doc
+        | DR_residual(%) | τ̄。
+
+        '
+    figures_description:
+    - 'Fig 8: Dual-axis plot: fallback frequency per doc vs residual DR(%) across
+      SciERC and DocRED，标注 Constraint Coverage metric'
+    analysis: 'DocRED full_s1 展示了方法在高复杂度 ontology 上的 honest performance profile。 ↓44.7%
+      不如 SciERC ↓94% 但仍 substantial（18.46%→10.21%）， 加上 ET→0%、RV→0% 的完全消除和 F1 显著提升，整体效果是正面的。
+      D014 dual-factor 解释把 weaker DR reduction 从弱点转为 analytical finding： "residual
+      DR is predictable from constraint tightness × model RV baseline"。 Constraint
+      Coverage 指标量化了 semantic masking 在 DocRED 上的有效覆盖率（~40-50%）， 为 future work（更好的
+      fallback strategy）提供了定量 baseline。
+
+      '
+  - name: Llama SciERC unconstrained
+    plan_id: P013
+    description: 'Llama-3.1-8B zero-shot SciERC unconstrained，建立 cross-model baseline。
+      零代码修改——same prompt, same pipeline, different model weights。
+
+      '
+    expected_results:
+      total_entities: 2451
+      total_relations: 1274
+      json_parse_failures: 1
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0055
+      domain_range_violation_rate: 0.1334
+      cross_field_consistency_violations: 6
+      entity_f1: 0.2356
+      relation_f1: 0.0268
+    result_rationale: 'Llama SciERC unconstrained 展示了不同的 violation profile： DR=13.34%（vs
+      Qwen 15.37%，lower），RV=0.55%（vs Qwen 1.39%，lower）， ET=0%（vs Qwen 0.4%，same range）。
+      best 档下这一跨模型 violation landscape 对比有独立 value： 不同模型在同一 ontology 上的 violation
+      patterns 不同但 rates comparable， 说明 violations 是任务结构性问题而非特定模型的 idiosyncrasy。 R-F1=2.68%
+      显著低于 Qwen 8.23%，因为 Llama 在 SciERC format 上 recall 更差， 但这不影响 constraint evaluation——low
+      F1 ≠ low violation rate 的分离本身有 insight 价值。 fewer relations extracted (1274 vs
+      1724) 说明 Llama 更保守但不更 accurate per-triple。
+
+      '
+    tables:
+    - table_id: T9
+      caption: 'Cross-model comparison: Qwen vs Llama on SciERC'
+      description: '2 大行 (Qwen/Llama) × 2 小行 (unconstrained/full_s1)， 列: Model | Config
+        | ET(%) | RV(%) | DR(%) | CF(%) | R-F1(%) | Parse_fail(%)。
+
+        '
+    figures_description: []
+    analysis: 'Llama baseline 确认 violation 是 task-structural 而非 model-specific。 ET=0%
+      有趣——Llama 对 SciERC entity types 的 vocabulary 记忆优于 Qwen， 但 DR 仍有 13.34%，说明 vocabulary
+      correctness ≠ semantic correctness， 进一步支撑 two-layer design rationale。
+
+      '
+  - name: Llama SciERC full S1
+    plan_id: P014
+    description: 'Llama-3.1-8B + OntoCoDec full S1 on SciERC。核心 cross-model generalization
+      实验。
+
+      '
+    expected_results:
+      samples: 550
+      entities_extracted: 2469
+      relations_extracted: 1315
+      domain_range_violation_rate: 0.0008
+      relation_vocabulary_violation_rate: 0.0
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.0656
+      entity_f1: 0.2349
+      relation_f1: 0.0254
+      dr_reduction_pct: 99.4
+    result_rationale: 'DR=0.08%（↓99.4%）——比 Qwen 的 ↓94% 更强。 best 档下这是最有力的 cross-model
+      evidence：零代码修改，DR 近乎完全消除。 机制：Llama SciERC RV baseline 已经很低（0.55%），grammar 层几乎无需做
+      vocabulary 修正， semantic 层直接在 clean vocabulary 上高效执行 domain/range masking → 更少
+      fallback →  更低残余 DR。这与 D014 dual-factor model 完美一致： low RV baseline → fewer
+      latent DR reveals → lower residual DR。
+
+      CF=6.56%（vs Qwen 9.90%），仍然 elevated。Llama 的 type assignment  在 SciERC ambiguous
+      types 上比 Qwen 稍稳定但仍受 type system ambiguity 影响。 R-F1=2.54%（-0.14pp from unconstrained
+      2.68%），F1-neutral。 best 档审稿人接受 2 模型 × 2 数据集为 sufficient generalization evidence，
+      但 may suggest additional models in future work。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 9: Bar chart comparing DR reduction % across 4 cells of 2×2 matrix (Qwen×SciERC,
+      Qwen×DocRED, Llama×SciERC, Llama×DocRED)'
+    analysis: 'Llama SciERC ↓99.4% 是 2×2 matrix 中最强的单 cell。 与 Qwen SciERC ↓94% 的差距来自
+      RV baseline 差异（0.55% vs 1.39%）—— lower RV → less latent DR reveal → purer semantic
+      enforcement。 这支撑论文的 programmatic claim "generalizes across model families without
+      code modification"。 CF=6.56% 在 limitations 中需提及 "non-local constraint 问题在 Llama
+      上更突出"—— 虽然低于 Qwen 9.9%，但考虑到 Llama fewer relations extracted（1315 vs 1729）， per-entity
+      CF probability 可能更高。
+
+      '
+  - name: Llama DocRED unconstrained
+    plan_id: P015
+    description: 'Llama-3.1-8B DocRED unconstrained baseline。测试不同 model family 在大
+      ontology 上的 violation profile。
+
+      '
+    expected_results:
+      documents: 998
+      documents_checked: 930
+      parse_failures: 68
+      unique_entities: 11525
+      total_triples: 16437
+      ET_rate_pct: 0.13
+      RV_rate_pct: 16.03
+      DR_rate_pct: 26.07
+      CF_rate_pct: 0.17
+      entity_f1: 55.65
+      relation_f1: 5.98
+      fuzzy_relation_matches: 121
+    result_rationale: 'Llama DocRED 展示 RV↓DR↑ 正交性：RV=16.03%（vs Qwen 29.66%, lower）
+      但 DR=26.07%（vs Qwen 18.46%, higher）。 best 档下这是 D014 insight 的关键对比数据——vocabulary
+      compliance 和 semantic compliance  是正交 failure modes，不同模型在两个维度上的表现可以反向。 parse_failures=68/998=6.8%（vs
+      Qwen 12/998=1.2%）——Llama 的 JSON format compliance 更差， 但 bias 方向是保守的（parse failure
+      不计入 F1 也不计入 violation rate，不利于 constrained condition）。 E-F1=55.65%（vs Qwen 58.15%），Llama
+      在 DocRED entity extraction 上略弱。
+
+      '
+    tables: []
+    figures_description:
+    - 'Fig 10: 2×2 heatmap showing RV(%) and DR(%) for Qwen×DocRED and Llama×DocRED，标注
+      orthogonality'
+    analysis: 'RV↓DR↑ 正交性是跨模型分析最重要的 finding。 Llama vocabulary 记忆更好（RV 16% vs 30%）但
+      semantic constraint compliance 更差（DR 26% vs 18%）， 证明 "knowing the right relation
+      name ≠ knowing the right type constraint"。 这为两层设计提供了 model-agnostic justification：
+      任何模型都可能在 vocabulary 或 semantics 上各有强弱， 两层分别 address 正交维度。
+
+      '
+  - name: Llama DocRED full S1
+    plan_id: P016
+    description: 'Llama-3.1-8B + OntoCoDec full S1 on DocRED。2×2 matrix 的最后一个 cell。
+
+      '
+    expected_results:
+      documents: 998
+      documents_checked: 907
+      parse_failures: 91
+      unique_entities: 11296
+      total_triples: 16368
+      ET: 0.0
+      RV: 0.0
+      DR: 2.55
+      CF: 12.02
+      entity_f1: 55.01
+      entity_precision: 61.41
+      entity_recall: 49.82
+      relation_f1: 6.27
+      relation_precision: 5.49
+      relation_recall: 7.32
+      dr_reduction_pct: 90.2
+      ent_f1_delta_pp: -0.64
+      rel_f1_delta_pp: 0.29
+    result_rationale: 'DR=2.55%（↓90.2%）——大幅优于 Qwen ↓44.7%。 best 档下 D014 dual-factor
+      model 完美解释此差异： Llama RV=16.03% << Qwen RV=29.66% → grammar 消除 fewer OOV →  fewer
+      latent DR reveals → semantic 层在 cleaner input 上更有效 → lower residual DR。 同一 ontology（τ̄=0.842）、同一方法、同一
+      pipeline—— DR reduction 差异（90.2% vs 44.7%）完全由 model RV baseline 差异解释。 这是比单一
+      tightness 更深的 insight，审稿人在 best 档认可为独立 finding。
+
+      CF=12.02%——2×2 matrix 中最高。Llama 在 DocRED entity types 上的 cross-relation  type
+      assignment 一致性最差。这与 parse_failures=91（9.1%，也是最高）相关—— Llama 在 DocRED 上的生成 stability
+      整体较弱。 best 档审稿人接受此 CF 作为 limitation 的一部分， 因为 per-triple type validity 仍然保证（CF
+      是 cross-triple consistency 问题）。
+
+      E-F1=55.01%（-0.64pp），轻微下降。best 档下需 footnote 说明  parse_failures 增加（68→91）可能是
+      constrained decoding 在 Llama 上  偶尔产生更多 format compliance issue（但仍 <10%）， 且 bias
+      方向保守。R-F1=6.27%（+0.29pp）微正。
+
+      '
+    tables:
+    - table_id: T10
+      caption: Complete 2×2 cross-model × cross-dataset matrix
+      description: '4 大行 (Qwen-SciERC / Qwen-DocRED / Llama-SciERC / Llama-DocRED)
+        ×  2 小行 (unconstrained / full_s1)， 列: Model | Dataset | Config | ET(%) | RV(%)
+        | DR(%) | CF(%) | R-F1(%) | E-F1(%) | Parse_fail(%) | DR_Δ(%)。 这是论文的 central
+        results table。
+
+        '
+    - table_id: T11
+      caption: 'D014 dual-factor analysis: tightness × RV baseline → DR reduction'
+      description: '4 行 (matrix cells), 列: Cell | τ̄ | RV_baseline(%) | DR_unconstrained(%)
+        |  DR_full_s1(%) | DR_Δ(%) | Predicted_factor。标注 RV baseline 解释的 variance。
+
+        '
+    figures_description:
+    - 'Fig 11: Scatter plot with 4 points: x=RV_baseline, y=DR_reduction_pct, color=dataset,
+      shape=model. 标注 RV-DR_reduction 正相关趋势线（仅 2 model，descriptive not inferential）'
+    analysis: 'Llama DocRED full_s1 完成了 2×2 matrix。DR reduction spectrum： 99.4% (Llama-SciERC)
+      > 94% (Qwen-SciERC) > 90.2% (Llama-DocRED) > 44.7% (Qwen-DocRED)。 这个 ordering
+      完美映射到 RV baseline ordering： 0.55% < 1.39% < 16.03% < 29.66%——lower RV baseline
+      → higher DR reduction。 D014 claim "DR reduction ceiling 由 tightness × model
+      RV baseline 共同决定"  获得 4-cell empirical support。
+
+      CF gradient 也有 pattern：SciERC CF (6.56-9.9%) > DocRED CF (2.57-12.02%)， 但 Llama
+      DocRED CF=12.02% 是 outlier——可能与 Llama 在 DocRED 上的高 parse failure  和更弱的 format
+      stability 相关。limitations 中需讨论。
+
+      '
+  - name: S2 pilot (50 docs)
+    plan_id: P017
+    description: 'S2 two-pass strategy 在 SciERC 前 50 篇上的 pilot run，验证 pipeline 正确性后再跑
+      full scale。
+
+      '
+    expected_results:
+      samples: 50
+      predicted_relations: 146
+      domain_range_violation_rate: 0.0205
+      relation_vocabulary_violation_rate: 0.0
+      relation_f1: 0.1008
+      true_positives: 13
+      gold_relations: 112
+    result_rationale: 'pilot DR=2.05%（3/146 triples），为 full run 提供了 S2 pipeline 功能验证。
+      best 档下审稿人不会看到 pilot 数据——它只出现在 supplementary material 或被完全省略。 pilot 的历史作用是决策支持（go/no-go
+      for full S2 run）。 注意 pilot 最初报告 DR=0% 是 small-sample artifact（n=25 triples from
+      dryrun）， actual pilot50 为 2.05%。论文中严禁引用 pilot DR=0%。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'pilot 仅作为 engineering checkpoint。full run P008 (DR=0.97%) 是唯一有效的 S2
+      evidence。 best 档论文中不引用 pilot 数据。
+
+      '
+  - name: Post-hoc filtering baseline
+    plan_id: P018
+    description: '对 unconstrained output 应用 post-hoc violation filtering（删除含 DR/ET
+      violation 的 triples）， 作为 naive baseline 与 OntoCoDec 进行多维对比。
+
+      '
+    expected_results:
+      docred_f1_before: 7.74
+      docred_f1_after: 9.61
+      docred_precision_after: 11.22
+      docred_recall_before: 9.46
+      docred_recall_after: 8.4
+      docred_rejection_rate: 0.481
+      docred_tp_before: 1137
+      docred_tp_after: 1010
+      docred_tp_lost: 127
+      docred_et_residual: 0.0247
+      scierc_f1_before: 8.23
+      scierc_f1_after: 8.63
+      scierc_rejection_rate: 0.168
+      scierc_recall_before: 11.4
+      scierc_recall_after: 10.68
+      scierc_tp_before: 111
+      scierc_tp_after: 104
+    result_rationale: "post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36, DocRED 9.61\
+      \ vs 8.23）。 best 档下审稿人理解 \"post-hoc wins on F1\" 不构成 fatal weakness， 因为论文 framing\
+      \ 是多维对比而非 F1 竞赛。关键维度：\n1. Recall preservation: OntoCoDec recall 上升（+0.20pp SciERC,\
+      \ +0.56pp DocRED）\n   vs post-hoc recall 下降（-0.72pp, -1.06pp）。概率质量重分配 vs 信息删除。\n\
+      2. Information coverage: DocRED post-hoc 丢弃 48.1% triples（近半数信息），\n   OntoCoDec\
+      \ 保留全部 triple slots。\n3. 127 个被删 TP (DocRED): 正确提取但 entity type 违规的 triple，\n\
+      \   OntoCoDec 通过生成时强制合法 type 保留这些 TP——\"prevent vs detect\" 核心论据。\n4. ET 残余:\
+      \ post-hoc 只删 triples 不改 entity list，残余 ET=2.47% (DocRED)。\n   OntoCoDec ET=0%。Post-hoc\
+      \ 根本无法解决 entity type violations。\n\nbest 档审稿人被多维对比说服，不会追问 \"why not just post-hoc\"\
+      。\n"
+    tables:
+    - table_id: T12
+      caption: 'OntoCoDec vs post-hoc filtering: multi-dimensional comparison'
+      description: '2 数据集 × 3 方法 (unconstrained / OntoCoDec / post-hoc)， 列: Method
+        | DR(%) | ET(%) | R-F1(%) | Precision(%) | Recall(%) | Rejection(%) | #TP
+        | Coverage。 OntoCoDec 和 post-hoc 各自的优势列标绿/蓝。
+
+        '
+    figures_description:
+    - 'Fig 12: Radar chart (4 axes: DR elimination, recall preservation, information
+      coverage, ET elimination) comparing OntoCoDec vs post-hoc，visualize multi-dimensional
+      trade-off'
+    analysis: 'post-hoc 是论文必须 beat（or credibly argue against）的 strongest naive baseline。
+      best 档下多维 framing 成功：F1 差异 acknowledged but contextualized。 127 个被删 TP 是最有力的数据点——这些是
+      post-hoc 的 collateral damage， OntoCoDec 通过 generation-time constraint 保留了它们。
+      "prevent vs detect" 叙事在 best 档获得 2/3 审稿人认可。
+
+      '
+  - name: Bootstrap CI (10000 iterations)
+    plan_id: P019
+    description: '对 SciERC 和 DocRED 的 unconstrained vs full_s1 F1 差异进行 10000 次 bootstrap  重采样，计算
+      95% CI 和 permutation p-value，提供统计显著性证据。
+
+      '
+    expected_results:
+      scierc_rel_f1_delta: 0.13
+      scierc_rel_f1_p: 0.58
+      scierc_ent_f1_delta: -0.03
+      scierc_ent_f1_p: 0.53
+      docred_rel_f1_delta: 0.5
+      docred_rel_f1_p: <0.001
+      docred_rel_f1_ci: '[+0.23, +0.81]'
+      docred_ent_f1_delta: 1.23
+      docred_ent_f1_p: <0.001
+      docred_ent_f1_ci: '[+0.94, +1.55]'
+    result_rationale: 'best 档下 bootstrap CI 提供了 reviewers 期望的统计严谨性。 SciERC p=0.58/0.53
+      → "F1-neutral"，exactly 论文 framing 需要的结论。 DocRED p<0.001 for both R-F1 and E-F1
+      → "statistically significant improvement"， 但不升级为 core claim（归因于 OOV elimination
+      的 grammar 层，不是约束解码的 inherent benefit）。 CI 宽度合理（R-F1 CI width=0.58pp, E-F1 CI
+      width=0.61pp）， 10000 iterations 在 ML 论文中是标准做法。
+
+      审稿人在 best 档接受 "F1-neutral on SciERC, significant improvement on DocRED"  的 dataset-dependent
+      framing，因为机制归因清晰（grammar 消除 OOV → 减 FP → 提 precision）， 不是 magic improvement
+      而是 well-understood 的 side-effect。
+
+      '
+    tables:
+    - table_id: T13
+      caption: Bootstrap CI for F1 impact (10000 iterations)
+      description: '4 行 (SciERC-Rel / SciERC-Ent / DocRED-Rel / DocRED-Ent)， 列: Metric
+        | Δ(pp) | 95% CI | p-value | Significance。
+
+        '
+    figures_description:
+    - 'Fig 13: Bootstrap distribution histograms (4 panels) with observed Δ marked
+      by vertical line and 95% CI shaded'
+    analysis: 'bootstrap 结果在 best 档下是 Claim 6 (F1 impact) 的 definitive evidence。 不同数据集不同结果这一事实本身就有
+      insight 价值—— constraint enforcement 的 F1 impact 取决于 baseline violation profile  (high
+      RV → OOV elimination → F1 boost; low RV → minimal F1 effect)。 这个 conditional
+      关系比 blanket "constraint improves F1" 更 nuanced 也更可信。
+
+      '
+  - name: DocRED schema compilation (Phase 0 R2)
+    plan_id: P020
+    description: 'DocRED schema-informed prompt 第二轮尝试（不同 prompt 格式）。已被 P004 supersede，killed。
+
+      '
+    expected_results:
+      status: killed
+      reason: superseded by P004
+    result_rationale: 'P020 被 kill 因为 P004 已提供充分的 DocRED schema-informed baseline。
+      best 档下此实验不出现在论文中，仅在 experiment registry 中记录为 "killed"。 不需要额外解释或 justification。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 无分析价值。记录保留用于实验管理 audit trail。
+  review_report: '---
+
+    dream_id: dream_20260514T205155
+
+    tier: best
+
+    overall_score: borderline
+
+    timestamp: 2026-05-14T21:33:24.355193+00:00
+
+    ---
+
+
+    # Dream Review Report: OntoCoDec
+
+
+    **Paper:** OntoCoDec: Near-Complete Type-Valid Information Extraction via Compiled
+    Ontology Constraints
+
+    **Venue:** EMNLP 2026 (ARR)
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-14
+
+
+    ---
+
+
+    ## Venue Scoring Basis
+
+
+    EMNLP 2026 uses ACL Rolling Review (ARR). Three scoring dimensions (1–5 scale):
+    **Soundness** (technical rigor), **Excitement** (novelty/impact), **Overall Assessment**
+    (composite recommendation). Criteria sourced from [ARR Review Form](http://aclrollingreview.org/reviewform)
+    and [ARR Reviewer Guidelines](http://aclrollingreview.org/reviewerguidelines).
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### Reviewer 1 (R1) — Methods & Experiments
+
+
+    **Scores:** Soundness=4, Excitement=3, Overall=3, Confidence=4
+
+
+    **Strengths:**
+
+    - **Thorough ablation design.** The 4-way ablation (unconstrained / grammar-only
+    / semantic-only / full S1) on both datasets cleanly isolates each layer''s contribution.
+    The enabling dependency claim is well-supported: semantic-only achieves only 24%
+    DR reduction on SciERC vs. 94% for the full system, with a convincing mechanistic
+    explanation (OOV relation names block domain/range lookup).
+
+    - **Honest treatment of negative results.** CF trade-off (9.90% SciERC, 12.02%
+    Llama-DocRED), grammar-only DR *increase* on DocRED (18.46→26.17%), and S2 null
+    result are all reported transparently with structural explanations.
+
+    - **Statistical rigor.** 10,000-iteration bootstrap with CIs, McNemar tests for
+    prompt comparison, per-dataset significance reporting (SciERC p=0.58 neutral,
+    DocRED p<0.001 significant) rather than cherry-picking.
+
+    - **Cross-model 2×2 validation** with genuine dual-factor insight (DR reduction
+    mirrors RV baseline ordering).
+
+    - **Post-hoc baseline** framed as multi-dimensional comparison (recall, coverage,
+    TP loss) rather than F1 contest. The 127 lost TPs on DocRED is compelling.
+
+    - **Constraint tightness analysis** provides a clean causal chain: tightness →
+    fallback rate → residual DR.
+
+
+    **Weaknesses:**
+
+    - **2×2 scope narrow for generality of claims.** Two 8B-class models, two datasets,
+    zero-shot only. No larger model (e.g., 70B), no fine-tuned model. The practical
+    motivation for constrained decoding is arguably stronger in the fine-tuned regime
+    where F1 is meaningful.
+
+    - **Very low absolute F1 (~8% R-F1) raises ecological validity questions.** Constraint
+    enforcement on a distribution ~92% wrong may exhibit different dynamics than on
+    a higher-accuracy regime. The tightness-fallback-DR relationship may not hold
+    when the base model is more accurate.
+
+    - **CF trade-off substantial and severity distinction unvalidated.** DR violations
+    framed as "hard" and CF as "soft," but no downstream task evaluation confirms
+    this. The dominant pattern (Generic↔OtherScientificTerm) is attributed to type
+    system ambiguity — this risks dismissing a method limitation as a dataset artifact.
+
+    - **Decidability taxonomy limited novelty.** The local/prefix-decidable/non-local
+    distinction is well-known in constraint satisfaction and compiler literature.
+    Presented as a contribution but reads as design rationale.
+
+    - **DocRED 10.21% residual DR (Qwen) strains "near-complete" title.** One of four
+    matrix cells retains >10% violations.
+
+    - **No comparison with fine-tuned or training-based methods.** Even a few-shot
+    or LoRA baseline would contextualize the practical value.
+
+    - **Semantic-only ET increase on DocRED (2.48→4.22%) concerning.** Partial constraint
+    application making a different violation category worse is a negative interaction
+    effect that warrants deeper discussion.
+
+
+    **Key Questions:**
+
+    1. Is the fallback-rate / residual-DR near-exact match (DocRED ~10.2% each) a
+    mathematical tautology or an empirical finding?
+
+    2. Would CF persist with a fine-tuned model producing more accurate types?
+
+    3. What happens when first-token masking uniqueness assumption fails (different
+    tokenizer, larger type vocabulary)?
+
+    4. Parse failure increase for Llama-DocRED (68→91): can increasing max_new_tokens
+    eliminate this?
+
+    5. Grammar-only R-F1 on DocRED (8.31) > Full S1 (8.23) — does the semantic layer
+    introduce systematic negative F1 pressure?
+
+
+    ---
+
+
+    ### Reviewer 2 (R2) — Novelty & Related Work
+
+
+    **Scores:** Soundness=4, Excitement=2, Overall=3, Confidence=4
+
+
+    **Strengths:**
+
+    - **Violation landscape study is a genuine empirical contribution.** No prior
+    work has systematically characterized per-relation ontology constraint violation
+    distributions in LLM-based IE. The tightness-violation correlation (SciERC 7 relations
+    at 15.4% DR ≈ DocRED 96 relations at 18.5% DR) is non-obvious. The Evaluate-for
+    regression (+5.8pp under schema prompting) is particularly compelling.
+
+    - **Related work is thorough.** Six organized paradigms with ~42 references: grammar-constrained
+    decoding, semantic constrained decoding for code, vocabulary/type-constrained
+    generation, structural constraints via training, post-hoc ontology validation,
+    and quality impact of constrained decoding.
+
+    - **PICARD differentiation well-articulated.** Clean technical distinction: PICARD
+    operates over fixed, fully enumerated database schemas, while OntoCoDec''s entity
+    registry is populated during generation from free-text spans.
+
+    - **Honest positioning.** Title change from "Guaranteed" to "Near-Complete," proactive
+    CF disclosure, dual-factor model more insightful than simple tightness-only narrative.
+
+    - **Cross-model validation meaningful.** The RV–DR orthogonality (Llama: low RV
+    but high DR; Qwen: opposite) justifies the two-layer design from a model-agnostic
+    perspective.
+
+
+    **Weaknesses:**
+
+    - **(Major) Core technical contribution has limited novelty.** Extending grammar-constrained
+    decoding with a stateful semantic layer is a domain transfer of techniques from
+    code generation (PICARD EMNLP''21, Synchromesh ICLR''22, MGD NeurIPS''23, PLDI''25
+    type systems → prefix automata) to a structurally *simpler* constraint system.
+    IE has flat domain/range sets over small entity type inventories (6 types) vs.
+    deep subtyping and parametric polymorphism in PL. The entity registry is a dictionary
+    lookup, not a novel inference mechanism. Composition via bitwise AND is the standard
+    approach.
+
+    - **(Major) Decidability taxonomy limited conceptual depth.** The local / prefix-decidable
+    / non-local classification follows directly from well-known properties of autoregressive
+    left-to-right generation. Similar taxonomies appear implicitly in Synchromesh
+    and MGD. The paper would benefit from either rigorous formalization (connecting
+    to formal language theory) or honest positioning as organizational framework rather
+    than standalone contribution.
+
+    - **(Moderate) CRANE cited but not empirically compared.** CRANE occupies the
+    space between post-hoc filtering and single-pass constrained decoding. The paper
+    notes S2''s two-pass strategy is "analogous to CRANE''s alternating strategy"
+    but provides no comparison.
+
+    - **(Moderate) Missing connections to neuro-symbolic and structured prediction
+    literature.** DeepProbLog, Semantic Loss, posterior regularization, constraint
+    relaxation literature — OntoCoDec''s approach (compiling declarative constraints
+    into procedural enforcement) is a specific instance of this broader research direction.
+
+    - **(Moderate) "Enabling dependency" inflated.** That grammar must validate relation
+    names before semantic can look up rules is an architectural consequence of the
+    design, not a deep insight about constraint composition.
+
+    - **(Minor) "First systematic study" should be scoped** to "first systematic study
+    of ontology constraint violations in zero-shot LLM-based IE."
+
+    - **(Minor) Missing citations:** TANL (Paolini et al., ICLR 2021), REBEL (Cabot
+    & Navigli, EMNLP 2021), SynCode (Ugare et al., 2024).
+
+
+    **Key Questions:**
+
+    1. What distinguishes OntoCoDec from PLDI''25 applied to a simpler constraint
+    structure? What IE-specific technical challenge required a novel solution?
+
+    2. How does OntoCoDec differ from EnriCo (Zaratiana et al., 2024), which also
+    enforces type constraints at generation time using ASP?
+
+    3. What happens when the model generates an entity in a relation not listed in
+    the entity list? How does the registry handle missing entries?
+
+    4. Do violation landscape findings generalize beyond zero-shot? If fine-tuned
+    models achieve low baseline DR, the practical motivation narrows substantially.
+
+    5. How sensitive is the tightness metric to using observed type pairs vs. the
+    Cartesian product of dom(r) × range(r)?
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing
+
+
+    ### R1''s Response to R2
+
+
+    **Agreements:**
+
+    - R2''s framing of OntoCoDec as "domain transfer to structurally simpler constraints"
+    is sharper than R1''s original concern. R1 concedes this is the paper''s most
+    vulnerable flank.
+
+    - CRANE empirical comparison gap aligns with R1''s missing-baselines concern.
+
+    - "First systematic study" should be scoped.
+
+    - Q4 (generalization beyond zero-shot) strengthens R1''s ecological validity concern.
+
+
+    **Disagreements:**
+
+    - R1 defends the **enabling dependency** as having empirical value: the 24% vs.
+    94% gap is non-trivially large, even if architecturally predictable. The quantitative
+    magnitude is the contribution.
+
+    - R1 considers R2''s **Excitement=2 too harsh**. The violation landscape study
+    is a genuine first, 94% DR reduction at zero F1 cost is practically useful, and
+    the system works with honest limitations reported.
+
+
+    **Score revision:** R1 maintains Soundness=4, Excitement=3, Overall=3, Confidence=4.
+
+
+    ### R2''s Response to R1
+
+
+    **Agreements:**
+
+    - R1''s narrow-scope concern reinforces R2''s novelty concern from the experimental
+    side.
+
+    - 8% R-F1 ecological validity aligns with R2''s unstated practical deployment
+    concern.
+
+    - DocRED 10.21% residual DR matches R2''s "near-complete" skepticism.
+
+    - CF severity distinction unvalidated — shared concern.
+
+
+    **Disagreements:**
+
+    - R2 finds R1 **too generous on the ablation**: the enabling dependency is architecturally
+    self-evident rather than a discovery.
+
+    - R2 finds R1 **too lenient on statistical rigor**: DR/CF metrics are single-run
+    point estimates with no CIs. The "94% DR reduction" headline has no confidence
+    interval.
+
+
+    **New insights from R1:**
+
+    - R1''s Q1 (fallback-rate/residual-DR tautology) is sharp — if the match is architectural,
+    the "tightness predicts DR" claim is partially circular.
+
+    - Llama RV-vs-DR orthogonality partially addresses R2''s novelty concern on the
+    empirical side.
+
+
+    **Score revision:** R2 would move Excitement to 2.5 if half-points permitted;
+    holds at 2 on integer scale. Maintains Soundness=4, Overall=3.
+
+
+    ---
+
+
+    ## Step 3: Convergence
+
+
+    ### Agreed Points (Both Reviewers)
+
+
+    | Dimension | Consensus |
+
+    |-----------|-----------|
+
+    | **Soundness** | 4 (Strong). Experimental design is rigorous: ablation cleanly
+    isolates layers, statistical analysis is proper, negative results honestly reported.
+    |
+
+    | **Overall** | 3 (Borderline). Technically solid but bounded contributions. |
+
+    | **Violation landscape** | Genuine empirical contribution; first systematic characterization
+    of per-relation DR distributions in LLM-based IE. |
+
+    | **Ablation quality** | Well-designed 4-way ablation on two datasets with cross-model
+    validation. |
+
+    | **Honest reporting** | CF trade-off, grammar DR increase on DocRED, S2 null
+    result, post-hoc F1 advantage — all transparently disclosed. |
+
+    | **CF unvalidated** | DR "hard" / CF "soft" severity distinction asserted but
+    not empirically confirmed via downstream evaluation. |
+
+    | **Scope narrow** | 2 models × 2 datasets × zero-shot only insufficient for "model-agnostic"
+    / broad IE claims. |
+
+    | **"Near-complete" strained** | 10.21% residual DR on Qwen-DocRED contradicts
+    title framing. |
+
+    | **CRANE comparison missing** | Cited but not empirically compared; notable gap.
+    |
+
+    | **Decidability taxonomy** | Limited novelty; useful as organizational framework,
+    not as standalone theoretical contribution. |
+
+
+    ### Disagreed Points
+
+
+    | Dimension | R1 | R2 | Resolution |
+
+    |-----------|-----|-----|-----------|
+
+    | **Excitement** | 3 (Borderline) | 2 (Mediocre) | Split. R1 weights practical
+    utility; R2 weights novelty gap vs. code-gen literature. **Consensus: 2.5 → round
+    to 3** with explicit caveat that novelty is the primary risk factor. |
+
+    | **Enabling dependency** | Empirically validated (24% vs 94% gap is non-trivial)
+    | Architecturally self-evident | **Consensus:** The quantitative gap adds modest
+    value but should not be listed as a standalone contribution. |
+
+    | **Statistical rigor** | Praised (bootstrap, McNemar) | Insufficient (DR/CF lack
+    CIs) | **Consensus:** F1 analysis is statistically rigorous; violation rate metrics
+    lack uncertainty quantification. Mixed verdict. |
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Final Scores
+
+
+    | Criterion | Score | Justification |
+
+    |-----------|-------|---------------|
+
+    | **Soundness** | **4** (Strong) | Experimental design is thorough: 4-way ablation
+    isolating each layer, 2×2 cross-model matrix, 10,000-iteration bootstrap for F1,
+    McNemar tests for prompt effects, post-hoc multi-dimensional comparison. Claims
+    are carefully calibrated to evidence. Negative results honestly reported. Gap:
+    violation rate metrics lack uncertainty quantification; no downstream CF impact
+    evaluation. |
+
+    | **Excitement** | **3** (Borderline) | The violation landscape study is a genuine
+    empirical first. The system achieves strong DR reduction (94% on SciERC) at zero
+    F1 cost with an honest CF trade-off analysis. The dual-factor model and RV–DR
+    orthogonality are real analytical contributions. However, the core technical mechanism
+    (stateful logit masking for domain/range constraints) is domain transfer of techniques
+    well-established in code generation (PICARD, Synchromesh, PLDI''25) to a structurally
+    simpler constraint system. The decidability taxonomy restates known properties
+    of autoregressive generation. Novelty is the primary risk factor. |
+
+    | **Overall** | **3** (Borderline) | A well-executed systems paper with clean
+    experiments and honest reporting, filling a genuine gap (no prior work compiles
+    IE ontology domain/range constraints into decoding-time masks). The violation
+    landscape study, thorough ablation, cross-model validation, and dual-factor analysis
+    are all positives. However: (1) limited novelty of the core framework — competent
+    domain transfer, not new algorithms; (2) narrow scope (2×2, zero-shot only, ~8%
+    F1); (3) substantial CF trade-off without downstream validation; (4) 10% residual
+    DR on DocRED strains "near-complete" framing. Above the bar for **Findings**;
+    borderline for main conference. |
+
+    | **Confidence** | **4** (Quite sure) | Both reviewers are familiar with constrained
+    decoding, IE methods, and the code-generation constraint literature. |
+
+
+    ### Recommendation
+
+
+    **Borderline — lean toward Findings track rather than main conference.**
+
+
+    The paper makes a genuine empirical contribution (violation landscape study, tightness-driven
+    analysis) and demonstrates a working system with clean experiments. The main weakness
+    is that the technical framework itself — compiling ontology constraints into grammar
+    + semantic decoding masks — is a natural and relatively straightforward adaptation
+    of techniques already established in code generation to a simpler constraint domain.
+    EMNLP main track typically expects either a more novel technical contribution
+    or a substantially broader empirical study.
+
+
+    ### Key Revisions That Would Strengthen the Paper
+
+
+    1. **Add a fine-tuned or few-shot baseline** to establish whether the violation
+    landscape and constraint enforcement benefits hold in a higher-accuracy regime.
+    This is the single most impactful addition.
+
+    2. **Downstream CF impact evaluation.** Run the constrained vs. unconstrained
+    output through a downstream task (e.g., question answering over the extracted
+    KG) to empirically validate the DR-hard/CF-soft severity distinction.
+
+    3. **CRANE empirical comparison.** Compare against constrained re-generation,
+    not just post-hoc filtering.
+
+    4. **Add CIs for violation rate metrics.** The headline "94% DR reduction" currently
+    has no confidence interval.
+
+    5. **Scope claims more carefully.** "Near-complete" is justified on SciERC (0.93%)
+    and Llama-DocRED (2.55%) but not on Qwen-DocRED (10.21%). The title and abstract
+    should reflect this variance.
+
+    6. **Sharpen novelty positioning vs. code-gen literature.** A dedicated paragraph
+    explaining what IE-specific challenge required a solution beyond what PICARD/Synchromesh/PLDI''25
+    already provide.
+
+
+    ### Experiment Coverage Assessment
+
+
+    All planned experiments from the design document are reflected in the paper:
+
+    - **Phase 0 (violation landscape):** P001–P004 ✓ (Tables 1–3, §3)
+
+    - **Phase 2 (ablation):** P005a, P005–P008 (SciERC), P009–P012 (DocRED) ✓ (Tables
+    4–7, §5.2–5.4)
+
+    - **Cross-model:** P013–P016 ✓ (Table 8–9, §5.5)
+
+    - **Post-hoc baseline:** P018 ✓ (Table 10, §5.6)
+
+    - **Bootstrap CI:** P019 ✓ (Table 11, §5.7)
+
+    - **S2 pilot (P017):** Correctly omitted (engineering checkpoint)
+
+    - **P020:** Correctly omitted (killed)
+
+
+    Coverage is complete. The paper reflects all non-killed experiments from the design.
+
+
+    ### Summary
+
+
+    OntoCoDec is a technically competent paper with above-average experimental rigor
+    and commendable honesty about its limitations. The violation landscape study and
+    the dual-factor analysis are the strongest intellectual contributions. The framework
+    itself works as described but represents domain adaptation of known constrained-decoding
+    techniques rather than algorithmic innovation. The 2×2 zero-shot evaluation, while
+    internally thorough, leaves open the question of practical utility in the regime
+    where IE systems are actually deployed (fine-tuned, higher accuracy). The CF trade-off,
+    while honestly reported, lacks downstream validation of the asserted severity
+    distinction. These factors place the paper at the borderline for EMNLP main conference,
+    with a clear path to strengthening through broader evaluation and sharper novelty
+    positioning.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/dream_reports/dream_20260514T205155/median/paper.pdf
+  imagined_experiments:
+  - name: SciERC violation rate (minimal prompt)
+    plan_id: P001
+    description: 'Qwen3-8B zero-shot SciERC extraction，minimal prompt，测量 baseline
+      violation rates。 7 relations, 551 abstracts。
+
+      '
+    expected_results:
+      total_triples: 1724
+      total_entities: 2474
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.004
+      relation_vocabulary_violation_rate: 0.0139
+      domain_range_violation_rate: 0.1537
+      cross_field_consistency_violation_rate: 0.0008
+      entity_f1: 0.3101
+      relation_f1: 0.0823
+      per_relation_dr_top3:
+        Compare: 0.4242
+        Feature-of: 0.3354
+        Part-of: 0.25
+      per_relation_dr_bottom2:
+        Used-for: 0.0076
+        Conjunction: 0.0
+    result_rationale: 'Median 档下，15.4% DR baseline 被 2/3 审稿人接受为 non-trivial。R2 可能质疑：
+      "zero-shot 本身就会产生各种错误，15% constraint violation 在 8% F1 下是否真的重要？" 但 per-relation
+      分布（Compare 42%、Used-for 0.8%）的极端差异足以说服—— 这不是随机错误，是 constraint tightness 相关的系统性现象。
+      R1 接受此数据作为 motivation。R3 认为 violation landscape 是独立贡献。
+
+      '
+    tables:
+    - 'Table 1: Per-relation DR violation rates (SciERC, minimal prompt). 7 relations
+      ranked by tightness τ.'
+    figures_description:
+    - 'Figure 2: Scatter plot of constraint tightness (τ = 1 - valid_pairs/total_pairs)
+      vs. DR violation rate per relation type. Clear positive correlation (r=0.87)
+      supporting Claim 1.'
+    analysis: 'R2 在 median 档会写："The violation landscape analysis (§3) provides useful
+      empirical grounding, but the causal claim that ''violation rate is driven by
+      tightness'' is overstated given confounds (relation frequency, entity type distribution)."
+      需在 rebuttal 中降级为 correlational + 补充 frequency 作为 covariate 的分析。
+
+      '
+  - name: SciERC violation rate (schema-informed prompt)
+    plan_id: P002
+    description: 'Qwen3-8B SciERC，schema-informed prompt 将 domain/range constraints
+      写入 prompt， 测量 prompt-level intervention 效果。
+
+      '
+    expected_results:
+      domain_range_violation_rate: 0.0578
+      relation_vocabulary_violation_rate: 0.003
+      entity_type_violation_rate: 0.0
+      total_triples: 1661
+      vs_minimal_dr_reduction_pct: -62.4
+      per_relation_notable:
+        Feature-of_delta_pp: -22.3
+        Part-of_delta_pp: -22.5
+        Compare_delta_pp: -14.8
+        Evaluate-for_delta_pp: 5.8
+      mcnemar_significant: true
+    result_rationale: '62.4% reduction 在 median 档被全部审稿人接受为 "substantial but insufficient"。
+      关键攻击面是 Evaluate-for 回归 (+5.8pp)：R2 会写 "The fact that prompting can *increase*
+      violations for specific relation types (Evaluate-for, §3.2) is an interesting
+      finding but needs more analysis — is this a prior-constraint conflict or simply
+      noise?" Median 档下 R2 对此提出 minor weakness 而非 major，因为论文已有 prior-constraint conflict
+      解释框架。但 R2 建议 "run significance test on per-relation changes to distinguish real
+      regression from variance."
+
+      '
+    tables:
+    - 'Table 2: Per-relation DR rates under minimal vs. schema-informed prompts, with
+      McNemar test results.'
+    figures_description: []
+    analysis: 'Schema-informed prompt 数据在 median 档基本无争议，支撑 Claim 2。 Evaluate-for 回归是一个
+      talking point 但不构成 major weakness。
+
+      '
+  - name: DocRED violation rate (minimal prompt)
+    plan_id: P003
+    description: 'Qwen3-8B DocRED (998 docs, 96 relations)，minimal prompt baseline。
+
+      '
+    expected_results:
+      total_docs: 998
+      parsed_docs: 962
+      json_parse_rate: 0.964
+      total_entities: 19099
+      total_triples: 16540
+      entity_type_violation_rate: 0.075
+      relation_vocabulary_violation_rate: 0.289
+      domain_range_violation_rate: 0.187
+      cross_field_consistency_violation_rate: 0.0008
+      top_dr_by_rate:
+        P35_head_of_state: 1.0
+        P710_participant: 0.919
+        P172_ethnic_group: 0.875
+      top_dr_by_count:
+        P31_instance_of:
+          violations: 322
+          total: 533
+          rate: 0.604
+        P1001_applies_to_jurisdiction:
+          violations: 264
+          total: 594
+          rate: 0.444
+    result_rationale: 'DocRED 18.7% DR vs SciERC 15.4%——14× ontology size 差异下 violation
+      rate 相近—— 直接支撑 "violation rate driven by tightness not ontology size" claim。
+      Median 档下 R1 接受此 finding。R2 会注意到 RV=28.9% 极高，质疑： "Nearly 30% of generated relation
+      names are out-of-vocabulary — how much of DR is confounded by the model simply
+      not knowing the relation names?" 这是 D014 dual-factor insight 的前兆。R2 不会因此 reject
+      但会要求 disentangle RV 和 DR 的交互效应。
+
+      '
+    tables:
+    - 'Table 1 (extended): DocRED violation rates. Top-10 relations by DR rate and
+      count.'
+    figures_description:
+    - 'Figure 2 (right panel): DocRED tightness vs. DR scatter, colored by relation
+      frequency.'
+    analysis: 'RV=28.9% 是 DocRED 特有现象（96 relations 中很多 Qwen 未见过）。 Median R2 会追问 "如果先修
+      RV 再测 DR，DR 会不会更低？"——恰好引出 grammar_only 实验。
+
+      '
+  - name: DocRED violation rate (schema-informed prompt)
+    plan_id: P004
+    description: 'DocRED schema-informed prompt，测量 prompt-level 在复杂 ontology 上的效果。
+
+      '
+    expected_results:
+      total_documents: 998
+      documents_checked: 943
+      json_parse_rate: 0.9449
+      total_triples: 16782
+      entity_type_violation_rate: 0.0061
+      relation_vocabulary_violation_rate: 0.1841
+      domain_range_violation_rate: 0.1284
+      vs_minimal_dr_reduction_pct: -31.3
+    result_rationale: 'DR↓31.3% vs SciERC ↓62.4%——prompt intervention 在复杂 ontology
+      上效果减半。 Median 档下所有审稿人接受此数据。R2 会标注 "The scaling gap between SciERC (62%) and
+      DocRED (31%) prompt-level reduction is compelling evidence for Claim 2, though
+      confounded by the 96-relation prompt being much longer and potentially overwhelming
+      the model''s attention." 这是 minor point，不构成 major weakness。 R1 认为此数据强化了 decoding-time
+      方法的 motivation。
+
+      '
+    tables:
+    - 'Table 2 (DocRED section): Schema-informed prompt results.'
+    figures_description: []
+    analysis: 'Prompt insufficiency claim (C2) 在 median 档获得 3/3 审稿人支持。 这是论文最安全的 claim——数据清晰，叙事直觉合理。
+
+      '
+  - name: SciERC unconstrained baseline
+    plan_id: P005a
+    description: 'Phase 2 SciERC unconstrained（与 Phase 0 同 pipeline 但 Phase 2 checker
+      v2）， 作为 ablation 的 control condition。
+
+      '
+    expected_results:
+      total_samples: 551
+      total_triples: 1724
+      total_entities: 2474
+      json_parse_rate: 1.0
+      entity_type_violation_rate: 0.004
+      relation_vocabulary_violation_rate: 0.0139
+      domain_range_violation_rate: 0.1537
+      cross_field_consistency_violation_rate: 0.0008
+      entity_f1: 0.3101
+      relation_f1: 0.0823
+    result_rationale: '与 P001 数值一致（同模型同数据同 prompt，仅 checker 版本更新后数值不变）。 Median 档下此实验本身无争议，仅作为
+      ablation table 的 row 0。 R2 可能注意到 R-F1=8.23% 绝对值低，引出 C8 concern。
+
+      '
+    tables:
+    - 'Table 3 row 1: SciERC unconstrained baseline metrics.'
+    figures_description: []
+    analysis: 'Baseline 数据确保 ablation 有公平比较基准。F1=8.23% 的 low absolute value 在 median
+      档下被 R2 提及一次（"results are in very low F1 regime"）但被 zero-shot framing 部分化解（R3
+      接受，R2 remains skeptical）。
+
+      '
+  - name: SciERC grammar-only
+    plan_id: P005
+    description: '仅启用 grammar layer (XGrammar CFG)，验证 grammar 层对 violation 的独立效果。
+
+      '
+    expected_results:
+      total_triples: 1725
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.1484
+      cross_field_consistency_violation_rate: 0.0008
+      entity_f1: 0.3098
+      relation_f1: 0.0823
+    result_rationale: 'Grammar 层消除 ET/RV（→0%）但 DR 几乎不变（15.37%→14.84%，Δ-0.53pp）—— 完美演示
+      grammar 只管 vocabulary 不管 semantics。Median 档下 3/3 审稿人认为 此 ablation 清晰有效。R1 可能评价
+      "The ablation clearly demonstrates the orthogonal contributions of the two layers
+      — grammar handles vocabulary, semantic handles domain/range." CF=0.08% 也证明 grammar
+      层不引入 CF——CF 100% 来自 semantic 层。
+
+      '
+    tables:
+    - 'Table 3 row 2: SciERC grammar-only.'
+    figures_description: []
+    analysis: 'Grammar-only 是 enabling dependency 叙事的关键证据。DR 不降说明 grammar 是 semantic
+      的 prerequisite 而非 replacement。
+
+      '
+  - name: SciERC semantic-only
+    plan_id: P006
+    description: '仅启用 semantic layer (TypeConstraintProcessor)，无 grammar 保底。
+
+      '
+    expected_results:
+      total_triples: 1726
+      entity_type_violation_rate: 0.004
+      relation_vocabulary_violation_rate: 0.0151
+      domain_range_violation_rate: 0.1165
+      cross_field_consistency_violation_rate: 0.0271
+      entity_f1: 0.3101
+      relation_f1: 0.0815
+    result_rationale: 'Semantic-only DR↓24%（vs full_s1 ↓94%）——没有 grammar 保底时 semantic
+      层遇到 OOV relation types 无法 enforce constraints，效果大打折扣。RV=1.51% 残余证明 semantic
+      不管 vocabulary。Median 档下此数据被 R1 引用为 "convincing evidence for the enabling dependency
+      between layers." R2 同意但追问 "What fraction of the 76% gap (24% vs 94%) is due
+      to OOV vs. other failure modes?" 需 rebuttal 补充 OOV relation 占 semantic failure
+      的比例分析。
+
+      '
+    tables:
+    - 'Table 3 row 3: SciERC semantic-only.'
+    figures_description: []
+    analysis: 'Semantic-only 的 CF=2.71% 已开始上升（unconstrained 0.08%），预示 semantic enforcement
+      的 CF 副作用。完整 ablation 梯度：unconstrained 0.08% → semantic_only 2.71% → full_s1
+      9.90%。R1 会注意到此趋势。
+
+      '
+  - name: SciERC full S1
+    plan_id: P007
+    description: 'Grammar + Semantic 双层，single-pass (S1)。论文主推配置。
+
+      '
+    expected_results:
+      total_triples: 1729
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.0093
+      cross_field_consistency_violation_rate: 0.099
+      entity_f1: 0.3098
+      relation_f1: 0.0836
+    result_rationale: 'DR=0.93% (↓94%) 是论文最强数据点。Median 档下 R1 和 R3 对 DR 结果高度满意。 但 CF=9.90%
+      是 #1 攻击面：R1 写 "The method trades DR violations (15.4%→0.93%) for CF violations
+      (0.08%→9.90%). While the authors argue CF is ''softer'' than DR, a 10% cross-field
+      inconsistency rate is concerning. The claim of ''near-complete type-valid IE''
+      is undermined when 1 in 10 entities has inconsistent typing." R1 给 major weakness，要求更强的
+      CF mitigation（不仅是 limitation 声明）。 R-F1=8.36% (+0.13pp, p=0.58) 在 median 档下被接受为
+      F1-neutral。
+
+      '
+    tables:
+    - 'Table 3 row 4: SciERC full S1 — primary configuration.'
+    - 'Table 4: DR reduction per relation type (unconstrained → S1).'
+    figures_description:
+    - 'Figure 3: Stacked bar chart showing violation composition shift — DR↓94% but
+      CF↑ from 0.08% to 9.90%.'
+    analysis: 'Median R1 的 CF major concern 是可回应的：提供 CF 子类型分析（EVR 占 >90%， 根因是 type
+      system 语义模糊），补充 ablation 证明 CF 100% 由 semantic 层引入， 并提出 future work direction（global
+      entity-type consensus）。但需要 rebuttal 中 实际补充这些分析，不能仅靠声明。估计 rebuttal effort 3-4
+      天。
+
+      '
+  - name: SciERC full S2 (ablation)
+    plan_id: P008
+    description: 'Two-pass strategy: Pass 1 entity extraction (grammar-only)，Pass
+      2 relation generation (input-dependent grammar from Pass 1 entities)。
+
+      '
+    expected_results:
+      total_triples: 1644
+      total_entities: 2228
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0
+      domain_range_violation_rate: 0.0097
+      cross_field_consistency_violation_rate: 0.0803
+      entity_f1: 0.319
+      relation_f1: 0.0803
+    result_rationale: 'S2 DR=0.97% ≈ S1 0.93%，CF=8.03% vs S1 9.90%（Δ-1.87pp，non-significant）。
+      Triples 减少（1644 vs 1729, -4.9%），F1 略低。Median 档下审稿人对 S2 反应冷淡： R2 写 "S2 adds implementation
+      complexity without clear benefit — DR comparable, CF marginally lower but not
+      significantly so, and F1 drops. The authors correctly position this as an ablation
+      rather than a contribution." R3 认为 S2 展示了 framework flexibility，acceptable as
+      appendix material。 关键：S2 不解决 CF 的事实在 median 档下被 R1 引用为 "even the two-pass variant
+      cannot address CF, confirming this is a fundamental limitation of per-relation
+      enforcement."
+
+      '
+    tables:
+    - 'Table 3 row 5 (or Appendix): S2 ablation metrics.'
+    figures_description: []
+    analysis: 'S2 数据在 median 档无争议——被接受为 ablation 即可。不要试图将 S2 包装为 CF 解决方案，审稿人会立刻拆穿。
+
+      '
+  - name: DocRED unconstrained baseline
+    plan_id: P009
+    description: 'Qwen3-8B DocRED unconstrained baseline (Phase 2 checker v2)。
+
+      '
+    expected_results:
+      documents_checked: 986
+      parse_failures: 12
+      total_entities: 20171
+      total_triples: 17497
+      entity_type_violation_rate: 0.0248
+      relation_vocabulary_violation_rate: 0.2966
+      domain_range_violation_rate: 0.1846
+      cross_field_consistency_violation_rate: 0.001
+      entity_f1: 58.15
+      relation_f1: 7.74
+    result_rationale: 'RV=29.66% 是 DocRED 特有现象——96 relations 中很多 Qwen 生成的 relation
+      names 不在 vocabulary 中。Median R2 会注意："Nearly 30% out-of-vocabulary rate suggests
+      the model fundamentally struggles with this ontology''s relation set, which
+      confounds all downstream violation metrics." 这设置了 D014 dual-factor 叙事的伏笔。 E-F1=58.15%
+      vs R-F1=7.74% 的巨大落差在 median 档被接受为 "relation extraction is much harder than entity
+      recognition in zero-shot setting."
+
+      '
+    tables:
+    - 'Table 5 row 1: DocRED unconstrained baseline.'
+    figures_description: []
+    analysis: 'RV=29.66% baseline 是理解后续 grammar 层 F1 提升的关键。 Grammar 消除 OOV → all_set
+      方法下 fewer FP → higher precision。
+
+      '
+  - name: DocRED grammar-only
+    plan_id: P010
+    description: 'DocRED grammar-only，验证 grammar 层在高 RV 数据集上的独立效果。
+
+      '
+    expected_results:
+      documents_checked: 985
+      parse_failures: 13
+      total_entities: 20150
+      total_triples: 17341
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0003
+      domain_range_violation_rate: 0.2617
+      cross_field_consistency_violation_rate: 0.0007
+      entity_f1: 59.38
+      relation_f1: 8.31
+    result_rationale: '关键发现：grammar 消除 RV (29.66%→0.03%) 和 ET (2.48%→0%) 后，DR 反而上升
+      (18.46%→26.17%, +7.71pp)。这不是方法失败——grammar 将 OOV relation names 强制映射到 valid names，暴露了这些
+      triples 的 latent DR violations。 Median R2 会质疑："DR *increases* with grammar constraints?
+      This seems to contradict the paper''s narrative." 但 dual-factor 解释（grammar 揭露
+      latent violations）可部分说服。R2 给 major weakness 但标注 "the dual-factor explanation
+      is plausible but would benefit from direct evidence (e.g., tracing specific
+      triples before/after grammar correction to verify the latent violation hypothesis)."
+      E-F1=59.38% 显著高于 unconstrained 58.15% (+1.23pp)——grammar 是 E-F1 唯一来源。
+
+      '
+    tables:
+    - 'Table 5 row 2: DocRED grammar-only.'
+    figures_description:
+    - 'Figure 4: Sankey diagram showing how OOV triples (RV violations) are redistributed
+      by grammar layer — a fraction maps to correct relations (F1↑), another fraction
+      reveals latent DR violations (DR↑).'
+    analysis: 'Grammar-only DocRED 的 DR↑ 现象在 median 档是一个 moderate risk point。 R2 的
+      "direct evidence" 要求可通过 rebuttal 补充 triple-level tracing （抽样 100 个 grammar-corrected
+      triples 追踪 before/after），effort ~2 天。
+
+      '
+  - name: DocRED semantic-only
+    plan_id: P011
+    description: 'DocRED semantic-only，验证无 grammar 保底时 semantic 层在复杂 ontology 上的效果。
+
+      '
+    expected_results:
+      documents_checked: 987
+      parse_failures: 11
+      total_entities: 20185
+      total_triples: 17571
+      entity_type_violation_rate: 0.0422
+      relation_vocabulary_violation_rate: 0.2987
+      domain_range_violation_rate: 0.1384
+      cross_field_consistency_violation_rate: 0.0105
+      entity_f1: 57.81
+      relation_f1: 7.7
+    result_rationale: 'Semantic-only DR↓25%（18.46%→13.84%），与 SciERC semantic-only
+      ↓24% 一致。 RV 基本不变（29.87%），ET 反而上升（2.48%→4.22%）——semantic 层在 OOV context 下可能干扰
+      entity type 生成。Median 档下此数据被视为 "expected given the enabling dependency" 叙事。R1
+      引用为 ablation 证据，无额外 concern。 E-F1=57.81% 低于 unconstrained 58.15%——semantic-only
+      对 DocRED 有轻微负效果， 但差异小且无显著性，不构成 concern。
+
+      '
+    tables:
+    - 'Table 5 row 3: DocRED semantic-only.'
+    figures_description: []
+    analysis: 'Semantic-only 一致性（SciERC/DocRED 都是 ~24% DR reduction）支撑了 enabling dependency
+      叙事的 generalizability。
+
+      '
+  - name: DocRED full S1
+    plan_id: P012
+    description: 'DocRED grammar+semantic S1，论文在 DocRED 上的主推配置。
+
+      '
+    expected_results:
+      documents_checked: 987
+      parse_failures: 11
+      total_entities: 20187
+      total_triples: 17341
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0003
+      domain_range_violation_rate: 0.1021
+      cross_field_consistency_violation_rate: 0.0257
+      entity_f1: 59.37
+      relation_f1: 8.23
+    result_rationale: 'DR↓44.7%（18.46%→10.21%）是 median 档的核心争议点。vs SciERC ↓94%，差距巨大。
+      R2 写 major weakness："The method achieves only 45% DR reduction on DocRED vs.
+      94% on SciERC. The authors'' explanation (''tightness × RV baseline interaction'')
+      is partially convincing but raises the question: for real-world complex ontologies
+      where RV is high, is the method practically useful?"
+
+      Dual-factor 解释（Qwen RV=29.66% >> Llama RV=16.03% → grammar 揭露 latent DR → 残余
+      DR 更高）被 R2 评为 "plausible but needs stronger evidence." R1 认为 Constraint Coverage
+      指标（SciERC ~89% vs DocRED ~43%）如果引入会 将此从 weakness 转为 quantifiable finding。R3
+      接受 dual-factor 解释。
+
+      R-F1=8.23% (+0.50pp, p<0.001) 和 E-F1=59.37% (+1.22pp, p<0.001) 的 显著提升被 3/3 审稿人承认。但
+      R2 补充 "the F1 improvement is driven entirely by grammar eliminating OOV, not
+      by the semantic constraint layer — this should be made more explicit."
+
+      '
+    tables:
+    - 'Table 5 row 4: DocRED full S1.'
+    - 'Table 6: Constraint Coverage metric — SciERC vs DocRED fallback rates.'
+    figures_description:
+    - 'Figure 5: DR reduction rate vs. Constraint Coverage across datasets/models.
+      Shows predictable relationship: higher coverage → higher DR reduction.'
+    analysis: 'DocRED DR↓44.7% 在 median 档收到 1 个 major weakness。Rebuttal 策略： (a) 引入
+      Constraint Coverage metric 量化 semantic 层实际生效比例； (b) 强调 Llama DocRED DR↓90.2%
+      证明方法本身有效，Qwen 的弱表现是 model-specific； (c) 承认 "for models with high OOV rates,
+      the semantic layer''s effective coverage is reduced" 作为 honest limitation。Effort
+      ~3 天。
+
+      '
+  - name: Llama SciERC unconstrained
+    plan_id: P013
+    description: 'Llama-3.1-8B SciERC unconstrained，cross-model baseline。
+
+      '
+    expected_results:
+      total_entities: 2451
+      total_relations: 1274
+      entity_type_violation_rate: 0.0
+      relation_vocabulary_violation_rate: 0.0055
+      domain_range_violation_rate: 0.1334
+      cross_field_consistency_violation_rate: 0.0024
+      entity_f1: 0.2356
+      relation_f1: 0.0268
+      json_parse_failures: 1
+    result_rationale: 'Llama SciERC DR=13.34% 略低于 Qwen 15.37%，RV=0.55% 也低——Llama 对
+      SciERC 7 个 relation names 掌握更好。但 R-F1=2.68% 远低于 Qwen 8.23%——Llama 在 此 prompt
+      format 下 extraction quality 更差。 Median 档下 R3 注意到 "Llama achieves much lower
+      F1 than Qwen on the same task, suggesting the constraint evaluation may be confounded
+      by model capability differences." 建议增加 few-shot 或 supervised 设置以 disentangle
+      constraint effect from model capability。这是 minor suggestion，不构成 major weakness。
+
+      '
+    tables:
+    - 'Table 7 row 1: Llama SciERC unconstrained.'
+    figures_description: []
+    analysis: 'Llama 更低的 F1 在 median 档被视为 zero-shot variability，不威胁 constraint claim。
+
+      '
+  - name: Llama SciERC full S1
+    plan_id: P014
+    description: 'Llama-3.1-8B SciERC full S1，cross-model constraint validation。
+
+      '
+    expected_results:
+      samples: 550
+      entities_extracted: 2469
+      relations_extracted: 1315
+      domain_range_violation_rate: 0.0008
+      relation_vocab_violation_rate: 0.0
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.0656
+      entity_f1: 0.2349
+      relation_f1: 0.0254
+    result_rationale: 'DR=0.08% (↓99.4%)——比 Qwen 的 0.93% 还低，near-perfect constraint
+      enforcement。 这是论文最强的 cross-model 证据。Median 档下 3/3 审稿人认可。 但 CF=6.56% 和 E-F1 下降（23.56%→23.49%,
+      -0.07pp）被 R1 记录。 R-F1 下降（2.68%→2.54%, -0.14pp）被接受为 F1-neutral。 R3 写 "Cross-model
+      results on SciERC are strong — near-zero DR with no code modification. However,
+      two models is the minimum for a generalization claim; the authors should clearly
+      frame this as preliminary cross-model evidence."
+
+      '
+    tables:
+    - 'Table 7 row 2: Llama SciERC full S1.'
+    figures_description: []
+    analysis: 'Llama SciERC 是 cross-model 叙事的基石。DR↓99.4% 远超 Qwen 的 ↓94%， 暗示 Llama
+      的低 RV baseline 允许 semantic 层更充分 enforce constraints。 这恰好支撑 D014 dual-factor
+      insight。
+
+      '
+  - name: Llama DocRED unconstrained
+    plan_id: P015
+    description: 'Llama-3.1-8B DocRED unconstrained，cross-model DocRED baseline。
+
+      '
+    expected_results:
+      documents: 998
+      documents_checked: 930
+      parse_failures: 68
+      unique_entities: 11525
+      total_triples: 16437
+      ET_rate_pct: 0.13
+      RV_rate_pct: 16.03
+      DR_rate_pct: 26.07
+      CF_rate_pct: 0.17
+      entity_f1: 55.65
+      relation_f1: 5.98
+    result_rationale: 'Llama DocRED DR=26.07% 高于 Qwen 18.46%，但 RV=16.03% 远低于 Qwen
+      29.66%。 这是 D014 dual-factor 的直接证据：同一 ontology (τ̄=0.842) 下两个模型 DR 和 RV 呈反向关系。Parse
+      failures=68/998 (6.8%) 远高于 Qwen 12/998 (1.2%)。 Median R2 写："Parse failure rate
+      5.6× higher for Llama is concerning. While the authors note this biases conservatively
+      (failed parses excluded from F1), it suggests the model struggles with the output
+      format." R3 建议 "report parse failure rates prominently and discuss what output
+      format issues cause them." Minor weakness。
+
+      '
+    tables:
+    - 'Table 7 row 3: Llama DocRED unconstrained.'
+    figures_description:
+    - 'Table 7 footnote: Parse failure rates — Qwen 1.2% vs Llama 6.8% (SciERC <0.2%
+      both models).'
+    analysis: 'Llama 高 parse failure 在 median 档被标为 limitation 而非 fatal flaw。 建议在 §5
+      正文（而非 footnote）讨论 parse failures 的影响。
+
+      '
+  - name: Llama DocRED full S1
+    plan_id: P016
+    description: 'Llama-3.1-8B DocRED full S1，cross-model constraint 在复杂 ontology
+      上的效果。
+
+      '
+    expected_results:
+      documents: 998
+      documents_checked: 907
+      parse_failures: 91
+      unique_entities: 11296
+      triples: 16368
+      ET: 0.0
+      RV: 0.0
+      DR: 2.55
+      CF: 12.02
+      entity_f1: 55.01
+      relation_f1: 6.27
+    result_rationale: 'DR↓90.2%（26.07%→2.55%）远优于 Qwen DocRED ↓44.7%。这直接验证 D014 dual-factor：
+      Llama RV baseline 低（16% vs 30%）→ grammar 层揭露的 latent DR violations 更少 → semantic
+      层有效覆盖更高 → DR reduction 更大。
+
+      但 CF=12.02% 是全矩阵最高值。R1 写 major weakness："CF reaches 12% on Llama DocRED — worse
+      than Qwen''s 9.9% on SciERC. The trend suggests CF scales with constraint complexity,
+      raising concerns about applicability to real-world ontologies." 这加重了 CF concern
+      的 severity。
+
+      E-F1=55.01% vs unconstrained 55.65% (Δ-0.64pp)——Llama DocRED 是唯一出现 E-F1 下降的配置。Median
+      R2 写："Entity F1 *decreases* for Llama on DocRED, contradicting the DocRED E-F1
+      improvement seen with Qwen. The cross-model effect is inconsistent." 但 Δ 较小且
+      R-F1 上升 (+0.29pp)，R2 给 minor weakness。
+
+      Parse failures 从 68 增加到 91 (+33.8%)，constrained decoding 加重了 Llama 的 parse 问题。R3
+      注意到但不视为 major issue。
+
+      '
+    tables:
+    - 'Table 7 row 4: Llama DocRED full S1.'
+    - 'Table 8: Cross-model × cross-dataset DR reduction matrix (2×2).'
+    figures_description:
+    - 'Figure 6: 2×2 heatmap — DR reduction rate. Diagonal pattern: SciERC high for
+      both models; DocRED model-dependent. Annotated with RV baseline and Constraint
+      Coverage.'
+    analysis: 'Llama DocRED 在 median 档贡献两个 major findings 和一个 concern： (1) DR↓90.2%
+      证明方法有效（positive）； (2) Qwen vs Llama 差异验证 dual-factor（positive）； (3) CF=12.02%
+      + E-F1↓ 加重 CF limitation severity。 Net effect: 审稿人认为 cross-model 数据 strengthens
+      the paper overall 但 requires honest limitation discussion。
+
+      '
+  - name: S2 pilot (50 docs)
+    plan_id: P017
+    description: 'S2 strategy pilot on 50 SciERC docs，用于 early feasibility check。
+
+      '
+    expected_results:
+      domain_range_violation_rate: 0.0205
+      relation_vocabulary_violation_rate: 0.0
+      relation_f1: 0.1008
+      samples: 50
+      predicted_relations: 146
+    result_rationale: 'Pilot DR=2.05% 在小样本下看起来不错，但 full run (P008) DR=0.97% 表明 pilot
+      高估了 DR（小样本方差）。Median 档下审稿人不会单独评价 pilot——已被 full run 取代。 论文中不应引用 pilot 数据（per
+      paper_framing 指导："Do NOT cite pilot50 DR=0% as S2 evidence"）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Pilot 仅用于方法开发阶段的 sanity check。论文中不出现。
+
+      '
+  - name: Post-hoc filtering baseline
+    plan_id: P018
+    description: '对 unconstrained output 执行 post-hoc filtering（删除所有 DR/RV/ET violating
+      triples）， 作为 OntoCoDec 的 alternative baseline。
+
+      '
+    expected_results:
+      docred_f1_after: 9.61
+      docred_precision_after: 11.22
+      docred_recall_after: 8.4
+      docred_rejection_rate: 0.481
+      docred_tp_before: 1137
+      docred_tp_after: 1010
+      docred_tp_lost: 127
+      docred_et_residual: 0.0247
+      scierc_f1_after: 8.63
+      scierc_rejection_rate: 0.168
+      scierc_recall_after: 10.68
+    result_rationale: 'Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36; DocRED 9.61
+      vs 8.23）—— 这是 median 档 R2 的潜在 attack line："Why not just use post-hoc filtering?
+      It achieves higher F1 AND zero violations."
+
+      但 multi-dimensional defense 在 median 档部分有效： - DocRED 丢弃 48.1% triples（R1 认为
+      "unacceptable information loss"） - 127 个 TP 被误删（11.2% of TPs） - Recall 下降（SciERC
+      -0.72pp, DocRED -1.06pp）vs OntoCoDec recall 上升 - ET residual=2.47%（post-hoc
+      不能修 entity type）
+
+      R2 写 minor weakness："The comparison with post-hoc filtering needs clearer framing.
+      In scenarios where precision matters more than recall, post-hoc may be preferred.
+      The authors should acknowledge this explicitly rather than implying OntoCoDec
+      is always superior." R1 接受 multi-dimensional framing，认为 operational advantages（流式、
+      无需后处理）有实际价值。
+
+      '
+    tables:
+    - 'Table 9: OntoCoDec vs. post-hoc filtering — multi-dimensional comparison (F1,
+      recall, rejection rate, ET residual, operational properties).'
+    figures_description: []
+    analysis: 'Post-hoc baseline 在 median 档被 R2 用来 challenge "why constrained decoding?"
+      叙事，但 multi-dimensional framing + 48.1% rejection rate + 127 TP loss 足以维持论文叙事。关键是不要
+      claim "OntoCoDec is strictly better" —— 诚实承认 precision/recall trade-off。
+
+      '
+  - name: Bootstrap CI (10000 iterations)
+    plan_id: P019
+    description: 'Document-level bootstrap (10000 resample) 计算 F1 差异的 confidence intervals
+      和 p-values。
+
+      '
+    expected_results:
+      scierc_rel_f1_delta: 0.13
+      scierc_rel_f1_p: 0.58
+      scierc_ent_f1_delta: -0.03
+      scierc_ent_f1_p: 0.53
+      docred_rel_f1_delta: 0.5
+      docred_rel_f1_p: <0.001
+      docred_rel_f1_ci: '[+0.23, +0.81]'
+      docred_ent_f1_delta: 1.23
+      docred_ent_f1_p: <0.001
+      docred_ent_f1_ci: '[+0.94, +1.55]'
+    result_rationale: 'Bootstrap CI 提供了严格的统计证据。Median 档下： - SciERC F1-neutral (p=0.58/0.53)
+      被 3/3 审稿人接受——constraint 不降 F1。 - DocRED F1 显著提升 (p<0.001) 被承认但 R2 追问 mechanism。
+
+      R2 写："The significant F1 improvement on DocRED is driven by grammar eliminating
+      OOV predictions (which count as FP under all_set), not by the semantic layer
+      improving extraction. The authors should clarify that this is an artifact of
+      the evaluation methodology (all_set) interacting with grammar constraints, not
+      a genuine improvement in extraction capability." 这是 fair point——论文需明确归因（grammar→OOV
+      elimination→fewer FP→higher precision）。
+
+      R1 建议 "In the zero-shot low-F1 regime, even small absolute gains are percentage-wise
+      significant. Discuss whether these gains would persist at higher F1 levels."
+      这引出 F1 regime sensitivity discussion。
+
+      '
+    tables:
+    - 'Table 10: Bootstrap CI results for all metric pairs.'
+    figures_description:
+    - 'Figure A1 (Appendix): Bootstrap distribution histograms for F1 deltas, showing
+      SciERC centered at 0 and DocRED clearly positive.'
+    analysis: 'Bootstrap 数据在 median 档被全部接受为 methodologically sound。 争议点不在统计方法而在 interpretation——R2
+      要求更清晰的 mechanism attribution， R1 要求 F1 regime sensitivity discussion。两者都是 rebuttal
+      可回应的。
+
+      '
+  - name: DocRED schema compilation (Phase 0 R2)
+    plan_id: P020
+    description: 'DocRED Phase 0 重跑（被 kill，已被 P004 取代）。
+
+      '
+    expected_results:
+      status: killed
+      superseded_by: P004
+    result_rationale: '实验被终止，不进入论文。Median 档审稿人不会看到此实验。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: N/A — killed experiment, no paper impact.
+  review_report: '---
+
+    dream_id: dream_20260514T205155
+
+    tier: median
+
+    overall_score: borderline — Findings acceptance (3.0/5)
+
+    timestamp: 2026-05-14T21:41:12.367118+00:00
+
+    ---
+
+
+    # Dream Review Report: OntoCoDec
+
+
+    **Paper**: OntoCoDec: Near-Complete Type-Valid Information Extraction under Single-Relation
+    Scope via Compiled Ontology Constraints
+
+    **Venue**: EMNLP 2026 (ARR scoring)
+
+    **Review Mode**: Full (2 Reviewers, 4-step roundtable)
+
+    **Dream ID**: 20260514T205155
+
+
+    ---
+
+
+    ## Roundtable Process
+
+
+    - **R1** (Methods + Experiments focus): Soundness 3.5, Excitement 3.0, Overall
+    3.5, Confidence 4
+
+    - **R2** (Novelty + Related Work focus): Soundness 3.5, Excitement 2.5, Overall
+    3.0, Confidence 4
+
+    - **Cross-examination**: Conducted in Steps 2-3. Key agreements and divergences
+    documented below.
+
+
+    ---
+
+
+    ## Consolidated Scores (ARR 1–5 scale, half-point increments)
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 3.5 | 3.5 | **3.5** |
+
+    | Excitement | 3.0 | 2.5 | **2.5** |
+
+    | Overall | 3.5 | 3.0 | **3.0** |
+
+    | Confidence | 4 | 4 | **4** |
+
+
+    **Headline**: Borderline — suitable for **Findings** track. The violation landscape
+    study (§3) is a genuine empirical contribution; the OntoCoDec framework is technically
+    sound but limited in novelty. The CF trade-off and DocRED weakness prevent main
+    conference recommendation.
+
+
+    ---
+
+
+    ## Summary of the Paper
+
+
+    This paper presents the first systematic per-relation measurement of ontology
+    constraint violations in LLM-based zero-shot information extraction, finding that
+    domain/range (DR) violations affect 15–26% of generated triples and correlate
+    with per-relation constraint tightness rather than ontology size. The authors
+    propose OntoCoDec, which compiles IE ontology schemas into two composable constrained-decoding
+    layers — a grammar layer (XGrammar CFG) eliminating vocabulary violations and
+    a semantic layer (stateful entity registry + dynamic logit masking) enforcing
+    domain/range constraints. On SciERC, DR drops from 15.4% to 0.93% (↓94%) with
+    no F1 degradation; on DocRED, reduction ranges from 45–90% depending on model,
+    with cross-field consistency (CF) violations of 9.9–12.0% identified as an inherent
+    limitation.
+
+
+    ---
+
+
+    ## Consensus Strengths
+
+
+    ### S1: Violation Landscape Study Is a Genuine Empirical Contribution (R1+R2 agree)
+
+    The per-relation violation analysis in §3 is novel and informative. The finding
+    that DR violations concentrate on high-tightness relations (Compare 42.4% vs.
+    Conjunction 0.0%, a 56× spread on SciERC) and that violation rates are comparable
+    across SciERC (7 relations) and DocRED (96 relations) despite 14× ontology size
+    difference provides actionable insight for the IE community. The schema-informed
+    prompting experiment (Table 3) revealing that one relation type (Evaluate-for)
+    *increases* violations under prompting (+5.8pp) is a striking negative result.
+    Both reviewers agree this landscape study stands as an independent contribution
+    regardless of OntoCoDec''s merits.
+
+
+    ### S2: Thorough and Transparent Ablation Design (R1+R2 agree)
+
+    The 4-way ablation (unconstrained / grammar-only / semantic-only / full S1) on
+    two datasets with a cross-model validation (Llama-3.1-8B) is well-structured.
+    The ablation cleanly demonstrates the enabling dependency: grammar-only DR barely
+    changes (15.37%→14.84%), semantic-only achieves ↓24%, but full S1 achieves ↓94%
+    — proving grammar is a prerequisite, not a redundancy. The S2 two-pass variant
+    is honestly positioned as an ablation rather than over-sold as a CF solution.
+    Document-level bootstrap CIs (10,000 iterations) provide appropriate statistical
+    rigor.
+
+
+    ### S3: Honest Negative Result Reporting (R1+R2 agree)
+
+    The paper is commendably transparent about its limitations: CF trade-off (9.9–12.0%),
+    DocRED''s weaker results (45% vs. 94% DR reduction for Qwen), the low-F1 regime
+    caveat, grammar-only DR *increase* on DocRED (latent violations exposed), and
+    the admission that post-hoc filtering achieves higher F1 in precision-focused
+    scenarios. This intellectual honesty strengthens the paper''s credibility.
+
+
+    ### S4: Dual-Factor Model and Constraint Coverage Metric (R1+R2 agree)
+
+    The dual-factor analysis — DR reduction ceiling determined jointly by constraint
+    tightness and model vocabulary compliance (RV baseline) — is analytically stronger
+    than a naive single-factor story. The Constraint Coverage metric (SciERC CC≈89%
+    vs. DocRED CC≈43%) successfully reframes the DocRED weakness from "the method
+    doesn''t work on complex ontologies" to "DR reduction scales predictably with
+    coverage, which is determined by tightness × vocabulary compliance." This is a
+    useful practitioner-facing diagnostic.
+
+
+    ---
+
+
+    ## Consensus Weaknesses
+
+
+    ### W1 [Major]: CF Trade-Off Is Severe and Inadequately Resolved
+
+    **R1 position**: CF reaches 9.90% on SciERC and 12.02% on Llama-DocRED — the method
+    trades one class of violations for another. The claim of "near-complete type-valid
+    IE" is undermined when 1 in 10 entities has inconsistent typing. The §5.8 sub-type
+    analysis (>90% EVR, root cause: type-system ambiguity) is a good start but insufficient:
+    (a) no quantitative breakdown of ambiguity-driven CF vs. erroneous CF; (b) the
+    severity distinction ("CF is softer than DR") is asserted but not empirically
+    validated (e.g., what fraction of CF triples are actually usable in a downstream
+    KG?); (c) the progression unconstrained 0.08% → semantic-only 2.71% → full S1
+    9.90% shows CF scales with constraint enforcement aggressiveness.
+
+
+    **R2 position**: Agrees. Additionally notes that CF=12.02% on Llama-DocRED suggests
+    CF worsens with constraint complexity, raising concerns about applicability to
+    real-world ontologies with hundreds of types.
+
+
+    **Consensus**: Major weakness. The paper needs either (a) a net violation analysis
+    (DR eliminated vs. CF introduced, with severity weighting), or (b) a downstream
+    evaluation showing CF triples remain usable, or at minimum (c) a rigorous breakdown
+    of ambiguity-driven vs. erroneous CF with per-type-pair analysis.
+
+
+    ### W2 [Major]: DocRED DR Reduction (45% for Qwen) Undermines Generality Claims
+
+    **R1 position**: The 2× variation between models on the same ontology (Qwen ↓45%
+    vs. Llama ↓90%) contradicts model-agnostic framing. Residual DR=10.21% is substantial.
+
+
+    **R2 position**: Agrees. Notes that 10.21% residual DR combined with 2.57% CF
+    means ~13% of triples still have some violation, which strains the "Near-Complete"
+    title framing.
+
+
+    **Consensus**: Major weakness. The Constraint Coverage explanation is *plausible*
+    but would benefit from direct evidence (e.g., tracing specific triples before/after
+    grammar correction to verify the latent violation hypothesis). The title qualifier
+    "under Single-Relation Scope" does not adequately communicate that effectiveness
+    is also model-dependent and ontology-dependent.
+
+
+    ### W3 [Moderate]: Limited Technical Novelty in the Framework
+
+    **R1 position**: The two-layer architecture is well-motivated and the enabling
+    dependency insight is non-trivial, but the decidability taxonomy is a straightforward
+    classification of three obvious cases rather than a deep formalism.
+
+
+    **R2 position**: Stronger critique — the core mechanism is domain transfer of
+    code-generation constrained decoding (PICARD for SQL, Syncode/PLDI''25 for code)
+    to a structurally simpler constraint system. The entity registry is a dictionary
+    lookup; mask composition is standard bitwise AND. The novelty lies in the *problem
+    identification* (violation landscape) more than the *solution*.
+
+
+    **Consensus**: Moderate weakness. The enabling dependency insight and the problem
+    identification are the genuine intellectual contributions. The implementation,
+    while clean and effective, is engineering-level novelty rather than algorithmic
+    novelty. This is acceptable for Findings but limits main conference competitiveness.
+
+
+    ### W4 [Moderate]: Narrow Evaluation Scope
+
+    - **Two models only** (Qwen3-8B, Llama-3.1-8B) — both 8B parameter, open-weight.
+    No proprietary models, no larger models, no fine-tuned models.
+
+    - **Two datasets only** (SciERC, DocRED) — one small/simple, one large/complex.
+    No mid-range ontology.
+
+    - **Zero-shot only** — the interaction between constraint enforcement and few-shot/fine-tuned
+    extraction quality is an open question explicitly acknowledged but not explored.
+
+    - **Low-F1 regime** (R-F1 ≈ 2–8%) — constraint violations may matter less when
+    extraction quality is already very low. The §5.6 discussion ("even small absolute
+    F1 changes are non-trivial relative effects") is fair but does not resolve whether
+    the method remains useful at higher F1 levels.
+
+
+    ### W5 [Minor]: Thin Related Work / Missing References
+
+    **R2 identified gaps**:
+
+    - **Constrained decoding**: PICARD (Scholak et al., 2021) for SQL, Synchromesh
+    (Poesia et al., 2022), SynCode (Ugare et al., 2024) — already cited but differentiation
+    with PICARD/Synchromesh could be sharper.
+
+    - **LLM-based IE (2024–2025)**: TANL, REBEL, GoLLIE, and more recent zero-shot
+    IE papers are missing.
+
+    - **Neuro-symbolic constraint literature**: DeepProbLog, Semantic Loss Functions,
+    posterior regularization — these enforce semantic constraints during neural generation
+    and are conceptually related.
+
+    - **KG embedding type constraints**: TransE/DistMult with type constraints (Krompass
+    et al., 2015; Jain et al., 2018) address the same problem from an embedding perspective.
+
+    - **Schema-guided dialogue**: SGD (Rastogi et al., 2020) and related work on schema-conditioned
+    generation.
+
+
+    **R1 concurs** that 9 references is unusually thin for EMNLP. Even accounting
+    for page limits, the related work section should engage with at least 15–20 references.
+
+
+    ---
+
+
+    ## Points of Reviewer Divergence
+
+
+    ### D1: Overall Recommendation
+
+    - **R1** (3.5): Leans toward borderline accept based on the strong ablation design,
+    the violation landscape contribution, and the transparent analysis. Views the
+    framework as a solid engineering contribution with the enabling dependency as
+    a non-trivial insight.
+
+    - **R2** (3.0): Leans toward Findings based on limited technical novelty. Views
+    the primary contribution as the empirical landscape study, with the framework
+    as enabling infrastructure.
+
+    - **Resolution**: Consensus at **3.0 (Findings)**. The empirical contributions
+    are solid but the novelty profile fits Findings better than main conference. With
+    a stronger related work section and CF resolution, the paper could move to 3.5.
+
+
+    ### D2: Decidability Taxonomy
+
+    - **R1**: Useful organizational framework, slightly overstated as a "contribution."
+
+    - **R2**: Restates obvious properties of autoregressive generation; not a standalone
+    contribution.
+
+    - **Resolution**: The taxonomy is *useful exposition* but should not be framed
+    as a primary contribution. It provides a principled boundary for what constrained
+    decoding can and cannot enforce, which has pedagogical value.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. **CF severity validation**: Can you provide evidence that CF-violating triples
+    are actually usable in downstream KG population? What fraction of CF instances
+    represent genuine type ambiguity (where both types are defensible) vs. clear errors?
+
+
+    2. **Latent DR hypothesis**: For the DocRED grammar-only DR *increase* (18.46%→26.17%),
+    can you trace a sample of grammar-corrected triples to show that OOV relation
+    names were indeed hiding DR violations? This would strengthen the dual-factor
+    claim considerably.
+
+
+    3. **Constraint Coverage predictive power**: You report CC≈89% (SciERC) and CC≈43%
+    (DocRED). Can CC be computed *before* running the full pipeline (from the grammar
+    alone + a small calibration set)? If so, this becomes a genuinely useful pre-deployment
+    diagnostic.
+
+
+    4. **F1 regime sensitivity**: Have you considered running OntoCoDec on a few-shot
+    or instruction-tuned model to test whether constraint enforcement effects persist
+    at higher F1 levels? Even a small experiment (e.g., 5-shot on SciERC) would significantly
+    strengthen the paper.
+
+
+    5. **Post-hoc F1 advantage**: Post-hoc filtering achieves higher F1 than OntoCoDec
+    (Table 8). Can you clarify why — is it because post-hoc also removes CF-violating
+    triples that happen to be false positives, giving it a precision advantage that
+    OntoCoDec''s streaming approach cannot match?
+
+
+    6. **Tightness-violation correlation**: The correlation between tightness and
+    DR rate on SciERC is based on only 5–7 data points (relations). Have you tested
+    whether this holds on DocRED''s 96 relations? A scatter plot with 96 points would
+    be far more convincing than one with 7.
+
+
+    ---
+
+
+    ## Recommendations for Revision
+
+
+    1. **Title**: "Near-Complete" is misleading given DocRED results (10.21% residual
+    DR, Qwen) and CF rates (up to 12%). Consider: "Toward Type-Valid Information Extraction
+    via Compiled Ontology Constraints" or keep "under Single-Relation Scope" but add
+    "with Model-Dependent Effectiveness."
+
+
+    2. **CF analysis**: Add a net violation analysis — total violations before (DR+RV+ET)
+    vs. after (residual DR + CF). Show that the net violation count decreases even
+    accounting for CF. Validate the severity distinction with a downstream evaluation
+    or at least a manual annotation of CF instances.
+
+
+    3. **Related work**: Expand to at least 15–20 references. Add PICARD, Synchromesh,
+    TANL/REBEL, recent 2024–2025 zero-shot IE papers, and neuro-symbolic constraint
+    enforcement literature. Sharpen differentiation: what makes IE ontology constraints
+    harder than SQL/code constraints?
+
+
+    4. **DocRED evidence**: Add a triple-level tracing analysis for the latent DR
+    hypothesis (sample 50–100 grammar-corrected triples, show before/after). This
+    would convert the dual-factor explanation from "plausible" to "empirically validated."
+
+
+    5. **Tightness correlation**: Show the scatter plot on DocRED (96 relations) in
+    addition to SciERC. If the correlation holds at scale, this substantially strengthens
+    the landscape study. If it doesn''t hold, discuss why (confounds: relation frequency,
+    entity type distribution).
+
+
+    6. **Reframe contributions**: Position the violation landscape study as the primary
+    novel contribution, with OntoCoDec as a demonstration that these violations are
+    addressable via constrained decoding. This framing better matches the actual novelty
+    profile.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    Comparing the paper against the experiment design (review_context.yaml, 20 planned
+    experiments):
+
+
+    | Experiment | Status in Paper | Notes |
+
+    |---|---|---|
+
+    | P001 (SciERC minimal) | ✅ Table 1, §3 | Complete |
+
+    | P002 (SciERC schema-informed) | ✅ Table 3, §3 | Complete |
+
+    | P003 (DocRED minimal) | ✅ Table 1, §3 | Complete |
+
+    | P004 (DocRED schema-informed) | ✅ Table 3, §3 | Complete |
+
+    | P005a (SciERC unconstrained baseline) | ✅ Table 4, §5.2 | Complete |
+
+    | P005 (SciERC grammar-only) | ✅ Table 4, §5.2 | Complete |
+
+    | P006 (SciERC semantic-only) | ✅ Table 4, §5.2 | Complete |
+
+    | P007 (SciERC full S1) | ✅ Table 4, §5.2 | Complete |
+
+    | P008 (SciERC full S2) | ✅ Table 4, §5.2 | Complete |
+
+    | P009 (DocRED unconstrained) | ✅ Table 5, §5.3 | Complete |
+
+    | P010 (DocRED grammar-only) | ✅ Table 5, §5.3 | Complete |
+
+    | P011 (DocRED semantic-only) | ✅ Table 5, §5.3 | Complete |
+
+    | P012 (DocRED full S1) | ✅ Table 5, §5.3 | Complete |
+
+    | P013 (Llama SciERC uncon) | ✅ Table 6, §5.4 | Complete |
+
+    | P014 (Llama SciERC S1) | ✅ Table 6, §5.4 | Complete |
+
+    | P015 (Llama DocRED uncon) | ✅ Table 6, §5.4 | Complete |
+
+    | P016 (Llama DocRED S1) | ✅ Table 6, §5.4 | Complete |
+
+    | P017 (S2 pilot) | ✅ Not in paper | Correct — superseded by full run |
+
+    | P018 (Post-hoc filtering) | ✅ Table 8, §5.5 | Complete |
+
+    | P019 (Bootstrap CI) | ✅ Table 9, §5.6 | Complete |
+
+    | P020 (DocRED Phase 0 R2) | ✅ Not in paper | Correct — killed experiment |
+
+
+    **Coverage**: 18/18 live experiments are in the paper. 2 correctly excluded (pilot,
+    killed). Coverage is **complete**.
+
+
+    ---
+
+
+    ## Final Assessment
+
+
+    This paper makes a genuine empirical contribution through its violation landscape
+    study, demonstrating that ontology constraint violations in LLM-based IE are systematic,
+    tightness-driven, and not reliably addressable via prompting alone. The OntoCoDec
+    framework is technically sound and the ablation design is exemplary in its thoroughness
+    and honesty. However, the framework''s technical novelty is moderate (domain transfer
+    of constrained decoding), the CF trade-off (up to 12%) is a significant unresolved
+    limitation, and the DocRED results show model-dependent effectiveness that complicates
+    generality claims. The paper is below the threshold for EMNLP main conference
+    but is a solid candidate for the **Findings** track, contingent on addressing
+    the thin related work section and providing stronger CF analysis.
+
+
+    **Consensus recommendation: Overall 3.0 — Findings acceptance.**'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/dream_reports/dream_20260514T205155/worst/paper.pdf
+  imagined_experiments:
+  - name: SciERC violation rate (minimal prompt)
+    plan_id: P001
+    description: Qwen3-8B 在 SciERC 上 zero-shot 最小提示下的 ontology violation 基准测试
+    expected_results:
+      total_triples: 1724
+      domain_range_violation_rate: 0.154
+      relation_vocabulary_violation_rate: 0.014
+      entity_type_violation_rate: 0.004
+      cross_field_consistency_violation_rate: 0.001
+      relation_f1_pct: 8.23
+      entity_f1_pct: 31.01
+    result_rationale: '数据本身无变化。worst 档下审稿人攻击角度：(1) "15.4% DR on a 7-relation ontology
+      is expected — with only 6 entity types and loose constraints on Used-for (787
+      triples, 0.76%), the violation rate is inflated by 3 specific relations (Feature-of/Compare/Evaluate-for)
+      that account for 85%+ of violations. This is a long-tail artifact, not a systemic
+      problem." (2) "R-F1=8.23% 说明模型根本没有学到任务结构， 在一个模型基本不会做的任务上测 violation rate 有什么意义？"
+      (3) 2-3 位审稿人认为 SciERC violation landscape 是 "useful but incremental observation"，不足以支撑独立
+      contribution。
+
+      '
+    tables:
+    - 'Table 1: SciERC Phase 0 per-relation violation rates (7 relations). Reviewer
+      标注：''3 relations drive all violations — this is a data sparsity issue, not a
+      systematic phenomenon'''
+    figures_description:
+    - 'Fig 1: Per-relation DR heatmap. Reviewer 评语：''Used-for dominates triple count
+      (45.6%) but has near-zero DR — the ''landscape'' is really just 3 problematic
+      relations'''
+    analysis: '审稿人将 violation landscape 从 "systematic phenomenon" 降级为 "long-tail artifact
+      on a small ontology"。 核心攻击：SciERC 只有 7 relations，violation 集中在 3 个关系上，不足以证明
+      "LLM IE 系统性地违反 ontology constraints"。 Path A reframe 下可辩护：即使集中在 3 个关系，这些关系的
+      25-42% violation rate 仍对下游系统产生不可忽视影响。 但需要补充更多 ontology 的 violation landscape
+      数据才能说服审稿人。
+
+      '
+  - name: SciERC violation rate (schema-informed prompt)
+    plan_id: P002
+    description: Qwen3-8B 在 SciERC 上 schema-informed prompting 后的 violation 变化
+    expected_results:
+      domain_range_violation_rate: 0.058
+      vs_minimal_dr_reduction_pct: -62.4
+      total_triples: 1661
+      evaluate_for_dr_delta_pp: 5.8
+      feature_of_dr_delta_pp: -22.3
+      compare_dr_delta_pp: -14.8
+    result_rationale: 'worst 档审稿人攻击：(1) "62.4% reduction with just prompting — the
+      problem is largely solvable without constrained decoding. The residual 5.78%
+      could be addressed by better prompt engineering (few-shot, chain-of-thought)
+      rather than building a complex decoding framework." (2) Evaluate-for regression
+      (+5.8pp) 被 1 位审稿人标记但未被多数视为 critical—— 更致命的是另一角度："you tested ONE prompting strategy;
+      claiming ''prompt insufficiency'' without trying few-shot / CoT / self-consistency
+      is premature." (3) McNemar test significance 不足以挽回—— 审稿人关注的是 "是否穷尽了 prompt 方案"
+      而非 "当前方案是否 significant"。
+
+      '
+    tables:
+    - 'Table 2: Schema-informed vs minimal per-relation DR delta. Reviewer 圈出：''5/7
+      relations improve — this is a reasonable success rate for zero-cost intervention'''
+    figures_description:
+    - 'Fig 2: Prompt effect per-relation stacked bar. Reviewer 批注：''Evaluate-for regression
+      is N=133 triples — small sample, hard to draw conclusions'''
+    analysis: '"Prompt insufficiency" claim 在 worst 档下被判定 undersupported——审稿人要求至少
+      3 种 prompting strategy (minimal / schema-informed / few-shot / CoT) 的对比才能声称
+      "prompt-level intervention is fundamentally unreliable"。 单一 schema-informed
+      prompt 的 62% reduction 反而被用来论证 "prompting works pretty well"。 Path B reframe
+      可规避：不声称 prompt insufficient，而是将 prompt 定位为 trade-off space 的一个点。
+
+      '
+  - name: DocRED violation rate (minimal prompt)
+    plan_id: P003
+    description: Qwen3-8B 在 DocRED (96 relations) 上 zero-shot 最小提示下的 violation 基准
+    expected_results:
+      total_triples: 16540
+      domain_range_violation_rate: 0.187
+      relation_vocabulary_violation_rate: 0.289
+      entity_type_violation_rate: 0.075
+      json_parse_rate: 0.964
+    result_rationale: 'worst 档审稿人关注点转移：(1) "RV=28.9% means nearly 1/3 of predicted
+      relations are OOV — the model is barely following instructions. Measuring DR
+      on a system that can''t even produce valid relation names is questionable methodology."
+      (2) "ET=7.5% further confirms the model is struggling with basic task understanding
+      in zero-shot DocRED. Your violation landscape is measuring noise, not systematic
+      behavior." (3) 1 位审稿人直接质疑："with 96 relations and no training data, this is a
+      toy evaluation that tells us nothing about how real IE systems would behave."
+      核心问题： zero-shot F1 太低 → 审稿人不信 violation pattern 反映真实 IE 系统行为。
+
+      '
+    tables:
+    - 'Table 3: DocRED Phase 0 top violations by count/rate. Reviewer：''P31_instance_of
+      DR=60.4% with 533 triples — this single relation type drives the narrative'''
+    figures_description:
+    - 'Fig 3: DocRED 96-relation violation heatmap. Reviewer：''impressive visualization
+      but most cells are near-zero — violations cluster in ~15 relations'''
+    analysis: '审稿人攻击核心：在 zero-shot R-F1 < 10% 的 setting 下，violation pattern 的外部效度存疑。
+      "You''re characterizing the error patterns of a system that doesn''t work" 是最致命的一句。
+      这直接威胁 C1 (violation landscape) 作为独立贡献的可信度。Path A reframe 需要在论文中前置 "we study
+      violation patterns as a function of ontology structure, not model capability"
+      的定位， 但审稿人可能仍不买账。
+
+      '
+  - name: DocRED violation rate (schema-informed prompt)
+    plan_id: P004
+    description: Qwen3-8B 在 DocRED 上 schema-informed prompting 后的 violation 变化
+    expected_results:
+      domain_range_violation_rate: 0.128
+      vs_minimal_dr_reduction_pct: -32
+      json_parse_rate: 0.945
+      relation_vocabulary_violation_rate: 0.184
+    result_rationale: '审稿人攻击点：(1) "Only 32% DR reduction (vs SciERC 62%) — schema-informed
+      prompting degrades with ontology complexity. But wait, you claim this SUPPORTS
+      your method. If prompting scales poorly, surely constrained decoding will also
+      face scalability challenges with 96 relations?" (2) "RV 只从 28.9% 降到 18.4%——prompting
+      甚至不能解决 OOV 问题，说明模型在 DocRED 上 根本不遵循 instructions。这是模型问题，不是 prompting vs decoding
+      问题。" (3) parse rate 从 96.4% 降到 94.5%——"prompting actually made parsing slightly
+      worse。" 审稿人用这组数据论证 "zero-shot DocRED 太难，方法无法在此 setting 下有效评估"。
+
+      '
+    tables:
+    - 'Table 4: SciERC vs DocRED prompt effect comparison. Reviewer：''the gap (62%
+      vs 32%) could simply reflect prompt sensitivity to ontology size, not a fundamental
+      limitation'''
+    figures_description: []
+    analysis: '32% vs 62% 的 gap 本意支持 "prompt scales poorly" claim，但审稿人反转论证为 "这说明 zero-shot
+      96-relation 任务太难，不是一个合理的 evaluation setting"。 核心矛盾：作者需要 DocRED 来展示 ontology
+      complexity effect，但 zero-shot DocRED 的质量太低导致审稿人质疑整个 evaluation framework。
+
+      '
+  - name: SciERC unconstrained baseline
+    plan_id: P005a
+    description: Phase 2 SciERC unconstrained 基准（与 Phase 0 一致性验证）
+    expected_results:
+      domain_range_violation_rate: 0.154
+      relation_vocabulary_violation_rate: 0.014
+      entity_type_violation_rate: 0.004
+      cross_field_consistency_violation_rate: 0.001
+      relation_f1_pct: 8.23
+      entity_f1_pct: 31.01
+      total_triples: 1724
+    result_rationale: '基准数字与 P001 一致，确认 Phase 2 pipeline 可复现。worst 档下审稿人不攻击一致性， 而是攻击
+      baseline 本身："R-F1=8.23% — the model is essentially random. Evaluating constraint
+      enforcement on random-quality output is methodologically questionable." 这个攻击贯穿所有后续
+      SciERC 实验——审稿人认为低 F1 下的 violation reduction 没有实际意义。
+
+      '
+    tables:
+    - 'Table 5: SciERC ablation matrix (5 configs). Reviewer 在 header 批注：''All R-F1
+      < 9% — these results are within noise'''
+    figures_description: []
+    analysis: '基准实验本身无问题。审稿人利用低绝对 F1 质疑整个实验矩阵的信息量。 "You''ve shown your method works
+      on bad predictions. Who cares?" 是最简洁的攻击。
+
+      '
+  - name: SciERC grammar-only
+    plan_id: P005
+    description: 仅 grammar 层（XGrammar CFG）约束下的 SciERC 结果
+    expected_results:
+      domain_range_violation_rate: 0.148
+      relation_vocabulary_violation_rate: 0.0
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.001
+      relation_f1_pct: 8.23
+      entity_f1_pct: 30.98
+    result_rationale: 'Grammar 层消除 RV 和 ET 但不影响 DR（14.84% ≈ 15.37%），符合预期——CFG 无法表达
+      cross-field 约束。worst 档审稿人攻击：(1) "Grammar-only already achieves the main practical
+      benefit — eliminating OOV relation names and invalid entity types. The residual
+      DR=14.84% could be addressed by post-hoc filtering without the complexity of
+      a stateful semantic layer." (2) "F1 完全不变 (8.23→8.23)——grammar 约束对 extraction
+      quality 零影响。" 审稿人论证 grammar-only 已经 "good enough"，semantic 层的复杂性不值得。
+
+      '
+    tables: []
+    figures_description:
+    - 'Ablation bar chart: grammar-only 列。Reviewer 圈出 DR 几乎不变的 bar：''grammar alone
+      does nothing for the claimed core problem (DR)'''
+    analysis: 'Grammar-only 的作用（消除 RV/ET）被审稿人最小化——"this is standard XGrammar application,
+      not a contribution"。同时 grammar-only DR≈unconstrained 成为审稿人论证 "grammar 层 对核心
+      violation 类型无效" 的证据。在 worst 档下，grammar 层的正面贡献（enabling semantic） 被忽视，只看到 "grammar
+      alone doesn''t solve DR"。
+
+      '
+  - name: SciERC semantic-only
+    plan_id: P006
+    description: 仅 semantic 层（logit masking）约束下的 SciERC 结果
+    expected_results:
+      domain_range_violation_rate: 0.117
+      relation_vocabulary_violation_rate: 0.015
+      entity_type_violation_rate: 0.004
+      cross_field_consistency_violation_rate: 0.027
+      relation_f1_pct: 8.15
+      entity_f1_pct: 31.01
+    result_rationale: 'Semantic-only DR=11.65%（仅↓24%）——因为没有 grammar 层，遇到 OOV relation
+      时 semantic 无法查 constraint table，大量 token 位置约束失效。worst 档审稿人攻击： (1) "Semantic-only
+      24% reduction vs full 94% — this shows your semantic layer is heavily dependent
+      on grammar. But the grammar layer is just XGrammar (existing tool). So your
+      actual novel contribution (semantic layer) only achieves 24% DR reduction on
+      its own." (2) "CF 已经从 0.08% 跳到 2.71%——semantic 层引入 CF 的同时只减少 24% DR， cost-benefit
+      不佳。" (3) "R-F1 下降 0.08pp——虽然不显著，但方向是负的。" 这组数据被审稿人用来论证 "核心 novelty（semantic layer）alone
+      效果不够"。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Semantic-only 是 worst 档最危险的数据点之一——它直接暴露了 "如果剥离 XGrammar（已有工具）， 作者的实际贡献只有
+      24% DR reduction + 引入 2.7% CF"。审稿人会写： "The authors'' genuinely novel contribution
+      — the semantic constraint layer — achieves modest violation reduction (24%)
+      while introducing a new type of inconsistency (CF 2.7%)."
+
+      '
+  - name: SciERC full S1
+    plan_id: P007
+    description: SciERC grammar+semantic S1 单遍完整约束
+    expected_results:
+      domain_range_violation_rate: 0.009
+      relation_vocabulary_violation_rate: 0.0
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.099
+      relation_f1_pct: 8.36
+      entity_f1_pct: 30.98
+      total_triples: 1729
+    result_rationale: 'DR=0.93%（↓94%）是论文核心数字。worst 档审稿人承认 DR reduction 显著，但攻击焦点 转向
+      CF=9.9%：(1) "You traded 15.37% DR for 9.9% CF. DR violations produce structurally
+      invalid triples; CF violations produce semantically inconsistent entity typing
+      across relations. Both are problematic for downstream systems. The net reduction
+      in ''problematic triples'' is only ~5pp, not the claimed 94%." (2) "CF=9.9%
+      意味着近 10% 的 entity 在不同 relation 中 被分配了不同 type——这在知识图谱中是致命的一致性问题。作者试图用 ''severity
+      distinction'' (DR=hard, CF=soft) 来淡化，但这个区分是 subjective 的。" (3) "R-F1 从 8.23
+      到 8.36 (+0.13pp, p=0.58)——统计不显著，F1 claims 站不住。" (4) 1-2 位审稿人直接引用 CF 数据判定 "method
+      introduces a new violation type to fix another"。
+
+      '
+    tables:
+    - 'Table 5 (full ablation): Reviewer 在 full_s1 行用红笔标注 CF=9.9%，批注 ''new violation
+      introduced by method'''
+    figures_description:
+    - 'Ablation stacked violation chart: CF 的红色柱状在 full_s1 列突然出现，成为视觉焦点。Reviewer：''the
+      method redistributes violations rather than eliminating them'''
+    analysis: 'CF=9.9% 是 worst 档的核心 rejection 理由。审稿人不接受 "DR=hard constraint, CF=soft
+      preference" 的分级叙事——认为这是作者为掩盖方法缺陷而设的 ad hoc 区分。"Net violation improvement" 视角
+      下效果大打折扣。Path B reframe（将 CF 升级为 core research question）可直接应对这一攻击。
+
+      '
+  - name: SciERC full S2 (ablation)
+    plan_id: P008
+    description: SciERC 两遍 S2 策略 ablation
+    expected_results:
+      domain_range_violation_rate: 0.01
+      relation_vocabulary_violation_rate: 0.0
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.08
+      relation_f1_pct: 8.03
+      entity_f1_pct: 31.9
+      total_triples: 1644
+      total_entities: 2228
+    result_rationale: 'S2 设计初衷是用两遍解码缓解 CF，但实际 CF=8.03% vs S1=9.9%——差距不显著（1.87pp）。
+      worst 档审稿人攻击：(1) "S2 adds significant complexity (two-pass decoding) for negligible
+      CF reduction (-1.87pp). R-F1 actually drops (8.03 vs 8.36). This undermines
+      the authors'' ability to iterate on the CF problem — their own best idea for
+      addressing CF failed." (2) "S2 generates 85 fewer triples (1644 vs 1729) and
+      246 fewer entities (2228 vs 2474)—— two-pass decoding causes information loss."
+      (3) "如果作者自己的 S2 方案都解决不了 CF， 这说明 CF 是 per-relation enforcement 的固有缺陷，不是 ''future
+      work'' 能解决的。" S2 的失败强化了 CF 作为 fundamental limitation 的判定。
+
+      '
+    tables:
+    - 'Table 5 S2 行: Reviewer 批注 ''S2 was supposed to mitigate CF — it doesn''t'''
+    figures_description: []
+    analysis: 'S2 失败是 worst 档 CF narrative 的加速器。审稿人逻辑：如果连作者自己设计的 CF 缓解策略 都失败了，那 "future
+      work: global consistency pass" 的承诺 credibility 极低。 这将 CF 从 "acknowledged limitation
+      with clear path forward" 降级为 "fundamental unresolved problem that the authors
+      have already failed to address"。
+
+      '
+  - name: DocRED unconstrained baseline
+    plan_id: P009
+    description: Qwen3-8B DocRED unconstrained 基准
+    expected_results:
+      domain_range_violation_rate: 0.185
+      relation_vocabulary_violation_rate: 0.297
+      entity_type_violation_rate: 0.025
+      cross_field_consistency_violation_rate: 0.001
+      relation_f1_pct: 7.74
+      entity_f1_pct: 58.15
+      total_triples: 17497
+      parse_failures: 12
+    result_rationale: 'DocRED baseline 暴露两个 worst 档攻击面：(1) RV=29.66%——"nearly 1/3
+      of triples use non-existent relation names. This is not a violation problem,
+      this is a task comprehension problem. Your method''s DR reduction is inflated
+      because grammar forces OOV relations into valid names, artificially improving
+      DR without improving extraction." (2) R-F1=7.74%—— "absolute quality indistinguishable
+      from noise on a 96-relation task." 审稿人论证 zero-shot DocRED 不是一个 meaningful evaluation
+      setting。Entity F1=58.15% 被忽视—— "entity extraction is easier, but the paper claims
+      contributions to relation extraction."
+
+      '
+    tables:
+    - 'Table 6: DocRED ablation matrix. Reviewer 在 baseline 行标注 ''RV=29.7% — model
+      doesn''t understand the task'''
+    figures_description: []
+    analysis: 'RV=29.7% 是 worst 档 DocRED 叙事的核心弱点——审稿人论证 grammar 层的 F1 提升（P010/P012）
+      只是将 OOV 强制映射到有效关系名，不是真正的 extraction quality 提升。 "Your grammar layer is doing
+      label correction, not constraint enforcement" 是最致命的 reframing。
+
+      '
+  - name: DocRED grammar-only
+    plan_id: P010
+    description: DocRED 仅 grammar 层约束
+    expected_results:
+      domain_range_violation_rate: 0.262
+      relation_vocabulary_violation_rate: 0.0003
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.001
+      relation_f1_pct: 8.31
+      entity_f1_pct: 59.38
+      parse_failures: 13
+    result_rationale: 'Grammar 消除 RV（29.66%→0.03%）和 ET（2.48%→0%），但 DR 从 18.46% 升至
+      26.17%—— worst 档审稿人抓住这一点：(1) "Grammar INCREASES DR by 7.7pp! When you force
+      OOV relation names into valid names, you''re creating new DR violations because
+      the forced valid name has different domain/range constraints than what the model
+      intended. Your grammar layer actively worsens the core problem you claim to
+      solve." (2) "E-F1 提升 (+1.23pp) 来自消除 OOV entity types——this is not ''constraint
+      enforcement improving extraction,'' it''s grammar fixing the model''s formatting
+      errors. Any JSON schema validator could do this." (3) "DR=26.17% 是所有配置中最高的——grammar
+      单独使用 比不用更差。" 审稿人用 grammar-only DR 上升来质疑整个 composable 框架的设计合理性。
+
+      '
+    tables:
+    - Table 6 grammar-only 行：Reviewer 用红色标注 DR↑ 箭头：'grammar makes DR WORSE'
+    figures_description:
+    - 'DocRED DR bar chart: grammar-only 的 DR bar 高于 unconstrained——视觉上非常不利'
+    analysis: 'DocRED grammar-only DR 上升是 worst 档最直观的攻击素材。审稿人叙事： "Step 1 of your method
+      (grammar) actively worsens the violation you claim to solve (DR). You need Step
+      2 (semantic) to clean up the mess Step 1 created. This is not ''composable''
+      constraint enforcement — this is one layer creating problems for another layer
+      to fix." 这直接挑战 "complementary with enabling dependency" 的技术叙事。
+
+      '
+  - name: DocRED semantic-only
+    plan_id: P011
+    description: DocRED 仅 semantic 层约束
+    expected_results:
+      domain_range_violation_rate: 0.138
+      relation_vocabulary_violation_rate: 0.299
+      entity_type_violation_rate: 0.042
+      cross_field_consistency_violation_rate: 0.011
+      relation_f1_pct: 7.7
+      entity_f1_pct: 57.81
+    result_rationale: 'Semantic-only DR=13.84%（仅↓25%），RV/ET 不变——因为 semantic 层不处理 vocabulary。
+      worst 档审稿人用这组数据闭合论证：(1) "Semantic-only reduces DR by only 25% while introducing
+      CF=1.05%. Grammar-only increases DR by 42% while fixing RV/ET. Neither layer
+      works well alone. The ''composable'' claim is misleading — the layers are CODEPENDENT,
+      and the codependency is fragile (see DocRED fallback rate ~57/doc)." (2) "E-F1
+      实际下降 0.34pp (57.81 vs 58.15)——semantic 层 alone 对 extraction 有害。" (3) "比较 semantic-only
+      DR=13.84% 和 full_s1 DR=10.21%——加了 grammar 后 DR 只额外 降了 3.6pp。如果 grammar 层 ''enables''
+      semantic，为什么 full_s1 DR 不接近 0%？"
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'DocRED semantic-only 数据在 worst 档下被解读为 "作者的核心贡献（semantic 层）在复杂 ontology
+      上效果有限"。DR 仅降 25%、CF 开始出现、F1 略降——三面夹击。 审稿人在此处建立 "method doesn''t scale to complex
+      ontologies" 的论据基础。
+
+      '
+  - name: DocRED full S1
+    plan_id: P012
+    description: DocRED grammar+semantic S1 完整约束
+    expected_results:
+      domain_range_violation_rate: 0.102
+      relation_vocabulary_violation_rate: 0.0003
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.026
+      relation_f1_pct: 8.23
+      entity_f1_pct: 59.37
+      parse_failures: 11
+    result_rationale: 'DR=10.21%（↓44.7%）——远低于 SciERC 的 94%。worst 档审稿人攻击： (1) "DR reduction
+      drops from 94% (SciERC) to 45% (DocRED). The method HALVES in effectiveness
+      on a more complex ontology. This is a critical scalability failure — real-world
+      IE ontologies have hundreds of relation types." (2) "Residual DR=10.21% — every
+      10th triple still violates domain/range constraints. ''Near-complete'' in the
+      title is inaccurate for DocRED." (3) "Qwen DocRED DR↓44.7% 与 Llama DocRED DR↓90.2%
+      的巨大差距说明方法效果 高度 model-dependent，不是 ontology-agnostic 的 general solution。" (4)
+      "F1 提升 (+0.50pp R-F1, p<0.001) 主要来自 grammar 消除 OOV—— grammar_only E-F1=59.38%
+      ≈ full_s1 59.37%。Semantic 层对 F1 零贡献。" 审稿人合并 SciERC 94% vs DocRED 45% 为 "method
+      unreliable on complex scenarios"。
+
+      '
+    tables:
+    - 'Table 6 full_s1 行: Reviewer 批注 ''DR=10.2% is far from near-complete'''
+    - 'Cross-dataset comparison: SciERC DR↓94% vs DocRED DR↓45%. Reviewer：''this is
+      a 2× degradation, not graceful scaling'''
+    figures_description:
+    - SciERC vs DocRED DR reduction comparison bar. Reviewer：'the gap is striking
+      and unaddressed'
+    analysis: 'DocRED DR↓44.7% 是 worst 档第二大 rejection driver（仅次于 CF）。审稿人叙事： "The method''s
+      flagship claim — near-complete type validity — holds only on a tiny 7-relation
+      ontology. On a realistic 96-relation ontology, 10% of triples remain invalid.
+      Combined with CF=2.57% (new violations introduced), the net violation picture
+      is: 10.2% DR + 2.6% CF = ~12.8% problematic triples, vs baseline 18.5% — a modest
+      31% net improvement, not the claimed 94%." 这个 "net improvement" reframing 极其危险。
+
+      '
+  - name: Llama SciERC unconstrained
+    plan_id: P013
+    description: Llama-3.1-8B SciERC unconstrained 基准
+    expected_results:
+      domain_range_violation_rate: 0.133
+      relation_vocabulary_violation_rate: 0.006
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.005
+      relation_f1_pct: 2.68
+      entity_f1_pct: 23.56
+      total_relations: 1274
+      parse_failures: 1
+    result_rationale: 'Llama SciERC R-F1=2.68%——比 Qwen 的 8.23% 还低 3×。worst 档审稿人攻击：
+      (1) "R-F1=2.68% — this model extracts essentially nothing correct. Demonstrating
+      constraint enforcement on a model with 2.68% F1 is meaningless." (2) "You chose
+      Llama specifically because it has low RV (0.55%) — this makes grammar layer
+      look good (it has nothing to fix). But the real story is the model can''t do
+      the task." (3) "E-F1=23.56% (vs Qwen 31.01%)—— Llama 在 SciERC 上全面弱于 Qwen，cross-model
+      ''validation'' 只是在一个更弱的模型上 重复了同样的实验。" 审稿人认为 2 个 8B 模型 + 2 个数据集 = 最低限度验证，不足以
+      支撑 generalization claim。
+
+      '
+    tables:
+    - 'Table 7: Cross-model comparison. Reviewer 标注 Llama R-F1 列：''2.68% is noise'''
+    figures_description: []
+    analysis: 'Llama SciERC baseline 暴露了 cross-model 验证的结构性弱点：两个模型在同一任务上 质量差异巨大（2.68%
+      vs 8.23%），说明 zero-shot IE 本身不稳定。审稿人论证 "if the base task quality varies 3× across
+      models, constraint enforcement on top of it is evaluating a moving target"。
+
+      '
+  - name: Llama SciERC full S1
+    plan_id: P014
+    description: Llama-3.1-8B SciERC 完整 S1 约束
+    expected_results:
+      domain_range_violation_rate: 0.001
+      relation_vocabulary_violation_rate: 0.0
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.066
+      relation_f1_pct: 2.54
+      entity_f1_pct: 23.49
+      total_relations: 1315
+    result_rationale: 'DR=0.08%（↓99.4%）——数字极好，但 worst 档审稿人翻转叙事： (1) "DR↓99.4% on Llama
+      vs ↓94% on Qwen — why does the method work BETTER on the weaker model? Because
+      Llama has near-zero RV (0.55%), so grammar layer encounters fewer OOV issues
+      and semantic layer operates more cleanly. This means your method''s effectiveness
+      depends heavily on the model''s baseline vocabulary compliance, not on the method''s
+      own capability." (2) "CF=6.56% — higher than Qwen''s CF rate on the same dataset.
+      Constrained decoding destabilizes Llama''s entity typing more than Qwen''s."
+      (3) "R-F1 从 2.68% 降到 2.54% (-0.14pp)——在已经极低的 F1 上还进一步下降。" (4) "Parse failure
+      从 1 增加到... 好吧 Llama SciERC parse failure 没增加， 但 R-F1 下降 + CF 升高 = constrained
+      decoding hurts Llama stability。"
+
+      '
+    tables:
+    - 'Table 7 Llama S1 行: Reviewer 标注 CF=6.56% + R-F1↓'
+    figures_description: []
+    analysis: 'Llama SciERC DR↓99.4% 表面极好但审稿人论证这是 "easy case"（低 RV baseline）。 CF=6.56%
+      高于 Qwen 同场景进一步支持 "CF is model-dependent and unpredictable" 叙事。 R-F1 下降虽小但方向不利——"constrained
+      decoding hurts already-weak models" 的论点。
+
+      '
+  - name: Llama DocRED unconstrained
+    plan_id: P015
+    description: Llama-3.1-8B DocRED unconstrained 基准
+    expected_results:
+      domain_range_violation_rate: 0.261
+      relation_vocabulary_violation_rate: 0.16
+      entity_type_violation_rate: 0.001
+      cross_field_consistency_violation_rate: 0.002
+      relation_f1_pct: 5.98
+      entity_f1_pct: 55.65
+      parse_failures: 68
+      documents_checked: 930
+    result_rationale: 'Parse failures=68/998（6.8%）是 worst 档攻击面之一：(1) "6.8% parse failure
+      rate means the model can''t even produce valid JSON 7% of the time. These failures
+      are excluded from F1 calculation — creating a selection bias that favors the
+      method." (2) "DR=26.07% (vs Qwen 18.46%) — Llama has MORE DR violations on DocRED
+      despite having FEWER RV violations (16.0% vs 29.7%). This contradicts the ''tightness
+      × RV baseline'' narrative — if RV explains DR reduction gap, why does Llama
+      have higher baseline DR with lower baseline RV?" 审稿人用这个不一致来质疑 D014 dual-factor
+      解释。 (3) "R-F1=5.98% — even worse than Qwen''s 7.74%. Another data point confirming
+      zero-shot DocRED is not a meaningful evaluation setting."
+
+      '
+    tables:
+    - 'Table 7 Llama DocRED baseline: Reviewer：''68 parse failures (6.8%) — significant
+      selection bias'''
+    figures_description: []
+    analysis: 'Llama DocRED baseline 的 parse failure=6.8% 引入 selection bias 攻击。审稿人指出：
+      checker 跳过 parse failures → F1 只在成功解析的 93.2% 样本上计算 → 这些样本可能 系统性地 easier/better
+      → 所有 Llama DocRED 数字都有上偏。 虽然偏差方向对 constrained decoding 不利（见 P016 parse failure
+      更高）， 但审稿人可能不接受这个辩护——"you should report F1 on ALL documents, with parse failures
+      counted as zero extraction"。
+
+      '
+  - name: Llama DocRED full S1
+    plan_id: P016
+    description: Llama-3.1-8B DocRED 完整 S1 约束
+    expected_results:
+      domain_range_violation_rate: 0.026
+      relation_vocabulary_violation_rate: 0.0
+      entity_type_violation_rate: 0.0
+      cross_field_consistency_violation_rate: 0.12
+      relation_f1_pct: 6.27
+      entity_f1_pct: 55.01
+      parse_failures: 91
+      documents_checked: 907
+    result_rationale: 'DR=2.55%（↓90.2%）——比 Qwen 的 44.7% 好得多，但 worst 档审稿人合并攻击面： (1)
+      "CF=12.02% — the highest of any configuration. One in eight entities has inconsistent
+      typing. On DocRED this is especially problematic because the same entities appear
+      across many relations in a document." (2) "Parse failures increased from 68
+      to 91 (+33.8%)—— constrained decoding actively destabilizes Llama''s JSON generation.
+      23 additional documents produced unparseable output BECAUSE of your constraints."
+      (3) "E-F1=55.01% (↓0.64pp)—— entity extraction quality dropped. This contradicts
+      the SciERC claim of F1-neutrality." (4) "Cross-model inconsistency: Qwen DR↓44.7%
+      vs Llama DR↓90.2% (2× gap). Method effectiveness varies wildly across models
+      — users cannot predict what reduction they''ll get." (5) "CF 跨模型差异更极端：Qwen CF=2.57%
+      vs Llama CF=12.02% (4.7× gap)。 方法引入的新问题（CF）比它解决的旧问题（DR）更不可预测。" 审稿人合并所有 cross-model
+      不一致性判定 "method is unreliable"。
+
+      '
+    tables:
+    - 'Table 7 Llama DocRED S1: 被红色标注的数字 — CF=12.02%, parse_failures=91, E-F1↓0.64pp'
+    - 'Cross-model CF comparison: Qwen 2.57% vs Llama 12.02%. Reviewer：''CF is 4.7×
+      worse on Llama — this is not a stable method'''
+    figures_description:
+    - 'Cross-model DR/CF scatter plot: 4 data points. Reviewer：''DR-CF trade-off is
+      model-dependent and unpredictable'''
+    analysis: 'Llama DocRED full_s1 是 worst 档 "方法不稳定" 论据的核心证据。CF=12.02%、 parse_failures
+      增加 33.8%、E-F1 下降——三个负面指标同时出现。 审稿人叙事总结："On Llama DocRED, OntoCoDec reduces DR
+      from 26% to 2.5% (good), but introduces CF=12% (new problem), increases parse
+      failures by 34% (stability issue), and slightly degrades entity F1 (quality
+      loss). The trade-off is unfavorable." 这是 ≥2 审稿人给 reject 的关键段落。
+
+      '
+  - name: S2 pilot (50 docs)
+    plan_id: P017
+    description: S2 两遍策略 50 文档 pilot 测试
+    expected_results:
+      domain_range_violation_rate: 0.021
+      relation_f1_pct: 10.08
+      samples: 50
+      predicted_relations: 146
+    result_rationale: 'Pilot50 数据已被全量 S2（P008）supersede。worst 档审稿人会在看到论文引用 pilot50
+      时 检查是否与全量数据一致——pilot DR=2.05% vs full DR=0.97%，数字不一致。 如果论文任何地方残留 pilot50 数字，审稿人会标注
+      "inconsistent reporting"。 但因为 pilot 已明确标注为 superseded，主要风险是论文写作中的引用错误。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Pilot50 在 worst 档下无独立攻击面，但论文必须确保无残留引用。 审稿人通常会在 Appendix 检查 pilot 数字与主表一致性。
+
+      '
+  - name: Post-hoc filtering baseline
+    plan_id: P018
+    description: Post-hoc 过滤 baseline 对比（删除违规 triples）
+    expected_results:
+      scierc_f1_after: 8.63
+      scierc_f1_before: 8.23
+      scierc_rejection_rate: 0.168
+      scierc_recall_after: 10.68
+      scierc_recall_before: 11.4
+      scierc_tp_before: 111
+      scierc_tp_after: 104
+      docred_f1_after: 9.61
+      docred_f1_before: 7.74
+      docred_rejection_rate: 0.481
+      docred_recall_after: 8.4
+      docred_recall_before: 9.46
+      docred_tp_before: 1137
+      docred_tp_after: 1010
+      docred_et_residual: 0.025
+    result_rationale: 'Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36; DocRED 9.61
+      vs 8.23）。 worst 档审稿人直接采取最简解读：(1) "Post-hoc filtering is simpler AND achieves
+      higher F1 on both datasets. The paper''s multi-dimensional defense (recall,
+      coverage, operational) is an elaborate way to avoid admitting that a trivial
+      baseline outperforms the proposed method on the standard metric." (2) "The ''information
+      coverage'' argument (DocRED post-hoc discards 48.1%) is misleading — those discarded
+      triples are overwhelmingly incorrect (precision goes from 6.55% to 11.22%).
+      Discarding bad predictions is a feature, not a bug." (3) "The ''recall preservation''
+      argument (OntoCoDec recall higher) obscures that OntoCoDec''s extra recall comes
+      with much lower precision. In low-F1 regimes, precision matters more because
+      most predictions are already wrong." (4) "Operational advantage (streaming)
+      is an engineering concern, not a research contribution." 2-3 位审稿人将 post-hoc
+      F1 > OntoCoDec F1 简写为 "post-hoc is strictly better" 并在 weakness 中直接引用这个数字。
+
+      '
+    tables:
+    - 'Table 8: Post-hoc vs OntoCoDec. Reviewer 在 F1 列画箭头：''Post-hoc wins on F1 —
+      the standard metric'''
+    figures_description:
+    - Multi-metric radar chart (F1/recall/precision/coverage). Reviewer：'this chart
+      obscures the simple fact that post-hoc F1 > OntoCoDec F1'
+    analysis: 'Post-hoc F1 > OntoCoDec F1 是 worst 档 "method is not state-of-the-art
+      even against trivial baselines" 的核心论据。审稿人不会深入 multi-dimensional framing—— 在
+      review 时间压力下，"F1 lower than baseline" 是最容易写的 weakness。 Path A reframe 可绕过：如果
+      Violation Landscape 是主贡献，OntoCoDec 降级为 "one possible mitigation"，则 F1 对比变为 "different
+      approaches in the mitigation space" 而非 "our method vs baseline"。Path B reframe
+      下 post-hoc 成为 trade-off space 的另一个点。
+
+      '
+  - name: Bootstrap CI (10000 iterations)
+    plan_id: P019
+    description: Bootstrap 置信区间检验 F1 变化显著性
+    expected_results:
+      scierc_rel_f1_delta_pp: 0.13
+      scierc_rel_f1_p_value: 0.58
+      scierc_ent_f1_delta_pp: -0.03
+      scierc_ent_f1_p_value: 0.53
+      docred_rel_f1_delta_pp: 0.5
+      docred_rel_f1_p_value: 0.001
+      docred_rel_f1_ci_lower: 0.23
+      docred_rel_f1_ci_upper: 0.81
+      docred_ent_f1_delta_pp: 1.23
+      docred_ent_f1_p_value: 0.001
+      docred_ent_f1_ci_lower: 0.94
+      docred_ent_f1_ci_upper: 1.55
+    result_rationale: 'Bootstrap CI 的统计功在 worst 档下被弱化：(1) "SciERC p=0.58 — F1 change
+      is indistinguishable from noise. You cannot claim F1-neutral either; the CI
+      includes both positive and negative values, so you simply don''t know the F1
+      impact on SciERC." (2) "DocRED p<0.001 is driven entirely by grammar eliminating
+      OOV names — you showed this yourself (grammar_only E-F1≈full_s1 E-F1). The significant
+      F1 improvement is a grammar artifact, not a constraint enforcement contribution."
+      (3) "Bootstrap CI on the 8% R-F1 scale — a 0.50pp improvement on a base of 7.74%
+      is +6.5% relative, but in absolute terms the system still extracts almost nothing
+      correctly. Statistical significance ≠ practical significance." 审稿人承认统计方法正确，但
+      dismiss practical relevance。
+
+      '
+    tables:
+    - 'Table 9: Bootstrap CI results. Reviewer：''statistically correct but practically
+      meaningless at 8% F1'''
+    figures_description: []
+    analysis: 'Bootstrap CI 在 worst 档下从 "rigorous evidence" 被降级为 "correctly measured
+      irrelevant effect"。 审稿人论证：(a) SciERC 不显著所以不能声称 F1 中性；(b) DocRED 显著但效果来自 grammar（非
+      novel）； (c) 绝对 F1 太低，统计显著的微小改善无实际意义。三条攻击互相支撑。
+
+      '
+  - name: DocRED schema compilation (Phase 0 R2)
+    plan_id: P020
+    description: DocRED schema-informed 二次运行（已终止，被 P004 supersede）
+    expected_results:
+      status: killed
+      note: superseded by P004
+    result_rationale: '实验被终止，无数据产出。worst 档下无独立攻击面，但审稿人如果看到 experiment plan 中 有 killed
+      实验可能会问 "why was this run killed? was there a methodological issue that required
+      re-running?"——需要在 supplementary material 中简要说明是 pipeline 重构导致的重跑，非数据问题。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 无影响。确保论文和 supplementary 中无 P020 残留引用即可。
+  review_report: '---
+
+    dream_id: dream_20260514T205155
+
+    tier: worst
+
+    overall_score: borderline reject
+
+    timestamp: 2026-05-14T21:49:47.974901+00:00
+
+    ---
+
+
+    # Dream Review Report: OntoCoDec
+
+
+    **Paper:** "OntoCoDec: Near-Complete Type-Valid Information Extraction via Compiled
+    Ontology Constraints"
+
+    **Venue:** EMNLP 2026 (ACL Rolling Review)
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-14
+
+
+    ---
+
+
+    ## Venue Calibration
+
+
+    EMNLP 2026 submissions go through ACL Rolling Review. Scoring uses a 1–5 scale
+    with half-point increments:
+
+    - 5 = Award-worthy (top 2.5%)
+
+    - 4 = Largely complete, minor revisions
+
+    - 3 = Major revisions needed
+
+    - 2 = Significant revisions / resubmit next cycle
+
+    - 1.5 = Resubmit after next cycle
+
+    - 1 = Not publishable at *ACL
+
+
+    Three dimensions scored: Soundness, Excitement, Overall Assessment. EMNLP 2025
+    acceptance rate was ~26% for main conference.
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper addresses ontology constraint violations in LLM-based zero-shot information
+    extraction. It makes two main contributions: (1) a **violation landscape study**
+    measuring domain/range (DR), relation vocabulary (RV), entity type (ET), and cross-field
+    consistency (CF) violations on SciERC (7 relations) and DocRED (96 relations);
+    (2) **OntoCoDec**, a framework that compiles IE ontology schemas into two composable
+    constrained-decoding layers — a grammar layer (XGrammar CFG for JSON/vocabulary
+    enforcement) and a semantic layer (stateful entity registry + dynamic logit masking
+    for domain/range constraints). On SciERC, DR violations drop 94% (15.4%→0.93%)
+    with neutral F1; on DocRED, 45% (Qwen) to 90% (Llama). The method introduces cross-field
+    consistency violations (2.6–12.0%) as a trade-off.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    The paper covers experiments P001–P016 and P018–P019 from the full experiment
+    plan. P017 (50-doc pilot) was superseded by the full S2 evaluation. P020 was killed/superseded.
+    All major planned experiments are reported. The paper''s experimental matrix (2
+    models × 2 datasets × 5 configurations + post-hoc baseline + bootstrap CI) is
+    comprehensive for the claims made.
+
+
+    ---
+
+
+    ## Reviewer 1 (R1): Methods and Experiments
+
+
+    ### Strengths
+
+
+    **S1: Violation landscape study is a genuine empirical contribution.** No prior
+    work systematically quantifies per-relation ontology constraint violation distributions
+    in LLM-based IE. The finding that SciERC (7 relations, DR=15.4%) and DocRED (96
+    relations, DR=18.7%) show comparable violation rates despite 14× ontology size
+    difference — with constraint tightness as the predictor — is non-obvious. The
+    Evaluate-for regression (+5.8pp under schema-informed prompting) concretely demonstrates
+    prompt-level unreliability.
+
+
+    **S2: Clean and informative ablation design.** The 5-way ablation (unconstrained
+    / grammar-only / semantic-only / full S1 / full S2) cleanly isolates each layer''s
+    contribution. The enabling dependency finding — grammar-only barely changes DR
+    (15.4%→14.8%), semantic-only achieves 24% reduction, but the combination reaches
+    94% — is well-demonstrated with sound mechanistic explanation. Grammar-only DR
+    *increase* on DocRED (18.5%→26.2%) is a particularly informative result.
+
+
+    **S3: Commendable transparency.** The paper honestly reports: CF elevation to
+    9.9–12.0%, S2 failing to solve CF, post-hoc filtering achieving higher F1, DocRED
+    scalability gap, and parse failure increases. This disclosure level is rare.
+
+
+    **S4: Cross-model validation with mechanistic explanation.** The 2×2 matrix (2
+    models × 2 datasets) with the dual-factor model (tightness × RV baseline) explaining
+    Qwen DR↓45% vs Llama DR↓90% on the same ontology is analytically insightful.
+
+
+    **S5: Bootstrap significance testing with honest framing.** Per-dataset significance
+    reporting (SciERC: +0.13pp, p=0.58; DocRED: +0.50pp, p<0.001) with mechanistic
+    attribution is methodologically correct.
+
+
+    **S6: Post-hoc baseline comparison is multi-dimensional.** The comparison across
+    recall, information coverage, and entity-type residuals is legitimate, not just
+    F1.
+
+
+    ### Weaknesses
+
+
+    **W1 [Major]: "Near-complete" title claim not supported by DocRED results.** Qwen
+    DocRED retains 10.2% residual DR — more than 1 in 10 triples still violates domain/range
+    constraints. Combined with CF=2.6%, ~13% of triples have some violation. The title
+    is defensible for SciERC (0.93% residual) and Llama-DocRED (2.55%), but misleading
+    for Qwen-DocRED. The paper''s own dual-factor explanation makes clear effectiveness
+    is highly contingent on model-specific vocabulary compliance.
+
+
+    **W2 [Major]: CF trade-off is substantial and severity distinction lacks empirical
+    validation.** CF rises from 0.08% to 9.9% on SciERC (Qwen) and to 12.0% on DocRED
+    (Llama). The paper frames DR as "hard" and CF as "soft," but this distinction
+    is entirely unvalidated — no downstream experiment demonstrates CF violations
+    are less harmful. The monotonic increase across enforcement aggressiveness (unconstrained
+    0.08% → semantic-only 2.71% → full S1 9.90%) suggests this is a systematic consequence
+    that will worsen with more constraints.
+
+
+    **W3 [Major]: Evaluation operates at ~8% R-F1 — practical value unclear.** At
+    ~8% R-F1, ~92% of extracted triples are incorrect. Constraints primarily operate
+    on *wrong* triples — ensuring ontological well-formedness of factually incorrect
+    extractions. No experiment validates whether violation rates transfer to the higher-F1
+    regime (fine-tuned models), or whether the dual-factor model''s predictions hold
+    there.
+
+
+    **W4 [Moderate]: Fallback rate / residual DR near-identity may be tautological.**
+    The near-identity between fallback rate (10.2%) and residual DR (10.21%) on DocRED
+    may be a mathematical consequence of system design rather than an empirical finding
+    — if every fallback event implies a DR violation, the relationship is definitional.
+
+
+    **W5 [Moderate]: Limited technical novelty — domain transfer of code-generation
+    constrained decoding.** The core mechanism (compiling type constraints into token-level
+    logit masks with a stateful processor) transfers techniques from code generation
+    (PICARD, Synchromesh). IE ontology constraints (flat domain/range sets over 6
+    entity types) are structurally simpler than what prior systems handle. The entity
+    registry is a dictionary; mask composition is bitwise AND.
+
+
+    **W6 [Moderate]: Semantic-only worsens ET violations on DocRED (2.5%→4.2%).**
+    This negative interaction — partial constraint application increasing a different
+    violation type — is reported but underexplored. Practitioners cannot safely deploy
+    the semantic layer alone.
+
+
+    **W7 [Minor]: Tightness-violation correlation on SciERC rests on 7 data points.**
+    DocRED''s 96 relations would provide far stronger evidence; the full tightness-DR
+    scatter for DocRED is not reported.
+
+
+    **W8 [Minor]: Parse failure increase not well-analyzed.** Llama-DocRED parse failures
+    increase 6.8%→9.1% under constraints. Since failures are excluded from F1/violation
+    calculations, this creates potential selection bias.
+
+
+    ### R1 Questions for Authors
+
+
+    1. Is the fallback→DR relationship definitional or empirical? What fraction of
+    fallback events do NOT produce DR violations?
+
+    2. Have you estimated violation rates for fine-tuned IE systems? If fine-tuned
+    models already have low DR, the practical motivation narrows.
+
+    3. What mechanism causes semantic-only to increase ET violations on DocRED?
+
+    4. Have you checked gold-standard type consistency for the dominant CF conflict
+    patterns (Generic↔OtherScientificTerm)?
+
+    5. Why not evaluate a combined OntoCoDec + post-hoc approach?
+
+
+    ### R1 Scores
+
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Soundness | 3.5 |
+
+    | Excitement | 2.5 |
+
+    | Overall | 3.0 |
+
+    | Confidence | 4 |
+
+
+    ---
+
+
+    ## Reviewer 2 (R2): Novelty and Related Work
+
+
+    ### Strengths
+
+
+    **S1: Problem identification is well-motivated and concrete.** The four-category
+    violation taxonomy (DR, RV, ET, CF) is clear and actionable. Per-relation breakdown
+    (Compare at 42.4% vs. Used-for at 0.8%) makes a compelling case that violations
+    are non-uniform.
+
+
+    **S2: Paper is honest about limitations.** Proactive reporting of CF trade-off,
+    post-hoc outperformance, S2 failure, and qualification of title as "Near-Complete"
+    rather than "Guaranteed."
+
+
+    **S3: Cross-model validation is genuine positive.** Zero code modification across
+    Qwen and Llama with consistent structural guarantees (RV/ET→0%).
+
+
+    **S4: Constraint tightness formalization is useful.** τ(r) = 1 − |dom(r)|·|rng(r)|/|E|²
+    predicting fallback frequency and residual DR is a clean analytical insight.
+
+
+    **S5: Related work coverage is extensive** (in appendix, ~25+ references covering
+    5 paradigms).
+
+
+    ### Weaknesses
+
+
+    **W1 [Major]: Grammar layer is not novel — it is an application of XGrammar.**
+    Compiling a JSON schema with enum constraints into an XGrammar CFG is exactly
+    what XGrammar, Outlines, and LMQL were designed for. Any practitioner using XGrammar
+    with a properly specified JSON schema would achieve RV=0% and ET=0%. Framing this
+    as a "contribution layer" overstates novelty.
+
+
+    **W2 [Major]: Semantic layer is a lookup table with logit masking — novelty is
+    narrow.** Core mechanism: parse prefix to detect JSON field, look up relation
+    in constraint table, mask disallowed entity-type logits to -inf. Each component
+    is individually straightforward. The first-token masking approach works only because
+    type vocabularies are very small (6 types); scalability to hundreds of types is
+    undiscussed.
+
+
+    **W3 [Major]: "Near-complete" in title not justified.** DocRED Qwen: DR drops
+    from 18.5% to only 10.2% — 45% reduction, 10.2% residual. One in ten triples still
+    violates constraints. The headline 94% comes from SciERC (7 relations, loose constraints).
+    The more realistic benchmark directly contradicts the "near-complete" framing.
+
+
+    **W4 [Major]: Violation landscape study is an incremental observation.** Running
+    an LLM on IE benchmarks and counting schema violations is a straightforward measurement.
+    The tightness correlation is intuitive (tighter constraints are harder to satisfy
+    by chance). This motivates the method but does not constitute a standalone contribution.
+
+
+    **W5 [Major]: CF trade-off undermines core value proposition.** Net effect on
+    SciERC: −14.4pp DR, +9.8pp CF. The paper argues DR is "harder" than CF, but provides
+    no empirical evidence (e.g., downstream task impact). For KG construction, cross-field
+    inconsistency can be equally problematic.
+
+
+    **W6 [Moderate]: Post-hoc filtering outperforms on F1.** SciERC: 8.63 vs 8.36;
+    DocRED: 9.61 vs 8.23. A simple generate-then-filter baseline outperforms the proposed
+    method on the standard metric. The rebuttal relies on recall/coverage arguments
+    that are marginal in a ~8% F1 regime.
+
+
+    **W7 [Moderate]: Missing related work and insufficient differentiation.** Key
+    gaps:
+
+    - **Guidance library** (Microsoft): Supports stateful token masking conditioned
+    on generation history — functionally similar to OntoCoDec''s semantic layer.
+
+    - **InstructUIE** (Wang et al., 2023): Instruction-tuned universal IE combinable
+    with constrained decoding.
+
+    - **DeepKE** (Zhang et al., 2022): Schema-guided extraction toolkit.
+
+    - **Type-constrained KG completion** (Krompass et al., 2015; Jain et al., 2018):
+    Domain/range type restriction during KG operations — conceptually identical mechanism.
+
+    - **NeuroLogic Decoding** (Lu et al., 2021): Predicate logic constraints during
+    beam search; semantic layer''s masking is a special case.
+
+
+    **W8 [Minor]: Decidability taxonomy is relabeling.** "Local / prefix-decidable
+    / non-local" restates standard formal language theory (regular / context-free
+    / context-sensitive) applied to IE constraints. Not a novel taxonomy.
+
+
+    **W9 [Minor]: Experimental scope narrow.** 2 models (both 8B), zero-shot only,
+    2 datasets. No biomedical IE (where ontology compliance is most critical), no
+    models >8B, no fine-tuned evaluation.
+
+
+    ### R2 Questions for Authors
+
+
+    1. How does first-token masking scale to ontologies with hundreds of entity types?
+    At what point does first-token uniqueness break down?
+
+    2. What does OntoCoDec provide beyond what a skilled engineer could build using
+    Guidance/Outlines in an afternoon?
+
+    3. Have you measured downstream impact of DR reduction + CF increase on question
+    answering or reasoning?
+
+    4. Grammar-only on DocRED increases DR from 18.5% to 26.2% — grammar makes things
+    worse without semantic. How is grammar an "enabling prerequisite" when it is actively
+    harmful alone?
+
+    5. Why lead with SciERC (easy, 7 relations) rather than DocRED (realistic, 96
+    relations)?
+
+
+    ### R2 Scores
+
+
+    | Dimension | Score |
+
+    |-----------|-------|
+
+    | Soundness | 3.0 |
+
+    | Excitement | 2.5 |
+
+    | Overall | 2.5 |
+
+    | Confidence | 4 |
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+
+    **R1 responding to R2:**
+
+
+    *Agreements:* Title overclaim (R2-W3 = R1-W1), CF trade-off severity (R2-W5 =
+    R1-W2), experimental scope partially (R2-W9).
+
+
+    *Disagreements:*
+
+    - R2-W1/W2 (novelty of individual layers): R1 finds this "overly reductive." The
+    contribution is the *compilation pipeline* — automatically translating IE ontology
+    axioms into composable decoder constraints — not the masking primitives. The enabling
+    dependency between layers is a non-trivial design insight.
+
+    - R2-W4 (violation landscape as incremental): R1 "strongly disagrees." No prior
+    work measured this; the SciERC-DocRED comparability despite 14× ontology size
+    difference is genuinely informative.
+
+    - R2-W6 (post-hoc outperforms): R1 gives more credit to the multi-dimensional
+    comparison; post-hoc discards 48.1% of triples including 127 true positives.
+
+    - R2-W8 (decidability taxonomy): R1 finds it "lightweight but not vacuous" — provides
+    practitioners clear guidance.
+
+
+    *New insight adopted:* R2-W7 (missing related work) is well-taken, especially
+    Guidance, NeuroLogic, and type-constrained KG completion.
+
+
+    **R1 final scores: Soundness 3.5, Excitement 2.5, Overall 3.0 (unchanged).**
+
+
+    ---
+
+
+    **R2 responding to R1:**
+
+
+    *Agreements:* Title framing (R1-W1), CF severity (R1-W2), limited novelty (R1-W5),
+    tightness on 7 points (R1-W7).
+
+
+    *Disagreements:*
+
+    - R1-S1 (violation landscape as short-paper-worthy): R2 remains skeptical — "tighter
+    constraints produce more violations" is close to tautological without a predictive
+    model.
+
+    - R1-S4 (dual-factor model as insightful): R2 questions whether fallback→DR relationship
+    is definitional rather than empirical.
+
+    - Soundness gap (R1: 3.5 vs R2: 3.0): R2''s lower score reflects unvalidated CF
+    severity distinction and potential fallback/DR tautology.
+
+
+    *New insights adopted:*
+
+    - R1-W6 (semantic-only worsening ET on DocRED) — a fragility R2 had underweighted.
+
+    - R1-Q6 (combined OntoCoDec + post-hoc) — a natural untested combination.
+
+
+    **R2 final scores: Soundness 3.0, Excitement 2.5 (↑ from 2.0), Overall 2.5 (unchanged).**
+
+
+    ### Step 3: Convergence Summary
+
+
+    | Dimension | R1 | R2 | Mean | Consensus |
+
+    |-----------|----|----|------|-----------|
+
+    | Soundness | 3.5 | 3.0 | 3.25 | Methodology is strong; deductions for unvalidated
+    CF severity distinction and low-F1 regime |
+
+    | Excitement | 2.5 | 2.5 | 2.5 | Empirical contributions have value; technical
+    novelty is moderate at best |
+
+    | Overall | 3.0 | 2.5 | 2.75 | Borderline — strong Findings candidate, below main
+    conference threshold |
+
+    | Confidence | 4 | 4 | 4 | Both reviewers are domain-knowledgeable |
+
+
+    **Converged points (both reviewers agree):**
+
+    1. "Near-complete" title is not supported by DocRED results — **must be revised**
+
+    2. CF trade-off (up to 12%) is the paper''s central unresolved weakness — severity
+    distinction requires empirical validation
+
+    3. Zero-shot ~8% F1 regime limits practical impact claims
+
+    4. Cross-model validation and honest reporting are clear strengths
+
+    5. Post-hoc filtering outperforming on F1 is a presentational challenge, though
+    multi-dimensional comparison has merit
+
+    6. Missing related work (Guidance, type-constrained KG completion, NeuroLogic)
+    is addressable
+
+
+    **Remaining divergences:**
+
+    1. Violation landscape as contribution: R1 sees it as potentially short-paper-worthy;
+    R2 sees it as incremental. *AC note: The truth is between — it is a useful empirical
+    contribution but not sufficient as a standalone claim.*
+
+    2. Dual-factor model: R1 finds it analytically insightful; R2 suspects it may
+    be partially tautological. *AC note: The relationship between fallback rate and
+    residual DR needs decomposition to resolve this.*
+
+    3. Technical novelty of the compilation pipeline: R1 gives moderate credit to
+    the systems contribution; R2 sees it as engineering combination. *AC note: The
+    novelty is real but narrow — the IE-specific insight (enabling dependency between
+    grammar and semantic layers) is sound but the individual mechanisms are established.*
+
+
+    ---
+
+
+    ## Step 4: AC Synthesis and Recommendation
+
+
+    ### Overall Assessment: **2.75 → Borderline Reject / Strong Findings Candidate**
+
+
+    This paper makes a genuine empirical contribution to an understudied problem (ontology
+    constraint violations in LLM-based IE) and proposes a technically sound solution
+    with thorough evaluation. The violation landscape study, cross-model validation,
+    and honest reporting of negative results are commendable. However, multiple major
+    issues prevent recommendation for the main conference:
+
+
+    **Critical Issues:**
+
+    1. **Title overclaim.** "Near-Complete Type-Valid IE" is contradicted by Qwen-DocRED
+    retaining 10.2% residual DR + 2.6% CF. The title must be qualified or the contribution
+    reframed.
+
+    2. **CF as net-neutral trade-off.** On SciERC: −14.4pp DR, +9.8pp CF. The paper
+    argues these are different severity levels but provides no downstream evidence.
+    A reviewer who doesn''t accept the severity distinction sees the method as redistributing
+    violations rather than eliminating them.
+
+    3. **Low-F1 regime.** At ~8% R-F1, constraints primarily operate on incorrect
+    triples. Without validation on fine-tuned models or downstream tasks, practical
+    significance is unclear.
+
+    4. **Limited technical novelty.** The grammar layer is an XGrammar application;
+    the semantic layer is a constraint lookup table with logit masking. The compilation
+    pipeline and enabling dependency are sound engineering contributions but not conceptually
+    novel relative to code-generation constrained decoding (PICARD, Synchromesh).
+
+    5. **Post-hoc baseline outperforms on F1.** A trivial baseline achieves higher
+    F1 on both datasets.
+
+
+    **Strengths That Support Findings:**
+
+    1. First systematic violation measurement with actionable tightness analysis
+
+    2. Thorough ablation isolating each layer''s contribution
+
+    3. Cross-model generalization without code modification
+
+    4. Honest, transparent reporting of limitations
+
+
+    ### Actionable Revision Recommendations
+
+
+    1. **Revise title** to remove "Near-Complete" or scope it to specific configurations
+
+    2. **Add downstream task evaluation** (e.g., KG-based QA) to validate that DR
+    reduction + CF increase yields net benefit
+
+    3. **Evaluate on at least one fine-tuned model** to demonstrate practical relevance
+    beyond zero-shot
+
+    4. **Decompose fallback-DR relationship** to confirm it is empirical rather than
+    definitional
+
+    5. **Add missing related work** (Guidance, NeuroLogic, type-constrained KG completion,
+    InstructUIE)
+
+    6. **Test combined OntoCoDec + post-hoc** pipeline to address residual violations
+
+    7. **Report full tightness-DR scatter** on DocRED''s 96 relations to strengthen
+    the tightness hypothesis
+
+    8. **Reframe contributions**: position grammar layer as off-the-shelf application,
+    center novelty on semantic layer + compilation pipeline + empirical analysis
+
+
+    ### Final Scores
+
+
+    | Dimension | R1 | R2 | AC Consensus |
+
+    |-----------|----|----|-------------|
+
+    | Soundness | 3.5 | 3.0 | **3.0** |
+
+    | Excitement | 2.5 | 2.5 | **2.5** |
+
+    | Overall | 3.0 | 2.5 | **2.5** |
+
+    | Confidence | 4 | 4 | **4** |
+
+
+    **Recommendation:** Reject for main conference. The paper is a strong candidate
+    for **Findings of EMNLP 2026** if the title is corrected and the CF severity distinction
+    is supported with evidence. In its current form, the combination of limited novelty,
+    CF trade-off, low-F1 evaluation regime, and post-hoc baseline outperformance places
+    it below the acceptance threshold for the main conference (~top 26%).
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-14T21:49:59+00:00'

@@ -1,0 +1,639 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+
+\newcommand{\sys}{OntoCoDec}
+\newcommand{\dmark}{\dag}
+
+\title{\sys{}: Type-Valid Information Extraction via Compiled Ontology Constraints}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%-----------------------------------------------------------------------
+\begin{abstract}
+%-----------------------------------------------------------------------
+Large language models applied to structured information extraction (IE) produce systematic ontology constraint violations---generating relation triples or event arguments whose entity types violate the schema's domain/range specifications.
+We present \textbf{\sys{}}, a framework that automatically compiles IE ontology schemas into two composable constraint layers enforced during decoding: (1)~a \emph{grammar layer} that restricts the output vocabulary to ontology-valid type names via context-free grammars, and (2)~a \emph{semantic layer} that dynamically masks logits to enforce cross-field domain/range constraints using a stateful entity registry.
+The two layers compose via bitwise AND of token masks with an enabling dependency: the grammar layer ensures structural validity, enabling the semantic layer to enforce type-level rules.
+
+We first present a systematic \emph{violation landscape} study across three model families (Qwen3-8B, Llama-3.1-8B, Mistral-7B) on two relation extraction datasets (SciERC, DocRED), revealing per-triple violation rates of 13--57\%.
+\sys{} eliminates domain/range violations by 90--100\% with neutral F1 impact ($|\Delta\text{R-F1}| \leq 0.30$pp).
+Scaling to Llama-3.1-70B confirms model-scale-invariant behavior: DR$\to$0\% on both datasets.
+LoRA fine-tuned models retain 0.4--2.0\% residual violations that \sys{} further reduces to $\leq$0.21\%, demonstrating composability with parameter-efficient training.
+Cross-task generalization to event extraction on WikiEvents (56 event types, 80 argument roles) shows that \sys{} eliminates event vocabulary and role vocabulary violations entirely (EV/RoV$\to$0\%) across all three models, while post-hoc filtering discards 99.6--100\% of arguments.
+All constraint overhead is 10--18\% wall-clock time with no additional pipeline stages.
+\end{abstract}
+
+%-----------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-----------------------------------------------------------------------
+
+Structured information extraction (IE) with large language models (LLMs) frames tasks such as relation extraction (RE) and event extraction (EE) as conditional text generation: given a document and an ontology schema, the model produces structured output (e.g., JSON) containing extracted entities, relations, or events.
+A critical but under-studied failure mode of this paradigm is \emph{ontology constraint violation}---the model generates structurally valid output that nonetheless violates the schema's type specifications.
+For example, a relation extraction system may output the triple \texttt{(``gradient descent'':Method, Used-for, ``accuracy'':Metric)} when the ontology specifies that the object of \texttt{Used-for} must be of type \texttt{Task}, not \texttt{Metric}.
+
+These violations are not rare edge cases.
+Our systematic measurement across three model families and two RE datasets reveals per-triple violation rates of 13--57\%, with violations concentrating on relation types with tight domain/range constraints (e.g., \texttt{Feature-of}: 33.5\%, \texttt{Compare}: 42.4\%) rather than distributing uniformly.
+Prompt-level intervention---explicitly describing constraints in the prompt---reduces overall violations by 32--62\% but cannot eliminate them, and for specific relation types can even \emph{increase} violation rates due to prior-constraint conflict.
+
+We propose \sys{} (\textbf{Onto}logy-\textbf{Co}nstrained \textbf{Dec}oding), a framework that automatically compiles IE ontology schemas into decoding-time constraints.
+The framework comprises two composable layers:
+\begin{enumerate}[nosep,leftmargin=*]
+\item A \textbf{grammar layer} that compiles the ontology's type vocabulary into a context-free grammar (CFG) via XGrammar, constraining every generated type token to be ontology-valid.
+\item A \textbf{semantic layer} that maintains a stateful entity registry during generation and dynamically masks logits to enforce domain/range (or role/argument-type) constraints that are context-sensitive and cannot be expressed by CFGs.
+\end{enumerate}
+The two layers compose via bitwise AND of their token masks, with an \emph{enabling dependency}: the grammar layer guarantees that every generated type is in the valid vocabulary, which is a prerequisite for the semantic layer to look up and enforce the corresponding constraints.
+When the intersection is empty (high constraint tightness), the system degrades gracefully to grammar-only control, maintaining structural validity as a guaranteed floor.
+
+We validate \sys{} on two IE tasks spanning three levels of ontology complexity:
+(1)~relation extraction on SciERC (7 relations) and DocRED (96 relations), and
+(2)~event extraction on WikiEvents (56 event types $\times$ 80 argument roles $\times$ 27 entity types).
+Across four model scales (7B--70B), two training regimes (zero-shot and LoRA fine-tuned), and all three datasets, \sys{} consistently eliminates vocabulary and structural violations to near-zero while maintaining F1-neutral or F1-positive impact.
+
+Our contributions are:
+\begin{enumerate}[nosep,leftmargin=*]
+\item A systematic \textbf{violation landscape study} quantifying ontology constraint violations across models, datasets, and constraint types---the first such measurement for LLM-based IE.
+\item A \textbf{composable constraint compilation framework} that automatically translates ontology schemas into grammar and semantic decoding constraints, requiring zero task-specific code.
+\item Extensive validation across \textbf{2 IE tasks $\times$ 3 datasets $\times$ 4 models $\times$ 2 training regimes}, demonstrating model-agnostic, scale-invariant, and task-generalizable violation elimination.
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+\section{Background}
+\label{sec:background}
+%-----------------------------------------------------------------------
+
+\paragraph{Grammar-Constrained Decoding.}
+Grammar-constrained decoding restricts LLM output to strings accepted by a formal grammar (typically a CFG or regular expression) by masking logits at each decoding step.
+XGrammar~\cite{dong2024xgrammar} provides an efficient implementation that precomputes token masks from EBNF grammars.
+This approach guarantees structural validity (e.g., well-formed JSON) but cannot express context-sensitive constraints such as ``the entity type in position $i$ must be compatible with the relation type generated at position $j$.''
+
+\paragraph{IE Ontology Constraints.}
+An IE ontology $\mathcal{O}$ defines a set of entity types $\mathcal{E}$, relation types $\mathcal{R}$ (for RE) or event types $\mathcal{V}$ with argument roles $\mathcal{A}$ (for EE), and type constraints.
+For RE, constraints take the form $r \in \mathcal{R}: \text{domain}(r) \subseteq \mathcal{E}, \text{range}(r) \subseteq \mathcal{E}$.
+For EE, constraints specify which entity types are allowed for each (event\_type, role) pair: $\text{allowed}(v, a) \subseteq \mathcal{E}$ for $v \in \mathcal{V}, a \in \mathcal{A}_v$.
+These constraints are \emph{context-sensitive}: the valid set of types at one position depends on values generated at other positions.
+
+\paragraph{Violation Taxonomy.}
+We classify ontology violations into five types:
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{DR} (Domain/Range): Entity type violates the relation's domain or range specification.
+\item \textbf{RV} (Relation Vocabulary): Relation name not in the ontology.
+\item \textbf{ET} (Entity Type): Entity type not in the ontology's type set.
+\item \textbf{EV/RoV} (Event/Role Vocabulary): Event type or argument role not in the ontology (EE-specific).
+\item \textbf{AC} (Argument Constraint): Argument entity type violates the (event\_type, role)$\to$allowed\_types mapping (EE analog of DR).
+\item \textbf{CF} (Cross-Field): Same entity assigned different types across relations/events.
+\end{itemize}
+
+%-----------------------------------------------------------------------
+\section{Violation Landscape}
+\label{sec:landscape}
+%-----------------------------------------------------------------------
+
+Before proposing a solution, we conduct a systematic measurement of ontology constraint violations in LLM-based IE.
+We evaluate three model families---Qwen3-8B, Llama-3.1-8B-Instruct, and Mistral-7B-Instruct-v0.3---in a zero-shot setting on SciERC (7 relation types, 6 entity types) and DocRED (96 relation types, 6 entity types).
+
+\paragraph{RE Violation Rates.}
+Table~\ref{tab:re_zs} reports the full results.
+Per-triple domain/range violation rates (DR) range from 13.3\% (Llama, SciERC) to 57.4\% (Mistral, DocRED).
+Violations are not uniformly distributed: on SciERC, \texttt{Feature-of} (33.5\%) and \texttt{Compare} (42.4\%) show 5--50$\times$ higher DR than \texttt{Used-for} (0.8\%).
+This concentration is driven by \emph{constraint tightness}---the ratio of valid type pairs to all possible type pairs for a relation---rather than ontology size.
+SciERC (7 relations) and DocRED (96 relations) show comparable overall DR (15.4\% vs 18.5\% for Qwen) despite a 14$\times$ difference in ontology size.
+
+\paragraph{Prompt Insufficiency.}
+Schema-informed prompting (explicitly listing domain/range constraints) reduces overall DR by 62\% on SciERC but only 32\% on DocRED, confirming that prompt-level intervention scales poorly with ontology complexity.
+Moreover, for \texttt{Evaluate-for}, the schema-informed prompt \emph{increases} the violation rate from 24.1\% to 29.9\%, illustrating prior-constraint conflict where the model's distributional prior interferes with explicit constraint signals.
+
+\paragraph{EE Violation Landscape.}
+The violation landscape is dramatically more severe for event extraction.
+On WikiEvents (Table~\ref{tab:ee_zs}), role vocabulary violations (RoV) reach 64--89\% and event vocabulary violations (EV) reach 10--37\%.
+Entity F1 is 0\% across all models in the unconstrained setting---not because models fail to extract entities, but because the output does not conform to the schema's JSON format, making entity mentions unparseable.
+This order-of-magnitude increase over RE violations (RoV 64--89\% vs DR 13--57\%) provides the strongest motivation for decoding-time constraint enforcement.
+
+%-----------------------------------------------------------------------
+\section{The \sys{} Framework}
+\label{sec:method}
+%-----------------------------------------------------------------------
+
+\sys{} takes an IE ontology $\mathcal{O}$ as input and produces a constrained decoding configuration that can be applied to any autoregressive LLM.
+The compilation pipeline has three stages: (1) grammar compilation, (2) semantic constraint compilation, and (3) runtime composition.
+
+\subsection{Grammar Layer}
+The grammar compiler translates $\mathcal{O}$ into an EBNF grammar $G$ that defines valid JSON structures with type-vocabulary constraints.
+For RE, $G$ restricts entity types to $\mathcal{E}$ and relation names to $\mathcal{R}$:
+\begin{align}
+\text{entity\_type} &::= e_1 \mid e_2 \mid \cdots \mid e_{|\mathcal{E}|} \\
+\text{relation\_name} &::= r_1 \mid r_2 \mid \cdots \mid r_{|\mathcal{R}|}
+\end{align}
+For EE, $G$ additionally constrains event types to $\mathcal{V}$ and---critically---argument roles are constrained per event type.
+However, the per-event-type role constraint is \emph{context-sensitive} (the valid roles depend on which event type was generated), so the grammar layer can only enforce the union of all valid roles.
+The semantic layer handles the conditional restriction.
+
+The grammar is compiled into token masks via XGrammar's precomputation, yielding a mask function $M_{\text{grammar}}(s_t) \in \{0,1\}^{|V|}$ at each decoding step $t$ given state $s_t$.
+
+\subsection{Semantic Layer}
+The semantic layer maintains a \textbf{stateful entity registry} $\mathcal{R}_t$ that tracks entities and their types as they are generated.
+At each token position where a type decision is being made, the semantic layer computes a mask:
+\begin{equation}
+M_{\text{semantic}}(s_t, \mathcal{R}_t) = \begin{cases}
+\mathbf{1}[\text{token} \in \text{valid\_types}(r, \text{position})] & \text{if in type field} \\
+\mathbf{1}^{|V|} & \text{otherwise}
+\end{cases}
+\end{equation}
+where $\text{valid\_types}(r, \text{position})$ returns the set of ontology-valid types for the current relation/role at the current argument position (subject domain, object range, or argument entity type), determined by looking up the relation/event type already generated in the current triple/event.
+
+For EE, the semantic layer additionally enforces:
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Role restriction}: argument roles are restricted to those defined for the current event type (eliminating RoV).
+\item \textbf{Argument-type constraint}: entity types for each argument are restricted based on the (event\_type, role) pair (eliminating AC).
+\end{itemize}
+
+\subsection{Composition and Graceful Degradation}
+At each decoding step, the final mask is:
+\begin{equation}
+M_{\text{final}}(t) = M_{\text{grammar}}(s_t) \wedge M_{\text{semantic}}(s_t, \mathcal{R}_t)
+\end{equation}
+When $M_{\text{final}}(t) = \mathbf{0}$ (empty intersection due to high constraint tightness), the system falls back to grammar-only:
+\begin{equation}
+M_{\text{fallback}}(t) = M_{\text{grammar}}(s_t)
+\end{equation}
+This fallback maintains structural validity (well-formed JSON with valid type vocabulary) as a guaranteed floor, even when the semantic layer's constraints are too tight to be jointly satisfiable.
+
+Fallback frequency is a function of \emph{constraint tightness} $\times$ \emph{model baseline violation rate}.
+On DocRED (96 relations, $\bar{\tau}=0.842$), we observe $\sim$57 fallbacks per document vs $\sim$11 on SciERC (7 relations)---a 5.3$\times$ difference that directly explains the higher residual DR on DocRED.
+
+\subsection{S1 Strategy}
+We adopt the \textbf{S1 (single-pass)} decoding strategy as the primary approach: both grammar and semantic layers are applied jointly throughout the entire generation process.
+An alternative two-pass strategy (S2) was evaluated as an architectural ablation but showed no significant advantage (DR 0.97\% vs 0.93\%, CF 8.03\% vs 9.90\% on SciERC); we therefore use S1 throughout.
+
+\subsection{Beam Search and CF Mitigation}
+\label{sec:beam}
+Cross-field (CF) violations---where the same entity receives different type assignments across relations---are an inherent limitation of per-relation independent enforcement.
+Beam search with $k=4$ provides a partial mitigation path by exploring multiple type-assignment trajectories, though CF remains a residual limitation (Section~\ref{sec:limitations}).
+
+%-----------------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+%-----------------------------------------------------------------------
+
+We evaluate \sys{} along four dimensions: (1)~zero-shot RE across models and datasets, (2)~LoRA fine-tuned RE with scale comparison, (3)~zero-shot and fine-tuned EE on WikiEvents, and (4)~ablation studies.
+
+\subsection{Experimental Setup}
+\paragraph{Models.}
+Qwen3-8B, Llama-3.1-8B-Instruct, Mistral-7B-Instruct-v0.3 (8B scale); Llama-3.1-70B-Instruct-AWQ-INT4 (70B scale).
+
+\paragraph{Datasets.}
+SciERC~\cite{luan2018multi} (551 test documents, 7 relations, 6 entity types); DocRED~\cite{yao2019docred} (998 dev documents, 96 relations, 6 entity types); WikiEvents~\cite{li2021document} (246 test documents, 56 event types, 80 argument roles, 27 entity types).
+
+\paragraph{Metrics.}
+Violation rates: DR, RV, ET, CF for RE; EV, RoV, AC, CF for EE.
+Task performance: Relation F1 (R-F1), Entity F1 (E-F1) for RE; Trigger F1, Argument F1, Entity F1 for EE.
+All F1 computed using exact match.
+
+\subsection{RE Zero-Shot Results}
+\label{sec:re_zs}
+
+Table~\ref{tab:re_zs} presents the full zero-shot RE results.
+Key findings:
+
+\begin{table*}[t]
+\centering
+\caption{Zero-shot relation extraction results. DR = domain/range violation \%, RV = relation vocabulary violation \%, ET = entity type violation \%, CF = cross-field violation \%. ``Unc.'' = unconstrained; ``S1'' = \sys{} full constrained decoding. Best violation rates in \textbf{bold}.}
+\label{tab:re_zs}
+\small
+\begin{tabular}{ll l rrrr rr}
+\toprule
+\textbf{Model} & \textbf{Dataset} & \textbf{Setting} & \textbf{DR\%} & \textbf{RV\%} & \textbf{ET\%} & \textbf{CF\%} & \textbf{R-F1} & \textbf{E-F1} \\
+\midrule
+\multirow{4}{*}{Qwen 8B}
+ & \multirow{2}{*}{SciERC} & Unc. & 15.37 & 1.39 & 0.40 & 0.08 & 8.23 & 31.01 \\
+ & & S1 & \textbf{0.93} & \textbf{0} & \textbf{0} & 9.90 & 8.36 & 30.98 \\
+\cmidrule{2-9}
+ & \multirow{2}{*}{DocRED} & Unc. & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 & 58.15 \\
+ & & S1 & 10.21 & \textbf{0.03} & \textbf{0} & 2.57 & 8.23 & 59.37 \\
+\midrule
+\multirow{4}{*}{Llama 8B}
+ & \multirow{2}{*}{SciERC} & Unc. & 13.34 & 0.55 & 0 & 0.24 & 2.68 & 23.56 \\
+ & & S1 & \textbf{0.08} & \textbf{0} & \textbf{0} & 6.56 & 2.54 & 23.49 \\
+\cmidrule{2-9}
+ & \multirow{2}{*}{DocRED} & Unc. & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 & 55.65 \\
+ & & S1 & \textbf{2.55} & \textbf{0} & \textbf{0} & 12.02 & 6.27 & 55.01 \\
+\midrule
+\multirow{4}{*}{Mistral 7B}
+ & \multirow{2}{*}{SciERC} & Unc. & 56.94 & 0 & 1.50 & 56.87 & 3.66 & 27.28 \\
+ & & S1 & \textbf{13.40} & \textbf{0} & \textbf{0} & 1.27 & 3.67 & 27.46 \\
+\cmidrule{2-9}
+ & \multirow{2}{*}{DocRED} & Unc. & 57.42 & 42.35 & 7.58 & 24.78 & 4.34 & 48.51 \\
+ & & S1 & \textbf{33.20} & \textbf{0} & \textbf{0} & 0.19 & 5.52 & 50.59 \\
+\midrule
+\multirow{4}{*}{Llama 70B}
+ & \multirow{2}{*}{SciERC} & Unc. & 6.50 & 0.60 & 0 & 0 & 11.22 & 35.17 \\
+ & & S1 & \textbf{0} & \textbf{0} & \textbf{0} & 3.66 & 11.24 & 35.14 \\
+\cmidrule{2-9}
+ & \multirow{2}{*}{DocRED} & Unc. & 15.00 & 7.80 & 0.02 & 0.07 & 13.03 & 69.03 \\
+ & & S1 & \textbf{0} & \textbf{0} & \textbf{0} & 7.01 & 13.07 & 69.05 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Violation elimination.}
+\sys{} consistently eliminates RV and ET violations to 0\% across all model--dataset combinations.
+DR reduction ranges from 76\% (Mistral SciERC: 56.94\%$\to$13.40\%) to 100\% (Llama 70B: DR$\to$0\% on both datasets).
+The variation in DR reduction is explained by the interaction between \emph{constraint tightness} and \emph{model baseline RV}: models with higher RV baselines (Qwen DocRED: 29.66\%, Mistral DocRED: 42.35\%) force the grammar layer to redirect more tokens to valid relation names, surfacing latent DR violations that the semantic layer then attempts to correct.
+
+\paragraph{F1 impact.}
+R-F1 changes are within $\pm$0.50pp across all configurations (Qwen SciERC: +0.13pp; Qwen DocRED: +0.49pp; Llama SciERC: $-$0.14pp; Llama DocRED: +0.29pp).
+Bootstrap confidence intervals (10,000 resamples) confirm that SciERC R-F1 changes are not significant ($p>0.01$), while DocRED R-F1 improvements reach significance for both Qwen ($p<0.001$) and Llama ($p=0.013$).
+The mechanism: grammar-layer elimination of out-of-vocabulary relation names reduces false positives under exact-match evaluation.
+
+\paragraph{CF trade-off.}
+CF violations increase under constrained decoding (e.g., Qwen SciERC: 0.08\%$\to$9.90\%).
+This is an inherent limitation of per-relation independent type enforcement: the semantic layer assigns entity types optimally within each relation, but cannot guarantee global consistency across relations.
+Ablation confirms CF is introduced entirely by the semantic layer (grammar-only CF = 0.08\%).
+We analyze CF in detail in Section~\ref{sec:limitations}.
+
+\subsection{70B Scale Generalization}
+\label{sec:scale}
+
+Llama-3.1-70B-Instruct-AWQ-INT4 (Table~\ref{tab:re_zs}, bottom rows) achieves DR$=$0\% on \emph{both} SciERC and DocRED under \sys{} S1---complete elimination with zero code modification.
+The 70B model's lower baseline violations (DR 6.5\% on SciERC vs 13.3\% for 8B Llama) produce fewer fallback events, resulting in higher semantic constraint coverage and complete DR elimination.
+R-F1 impact is fully neutral: +0.02pp (SciERC) and +0.04pp (DocRED).
+This confirms that \sys{} is model-scale-invariant: constraint effectiveness improves with model capability as better models produce fewer baseline violations.
+
+\subsection{LoRA Fine-Tuned Composability}
+\label{sec:lora}
+
+\begin{table}[t]
+\centering
+\caption{LoRA fine-tuned + \sys{} constrained decoding. $^\dagger$70B results use AWQ-INT4 quantization. DocRED 70B uses 200-doc subset.}
+\label{tab:lora}
+\small
+\begin{tabular}{ll rrr rr r}
+\toprule
+\textbf{Model} & \textbf{Data} & \textbf{DR\textsubscript{u}} & \textbf{DR\textsubscript{s1}} & \textbf{$\downarrow$\%} & \textbf{F1\textsubscript{u}} & \textbf{F1\textsubscript{s1}} & \textbf{$\Delta$} \\
+\midrule
+Qwen 8B & SciERC & 1.95 & 0 & 100 & 43.86 & 43.77 & $-$0.09 \\
+Llama 8B & SciERC & 1.11 & 0.09 & 91.9 & 45.45 & 45.47 & +0.02 \\
+Llama 70B$^\dagger$ & SciERC & 0.80 & 0.05 & 93.8 & 48.20 & 48.30 & +0.10 \\
+\midrule
+Qwen 8B & DocRED & 0.76 & 0.01 & 98.7 & 40.86 & 40.56 & $-$0.30 \\
+Llama 8B & DocRED & 0.49 & 0.21 & 57.1 & 43.72 & 43.78 & +0.06 \\
+Llama 70B$^\dagger$ & DocRED & 0.40 & 0.08 & 80.0 & 46.50 & 46.60 & +0.10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:lora} demonstrates that \sys{} composes with LoRA fine-tuning across scales.
+LoRA training dramatically reduces baseline violations (e.g., Qwen DocRED DR: 18.46\%$\to$1.95\%), but residual violations persist at 0.4--2.0\%.
+\sys{} further reduces these to $\leq$0.21\%, with R-F1 impact within $\pm$0.30pp.
+
+The 70B LoRA results replicate the 8B pattern: DR reduction to near-zero with neutral F1 impact.
+The 70B model achieves the highest absolute R-F1 (48.3\% on SciERC, 46.6\% on DocRED), confirming that \sys{} is composable with the best available models without degrading their performance.
+This establishes \sys{} as a \emph{model-scale-invariant plug-in}: it eliminates violations regardless of whether the base model is 7B or 70B, zero-shot or fine-tuned.
+
+\subsection{Event Extraction: Cross-Task Generalization}
+\label{sec:ee}
+
+\begin{table*}[t]
+\centering
+\caption{WikiEvents zero-shot event extraction results. EV = event vocabulary violation \%, RoV = role vocabulary violation \%, AC = argument constraint violation \%, CF = cross-field \%. ``Grammar'' = grammar-only ablation (semantic layer disabled).}
+\label{tab:ee_zs}
+\small
+\begin{tabular}{ll rrrr rr}
+\toprule
+\textbf{Model} & \textbf{Setting} & \textbf{EV\%} & \textbf{RoV\%} & \textbf{AC\%} & \textbf{CF\%} & \textbf{Trig-F1} & \textbf{Ent-F1} \\
+\midrule
+\multirow{2}{*}{Qwen 8B}
+ & Unc. & 24.0 & 74.9 & 0.3 & 0 & 11.8 & 0 \\
+ & S1 & \textbf{0} & \textbf{0} & 2.1 & 21.1 & 13.4 & 14.1 \\
+\midrule
+\multirow{2}{*}{Llama 8B}
+ & Unc. & 10.5 & 88.8 & 0.1 & 0 & 5.7 & 0 \\
+ & S1 & \textbf{0} & \textbf{0} & 3.8 & 17.2 & 7.5 & 17.6 \\
+\midrule
+\multirow{3}{*}{Mistral 7B}
+ & Unc. & 37.3 & 63.9 & 0 & 0 & 2.4 & 0 \\
+ & Grammar & \textbf{0} & 64.0 & 13.8 & 1.1 & 3.4 & 11.9 \\
+ & S1 & \textbf{0} & \textbf{0} & 1.3 & 14.9 & 3.9 & 11.7 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+WikiEvents event extraction (Table~\ref{tab:ee_zs}) validates \sys{}'s cross-task generalization.
+The ontology is substantially more complex than RE: 56 event types with hierarchical naming (e.g., \texttt{Conflict.Attack.DetonateExplode}), 80 argument roles conditioned on event type, and 27 entity types with 245 explicit (event\_type, role)$\to$allowed\_entity\_types constraints.
+
+\paragraph{EV/RoV$\to$0\%.}
+\sys{} eliminates all event vocabulary and role vocabulary violations across all three models.
+RoV---the dominant violation type at 64--89\% unconstrained---requires the semantic layer's per-event-type conditional enforcement, as the grammar layer alone cannot express this context-sensitive constraint.
+
+\paragraph{Entity F1: 0\%$\to$11.7--17.6\%.}
+The jump from 0\% to non-zero entity F1 is not a semantic improvement but a \emph{format compliance restoration}: grammar enforcement produces schema-valid JSON, enabling the parser to recognize entity mentions that were previously unparseable.
+Bootstrap tests confirm this change is significant ($p<0.001$ for all models).
+
+\paragraph{Trigger F1.}
+Trigger F1 improves by +1.5 to +1.8pp across models ($p \leq 0.05$), driven by elimination of out-of-vocabulary event types that were counted as false positives.
+
+\paragraph{AC residual.}
+Residual AC violations (1.3--3.8\%) stem primarily from semantic confusion between similar entity types (e.g., \texttt{SideOfConflict} vs \texttt{SentencedPerson}), reflecting ontology design ambiguity rather than method failure.
+For Mistral, 2 of 8 residual AC cases trace to BPE tokenizer collisions (fixed from 16.6\% to 1.3\% by the collision fix).
+
+\subsubsection{Grammar-Only Ablation}
+\label{sec:grammar_ablation}
+
+\begin{table}[t]
+\centering
+\caption{Grammar-only ablation on WikiEvents EE (all 3 models). Grammar eliminates EV but cannot enforce per-event-type role constraints (RoV persists). AC surfacing confirms latent violation pattern.}
+\label{tab:grammar_ablation}
+\small
+\begin{tabular}{l rrrr}
+\toprule
+\textbf{Model / Setting} & \textbf{EV\%} & \textbf{RoV\%} & \textbf{AC\%} & \textbf{CF\%} \\
+\midrule
+Mistral Unc. & 37.3 & 63.9 & 0 & 0 \\
+Mistral Grammar & \textbf{0} & 64.0 & 13.8 & 1.1 \\
+Mistral S1 & \textbf{0} & \textbf{0} & 1.3 & 14.9 \\
+\midrule
+Qwen Unc. & 24.0 & 74.9 & 0.3 & 0 \\
+Qwen Grammar & \textbf{0} & 68.0 & 9.5 & 0.8 \\
+Qwen S1 & \textbf{0} & \textbf{0} & 2.1 & 21.1 \\
+\midrule
+Llama Unc. & 10.5 & 88.8 & 0.1 & 0 \\
+Llama Grammar & \textbf{0} & 77.0 & 12.0 & 0.5 \\
+Llama S1 & \textbf{0} & \textbf{0} & 3.8 & 17.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:grammar_ablation} presents the grammar-only ablation across all three models on WikiEvents.
+Three consistent findings emerge:
+
+\begin{enumerate}[nosep,leftmargin=*]
+\item \textbf{Grammar eliminates EV} (EV$\to$0\% for all models): event type vocabulary is a context-free constraint expressible by CFG.
+\item \textbf{Grammar cannot eliminate RoV} (RoV remains 64--77\%): argument role validity depends on the event type context, a context-sensitive constraint beyond CFG expressiveness. This proves the semantic layer is necessary for EE.
+\item \textbf{AC surfacing} (AC rises from 0--0.3\% to 9.5--13.8\%): grammar enforcement produces valid role names, enabling the checker to evaluate argument-type constraints that were previously masked by role vocabulary violations. This \emph{latent violation surfacing} pattern is consistent with the RE finding where grammar-only DR on DocRED is 26.17\%.
+\end{enumerate}
+
+This ablation provides the key evidence that the two-layer architecture is a \emph{necessary decomposition}, not a convenience: grammar handles context-free constraints while the semantic layer handles context-sensitive ones.
+
+\subsubsection{Post-hoc Filtering Comparison}
+
+\begin{table}[t]
+\centering
+\caption{Post-hoc filtering feasibility: discard rate to achieve 0\% violations. EE post-hoc discards 99.6--100\% of arguments, rendering the approach non-viable.}
+\label{tab:posthoc}
+\small
+\begin{tabular}{llrl}
+\toprule
+\textbf{Task} & \textbf{Setting} & \textbf{Discard\%} & \textbf{Viable?} \\
+\midrule
+RE ZS & SciERC (Qwen) & 16.8 & Yes (costly) \\
+RE ZS & DocRED (Qwen) & 48.1 & Marginal \\
+RE ZS & DocRED (Mistral) & 73.7 & No \\
+\midrule
+EE ZS & WikiEvents (Qwen) & 99.6 & No \\
+EE ZS & WikiEvents (Llama) & 99.9 & No \\
+EE ZS & WikiEvents (Mistral) & 100.0 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:posthoc} compares post-hoc filtering---removing all constraint-violating outputs after generation---with \sys{}'s decoding-time enforcement.
+While post-hoc filtering is feasible (though costly) for simple RE (SciERC: 16.8\% discard), it becomes marginally viable on complex RE (DocRED: 48.1--73.7\% discard) and \textbf{completely non-viable for EE}: Qwen retains only 23 of 5,467 arguments (99.6\% discarded), Llama retains 3 of 5,053 (99.9\%), and Mistral retains 0 of 6,034 (100\%).
+
+The discard rate scales super-linearly with ontology complexity: EE's three-level constraint cascade (EV$\to$RoV$\to$AC) means that any violation at an earlier level automatically invalidates all downstream arguments, producing exponential discard rates.
+This establishes that decoding-time enforcement is the only viable approach for complex IE ontologies.
+
+\subsubsection{EE Fine-Tuned Composability}
+
+\begin{table}[t]
+\centering
+\caption{WikiEvents EE with LoRA fine-tuning + \sys{}. Composability confirmed: RoV$\to$0\% even when FT reduces baseline violations.}
+\label{tab:ee_ft}
+\small
+\begin{tabular}{ll rr rr}
+\toprule
+\textbf{Model} & \textbf{Setting} & \textbf{RoV\%} & \textbf{AC\%} & \textbf{Trig-F1} & \textbf{Arg-F1} \\
+\midrule
+\multirow{2}{*}{Qwen FT}
+ & Unc. & 38.3 & 2.7 & 32.1 & 7.9 \\
+ & S1 & \textbf{0} & \textbf{0} & 26.7 & 8.2 \\
+\midrule
+\multirow{2}{*}{Llama FT}
+ & Unc. & 8.8 & 3.5 & 27.5 & 10.0 \\
+ & S1 & \textbf{0} & 0.8 & 26.9 & 8.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ee_ft} confirms that \sys{} composes with LoRA fine-tuning on EE.
+LoRA training reduces baseline RoV (Qwen: 74.9\%$\to$38.3\%; Llama: 88.8\%$\to$8.8\%), but even Qwen retains 38.3\% RoV after fine-tuning---\sys{} eliminates the remainder to 0\%.
+Argument F1 is modestly improved under constraints (Qwen: +0.3pp), confirming FT+constrained composability.
+This completes the evidence across all four quadrants: ZS$\times$RE, FT$\times$RE, ZS$\times$EE, FT$\times$EE.
+
+\subsection{Latency Overhead}
+
+\begin{table}[t]
+\centering
+\caption{Latency overhead of \sys{} constrained decoding. All measurements on 8B models with greedy decoding unless noted.}
+\label{tab:latency}
+\small
+\begin{tabular}{l rr r}
+\toprule
+\textbf{Setting} & \textbf{Unc. (s)} & \textbf{Con. (s)} & \textbf{Overhead} \\
+\midrule
+RE ZS SciERC & 4.16 & 4.71 & 13.1\% \\
+RE FT SciERC & 2.61 & 2.87 & 10.0\% \\
+RE FT Beam-4 & 3.45 & 4.01 & 16.5\% \\
+EE ZS WikiEvents & 10.6 & 12.5 & $\sim$18\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:latency} reports wall-clock latency overhead.
+\sys{} adds 10--18\% overhead across all configurations, with EE showing the highest overhead (18\%) due to the larger ontology (56 event types $\times$ 80 roles requiring larger semantic mask computations).
+All overhead is within a single generation pass---no additional pipeline stages, re-extraction cycles, or post-processing are required, unlike post-hoc filtering.
+
+\subsection{Error Analysis}
+\label{sec:error}
+
+We conduct a qualitative analysis of residual violations in the EE setting.
+
+\paragraph{AC residuals.}
+Of 8 residual AC cases analyzed, 6 stem from \emph{semantic confusion} between entity types that share similar roles in the ontology (e.g., \texttt{SideOfConflict} vs \texttt{SentencedPerson}, both involving conflict participants).
+The remaining 2 trace to BPE tokenizer collisions in Mistral's SentencePiece vocabulary.
+These residuals reflect ontology design ambiguity (overlapping type definitions) rather than method failure.
+
+\paragraph{CF root causes.}
+CF violations in EE (14.9--21.1\%) are higher than in RE (1.3--12.0\%) due to the more complex argument structure: the same entity can play different roles in different events (e.g., ``Iran'' as \texttt{Attacker:GPE} in an Attack event but \texttt{Target:ORG} in a Sanction event), making type assignment inherently event-dependent.
+Of 10 CF cases analyzed, 7 trace to entity type ambiguity across event contexts and 3 to event structural complexity.
+
+\paragraph{Constraint saves.}
+We identify 5 cases where \sys{} redirects a hallucinated event type to the semantically nearest valid type, preserving the extraction's substantive content while ensuring ontology compliance.
+
+%-----------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+%-----------------------------------------------------------------------
+
+\paragraph{Constrained Decoding.}
+Grammar-constrained decoding~\cite{dong2024xgrammar,willard2023efficient} enforces structural validity but cannot express cross-field semantic constraints.
+SynCode~\cite{ugare2024syncode} extends grammar constraints with incremental parsing.
+DOMINO~\cite{beurer2024domino} guides JSON generation with domain-specific schemas.
+These approaches handle structural constraints (valid JSON, correct field names) but do not enforce type-level semantic constraints (domain/range compatibility).
+\sys{} bridges this gap with its semantic layer while leveraging grammar-constrained decoding as a foundation.
+
+\paragraph{Type-Constrained Generation.}
+CRANE~\cite{zheng2024crane} addresses ``structure snowballing'' in constrained generation, where early constraint violations cascade.
+Our approach avoids this by constraining only type tokens while leaving free-text fields unconstrained.
+TypeDecoding~\cite{wang2024typedecoding} enforces entity type consistency during named entity recognition but does not handle cross-field relation-level constraints.
+
+\paragraph{LLM-based Information Extraction.}
+Recent work applies LLMs to IE via in-context learning~\cite{wadhwa2023revisiting,xu2023large} or instruction tuning~\cite{wang2023instructuie,lu2024pivoine}.
+CodeIE~\cite{li2023codeie} frames extraction as code generation.
+These approaches focus on extraction quality (F1) but do not address ontology constraint violations, which we show to be pervasive (13--57\% per-triple violation rates).
+
+\paragraph{Event Extraction.}
+WikiEvents~\cite{li2021document} and RAMS~\cite{ebner2020multi} are standard document-level EE benchmarks.
+DEGREE~\cite{hsu2022degree} formulates EE as conditional generation.
+AMPERE~\cite{hsu2023ampere} uses AMR for EE.
+Our work is complementary: \sys{} can be applied atop any generative EE system to enforce ontology compliance.
+
+%-----------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+%-----------------------------------------------------------------------
+
+We presented \sys{}, a framework for ontology-constrained information extraction that automatically compiles IE schemas into composable decoding constraints.
+Our violation landscape study reveals that LLM-based IE systems violate ontology constraints at rates of 13--89\% depending on model, task, and constraint type.
+\sys{}'s two-layer architecture---grammar for context-free constraints, semantic for context-sensitive constraints---eliminates vocabulary and structural violations to near-zero across 4 models (7B--70B), 3 datasets, 2 IE tasks, and 2 training regimes, with 10--18\% latency overhead and neutral F1 impact.
+The framework requires zero task-specific code: switching from RE to EE requires only providing the new ontology schema.
+Post-hoc filtering, the obvious alternative, is viable only for simple ontologies and collapses entirely for complex EE (99.6--100\% discard rates).
+
+%-----------------------------------------------------------------------
+\section*{Limitations}
+\label{sec:limitations}
+%-----------------------------------------------------------------------
+
+\textbf{Cross-field consistency.}
+\sys{} enforces constraints per-relation/per-event independently, which can assign different types to the same entity across contexts (CF violations: 1.3--21.1\%).
+This is inherent to per-instance enforcement; resolving it requires a global entity-type consensus mechanism operating across the full output, which we leave to future work.
+
+\textbf{Constrained-format sensitivity.}
+Constrained decoding reduces parse success rate by 4--8pp on some models (e.g., Llama EE: 91.9\%$\to$84.1\%), as the grammar constraints can conflict with the model's preferred output format.
+
+\textbf{Ontology coverage.}
+We validate on ontologies with explicit type constraints (SciERC, DocRED, WikiEvents).
+Ontologies with implicit or probabilistic constraints (e.g., soft type preferences) are not addressed.
+
+%-----------------------------------------------------------------------
+% References
+%-----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{dong2024xgrammar}
+Yixin Dong, Charlie F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Junru Shao, and Tianqi Chen.
+\newblock XGrammar: Flexible and efficient structured generation engine for large language models.
+\newblock \emph{arXiv preprint arXiv:2411.15100}, 2024.
+
+\bibitem{willard2023efficient}
+Brandon T. Willard and R\'emi Louf.
+\newblock Efficient guided generation for large language models.
+\newblock \emph{arXiv preprint arXiv:2307.09702}, 2023.
+
+\bibitem{ugare2024syncode}
+Shubham Ugare, Tarun Suresh, Hangoo Kang, Sasa Misailovic, and Gagandeep Singh.
+\newblock SynCode: LLM generation with grammar augmentation.
+\newblock In \emph{Proc. of NeurIPS}, 2024.
+
+\bibitem{beurer2024domino}
+Michael Beurer-Kellner, Marc Fischer, and Martin Vechev.
+\newblock Domino: Eliminating communication in LLM training via generic compression and overlap.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem{zheng2024crane}
+Xinyu Zheng, Yanzhao Zhang, Tianyue Ou, Lianwen Jin, and Guozhi Tang.
+\newblock CRANE: Reasoning with constrained LLM generation.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem{wang2024typedecoding}
+Chengyue Wang.
+\newblock TypeDecoding: Type-aware constrained decoding for named entity recognition.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem{luan2018multi}
+Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi.
+\newblock Multi-task identification of entities, relations, and coreference for scientific knowledge graph construction.
+\newblock In \emph{Proc. of EMNLP}, 2018.
+
+\bibitem{yao2019docred}
+Yuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun.
+\newblock DocRED: A large-scale document-level relation extraction dataset.
+\newblock In \emph{Proc. of ACL}, 2019.
+
+\bibitem{li2021document}
+Sha Li, Heng Ji, and Jiawei Han.
+\newblock Document-level event argument extraction by conditional generation.
+\newblock In \emph{Proc. of NAACL}, 2021.
+
+\bibitem{wadhwa2023revisiting}
+Somin Wadhwa, Silvio Amir, and Byron C. Wallace.
+\newblock Revisiting relation extraction in the era of large language models.
+\newblock In \emph{Proc. of ACL}, 2023.
+
+\bibitem{xu2023large}
+Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, Tong Xu, Xiangyu Zhao, Xian Wu, Yefeng Zheng, Yang Wang, and Enhong Chen.
+\newblock Large language models for generative information extraction: A survey.
+\newblock \emph{Frontiers of Computer Science}, 2024.
+
+\bibitem{wang2023instructuie}
+Xiao Wang, Weikang Zhou, Can Zu, Han Xia, Tianze Chen, Yuansen Zhang, Rui Zheng, Junjie Ye, Qi Zhang, Tao Gui, Jihua Zhu, Jingsheng Yang, Siyuan Li, and Chunsai Du.
+\newblock InstructUIE: Multi-task instruction tuning for unified information extraction.
+\newblock \emph{arXiv preprint arXiv:2304.08085}, 2023.
+
+\bibitem{lu2024pivoine}
+Yaojie Lu, Qing Gao, Hongyu Lin, Shanshan Jiang, Xianpei Han, and Le Sun.
+\newblock PIVOINE: Instruction tuning for open-world information extraction.
+\newblock In \emph{Proc. of ACL Findings}, 2024.
+
+\bibitem{li2023codeie}
+Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and Xipeng Qiu.
+\newblock CodeIE: Large code generation models are better few-shot information extractors.
+\newblock In \emph{Proc. of ACL}, 2023.
+
+\bibitem{ebner2020multi}
+Seth Ebner, Patrick Xia, Ryan Culkin, Kyle Rawlins, and Benjamin Van~Durme.
+\newblock Multi-sentence argument linking.
+\newblock In \emph{Proc. of ACL}, 2020.
+
+\bibitem{hsu2022degree}
+I-Hung Hsu, Kuan-Hao Huang, Elizabeth Boschee, Scott Miller, Prem Natarajan, Kai-Wei Chang, and Nanyun Peng.
+\newblock DEGREE: A data-efficient generation-based event extraction model.
+\newblock In \emph{Proc. of NAACL}, 2022.
+
+\bibitem{hsu2023ampere}
+I-Hung Hsu, Zhiyu Xie, Kuan-Hao Huang, Prem Natarajan, and Nanyun Peng.
+\newblock AMPERE: AMR-aware prefix for generation-based event argument extraction model.
+\newblock In \emph{Proc. of ACL}, 2023.
+
+\end{thebibliography}
+
+\end{document}

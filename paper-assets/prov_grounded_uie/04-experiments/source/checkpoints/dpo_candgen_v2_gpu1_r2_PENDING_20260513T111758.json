@@ -1,0 +1,41 @@
+{
+  "exp_id": "dpo_candgen_v2_gpu1_r2",
+  "project": "prov_grounded_uie",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T11:16:51.368Z",
+    "updated_at": "2026-05-13T11:17:58.404Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/prov_grounded_uie && PYTHONUNBUFFERED=1 python -u generate_dpo_candidates.py --model_path ./outputs/sft/merged --data_file ./data/docred_train.jsonl --num_candidates 8 --max_new_tokens 2048 --top_k 20 --top_p 0.95 --device cuda:0 --resume_from 1514 --max_samples 1514 --output_file ./outputs/dpo_candidates_part2.jsonl\"",
+      "server": "autodl-rtxpro6000",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "106962",
+      "log_path": "~/runs/prov_grounded_uie/dpo_candgen_v2_gpu1_r2.log",
+      "submitted_at": "2026-05-13T11:16:51.324Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "DPO candidate generation (part 2/2, retry): generate 8 candidates per prompt using SFT model, score with composite reward, prompts 1514-3027. Fixed: --device cuda:0 (CUDA_VISIBLE_DEVICES handles physical mapping).",
+    "reproduce": {
+      "finished_at": "2026-05-13T11:17:24.877Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T11:17:25.760797+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T11:17:58.447420+00:00",
+  "trigger": "update_registry"
+}

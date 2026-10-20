@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c030ea1d48d16f62ee8",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code docred data prep",
+  "task_key": "worker_code_docred-data-prep_20260512T110111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_docred-data-prep_20260512T110111_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "2480d0e19202d77fb292013faaedf7a7c6fa2040b772c77a659646cc5462d282"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出文件汇总：\n\n**`artifacts/` 目录结构：**\n- `prepare_docred.py` — 预处理脚本\n- `docred_raw/data/` — 原始 DocRED gzip 数据\n- `docred_processed/train.jsonl` — 3027 条训练样本 (12MB)\n- `docred_processed/dev.jsonl` — 985 条验证样本 (3.6MB)\n- `docred_stats.md` — 数据统计报告\n\n**关键统计：**\n\n| | train | dev |\n|---|---|---|\n| 文档数 | 3,027 | 985 |\n| 总关系数 | 38,180 | 12,275 |\n| 平均关系/文档 | 12.61 | 12.46 |\n| evidence句/关系 (mean/median/max) | 1.61 / 1 / 11 | 1.59 / 1 / 9 |\n| 句子/文档 (mean/median/max) | 7.95 / 7 / 25 | 8.05 / 8 / 20 |\n| token/文档 (mean/median/max) | 197.72 / 179 / 511 | 200.57 / 181 / 510 |\n\ntest split (1000 文档) 无标注，已跳过。26 个文档没有标注关系，也被跳过 (3053 → 3027)。\n\n每条关系平均 1.6 个 evidence 句子，说明大部分关系由 1-2 句支撑，适合作为 GRPO 的 provenance fidelity reward 验证基准。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-docred-data-prep.md"
+}

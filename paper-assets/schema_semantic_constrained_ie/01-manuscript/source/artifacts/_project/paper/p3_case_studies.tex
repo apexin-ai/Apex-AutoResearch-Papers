@@ -1,0 +1,162 @@
+% P3 Case Studies for OntoCoDec Paper
+% Usage: \input{p3_case_studies} in the main paper or appendix
+
+% Required packages (add to preamble if not already present):
+% \usepackage{booktabs}
+% \usepackage{xcolor}
+% \usepackage{colortbl}
+% \usepackage{multirow}
+
+\definecolor{violation}{RGB}{220,50,50}
+\definecolor{fixed}{RGB}{34,139,34}
+\definecolor{gold}{RGB}{0,90,180}
+\definecolor{cfwarn}{RGB}{200,120,0}
+
+% ============================================================
+% CASE STUDY 1: DR Violation Fixed (SciERC, Feature-of)
+% Source: ICCV_2003_161_abs_sent4, 70B Qwen unconstrained vs constrained
+% ============================================================
+\subsection{Case 1: Domain-Range Correction on Feature-of}
+
+\noindent\textbf{Input:} \textit{``We present a novel model-based approach to recover the shapes and the poses of transparent objects from known motion.''}
+
+\vspace{0.5em}
+\noindent Table~\ref{tab:case1} compares unconstrained and OntoCoDec outputs. The unconstrained model assigns \textsc{OtherScientificTerm} to ``shapes'' and ``poses,'' producing \textsc{Feature-of}(\textsc{Task}, \textsc{OtherScientificTerm}) triples that violate the ontology (Feature-of does not permit Task as head with OtherScientificTerm as tail). OntoCoDec's Layer~2 constraint redirects the tail type to \textsc{Task}, yielding schema-compliant triples.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Case~1: OntoCoDec corrects three Feature-of domain-range violations. \textcolor{violation}{Red} = violation; \textcolor{fixed}{green} = corrected.}
+\label{tab:case1}
+\begin{tabular}{@{}p{3.2cm}lll@{}}
+\toprule
+\textbf{Triple} & \textbf{Head Type} & \textbf{Tail Type} & \textbf{DR Valid?} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Unconstrained (3 DR violations)}} \\
+\midrule
+Feature-of(recover, shapes) & Task & \textcolor{violation}{OtherSciTerm} & \textcolor{violation}{\ding{55}} \\
+Feature-of(recover, poses) & Task & \textcolor{violation}{OtherSciTerm} & \textcolor{violation}{\ding{55}} \\
+Feature-of(recover, transparent objects) & Task & \textcolor{violation}{OtherSciTerm} & \textcolor{violation}{\ding{55}} \\
+Used-for(model-based approach, recover) & Method & Task & \ding{51} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{OntoCoDec (0 DR violations)}} \\
+\midrule
+Feature-of(recover, shapes) & Task & \textcolor{fixed}{Task} & \textcolor{fixed}{\ding{51}} \\
+Feature-of(recover, poses) & Task & \textcolor{fixed}{Task} & \textcolor{fixed}{\ding{51}} \\
+Used-for(model-based approach, recover) & Method & Task & \ding{51} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+% CASE STUDY 2: RV + DR Elimination (DocRED)
+% Source: docred_unconstrained vs docred_full_s1 (Qwen 8B)
+% Illustrates Layer 1 fixing RV and Layer 2 fixing DR
+% ============================================================
+\subsection{Case 2: Vocabulary and Type Correction on DocRED}
+
+\noindent\textbf{Input:} \textit{``Skai TV is a Greek free-to-air television network based in Piraeus. It is part of the Skai Group, one of the largest media groups in the country.''}
+
+\vspace{0.5em}
+\noindent The unconstrained model generates natural-language relation names (e.g., ``country of origin,'' ``headquarters location'') instead of Wikidata P-codes, triggering RV violations. OntoCoDec's Layer~1 grammar forces the output to use valid P-codes, while Layer~2 ensures type compatibility.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Case~2: Layer~1 eliminates RV violations; Layer~2 corrects DR types on DocRED.}
+\label{tab:case2}
+\begin{tabular}{@{}p{4.5cm}p{1.8cm}p{1.2cm}@{}}
+\toprule
+\textbf{Unconstrained Output} & \textbf{Violation} & \textbf{Type} \\
+\midrule
+rel=``country of origin'' & Not in schema & RV \\
+rel=``headquarters location'' & Not in schema & RV \\
+rel=``part of'' & Not in schema & RV \\
+rel=``location of formation'' & Not in schema & RV \\
+\midrule
+\textbf{OntoCoDec Output} & & \\
+\midrule
+rel=P495 (Skai TV, Greece) & ORG$\to$LOC & \ding{51} \\
+rel=P159 (Skai TV, Piraeus) & ORG$\to$LOC & \ding{51} \\
+rel=P127 (Skai TV, Skai Group) & ORG$\to$ORG & \ding{51} \\
+rel=P17 (Piraeus, Greece) & LOC$\to$LOC & \ding{51} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+% CASE STUDY 3: 70B vs 8B Violation Comparison
+% Shows that 70B unconstrained already has lower violations
+% ============================================================
+\subsection{Case 3: Scale Effect on Schema Compliance}
+
+\noindent\textbf{Input:} \textit{``This paper investigates the utility of applying standard MT evaluation methods (BLEU, NIST, WER and PER) to building classifiers to predict semantic equivalence and entailment.''}
+
+\vspace{0.5em}
+\noindent This sentence contains Metric entities (BLEU, NIST, WER, PER) related to ``MT evaluation methods'' via Hyponym-of. Both 8B and 70B models mistype ``MT evaluation methods'' as \textsc{Method} (gold: \textsc{Metric}), but the downstream constraint behavior differs.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Case~3: 8B vs 70B behavior on the same input. 8B generates 4 Hyponym-of(Method, Metric) violations; 70B generates Part-of(Metric, Method) violations that OntoCoDec corrects by adjusting ``MT evaluation methods'' to Generic.}
+\label{tab:case3}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Setting} & \textbf{Relation} & \textbf{Types} & \textbf{DR} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Qwen 8B Unconstrained}} \\
+Hyponym-of(MT eval, BLEU) & Method$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+Hyponym-of(MT eval, NIST) & Method$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+Hyponym-of(MT eval, WER) & Method$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+Hyponym-of(MT eval, PER) & Method$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Qwen 8B OntoCoDec}} \\
+Hyponym-of(MT eval, BLEU) & Method$\to$\textcolor{fixed}{Method} & \textcolor{fixed}{\ding{51}} \\
+Hyponym-of(MT eval, NIST) & Method$\to$\textcolor{fixed}{Method} & \textcolor{fixed}{\ding{51}} \\
+\multicolumn{3}{@{}l}{\textcolor{cfwarn}{CF: BLEU typed Metric in entity list, Method in relation}} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Qwen 70B Unconstrained}} \\
+Part-of(BLEU, MT eval) & Metric$\to$\textcolor{violation}{Method} & \textcolor{violation}{\ding{55}} \\
+Part-of(NIST, MT eval) & Metric$\to$\textcolor{violation}{Method} & \textcolor{violation}{\ding{55}} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Qwen 70B OntoCoDec}} \\
+Part-of(BLEU, MT eval) & Metric$\to$\textcolor{fixed}{Generic} & \textcolor{fixed}{\ding{51}} \\
+Part-of(NIST, MT eval) & Metric$\to$\textcolor{fixed}{Generic} & \textcolor{fixed}{\ding{51}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+% CASE STUDY 4: Limitation -- CF Tradeoff
+% Shows that majority voting can discard correct relations
+% ============================================================
+\subsection{Case 4: Limitation -- Cross-Field Majority Voting}
+
+\noindent\textbf{Input:} \textit{``Amorph recognizes NE items in two stages: dictionary lookup and rule application.''}
+
+\vspace{0.5em}
+\noindent The gold annotation types ``Amorph'' as \textsc{Method} and ``NE items'' as \textsc{OtherScientificTerm}, with the relation Used-for(Amorph, NE items). The unconstrained model (Mistral 8B) types ``Amorph'' as \textsc{OtherScientificTerm} but still produces the correct relation Used-for(Amorph, NE items), which happens to match gold. Under OntoCoDec, the constrained output generates a different relation (Used-for targeting ``recognizes'' instead of ``NE items''), losing the gold-matching triple.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Case~4 (Limitation): Constrained decoding changes the generation trajectory, producing a different (non-gold) relation. The unconstrained model coincidentally produced the correct triple despite type errors.}
+\label{tab:case4}
+\begin{tabular}{@{}p{4.5cm}ll@{}}
+\toprule
+\textbf{Setting} & \textbf{Output} & \textbf{Gold Match} \\
+\midrule
+\textbf{Gold} & Used-for(Amorph\textsuperscript{Method}, NE items\textsuperscript{OtherSciTerm}) & -- \\
+\midrule
+\textbf{Unconstrained} & Used-for(Amorph\textsuperscript{OtherSciTerm}, NE items\textsuperscript{Task}) & \textcolor{fixed}{\ding{51}} head/tail match \\
+\midrule
+\textbf{OntoCoDec} & Used-for(Amorph\textsuperscript{OtherSciTerm}, recognizes\textsuperscript{Generic}) & \textcolor{violation}{\ding{55}} wrong tail \\
+ & Feature-of(NE items\textsuperscript{Task}, in two stages\textsuperscript{Generic}) & \textcolor{violation}{\ding{55}} hallucinated \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent This case illustrates a fundamental limitation: constrained decoding modifies token-level probabilities during generation, which can alter the entire output trajectory. While the unconstrained model ``got lucky'' with the correct head-tail pair despite wrong types, the constrained model followed a different generation path entirely. This is not a failure of the constraint mechanism per se, but rather an inherent property of autoregressive generation under modified distributions.

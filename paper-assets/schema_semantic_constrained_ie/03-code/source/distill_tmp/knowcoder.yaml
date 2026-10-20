@@ -1,0 +1,88 @@
+paper_key: "knowcoder"
+title: "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction"
+venue: "arXiv 2024"
+full_text_available: true
+
+research:
+  baselines: [LLaMA2-7B, LLaMA2-13B, ChatGPT, Vicuna-7B, Vicuna-13B, InstructUIE-11B, GoLLIE-7B, GoLLIE-13B, UniNER-7B]
+  metrics:
+    - {name: "F1", direction: "higher_better"}
+  datasets:
+    - {name: "23 NER datasets", size: "diverse domains"}
+    - {name: "8 RE datasets", size: "diverse domains"}
+    - {name: "2 Event datasets", size: "ACE05-Evt, CASIE"}
+  ablation_dimensions: [schema_understanding_phase, schema_following_phase]
+  training_recipe:
+    phase1_optimizer: "AdamW"
+    phase1_lr: "5e-6"
+    phase1_data: "1.5B tokens"
+    phase1_steps: "4500"
+    phase1_seq_len: "2048"
+    phase2_method: "LoRA (rank=32, alpha=64)"
+    phase2_lr: "3e-4"
+    phase2_batch: "256"
+    phase2_seq_len: "4096"
+    base_model: "Code-LLaMA-7B/13B"
+  method_family: "Code-based schema representation with Python class hierarchy for universal IE"
+
+positioning:
+  core_claim: "用 Python 类继承体系统一表示 30000+ 知识类型的 schema，通过代码预训练+指令微调实现 UIE"
+  key_results: "Few-shot: +49.8% F1 relative over LLaMA2; Zero-shot: +12.5% over SOTA; Low-resource: +21.9%"
+  limitations:
+    - "schema 库基于 Wikidata，可能对非 Wikidata 域泛化不足"
+    - "1.5B token 预训练数据为自动构造，质量参差"
+    - "大量 schema 类型在训练中覆盖不均匀"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Universal IE 需要处理海量 schema 类型，现有方法无法扩展到如此规模"
+  tension: "自然语言 schema 描述不够精确，LLM 难以区分相似类型；现有方法只覆盖数百种类型"
+  key_insight: "代码天然适合表达结构化约束——继承（is-a）、类型标注（has-a）、方法（行为）可精确编码 schema 语义"
+  argument_chain: "UIE 需处理万级类型 → NL schema 描述模糊 → Python 类精确编码 → 代码预训练理解 schema → 指令微调学会遵循 → 跨任务验证"
+  contribution_framing: "3项贡献：代码式 schema 表示、30000+ 类型 schema 库、两阶段学习框架"
+  intro_structure: "6段：UIE 背景→schema 表示挑战→代码式方案→两阶段训练→结果预览→贡献列表"
+  notable_technique: "用 Python 类继承直接映射 Wikidata 本体层次，使 schema 关系可执行"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "KnowCoder 框架：schema → Python 类 → 代码预训练 → 指令微调 → UIE"
+    narrative_role: "展示从知识到代码到模型的完整管线"
+    design_elements: ["Python 代码示例", "schema 类层次", "两阶段训练流程"]
+    visual_style: "上下两部分：schema 表示 + 训练管线"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "KnowCoder vs baselines across settings (zero-shot/few-shot/supervised)"
+      how_gain_highlighted: "多设置下的一致性优势"
+      design_note: "分设置展示不同场景下的适用性"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["schema understanding phase", "schema following phase"]
+      design_note: "展示两阶段各自的独立贡献"
+  figure_narrative_role: "Figure 1 (method) → Figure 2 (schema examples) → Figure 3-4 (results + ablation)"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "datasets"
+    col_axis: "models"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run F1"
+    num_baselines: 9
+    design_note: "33 个数据集按任务类型分组（NER/RE/Event），展示通用性"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["schema understanding", "schema following"]
+      variation_style: "delta_from_base"
+      design_note: "去除各阶段后的性能下降"
+  supplementary_tables:
+    in_appendix: true
+    content: "全部 33 数据集的逐个详细结果、schema 库统计"
+    reason: "主表展示聚合趋势，附录提供完整数据"

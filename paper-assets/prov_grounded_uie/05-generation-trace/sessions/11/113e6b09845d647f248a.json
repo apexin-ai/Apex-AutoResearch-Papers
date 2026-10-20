@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "113e6b09845d647f248a",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ops monitor fix grpo v1b",
+  "task_key": "worker_ops_monitor_fix_grpo_v1b_20260512T233422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor_fix_grpo_v1b_20260512T233422_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "9bfd82e4d2fa9f6d7d09d753058aacc9f96c9e0bd792447bbf074ec266a2e67c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n- **PID**: 66475\n- **GPU**: cuda:1（NVIDIA RTX PRO 6000，占用 28268 MiB）\n- **当前步数**: 4/20（进度 20%，每步约 80–146 秒）\n- **日志路径**: `/root/autodl-tmp/prov_grounded_uie/outputs/grpo_pilot_v1.log`\n\n训练指标摘要（前 4 步）：\n\n| Step | Loss | Reward (mean) | Completion Len (mean) | Clipped Ratio | Step Time |\n|------|------|---------------|----------------------|---------------|-----------|\n| 1 | -0.046 | 0.821 | 1362 | 0.0 | 102s |\n| 2 | 0.103 | 0.691 | 1748 | 0.5 | 135s |\n| 3 | 0.034 | 0.654 | 1868 | 0.5 | 146s |\n| 4 | 0.111 | 0.734 | 868 | 0.0 | 78s |\n\n按当前速度，预计还需约 25–30 分钟完成剩余 16 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-fix-grpo-v1b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88cbc56917828993b6ed",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "analysis verify ap implementation",
+  "task_key": "worker_analysis_verify_ap_implementation_20260513T073738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_ap_implementation_20260513T073738_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "f45bcdaec1c5b7fe5a09a06784610a6b72df02a2f0e8947e0dc2dccf8c2e8158"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整代码已获取。结论如下：\n\n---\n\n**AP 实现**（L106-110）：`compute_attribution_precision` 签名只接收 `pred_rels`，不接收 `gold_rels`。逻辑 = `有 evidence 字段且非空的预测关系数 / 总预测关系数`。**不比对 gold evidence，只检查 evidence 字段是否非空。**\n\n**Reviewer 判断：正确。** AP 就是格式完整率（predicted relation 是否附带了任何 evidence 文本），不验证 evidence 内容是否与 gold 一致。\n\n**Evi-F1 实现**（L56-103）：`compute_evi_f1` 接收 `pred_rels` + `gold_rels` + `sentences`。将预测/gold evidence 文本都映射回 sentence index，构建 `(relation_key, sid)` 元组集合，计算集合交集的 precision/recall/F1。**真正比对 gold evidence。**\n\n**结论：AP 不是 evidence 质量指标，只是 evidence 覆盖率/格式完整率。** 衡量 evidence 质量应看 Evi-F1。论文中如果将 AP 表述为 evidence accuracy 或 quality metric，措辞需要修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-ap-implementation.md"
+}

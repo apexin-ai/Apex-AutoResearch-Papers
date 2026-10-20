@@ -1,0 +1,87 @@
+paper_key: "codeie"
+title: "CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors"
+venue: "ACL 2023"
+full_text_available: false
+
+research:
+  baselines: [UIE, GPT-3, GPT-3.5, Codex, CodeGen, InstructGPT, "fine-tuned BERT/RoBERTa"]
+  metrics:
+    - {name: "F1", direction: "higher_better"}
+    - {name: "precision", direction: "higher_better"}
+    - {name: "recall", direction: "higher_better"}
+  datasets:
+    - {name: "CoNLL03", size: "NER benchmark"}
+    - {name: "ACE05-NER", size: "NER benchmark"}
+    - {name: "ACE05-RE", size: "RE benchmark"}
+    - {name: "CoNLL04", size: "RE benchmark"}
+    - {name: "SciERC", size: "scientific IE"}
+    - {name: "ACE05-Evt", size: "event extraction"}
+    - {name: "CASIE", size: "event extraction"}
+  ablation_dimensions: [code_vs_text_representation, model_type_code_vs_NL, prompt_design, num_shots]
+  training_recipe:
+    optimizer: "N/A (few-shot prompting)"
+    lr: "N/A"
+    hardware: "API calls to Codex/GPT-3"
+  method_family: "Code-based prompt for IE using code generation LLMs"
+
+positioning:
+  core_claim: "将 IE 输出重构为代码格式并用 Code-LLM（而非 NL-LLM）生成，在少样本设置下超越专用微调模型"
+  key_results: "7个基准上一致超越 UIE (fine-tuned) 和 GPT-3 (NL prompted)"
+  limitations:
+    - "依赖闭源 API（Codex），成本高且不可复现"
+    - "few-shot 设置依赖示例选择策略"
+    - "代码格式对 NER 等简单任务可能过于复杂"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Code-LLM 被训练来理解结构化代码——而 IE 输出本质上就是结构化的"
+  tension: "用 NL-LLM 做 IE 效果不佳：NL 格式无法精确表达实体关系等结构"
+  key_insight: "Code-LLM 对结构化输出有天然优势——代码的 class/function/dict 直接映射 IE 的 entity/relation/event"
+  argument_chain: "IE 需要结构化输出 → NL 表示结构不佳 → 代码是更好的中间表示 → Code-LLM 生成代码 → 超越 NL-LLM 和微调模型"
+  contribution_framing: "3项贡献：code-based IE 范式、Code-LLM 优于 NL-LLM 的实证、深度分析"
+  intro_structure: "5段：LLM 做 IE 背景→NL 表示的局限→code 表示假设→Code-LLM 验证→贡献"
+  notable_technique: "用 code vs NL 的配对对比（同一模型架构）隔离'代码表示'这一变量的贡献"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "NL prompt vs Code prompt 对 IE 任务的对比"
+    narrative_role: "直观展示为何代码格式更适合 IE——结构化信息在代码中自然表达"
+    design_elements: ["左右对比", "NL prompt 示例", "Code prompt 示例", "输出对比"]
+    visual_style: "双列对比布局，代码高亮"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Code-LLM vs NL-LLM vs fine-tuned across 7 benchmarks"
+      how_gain_highlighted: "Code-LLM 柱状一致性优势"
+      design_note: "7个数据集统一展示一致性"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["representation (code vs NL)", "model type (code vs NL LLM)"]
+      design_note: "2×2 交叉对比隔离表示和模型的各自贡献"
+  figure_narrative_role: "Figure 1 (code vs NL illustration) → Figure 2 (prompt design) → Figure 3-4 (results + ablation)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × metrics"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean across 3 seeds"
+    num_baselines: 7
+    design_note: "按 NER/RE/Event 分组，展示跨任务一致性"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["code vs NL representation", "code vs NL model"]
+      variation_style: "full_numbers"
+      design_note: "2×2 交叉实验精确归因"
+  supplementary_tables:
+    in_appendix: true
+    content: "不同 shot 数的详细结果、prompt 模板、错误分析"
+    reason: "主表展示最佳设置，附录提供完整参数探索"

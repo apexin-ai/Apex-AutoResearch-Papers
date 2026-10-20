@@ -1,0 +1,350 @@
+[
+  {
+    "name": "SciERC violation rate (minimal prompt)",
+    "description": "Zero-shot Qwen3-8B 在 SciERC 上的 ontology constraint violation baseline",
+    "results": {
+      "total_triples": 1680,
+      "domain_range_violation_rate": 0.128,
+      "entity_type_violation_rate": 0.005,
+      "relation_vocabulary_violation_rate": 0.018,
+      "cross_field_consistency_violation_rate": 0.001,
+      "entity_f1": 0.295,
+      "relation_f1": 0.076,
+      "per_relation_dr_variance": 0.008,
+      "max_per_relation_dr": 0.31,
+      "min_per_relation_dr": 0.04
+    },
+    "tables": [
+      "Table 1: Per-relation DR distribution — relatively flat, max/min ratio ~8× (not 55× as needed for tightness argument)"
+    ],
+    "figures": [],
+    "analysis": "审稿人攻击线：\"The violation rates are moderate and relatively uniform — this is \nsimply what happens when you ask an LLM to generate structured output without fine-tuning.\nThe 'violation landscape' contribution reduces to measuring a known phenomenon.\"\n\n\n在 worst 档位下，DR 约 12.8%——仍属 non-trivial 但低于 15% 的 \"impressive\" 门槛。\n关键问题：per-relation DR variance 较低（σ²=0.008），violations 分布相对均匀，\n削弱了 \"constraint tightness drives concentration\" 的核心 insight。\n审稿人会说：\"12.8% violation rate across 7 relations is expected for any structured \ngeneration task — this is not a surprising finding worthy of a dedicated landscape study.\"\n最高单关系 DR 仅 31%（非 42%），不够极端来论证 per-relation guarantee 的必要性。\n"
+  },
+  {
+    "name": "SciERC violation rate (schema-informed prompt)",
+    "description": "Schema-informed prompt 对 SciERC violations 的消除效果",
+    "results": {
+      "domain_range_violation_rate": 0.041,
+      "total_triples": 1640,
+      "vs_minimal_dr_reduction": -0.68,
+      "per_relation_evaluate_for_delta": -0.02,
+      "per_relation_feature_of_delta": -0.24,
+      "per_relation_all_improved": true,
+      "mcnemar_significant": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "如果 prompt 足够好且无 regression，整个 \"prompt insufficiency\" claim 被削弱。\n审稿人会追问：\"Why not iterate on prompt engineering (few-shot, chain-of-thought) \nbefore building a complex decoding system?\" OntoCoDec 变成 over-engineering 的例证。\n\n\nWorst 档：schema-informed prompt 将 DR 从 12.8% 降到 4.1%（↓68%），且所有关系类型均有改善\n（Evaluate-for 也下降 2pp 而非实际的 +5.8pp regression）。审稿人论证：\n\"A well-crafted prompt already achieves 68% reduction with zero engineering effort. \nThe remaining 4.1% is close to noise level for zero-shot extraction. The cost-benefit \nof building a compiler + runtime constraint system for the last 4pp is questionable.\"\n没有 per-relation regression = 丢失了 \"prompt unreliable at per-relation level\" 这个关键论据。\n"
+  },
+  {
+    "name": "DocRED violation rate (minimal prompt)",
+    "description": "DocRED 96-relation ontology 的 zero-shot violation baseline",
+    "results": {
+      "total_triples": 16200,
+      "domain_range_violation_rate": 0.155,
+      "entity_type_violation_rate": 0.068,
+      "relation_vocabulary_violation_rate": 0.295,
+      "cross_field_consistency_violation_rate": 0.001,
+      "json_parse_rate": 0.958
+    },
+    "tables": [
+      "Table 2: Cross-dataset comparison — DR rates within 3pp, undermining urgency narrative"
+    ],
+    "figures": [],
+    "analysis": "RV=29.5% 被审稿人视为 grammar 层的 \"free lunch\"——单层 CFG constraint 就能消除的 trivial violation，\n不需要复杂的 semantic layer。\"Most of the violations (29.5% RV + 6.8% ET = 36.3%) are \ntrivially fixable by grammar alone; only 15.5% require semantic reasoning.\"\n\n\nDR=15.5% 与 SciERC 12.8% 接近（比值 1.2×）——审稿人论证：\n\"Violation rates are comparable across a 7-relation and 96-relation ontology (15.5% vs 12.8%). \nThis directly contradicts any claim about ontology complexity driving violations — \nthe rates are essentially the same regardless of schema size.\"\n这个数据点本应支持 \"tightness not size\" 的 insight，但在 worst 档位下被反过来读：\n既然 rate 不随 size 变化，问题规模本身就是 bounded（不像论文暗示的那样严峻）。\n"
+  },
+  {
+    "name": "DocRED violation rate (schema-informed prompt)",
+    "description": "Schema-informed prompt 在 DocRED 上的效果",
+    "results": {
+      "domain_range_violation_rate": 0.098,
+      "dr_reduction_vs_minimal": -0.37,
+      "entity_type_violation_rate": 0.004,
+      "relation_vocabulary_violation_rate": 0.19
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "审稿人构建 \"diminishing returns\" 叙事：Prompt ↓37% (free) → FT ↓95% (standard) → \nConstrained decoding covers the last 2% at the cost of CF↑10× and latency overhead.\n\"The method lives in a narrow utility window that disappears with standard fine-tuning.\"\n\n\nDR 降到 9.8%（↓37%）——比 SciERC 的 ↓68% 弱，但审稿人不关注这个 gap：\n\"Even with a simple schema-informed prompt, DR drops to under 10%. Combined with \nthe fact that fine-tuning reduces DR to <2%, the remaining window where constrained \ndecoding adds value is extremely narrow (the 2-10% gap that prompt can't close but \nFT can).\" 这直接喂 \"FT makes the method unnecessary\" 攻击线。\n"
+  },
+  {
+    "name": "SciERC unconstrained baseline",
+    "description": "SciERC Phase 2 unconstrained 重跑（checker v2 对齐）",
+    "results": {
+      "domain_range_violation_rate": 0.128,
+      "relation_vocabulary_violation_rate": 0.018,
+      "entity_type_violation_rate": 0.005,
+      "cross_field_consistency_violation_rate": 0.001,
+      "entity_f1": 0.295,
+      "relation_f1": 0.076,
+      "total_triples": 1680
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "低 F1 baseline 是 C8 攻击面的核心弹药。Worst 档审稿人不会接受 \"F1 is control variable\"\n的论证——他们会说 \"if the base extraction is this poor, constraint enforcement \nis premature optimization on garbage.\"\n\n\n与 P001 一致（同一模型同一数据集），作为 Phase 2 ablation 的对照基线。\nWorst 档位下 baseline F1 已经很低（R-F1 7.6%），审稿人会质疑：\n\"Evaluating constraint methods on a setting with 7.6% relation F1 is meaningless — \nthe model barely extracts anything correctly. Any constraint enforcement on \nnear-random outputs is academic exercise, not useful research.\"\n"
+  },
+  {
+    "name": "SciERC grammar-only",
+    "description": "仅 grammar 层（CFG）对 SciERC 的约束效果",
+    "results": {
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0,
+      "domain_range_violation_rate": 0.125,
+      "cross_field_consistency_violation_rate": 0.001,
+      "entity_f1": 0.294,
+      "relation_f1": 0.075
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Grammar 层的效果完全可预期且 trivial——这是 worst 档审稿人最强的 novelty 攻击弹药。\n\"Layer 1 is off-the-shelf XGrammar. Layer 2 is a type checker. The paper's contribution \nis connecting them with bitwise AND — this is systems integration, not research.\"\n\n\nGrammar 层消除 ET/RV（trivial CFG-expressible constraints），但 DR 仅从 12.8%→12.5%\n（↓2.3%，negligible）。F1 微降 0.1pp。审稿人的读法：\n\"The grammar layer does exactly what XGrammar was designed to do — enforce vocabulary \nconstraints. This is a direct application of existing technology (XGrammar, Zheng et al. 2024) \nwith zero methodological novelty. The authors simply configured XGrammar for their JSON schema.\"\n这直接喂 \"engineering contribution\" 的 novelty 攻击。\n"
+  },
+  {
+    "name": "SciERC semantic-only",
+    "description": "仅 semantic 层（logit masking）对 SciERC 的约束效果",
+    "results": {
+      "domain_range_violation_rate": 0.088,
+      "entity_type_violation_rate": 0.005,
+      "relation_vocabulary_violation_rate": 0.018,
+      "cross_field_consistency_violation_rate": 0.035,
+      "entity_f1": 0.292,
+      "relation_f1": 0.073
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Semantic-only 的 CF 引入是最致命的数据点：它证明 semantic 层 IS the source of CF，\n且没有 grammar 层时效果很差。审稿人会说 \"the semantic layer is both the cause of \nthe new problem (CF) and insufficient to solve the original problem (DR) without grammar.\"\n\n\nSemantic-only 将 DR 从 12.8%→8.8%（↓31%），但引入 CF=3.5%（从 0.1% 暴涨 35×）。\nF1 下降 0.3pp。审稿人攻击：\"The semantic layer alone achieves only 31% DR reduction \nwhile introducing 35× more cross-field inconsistencies. This is a net negative — \nthe method creates more problems than it solves.\"\n且 ET/RV 无法处理（因为没有 grammar 层），暴露 enabling dependency 但被读为 \"单层无法独立工作 = 设计耦合\"。\n"
+  },
+  {
+    "name": "SciERC full S1",
+    "description": "Grammar+Semantic 双层 single-pass decoding 对 SciERC 的完整效果",
+    "results": {
+      "domain_range_violation_rate": 0.025,
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0,
+      "cross_field_consistency_violation_rate": 0.142,
+      "entity_f1": 0.289,
+      "relation_f1": 0.071,
+      "fallback_rate": 0.41
+    },
+    "tables": [
+      "Table 3: Violation trade-off — DR↓10.3pp vs CF↑14.1pp, net violation increase"
+    ],
+    "figures": [],
+    "analysis": "这是 worst 档位的核心数据：方法引入的 CF 大于它消除的 DR。\ntotal_violation_before = 12.8% + 1.8% + 0.5% + 0.1% = 15.2%\ntotal_violation_after = 2.5% + 0% + 0% + 14.2% = 16.7%\n审稿人可以合法地声称 \"the method makes things worse on aggregate.\"\n即使论证 DR > CF in severity，这个 framing 对 EMNLP reviewer 极具说服力。\n\n\nDR 从 12.8%→2.5%（↓80%），但 CF 从 0.1%→14.2%（↑142×）。\nR-F1 下降 0.5pp（p=0.03, statistically significant）。\n审稿人的核心攻击：\n\"The method reduces DR by 10.3pp but introduces CF at 14.2pp — a net INCREASE \nin total violation load. The authors are trading known, measurable violations \n(DR) for harder-to-detect inconsistencies (CF). This is not improvement, \nit's problem displacement.\"\nFallback rate 41% 意味着近半数 token 位置 semantic mask 失效——方法在很多时刻\n实质上只有 grammar-only 在工作。DR 残余 2.5%（非 near-complete）进一步削弱 claim。\n"
+  },
+  {
+    "name": "SciERC full S2 (ablation)",
+    "description": "Two-pass S2 策略作为 CF mitigation 的尝试",
+    "results": {
+      "domain_range_violation_rate": 0.028,
+      "cross_field_consistency_violation_rate": 0.128,
+      "entity_f1": 0.285,
+      "relation_f1": 0.068,
+      "total_entities": 2180
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "S2 在所有指标上都不如 S1 或仅 marginal 改善——审稿人会说 \"the authors tried to fix CF \nwith a two-pass approach and failed. This confirms CF is a fundamental limitation \nof the approach, not an engineering issue that can be resolved.\"\n\n\nS2 DR=2.8%（比 S1 的 2.5% 更差），CF=12.8%（比 S1 的 14.2% 稍好但仍然极高）。\nR-F1 6.8%（比 S1 的 7.1% 更差 0.3pp）。Entity 数量从 2474 降到 2180（↓12%）——\nS2 pass-1 的 entity extraction 更保守但不更准确。\n审稿人：\"The two-pass variant slightly reduces CF (14.2%→12.8%) but at the cost of \nworse F1 and higher DR. The proposed architectural solution to CF does not work.\"\nS2 无法作为 CF mitigation 的证据，也无法作为 interesting architectural contribution。\n"
+  },
+  {
+    "name": "DocRED unconstrained baseline",
+    "description": "DocRED Phase 2 unconstrained（checker v2, all_set F1）",
+    "results": {
+      "domain_range_violation_rate": 0.155,
+      "relation_vocabulary_violation_rate": 0.295,
+      "entity_type_violation_rate": 0.068,
+      "cross_field_consistency_violation_rate": 0.001,
+      "entity_f1": 56.8,
+      "relation_f1": 7.2,
+      "total_triples": 17100,
+      "unrecognized_relations": 5050
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "High RV% 在 worst 档被解读为 \"大部分 contribution 来自 off-the-shelf grammar constraint\"，\n留给 semantic 层的独有贡献空间只有 15.5pp DR。\n\n\nDocRED baseline 的 RV=29.5% 和 ET=6.8% 是 grammar 层的 \"easy wins\"——\n审稿人会计算：\"36.3% of violations are trivially fixable by vocabulary constraint \n(XGrammar direct application), only 15.5% require the novel semantic layer.\"\nE-F1=56.8% 比 SciERC 高很多，因为 DocRED entity recognition 相对简单\n（named entities vs scientific terms）。R-F1=7.2% 仍然很低。\n"
+  },
+  {
+    "name": "DocRED grammar-only",
+    "description": "DocRED 仅 grammar 层约束",
+    "results": {
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0.001,
+      "domain_range_violation_rate": 0.25,
+      "cross_field_consistency_violation_rate": 0.001,
+      "entity_f1": 58.5,
+      "relation_f1": 7.9
+    },
+    "tables": [
+      "Table 4: Grammar-only achieves ALL of the F1 improvement; semantic layer contributes zero F1 gain"
+    ],
+    "figures": [],
+    "analysis": "\"Grammar layer = all F1 gain. Semantic layer = DR↓ + CF↑ + 0 F1 impact.\" \n这是 worst 档审稿人最简洁有力的论证——semantic 层的 contribution 是 DR→CF 的 trade-off，\n而非 F1 improvement。整个 semantic 层可以被 post-hoc filter 替代且更简单。\n\n\nGrammar-only 消除 RV 和 ET（36.3pp violations gone），E-F1 提升 1.7pp（从 OOV relation \n不再作为 FP 计入），R-F1 提升 0.7pp。DR 从 15.5%→25.0%——注意 DR 反而上升了！\n这是因为 grammar 将 OOV relations 强制映射到合法关系名，暴露了 latent DR violations。\n审稿人攻击：\"Grammar constraint reveals that the TRUE DR rate is 25%, not 15.5%. \nThe unconstrained baseline's seemingly lower DR is an artifact of unrecognized relations \nbeing excluded from DR calculation. The actual problem is LARGER than reported.\"\n更关键的是：grammar-only ALREADY achieves the E-F1 gain（+1.7pp）——semantic 层\n对 F1 没有额外贡献，它只贡献 DR reduction + CF introduction。\n"
+  },
+  {
+    "name": "DocRED semantic-only",
+    "description": "DocRED 仅 semantic 层约束",
+    "results": {
+      "domain_range_violation_rate": 0.118,
+      "entity_type_violation_rate": 0.045,
+      "relation_vocabulary_violation_rate": 0.298,
+      "cross_field_consistency_violation_rate": 0.015,
+      "entity_f1": 56.2,
+      "relation_f1": 7.0
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "\"Enabling dependency\" 在 worst 档被读为 \"tight coupling\" 和 \"design limitation\"——\n方法无法 gracefully 在只有一层时工作，削弱了 \"composable framework\" 的 novelty claim。\n\n\nSemantic-only 将 DR 从 15.5%→11.8%（↓24%），但无法处理 RV/ET，且 E-F1 下降 0.6pp\n（因为 OOV relations 仍在，且 semantic masking 偶尔强制次优 token）。\nCF 升至 1.5%（15×）。审稿人：\"Without grammar, the semantic layer achieves only \nmodest DR reduction (24%) while degrading F1. It cannot function independently — \nthis is not a composable architecture, it's a tightly-coupled system where one layer \nis a prerequisite for the other.\"\n"
+  },
+  {
+    "name": "DocRED full S1",
+    "description": "DocRED Grammar+Semantic 双层 S1 完整约束",
+    "results": {
+      "domain_range_violation_rate": 0.135,
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0.001,
+      "cross_field_consistency_violation_rate": 0.038,
+      "entity_f1": 57.8,
+      "relation_f1": 7.5,
+      "fallback_rate": 0.58
+    },
+    "tables": [
+      "Table 5: SciERC DR↓80% vs DocRED DR↓13% — method effectiveness inversely correlated with schema complexity"
+    ],
+    "figures": [],
+    "analysis": "DocRED 结果是 worst 档最致命的实验：方法在大 ontology 上近乎失败。\n结合 \"post-hoc is simpler and higher F1\" 论点，审稿人可以论证 OntoCoDec 仅适用于\ntoy-scale ontology（SciERC 7 relations），不具备实际研究价值。\nFallback rate 58% 揭示：方法在多数时刻降级为 grammar-only——\"the semantic layer \nis more often disabled than active.\"\n\n\nDR 从 15.5%→13.5%（仅↓13%）——这是 worst 档的 killer result。DocRED 上方法几乎\n不工作。原因：constraint tightness 极高导致 semantic mask 频繁与 grammar mask 冲突，\nfallback rate 达 58%，超过半数 token 位置只有 grammar-only 在生效。\nCF=3.8%（从 0.1% 升 38×），E-F1 从 56.8 升到 57.8（+1.0pp，全部来自 grammar 层消除 OOV），\nR-F1 从 7.2 升到 7.5（+0.3pp，来自 grammar）。\n审稿人核心攻击：\n\"On DocRED, the method reduces DR by only 2pp (15.5%→13.5%) — a 13% relative reduction \ncompared to the claimed 94% on SciERC. The method's effectiveness is HIGHLY \ndataset-dependent and essentially fails on the larger, more realistic dataset.\"\n"
+  },
+  {
+    "name": "Llama SciERC unconstrained",
+    "description": "Llama-3.1-8B 在 SciERC 上的 unconstrained baseline",
+    "results": {
+      "domain_range_violation_rate": 0.098,
+      "entity_type_violation_rate": 0.002,
+      "relation_vocabulary_violation_rate": 0.008,
+      "entity_f1": 0.225,
+      "relation_f1": 0.024,
+      "total_relations": 1180
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Cross-model 的 baseline 差异被审稿人解读为 \"problem severity is model-specific\"——\n如果用更强的 model，violation rate 自然下降，不需要 constrained decoding。\n低 F1 进一步削弱结果的 credibility。\n\n\nLlama baseline DR=9.8%——比 Qwen 的 12.8% 显著更低。审稿人论证：\n\"Different models have different baseline violation rates (9.8% vs 12.8%). \nA stronger model or better prompting could reduce violations without any \nconstrained decoding. The problem magnitude is model-dependent, not fundamental.\"\n更关键：Llama R-F1 仅 2.4%（比 Qwen 的 7.6% 低很多），表明 Llama 在 SciERC 上\n几乎不能提取关系——在这种 near-random 输出上做 constraint enforcement 无意义。\n"
+  },
+  {
+    "name": "Llama SciERC full S1",
+    "description": "Llama-3.1-8B 在 SciERC 上的 full constrained decoding",
+    "results": {
+      "domain_range_violation_rate": 0.018,
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0,
+      "cross_field_consistency_violation_rate": 0.095,
+      "entity_f1": 0.218,
+      "relation_f1": 0.021,
+      "parse_failures": 8
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Llama 结果看似 \"consistent\"（DR↓82% 与 Qwen ↓80% 接近），但 absolute F1 太低\n使得结果没有实际意义。审稿人会说 \"generalization to Llama just confirms the method \nis equally ineffective across models — consistently trading DR for CF on garbage outputs.\"\n\n\nDR 从 9.8%→1.8%（↓82%）——比 SciERC/Qwen 的 ↓80% 接近，看似一致。\n但 CF=9.5%（比 Qwen 的 14.2% 低但仍极高），R-F1 下降 0.3pp（2.4%→2.1%）。\n审稿人攻击：\"On Llama, the method reduces DR from a moderate 9.8% to 1.8%, \nwhile introducing 9.5% CF and degrading an already-terrible F1. For a model \nwith only 2.4% relation F1, constraint enforcement is clearly pointless — \nyou're polishing type-valid garbage.\"\nDR residual 1.8%（非 near-complete）+ CF 9.5% 的 trade-off 被视为 net negative。\n"
+  },
+  {
+    "name": "Llama DocRED unconstrained",
+    "description": "Llama-3.1-8B 在 DocRED 上的 unconstrained baseline",
+    "results": {
+      "domain_range_violation_rate": 0.228,
+      "relation_vocabulary_violation_rate": 0.165,
+      "entity_type_violation_rate": 0.002,
+      "entity_f1": 54.5,
+      "relation_f1": 5.5,
+      "parse_failures": 75,
+      "total_triples": 15800
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Cross-model DR 差异（15.5% vs 22.8%）在 worst 档不是 \"interesting finding\"，\n而是 \"measurement instability\"——同一 ontology 的 violation landscape 因模型而异，\n削弱了 violation landscape 作为 dataset/ontology 固有属性的 framing。\n\n\nLlama DocRED DR=22.8%——高于 Qwen 的 15.5%，与 \"RV baseline 不同导致 DR 不同\" 的\nactual finding 类似。但在 worst 档，审稿人会说：\n\"Violation rates vary by 7.3pp across models on the same dataset (15.5% vs 22.8%).\nThis model-dependence undermines any universal characterization of the 'violation landscape.'\nThe paper cannot claim a dataset-level property when the measurement changes 50% \ndepending on which model you use.\"\nParse failures=75/998（7.5%）进一步削弱 claim 的 robustness。\n"
+  },
+  {
+    "name": "Llama DocRED full S1",
+    "description": "Llama-3.1-8B 在 DocRED 上的 full constrained decoding",
+    "results": {
+      "domain_range_violation_rate": 0.092,
+      "entity_type_violation_rate": 0,
+      "relation_vocabulary_violation_rate": 0,
+      "cross_field_consistency_violation_rate": 0.155,
+      "entity_f1": 53.2,
+      "relation_f1": 5.1,
+      "parse_failures": 105,
+      "fallback_rate": 0.63
+    },
+    "tables": [
+      "Table 6: Cross-model × cross-dataset effectiveness matrix showing high variance (↓13% to ↓82%)"
+    ],
+    "figures": [],
+    "analysis": "Llama DocRED 是 worst 档位的 \"smoking gun\"：DR↓60% 但 CF↑155×，F1↓，parse failures↑。\n审稿人可以合法地说 \"the method is harmful on realistic-scale ontologies\"。\n与 SciERC 的 good results 对比，构建 \"method only works on toy problems\" 叙事。\n\n\nDR 从 22.8%→9.2%（↓60%）——比 Qwen DocRED 的 ↓13% 好，但远不如 SciERC 的 ↓80-82%。\nCF=15.5%（极高！），E-F1 下降 1.3pp，R-F1 下降 0.4pp。Parse failures 从 75 升到 105。\nFallback rate 63% 意味着 semantic layer 大部分时间被 bypass。\n审稿人核心论点：\n\"On DocRED with Llama, the method's DR reduction is 60% but introduces a CF rate \nof 15.5% — meaning one in six entity type assignments is internally inconsistent. \nCombined with F1 degradation and increased parse failures, the method is clearly \nharmful on this dataset-model combination.\"\nDR 残余 9.2% 也远高于 \"near-complete elimination\" 的任何合理定义。\n"
+  },
+  {
+    "name": "S2 pilot (50 docs)",
+    "description": "S2 two-pass 小规模验证实验",
+    "results": {
+      "domain_range_violation_rate": 0.04,
+      "relation_f1": 0.065,
+      "samples": 50,
+      "predicted_relations": 130
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Pilot 结果在论文中不应出现（已经有 full run），但在 supplementary material 中\n如果被发现 pilot ≠ full run，会被解读为 \"selective reporting\"。\n\n\nPilot 规模太小不能得出任何结论。Worst 档审稿人不会攻击 pilot 本身，\n而是攻击 \"为什么在 pilot 明显表现不佳（R-F1 6.5% < S1 的 7.1%）的情况下\n仍然跑了 full S2 experiment？这暗示作者在 p-hacking 寻找有利结果。\"\n"
+  },
+  {
+    "name": "Post-hoc filtering baseline",
+    "description": "简单的事后过滤 baseline——移除所有 type-violating triples",
+    "results": {
+      "scierc_f1_before": 7.6,
+      "scierc_f1_posthoc": 8.9,
+      "scierc_f1_constrained": 7.1,
+      "scierc_rejection_rate": 0.145,
+      "scierc_dr_after": 0,
+      "docred_f1_before": 7.2,
+      "docred_f1_posthoc": 10.2,
+      "docred_f1_constrained": 7.5,
+      "docred_rejection_rate": 0.52,
+      "docred_dr_after": 0,
+      "docred_et_residual": 0.025
+    },
+    "tables": [
+      "Table 7: Post-hoc vs Constrained — post-hoc dominates on F1 AND DR simultaneously"
+    ],
+    "figures": [],
+    "analysis": "这是 worst 档位审稿人最强的 technical argument：\"A trivial baseline that the authors \nthemselves implemented proves their complex method is unnecessary. The simpler approach \nachieves better results on every metric the paper reports. This is a fatal flaw.\"\n论文的 recall/coverage defense 在 7% F1 regime 下完全无力——who cares about recall \nof type-valid triples when 93% of all triples are wrong anyway?\n\n\nPost-hoc filtering 在两个数据集上都实现 higher F1：\n- SciERC: post-hoc 8.9% vs constrained 7.1%（+1.8pp）\n- DocRED: post-hoc 10.2% vs constrained 7.5%（+2.7pp）\n且 post-hoc DR=0%（完美消除，无残余），而 constrained 仍有 2-13.5% 残余 DR。\n审稿人的 killer argument：\n\"Post-hoc filtering achieves BOTH better F1 (+1.8 to +2.7pp) AND better DR (0% vs 2-14%)\nthan constrained decoding. It is simpler (one line of code), faster (no runtime overhead), \nand more effective. The only advantage of constrained decoding — recall preservation — \nis marginal (0.3-0.5pp) and unlikely to matter at these absolute F1 levels.\"\nDocRED rejection rate 52% 本应是 post-hoc 的弱点，但在 F1-focused 审稿人眼中：\n\"Rejecting 52% of near-random outputs (R-F1=7.2%) is a feature, not a bug.\"\n"
+  },
+  {
+    "name": "Bootstrap CI (10000 iterations)",
+    "description": "Bootstrap 置信区间统计检验——确认 F1 差异显著性",
+    "results": {
+      "scierc_r_f1_delta": -0.52,
+      "scierc_r_f1_p_value": 0.02,
+      "scierc_r_f1_ci": [
+        -0.95,
+        -0.08
+      ],
+      "docred_r_f1_delta": 0.28,
+      "docred_r_f1_p_value": 0.08,
+      "docred_r_f1_ci": [
+        -0.04,
+        0.61
+      ],
+      "docred_e_f1_delta": 0.95,
+      "docred_e_f1_p_value": 0.002
+    },
+    "tables": [
+      "Table 8: Bootstrap results — significant F1 degradation on SciERC, non-significant on DocRED"
+    ],
+    "figures": [],
+    "analysis": "统计检验在 worst 档反而成为武器：它 PROVES F1 degradation。\n\"The paper honestly reports that their method significantly hurts performance on one \ndataset and shows no significant improvement on the other. Combined with post-hoc's \nsuperior F1, there is no quality argument for constrained decoding.\"\n\n\nBootstrap CI 确认：\n- SciERC R-F1 下降 0.52pp 且 statistically significant（p=0.02, CI 不跨 0）\n- DocRED R-F1 上升 0.28pp 但 NOT significant（p=0.08, CI 跨 0）\n审稿人攻击：\n\"The authors' own statistical test shows constrained decoding SIGNIFICANTLY degrades \nrelation F1 on SciERC (p=0.02). On DocRED, the improvement is not significant (p=0.08).\nThere is NO dataset where the method improves F1 at conventional significance levels, \nbut there IS one where it significantly hurts.\"\nDocRED E-F1 的显著提升（+0.95pp, p=0.002）被归因于 grammar 层消除 OOV——\n\"This gain comes from grammar (off-the-shelf XGrammar), not from the novel semantic layer.\"\n"
+  },
+  {
+    "name": "DocRED schema compilation (Phase 0 R2)",
+    "description": "DocRED schema-informed prompt 重跑（被 P004 supersede）",
+    "results": {
+      "status": "killed"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "无实质影响，但应确保 paper 中不引用此实验的任何中间结果。\n\n实验被终止，无结果。在 worst 档，审稿人不会关注 killed experiments，\n但如果在 supplementary 中被发现，可能被解读为 \"the authors killed experiments \nthat produced unfavorable results\" — selective reporting suspicion。\n"
+  }
+]

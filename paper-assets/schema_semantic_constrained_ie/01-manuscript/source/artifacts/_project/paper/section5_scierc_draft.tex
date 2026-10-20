@@ -1,0 +1,105 @@
+% Section 5 — SciERC Results (Draft)
+
+\subsection{Ablation and Composability with Fine-Tuning}
+\label{sec:scierc-results}
+
+Table~\ref{tab:scierc-ablation} presents the five-way ablation on SciERC (Qwen3-8B, zero-shot, 551 documents); only the active constraint layers differ across rows.
+
+% Figure 5 (scale-dependency) moved to figure* in section3_violation_landscape.tex
+
+% Figure 6 (violation-composition) moved to section3_violation_landscape.tex for page 6 placement
+
+% ──────────────────────────────────────────
+%  Table: SciERC five-way ablation
+% ──────────────────────────────────────────
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.6pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l rrrrrr rr@{}}
+\toprule
+& \multicolumn{6}{c}{\textbf{Violation Rates (\%)}}
+& \multicolumn{2}{c}{\textbf{F1}} \\
+\cmidrule(lr){2-7} \cmidrule(l){8-9}
+\textbf{Mode}
+  & DR\,$\downarrow$ & $\Delta$DR
+  & RV\,$\downarrow$ & ET\,$\downarrow$ & CF & Tot.\,$\downarrow$
+  & Rel.\,$\uparrow$ & Ent.\,$\uparrow$ \\
+\midrule
+Unconstrained
+  & 15.37 & ---
+  & 1.39  & 0.40
+  & 0.08  & 15.45
+  & 8.23  & 31.01 \\
+Grammar
+  & 14.84 & $\downarrow$3\%
+  & \textbf{0} & \textbf{0}
+  & 0.08  & 14.92
+  & 8.23  & 30.98 \\
+GCD-equiv.$^\dagger$
+  & 15.26 & $\downarrow$1\%
+  & \textbf{0} & \textbf{0}
+  & 0.04  & 15.30
+  & 8.75  & 30.91 \\
+Semantic
+  & 11.65 & $\downarrow$24\%
+  & 1.51  & 0.40
+  & 2.71  & 14.36
+  & 8.15  & 31.01 \\
+S1
+  & \textbf{0.93} & $\downarrow$\textbf{94\%}
+  & \textbf{0} & \textbf{0}
+  & 9.90  & \textbf{10.83}
+  & \textbf{8.36} & 30.98 \\
+S2
+  & 0.97  & $\downarrow$94\%
+  & \textbf{0} & \textbf{0}
+  & 8.03  & \textbf{9.00}
+  & 8.03  & \textbf{31.90} \\
+\bottomrule
+\end{tabular}}%
+\caption{Five-way ablation on SciERC (551 docs, Qwen3-8B, zero-shot).
+$\Delta$DR: relative change vs.\ unconstrained; Tot.\ = DR + CF; bold = best (CF excluded).
+F1 (\%). S1/S2 = single/two-pass (\S\ref{sec:strategies}).
+Grammar = grammar-constrained decoding (GCD) ceiling~\cite{geng2023gcd}.
+$\dagger$vLLM \texttt{guided\_json}~\cite{kwon2023vllm} (\S\ref{sec:constrained-baselines}).
+Deterministic (greedy, $T{=}$0); robustness evidence in Table~\ref{tab:cross-model} and Appendices~\ref{app:bootstrap-effect-sizes},~\ref{app:prompt-sensitivity},~\ref{app:doc-length},~\ref{app:sampling}.}
+\label{tab:scierc-ablation}
+\end{table}
+
+% ──────────────────────────────────────────
+%  (a) Zero-shot diagnostic (compressed)
+% ──────────────────────────────────────────
+\paragraph{Zero-shot diagnostic.}
+\emph{Does grammar-constrained decoding alone resolve DR violations?}
+Table~\ref{tab:scierc-ablation} establishes that DR violations are pervasive (15--18\% across datasets) and that constraint layers interact non-additively: grammar-only achieves 3\% DR reduction on SciERC, semantic-only 24\%, but their composition yields 94\%, the \emph{empirical enabling dependency}.
+On DocRED (96 relations, $\bar{\kappa}{=}0.842$), grammar-only \emph{increases} DR via \textit{latent violation surfacing}: forcing out-of-vocabulary (OOV)$\to$valid relation mapping exposes violations previously masked by vocabulary errors (Appendices~\ref{app:cross-model-zs},~\ref{app:docred-zs-ablation}).
+Cross-model validation (3 models $\times$ 2 datasets; Table~\ref{tab:cross-model}) confirms DR drops of 76--99\% on SciERC and 42--90\% on DocRED, with R-F1 improving in 5/6 settings; post-hoc filtering achieves DR${=}$0\% but at 14--74\% rejection rates.
+The DR-to-CF conversion is a severity downgrade, not an error introduction (Figure~\ref{fig:violation-composition}): DR violations produce ontology-invalid triples that corrupt downstream knowledge graphs and cannot be fixed without re-extraction, while CF (individually valid triples with cross-triple type inconsistency) can be resolved via fine-tuning, beam search, or post-hoc type-consistency reranking (TCR; eliminates all CF with bounded DR regression; Appendix~\ref{app:tcr}).
+Zero-shot evaluation thus establishes violation prevalence and constraint interaction; fine-tuning demonstrates practical elimination.
+
+% Figure 6 (violation-composition) moved earlier in source for page 6 placement
+
+% Cross-model table is in §6.1 (Table~\ref{tab:cross-model}).
+
+% ──────────────────────────────────────────
+%  (e) Composability with Fine-Tuning (expanded)
+% ──────────────────────────────────────────
+\paragraph{Composability with fine-tuning.}
+\label{sec:composability}
+\emph{Does OntoCoDec retain value after fine-tuning?}
+Fine-tuning alone reduces DR to 0.5--2\% but leaves residual violations on tight-constraint relations (Table~\ref{tab:composability}; full fine-tuning in Appendix~\ref{app:full-ft}); adding S1 yields DR\,$\leq$\,0.21\% with no significant $\Delta$R-F1 (Bonferroni-corrected; 95\% CIs $\subseteq [-0.69, {+}0.25]$\,pp; removed triples are 97.6--100\% false positives; Appendix~\ref{app:downstream-impact}).
+Under fine-tuning, grammar becomes a no-op ($\Delta$DR$<$0.2\,pp), making the semantic layer the sole DR defense (41--69\% on SciERC, 2--75\% on DocRED; Appendix~\ref{app:ft-ablation}); three relations with $\kappa \geq 0.36$ retain DR, all eliminated by S1 (Appendix~\ref{app:lora-per-relation}).
+CF drops from $+$9.82\,pp (zero-shot) to $+$1.18\,pp (fine-tuned), concentrated in \textsc{Generic}$\leftrightarrow$X ambiguity (63.3\%; Appendices~\ref{app:cf-distribution},~\ref{app:cascade-analysis}); beam ($k{=}4$) achieves near-zero violations at 8B (R-F1 43--46; \S\ref{sec:beam-results}).
+
+% CF analysis folded into composability paragraph above; details in Appendices~\ref{app:cf-distribution},~\ref{app:cascade-analysis}.
+% Table 2 (composability) moved to section5_crossmodel_draft.tex for page 8 placement
+
+% ──────────────────────────────────────────
+%  (f) Downstream impact of DR elimination
+% ──────────────────────────────────────────
+\paragraph{Downstream impact.}
+\label{sec:downstream-impact}
+Constraint removal affects only 0.24\% of gold triples; error analysis confirms only 0.2\% of false negatives were blocked by constraints (Appendices~\ref{app:lucky-violations},~\ref{app:error-analysis},~\ref{app:case-studies}).
+The 36 residual DR violations across fine-tuned settings decompose into entity type errors (39\%), schema gaps (33\%), and relation/direction errors (28\%); the irreducible floor is $\sim$3 violations (Appendix~\ref{app:residual-dr-analysis}).

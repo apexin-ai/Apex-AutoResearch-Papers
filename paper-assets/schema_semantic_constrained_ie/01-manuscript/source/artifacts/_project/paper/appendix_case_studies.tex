@@ -1,0 +1,176 @@
+% Appendix — Error Analysis and Case Studies
+
+\section{Error Analysis and Case Studies}
+\label{app:case-studies}
+
+\definecolor{violation}{RGB}{220,50,50}
+\definecolor{fixed}{RGB}{34,139,34}
+\definecolor{cfwarn}{RGB}{200,120,0}
+\newcommand{\viol}[1]{\textcolor{violation}{\st{#1}}}
+\newcommand{\fixd}[1]{\textcolor{fixed}{\textbf{#1}}}
+
+We present four representative cases illustrating constraint behavior across violation types. Cases 1--3 demonstrate OntoCoDec's corrective mechanisms; Case 4 illustrates a limitation.
+
+\subsection{Domain-Range Correction}
+\label{app:case-dr}
+
+\noindent\textbf{Input (SciERC, Qwen3-8B):} \textit{``We present a novel model-based approach to recover the shapes and the poses of transparent objects from known motion.''}
+
+The unconstrained model assigns \textsc{OtherScientificTerm} to ``shapes'' and ``poses,'' producing \textsc{Feature-of}(\textsc{Task}, \textsc{OtherScientificTerm}) triples that violate domain/range constraints. The semantic layer redirects the tail type to \textsc{Task}, yielding schema-compliant triples (Table~\ref{tab:case1}).
+
+\begin{table}[h]
+\centering
+\small
+\caption{OntoCoDec corrects three Feature-of DR violations. \textcolor{violation}{Red}/\ding{55} = violation; \textcolor{fixed}{\textbf{green/bold}}/\ding{51} = corrected (shape markers provided for colorblind accessibility).}
+\label{tab:case1}
+\begin{tabular}{@{}p{3.2cm}lll@{}}
+\toprule
+\textbf{Triple} & \textbf{Head} & \textbf{Tail} & \textbf{DR} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Unconstrained (3 violations)}} \\
+\midrule
+Feature-of(recover, shapes) & Task & \textcolor{violation}{OtherSciTerm} & \textcolor{violation}{\ding{55}} \\
+Feature-of(recover, poses) & Task & \textcolor{violation}{OtherSciTerm} & \textcolor{violation}{\ding{55}} \\
+Feature-of(recover, transp.\ obj.) & Task & \textcolor{violation}{OtherSciTerm} & \textcolor{violation}{\ding{55}} \\
+Used-for(model approach, recover) & Method & Task & \ding{51} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{OntoCoDec (0 violations)}} \\
+\midrule
+Feature-of(recover, shapes) & Task & \textcolor{fixed}{Task} & \textcolor{fixed}{\ding{51}} \\
+Feature-of(recover, poses) & Task & \textcolor{fixed}{Task} & \textcolor{fixed}{\ding{51}} \\
+Used-for(model approach, recover) & Method & Task & \ding{51} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dual-Layer Vocabulary and Type Correction}
+\label{app:case-rv-dr}
+
+\noindent\textbf{Input (DocRED, Qwen3-8B):} \textit{``Skai TV is a Greek free-to-air television network based in Piraeus. It is part of the Skai Group, one of the largest media groups in the country.''}
+
+The unconstrained model generates natural-language relation names (e.g., ``country of origin'') instead of Wikidata P-codes, triggering RV violations. The grammar layer forces valid P-codes; the semantic layer ensures type compatibility (Table~\ref{tab:case2}).
+
+\begin{table}[h]
+\centering
+\small
+\caption{Layer~1 eliminates RV violations; Layer~2 corrects DR types on DocRED.}
+\label{tab:case2}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}p{4.5cm}p{1.8cm}p{1.2cm}@{}}
+\toprule
+\textbf{Unconstrained Output} & \textbf{Violation} & \textbf{Type} \\
+\midrule
+rel=``country of origin'' & Not in schema & RV \\
+rel=``headquarters location'' & Not in schema & RV \\
+rel=``part of'' & Not in schema & RV \\
+rel=``location of formation'' & Not in schema & RV \\
+\midrule
+\textbf{OntoCoDec Output} & & \\
+\midrule
+rel=P495 (Skai TV, Greece) & ORG$\to$LOC & \ding{51} \\
+rel=P159 (Skai TV, Piraeus) & ORG$\to$LOC & \ding{51} \\
+rel=P127 (Skai TV, Skai Group) & ORG$\to$ORG & \ding{51} \\
+rel=P17 (Piraeus, Greece) & LOC$\to$LOC & \ding{51} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Scale Effect on Schema Compliance}
+\label{app:case-scale}
+
+\noindent\textbf{Input (SciERC):} \textit{``This paper investigates the utility of applying standard MT evaluation methods (BLEU, NIST, WER and PER) to building classifiers to predict semantic equivalence and entailment.''}
+
+Both Qwen3-8B and Llama-3.1-70B-Instruct (AWQ INT4) mistype ``MT evaluation methods'' as \textsc{Method} (gold: \textsc{Metric}), but the downstream constraint behavior differs (Table~\ref{tab:case3}). The 70B model produces fewer violations (2 vs.\ 4) and chooses a different relation (Part-of vs.\ Hyponym-of), yet OntoCoDec corrects both.
+
+\begin{table}[h]
+\centering
+\small
+\caption{8B vs.\ 70B on the same input. OntoCoDec corrects violations at both scales; CF arises when type corrections conflict with entity-list assignments.}
+\label{tab:case3}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Setting} & \textbf{Relation} & \textbf{Types} & \textbf{DR} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Qwen3-8B Unconstrained}} \\
+Hyponym-of(MT eval, BLEU) & Meth$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+Hyponym-of(MT eval, NIST) & Meth$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+Hyponym-of(MT eval, WER) & Meth$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+Hyponym-of(MT eval, PER) & Meth$\to$\textcolor{violation}{Metric} & \textcolor{violation}{\ding{55}} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Qwen3-8B OntoCoDec}} \\
+Hyponym-of(MT eval, BLEU) & Meth$\to$\textcolor{fixed}{Meth} & \textcolor{fixed}{\ding{51}} \\
+Hyponym-of(MT eval, NIST) & Meth$\to$\textcolor{fixed}{Meth} & \textcolor{fixed}{\ding{51}} \\
+\multicolumn{3}{@{}l}{\textcolor{cfwarn}{CF: BLEU typed Metric in entity list, Method in relation}} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Llama-3.1-70B Unconstrained}} \\
+Part-of(BLEU, MT eval) & Metric$\to$\textcolor{violation}{Meth} & \textcolor{violation}{\ding{55}} \\
+Part-of(NIST, MT eval) & Metric$\to$\textcolor{violation}{Meth} & \textcolor{violation}{\ding{55}} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Llama-3.1-70B OntoCoDec}} \\
+Part-of(BLEU, MT eval) & Metric$\to$\textcolor{fixed}{Generic} & \textcolor{fixed}{\ding{51}} \\
+Part-of(NIST, MT eval) & Metric$\to$\textcolor{fixed}{Generic} & \textcolor{fixed}{\ding{51}} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Limitation: Trajectory Divergence under Constraints}
+\label{app:case-cf}
+
+\noindent\textbf{Input (SciERC, Mistral-7B):} \textit{``Amorph recognizes NE items in two stages: dictionary lookup and rule application.''}
+
+The gold annotation types ``Amorph'' as \textsc{Method} and ``NE items'' as \textsc{OtherScientificTerm}, with Used-for(Amorph, NE items). The unconstrained model mistypes ``Amorph'' but coincidentally produces the correct relation. Under OntoCoDec, modified token probabilities alter the generation trajectory entirely and produce a different (non-gold) relation (Table~\ref{tab:case4}). This illustrates a fundamental property of autoregressive generation under modified distributions: constraint enforcement can change the entire output path, not just individual token choices.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Constrained decoding changes the generation trajectory. The unconstrained model coincidentally produced the gold triple despite type errors.}
+\label{tab:case4}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}p{4.2cm}ll@{}}
+\toprule
+\textbf{Setting} & \textbf{Output} & \textbf{Gold?} \\
+\midrule
+\textbf{Gold} & Used-for(Amorph\textsuperscript{Meth}, NE items\textsuperscript{OtherSci}) & -- \\
+\midrule
+\textbf{Unconstr.} & Used-for(Amorph\textsuperscript{OtherSci}, NE items\textsuperscript{Task}) & \textcolor{fixed}{\ding{51}} \\
+\midrule
+\textbf{OntoCoDec} & Used-for(Amorph\textsuperscript{OtherSci}, recognizes\textsuperscript{Gen}) & \textcolor{violation}{\ding{55}} \\
+ & Feature-of(NE items\textsuperscript{Task}, in two stages\textsuperscript{Gen}) & \textcolor{violation}{\ding{55}} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Error Analysis: Constraint Impact on Prediction Quality}
+\label{app:error-analysis}
+
+We analyze errors from Qwen3-8B LoRA + S1 on SciERC (551 documents; R-F1 43.77, 460 TP, 668 FP, 514 FN) across three categories.
+
+\paragraph{False negatives: constraint-blocked vs.\ model-limited.}
+Of 514 false negatives, only one (0.2\%) is attributable to constraint enforcement:
+
+\noindent\textit{fn\_001} (constraint-blocked): ``\textit{Experiments on the TREC Blog track test set show that both groups of credibility indicators significantly improve retrieval effectiveness.}'' \\
+Gold: Evaluate-for(retrieval effectiveness\textsuperscript{Metric}, credibility indicators\textsuperscript{OtherSci}).
+The unconstrained model generates this triple correctly, but under S1, conflicting type assignments to `credibility indicators' (OtherScientificTerm in entity list vs.\ Method in Evaluate-for's tail) trigger a CF violation, redirecting generation to a reversed Used-for triple.
+
+\noindent\textit{fn\_004} (relation type confusion): ``\textit{Amorph recognizes NE items in two stages: dictionary lookup and rule application.}'' \\
+Gold: Part-of(dictionary lookup\textsuperscript{Meth}, Amorph\textsuperscript{Meth}).
+The model predicts Used-for instead of Part-of---both are schema-valid for Method$\to$Method pairs, so constraints provide no corrective signal. This Part-of$\leftrightarrow$Used-for confusion is the dominant FN pattern.
+
+\paragraph{False positives: schema-valid but incorrect.}
+
+\noindent\textit{fp\_001} (wrong relation type): Same sentence as fn\_004. The model generates Used-for(dictionary lookup, Amorph) where gold is Part-of. Used-for is the majority relation in SciERC (56\% of all relations), causing systematic over-prediction. Since both relation types are schema-valid for the entity type pair, constraints cannot distinguish them.
+
+\noindent\textit{fp\_007} (hallucinated relation): ``\textit{The classifiers show little gain from information about meeting context.}'' \\
+No gold relation exists. The model generates Used-for(meeting context\textsuperscript{OtherSci}, classifiers\textsuperscript{Meth}), ignoring the negation in ``show little gain from.'' The instrumental preposition ``from'' triggers relation generation despite the negative result.
+
+\paragraph{CF violations: entity type polysemy.}
+
+\noindent\textit{cf\_001} (Generic$\leftrightarrow$Method): ``\textit{A basic reason behind this is that the overall approach extends the approach described in a companion paper\ldots}'' \\
+The entity `approach' receives Generic in one Used-for relation and Method in another. The gold type is Generic; the polysemy of `approach' (generic reference vs.\ specific method) causes per-relation type assignment to diverge.
+
+\noindent\textit{cf\_005} (Material$\leftrightarrow$Task): ``\textit{Experimental evaluations on two challenging person re-identification datasets demonstrate the superiority of the proposed model\ldots}'' \\
+The compound noun `person re-identification datasets' contains both a task component and a data component. The model assigns Material in one Evaluate-for relation and Task in another within the same sentence.
+
+\paragraph{Summary.}
+Structural constraints eliminate type-invalid outputs (DR$\leq$0.21\%), but semantic ambiguity within schema-valid space---relation type confusion, entity type polysemy---remains the dominant error source. Only 1 of 514 false negatives (0.2\%) was attributable to constraint enforcement, confirming that the recall cost of type constraints is negligible.

@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+
+\PassOptionsToPackage{table}{xcolor}
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+% \usepackage{inconsolata}  % optional per ACL template; not available in this TeX Live
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{soul}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc}
+
+\title{OntoCoDec: Type-Constrained Information Extraction\\via Compiled Schema Constraints}
+
+\author{Anonymous ACL submission}
+
+\begin{document}
+\maketitle
+
+% === Abstract ===
+\input{abstract}
+
+% === §1 Introduction ===
+\input{section1_introduction_draft}
+
+% === §2 Related Work ===
+\input{section6_related_work}
+
+% === §3 Method ===
+\input{section3_method_draft}
+
+% === §5 Constraint Composition ===
+\section{Constraint Composition}
+\label{sec:composition}
+\input{section4_composition_draft}
+
+% === §6 Experiments ===
+\section{Experiments}
+\label{sec:experiments}
+
+\input{section3_violation_landscape}
+
+\input{section5_scierc_draft}
+\input{section5_crossmodel_draft}
+\input{section5_wikievents_draft}
+\input{section5_runtime}
+
+% === §7 Discussion and Conclusion ===
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+\input{section7_conclusion_compressed}
+
+% === Limitations ===
+\section*{Limitations}
+
+Per-triple enforcement creates a DR$\leftrightarrow$CF trade-off; global type consensus during decoding remains future work.
+Evaluation covers 8B/70B models on two RE and one EE dataset; smaller-model and non-English generalization is untested.
+Empirical type constraints are derived from training data (99\%+ coverage) rather than formal ontology specifications; rare type combinations absent from training data fall back to grammar-only enforcement.
+
+% === Bibliography ===
+\bibliography{relwork_new_entries}
+
+% === Appendix ===
+\appendix
+
+\input{appendix_prompts}
+\input{appendix_related_work}
+\input{appendix_discussion}
+\input{appendix_70b_ablation}
+\input{appendix_llama_per_relation}
+\input{appendix_sampling_table}
+\input{appendix_beam_search}
+\input{appendix_reproducibility}
+\input{appendix_power_analysis}
+\input{appendix_doc_length}
+\input{appendix_prompt_sensitivity}
+\input{appendix_case_studies}
+\input{appendix_downstream_analysis}
+\input{appendix_scalability}
+\input{appendix_full_ft}
+\input{appendix_tcr}
+\input{appendix_kappa_case_study}
+\input{appendix_high_kappa_analysis}
+\input{appendix_order_invariance}
+\input{appendix_pumping_lemma}
+\input{appendix_wikievents_pilot}
+\input{appendix_zs_crossmodel}
+\input{appendix_quantization}
+\input{appendix_gollie_comparison}
+\input{appendix_ai_assistants}
+
+\end{document}

@@ -1,0 +1,98 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{luan2018multi}
+\citation{yao2019docred}
+\citation{dong2024xgrammar}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{dong2024xgrammar}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IE Ontology Constraints.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Grammar-Constrained Decoding.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decidability Taxonomy.}{2}{section*.3}\protected@file@percent }
+\citation{qwen2025qwen3}
+\citation{luan2018multi}
+\citation{yao2019docred}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Baseline violation rates for zero-shot IE with Qwen3-8B. DR and RV rates are comparable despite 14$\times $ ontology size difference, while DocRED shows substantially higher RV and ET rates due to the model's difficulty with 96 relation names.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:baseline-violations}{{1}{3}{Baseline violation rates for zero-shot IE with Qwen3-8B. DR and RV rates are comparable despite 14$\times $ ontology size difference, while DocRED shows substantially higher RV and ET rates due to the model's difficulty with 96 relation names}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Violation Landscape Study}{3}{section.3}\protected@file@percent }
+\newlabel{sec:landscape}{{3}{3}{Violation Landscape Study}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Overall Violation Rates}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Per-Relation Violation Distribution}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Constraint Tightness Predicts Violation Rate}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-relation DR distribution on DocRED (full\_s1, 88 active relations). Over half of relation types achieve near-zero residual DR, while the top 12 relations contribute 82\% of all violations.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:docred-per-relation-dr}{{2}{4}{Per-relation DR distribution on DocRED (full\_s1, 88 active relations). Over half of relation types achieve near-zero residual DR, while the top 12 relations contribute 82\% of all violations}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Spearman rank correlation between constraint tightness and residual DR. The relationship is significant on both datasets but substantially weaker on DocRED due to outlier noise from model priors and entity polysemy.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:spearman}{{3}{4}{Spearman rank correlation between constraint tightness and residual DR. The relationship is significant on both datasets but substantially weaker on DocRED due to outlier noise from model priors and entity polysemy}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Prompt-Level Intervention is Insufficient}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}OntoCoDec Framework}{4}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{4}{OntoCoDec Framework}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Grammar Layer}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Semantic Layer}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Layer Composition}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Decoding Strategies}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{5}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{5}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{5}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Configurations.}{5}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SciERC constraint configuration comparison (551 sentences, Qwen3-8B). Full S1 achieves 94\% DR reduction (15.4\%$\to $0.93\%) with F1-neutral performance (+0.13pp, not significant). Grammar alone eliminates ET and RV violations entirely.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:scierc-results}{{4}{6}{SciERC constraint configuration comparison (551 sentences, Qwen3-8B). Full S1 achieves 94\% DR reduction (15.4\%$\to $0.93\%) with F1-neutral performance (+0.13pp, not significant). Grammar alone eliminates ET and RV violations entirely}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces DocRED Phase 2 results (962 documents, Qwen3-8B). Grammar perfectly eliminates ET (7.5\%$\to $0\%) and near-eliminates RV (28.9\%$\to $0.03\%). Full S1 reduces DR by 46\% (18.7\%$\to $10.2\%), a substantial but attenuated effect compared to SciERC.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:docred-results}{{5}{6}{DocRED Phase 2 results (962 documents, Qwen3-8B). Grammar perfectly eliminates ET (7.5\%$\to $0\%) and near-eliminates RV (28.9\%$\to $0.03\%). Full S1 reduces DR by 46\% (18.7\%$\to $10.2\%), a substantial but attenuated effect compared to SciERC}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}SciERC Results}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}DocRED Results: Complex Ontology Stress Test}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:docred}{{5.3}{6}{DocRED Results: Complex Ontology Stress Test}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpreting the grammar\_only DR increase.}{6}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Enabling dependency analysis. The enabling ratio (full reduction / semantic-only reduction) measures how much grammar amplifies semantic effectiveness. The effect is strong on SciERC (3.9$\times $) and attenuated on DocRED (1.6$\times $).}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:enabling}{{6}{7}{Enabling dependency analysis. The enabling ratio (full reduction / semantic-only reduction) measures how much grammar amplifies semantic effectiveness. The effect is strong on SciERC (3.9$\times $) and attenuated on DocRED (1.6$\times $)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-field consistency violation composition under full\_s1. CF violations are 100\% attributable to the semantic layer (grammar\_only CF $\approx $ 0.1\%). The majority are entity-vs-relation type drift (EVR) driven by type system ambiguity.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:cf-analysis}{{7}{7}{Cross-field consistency violation composition under full\_s1. CF violations are 100\% attributable to the semantic layer (grammar\_only CF $\approx $ 0.1\%). The majority are entity-vs-relation type drift (EVR) driven by type system ambiguity}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Enabling Dependency: Grammar Enables Semantics}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}CF Violation Analysis}{7}{subsection.5.5}\protected@file@percent }
+\citation{willard2023efficient}
+\citation{scholak2021picard}
+\citation{dong2024xgrammar}
+\citation{geng2024grammar}
+\citation{wei2023zeroshot}
+\citation{li2023codeie}
+\citation{wang2023instructuie}
+\citation{sainz2024gollie}
+\citation{zheng2024openchat}
+\citation{wu2024structure}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Top CF conflict patterns on DocRED with error classification. Approximately 18\% of CF violations are systematic errors without defensible ambiguity.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:docred-cf-patterns}{{8}{8}{Top CF conflict patterns on DocRED with error classification. Approximately 18\% of CF violations are systematic errors without defensible ambiguity}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Inference latency per sample/document (Qwen3-8B, RTX PRO 6000). Grammar-only provides ET/RV elimination at 23\% overhead; full S1 adds semantic enforcement at 62\% overhead.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:latency}{{9}{8}{Inference latency per sample/document (Qwen3-8B, RTX PRO 6000). Grammar-only provides ET/RV elimination at 23\% overhead; full S1 adds semantic enforcement at 62\% overhead}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Latency Analysis}{8}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constrained Decoding for Structured Generation.}{8}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-based Information Extraction.}{8}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ontology-Based Validation.}{8}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structured Output Quality.}{9}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{9}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{9}{Discussion and Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{CF as a Systematic Side Effect.}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constraint Effectiveness Scaling with Ontology Complexity.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single Model Limitation.}{9}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DocRED's Honest Degradation.}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Zero-Shot Setting.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{dong2024xgrammar}{{1}{2024}{{Dong et~al.}}{{Dong, Shi, Shrivastava, Li, Wang, and Chen}}}
+\bibcite{geng2024grammar}{{2}{2024}{{Geng et~al.}}{{Geng, Pailoor, Tan, and Dillig}}}
+\bibcite{li2023codeie}{{3}{2023}{{Li et~al.}}{{Li, Sun, Tang, Yan, Wu, Huang, and Qiu}}}
+\bibcite{luan2018multi}{{4}{2018}{{Luan et~al.}}{{Luan, He, Ostendorf, and Hajishirzi}}}
+\bibcite{qwen2025qwen3}{{5}{2025}{{Qwen Team}}{{}}}
+\bibcite{sainz2024gollie}{{6}{2024}{{Sainz et~al.}}{{Sainz, Garc{\'\i }a-Ferrero, Agerri, de~Lacalle, Rigau, and Agirre}}}
+\bibcite{scholak2021picard}{{7}{2021}{{Scholak et~al.}}{{Scholak, Schucher, and Bahdanau}}}
+\bibcite{wang2023instructuie}{{8}{2023}{{Wang et~al.}}{{Wang, Zhou, Zu, Xia, Chen, Zhang, Zheng, Ye, Zhang, Gui, et~al.}}}
+\bibcite{wei2023zeroshot}{{9}{2023}{{Wei et~al.}}{{Wei, Cui, Cheng, Wang, Zhang, Huang, Xie, Xu, Chen, Zhang, Jiang, and Han}}}
+\bibcite{willard2023efficient}{{10}{2023}{{Willard and Louf}}{{}}}
+\bibcite{wu2024structure}{{11}{2024}{{Wu et~al.}}{{}}}
+\bibcite{yao2019docred}{{12}{2019}{{Yao et~al.}}{{Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and Sun}}}
+\bibcite{zheng2024openchat}{{13}{2024}{{Zheng et~al.}}{{}}}
+\gdef \@abspage@last{10}

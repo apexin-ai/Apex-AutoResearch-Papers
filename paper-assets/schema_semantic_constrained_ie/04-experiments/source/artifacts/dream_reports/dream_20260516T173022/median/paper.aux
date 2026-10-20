@@ -1,0 +1,42 @@
+\relax 
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Grammar-Constrained Decoding}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}IE Ontology Constraints}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Constraint Decidability Taxonomy}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Schema Compilation}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Grammar Layer}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Semantic Layer: TypeConstraintProcessor}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Composition and Graceful Degradation}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Decoding Strategy S1 (Single-Pass)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Violation Landscape (Prompt Comparison)}{3}{}\protected@file@percent }
+\newlabel{sec:prompt}{{4.1}{3}{}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Violation rates across prompt strategies. Schema-informed prompting reduces DR by 62.4\% on SciERC but only 31.5\% on DocRED, demonstrating poor scaling with ontology complexity.}}{4}{}\protected@file@percent }
+\newlabel{tab:prompt}{{1}{4}{}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces SciERC layer ablation. Full S1 achieves DR$\downarrow $94\% with F1-neutral impact (+0.13pp, $p$=0.58, 95\% CI [$-$0.35, +0.63]). Grammar-only eliminates RV/ET but not DR; semantic-only achieves only $\downarrow $24\% DR due to OOV relation types preventing constraint lookup.}}{4}{}\protected@file@percent }
+\newlabel{tab:scierc}{{2}{4}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}SciERC Ablation Study}{4}{}\protected@file@percent }
+\newlabel{sec:scierc}{{4.2}{4}{}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}DocRED Ablation Study}{4}{}\protected@file@percent }
+\newlabel{sec:docred}{{4.3}{4}{}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces DocRED (Qwen) ablation. Grammar-only DR \emph  {increases} (26.2\% vs 18.5\%) due to denominator change: eliminating 5,189 OOV triples exposes latent DR violations in newly valid triples. Full S1 achieves DR$\downarrow $44.7\% with R-F1 +0.50pp ($p$<0.001).}}{5}{}\protected@file@percent }
+\newlabel{tab:docred}{{3}{5}{}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-model DR reduction. OntoCoDec generalizes across model families with zero code modification. Subscripts: $u$=unconstrained, $c$=constrained. $^{***}p$<0.001, $^*p$<0.05.}}{5}{}\protected@file@percent }
+\newlabel{tab:cross}{{4}{5}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Model Validation}{5}{}\protected@file@percent }
+\newlabel{sec:cross}{{4.4}{5}{}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Post-Hoc Filtering Comparison}{5}{}\protected@file@percent }
+\newlabel{sec:posthoc}{{4.5}{5}{}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Fine-Tuning Ablation}{5}{}\protected@file@percent }
+\newlabel{sec:ft}{{4.6}{5}{}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Post-hoc filtering achieves higher F1 via precision gains from triple removal, but loses 48.1\% of triples on DocRED (127 true positives lost). OntoCoDec preserves recall by preventing violations at generation time rather than detecting them post-hoc.}}{6}{}\protected@file@percent }
+\newlabel{tab:posthoc}{{5}{6}{}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Fine-tuning ablation. FT reduces violations to 1--2\%; constrained decoding eliminates residuals to $\approx $0\% with F1-neutral impact. The two approaches are complementary: FT reduces violation volume, constraints guarantee elimination.}}{6}{}\protected@file@percent }
+\newlabel{tab:ft}{{6}{6}{}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Latency and S2 Strategy}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Statistical Methodology}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{}\protected@file@percent }
+\gdef \@abspage@last{7}

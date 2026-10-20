@@ -1,0 +1,78 @@
+paper_key: "crane"
+title: "CRANE: Reasoning with Constrained LLM Generation"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines: [unconstrained_without_CoT, unconstrained_with_CoT, constrained_generation_IterGen, constrained_generation_SynCode]
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Parse Rate", direction: "higher_better"}
+  datasets:
+    - {name: "GSM-symbolic", size: "symbolic math reasoning"}
+    - {name: "FOLIO", size: "203 first-order logic instances"}
+  ablation_dimensions: [num_few_shot_examples, sampling_temperature, grammar_augmentation_strategy]
+  training_recipe:
+    optimizer: "N/A (inference-time method)"
+    lr: "N/A"
+    hardware: "48-core Intel Xeon Silver 4214R, 2x RTX A5000"
+    models_evaluated: "Qwen2.5-1.5B/7B/14B, Llama-3.1-8B, DeepSeek-R1-Distill-7B/8B/14B, QwQ-32B"
+  method_family: "Reasoning-augmented constrained decoding with adaptive grammar switching"
+
+positioning:
+  core_claim: "约束解码会损害 LLM 推理能力（理论证明），通过语法增强+自适应切换可同时保证语法正确和推理准确"
+  key_results: "GSM-symbolic: CRANE 38% vs CoT 29% vs Constrained 29% (Qwen2.5-Math-7B); FOLIO: 46.31% vs 39.41% vs 32.02% (Llama-3.1-8B); 100% parse rate"
+  limitations:
+    - "理论结果仅适用于有限语言文法，未扩展到无限文法"
+    - "需要 logit 访问权限，不兼容闭源 API 模型"
+    - "未考虑任务特定微调"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "约束解码保证输出格式正确，但实证发现它降低了功能正确性——为什么？"
+  tension: "约束解码和推理能力之间存在根本矛盾：严格语法限制了模型的表达空间"
+  key_insight: "Section 3 理论证明：受限于有限语法的常数层 LLM 只能解决 TC0 复杂度问题；但语法增强（允许中间推理步骤）可恢复完整表达能力"
+  argument_chain: "约束解码降低准确率 → 理论证明表达能力受限 → 语法增强恢复表达能力 → CRANE 自适应切换 → 推理+格式双赢"
+  contribution_framing: "3项贡献：理论解释（TC0 上界）、语法增强理论、CRANE 实用算法"
+  intro_structure: "4段：问题（约束解码降低推理）→两个研究问题→理论贡献→实践贡献"
+  notable_technique: "用复杂度理论（TC0）为实证现象提供形式化解释，赋予方法理论深度"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "motivation"
+    description: "GSM-symbolic 示例：无约束生成语法错误，约束生成语法正确但答案错误，CRANE 两者兼得"
+    narrative_role: "一图展示核心矛盾和解决方案"
+    design_elements: ["三路对比", "变量蓝色高亮", "正确/错误标注"]
+    visual_style: "三列对比布局，代码风格展示生成内容"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "CRANE vs baselines across different few-shot counts (k=2,4,8)"
+      how_gain_highlighted: "CRANE 在所有 k 值下一致领先"
+      design_note: "展示方法对超参数的鲁棒性"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation example) → Figure 2 (algorithm illustration) → Figure 3 (few-shot ablation)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods × models"
+    col_axis: "Accuracy, Parse Rate, Avg Tokens"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 3
+    design_note: "9个模型×4种方法，展示 CRANE 在不同模型规模上的一致优势"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["num_few_shot_examples (k=2,4,8)"]
+      variation_style: "full_numbers"
+      design_note: "展示 CRANE 对 few-shot 数量的鲁棒性"
+  supplementary_tables:
+    in_appendix: true
+    content: "sampling ablation (Tables 4-5), temperature variations"
+    reason: "主表用 greedy decoding，随机采样作为补充"

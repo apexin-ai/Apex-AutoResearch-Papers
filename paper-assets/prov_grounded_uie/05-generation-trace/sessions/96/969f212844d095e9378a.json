@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "969f212844d095e9378a",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "analysis grpo v2 reward components",
+  "task_key": "worker_analysis_grpo_v2_reward_components_20260513T073447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_v2_reward_components_20260513T073447_result.json",
+    "occurrence": 1,
+    "bytes": 2995,
+    "sha256": "649126fba5118c51256758fca23b2d2e1fe09ed693e9aacbe4f470e630da9c20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 分量数据不可用\n\n日志中只有 `rewards/reward_fn/mean`（composite），**没有** provenance / structural / format 的分别记录。\n\n**原因**：`rewards.py` 的 `composite_reward()` 在内部计算了三个分量（`provenance_fidelity_reward`, `structural_f1_reward`, `format_compliance_reward`），但只返回加权和 `w_prov * p + w_struct * s + w_fmt * f`。TRL GRPOTrainer 只接收一个 `reward_fn`，所以只 log composite 值。\n\n### Composite reward 趋势（step 1-43）\n\n从日志提取的 composite reward：\n\n| Step | Reward | Step | Reward | Step | Reward |\n|------|--------|------|--------|------|--------|\n| 1 | 0.789 | 16 | 0.740 | 31 | 0.775 |\n| 2 | 0.699 | 17 | 0.700 | 32 | 0.732 |\n| 3 | 0.657 | 18 | 0.771 | 33 | 0.838 |\n| 4 | 0.781 | 19 | 0.697 | 34 | 0.719 |\n| 5 | — | 20 | 0.725 | 35 | 0.783 |\n| … | ~0.65-0.83 | … | ~0.65-0.83 | 36 | 0.765 |\n| | | | | 37 | 0.773 |\n| | | | | 38 | 0.662 |\n| | | | | 39 | 0.721 |\n| | | | | 40 | **0.522** |\n| | | | | 41 | 0.830 |\n| | | | | 42 | 0.712 |\n| | | | | 43 | 0.664 |\n\nReward 在 **0.52–0.84 之间波动，没有上升趋势**，step 40 出现较大下跌。确认了 Director 的判断：reward 整体平坦。\n\n### Step 50 Eval 分量 Breakdown 方案\n\n在 `composite_reward()` 中加 logging，或者更快的方式——写一个离线 eval 脚本，对 checkpoint 的输出单独计算三个分量：\n\n```python\n# eval_reward_breakdown.py\nfrom rewards import provenance_fidelity_reward, structural_f1_reward, format_compliance_reward\nimport json\n\n# 加载 eval 样本的 prompts/completions/gold_relations（从 checkpoint 生成）\nwith open(\"eval_outputs.json\") as f:\n    data = json.load(f)\n\nprompts = data[\"prompts\"]\ncompletions = data[\"completions\"]\nkwargs = {\"gold_relations\": data[\"gold_relations\"],\n          \"nli_model_name\": \"/root/autodl-tmp/.hf_cache/ms_deberta/cross-encoder/nli-deberta-v3-large\",\n          \"nli_device\": \"cuda:0\", \"nli_batch_size\": 16,\n          \"iou_weight\": 0.4, \"nli_weight\": 0.4, \"length_weight\": 0.2,\n          \"length_penalty_factor\": 0.002}\n\nprov = provenance_fidelity_reward(prompts, completions, **kwargs)\nstruct = structural_f1_reward(prompts, completions, **kwargs)\nfmt = format_compliance_reward(prompts, completions, **kwargs)\n\nprint(f\"Provenance: mean={sum(prov)/len(prov):.4f}\")\nprint(f\"Structural: mean={sum(struct)/len(struct):.4f}\")\nprint(f\"Format:     mean={sum(fmt)/len(fmt):.4f}\")\nprint(f\"Composite:  mean={sum(0.475*p+0.475*s+0.05*f for p,s,f in zip(prov,struct,fmt))/len(prov):.4f}\")\n```\n\n**两个选择**：\n1. **离线 eval**（不改训练代码）：用当前 step-43 checkpoint 跑 eval set，分别调三个 reward 函数，得到分量 breakdown\n2. **加 online logging**（需改代码重启）：修改 `composite_reward()` 加 `print` 或 wandb log，v3 再用\n\n建议先走方案 1，不打断训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-v2-reward-components.md"
+}

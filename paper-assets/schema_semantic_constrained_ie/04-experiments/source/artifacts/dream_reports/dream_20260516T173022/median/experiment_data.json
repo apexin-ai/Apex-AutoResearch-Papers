@@ -1,0 +1,765 @@
+[
+  {
+    "name": "SciERC violation rate (minimal prompt)",
+    "description": "Zero-shot IE on SciERC with minimal task prompt, measuring baseline ontology constraint violations",
+    "results": {
+      "total_triples": 1724,
+      "total_entities": 2474,
+      "domain_range_violation_rate": 0.154,
+      "entity_type_violation_rate": 0.004,
+      "relation_vocabulary_violation_rate": 0.014,
+      "cross_field_consistency_violation_rate": 0.001,
+      "relation_f1": 0.082,
+      "entity_f1": 0.31,
+      "per_relation_dr_max": 0.424,
+      "per_relation_dr_min": 0.008
+    },
+    "tables": [
+      "Table 1 (§5.1): Prompt Comparison — 包含 SciERC minimal row"
+    ],
+    "figures": [],
+    "analysis": "Per-relation 分析（Compare 42.4%, Feature-of 33.5%, Part-of 25.0%）vs（Used-for 0.8%, Conjunction 0%） 直接支持 tightness-driven violation hypothesis。Median-tier reviewer 接受这个 empirical finding 但质疑其 novelty（\"known that LLMs hallucinate entity types\"）。\n\n\nDR 15.4% 为 Claim 1（violation landscape）提供关键动机数据。在 median 档，reviewer 接受这个数字 作为问题的合理定量刻画——7 个 relation 的 violation rate 从 0.8% 到 42.4% 的分布证明 violations 是非均匀的、与 constraint tightness 相关。但至少一位 reviewer 会指出 F1=8.2% 过低（C8 质疑）， 认为低 F1 regime 下 violations 可能只是 garbage output 的副产品而非系统性问题。 \"control variable not optimization target\" defense 被接受但 claim 强度受限。\n"
+  },
+  {
+    "name": "SciERC violation rate (schema-informed prompt)",
+    "description": "SciERC with explicit ontology constraints described in prompt, measuring prompt-level intervention ceiling",
+    "results": {
+      "domain_range_violation_rate": 0.058,
+      "relation_vocabulary_violation_rate": 0.003,
+      "entity_type_violation_rate": 0.0,
+      "dr_reduction_vs_minimal": -0.624,
+      "evaluate_for_regression_pp": 5.8,
+      "per_relation_compare_dr": 0.276,
+      "per_relation_evaluate_for_dr": 0.299
+    },
+    "tables": [
+      "Table 1 (§5.1): Prompt Comparison — schema-informed row"
+    ],
+    "figures": [],
+    "analysis": "Evaluate-for regression 构成 C4 的核心 evidence：\"prompt 不仅不够，特定配置下有害\"。 Median reviewer 认为这个 insight 有价值但 frame 为 \"one relation on one dataset\" 证据不够强。\n\n\nSchema-informed prompt 实现 62.4% 整体 DR reduction，但 per-relation 不可靠——Evaluate-for 从 24.1% 恶化到 29.9%（+5.8pp）。Median reviewer 接受 \"prompt insufficiency\" 作为 motivation， 但指出 \"5.78% is close to acceptable\"（C1 质疑），这被 per-relation 双位数残留率（Compare 27.6%, Evaluate-for 29.9%）有效反驳。Evaluate-for regression 是 prior-constraint conflict 的直接证据， 强化 \"prompt 不可靠\" 论述。一位 reviewer 可能认为 schema-informed prompt 已足够好 （\"5.78% overall seems fine for most applications\"），但 safety-critical framing 被接受。\n"
+  },
+  {
+    "name": "DocRED violation rate (minimal prompt)",
+    "description": "Zero-shot IE on DocRED (96 relations) with minimal prompt, measuring large-ontology baseline violations",
+    "results": {
+      "total_triples": 16540,
+      "total_entities": 19099,
+      "domain_range_violation_rate": 0.187,
+      "entity_type_violation_rate": 0.075,
+      "relation_vocabulary_violation_rate": 0.289,
+      "cross_field_consistency_violation_rate": 0.001,
+      "top_dr_by_rate_P35": 1.0,
+      "top_dr_by_count_P31": 0.604
+    },
+    "tables": [
+      "Table 1 (§5.1): DocRED minimal row"
+    ],
+    "figures": [],
+    "analysis": "RV=28.9% 的高水平是后续 grammar 层产生 F1 提升的前提条件——消除 OOV 即消除 FP。 同时预示了 Qwen DocRED full_s1 的 DR↓44.7%（非 94%）问题：grammar 将 OOV 强制匹配 有效 relation name → 暴露 latent DR violations。\n\n\nDocRED DR=18.7% 与 SciERC 15.4% comparable（14× ontology size 差异但 violation rate 相近）， 直接支持 \"violation rate driven by tightness not ontology size\"。RV=28.9% 在 DocRED 上极高 （模型生成大量 OOV relation names），这成为 grammar 层 F1 提升的根因。 Median reviewer 接受这个 empirical finding 为 interesting observation，但指出 \"只有 2 个数据集，不足以建立 causal claim about tightness\"。\n"
+  },
+  {
+    "name": "DocRED violation rate (schema-informed prompt)",
+    "description": "DocRED with schema-informed prompt, demonstrating prompt intervention scales poorly with ontology complexity",
+    "results": {
+      "domain_range_violation_rate": 0.128,
+      "relation_vocabulary_violation_rate": 0.184,
+      "entity_type_violation_rate": 0.006,
+      "dr_reduction_vs_minimal": -0.315
+    },
+    "tables": [
+      "Table 1 (§5.1): DocRED schema-informed row"
+    ],
+    "figures": [],
+    "analysis": "SciERC ↓62% vs DocRED ↓32% 形成对比——ontology 越复杂 prompt 越力不从心。 但一位 reviewer 可能指出\"用更好的 prompt 策略（如 retrieval-augmented constraint injection） 可能缩小差距\"。这个替代方案在 paper 中未被 addressed（minor weakness）。\n\n\nDocRED schema-informed prompt 仅 ↓31.5%（vs SciERC ↓62.4%），直接证明 prompt intervention 与 ontology complexity 负相关。96 个 relation 的 constraint 描述塞入 prompt 后模型 attention 分散，效果大打折扣。Median reviewer 接受 \"prompt scales poorly\" 但视为 engineering observation 而非 scientific insight（novelty 分 2.5-3.0 的原因之一）。\n"
+  },
+  {
+    "name": "SciERC unconstrained baseline",
+    "description": "SciERC generation without any decoding constraints, serving as ablation baseline",
+    "results": {
+      "domain_range_violation_rate": 0.154,
+      "relation_vocabulary_violation_rate": 0.014,
+      "entity_type_violation_rate": 0.004,
+      "cross_field_consistency_violation_rate": 0.001,
+      "relation_f1": 0.0823,
+      "entity_f1": 0.3101,
+      "total_triples": 1724
+    },
+    "tables": [
+      "Table 2 (§5.2): SciERC ablation — unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "关键基线对比：DR 从 15.4% 出发，F1 从 8.23% 出发。两者为后续所有 constrained 配置提供 reference。\n\n\n与 P001 数据完全一致（同一 generation output），确立 Phase 2 消融基线。CF=0.08% 基线极低， 这使得 full_s1 CF=9.9% 的跃升更加显眼——从几乎无 CF 到接近 10%，构成 reviewer 最大攻击面。 Median reviewer 的逻辑：unconstrained CF=0.08% → constrained CF=9.9% = \"你的方法引入了新问题\"。\n"
+  },
+  {
+    "name": "SciERC grammar-only",
+    "description": "SciERC with only grammar layer (XGrammar JSON+vocabulary constraints), no semantic enforcement",
+    "results": {
+      "domain_range_violation_rate": 0.148,
+      "relation_vocabulary_violation_rate": 0.0,
+      "entity_type_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate": 0.001,
+      "relation_f1": 0.0823,
+      "entity_f1": 0.3098
+    },
+    "tables": [
+      "Table 2 (§5.2): grammar_only row"
+    ],
+    "figures": [],
+    "analysis": "Grammar DR=14.8% ≈ unconstrained 15.4%，差异仅 0.5pp——grammar 对 DR 的直接贡献几乎为零。 但 grammar 是 semantic 层的 prerequisite（enabling dependency），这个消融证明了 composition 的必要性。\n\n\nGrammar-only 消除 RV 和 ET（vocabulary/structure constraint），但 DR 仅从 15.4% 降至 14.8% （grammar 不懂 domain/range semantics）。这干净地证明 grammar 层的 scope：structural validity only。 CF 保持 0.08%（grammar 不引入 CF）——这是后续归因 \"CF 100% 由 semantic 层引入\" 的关键消融点。 F1 不变（SciERC RV 基线仅 1.4%，消除 OOV 对 F1 影响可忽略）。 Median reviewer 接受此消融为 clean evidence of layer decomposition。\n"
+  },
+  {
+    "name": "SciERC semantic-only",
+    "description": "SciERC with only semantic layer (TypeConstraintProcessor), no grammar enforcement",
+    "results": {
+      "domain_range_violation_rate": 0.117,
+      "relation_vocabulary_violation_rate": 0.015,
+      "entity_type_violation_rate": 0.004,
+      "cross_field_consistency_violation_rate": 0.027,
+      "relation_f1": 0.0815,
+      "entity_f1": 0.3101
+    },
+    "tables": [
+      "Table 2 (§5.2): semantic_only row"
+    ],
+    "figures": [],
+    "analysis": "DR 11.7% vs full 0.93% 的巨大差距（12.6× residual）构成 enabling dependency 的定量证据。 一位 reviewer 可能问 \"为什么 semantic 需要 grammar？直接 handle unknown relations 不行吗？\" 回答：autoregressive decoding 中 semantic 层在 relation type token 生成后才能查 constraint， 若 relation type 是 OOV 则无 constraint 可查。\n\n\nSemantic-only 仅实现 DR↓24%（从 15.4% 到 11.7%），远弱于 full_s1 的 ↓94%。 原因：无 grammar 保底时 semantic 层遇到 OOV relation types 无法查表 → 大量 token 跳过 enforcement。RV/ET 未消除（semantic 层不管 vocabulary）。CF 升至 2.7%（semantic 开始强制 type → 引入跨字段不一致的早期信号）。 这是 enabling dependency 最直接的证据：semantic 没有 grammar 做不好。 Median reviewer 视此为 \"obvious — you need both layers\" 的确认，novelty 分不因此提升。\n"
+  },
+  {
+    "name": "SciERC full S1 (grammar + semantic, single-pass)",
+    "description": "SciERC with both layers composed via bitwise AND in single-pass decoding — primary method",
+    "results": {
+      "domain_range_violation_rate": 0.009,
+      "relation_vocabulary_violation_rate": 0.0,
+      "entity_type_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate": 0.099,
+      "relation_f1": 0.0836,
+      "entity_f1": 0.3098,
+      "dr_reduction_pct": 94.0,
+      "r_f1_delta_pp": 0.13,
+      "r_f1_p_value": 0.58
+    },
+    "tables": [
+      "Table 2 (§5.2): full_s1 row (highlighted as primary)"
+    ],
+    "figures": [],
+    "analysis": "0.93% 残余 DR 来自 16 个 violation（1729 triples 中），集中在 Compare 和 Feature-of。 这些是 constraint 最 tight 的 relations，semantic 层 fallback 频率最高的位置。 CF=9.9% 分析：grammar CF=0.08% → full CF=9.9%，100% 由 semantic 层引入。 Dominant pattern: Generic↔OtherScientificTerm (60 次) 反映 SciERC type system 歧义。 Median reviewer 对 CF 根因分析（EVR pattern + type ambiguity）评价 \"insightful but doesn't excuse the limitation\"。\n\n\nDR↓94%（15.4%→0.93%）是论文核心 headline 数字，F1 完全 neutral（+0.13pp, p=0.58）。 Median reviewer 接受这是 strong empirical result on SciERC。但 CF 从 0.08% 跃升至 9.9% 成为最大攻击面——\"你消除了 DR 但引入了 CF，是在换一种 violation\"。 Reviewer 的 severity 判定在 moderate-major 之间：CF triples 仍各自 type-valid （individual structural integrity preserved），但 cross-triple consistency broken。 论文需明确将 CF 定位为 \"soft preference violation vs DR=hard structural violation\"。 R-F1 p=0.58（不显著）在 median 档被正确解读为 \"F1-neutral, not F1-positive\"。\n"
+  },
+  {
+    "name": "SciERC full S2 (two-pass decoding)",
+    "description": "SciERC with S2 strategy: Pass 1 extracts entities, Pass 2 uses input-dependent grammar",
+    "results": {
+      "domain_range_violation_rate": 0.01,
+      "relation_vocabulary_violation_rate": 0.0,
+      "entity_type_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate": 0.08,
+      "relation_f1": 0.0803,
+      "entity_f1": 0.319,
+      "total_triples": 1644
+    },
+    "tables": [
+      "Appendix C: S1 vs S2 comparison table"
+    ],
+    "figures": [],
+    "analysis": "S2 减少 EVR（entity-vs-relation type drift）27%，但增加 within-relation inconsistency。 Net CF 改善不显著。Median reviewer 可能一句话提及 \"S2 seems like a dead-end, space could be better used\"。\n\n\nS2 DR=0.97% ≈ S1 0.93%，CF=8.03% vs S1 9.9%（↓1.87pp 但不显著），R-F1 反而更低（8.03% vs 8.36%）。 S2 不解决 CF、不改善 F1、增加 inference complexity（2× forward pass）。 Median reviewer 对 S2 的 reception：视为 \"honorable architectural variant\" 但质疑 \"为什么要花一整段 描述一个没有优势的方法？\"。论文正确将 S2 降级为 Appendix ablation。 这是 median 档的典型特征：作者有 disciplined claim calibration（不 overclaim S2），reviewer 给予 soundness 分数 3.5-4.0。\n"
+  },
+  {
+    "name": "DocRED unconstrained baseline",
+    "description": "DocRED generation without constraints, establishing large-ontology baseline",
+    "results": {
+      "domain_range_violation_rate": 0.185,
+      "relation_vocabulary_violation_rate": 0.297,
+      "entity_type_violation_rate": 0.025,
+      "cross_field_consistency_violation_rate": 0.001,
+      "relation_f1_pct": 7.74,
+      "entity_f1_pct": 58.15,
+      "total_triples": 17497,
+      "unrecognized_relations": 5189
+    },
+    "tables": [
+      "Table 3 (§5.3): DocRED ablation — unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "RV=29.7% 预示了一个关键动态：grammar 层强制 OOV→valid relation name 后，这些 triples 的 domain/range 可能仍然违规 → 暴露 latent DR violations → DR 残余 10.2% 不代表方法失败， 而是 grammar 使 DR 问题 \"可见\"。\n\n\nDocRED RV=29.7% 是 SciERC RV=1.4% 的 21×——大 ontology 下模型无法记住所有 96 个 relation names。 5189 个 OOV relation predictions 解释了后续 grammar 层产生 F1 提升的机制（消除 OOV = 消除 FP）。 ET=2.48%（vs SciERC 0.4%）同样更高。E-F1=58.15% 显著高于 SciERC 31%，因为 DocRED entity extraction 更简单（named entities vs scientific terms）。 Median reviewer 接受 DocRED 作为 cross-dataset validation 的合理选择。\n"
+  },
+  {
+    "name": "DocRED grammar-only",
+    "description": "DocRED with grammar layer only — testing vocabulary enforcement on large ontology",
+    "results": {
+      "domain_range_violation_rate": 0.262,
+      "relation_vocabulary_violation_rate": 0.0003,
+      "entity_type_violation_rate": 0.0,
+      "entity_f1_pct": 59.38,
+      "relation_f1_pct": 8.31,
+      "cross_field_consistency_violation_rate": 0.001
+    },
+    "tables": [
+      "Table 3 (§5.3): grammar_only row"
+    ],
+    "figures": [],
+    "analysis": "DR↑ 是 denominator 效应而非方法恶化。Grammar DR 26.2% 成为 semantic 层的 \"true baseline\" （semantic 从这个 base 开始减少 DR）。Full_s1 DR=10.2% 即 semantic 在 grammar base 上实现 ↓61% reduction。这个两步归因是 DocRED 叙事的核心。\n\n\nGrammar-only 在 DocRED 上产生了 paradoxical 结果：DR 从 18.5% 升至 26.2%（↑7.7pp）。 机制：grammar 消除 5189 个 OOV triples（这些之前不进入 DR denominator 因为 checker skip unknown relations），替换为 valid relation names → 这些 triples 现在 subject to DR check → 很多仍 violate domain/range → DR rate 上升。这不是方法退化，是 measurement artifact。 E-F1 +1.23pp（58.15→59.38%）因为 ET 消除（OOV entity types 变为 valid）。 Grammar 层是 DocRED F1 gain 的唯一来源。 Median reviewer 中约 1/3 可能误读此结果为 \"grammar makes DR worse\"——需要清晰解释 denominator change。\n"
+  },
+  {
+    "name": "DocRED semantic-only",
+    "description": "DocRED with semantic layer only, no grammar",
+    "results": {
+      "domain_range_violation_rate": 0.138,
+      "relation_vocabulary_violation_rate": 0.299,
+      "entity_type_violation_rate": 0.042,
+      "cross_field_consistency_violation_rate": 0.011,
+      "relation_f1_pct": 7.7,
+      "entity_f1_pct": 57.81
+    },
+    "tables": [
+      "Table 3 (§5.3): semantic_only row"
+    ],
+    "figures": [],
+    "analysis": "Semantic-only 的 ET=4.22%（高于 unconstrained 2.48%）是意外结果——semantic 层的动态 masking 偶尔引导模型生成非标 entity types。Minor issue，不影响 overall narrative。\n\n\nSemantic-only 将 DR 从 18.5% 降至 13.8%（↓25%），与 SciERC semantic-only ↓24% 一致。 RV 未变（semantic 不管 vocabulary），F1 未提升（无 OOV elimination）。 CF 开始出现（1.05%）。这再次确认 enabling dependency：semantic 层在 OOV-heavy 环境下 效能有限。Median reviewer 视此为 confirmatory ablation，不加分也不减分。\n"
+  },
+  {
+    "name": "DocRED full S1",
+    "description": "DocRED with full dual-layer S1 — the key cross-dataset result",
+    "results": {
+      "domain_range_violation_rate": 0.102,
+      "relation_vocabulary_violation_rate": 0.0003,
+      "entity_type_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate": 0.026,
+      "relation_f1_pct": 8.23,
+      "entity_f1_pct": 59.37,
+      "dr_reduction_pct": 44.7,
+      "r_f1_delta_pp": 0.5,
+      "r_f1_p_value": "<0.001",
+      "e_f1_delta_pp": 1.22,
+      "e_f1_p_value": "<0.001"
+    },
+    "tables": [
+      "Table 3 (§5.3): full_s1 row (highlighted)"
+    ],
+    "figures": [],
+    "analysis": "44.7% reduction 在绝对值上是 substantial（18.5%→10.2%），但相对于 SciERC 的 94% 显得弱。 Reviewer 的心理锚定效应：先看到 94% 后看到 45% 会觉得方法 \"inconsistent\"。 Rebuttal 策略：主表同时报告两个数字，差异本身作为 finding（RV baseline interaction） 而非需要辩护的弱点。但在 median 档，这个 defense 只能部分说服（\"post-hoc\" 质疑）。\n\n\nDocRED DR↓44.7%（vs SciERC ↓94%）是 median 档的核心争议点。至少一位 reviewer 将此视为 \"方法在复杂 ontology 上 effectiveness 大幅退化\"。Paper 的 defense： (1) tightness × RV baseline interaction（Qwen RV=29.7% → grammar 暴露 latent DR）； (2) Llama 同 ontology 实现 ↓90.2%（Llama RV=16%，latent DR exposure 更少）。 但 reviewer 可能视 tightness×RV 解释为 \"post-hoc rationalization\"（median 档假设 #3）。 F1 方面：R-F1 +0.50pp (p<0.001) 和 E-F1 +1.22pp (p<0.001) 都显著，是 paper 中唯一 significant positive F1 result。Mechanism clean: grammar eliminates OOV → fewer FP → higher F1。 CF=2.57%（远低于 SciERC 9.9%）因为 DocRED type system less ambiguous。\n"
+  },
+  {
+    "name": "Llama SciERC unconstrained",
+    "description": "Llama-3.1-8B on SciERC without constraints — cross-model baseline",
+    "results": {
+      "domain_range_violation_rate": 0.133,
+      "relation_vocabulary_violation_rate": 0.006,
+      "entity_type_violation_rate": 0.0,
+      "relation_f1": 0.027,
+      "entity_f1": 0.236,
+      "total_relations": 1274
+    },
+    "tables": [
+      "Table 4 (§5.4): Llama unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "Llama F1 极低但不影响 constraint 验证——method 的 claim 是 \"消除 violations\"， 不是 \"提升 F1 到 competitive level\"。Control variable framing 在此适用。\n\n\nLlama DR=13.3% 低于 Qwen 15.4%（不同模型不同 violation profile）。RV=0.6%（vs Qwen 1.4%） 说明 Llama 在 SciERC 上 vocabulary 更准确。R-F1=2.7%（vs Qwen 8.2%）极低——Llama 在 zero-shot IE 上明显弱于 Qwen。Median reviewer 接受 cross-model validation 的必要性， 但指出 \"只有 2 个同规模模型（8B），model diversity 不足\"（假设 #5）。 两个模型虽然 zero-shot F1 差异大，但 constraint enforcement 均有效。\n"
+  },
+  {
+    "name": "Llama SciERC full S1",
+    "description": "Llama-3.1-8B on SciERC with full dual-layer S1 — cross-model validation",
+    "results": {
+      "domain_range_violation_rate": 0.001,
+      "relation_vocabulary_violation_rate": 0.0,
+      "entity_type_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate": 0.066,
+      "relation_f1": 0.025,
+      "entity_f1": 0.235,
+      "dr_reduction_pct": 99.4,
+      "r_f1_delta_pp": -0.14,
+      "r_f1_p_value": 0.011
+    },
+    "tables": [
+      "Table 4 (§5.4): Llama SciERC full_s1 row"
+    ],
+    "figures": [],
+    "analysis": "\"零代码修改\" claim 是程序性事实（铁证），reviewer 不质疑。但 \"cross-model generalization\" 作为 broader claim 被限制在 \"同规模 decoder-only\" 范围内。\n\n\nDR↓99.4%（13.3%→0.08%）比 Qwen SciERC ↓94% 更彻底——Llama 在 SciERC 上 RV 基线极低 （0.6%），几乎无 latent DR exposure，semantic 层效率最大化。 R-F1 -0.14pp (p=0.011) technically significant 但 magnitude negligible（从 2.7% 到 2.5%）。 CF=6.56%（低于 Qwen 9.9%）。 Median reviewer 对 cross-model 的评价：\"generalizes but limited evidence — 2 models of same scale (8B), same architecture family (decoder-only transformer), would need 70B or encoder-decoder to truly claim generality\"。这是 soundness 评分 3.5 而非 4.0 的原因。\n"
+  },
+  {
+    "name": "Llama DocRED unconstrained",
+    "description": "Llama-3.1-8B on DocRED without constraints",
+    "results": {
+      "domain_range_violation_rate": 0.261,
+      "relation_vocabulary_violation_rate": 0.16,
+      "entity_type_violation_rate": 0.001,
+      "cross_field_consistency_violation_rate": 0.002,
+      "relation_f1_pct": 5.98,
+      "entity_f1_pct": 55.65,
+      "parse_failures": 68
+    },
+    "tables": [
+      "Table 4 (§5.4): Llama DocRED unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "RV↓DR↑ 正交性支持 \"两层解决正交问题\" 的 architectural argument。Median reviewer 认为这是 \"nice observation\" 但不算 novel contribution。\n\n\nLlama DocRED DR=26.1%（高于 Qwen 18.5%），但 RV=16.0%（远低于 Qwen 29.7%）。 这个 RV↓DR↑ 的正交 profile 是重要 finding：两层约束解决不同 failure modes。 Llama 的高 DR 使其成为 semantic 层 effectiveness 的更好测试场——预期 DR reduction 更 dramatic。Parse failure 6.8%（vs Qwen 1.2%）是需要 footnote 披露的偏差。\n"
+  },
+  {
+    "name": "Llama DocRED full S1",
+    "description": "Llama-3.1-8B on DocRED with full dual-layer S1 — cross-model × cross-dataset",
+    "results": {
+      "domain_range_violation_rate_pct": 2.55,
+      "relation_vocabulary_violation_rate": 0.0,
+      "entity_type_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate_pct": 12.02,
+      "relation_f1_pct": 6.27,
+      "entity_f1_pct": 55.01,
+      "dr_reduction_pct": 90.2,
+      "r_f1_delta_pp": 0.29,
+      "e_f1_delta_pp": -0.64,
+      "parse_failures": 91
+    },
+    "tables": [
+      "Table 4 (§5.4): Llama DocRED full_s1 row"
+    ],
+    "figures": [],
+    "analysis": "CF=12.02% 是全矩阵最高值。Llama 在 DocRED 上 CF 远高于 Qwen (2.57%)，且高于 SciERC (6.56%)。 Reviewer 可能视此为 \"CF problem worsens on harder settings\" — 需要在 limitations 中 明确说明 CF 与 ontology complexity/model 的 interaction。\n\n\nDR↓90.2%（26.1%→2.55%）远优于 Qwen DocRED ↓44.7%。这直接支持 tightness×RV 解释： Llama RV=16% < Qwen RV=30% → grammar 暴露更少 latent DR → semantic 层从更低 \"true DR\" 出发 → reduction 更 dramatic。 但 CF=12.02%（最高值）和 parse failures=91/998（9.1%）是弱点。 Median reviewer 的反应：一方面 90.2% 与 44.7% 的差距 validates tightness×RV hypothesis； 另一方面 \"如果 reduction 从 44% 到 90% 完全取决于模型的 RV baseline，那你的方法的 contribution 到底在哪？grammar 消除 RV 是 trivial 的 vocabulary enforcement\"。 这触发 novelty 质疑（假设 #1）。\n"
+  },
+  {
+    "name": "S2 pilot (50 docs)",
+    "description": "Pilot run of S2 strategy on 50 SciERC docs to verify implementation before full run",
+    "results": {
+      "domain_range_violation_rate": 0.021,
+      "relation_f1": 0.101,
+      "samples": 50
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Internal validation only. Do NOT cite pilot50 DR=0% (dryrun artifact).\n\nPilot 结果（DR=2.05%）与 full run（DR=0.97%）有 gap——小样本 variance。 论文中 NOT cited（避免 cherry-pick 指控）。仅用于 implementation validation。 Median reviewer 不会看到这个数据。\n"
+  },
+  {
+    "name": "Post-hoc filtering baseline",
+    "description": "Post-hoc removal of violating triples as alternative baseline method",
+    "results": {
+      "scierc_r_f1_posthoc": 0.0863,
+      "scierc_r_f1_constrained": 0.0836,
+      "scierc_rejection_rate": 0.168,
+      "docred_r_f1_posthoc": 0.0961,
+      "docred_r_f1_constrained": 0.0823,
+      "docred_rejection_rate": 0.481,
+      "docred_tp_lost": 127
+    },
+    "tables": [
+      "Table 5 or §5 discussion: OntoCoDec vs post-hoc multi-dimensional comparison"
+    ],
+    "figures": [],
+    "analysis": "DocRED 48.1% rejection rate 意味着近半数 information 丢失——这是 post-hoc 的 Achilles heel。 127 个 lost TP (11.2% of correct extractions) 是 \"prevent vs detect\" argument 的定量 anchor。 Median reviewer 接受 recall preservation argument 但权重低于 F1 comparison。\n\n\nPost-hoc R-F1 > OntoCoDec R-F1（SciERC 8.63 vs 8.36，DocRED 9.61 vs 8.23）。 在 low-F1 regime 下移除 FP 大幅提升 precision，这对 constrained decoding 方法不利。 Median reviewer 中 soundness-focused reviewer 会问 \"为什么不用更简单的 post-hoc？\" Defense 是多维的：(1) recall preservation（OntoCoDec recall↑, post-hoc recall↓）； (2) information coverage（DocRED post-hoc 丢弃 48.1% triples）； (3) ET 残余（post-hoc 无法解决 entity type violations）。 但在 median 档，reviewer 的评价是 \"defense is valid but the F1 comparison still looks bad in the table\"。这是 soundness 4.0 而非 4.5 的原因——method works but simpler alternatives exist for the F1 metric。\n"
+  },
+  {
+    "name": "Bootstrap CI (10000 iterations)",
+    "description": "Statistical significance testing via bootstrap for all F1 claims",
+    "results": {
+      "scierc_r_f1_delta_pp": 0.13,
+      "scierc_r_f1_p_value": 0.58,
+      "scierc_r_f1_ci_95": "[-0.35, +0.63]",
+      "docred_r_f1_delta_pp": 0.5,
+      "docred_r_f1_p_value": "<0.001",
+      "docred_r_f1_ci_95": "[+0.23, +0.81]",
+      "docred_e_f1_delta_pp": 1.23,
+      "docred_e_f1_p_value": "<0.001",
+      "docred_e_f1_ci_95": "[+0.94, +1.55]"
+    },
+    "tables": [
+      "所有 F1 数字旁标注 p-value 和 CI"
+    ],
+    "figures": [],
+    "analysis": "统计工作是 soundness 分数 3.5-4.0 的直接来源。缺少 bootstrap CI 会降至 3.0。 Median reviewer 对 CI 的唯一潜在质疑：bootstrap 假设 i.i.d. samples， 但 IE 中 inter-document correlation 可能违反此假设（minor concern, not raised in median tier）。\n\n\nBootstrap CI 提供统计严格性——SciERC p=0.58 明确排除 F1 improvement claim， DocRED p<0.001 支持 significant improvement。Median reviewer 给 soundness 3.5-4.0 因为统计方法正确，p-values 如实报告，claim calibration 合理（不 overclaim SciERC）。 CI 宽度合理（DocRED ±0.3pp），sample size 足够。\n"
+  },
+  {
+    "name": "DocRED schema compilation R2",
+    "description": "Second attempt at DocRED schema-informed experiment (killed, superseded by P004)",
+    "results": {
+      "status": "killed"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "N/A — killed experiment, no data.\n\n被 P004 supersede。不出现在论文中。Median reviewer 不会看到。\n"
+  },
+  {
+    "name": "CF-aware fallback pilot (SciERC)",
+    "description": "Experimental CF-aware fallback mechanism: when semantic mask causes CF, fallback to grammar-only",
+    "results": {
+      "domain_range_violation_rate": 0.148,
+      "cross_field_consistency_violation_rate": 0.0004,
+      "relation_f1": 0.0823,
+      "grammar_first_fallback_rate": 0.366,
+      "cf_registry_fallback_rate": 0.045
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Negative result 但有信息价值：证明 CF 不能通过简单 fallback 解决，需要 global consensus mechanism（future work）。论文可选择性报告 \"we explored CF-aware fallback and found...\" 以展示 thoroughness。\n\n\nCF-aware fallback 成功将 CF 降至 0.04%（从 full_s1 的 9.9%），但代价是 DR 回升到 14.8% （≈ grammar-only level）。这是 DR-CF trade-off 的极端端点：要 CF=0 就只能放弃 semantic enforcement → DR 消除率归零。36.6% 的 mask calls 触发 grammar-first fallback 说明 constraint intersection 频繁为空。 结论为 negative：CF-aware fallback 不是可行方案，它完全取消了 semantic 层的贡献。 Median reviewer 不会看到这个实验（not in paper），但如果作为 appendix 呈现， 会被视为 \"honest exploration showing the trade-off is inherent, not fixable\"。\n"
+  },
+  {
+    "name": "Qwen SciERC LoRA fine-tuned + unconstrained eval",
+    "description": "Fine-tuned Qwen3-8B (LoRA 3 epochs on SciERC train) evaluated without constraints",
+    "results": {
+      "domain_range_violation_rate": 0.02,
+      "entity_f1": 0.671,
+      "relation_f1": 0.439,
+      "cross_field_consistency_violation_rate": 0.0
+    },
+    "tables": [
+      "Table 6 (§5.5 or Appendix): FT ablation — unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "DR=1.95% 剩余的 22 个 violations 集中在 Feature-of 和 Compare（与 zero-shot 同一 pattern）。 FT 减少了 volume 但未改变 distribution — constraint tightness 仍 drives residual violations。\n\n\nFT 后 DR 从 zero-shot 的 15.4% 降至 1.95%——fine-tuning 本身已大幅减少 violations。 F1 从 8.2% 提升到 43.9%（5× improvement）。这对 constrained decoding 的 narrative 构成挑战： \"如果 fine-tuning 就能把 DR 降到 2%，为什么还需要 constrained decoding？\" Median reviewer 的 FT ablation 评价（假设 #6）：\"FT regime 下 baseline violation 已很低 （~1-2%），constrained decoding 边际价值有限\"。这是 paper 必须 proactively address 的： constrained decoding 提供 guarantee（100% compliance in-distribution），FT 只提供 statistical reduction（仍有 1.95% residual）。But reviewer 认为 \"1.95% is acceptable for most applications\"。\n"
+  },
+  {
+    "name": "Qwen SciERC LoRA fine-tuned + constrained eval",
+    "description": "Fine-tuned Qwen3-8B evaluated with full S1 constraints",
+    "results": {
+      "domain_range_violation_rate": 0.0,
+      "cross_field_consistency_violation_rate": 0.012,
+      "relation_f1": 0.438,
+      "entity_f1": 0.671
+    },
+    "tables": [
+      "Table 6: FT constrained row"
+    ],
+    "figures": [],
+    "analysis": "FT + constrained = DR=0%, CF=1.2%。对比 zero-shot + constrained = DR=0.93%, CF=9.9%。 FT 解决了 CF 问题的大部分——但这正是 reviewer 用来论证 \"constrained decoding in FT regime is marginal\" 的证据。Paper 的 framing：\"constrained decoding guarantees zero violations regardless of fine-tuning quality — it's a safety net, not a replacement for FT\"。\n\n\nConstrained decoding 将 FT model 的 residual DR 从 1.95% 消除至 0%。 R-F1 从 43.86% 微降至 43.77%（-0.09pp，可忽略）。CF=1.18%（远低于 zero-shot 的 9.9%） 因为 FT model 的 type assignment 已经很 consistent，semantic 层引入的 conflict 更少。 Median reviewer 评价：\"constrained decoding 在 FT regime 下实现 DR=0%，但基线已是 2%—— 边际收益有限。Real value proposition 是 zero-shot deployment scenario where FT data unavailable\"。 这被接受为 \"complementary evidence\" 而非 \"killer argument\"。\n"
+  },
+  {
+    "name": "Llama SciERC LoRA fine-tuned + unconstrained eval",
+    "description": "Fine-tuned Llama-3.1-8B on SciERC evaluated without constraints",
+    "results": {
+      "domain_range_violation_rate": 0.011,
+      "relation_f1": 0.455,
+      "entity_f1": 0.678,
+      "cross_field_consistency_violation_rate": 0.0
+    },
+    "tables": [
+      "Table 6: Llama FT unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "Two models × FT regime: both show DR ~1-2% unconstrained. Pattern consistent.\n\n\nLlama FT DR=1.11%（12 violations / 1082 triples），略低于 Qwen FT 1.95%。 Cross-model 在 FT regime 下表现相似，违反率都在 1-2% 范围。 R-F1=45.5%（高于 Qwen 43.9%）说明 Llama 在 supervised setting 下实际更强 （只是 zero-shot 更弱）。Median reviewer 视 FT cross-model 一致性为 minor positive。\n"
+  },
+  {
+    "name": "Llama SciERC LoRA fine-tuned + constrained eval",
+    "description": "Fine-tuned Llama-3.1-8B on SciERC evaluated with full S1 constraints",
+    "results": {
+      "domain_range_violation_rate": 0.001,
+      "cross_field_consistency_violation_rate": 0.005,
+      "relation_f1": 0.455,
+      "entity_f1": 0.678
+    },
+    "tables": [
+      "Table 6: Llama FT constrained row"
+    ],
+    "figures": [],
+    "analysis": "FT ablation 8/8 互补性确认（2 models × 2 datasets × 2 conditions）全部显示： constrained decoding 将 FT residual violations 推至 0% 且 F1 neutral。 Paper position: \"FT and constrained decoding are complementary — FT reduces volume, constraints guarantee elimination\"。\n\n\nDR 从 1.11% 降至 0.09%（1 residual violation），F1 完全 neutral (+0.02pp)。 CF=0.46%（仅 5 violations）——FT model 的 type consistency 极好。 这与 Qwen FT 结果一致：constrained decoding 在 FT regime 下 near-zero overhead。 Median reviewer：\"nice, but low marginal value\"（假设 #6 confirmed）。\n"
+  },
+  {
+    "name": "Llama DocRED LoRA fine-tuned + unconstrained eval",
+    "description": "Fine-tuned Llama-3.1-8B on DocRED evaluated without constraints",
+    "results": {
+      "DR_pct": 0.49,
+      "RV_pct": 0.15,
+      "entity_f1_pct": 83.93,
+      "relation_f1_pct": 43.72,
+      "parse_fail_rate_pct": 2.3
+    },
+    "tables": [
+      "Table 6: Llama DocRED FT unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "DR=0.49% unconstrained 说明 FT 已将 violation 控制到极低水平。 Constrained decoding 的 value proposition 必须 pivot 到 \"guarantee\" 而非 \"reduction\"。\n\n\nDocRED FT 后 DR=0.49%（极低），RV=0.15%——模型学会了正确的 relation vocabulary 和 domain/range pairing。R-F1=43.7% 是 competitive level（vs supervised SOTA ~50-60%）。 这进一步强化了 reviewer 对 FT ablation 的评价：\"fine-tuning basically solves the problem, constrained decoding is only needed when you can't fine-tune\"。 Median reviewer 认为这个 framing 是合理的 positioning（constrained decoding for zero-shot/few-shot deployment）但 novelty 分受损。\n"
+  },
+  {
+    "name": "Llama DocRED LoRA fine-tuned + constrained eval",
+    "description": "Fine-tuned Llama-3.1-8B on DocRED evaluated with full S1 constraints",
+    "results": {
+      "DR_pct": 0.2,
+      "entity_f1_pct": 85.23,
+      "relation_f1_pct": 44.23,
+      "delta_r_f1": 0.51,
+      "delta_e_f1": 1.3
+    },
+    "tables": [
+      "Table 6: Llama DocRED FT constrained row (highlighted for positive delta)"
+    ],
+    "figures": [],
+    "analysis": "FT + constrained 的 F1 gain 来自与 zero-shot 相同机制（grammar eliminates residual OOV）， 只是 magnitude 更小（baseline OOV 更少）。Pattern consistency 支持 mechanism attribution。\n\n\nConstrained: DR 0.49%→0.20%（↓59%），R-F1 +0.51pp，E-F1 +1.30pp（both significant）。 在 FT regime 下 constrained decoding 不仅不 hurt 还 improves F1——因为 grammar 消除 FT model 偶尔生成的少量 OOV relations + 非标 entity types。 这是 FT ablation 中最 favorable 的数据点：constrained decoding 在 FT regime 下仍有 positive contribution。Median reviewer 承认 \"interesting that constraints help even after fine-tuning\" 但 scale 太小（+0.5pp）to be compelling。\n"
+  },
+  {
+    "name": "Qwen DocRED LoRA fine-tuned + unconstrained eval",
+    "description": "Fine-tuned Qwen3-8B on DocRED evaluated without constraints",
+    "results": {
+      "DR_pct": 0.76,
+      "RV_pct": 0.27,
+      "entity_f1_pct": 82.15,
+      "relation_f1_pct": 40.86,
+      "parse_fail_rate_pct": 7.11
+    },
+    "tables": [
+      "Table 6: Qwen DocRED FT unconstrained row"
+    ],
+    "figures": [],
+    "analysis": "Qwen FT parse_fail=7.1% vs Llama 2.3%——Qwen 在 DocRED 长文档上 JSON 格式化更差。 但 violation rate 在成功 parse 的文档上是主要指标（parse failures are excluded from violation calc）。\n\n\nQwen DocRED FT DR=0.76% 略高于 Llama FT 0.49%（consistent with zero-shot pattern where Qwen DocRED has higher residual）。Parse failure 7.1%（Qwen 在长文档上格式更不稳定） 是 minor concern。R-F1=40.9% comparable to Llama 43.7%。\n"
+  },
+  {
+    "name": "Qwen DocRED LoRA fine-tuned + constrained eval",
+    "description": "Fine-tuned Qwen3-8B on DocRED evaluated with full S1 constraints",
+    "results": {
+      "DR_pct": 0.01,
+      "RV_pct": 0.0,
+      "entity_f1_pct": 81.43,
+      "relation_f1_pct": 40.56,
+      "parse_fail_rate_pct": 8.52,
+      "dr_reduction_pct": 98.7
+    },
+    "tables": [
+      "Table 6: Qwen DocRED FT constrained row"
+    ],
+    "figures": [],
+    "analysis": "DR↓98.7% in FT regime 是最 clean 的 effectiveness 数字。但 F1 delta 含 parse failure confound — 需要报告 excl_fail F1 以 deconfound。\n\n\nDR 0.76%→0.01%（↓98.7%）——FT regime 下 near-perfect elimination。但 E-F1 -0.72pp， R-F1 -0.30pp（constrained 略低于 unconstrained）。Parse failure 从 7.1%→8.5%（constrained 增加 parse failures 因为 grammar enforcement 在长 output 上更严格）。 当排除 parse failures 后 R-F1 delta=+0.03pp（essentially neutral）。 Median reviewer：\"parse failure increase is concerning — your constraints make formatting harder for the model on long documents\"。这是 latency/robustness trade-off 的一部分。\n"
+  },
+  {
+    "name": "Mistral-7B SciERC unconstrained",
+    "description": "Third model (Mistral-7B-Instruct) on SciERC without constraints",
+    "results": {
+      "DR_pct": 56.94,
+      "RV_pct": 0.0,
+      "ET_pct": 1.5,
+      "CF_pct": 56.87,
+      "relation_f1": 0.037,
+      "entity_f1": 0.273
+    },
+    "tables": [
+      "Table 4 extended or Appendix: Mistral row"
+    ],
+    "figures": [],
+    "analysis": "Mistral 的 CF=56.9% 是 artifact：模型输出大量 entity type 不一致的文本。Constrained decoding 后 CF 降至 1.27%——这实际是 CF REDUCTION（rare case where constraints reduce CF）。 但 DR=56.9%→13.4%（↓76%）未达到 Qwen/Llama 级别（94%/99%）。\n\n\nMistral DR=56.9% 异常高（Qwen 15.4%, Llama 13.3%）——Mistral 在 IE 任务上表现极差， 生成大量错误 type assignments。CF=56.9%（也异常高）。这引入了一个新问题： 如果 constrained decoding 在 \"near-broken\" model 上也能工作，是否更能证明 generality？ 还是反而暴露 \"只有在 reasonable baseline 上才有意义\"？ Median reviewer 中对 Mistral 数据的评价分歧： - Positive：证明 method 对 catastrophically bad models 也能提供 structural guarantee - Negative：\"testing on a clearly inappropriate model doesn't strengthen claims\" Paper 应将 Mistral 作为 robustness test（在 Appendix 或简短段落），不作为核心证据。\n"
+  },
+  {
+    "name": "Mistral-7B SciERC constrained",
+    "description": "Mistral-7B-Instruct on SciERC with full S1 constraints",
+    "results": {
+      "DR_pct": 13.4,
+      "ET_pct": 0.0,
+      "RV_pct": 0.0,
+      "CF_pct": 1.27,
+      "relation_f1": 0.037,
+      "entity_f1": 0.275,
+      "dr_reduction_pp": -43.54
+    },
+    "tables": [
+      "Table 4 extended: Mistral constrained row"
+    ],
+    "figures": [],
+    "analysis": "Mistral 数据的 key takeaway: grammar 层在任何 model 上都 robustly 消除 RV/ET； semantic 层 effectiveness 取决于 model quality（better model → higher DR reduction）。 这支持 \"enabling dependency\" narrative: semantic needs reasonable base model predictions to enforce meaningful constraints。\n\n\nDR↓76.5%（56.9%→13.4%）——显著但远低于 Qwen/Llama 的 94%+。原因：Mistral 的 baseline DR 极高意味着模型在 type assignment 上几乎随机——semantic 层的 fallback 频率极高 （constraint intersection 频繁为空），大量 token 退化为 grammar-only。 但 ET/RV→0%（grammar 有效），CF 从 56.9% 降至 1.3%（grammar 消除了导致 CF 的 nonsense entity types）。 对 novelty 的 contribution：增加模型多样性（3 个模型 vs 2 个），部分回应 \"model diversity\" 质疑。但 Mistral 性能太差以至于 reviewer 可能 discount 这个 data point。\n"
+  },
+  {
+    "name": "Mistral-7B DocRED unconstrained",
+    "description": "Mistral-7B on DocRED without constraints",
+    "results": {
+      "DR_pct": 57.42,
+      "RV_pct": 42.35,
+      "ET_pct": 7.58,
+      "CF_pct": 24.78,
+      "relation_f1": 0.043,
+      "entity_f1": 0.485
+    },
+    "tables": [
+      "Appendix: Mistral DocRED row"
+    ],
+    "figures": [],
+    "analysis": "RV=42.4% 是全矩阵最高——Mistral 生成大量完全虚构的 relation names。 Grammar 层在此环境下的 value 最 salient（消除 42% OOV garbage）。\n\n\nMistral DocRED: DR=57.4%, RV=42.4% — catastrophically bad. 超过一半的 triples violate domain/range，超过 40% 使用不存在的 relation names。Model clearly not suited for DocRED zero-shot IE。但 grammar 仍能 guarantee structural validity（RV/ET→0%）， 只是 DR 残余会很高。\n"
+  },
+  {
+    "name": "Mistral-7B DocRED constrained",
+    "description": "Mistral-7B on DocRED with full S1 constraints",
+    "results": {
+      "DR_pct": 33.2,
+      "ET_pct": 0.0,
+      "RV_pct": 0.0,
+      "CF_pct": 0.19,
+      "entity_f1_pct": 50.59,
+      "relation_f1_pct": 5.52,
+      "dr_reduction_pp": -24.22,
+      "e_f1_gain_pp": 2.08,
+      "r_f1_gain_pp": 2.02
+    },
+    "tables": [
+      "Appendix: Mistral DocRED constrained row"
+    ],
+    "figures": [],
+    "analysis": "Mistral DocRED 是唯一 CF DECREASES with constraints 的配置。根因：unconstrained CF 来自 garbage entity types，grammar 消除 garbage → CF 消失。在 higher-quality models (Qwen/Llama) 上 CF 增加是因为 semantic 层引入的 type drift 在 coherent predictions 上 更 visible。这个 observation 支持 \"CF is about type ambiguity not method failure\"。\n\n\nDR 57.4%→33.2%（↓42%）——reduction 最弱的配置（Qwen 45%, Llama 90%）。 但 F1 gain 最大：R-F1 +2.02pp, E-F1 +2.08pp（absolute gain，因 baseline 极差时 消除 OOV 的边际效果最大）。RV 42.4%→0% 是 grammar 层最 dramatic 的单点贡献。 CF 24.8%→0.19%：这里 CF 也大幅下降（与 SciERC/Qwen 相反），因为 grammar 消除了 导致 CF 的乱码 entity types。 Median reviewer：\"F1 gains of +2pp on a 4% base are percentage-wise large (+46%) but absolute scale still unimpressive\"。\n"
+  },
+  {
+    "name": "Qwen SciERC FT grammar-only eval",
+    "description": "Fine-tuned Qwen evaluated with grammar layer only — FT ablation layer decomposition",
+    "results": {
+      "DR_pct": 1.9,
+      "RV_pct": 0.0,
+      "ET_pct": 0.0,
+      "CF_pct": 0.0,
+      "relation_f1": 0.439,
+      "entity_f1": 0.671
+    },
+    "tables": [
+      "Appendix: FT ablation layer decomposition"
+    ],
+    "figures": [],
+    "analysis": "Grammar-only in FT: DR=1.90% unchanged（grammar can't fix DR）。 Full constrained in FT: DR=0%。Delta = semantic layer contribution in FT regime = 1.90pp。 Small absolute contribution but guarantees zero residual。\n\n\nFT + grammar-only: DR=1.90% ≈ unconstrained FT 1.95%（grammar 不减少 DR in FT regime either，与 zero-shot pattern consistent）。RV/ET→0%。CF=0%（grammar doesn't introduce CF）。 F1 完全 neutral。这确认 grammar 层在 FT regime 下是 \"free\" — no cost, eliminates RV/ET。 Median reviewer 对此消融的 reception：\"expected result, consistent with zero-shot finding\"。\n"
+  },
+  {
+    "name": "Qwen SciERC FT semantic-only eval",
+    "description": "Fine-tuned Qwen evaluated with semantic layer only",
+    "results": {
+      "DR_pct": 0.6,
+      "RV_pct": 0.0,
+      "ET_pct": 0.0,
+      "CF_count": 15,
+      "relation_f1": 0.437
+    },
+    "tables": [
+      "Appendix: FT layer ablation"
+    ],
+    "figures": [],
+    "analysis": "Key insight: semantic-only in FT (DR=0.6%) >> semantic-only in zero-shot (DR=11.7%)。 FT 自然解决了 RV 问题 → semantic 层不再需要 grammar 作为 prerequisite。 这实际 weakens \"enabling dependency\" narrative for FT regime——只在 zero-shot 下 grammar 是必须的 prerequisite。Paper 需 carefully scope: \"enabling dependency is critical in zero-shot deployment; in FT regime, semantic alone achieves most DR reduction\"。\n\n\nFT + semantic-only: DR=0.6%（vs unconstrained 1.95%）——semantic 层在 FT regime 下 reduces DR by 69%（7 violations remaining vs 22）。比 zero-shot ↓24% 远好。 原因：FT model 生成 valid relation names（RV≈0%），semantic 层不再受 OOV 困扰， 能 fully enforce domain/range constraints。这 validates enabling dependency 在 FT regime： 当 RV 问题被 FT 自然解决后，semantic 层 effectiveness 接近 ideal。 CF=15 violations（~1.3%），低于 full_s1 零-shot 的 9.9%。\n"
+  },
+  {
+    "name": "Llama SciERC FT grammar-only eval",
+    "description": "Fine-tuned Llama evaluated with grammar layer only on SciERC",
+    "results": {
+      "DR_pct": 1.11,
+      "RV_pct": 0.0,
+      "ET_pct": 0.0,
+      "CF_pct": 0.0,
+      "relation_f1": 0.455,
+      "entity_f1": 0.678
+    },
+    "tables": [
+      "Appendix: FT layer ablation Llama row"
+    ],
+    "figures": [],
+    "analysis": "Confirms grammar transparency pattern in FT regime. Cross-model consistency.\n\n与 unconstrained FT 完全一致（DR=1.11%, F1=45.5%）——grammar 在 FT Llama 上也是 \"transparent\"（zero cost, zero DR benefit, eliminates RV/ET but they're already near-zero）。 Pattern perfectly consistent across models。\n"
+  },
+  {
+    "name": "Llama SciERC FT semantic-only eval",
+    "description": "Fine-tuned Llama evaluated with semantic layer only on SciERC",
+    "results": {
+      "DR_pct": 0.65,
+      "RV_pct": 0.0,
+      "ET_pct": 0.0,
+      "CF_count": 2,
+      "relation_f1_pct": 45.47
+    },
+    "tables": [
+      "Appendix: FT layer ablation Llama semantic-only"
+    ],
+    "figures": [],
+    "analysis": "Semantic-only FT results converge across models (0.6% Qwen, 0.65% Llama) — suggesting a ~0.6% floor for semantic-only enforcement that requires full composition to reach 0%.\n\n\nLlama FT + semantic-only: DR=0.65%（vs unconstrained 1.11%）——semantic reduces DR by 41% in Llama FT regime (vs Qwen 69%)。差异来自 Llama FT 的 DR baseline 更低（fewer violations to reduce）。CF=2 (minimal)。R-F1 +0.02pp (neutral)。 Cross-model pattern: semantic-only in FT achieves DR 0.6-0.65% across both models。\n"
+  },
+  {
+    "name": "Llama DocRED FT grammar-only eval",
+    "description": "Fine-tuned Llama on DocRED evaluated with grammar layer only",
+    "results": {
+      "DR_pct": 0.51,
+      "RV_pct": 0.0,
+      "ET_pct": 0.0,
+      "CF_pct": 0.12,
+      "entity_f1_pct": 84.04,
+      "relation_f1_pct": 43.77,
+      "parse_fail_rate": 2.3
+    },
+    "tables": [
+      "Appendix: FT DocRED layer ablation"
+    ],
+    "figures": [],
+    "analysis": "Grammar transparency confirmed on DocRED FT. DR unchanged, F1 unchanged.\n\nFT Llama DocRED + grammar-only: DR=0.51% ≈ unconstrained 0.49%（grammar doesn't reduce DR）。 F1 neutral。Pattern consistent with all other grammar-only results。 This is the \"boring but correct\" result that confirms architecture works as designed。\n"
+  },
+  {
+    "name": "Qwen DocRED FT grammar-only eval",
+    "description": "Fine-tuned Qwen on DocRED evaluated with grammar layer only",
+    "results": {
+      "DR_pct": 0.61,
+      "RV_pct": 0.0,
+      "ET_pct": 0.0,
+      "CF_pct": 0.11,
+      "entity_f1_pct": 82.19,
+      "relation_f1_pct": 40.85,
+      "parse_fail_rate": 7.01
+    },
+    "tables": [
+      "Appendix: Qwen DocRED FT grammar-only row"
+    ],
+    "figures": [],
+    "analysis": "Consistent pattern. Grammar is transparent in FT regime across all configurations.\n\nQwen DocRED FT + grammar-only: DR=0.61% vs unconstrained 0.76%（微降 0.15pp，因 grammar 消除了极少数 OOV → 改变 DR denominator slightly）。F1 essentially unchanged (+0.01pp excl fail)。 Parse failures 7.0%（与 unconstrained 7.1% 持平——grammar 不增加 parse failures in FT regime）。\n"
+  },
+  {
+    "name": "Qwen DocRED FT semantic-only eval",
+    "description": "Fine-tuned Qwen on DocRED evaluated with semantic layer only",
+    "results": {
+      "DR_pct": 0.21,
+      "RV_pct": 0.23,
+      "ET_pct": 0.0,
+      "CF_pct": 0.27,
+      "entity_f1_pct": 82.15,
+      "relation_f1_pct": 40.89,
+      "parse_fail_rate": 7.52
+    },
+    "tables": [
+      "Appendix: Qwen DocRED FT semantic-only row"
+    ],
+    "figures": [],
+    "analysis": "Semantic-only FT DocRED DR=0.21% close to full constrained DR=0.01%。 Gap is 0.20pp — the few violations that semantic alone misses are caught by grammar+semantic composition. Marginal but guarantees perfection。\n\n\nSemantic-only in FT DocRED: DR=0.21%（vs unconstrained 0.76%，↓72%）。 比 zero-shot semantic-only（DR↓25% on DocRED）远好——FT 解决 RV 后 semantic 层 不再被 OOV 干扰。RV=0.23%（少量残余因为 semantic 层不 enforce vocabulary）。 CF=0.27%（低，FT model 的 type consistency 好）。 F1 fully neutral。Parse failures 略升（7.1%→7.5%）。\n"
+  },
+  {
+    "name": "Llama DocRED FT semantic-only eval",
+    "description": "Fine-tuned Llama on DocRED evaluated with semantic layer only",
+    "results": {
+      "DR_pct": 0.3,
+      "RV_pct": 0.15,
+      "ET_pct": 0.0,
+      "CF_pct": 0.16,
+      "entity_f1_pct": 84.02,
+      "relation_f1_pct": 43.9,
+      "parse_fail_rate": 2.4
+    },
+    "tables": [
+      "Appendix: Llama DocRED FT semantic-only row"
+    ],
+    "figures": [],
+    "analysis": "FT ablation complete picture: in FT regime, semantic-only achieves DR 0.2-0.3% on DocRED, full composition pushes to 0-0.2%. Marginal improvement but absolute guarantee。\n\n\nLlama DocRED FT + semantic-only: DR=0.30%（vs unconstrained 0.49%，↓39%）。 R-F1 +0.13pp（slight positive）。CF=0.16%（low）。 Cross-model pattern in FT semantic-only DocRED: 0.21% (Qwen) vs 0.30% (Llama)— both very low, confirming semantic layer effectiveness when RV is pre-solved by FT。\n"
+  },
+  {
+    "name": "FT regime post-hoc filtering baseline",
+    "description": "Post-hoc filtering applied to FT model outputs — testing if post-hoc is sufficient in FT regime",
+    "results": {
+      "qwen_scierc_reject_rate_pct": 1.95,
+      "qwen_scierc_r_f1_posthoc": 43.94,
+      "qwen_scierc_r_f1_constrained": 43.77,
+      "llama_scierc_reject_rate_pct": 1.11,
+      "llama_scierc_r_f1_posthoc": 45.23,
+      "llama_docred_reject_rate_pct": 0.64,
+      "llama_docred_r_f1_posthoc": 43.92,
+      "llama_docred_r_f1_constrained": 44.23,
+      "mistral_docred_reject_rate_pct": 73.73,
+      "mistral_docred_r_f1_posthoc": 0.0385,
+      "mistral_docred_tp_lost": 226
+    },
+    "tables": [
+      "Table 7 or Appendix: Post-hoc comparison across regimes"
+    ],
+    "figures": [],
+    "analysis": "Mistral DocRED post-hoc is the ONE case where post-hoc fails catastrophically (73.7% rejection, 226 TP lost, F1 drops). This is the strongest \"prevent vs detect\" evidence but only occurs on an extremely poor model-dataset pair。 Median reviewer：\"the constrained vs post-hoc comparison is nuanced — post-hoc wins on F1 in most cases, constrained wins on guarantee and robustness to extreme scenarios\"。\n\n\nFT regime: post-hoc rejection rates are 0.6-2%（very low），F1 impact minimal。 Post-hoc R-F1 ≈ constrained R-F1 in FT regime（差距 <0.3pp）——当 violation rate 已低时 两种方法效果相当。 ZS regime: post-hoc R-F1 >= constrained R-F1 in 5/6 configs（exception: Mistral DocRED where 73.7% rejection catastrophically damages F1）。 Key finding for median-tier reviewer：\"in FT regime, post-hoc is basically equivalent because rejection rate is tiny. Constrained decoding's true value is in zero-shot.\" This constrains the paper's positioning but is HONEST — reviewer gives soundness 4.0 for transparent reporting。\n"
+  },
+  {
+    "name": "Llama DocRED full S1 (max_tokens=6144)",
+    "description": "Repeat of Llama DocRED S1 with increased max_tokens to verify consistency and measure latency",
+    "results": {
+      "DR_pct": 2.57,
+      "CF_pct": 12.13,
+      "R_F1": 6.25,
+      "E_F1": 55.04,
+      "wall_clock_seconds": 23926,
+      "fallback_events": 67911,
+      "latency_overhead_pct": "≤5.4"
+    },
+    "tables": [
+      "§5 or Appendix: Latency overhead measurement"
+    ],
+    "figures": [],
+    "analysis": "Fallback frequency = 67,911 / (907 docs × estimated tokens) provides \"constraint coverage\" metric. High fallback = many positions where semantic layer cannot enforce = residual DR。 This transforms \"10% residual DR\" from weakness into quantifiable architectural property。\n\nResults consistent with mt4096 run (DR delta 0.02pp, F1 delta <0.03pp)——increasing max_tokens doesn't change constraint behavior, only allows longer outputs。 Latency ≤5.4% overhead is a strong operational result：constrained decoding adds minimal inference cost。67,911 fallback events (grammar-first triggers) confirm high fallback frequency on DocRED (≈57/doc)——this explains residual DR。 Median reviewer:\"5.4% latency is acceptable\" (no concerns raised on this dimension)。\n"
+  }
+]

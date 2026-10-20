@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17520198da83ebfac5aa",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh monitor posthoc nli v2",
+  "task_key": "worker_ssh_monitor-posthoc-nli-v2_20260512T232609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_monitor-posthoc-nli-v2_20260512T232609_result.json",
+    "occurrence": 1,
+    "bytes": 1490,
+    "sha256": "2e8c77ae134c75c3779defd5f699a9dbb592773ee88475a1518da8d2e3425b97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. cuda:1 已清理\n- **GPU 0** (PID 40397): `evaluate.py` → 29984 MiB — 这个不是目标进程\n- **GPU 1** (PID 64955): `rerank_nli.py` (posthoc_nli_v2) → 19878 MiB — **唯一进程，确认已释放**\n- grpo_pilot_v1 (64374) 和 test_gen.py (65730) 已不在进程列表中\n\n### 2. posthoc_nli_v2 进度\n- 当前：**batch 8/124，64/985 样本**，稳步推进\n- 模型加载正常（Mistral-Small-3.1-24B merged checkpoint）\n\n### 3. 截断率 — 暂无法评估\n- **脚本不记录截断信息**：`rerank_nli.py` 生成时用 `max_new_tokens=1024`，但不检测/不记录生成长度是否触达上限\n- **输出文件尚不存在**：脚本在全部 124 batch 生成完 + NLI 评分后才写 `./outputs/posthoc_nli_v2/nli_reranking_results.json`\n- **无历史对照**：`outputs/` 下没有先前 eval_results.json 可参考\n\n### 4. 显存\n| GPU | 占用 | 总量 | 利用率 |\n|-----|------|------|--------|\n| 0 | 29.3 GB | 95.6 GB | 30.6% |\n| 1 | 19.4 GB | 95.6 GB | 20.3% |\n\nGPU 1 显存已从多进程共占降到 ~19.4 GB（仅 posthoc_nli_v2）。\n\n### 建议\n截断率需等生成阶段完成后从输出文件检查。按当前速度（~8 samples/batch），124 batch 全跑完预计还需一段时间。到时可用：\n```python\n# 检查 completion 是否达到 max_new_tokens=1024 的 token 上限\ntruncated = sum(1 for s in data[\"per_sample\"] if len(tokenizer.encode(s[\"completion\"])) >= 1020)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-monitor-posthoc-nli-v2.md"
+}

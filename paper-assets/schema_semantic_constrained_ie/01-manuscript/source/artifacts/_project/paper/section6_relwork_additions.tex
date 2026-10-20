@@ -1,0 +1,84 @@
+% ============================================================
+% Related Work Additions — compiled 2026-05-14
+% Each block specifies its insertion point in section6_related_work.tex
+% All citations verified via WebSearch (authors, venue, year confirmed)
+% ============================================================
+
+
+% ============================================================
+% 1. PICARD
+% INSERT INTO "Semantic Constrained Decoding for Code" paragraph
+% AFTER: "...demonstrating that richer-than-CFG constraints can be
+%         compiled into token-level filtering."  (end of line 22)
+% BEFORE: "Synchromesh~\cite{synchromesh_iclr2022}..." (line 23)
+% ============================================================
+
+In the text-to-SQL domain, PICARD~\cite{scholak2021picard} maintains an incremental SQL parsing state that rejects tokens violating syntax or referencing non-existent database columns at each decoding step, achieving state-of-the-art results on Spider and CoSQL without modifying model weights.
+While mechanistically similar to OntoCoDec's token-level filtering, PICARD operates over a \emph{fixed, fully enumerated} schema---database table and column names known before decoding begins.
+In contrast, OntoCoDec's entity registry is populated \emph{during} generation as entity spans are extracted from free text, requiring constraint sets that evolve with the decoding prefix---a fundamental distinction between querying a known schema and extracting from unstructured text.
+
+
+% ============================================================
+% 2. Joint Entity-Relation Models (SpERT, PFN)
+% INSERT INTO "Structural Constraints via Training and Prompting" paragraph
+% AFTER: "...though compliance with ontological constraints remains a
+%         learned soft preference rather than a guarantee." (end of line 56,
+%         after ADELIE sentence)
+% BEFORE: "EnriCo~\cite{zaratiana2024enrico}..." (line 57)
+% ============================================================
+
+In the supervised setting, joint entity-relation architectures such as SpERT~\cite{eberts2020spert} and PFN~\cite{yan2021pfn} enforce type consistency implicitly through shared representations: SpERT classifies entity spans and relation pairs in a single BERT pass with span-level negative sampling, while PFN decomposes feature encoding into entity-specific, relation-specific, and shared partitions via gating mechanisms.
+These models achieve strong performance but are limited to fixed, predefined schemas and cannot generalize to unseen ontologies without retraining---precisely the zero-shot, ontology-portable scenario that OntoCoDec targets.
+
+
+% ============================================================
+% 3. RELATE
+% INSERT INTO "Post-hoc Ontology Validation" paragraph
+% AFTER: "...effective but computationally expensive at scale."
+%        (end of line 71, after \citet{regino2025kgcurator} sentence)
+% BEFORE: "\citet{ekaw2024_ontology_beam}..." (line 72)
+% ============================================================
+
+RELATE~\cite{olasunkanmi2025relate} addresses the alignment gap between LLM-extracted biomedical relations and standardized ontology predicates through a three-stage pipeline: ontology preprocessing with predicate embeddings, similarity-based retrieval via SapBERT, and LLM-based reranking with negation handling, achieving 94\% accuracy@10 on ChemProt.
+While RELATE demonstrates effective ontology grounding for relation extraction, its constraints are applied \emph{post-extraction} through retrieval and reranking rather than during generation, and it requires domain-specific embedding models trained on biomedical corpora.
+OntoCoDec enforces ontology constraints \emph{during} autoregressive decoding and requires no additional trained components beyond the base LLM.
+
+
+% ============================================================
+% 4. Ontology-to-Tools
+% INSERT INTO "Post-hoc Ontology Validation" paragraph
+% AFTER: the RELATE addition above
+% BEFORE: "\citet{ekaw2024_ontology_beam}..." (line 72)
+% ============================================================
+
+Concurrently, \citet{zhou2026ontologytools} compile OWL ontologies into executable tool interfaces within The World Avatar framework, requiring LLM agents to invoke ontology-aware tools that enforce semantic constraints during knowledge graph construction from scientific text.
+This ``ontology-to-tools'' approach shares OntoCoDec's philosophy of compiling formal ontological knowledge into runtime enforcement mechanisms, but operates at the tool-call level (constraining which API functions the agent invokes) rather than at the token level (constraining which tokens the decoder produces), and requires an agentic multi-step workflow rather than single-pass autoregressive generation.
+
+
+% ============================================================
+% 5. zhou2026snowballing AUDIT
+% STATUS: VERIFIED — paper exists and description is accurate
+%   Author: Hongxu Zhou
+%   Title: "From Hallucination to Structure Snowballing:
+%           The Alignment Tax of Constrained Decoding in LLM Reflection"
+%   arXiv: 2604.06066, April 2026
+%   No confirmed venue yet; treat as arXiv preprint
+%
+% ACTION: Remove the "% PENDING AUDIT" comment from
+%         section6_related_work.tex line 85.
+%         The existing description is accurate: the paper identifies
+%         "structure snowballing" as a failure mode where format
+%         compliance cognitive load traps models in repetitive
+%         structural patterns during self-correction iterations.
+%
+% RECOMMENDED BIB ENTRY (if not already present):
+%   @article{zhou2026snowballing,
+%     title   = {From Hallucination to Structure Snowballing:
+%                The Alignment Tax of Constrained Decoding in
+%                {LLM} Reflection},
+%     author  = {Zhou, Hongxu},
+%     journal = {arXiv preprint arXiv:2604.06066},
+%     year    = {2026},
+%     url     = {https://arxiv.org/abs/2604.06066}
+%   }
+% ============================================================

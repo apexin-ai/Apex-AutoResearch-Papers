@@ -1,0 +1,29 @@
+{
+  "exp_id": "dpo_candgen_cuda1",
+  "project": "prov_grounded_uie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T10:52:58.659Z",
+    "updated_at": "2026-05-13T10:59:05.478Z",
+    "spec": {
+      "command": "python -u generate_dpo_candidates.py --model_path ./outputs/sft/merged --train_file ./data/docred_train.jsonl --num_candidates 8 --max_new_tokens 2048 --top_k 20 --top_p 0.95 --seed 42 --device cuda:0 --resume_from 0 --max_samples 1514 --output_file ./outputs/dpo_candidates_part1.jsonl",
+      "server": "autodl-rtxpro6000",
+      "gpu": "cuda:1",
+      "pid": 105192,
+      "log_path": "~/runs/prov_grounded_uie/dpo_candgen_cuda1.log",
+      "submitted_at": "2026-05-13T10:54:58.514Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/prov_grounded_uie/data/docred_train.jsonl",
+      "data_count": 1514,
+      "model_name": "Qwen3-8B SFT merged",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T10:59:05.514442+00:00",
+  "trigger": "update_registry"
+}

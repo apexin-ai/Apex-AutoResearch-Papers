@@ -1,0 +1,116 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{dong2024xgrammar}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{2}{Background}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Grammar-Constrained Decoding.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IE Ontology Constraints.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Violation Taxonomy.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Violation Landscape}{3}{section.3}\protected@file@percent }
+\newlabel{sec:landscape}{{3}{3}{Violation Landscape}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{RE Violation Rates.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt Insufficiency.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{EE Violation Landscape.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}The OntoCoDec{} Framework}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{The \sys {} Framework}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Grammar Layer}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Semantic Layer}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Composition and Graceful Degradation}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}S1 Strategy}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Beam Search and CF Mitigation}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:beam}{{4.5}{4}{Beam Search and CF Mitigation}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{4}{Experiments}{section.5}{}}
+\citation{luan2018multi}
+\citation{yao2019docred}
+\citation{li2021document}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Zero-shot relation extraction results. DR = domain/range violation \%, RV = relation vocabulary violation \%, ET = entity type violation \%, CF = cross-field violation \%. ``Unc.'' = unconstrained; ``S1'' = OntoCoDec{} full constrained decoding. Best violation rates in \textbf  {bold}.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:re_zs}{{1}{5}{Zero-shot relation extraction results. DR = domain/range violation \%, RV = relation vocabulary violation \%, ET = entity type violation \%, CF = cross-field violation \%. ``Unc.'' = unconstrained; ``S1'' = \sys {} full constrained decoding. Best violation rates in \textbf {bold}}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experimental Setup}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}RE Zero-Shot Results}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:re_zs}{{5.2}{5}{RE Zero-Shot Results}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Violation elimination.}{5}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LoRA fine-tuned + OntoCoDec{} constrained decoding. $^\dagger $70B results use AWQ-INT4 quantization. DocRED 70B uses 200-doc subset.}}{6}{table.2}\protected@file@percent }
+\newlabel{tab:lora}{{2}{6}{LoRA fine-tuned + \sys {} constrained decoding. $^\dagger $70B results use AWQ-INT4 quantization. DocRED 70B uses 200-doc subset}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{F1 impact.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CF trade-off.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}70B Scale Generalization}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:scale}{{5.3}{6}{70B Scale Generalization}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}LoRA Fine-Tuned Composability}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:lora}{{5.4}{6}{LoRA Fine-Tuned Composability}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Event Extraction: Cross-Task Generalization}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:ee}{{5.5}{6}{Event Extraction: Cross-Task Generalization}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces WikiEvents zero-shot event extraction results. EV = event vocabulary violation \%, RoV = role vocabulary violation \%, AC = argument constraint violation \%, CF = cross-field \%. ``Grammar'' = grammar-only ablation (semantic layer disabled).}}{7}{table.3}\protected@file@percent }
+\newlabel{tab:ee_zs}{{3}{7}{WikiEvents zero-shot event extraction results. EV = event vocabulary violation \%, RoV = role vocabulary violation \%, AC = argument constraint violation \%, CF = cross-field \%. ``Grammar'' = grammar-only ablation (semantic layer disabled)}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{EV/RoV$\to $0\%.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entity F1: 0\%$\to $11.7--17.6\%.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trigger F1.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AC residual.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Grammar-Only Ablation}{7}{subsubsection.5.5.1}\protected@file@percent }
+\newlabel{sec:grammar_ablation}{{5.5.1}{7}{Grammar-Only Ablation}{subsubsection.5.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Grammar-only ablation on WikiEvents EE (all 3 models). Grammar eliminates EV but cannot enforce per-event-type role constraints (RoV persists). AC surfacing confirms latent violation pattern.}}{8}{table.4}\protected@file@percent }
+\newlabel{tab:grammar_ablation}{{4}{8}{Grammar-only ablation on WikiEvents EE (all 3 models). Grammar eliminates EV but cannot enforce per-event-type role constraints (RoV persists). AC surfacing confirms latent violation pattern}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Post-hoc filtering feasibility: discard rate to achieve 0\% violations. EE post-hoc discards 99.6--100\% of arguments, rendering the approach non-viable.}}{8}{table.5}\protected@file@percent }
+\newlabel{tab:posthoc}{{5}{8}{Post-hoc filtering feasibility: discard rate to achieve 0\% violations. EE post-hoc discards 99.6--100\% of arguments, rendering the approach non-viable}{table.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Post-hoc Filtering Comparison}{8}{subsubsection.5.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}EE Fine-Tuned Composability}{8}{subsubsection.5.5.3}\protected@file@percent }
+\citation{dong2024xgrammar}
+\citation{willard2023efficient}
+\citation{ugare2024syncode}
+\citation{beurer2024domino}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces WikiEvents EE with LoRA fine-tuning + OntoCoDec{}. Composability confirmed: RoV$\to $0\% even when FT reduces baseline violations.}}{9}{table.6}\protected@file@percent }
+\newlabel{tab:ee_ft}{{6}{9}{WikiEvents EE with LoRA fine-tuning + \sys {}. Composability confirmed: RoV$\to $0\% even when FT reduces baseline violations}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Latency overhead of OntoCoDec{} constrained decoding. All measurements on 8B models with greedy decoding unless noted.}}{9}{table.7}\protected@file@percent }
+\newlabel{tab:latency}{{7}{9}{Latency overhead of \sys {} constrained decoding. All measurements on 8B models with greedy decoding unless noted}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Latency Overhead}{9}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Error Analysis}{9}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:error}{{5.7}{9}{Error Analysis}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{AC residuals.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CF root causes.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constraint saves.}{9}{section*.19}\protected@file@percent }
+\citation{zheng2024crane}
+\citation{wang2024typedecoding}
+\citation{wadhwa2023revisiting}
+\citation{xu2023large}
+\citation{wang2023instructuie}
+\citation{lu2024pivoine}
+\citation{li2023codeie}
+\citation{li2021document}
+\citation{ebner2020multi}
+\citation{hsu2022degree}
+\citation{hsu2023ampere}
+\bibstyle{plain}
+\bibcite{dong2024xgrammar}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{10}{section.6}\protected@file@percent }
+\newlabel{sec:related}{{6}{10}{Related Work}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Constrained Decoding.}{10}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Type-Constrained Generation.}{10}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-based Information Extraction.}{10}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Event Extraction.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{10}{Conclusion}{section.7}{}}
+\newlabel{sec:limitations}{{7}{10}{Limitations}{section*.24}{}}
+\bibcite{willard2023efficient}{2}
+\bibcite{ugare2024syncode}{3}
+\bibcite{beurer2024domino}{4}
+\bibcite{zheng2024crane}{5}
+\bibcite{wang2024typedecoding}{6}
+\bibcite{luan2018multi}{7}
+\bibcite{yao2019docred}{8}
+\bibcite{li2021document}{9}
+\bibcite{wadhwa2023revisiting}{10}
+\bibcite{xu2023large}{11}
+\bibcite{wang2023instructuie}{12}
+\bibcite{lu2024pivoine}{13}
+\bibcite{li2023codeie}{14}
+\bibcite{ebner2020multi}{15}
+\bibcite{hsu2022degree}{16}
+\bibcite{hsu2023ampere}{17}
+\gdef \@abspage@last{12}

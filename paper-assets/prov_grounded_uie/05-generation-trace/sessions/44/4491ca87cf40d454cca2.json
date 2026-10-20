@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "id": "4491ca87cf40d454cca2",
+  "project": "prov_grounded_uie",
+  "kind": "worker",
+  "title": "ssh posthoc nli",
+  "task_key": "worker_ssh_posthoc-nli_20260512T150104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_posthoc-nli_20260512T150104.log",
+    "occurrence": 1,
+    "bytes": 2561235,
+    "sha256": "9b3ab0d86272b68c69e0782d013c66f5c0f30be88238755395173fe1265fe8f1"
+  },
+  "statistics": {
+    "messages": 2531,
+    "user_turns": 2,
+    "tool_calls": 1195,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 3,
+      "assistant": 125,
+      "tool_call": 1195,
+      "tool_result": 1195,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1217,
+      "chunks": [
+        {
+          "path": "4491ca87cf40d454cca2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0007.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1297,
+      "chunks": [
+        {
+          "path": "4491ca87cf40d454cca2-part-0007.json",
+          "message_count": 43
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0014.json",
+          "message_count": 174
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "4491ca87cf40d454cca2-part-0014.json",
+          "message_count": 6
+        },
+        {
+          "path": "4491ca87cf40d454cca2-part-0015.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-posthoc-nli.md"
+}

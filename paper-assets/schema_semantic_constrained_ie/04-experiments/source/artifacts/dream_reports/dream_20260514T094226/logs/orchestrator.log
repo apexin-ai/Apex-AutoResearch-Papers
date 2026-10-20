@@ -1,0 +1,3 @@
+2026-05-14 10:41:59,907 INFO    core.tools.feishu  create_chat: name='审稿-schema_semantic_constrained_ie' → chat_id=oc_01fc90ae186a4ed432770f7601995139
+2026-05-14 10:41:59,910 INFO    core.tools.dream  [dream] auto-created Group C for project=schema_semantic_constrained_ie: oc_01fc90ae186a4ed432770f7601995139
+2026-05-14 10:42:00,039 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_6/config/mcp_config_dream_review_director.json

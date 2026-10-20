@@ -1,0 +1,19 @@
+\section{Related Work}
+\label{sec:related_work}
+
+We provide a detailed survey in Appendix~\ref{app:related_work}; here we position OntoCoDec along three axes.
+
+\paragraph{Constrained decoding.}
+Grammar-constrained decoding restricts each token to a mask derived from a target grammar.
+XGrammar~\cite{dong2025xgrammar}, Outlines~\cite{willard2023outlines}, SGLang~\cite{zheng2024sglang}, SynCode~\cite{ugare2024syncode}, and related systems~\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} compile JSON Schemas into pushdown automata for structural enforcement, but are limited to context-free constraints and cannot enforce cross-field semantic rules that depend on previously generated field values.
+PICARD~\cite{scholak2021picard} and \citet{pldi2025_type_constrained_codegen} compile type systems into prefix automata; KG-Trie~\cite{luo2025kgtrie} applies trie-based KG constraints for knowledge-to-text generation.
+OntoCoDec fills this gap with a stateful semantic layer whose entity registry is populated dynamically during generation.
+
+\paragraph{Schema-aware IE.}
+GoLLIE~\cite{sainz2024gollie}, KnowCoder~\cite{knowcoder_acl2024}, and others~\cite{guidex2025,josifoski2022genie,paolini2021tanl,cabot2021rebel,wang2023instructuie,qi2024adelie,fei2022lasuie,lu2022uie,zhou2024universalner} encode ontology structure via training-time internalization, learning schema preferences but without runtime guarantees: violations persist at 0.5--2\% even after fine-tuning~\cite{wadhwa2023revisiting}.
+OntoCoDec provides orthogonal runtime enforcement composable with these systems, including GoLLIE itself (Appendix~\ref{app:gollie-comparison}).
+
+\paragraph{Constraint enforcement in IE.}
+\citet{roth_yih_2004} and \citet{riedel2010modeling} formulated hard type constraints via integer linear programming (ILP); post-hoc validation~\cite{khorshidi2025odke,spires_2024,ontologx_2025} detects violations after generation but discards up to 74\% of predictions; grammar-only enforcement~\cite{geng2023gcd,boostcd2025} achieves only 3\% DR reduction (\S\ref{sec:constrained-baselines}).
+EnriCo~\cite{zaratiana2024enrico} uses answer set programming (ASP); IterGen~\cite{ugare2025itergen} backtracks on violations; \citet{vukovic2024dialogue} combines ontology constraints with constrained chain-of-thought for dialogue RE.
+These methods either operate post-hoc (discarding predictions) or require iterative refinement; OntoCoDec prevents violations during generation via forward-only stateful masking at $O(|V|)$ per step.

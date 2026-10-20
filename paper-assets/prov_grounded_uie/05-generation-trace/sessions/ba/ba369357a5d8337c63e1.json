@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba369357a5d8337c63e1",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code experiment plan",
+  "task_key": "worker_code_experiment-plan_20260512T114557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_experiment-plan_20260512T114557_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "925b3dd59e92852978753403936debf74d685c0cc7ebe3012272c192c9ebf2ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`experiment_plan.yaml` 已写入项目目录，包含 4 个实验计划：\n\n1. **exp_sft_baseline** — SFT 基线，无依赖\n2. **exp_posthoc_nli** — Post-hoc NLI reranking，依赖 exp_sft_baseline\n3. **exp_grpo_provenance** — GRPO 证据溯源奖励训练，依赖 exp_sft_baseline\n4. **exp_comparison** — 三组对比 + 退化检查，依赖前三个实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-experiment-plan.md"
+}

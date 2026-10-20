@@ -1,0 +1,8 @@
+% Appendix: Order Invariance of Compiled Constraints
+
+\paragraph{Order invariance.}
+\label{app:order-invariance}
+To verify that OntoCoDec's outputs are independent of schema enumeration order, we randomly shuffle the entity and relation type lists in the compiled constraint file (\texttt{ontology\_constraints.json}) and re-run greedy S1 decoding on all 551 SciERC documents.
+The raw model outputs and parsed triples are byte-identical to the canonical-order run across all documents.
+This holds because the grammar layer accepts the same token set at each type-bearing position regardless of the order in which types are listed in the schema, and greedy decoding is deterministic given identical logit masks.
+The result confirms that OntoCoDec introduces no spurious order dependence from schema compilation.

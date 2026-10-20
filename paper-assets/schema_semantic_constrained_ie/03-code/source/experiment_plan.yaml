@@ -1,0 +1,313 @@
+## OntoCoDec Experiment Plan
+## Target: EMNLP 2026 ARR (May 25, 2026)
+## Last updated: 2026-05-17
+
+claims:
+  C1_violation_landscape:
+    description: "LLM-based IE violates ontology type constraints at non-trivial rates; violation rate driven by constraint tightness × model RV baseline, not ontology size"
+    status: supported
+    evidence_strength: strong
+
+  C2_prompt_insufficiency:
+    description: "Schema-informed prompting reduces but cannot eliminate violations; unreliable per-relation"
+    status: supported
+    evidence_strength: strong
+
+  C3_composable_framework:
+    description: "OntoCoDec compiles IE ontology schemas into two composable constraint layers (grammar+semantic) with enabling dependency; near-complete DR elimination"
+    status: supported
+    evidence_strength: strong
+
+  C4_s1_vs_s2:
+    description: "S2 two-pass offers no advantage over S1 single-pass; S1 adopted as primary"
+    status: supported_demoted
+    evidence_strength: moderate
+    note: "S2 demoted to ablation (D007). S1 simpler + marginally better F1."
+
+  C5_cross_model:
+    description: "OntoCoDec generalizes across models without code modification; DR reduction magnitude varies with model RV baseline"
+    status: supported
+    evidence_strength: strong
+
+  C6_f1_impact:
+    description: "Constraint enforcement preserves or improves F1; improvement is model/dataset-dependent (Qwen DocRED significant, SciERC neutral)"
+    status: supported
+    evidence_strength: strong
+
+  C7_cross_task:
+    description: "OntoCoDec generalizes beyond RE to Event Extraction (WikiEvents/KAIROS); framework is task-agnostic for any IE with ontology type constraints"
+    status: supported
+    evidence_strength: strong
+    note: "v3 全量完成: 3 models × 246 docs, RoV=0% (all), EV=0% (all), AC 1.3-3.8% (residual semantic confusion). Grammar-only ablation confirms two-layer necessity (RoV=64%). Post-hoc comparison: 99.6-100% argument deletion."
+
+experiments:
+  # --- Phase 0: Violation Landscape (ALL COMPLETE) ---
+  - plan_id: P001
+    name: SciERC violation rate (minimal prompt)
+    claim: C1_violation_landscape
+    registry_id: mvp_phase0_violation_rate
+    priority: 1
+    result: "DR=15.4%, 1724 triples"
+
+  - plan_id: P002
+    name: SciERC violation rate (schema-informed prompt)
+    claim: C2_prompt_insufficiency
+    registry_id: mvp_phase0_scierc_schema
+    priority: 1
+    result: "DR=5.78%, -62.4% reduction, Evaluate-for regression"
+
+  - plan_id: P003
+    name: DocRED violation rate (minimal prompt)
+    claim: C1_violation_landscape
+    registry_id: mvp_phase0_violation_rate_docred
+    priority: 1
+    result: "DR=18.7%, RV=28.9%"
+
+  - plan_id: P004
+    name: DocRED violation rate (schema-informed prompt)
+    claim: C2_prompt_insufficiency
+    registry_id: mvp_phase0_docred_schema
+    priority: 1
+    result: "DR=12.8%, -32% reduction (weaker than SciERC)"
+
+  # --- Phase 2: SciERC Ablation (ALL COMPLETE) ---
+  - plan_id: P005a
+    name: SciERC unconstrained baseline
+    claim: C3_composable_framework
+    registry_id: phase2_scierc_unconstrained
+    priority: 1
+    result: "DR=15.37%, RV=1.39%, ET=0.40%, R-F1=8.23%"
+
+  - plan_id: P005
+    name: SciERC grammar-only
+    claim: C3_composable_framework
+    registry_id: phase2_scierc_grammar_only
+    priority: 1
+    result: "RV→0%, ET→0%, DR=14.84% (grammar alone doesn't reduce DR), E-F1=30.98%"
+
+  - plan_id: P006
+    name: SciERC semantic-only
+    claim: C3_composable_framework
+    registry_id: phase2_scierc_semantic_only
+    priority: 1
+    result: "DR=11.65% (↓24%), RV/ET unchanged, demonstrates enabling dependency"
+
+  - plan_id: P007
+    name: SciERC full S1
+    claim: C3_composable_framework
+    registry_id: phase2_scierc_full_s1
+    priority: 1
+    result: "DR=0.93% (↓94%), RV/ET→0%, CF=9.90%, R-F1=8.36% (+0.13pp, p=0.58)"
+
+  - plan_id: P008
+    name: SciERC full S2 (ablation)
+    claim: C4_s1_vs_s2
+    registry_id: phase2_scierc_full_s2
+    priority: 1
+    result: "DR=0.97%, CF=8.03%, R-F1=8.03% (worse than S1). Demoted."
+
+  # --- Phase 2: DocRED Ablation (ALL COMPLETE) ---
+  - plan_id: P009
+    name: DocRED unconstrained baseline
+    claim: C3_composable_framework
+    registry_id: phase2_docred_unconstrained
+    priority: 1
+    result: "DR=18.46%, RV=29.66%, ET=2.48%, R-F1=7.73%"
+
+  - plan_id: P010
+    name: DocRED grammar-only
+    claim: C3_composable_framework
+    registry_id: phase2_docred_grammar_only
+    priority: 1
+    result: "RV→0.03%, ET→0%, E-F1=59.38% (grammar drives all E-F1 gain)"
+
+  - plan_id: P011
+    name: DocRED semantic-only
+    claim: C3_composable_framework
+    registry_id: phase2_docred_semantic_only
+    priority: 1
+    result: "DR=13.96%, ET=4.22%"
+
+  - plan_id: P012
+    name: DocRED full S1
+    claim: C3_composable_framework
+    registry_id: phase2_docred_full_s1
+    priority: 1
+    result: "DR=10.21% (↓45%), RV→0.03%, ET→0%, CF=2.57%, R-F1=8.23% (+0.50pp, p<0.001), E-F1=59.37% (+1.22pp, p<0.001)"
+
+  # --- Phase 2: Cross-Model (ALL COMPLETE) ---
+  - plan_id: P013
+    name: Llama SciERC unconstrained
+    claim: C5_cross_model
+    registry_id: llama_scierc_unconstrained
+    priority: 2
+    result: "DR=17.53%, RV=0.23%, ET=0.27%"
+
+  - plan_id: P014
+    name: Llama SciERC full S1
+    claim: C5_cross_model
+    registry_id: llama_scierc_full_s1
+    priority: 2
+    result: "DR=0.10% (↓99.4%), RV/ET→0%, R-F1 neutral"
+
+  - plan_id: P015
+    name: Llama DocRED unconstrained
+    claim: C5_cross_model
+    registry_id: llama_docred_unconstrained
+    priority: 2
+    result: "DR=26.07%, RV=16.03%, ET=0.13%, R-F1=5.98%"
+
+  - plan_id: P016
+    name: Llama DocRED full S1
+    claim: C5_cross_model
+    registry_id: llama_docred_full_s1
+    priority: 2
+    result: "DR=2.55% (↓90.2%), RV/ET→0%, CF=12.02%, R-F1=6.27% (+0.29pp), E-F1=55.01% (-0.64pp), parse_failures=91/998"
+
+  # --- Supplementary (ALL COMPLETE) ---
+  - plan_id: P017
+    name: S2 pilot (50 docs)
+    claim: C4_s1_vs_s2
+    registry_id: phase2_s2_pilot50
+    priority: 3
+    result: "Pilot confirmed S2 works, full run in P008"
+
+  - plan_id: P018
+    name: Post-hoc filtering baseline
+    claim: C6_f1_impact
+    registry_id: posthoc_filtering_baseline
+    priority: 2
+    result: "Post-hoc F1 > OntoCoDec F1 on both datasets. Framing: multi-dimensional (D013)"
+    note: "Not in registry — computed offline"
+
+  - plan_id: P019
+    name: Bootstrap CI (10000 iterations)
+    claim: C6_f1_impact
+    registry_id: d012_bootstrap_ci
+    priority: 1
+    result: "SciERC R-F1 +0.13pp p=0.58; DocRED R-F1 +0.50pp p<0.001, E-F1 +1.23pp p<0.001"
+    note: "Computed offline, not GPU experiment"
+
+  - plan_id: P020
+    name: DocRED schema compilation (Phase 0 R2)
+    claim: C1_violation_landscape
+    registry_id: mvp_phase0_docred_schema_r2
+    priority: 3
+    result: "killed — superseded by P004"
+
+  # --- WikiEvents Event Extraction (D040, conference main 关键路径) ---
+  - plan_id: P021
+    name: WikiEvents Qwen3-8B unconstrained
+    claim: C7_cross_task
+    priority: 1
+    depends_on: null
+    description: "WikiEvents event extraction, Qwen3-8B, unconstrained baseline"
+
+  - plan_id: P022
+    name: WikiEvents Qwen3-8B constrained (full_s1)
+    claim: C7_cross_task
+    priority: 1
+    depends_on: P021
+    registry_id: ee_qwen_wikievents_constrained_v3
+    result: "Parse=83.7%, EV=0%, RoV=0%, AC=2.1%, CF=21.1%, Entity-F1=14.1%, Trigger-F1=13.4%"
+
+  - plan_id: P023
+    name: WikiEvents Llama-3.1-8B unconstrained
+    claim: C7_cross_task
+    priority: 1
+    depends_on: null
+    description: "WikiEvents event extraction, Llama-3.1-8B, unconstrained baseline"
+
+  - plan_id: P024
+    name: WikiEvents Llama-3.1-8B constrained (full_s1)
+    claim: C7_cross_task
+    priority: 1
+    depends_on: P023
+    registry_id: ee_llama_wikievents_constrained_v3
+    result: "Parse=84.1%, EV=0%, RoV=0%, AC=3.8%, CF=17.2%, Entity-F1=17.6%, Trigger-F1=7.5%"
+
+  - plan_id: P025
+    name: WikiEvents Mistral-7B unconstrained
+    claim: C7_cross_task
+    priority: 1
+    depends_on: null
+    description: "WikiEvents event extraction, Mistral-7B-v0.3, unconstrained baseline"
+
+  - plan_id: P026
+    name: WikiEvents Mistral-7B constrained (full_s1)
+    claim: C7_cross_task
+    priority: 1
+    depends_on: P025
+    registry_id: ee_mistral_wikievents_constrained_v3
+    result: "Parse=88.6%, EV=0%, RoV=0%, AC=1.3%, CF=14.9%, Entity-F1=11.7%, Trigger-F1=3.9%"
+
+  # --- WikiEvents EE Ablation (COMPLETE) ---
+  - plan_id: P027
+    name: WikiEvents Mistral grammar_only v3
+    claim: C3_composable_framework
+    priority: 1
+    depends_on: P025
+    description: "Grammar-only ablation on Mistral WikiEvents — proves semantic layer necessity (RoV remains ~64%)"
+
+  - plan_id: P028
+    name: WikiEvents EE post-hoc filtering (3 models)
+    claim: C6_f1_impact
+    priority: 1
+    description: "Post-hoc filtering baseline for EE — demonstrates 99.6-100% argument deletion to achieve 0% violation"
+
+  # --- D049 Conference Main Supplement (P1-P3 Tier 1) ---
+  - plan_id: P029
+    name: 70B SciERC unconstrained + constrained
+    claim: C5_cross_model
+    priority: 1
+    depends_on: null
+    description: "Llama-3.1-70B-Instruct AWQ-INT4 on SciERC — scale dimension (8B→70B within Llama family). westd-21461 cuda:0 unconstrained + cuda:1 constrained. RUNNING."
+
+  - plan_id: P030
+    name: 70B DocRED unconstrained + constrained
+    claim: C5_cross_model
+    priority: 1
+    depends_on: null
+    description: "Llama-3.1-70B-Instruct AWQ-INT4 on DocRED — scale dimension. westd-16980 cuda:0+1 (pending scp)"
+
+  - plan_id: P031
+    name: Error analysis / case study
+    claim: C7_cross_task
+    priority: 1
+    depends_on: null
+    description: "10-20 representative cases from v3 EE results — AC residual analysis, CF root causes, qualitative evidence for paper"
+
+  # --- D049 Tier 2 ---
+  - plan_id: P032
+    name: EE FT composability
+    claim: C3_composable_framework
+    priority: 2
+    depends_on: null
+    description: "Fine-tuned model + OntoCoDec composability test (~30 GPU-hours). Only if time allows before May 25"
+
+  # --- D049 Tier 3 ---
+  - plan_id: P033
+    name: Grammar-only cross-model validation (Qwen/Llama EE)
+    claim: C3_composable_framework
+    priority: 3
+    depends_on: null
+    description: "Grammar-only ablation on Qwen/Llama WikiEvents EE for completeness"
+
+  - plan_id: P034
+    name: Bootstrap CI for EE metrics
+    claim: C6_f1_impact
+    priority: 3
+    depends_on: null
+    description: "Statistical significance for EE F1 changes"
+
+  - plan_id: P035
+    name: Latency overhead measurement
+    claim: C3_composable_framework
+    priority: 3
+    depends_on: null
+    description: "Wall-clock comparison: unconstrained vs constrained decoding overhead"
+
+gpu_budget:
+  allocated: "westd-16980 cuda:0,1 + westd-21461 cuda:0,1 (4x RTX PRO 6000 96GB)"
+  total_used: "~45 GPU-hours (RE + WikiEvents EE complete)"
+  status: "70B experiments next — 4 GPUs all allocated for 70B SciERC/DocRED parallel runs"

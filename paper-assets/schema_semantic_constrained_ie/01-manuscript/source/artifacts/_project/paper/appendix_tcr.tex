@@ -1,0 +1,84 @@
+% Appendix: Post-hoc Type Consistency Resolution (TCR)
+
+\section{Post-hoc Type Consistency Resolution}
+\label{app:tcr}
+
+S1 enforces domain/range constraints per-triple but does not enforce global entity type consensus, leaving residual CF violations where the same entity receives different types across triples.
+We evaluate a post-hoc resolution step (TCR): for each entity with conflicting type assignments, TCR selects the type that maximizes satisfaction count across all relations referencing that entity, subject to domain/range constraints.
+Unlike naive majority voting (which ignores relational constraints and increases DR), TCR is constraint-aware: candidate types are scored by how many of the entity's relational contexts they satisfy.
+TCR runs after S1 decoding completes and has access to the full document context.
+
+% ──────────────────────────────────────────
+%  Table: TCR results on SciERC
+% ──────────────────────────────────────────
+\begin{table}[h]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}ll rr rr r r@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{CF (\%)}} & \multicolumn{2}{c}{\textbf{DR (\%)}} & \textbf{$\Delta$E-F1} & \textbf{Fund.} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-7} \cmidrule(l){8-8}
+\textbf{Config} & \textbf{Model} & Pre & Post & Pre & Post & (pp) & (\%) \\
+\midrule
+\multirow{3}{*}{Zero-shot}
+  & Qwen    & 9.75 & \textbf{0} & 0.93  & 1.21  & $-$1.29 & 2.04 \\
+  & Llama   & 6.40 & \textbf{0} & 0.08  & 0.30  & $-$1.78 & 1.85 \\
+  & Mistral & 0.67 & \textbf{0} & 13.36 & 12.87 & $+$0.05 & 0 \\
+\midrule
+\multirow{2}{*}{LoRA}
+  & Qwen    & 1.19 & \textbf{0} & 0     & 0     & $-$0.75 & 0 \\
+  & Llama   & 0.46 & \textbf{0} & 0.09  & 0.09  & $-$0.18 & 0 \\
+\bottomrule
+\end{tabular}}
+\caption{TCR on SciERC ($\bar{\kappa}{=}0.333$, 551 docs).
+Pre/Post: before/after TCR.
+$\Delta$E-F1: entity F1 change (F1$\times$100).
+Fund.: percentage of conflicting entities where no single type satisfies all relational constraints (fundamental conflicts).
+TCR eliminates all CF with DR increases $\leq$0.28\,pp; fundamental conflicts are 0--2\%.}
+\label{tab:tcr-scierc}
+\end{table}
+
+% ──────────────────────────────────────────
+%  Table: TCR results on DocRED
+% ──────────────────────────────────────────
+\begin{table}[h]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}ll rr rr r r@{}}
+\toprule
+& & \multicolumn{2}{c}{\textbf{CF (\%)}} & \multicolumn{2}{c}{\textbf{DR (\%)}} & \textbf{$\Delta$E-F1} & \textbf{Fund.} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-7} \cmidrule(l){8-8}
+\textbf{Config} & \textbf{Model} & Pre & Post & Pre & Post & (pp) & (\%) \\
+\midrule
+\multirow{3}{*}{Zero-shot}
+  & Qwen    & 13.11 & \textbf{0} & 10.21 & 11.74 & $-$3.44 & 13.52 \\
+  & Llama   & 23.71 & \textbf{0} &  2.55 & 11.93 & $-$5.21 & 22.78 \\
+  & 70B     & 11.61 & \textbf{0} &  0    &  4.20 & $-$5.98 & 18.26 \\
+\midrule
+\multirow{2}{*}{LoRA}
+  & Qwen    &  0.42 & \textbf{0} &  0.01 &  0.14 & $-$0.16 & 12.16 \\
+  & Llama   &  0.36 & \textbf{0} &  0.21 &  0.20 & $-$0.17 & 11.59 \\
+\bottomrule
+\end{tabular}}
+\caption{TCR on DocRED ($\bar{\kappa}{=}0.842$, 998 docs).
+Under zero-shot, TCR introduces substantial DR regressions (up to $+$9.38\,pp for Llama) and E-F1 drops (up to $-$5.98\,pp for 70B).
+Fundamental conflict rates are 12--23\%, an order of magnitude higher than SciERC.
+Under LoRA, low baseline CF (0.36--0.42\%) limits both TCR impact and DR cost.}
+\label{tab:tcr-docred}
+\end{table}
+
+\paragraph{Analysis.}
+TCR effectiveness varies inversely with schema constraint tightness $\bar{\kappa}$ (descriptive pattern across two schemas).
+On SciERC ($\bar{\kappa}{=}0.333$), fundamental conflicts constitute 0--2\% of type disagreements: most conflicts are resolvable because the loose schema admits many valid type pairs, and TCR can find a type satisfying all relational contexts.
+DR increases are bounded ($\leq$0.28\,pp), and E-F1 cost is modest ($\leq$1.78\,pp in zero-shot, $\leq$0.75\,pp under LoRA).
+On DocRED ($\bar{\kappa}{=}0.842$), 13--23\% of conflicts are fundamental: the tight schema renders most type pairs invalid, so unifying an entity's type across all its relational contexts inevitably violates some domain/range constraints.
+This produces severe DR regressions under zero-shot (Llama: 2.55\%$\to$11.93\%; 70B: 0\%$\to$4.20\%), where baseline CF is high enough that many entities require resolution.
+Under LoRA, baseline CF is already low (0.36--0.42\%), limiting both the scope for TCR improvement and the DR cost.
+
+This $\bar{\kappa}$-dependent boundary is consistent with the constraint tightness analysis in \S\ref{sec:composition}: $\bar{\kappa}$ characterizes not only the decoding-time DR residual regime but also the feasibility of post-hoc type resolution.
+Beam search (\S\ref{sec:beam-results}) resolves CF and DR simultaneously across all $\bar{\kappa}$ values (SciERC and DocRED (998 docs): DR$\to$0\% for calibrated models), making it the preferred approach for high-tightness schemas.
+TCR is a zero-cost complement for low-tightness schemas where beam search latency (1.39$\times$) is undesirable.
+Integrating TCR into the decoding loop would require global optimization over all generated triples, conflicting with the autoregressive generation paradigm.
+TCR is complementary to OntoCoDec---it addresses CF (which OntoCoDec's per-triple enforcement cannot prevent) while OntoCoDec addresses DR (which post-hoc correction cannot guarantee).

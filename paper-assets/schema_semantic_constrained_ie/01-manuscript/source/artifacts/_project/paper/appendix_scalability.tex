@@ -1,0 +1,24 @@
+\section{Ontology Scalability}
+\label{app:scalability}
+
+\begin{table}[h]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Scale} & \textbf{Types} & \textbf{Rels} & \textbf{Compile (s)} & \textbf{Overhead} \\
+\midrule
+Small (SciERC) & 6 & 7 & 0.33 & 1.02$\times$ \\
+Medium (DocRED) & 6 & 96 & 0.32 & 1.03$\times$ \\
+Large (synth.) & 100 & 500 & 0.35 & 1.03$\times$ \\
+XLarge (synth.) & 200 & 1{,}000 & 0.42 & 1.03$\times$ \\
+\bottomrule
+\end{tabular}}
+\caption{Compilation time (one-time) and per-token inference overhead across ontology scales. Small and Medium use real ontologies; Large and XLarge use synthetic ontologies with random domain/range constraints. Overhead measured on Qwen3-8B, 10 documents per scale.}
+\label{tab:scalability}
+\end{table}
+
+Full constraint compilation (schema parsing + grammar build) scales sub-linearly (0.32\,s to 0.42\,s for 7$\to$1{,}000 relations; Table~\ref{tab:scalability}); within this, the XGrammar automaton accounts for $\sim$0.044\,s and semantic constraint compilation grows linearly but remains negligible (0.4\,ms to 17\,ms).
+Inference overhead is constant at 2--3\% because XGrammar uses precompiled bitmasks ($O(1)$ per token) and the semantic layer checks only the active relation's domain/range set rather than the full ontology.
+The practical limit is first-token uniqueness: when entity types exceed $\sim$200, prefix collisions in the tokenizer vocabulary may require fallback to multi-token disambiguation (\S\ref{sec:dynamic-masking}).

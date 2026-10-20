@@ -1,0 +1,1503 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "figures/fig1_framework.pdf",
+      "caption": "Overview of OntoCoDec. An IE ontology is compiled into two constraint layers: a grammar layer (context-free) and a semantic layer (prefix-decidable with state). At each decoding step, the final mask $",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "fig1_framework.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "figures/fig2_per_relation_dr.pdf",
+      "caption": "Per-relation DR violation rates on SciERC (Qwen3-8B, unconstrained). Rates correlate with constraint tightness $\\kappa(r)$. Llama-3.1-8B shows similar patterns (Appendix~\\ref{app:llama-per-relation}).",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "section3_violation_landscape.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "figures/fig_scale_dependency.pdf",
+      "caption": "Scale-dependent layer interaction: the semantic layer's independent DR reduction grows from 24\\% at 8B to 84\\% at 70B, reducing reliance on grammar-enforced vocabulary.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "section5_scierc_draft.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure",
+      "image_path": "figures/dual_factor_scatter.pdf",
+      "caption": "Residual DR vs.\\ Schema Restrictiveness $\\times$ Baseline Violation Rate ($\\bar{\\kappa} \\times \\text{RV}_{\\text{baseline}}$) across four model$\\times$dataset configurations ($n{=}3$ schemas; descripti",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_discussion.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure*",
+      "image_path": "figures/beam_pareto.pdf",
+      "caption": "Beam width vs.\\ R-F1 under LoRA fine-tuning. Left: SciERC (Qwen3-8B solid, Llama-3.1-8B dashed; 551 docs). Right: DocRED (Llama-3.1-8B, 200 docs). Bubble area $\\propto$ total violation rate (DR+CF+RV)",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_beam_search.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "4",
+      "status": "added",
+      "tool": "",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/_latex_iso_q1op59og/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "abstract_d3264e.tex:15"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "abstract_fd4b26.tex:15"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "appendix_discussion.tex:243"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible TBD marker",
+          "location": "main.tex:22"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "section7_conclusion_550cbf_DEPRECATED.tex:20"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "\\textcolor{red}{} — draft highlight",
+          "location": "main.tex:22"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:18"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:36"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:58"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:81"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:104"
+        },
+        {
+          "kind": "draft_artifact",
+          "message": "TODO comment in source",
+          "location": "section6_relwork_outline.tex:123"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:tightness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:scierc-per-relation-dr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:dual-factor} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bg:ontology} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bg:problem} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tcr-scierc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:output-schema} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:docred-phase0} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:doc-length-scierc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:fuzzy-matching} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-cf} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:power-analysis} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:scale-dependency} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cf-dr-tradeoff} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:doc-length-reduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:quantization} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:downstream-impact} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:doc-length-docred} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:enabling-confound} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:kappa-case-study} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:cross-dataset} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bg:gcd} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:schema-ambiguity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:semantic} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:composition} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-dr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-rv-dr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:framework} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:case-scale} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:s2} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:full-ft} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:sampling-robustness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:position-detection} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tcr-docred} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:lucky-violations-detail} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_beam_search.tex:19"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_beam_search.tex:106"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_beam_search.tex:164"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_case_studies.tex:53"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_case_studies.tex:85"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_case_studies.tex:124"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:50"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:177"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:353"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:411"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:487"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:558"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:603"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:637"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_discussion.tex:712"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_doc_length.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_doc_length.tex:28"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_doc_length.tex:50"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_high_kappa_analysis.tex:15"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_high_kappa_analysis.tex:51"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_llama_per_relation.tex:12"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_prompt_sensitivity.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_quantization.tex:9"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_reproducibility.tex:32"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_sampling_table.tex:3"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_scalability.tex:4"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_tcr.tex:15"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_tcr.tex:46"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_wikievents_pilot.tex:17"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "paper_tables_draft.tex:10"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section5_crossmodel_draft.tex:12"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section5_scierc_draft.tex:25"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section5_scierc_draft.tex:106"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section5_scierc_draft.tex:160"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "12 critical, 74 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 3,
+          "num_cites": 0
+        },
+        {
+          "file": "abstract_d3264e.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "abstract_fd4b26.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_70b_ablation.tex",
+          "role": "other",
+          "num_numbers": 88,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_ai_assistants.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_beam_search.tex",
+          "role": "other",
+          "num_numbers": 177,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_case_studies.tex",
+          "role": "other",
+          "num_numbers": 7,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_discussion.tex",
+          "role": "other",
+          "num_numbers": 475,
+          "num_cites": 6
+        },
+        {
+          "file": "appendix_doc_length.tex",
+          "role": "other",
+          "num_numbers": 34,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_downstream_analysis.tex",
+          "role": "other",
+          "num_numbers": 11,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_full_ft.tex",
+          "role": "other",
+          "num_numbers": 18,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_gollie_comparison.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 1
+        },
+        {
+          "file": "appendix_high_kappa_analysis.tex",
+          "role": "other",
+          "num_numbers": 72,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_kappa_case_study.tex",
+          "role": "other",
+          "num_numbers": 16,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_llama_per_relation.tex",
+          "role": "other",
+          "num_numbers": 20,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_order_invariance.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_power_analysis.tex",
+          "role": "other",
+          "num_numbers": 23,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_power_analysis_523cc9.tex",
+          "role": "other",
+          "num_numbers": 23,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_prompt_sensitivity.tex",
+          "role": "other",
+          "num_numbers": 79,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_prompts.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_pumping_lemma.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_quantization.tex",
+          "role": "other",
+          "num_numbers": 39,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_related_work.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 35
+        },
+        {
+          "file": "appendix_reproducibility.tex",
+          "role": "other",
+          "num_numbers": 50,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_sampling_table.tex",
+          "role": "other",
+          "num_numbers": 19,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_scalability.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_tcr.tex",
+          "role": "other",
+          "num_numbers": 62,
+          "num_cites": 0
+        },
+        {
+          "file": "appendix_wikievents_pilot.tex",
+          "role": "other",
+          "num_numbers": 44,
+          "num_cites": 2
+        },
+        {
+          "file": "appendix_zs_crossmodel.tex",
+          "role": "other",
+          "num_numbers": 15,
+          "num_cites": 0
+        },
+        {
+          "file": "case_study_kappa_dr.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 0
+        },
+        {
+          "file": "checklist.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 1
+        },
+        {
+          "file": "discussion_paragraphs.tex",
+          "role": "other",
+          "num_numbers": 31,
+          "num_cites": 2
+        },
+        {
+          "file": "discussion_paragraphs_cf83d1.tex",
+          "role": "other",
+          "num_numbers": 14,
+          "num_cites": 2
+        },
+        {
+          "file": "fig1_framework.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "p3_case_studies.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "p3_case_studies_861a0d.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "paper_tables_draft.tex",
+          "role": "other",
+          "num_numbers": 80,
+          "num_cites": 0
+        },
+        {
+          "file": "section1_introduction_draft.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 8
+        },
+        {
+          "file": "section2_background.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 3
+        },
+        {
+          "file": "section3_method_draft.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 1
+        },
+        {
+          "file": "section3_violation_landscape.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 6
+        },
+        {
+          "file": "section4_composition_draft.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 1
+        },
+        {
+          "file": "section5_crossmodel_draft.tex",
+          "role": "other",
+          "num_numbers": 54,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_docred_draft.tex",
+          "role": "other",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_docred_draft_9b84f1.tex",
+          "role": "other",
+          "num_numbers": 59,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_runtime.tex",
+          "role": "other",
+          "num_numbers": 24,
+          "num_cites": 4
+        },
+        {
+          "file": "section5_scierc_draft.tex",
+          "role": "other",
+          "num_numbers": 122,
+          "num_cites": 2
+        },
+        {
+          "file": "section5_scierc_draft_4796e8.tex",
+          "role": "other",
+          "num_numbers": 56,
+          "num_cites": 0
+        },
+        {
+          "file": "section5_wikievents_draft.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "section6_related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 32
+        },
+        {
+          "file": "section6_relwork_additions.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 5
+        },
+        {
+          "file": "section6_relwork_outline.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 30
+        },
+        {
+          "file": "section7_conclusion_550cbf_DEPRECATED.tex",
+          "role": "other",
+          "num_numbers": 13,
+          "num_cites": 0
+        },
+        {
+          "file": "section7_conclusion_DEPRECATED.tex",
+          "role": "other",
+          "num_numbers": 35,
+          "num_cites": 0
+        },
+        {
+          "file": "section7_conclusion_compressed.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 0
+        }
+      ],
+      "critical": [
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 0.21 appears in headline section 'abstract' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "abstract"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 0.3 appears in headline section 'abstract' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "abstract"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 1.5 appears in headline section 'abstract' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "abstract"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{adakgc_emnlp2023} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{anderson2017guided} used in section5_runtime but no matching entry in new_citations.bib.",
+          "location": "section5_runtime"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{banerjee2025crane} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{beurer-kellner2023lmql} used in appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{beurer-kellner2024domino} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{boostcd2025} used in appendix_discussion, section5_runtime, section6_related_work but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,section5_runtime,section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{cabot2021rebel} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{decao2021genre} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{dong2025xgrammar} used in appendix_related_work, section1_introduction_draft, section2_background, section3_method_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section2_background,section3_method_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{eberts2020spert} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ekaw2024_ontology_beam} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{fei2022lasuie} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{geng2023gcd} used in appendix_discussion, appendix_related_work, section5_runtime, section5_scierc_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,appendix_related_work,section5_runtime,section5_scierc_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{guidex2025} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{josifoski2022genie} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{jsonschemabench2025} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{khorshidi2025odke} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{knowcoder_acl2024} used in appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{kwon2023vllm} used in appendix_discussion, section5_runtime, section5_scierc_draft but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,section5_runtime,section5_scierc_draft"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{li2021document} used in appendix_discussion, appendix_wikievents_pilot, checklist but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,appendix_wikievents_pilot,checklist"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{li2023codeie} used in appendix_related_work, section1_introduction_draft, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{lu2021neurologic} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{lu2021text2event} used in appendix_wikievents_pilot but no matching entry in new_citations.bib.",
+          "location": "appendix_wikievents_pilot"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{lu2022uie} used in appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{luan2018scierc} used in section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{luo2025kgtrie} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{mgd_neurips2023} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{olasunkanmi2025relate} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ontologx_2025} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{paolini2021tanl} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{park2024grammar} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{pldi2025_type_constrained_codegen} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{qi2024adelie} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{qwen2025qwen3} used in section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{regino2025kgcurator} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{riedel2010modeling} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{roth_yih_2004} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{sainz2024gollie} used in appendix_gollie_comparison, appendix_related_work, section1_introduction_draft, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_gollie_comparison,appendix_related_work,section1_introduction_draft,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{schall2025hiddencost} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{scholak2021picard} used in appendix_related_work, section6_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{spires_2024} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{synchromesh_iclr2022} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{tam2024letmespeak} used in appendix_related_work, section4_composition_draft, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section4_composition_draft,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ugare2024syncode} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ugare2025itergen} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{upadhyay2023openie} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{vukovic2024dialogue} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{wadhwa2023revisiting} used in section3_violation_landscape, section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape,section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{wang2023instructuie} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{wei2023zeroshot} used in section1_introduction_draft but no matching entry in new_citations.bib.",
+          "location": "section1_introduction_draft"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{willard2023outlines} used in appendix_related_work, section1_introduction_draft, section2_background, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section1_introduction_draft,section2_background,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{yan2021pfn} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{yao2019docred} used in section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{ye2022packed} used in appendix_discussion, discussion_paragraphs, discussion_paragraphs_cf83d1, section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,discussion_paragraphs,discussion_paragraphs_cf83d1,section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zaratiana2024enrico} used in appendix_related_work, section6_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_related_work,section6_relwork_outline"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zheng2024sglang} used in section2_background, section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section2_background,section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhong2021frustratingly} used in appendix_discussion, discussion_paragraphs, discussion_paragraphs_cf83d1, section3_violation_landscape but no matching entry in new_citations.bib.",
+          "location": "appendix_discussion,discussion_paragraphs,discussion_paragraphs_cf83d1,section3_violation_landscape"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhou2024universalner} used in section6_related_work but no matching entry in new_citations.bib.",
+          "location": "section6_related_work"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhou2026ontologytools} used in appendix_related_work, section6_relwork_additions but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_additions"
+        },
+        {
+          "kind": "missing_bib_key",
+          "message": "\\cite{zhou2026snowballing} used in appendix_related_work, section6_relwork_outline but no matching entry in new_citations.bib.",
+          "location": "appendix_related_work,section6_relwork_outline"
+        }
+      ],
+      "warning": [],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "abstract_d3264e": [
+              "\\downarrow"
+            ],
+            "abstract_fd4b26": [
+              "\\downarrow"
+            ],
+            "appendix_70b_ablation": [
+              "\\Delta",
+              "\\bar",
+              "\\dagger",
+              "\\downarrow",
+              "\\kappa",
+              "\\sim",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_beam_search": [
+              "\\bar",
+              "\\cap",
+              "\\downarrow",
+              "\\emptyset",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\pm",
+              "\\propto",
+              "\\sim",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_case_studies": [
+              "\\leftrightarrow",
+              "\\leq",
+              "\\to"
+            ],
+            "appendix_discussion": [
+              "\\Delta",
+              "\\S",
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\cap",
+              "\\dagger",
+              "\\ddagger",
+              "\\downarrow",
+              "\\emptyset",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\leq",
+              "\\neq",
+              "\\operatorname",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\tau",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_doc_length": [
+              "\\leq",
+              "\\to"
+            ],
+            "appendix_downstream_analysis": [
+              "\\langle",
+              "\\rangle",
+              "\\tau"
+            ],
+            "appendix_full_ft": [
+              "\\leftrightarrow",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_high_kappa_analysis": [
+              "\\alpha",
+              "\\geq",
+              "\\times"
+            ],
+            "appendix_kappa_case_study": [
+              "\\geq",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\to"
+            ],
+            "appendix_power_analysis": [
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\rho"
+            ],
+            "appendix_power_analysis_523cc9": [
+              "\\alpha",
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\rho"
+            ],
+            "appendix_prompt_sensitivity": [
+              "\\Delta"
+            ],
+            "appendix_pumping_lemma": [
+              "\\bigcap",
+              "\\geq",
+              "\\in",
+              "\\ldots",
+              "\\leq",
+              "\\neq",
+              "\\notin",
+              "\\operatorname",
+              "\\sigma",
+              "\\tau",
+              "\\to"
+            ],
+            "appendix_quantization": [
+              "\\Delta",
+              "\\downarrow",
+              "\\times",
+              "\\uparrow"
+            ],
+            "appendix_related_work": [
+              "\\downarrow",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_reproducibility": [
+              "\\alpha",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\times"
+            ],
+            "appendix_sampling_table": [
+              "\\dagger",
+              "\\sim"
+            ],
+            "appendix_scalability": [
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_tcr": [
+              "\\Delta",
+              "\\bar",
+              "\\kappa",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "appendix_wikievents_pilot": [
+              "\\approx",
+              "\\downarrow",
+              "\\leq",
+              "\\pm",
+              "\\to",
+              "\\uparrow"
+            ],
+            "appendix_zs_crossmodel": [
+              "\\downarrow",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "case_study_kappa_dr": [
+              "\\geq",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\to"
+            ],
+            "discussion_paragraphs": [
+              "\\leftrightarrow"
+            ],
+            "discussion_paragraphs_cf83d1": [
+              "\\leftrightarrow"
+            ],
+            "fig1_framework": [
+              "\\cap",
+              "\\emptyset"
+            ],
+            "p3_case_studies": [
+              "\\to"
+            ],
+            "p3_case_studies_861a0d": [
+              "\\to"
+            ],
+            "paper_tables_draft": [
+              "\\Delta",
+              "\\downarrow",
+              "\\uparrow"
+            ],
+            "section1_introduction_draft": [
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "section2_background": [
+              "\\cdot",
+              "\\in",
+              "\\kappa",
+              "\\sigma",
+              "\\textsc",
+              "\\times",
+              "\\to"
+            ],
+            "section3_method_draft": [
+              "\\approx",
+              "\\bigl",
+              "\\bigr",
+              "\\cap",
+              "\\displaystyle",
+              "\\exists",
+              "\\in",
+              "\\infty",
+              "\\operatorname",
+              "\\sigma",
+              "\\subseteq",
+              "\\tau",
+              "\\textrm",
+              "\\texttt",
+              "\\times",
+              "\\to"
+            ],
+            "section3_violation_landscape": [
+              "\\alpha",
+              "\\bar",
+              "\\kappa",
+              "\\leq",
+              "\\notin",
+              "\\sigma",
+              "\\times",
+              "\\to"
+            ],
+            "section4_composition_draft": [
+              "\\bar",
+              "\\cap",
+              "\\emptyset",
+              "\\kappa",
+              "\\leq",
+              "\\sigma",
+              "\\subseteq",
+              "\\wedge"
+            ],
+            "section5_crossmodel_draft": [
+              "\\dagger",
+              "\\downarrow",
+              "\\leq",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "section5_docred_draft": [
+              "\\downarrow",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "section5_docred_draft_9b84f1": [
+              "\\Delta",
+              "\\downarrow",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "section5_runtime": [
+              "\\Delta",
+              "\\in",
+              "\\leq",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "section5_scierc_draft": [
+              "\\Delta",
+              "\\bar",
+              "\\dagger",
+              "\\downarrow",
+              "\\geq",
+              "\\kappa",
+              "\\leftrightarrow",
+              "\\leq",
+              "\\sim",
+              "\\subseteq",
+              "\\times",
+              "\\to",
+              "\\uparrow"
+            ],
+            "section5_scierc_draft_4796e8": [
+              "\\Delta",
+              "\\downarrow",
+              "\\to",
+              "\\uparrow"
+            ],
+            "section6_relwork_outline": [
+              "\\downarrow",
+              "\\times",
+              "\\to"
+            ],
+            "section7_conclusion_550cbf_DEPRECATED": [
+              "\\to"
+            ],
+            "section7_conclusion_DEPRECATED": [
+              "\\bar",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "section7_conclusion_compressed": [
+              "\\leq",
+              "\\pm"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 63,
+        "warning": 0,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/docs/paper/_figure_backups/20260525_120955",
+  "error": "",
+  "timestamp": "2026-05-25T12:21:04.833980+00:00"
+}

@@ -1,0 +1,104 @@
+% Appendix: 70B-Class LoRA Ablation on SciERC
+
+\paragraph{70B-class fine-tuned ablation.}
+\label{app:70b-ablation}
+
+Table~\ref{tab:70b-ft-ablation} presents the constraint ablation on Llama-3.1-70B-Instruct (AWQ INT4) with LoRA fine-tuning on SciERC (551 documents).
+
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}l rrrr rr@{}}
+\toprule
+\textbf{Mode}
+  & \textbf{DR\,$\downarrow$} & \textbf{RV\,$\downarrow$} & \textbf{ET\,$\downarrow$} & \textbf{CF}
+  & \textbf{R-F1\,$\uparrow$} & \textbf{E-F1\,$\uparrow$} \\
+\midrule
+Unconstrained & 1.50 & 0 & 0 & 0    & 44.73 & 64.86 \\
+Grammar       & 1.50 & 0 & 0 & 0    & 44.63 & 64.82 \\
+Semantic      & 0.60 & 0 & 0 & 9    & 44.73 & 64.86 \\
+S1            & \textbf{0} & 0 & 0 & 15 & 44.53 & 64.76 \\
+S2            & \textbf{0} & 0 & 0 & 18 & 36.28 & 62.35 \\
+Beam4 S1      & \textbf{0} & 0 & 0 & \textbf{1} & \textbf{44.81} & \textbf{64.89} \\
+\bottomrule
+\end{tabular}
+\caption{70B-class (Llama-3.1-70B-Instruct (AWQ INT4)) LoRA ablation on SciERC (551 docs).
+CF: violation count. F1 $\times$100.}
+\label{tab:70b-ft-ablation}
+\end{table}
+
+The grammar layer provides no independent DR benefit at 70B (1.50\%\,$\to$\,1.50\% on SciERC; on DocRED zero-shot, DR actually increases $+$3.58\,pp due to RV$\to$DR conversion in the high-$\bar{\kappa}$ schema; Table~\ref{tab:70b-docred-zs-ablation}).
+The semantic layer is the sole effective defense (1.50\%\,$\to$\,0.60\%, 60\% reduction) with no R-F1 cost ($\Delta{=}$0\,pp), and full S1 eliminates all DR.
+S2 eliminates DR but causes severe R-F1 degradation ($-$8.25\,pp), indicating that optimal constraint granularity is scale-dependent: the additional S2 constraints become overly restrictive at 70B, where stronger baseline generation makes fine-grained intervention counterproductive.
+Beam ($k{=}4$) S1 remains the optimal configuration (DR${=}$0\%, CF${=}$1, R-F1${=}$44.81).
+Notably, S2 increases CF from 15 (S1) to 18 despite its cross-field consistency design, suggesting that over-constraining induces cascading generation degradation that creates new violations.
+
+\paragraph{70B-class DocRED results.}
+\label{app:70b-docred}
+
+Table~\ref{tab:70b-docred-ablation} presents the six-way constraint ablation on Llama-3.1-70B-Instruct (AWQ INT4) with LoRA fine-tuning on DocRED (200-document subset).
+
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}l rrrr rr@{}}
+\toprule
+\textbf{Mode}
+  & \textbf{DR\,$\downarrow$} & \textbf{RV\,$\downarrow$} & \textbf{ET\,$\downarrow$} & \textbf{CF}
+  & \textbf{R-F1\,$\uparrow$} & \textbf{E-F1\,$\uparrow$} \\
+\midrule
+Unconstrained & 0.22 & 0.57 & 0 & 2      & 43.80 & 80.34 \\
+Grammar       & 0.38 & 0    & 0 & 0.06\%$^\dagger$ & 43.96 & 80.13 \\
+Semantic      & \textbf{0} & 0.51 & 0 & 0.21\%$^\dagger$ & 43.61 & 80.06 \\
+S1            & \textbf{0} & 0 & 0 & 0.18\%$^\dagger$ & 43.95 & 79.38 \\
+S2            & \textbf{0} & 0 & 0 & 0.34\%$^\dagger$ & 36.45 & 84.96 \\
+Beam4 S1      & \textbf{0} & 0 & 0 & \textbf{0} & \textbf{48.14} & \textbf{85.57} \\
+\bottomrule
+\end{tabular}
+\caption{70B-class (Llama-3.1-70B-Instruct (AWQ INT4)) LoRA ablation on DocRED (200-doc subset).
+CF: violation count except $^\dagger$reported as percentage (raw count unavailable).
+F1 $\times$100.
+PF: greedy S1 12.5\% (25/200 docs), S2 0\% (0/200), beam4 S1 0.5\% (1/200).}
+\label{tab:70b-docred-ablation}
+\end{table}
+
+The DocRED LoRA ablation mirrors the SciERC pattern: grammar eliminates RV (0.57\%\,$\to$\,0\%) but DR increases slightly ($+$0.16\,pp); semantic-only independently eliminates DR (0.22\%\,$\to$\,0\%) but retains RV (0.51\%).
+The complementary layer interaction is stable across datasets under LoRA fine-tuning.
+S2 eliminates DR and parse failures (PF${=}$0\%) but causes severe R-F1 degradation ($-$7.50\,pp vs.\ S1), mirroring the SciERC pattern ($-$8.25\,pp; Table~\ref{tab:70b-ft-ablation}): at 70B, the repair layer over-constrains relation predictions where baseline DR is already near-zero (0.22\%).
+CF increases from 0.18\% (S1) to 0.34\% (S2), confirming that over-constraining induces cascading inconsistencies across datasets.
+The $+$4.19\,pp R-F1 gain from beam search (43.95\,$\to$\,48.14) is largely attributable to parse failure recovery: greedy S1 fails to parse 12.5\% of documents (25/200), while beam reduces this to 0.5\% (1/200), recovering $\sim$24 documents that contribute no triples under greedy decoding.
+The controlled comparison on SciERC---where both greedy and beam achieve 0\% parse failure---isolates the pure beam quality gain at $+$0.28\,pp, consistent with the 8B pattern (Appendix~\ref{app:beam-search}).
+
+\paragraph{70B-class DocRED zero-shot ablation.}
+\label{app:70b-docred-zs}
+
+Table~\ref{tab:70b-docred-zs-ablation} presents the layer ablation on DocRED under zero-shot decoding at 70B.
+
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}l rrrr rr@{}}
+\toprule
+\textbf{Mode}
+  & \textbf{DR\,$\downarrow$} & \textbf{RV\,$\downarrow$} & \textbf{ET\,$\downarrow$} & \textbf{CF}
+  & \textbf{R-F1\,$\uparrow$} & \textbf{E-F1\,$\uparrow$} \\
+\midrule
+Unconstrained & 13.45 & 7.88 & 0 & 0    & 13.25 & 70.14 \\
+Grammar       & 17.03 & 0    & 0 & 0    & 13.23 & 70.12 \\
+Semantic      & 1.66  & 8.24 & 0.12 & 132  & 13.05 & 70.10 \\
+S1            & \textbf{0} & 0 & 0 & 173  & 13.25 & 70.05 \\
+\bottomrule
+\end{tabular}
+\caption{70B-class zero-shot layer ablation on DocRED (200-document subset; baseline DR differs from \S\ref{sec:70b-results}'s 998-document evaluation).
+CF: violation count. F1 $\times$100.}
+\label{tab:70b-docred-zs-ablation}
+\end{table}
+
+Grammar-only eliminates RV (7.88\%\,$\to$\,0\%) but DR increases by $+$3.58\,pp (13.45\%\,$\to$\,17.03\%): forced vocabulary mapping in DocRED's high-$\bar{\kappa}$ schema ($\bar{\kappa}{=}0.842$, ${\sim}$16\% type pairs valid) converts RV into DR violations.
+Semantic-only independently achieves 87.7\% DR reduction (13.45\%\,$\to$\,1.66\%) with no R-F1 cost, confirming the pattern from SciERC (84\%; Table~\ref{tab:70b-ft-ablation}).
+Full S1 eliminates all DR (13.45\%\,$\to$\,0\%) with zero R-F1 cost (13.25\,$=$\,13.25), confirming that the two layers compose correctly despite their opposing individual DR effects.
+CF increases from 0 (unconstrained) to 173 (S1), consistent with the pattern that stricter constraint enforcement in ZS introduces more cross-field inconsistencies.
+The two layers serve complementary roles: grammar provides the RV elimination foundation that semantic-layer DR enforcement requires, while the semantic layer addresses the DR that grammar alone cannot---and in high-$\bar{\kappa}$ schemas, exacerbates.

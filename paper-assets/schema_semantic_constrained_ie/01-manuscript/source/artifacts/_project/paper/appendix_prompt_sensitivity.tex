@@ -1,0 +1,53 @@
+\section{Prompt Sensitivity Analysis}
+\label{app:prompt-sensitivity}
+
+To verify that OntoCoDec's constraint enforcement is robust to prompt variation, we evaluate three prompt variants on SciERC using Qwen3-8B (551 test documents): \textbf{Default} (the prompt used in all main experiments), \textbf{Minimal} (a shortened version listing only entity/relation types), and \textbf{Detailed} (an extended version with type definitions and extraction guidelines). All three variants share the same output JSON schema; only the instruction text differs. Each variant is decoded in both unconstrained and constrained (full Stage~1) modes.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Prompt sensitivity results on SciERC (551 documents). Top: Qwen3-8B; bottom: Llama-3.1-70B (AWQ INT4). ET, RV, DR denote entity-type, relation-vocabulary, and domain-range violation rates (\%), respectively. $\Delta$DR shows the relative reduction from unconstrained to constrained decoding.}
+\label{tab:prompt-sensitivity}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Prompt} & \textbf{Mode} & \textbf{ET\%} & \textbf{RV\%} & \textbf{DR\%} & \textbf{$\Delta$DR} & \textbf{E-F1} & \textbf{R-F1} \\
+\midrule
+\multirow{2}{*}{Default}
+  & Unconstrained & 0.40 & 1.39 & 15.37 & \multirow{2}{*}{94.0\%} & 31.01 & 8.23 \\
+  & Constrained   & 0.00 & 0.00 &  0.93 &                         & 30.98 & 8.36 \\
+\midrule
+\multirow{2}{*}{Minimal}
+  & Unconstrained & 0.58 & 1.16 & 16.91 & \multirow{2}{*}{94.6\%} & 31.98 & 7.91 \\
+  & Constrained   & 0.00 & 0.00 &  0.92 &                         & 31.99 & 7.85 \\
+\midrule
+\multirow{2}{*}{Detailed}
+  & Unconstrained & 0.22 & 0.45 & 11.07 & \multirow{2}{*}{94.2\%} & 33.55 & 10.48 \\
+  & Constrained   & 0.00 & 0.00 &  0.64 &                         & 33.56 & 10.48 \\
+\midrule
+\multicolumn{8}{l}{\textit{Llama-3.1-70B-Instruct (AWQ INT4)}} \\
+\midrule
+\multirow{2}{*}{Default}
+  & Unconstrained & 0.00 & 0.61 & 6.41 & \multirow{2}{*}{100\%} & 35.22 & 11.23 \\
+  & Constrained   & 0.00 & 0.00 & 0.00 &                        & 35.19 & 11.24 \\
+\midrule
+\multirow{2}{*}{Minimal}
+  & Unconstrained & 0.27 & 5.88 & 0.22 & \multirow{2}{*}{100\%} & 37.51 & 13.42 \\
+  & Constrained   & 0.00 & 0.00 & 0.00 &                        & 37.22 & 11.35 \\
+\midrule
+\multirow{2}{*}{Detailed}
+  & Unconstrained & 0.00 & 0.26 & 4.57 & \multirow{2}{*}{100\%} & 40.42 & 11.12 \\
+  & Constrained   & 0.00 & 0.00 & 0.00 &                        & 40.35 & 11.16 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Table~\ref{tab:prompt-sensitivity} shows that constrained decoding eliminates entity-type and relation-vocabulary violations entirely (ET and RV drop to 0\%) for all prompt variants at both scales. At 8B, domain-range violations are reduced by 94.0\%--94.6\% with a standard deviation of only 0.3\,pp across prompts; F1 scores remain effectively unchanged (max shift 0.13\,pp R-F1).
+
+At 70B, constrained decoding achieves DR${=}$0\% across all three prompts ($\Delta$DR${=}$100\%), consistent with the scale-dependent semantic layer interaction observed in the main experiments (\S\ref{sec:70b-results}). Baseline DR varies widely (0.22\%--6.41\%), yet constrained decoding converges to zero in all cases; CF is introduced as expected (0.62\%--3.50\%), consistent with the per-triple enforcement trade-off.
+
+Prompt variation has a measurable effect on baseline (unconstrained) violation rates at both scales: 8B DR ranges from 11.1\% (Detailed) to 16.9\% (Minimal); 70B from 0.22\% to 6.41\%. Under constrained decoding, this variance collapses, confirming that the mechanism is orthogonal to prompting and generalizes without prompt-specific tuning.
+
+\paragraph{LoRA fine-tuned prompt invariance.}
+Under LoRA fine-tuning at 70B, prompt invariance is preserved: Minimal and Detailed prompts both achieve DR${=}$0\% under S1, with CF at 0.62\% and 0.75\% respectively---consistent with the zero-shot 70B pattern above.
+This confirms that OntoCoDec's constraint enforcement is robust to prompt variation across both zero-shot and fine-tuned regimes.

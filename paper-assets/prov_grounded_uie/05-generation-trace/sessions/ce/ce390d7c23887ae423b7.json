@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce390d7c23887ae423b7",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "code random evidence baseline",
+  "task_key": "worker_code_random_evidence_baseline_20260513T073235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_random_evidence_baseline_20260513T073235_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "0a6450406740414dee6da6cb555a91ae330273c1f1628d3b57f24490eb5bd752"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Metric | SFT v5 | Random Evidence | 说明 |\n|--------|--------|-----------------|------|\n| RE-F1  | 0.4337 | **0.4337** | 完全一致，符合预期（只改 evidence 不影响关系判断） |\n| Evi-F1 | 0.3652 | **0.0903** | 下降 75%，随机 evidence 几乎无信息 |\n| AP     | 0.9529 | **0.9529** | 不变，因为随机采样的 evidence 仍然非空 |\n\nRE-F1 和 AP 完全不变，验证了实现的正确性。Evi-F1 从 0.3652 降至 0.0903，是 random lower bound。结果保存在 `outputs/random_evidence/eval_results_shuffled.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-random-evidence-baseline.md"
+}

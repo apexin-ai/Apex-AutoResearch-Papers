@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3040d409317a70ec1b65",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "diagnose grpo v2 step50 eval",
+  "task_key": "worker_diagnose_grpo_v2_step50_eval_20260513T102931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_v2_step50_eval_20260513T102931_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "b5c2ffa43e5e13bcbf54ca0528661c694ccabd18aab8ef24adf02649b73c09c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. grpo_v2_step50_eval — 已完成\n\n评估于 `2026-05-13 18:28:53` 成功结束，结果文件 14.7MB 已写入。\n\n**汇总指标（985 samples）：**\n\n| 指标 | 值 |\n|------|-----|\n| **RE-F1** | **0.4384** |\n| **Evi-F1** | **0.3705** |\n| **Attribution Precision** | **0.9424** |\n\n### 2. grpo_pilot_v2 — 仍在运行\n\n进程 88042 存活，已运行 **4h58m**。训练进度 **97/100 步**，预计剩余约 10 分钟。\n\n最近几步关键指标：\n- Step 95: reward=0.607, loss=0.024, clipped_ratio=0.81（生成长度触顶 2048）\n- Step 96: reward=0.757, loss=-0.062\n- Step 97: reward=0.745, loss=-0.219\n\n输出目录 `grpo_v2/` 已有 `checkpoint-50`。训练完成后应产生 step-100 的 final checkpoint。\n\n### 3. GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| GPU 0 | **0%** | 0 / 97887 MiB（空闲） |\n| GPU 1 | **59%** | 35813 / 97887 MiB（v2 训练中） |\n\nGPU 0 空闲——eval 已结束释放。GPU 1 正在跑 v2 训练最后几步。\n\n**结论：** eval 已成功完成，v2 训练还剩 ~3 步（约 10 分钟）即将完成。无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-v2-step50-eval-copy-2.md"
+}

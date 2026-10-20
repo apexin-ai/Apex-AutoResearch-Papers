@@ -1,0 +1,41 @@
+# prov_grounded_uie experiment plan
+experiments:
+  - plan_id: exp_sft_baseline
+    name: "SFT Baseline (Qwen3-8B + LoRA on DocRED)"
+    description: "Train SFT model on DocRED with evidence co-prediction. Establishes RE F1 and Evi F1 anchor points."
+    hypothesis: "Qwen3-8B with LoRA can learn to co-predict relations and evidence spans from DocRED supervised data"
+    claim: "baseline"
+    priority: 1
+    depends_on: []
+    metrics: ["re_f1", "evi_f1", "train_loss"]
+    registry_id: null
+
+  - plan_id: exp_posthoc_nli
+    name: "Post-hoc NLI Reranking"
+    description: "Apply NLI-based reranking on SFT outputs to establish oracle upper bound for evidence quality"
+    hypothesis: "NLI reranking can improve Evi F1 over raw SFT predictions, establishing the ceiling that GRPO aims to internalize"
+    claim: "Step 3 baseline"
+    priority: 2
+    depends_on: [exp_sft_baseline]
+    metrics: ["evi_f1_reranked", "re_f1_after_rerank", "nli_precision"]
+    registry_id: null
+
+  - plan_id: exp_grpo_provenance
+    name: "GRPO with Evidence Provenance Reward"
+    description: "Train GRPO on top of SFT checkpoint with composite reward: provenance fidelity (NLI + IoU) + structural F1 + format compliance"
+    hypothesis: "GRPO with evidence provenance reward can internalize NLI-quality evidence selection, outperforming post-hoc reranking by ≥5pt Evi F1 without regressing RE F1 by >2pt"
+    claim: "core"
+    priority: 3
+    depends_on: [exp_sft_baseline]
+    metrics: ["re_f1", "evi_f1", "attribution_precision", "reward_mean"]
+    registry_id: null
+
+  - plan_id: exp_comparison
+    name: "Three-way Comparison + Degeneration Checks"
+    description: "Compare SFT vs Post-hoc NLI vs GRPO. Check for reward hacking, evidence degeneration, diversity collapse."
+    hypothesis: "GRPO model maintains RE quality while significantly improving evidence quality over both baselines"
+    claim: "core"
+    priority: 4
+    depends_on: [exp_sft_baseline, exp_posthoc_nli, exp_grpo_provenance]
+    metrics: ["re_f1_delta", "evi_f1_delta", "degeneration_rate", "diversity_score"]
+    registry_id: null

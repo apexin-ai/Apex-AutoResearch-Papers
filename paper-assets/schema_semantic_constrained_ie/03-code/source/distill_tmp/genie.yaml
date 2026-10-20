@@ -1,0 +1,84 @@
+paper_key: "genie"
+title: "GenIE: Generative Information Extraction"
+venue: "NAACL 2022"
+full_text_available: false
+
+research:
+  baselines: [CopyRE, GraphRel, CasRel, TPLinker, REBEL, "pipeline methods"]
+  metrics:
+    - {name: "micro-F1", direction: "higher_better"}
+    - {name: "precision", direction: "higher_better"}
+    - {name: "recall", direction: "higher_better"}
+  datasets:
+    - {name: "REBEL", size: "triplet extraction from Wikipedia"}
+    - {name: "FewRel", size: "few-shot relation extraction"}
+    - {name: "Wiki-NRE", size: "relation extraction"}
+  ablation_dimensions: [constrained_vs_unconstrained, entity_set_size, training_data_size]
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "3e-5"
+    base_model: "BART-large / T5-base"
+    hardware: "NVIDIA A100 GPUs"
+  method_family: "End-to-end autoregressive closed IE with bi-level constrained generation"
+
+positioning:
+  core_claim: "首个端到端自回归 closed IE 方法，通过 bi-level 约束生成策略保证输出符合 KB schema"
+  key_results: "REBEL 上 SOTA；从更少训练数据泛化；扩展到前所未有的实体/关系数量"
+  limitations:
+    - "自回归生成速度慢于判别式方法"
+    - "对实体数量的扩展仍有上限"
+    - "bi-level 约束仅保证形式合规，不保证语义正确"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Closed IE 是连接文本与知识库的核心任务，但现有方法是 pipeline 且只能处理小规模 schema"
+  tension: "Pipeline 方法的错误累积 + 所有方法只能处理不切实际的少量实体和关系"
+  key_insight: "自回归生成自然利用预训练语言知识，bi-level 约束保证 schema 一致性——同时解决 pipeline 和 scalability 问题"
+  argument_chain: "closed IE 重要但 pipeline 有缺陷 → 自回归端到端 → bi-level 约束保证合规 → 少样本泛化 + 大规模扩展 → 实际可用"
+  contribution_framing: "4项贡献：首个端到端自回归 closed IE、bi-level 约束生成、SOTA、扩展性突破"
+  intro_structure: "5段：closed IE 重要性→pipeline 局限→自回归方案→bi-level 约束→贡献"
+  notable_technique: "将'首个端到端'作为核心卖点，强调开创性而非增量改进"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "GenIE 端到端管线：输入文本 → 自回归生成 → bi-level 约束 → schema-compliant triplets"
+    narrative_role: "对比 pipeline 方法展示端到端优势"
+    design_elements: ["输入输出对比", "约束层可视化", "KB schema 示意"]
+    visual_style: "从左到右的管线图"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "性能 vs 训练数据量"
+      how_gain_highlighted: "GenIE 在少量数据时已优于 baseline"
+      design_note: "展示数据效率优势"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["entity set size", "constrained vs unconstrained"]
+      design_note: "展示约束解码在大规模下的必要性"
+  figure_narrative_role: "Figure 1 (method vs pipeline) → Figure 2 (bi-level constraint) → Figure 3-4 (scaling analysis)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × metrics (P/R/F1)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean across runs"
+    num_baselines: 6
+    design_note: "pipeline vs end-to-end 分组对比"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["constrained decoding", "entity set size"]
+      variation_style: "full_numbers"
+      design_note: "约束解码的增益随实体规模增大而增大"
+  supplementary_tables:
+    in_appendix: true
+    content: "few-shot 详细结果、不同 backbone 对比"
+    reason: "主表展示核心 closed IE 结果"

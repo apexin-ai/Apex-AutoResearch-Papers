@@ -1,0 +1,511 @@
+\begin{thebibliography}{60}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Agrawal et~al.(2023)Agrawal, Kanade, Goyal, Lahiri, and
+  Rajamani}]{mgd_neurips2023}
+Lakshya~A. Agrawal, Aditya Kanade, Navin Goyal, Shuvendu~K. Lahiri, and
+  Sriram~K. Rajamani. 2023.
+\newblock \href
+  {https://proceedings.neurips.cc/paper_files/paper/2023/hash/662b1774ba8845fc1fa3d1fc0177ceeb-Abstract-Conference.html}
+  {Monitor-guided decoding of code {LMs} with static analysis of repository
+  context}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36.
+
+\bibitem[{Anderson et~al.(2017)Anderson, Fernando, Johnson, and
+  Gould}]{anderson2017guided}
+Peter Anderson, Basura Fernando, Mark Johnson, and Stephen Gould. 2017.
+\newblock Guided open vocabulary image captioning with constrained beam search.
+\newblock In \emph{Proceedings of the 2017 Conference on Empirical Methods in
+  Natural Language Processing}, pages 936--945. Association for Computational
+  Linguistics.
+
+\bibitem[{Banerjee et~al.(2025)Banerjee, Suresh, Ugare, Misailovic, and
+  Singh}]{banerjee2025crane}
+Debangshu Banerjee, Tarun Suresh, Shubham Ugare, Sasa Misailovic, and Gagandeep
+  Singh. 2025.
+\newblock \href {https://proceedings.mlr.press/v267/banerjee25a.html} {{CRANE}:
+  Reasoning with constrained {LLM} generation}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}, pages 2836--2857.
+
+\bibitem[{Beurer-Kellner et~al.(2023)Beurer-Kellner, Fischer, and
+  Vechev}]{beurer-kellner2023lmql}
+Luca Beurer-Kellner, Marc Fischer, and Martin Vechev. 2023.
+\newblock \href {https://doi.org/10.1145/3591300} {Prompting is programming: A
+  query language for large language models}.
+\newblock In \emph{Proceedings of the ACM SIGPLAN Conference on Programming
+  Language Design and Implementation (PLDI)}.
+
+\bibitem[{Beurer-Kellner et~al.(2024)Beurer-Kellner, Fischer, and
+  Vechev}]{beurer-kellner2024domino}
+Luca Beurer-Kellner, Marc Fischer, and Martin Vechev. 2024.
+\newblock \href {https://proceedings.mlr.press/v235/beurer-kellner24a.html}
+  {Guiding {LLMs} the right way: Fast, non-invasive constrained generation}.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, volume 235 of \emph{PMLR}, pages 3658--3673.
+
+\bibitem[{Caufield et~al.(2024)Caufield, Hegde, Emonet, Harris, Joachimiak,
+  Matentzoglu, Kim, Moxon, Reese, Haendel, Robinson, and Mungall}]{spires_2024}
+J.~Harry Caufield, Harshad Hegde, Vincent Emonet, Nomi~L. Harris, Marcin~P.
+  Joachimiak, Nicolas Matentzoglu, HyeongSik Kim, Sierra Moxon, Justin~T.
+  Reese, Melissa~A. Haendel, Peter~N. Robinson, and Christopher~J. Mungall.
+  2024.
+\newblock \href {https://doi.org/10.1093/bioinformatics/btae104} {Structured
+  prompt interrogation and recursive extraction of semantics ({SPIRES}): A
+  method for populating knowledge bases using zero-shot learning}.
+\newblock \emph{Bioinformatics}, 40(3):btae104.
+
+\bibitem[{Cotti et~al.(2026)Cotti, Drago, Rula, Bianchini, and
+  Cerutti}]{ontologx_2025}
+Luca Cotti, Idilio Drago, Anisa Rula, Devis Bianchini, and Federico Cerutti.
+  2026.
+\newblock \href {https://doi.org/10.1002/aisy.202501381} {{OntoLogX}:
+  Ontology-guided knowledge graph extraction from cybersecurity logs with large
+  language models}.
+\newblock \emph{Advanced Intelligent Systems}.
+
+\bibitem[{De~Cao et~al.(2021)De~Cao, Izacard, Riedel, and
+  Petroni}]{decao2021genre}
+Nicola De~Cao, Gautier Izacard, Sebastian Riedel, and Fabio Petroni. 2021.
+\newblock \href {https://openreview.net/forum?id=5k8F6UU39V} {Autoregressive
+  entity retrieval}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{De~La~Fuente et~al.(2025)De~La~Fuente, Sainz, Garc{\'\i}a-Ferrero,
+  and Agirre}]{guidex2025}
+Neil De~La~Fuente, Oscar Sainz, Iker Garc{\'\i}a-Ferrero, and Eneko Agirre.
+  2025.
+\newblock \href {https://aclanthology.org/2025.findings-acl.1245/} {{GUIDEX}:
+  Guided synthetic data generation for zero-shot information extraction}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2025}. Association for Computational Linguistics.
+
+\bibitem[{Dong et~al.(2025)Dong, Ruan, Cai, Lai, Xu, Zhao, and
+  Chen}]{dong2025xgrammar}
+Yixin Dong, Charlie~F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, and
+  Tianqi Chen. 2025.
+\newblock \href {https://arxiv.org/abs/2411.15100} {{XGrammar}: Flexible and
+  efficient structured generation engine for large language models}.
+\newblock In \emph{Proceedings of Machine Learning and Systems (MLSys)}.
+
+\bibitem[{Eberts and Ulges(2020)}]{eberts2020spert}
+Markus Eberts and Adrian Ulges. 2020.
+\newblock \href {https://doi.org/10.3233/FAIA200321} {Span-based joint entity
+  and relation extraction with transformer pre-training}.
+\newblock In \emph{Proceedings of the 24th European Conference on Artificial
+  Intelligence ({ECAI} 2020)}, volume 325 of \emph{Frontiers in Artificial
+  Intelligence and Applications}, pages 2006--2013.
+
+\bibitem[{Fei et~al.(2022)Fei, Wu, Li, Li, Li, Qin, Zhang, Zhang, and
+  Chua}]{fei2022lasuie}
+Hao Fei, Shengqiong Wu, Jingye Li, Bobo Li, Fei Li, Libo Qin, Meishan Zhang,
+  Min Zhang, and Tat-Seng Chua. 2022.
+\newblock \href {https://arxiv.org/abs/2304.06248} {{LasUIE}: Unifying
+  information extraction with latent adaptive structure-aware generative
+  language model}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35.
+
+\bibitem[{Geng et~al.(2025)Geng, Cooper, Moskal, Jenkins, Berman, Ranchin,
+  West, Horvitz, and Nori}]{jsonschemabench2025}
+Saibo Geng, Hudson Cooper, Micha{\l} Moskal, Samuel Jenkins, Julian Berman,
+  Nathan Ranchin, Robert West, Eric Horvitz, and Harsha Nori. 2025.
+\newblock \href {https://arxiv.org/abs/2501.10868} {{JSONSchemaBench}: A
+  rigorous benchmark of structured outputs for language models}.
+\newblock \emph{arXiv preprint arXiv:2501.10868}.
+
+\bibitem[{Geng et~al.(2023)Geng, Josifoski, Peyrard, and West}]{geng2023gcd}
+Saibo Geng, Martin Josifoski, Maxime Peyrard, and Robert West. 2023.
+\newblock \href {https://aclanthology.org/2023.emnlp-main.674/}
+  {Grammar-constrained decoding for structured {NLP} tasks without finetuning}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Huguet~Cabot and Navigli(2021)}]{cabot2021rebel}
+Pere-Llu{\'\i}s Huguet~Cabot and Roberto Navigli. 2021.
+\newblock \href {https://aclanthology.org/2021.findings-emnlp.204/} {{REBEL}:
+  Relation extraction by end-to-end language generation}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  {EMNLP} 2021}, pages 2370--2381.
+
+\bibitem[{Josifoski et~al.(2022)Josifoski, De~Cao, Peyrard, Petroni, and
+  West}]{josifoski2022genie}
+Martin Josifoski, Nicola De~Cao, Maxime Peyrard, Fabio Petroni, and Robert
+  West. 2022.
+\newblock \href {https://aclanthology.org/2022.naacl-main.342/} {{GenIE}:
+  Generative information extraction}.
+\newblock In \emph{Proceedings of the 2022 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (NAACL)}, pages 4626--4643.
+
+\bibitem[{Khorshidi et~al.(2025)Khorshidi, Nikfarjam, Shankar, Sang, Govind,
+  Jang, Kasgari, McClimans, Soliman, Konda, Fakhry, and Qi}]{khorshidi2025odke}
+Samira Khorshidi, Azadeh Nikfarjam, Suprita Shankar, Yisi Sang, Yash Govind,
+  Hyun Jang, Ali Kasgari, Alexis McClimans, Mohamed Soliman, Vishnu Konda,
+  Ahmed Fakhry, and Xiaoguang Qi. 2025.
+\newblock \href {https://arxiv.org/abs/2509.04696} {{ODKE+}: Ontology-guided
+  open-domain knowledge extraction with {LLMs}}.
+\newblock \emph{arXiv preprint arXiv:2509.04696}.
+
+\bibitem[{Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica}]{kwon2023vllm}
+Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
+  Joseph Gonzalez, Hao Zhang, and Ion Stoica. 2023.
+\newblock Efficient memory management for large language model serving with
+  {PagedAttention}.
+\newblock In \emph{Proceedings of the 29th Symposium on Operating Systems
+  Principles (SOSP)}.
+
+\bibitem[{Li et~al.(2023)Li, Sun, Tang, Yan, Wu, Huang, and Qiu}]{li2023codeie}
+Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and
+  Xipeng Qiu. 2023.
+\newblock \href {https://aclanthology.org/2023.acl-long.855/} {{CodeIE}: Large
+  code generation models are better few-shot information extractors}.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 15339--15353,
+  Toronto, Canada.
+
+\bibitem[{Li et~al.(2021)Li, Ji, and Han}]{li2021document}
+Sha Li, Heng Ji, and Jiawei Han. 2021.
+\newblock \href {https://aclanthology.org/2021.naacl-main.69/} {Document-level
+  event argument extraction by conditional generation}.
+\newblock In \emph{Proceedings of the 2021 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (NAACL)}, pages 894--908.
+
+\bibitem[{Li et~al.(2024)Li, Zeng, Zuo, Ren, Liu, Su, Guo, Liu, Li, Hu, Bai,
+  Li, Liu, Yang, Jin, Guo, and Cheng}]{knowcoder_acl2024}
+Zixuan Li, Yutao Zeng, Yuxin Zuo, Weicheng Ren, Wenxuan Liu, Miao Su, Yucan
+  Guo, Yantao Liu, Xiang Li, Zhilei Hu, Long Bai, Wei Li, Yidan Liu, Pan Yang,
+  Xiaolong Jin, Jiafeng Guo, and Xueqi Cheng. 2024.
+\newblock \href {https://aclanthology.org/2024.acl-long.475/} {{KnowCoder}:
+  Coding structured knowledge into {LLMs} for universal information
+  extraction}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 8758--8779,
+  Bangkok, Thailand.
+
+\bibitem[{Lu et~al.(2021{\natexlab{a}})Lu, West, Zellers, Le~Bras, Bhagavatula,
+  and Choi}]{lu2021neurologic}
+Ximing Lu, Peter West, Rowan Zellers, Ronan Le~Bras, Chandra Bhagavatula, and
+  Yejin Choi. 2021{\natexlab{a}}.
+\newblock \href {https://aclanthology.org/2021.naacl-main.339/} {{NeuroLogic}
+  decoding: (un)supervised neural text generation with predicate logic
+  constraints}.
+\newblock In \emph{Proceedings of the 2021 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (NAACL)}, pages 4288--4299.
+
+\bibitem[{Lu et~al.(2021{\natexlab{b}})Lu, Lin, Xu, Han, Tang, Li, Sun, Liao,
+  and Chen}]{lu2021text2event}
+Yaojie Lu, Hongyu Lin, Jin Xu, Xianpei Han, Jialong Tang, Annan Li, Le~Sun,
+  Meng Liao, and Shaoyi Chen. 2021{\natexlab{b}}.
+\newblock {Text2Event}: Controllable sequence-to-structure generation for
+  end-to-end event extraction.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (Volume 1: Long Papers)}, pages 2795--2806.
+  Association for Computational Linguistics.
+
+\bibitem[{Lu et~al.(2022)Lu, Liu, Dai, Xiao, Lin, Han, Sun, and Wu}]{lu2022uie}
+Yaojie Lu, Qing Liu, Dai Dai, Xinyan Xiao, Hongyu Lin, Xianpei Han, Le~Sun, and
+  Hua Wu. 2022.
+\newblock \href {https://aclanthology.org/2022.acl-long.395/} {Unified
+  structure generation for universal information extraction}.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 5755--5772.
+
+\bibitem[{Luan et~al.(2018)Luan, He, Ostendorf, and
+  Hajishirzi}]{luan2018scierc}
+Yi~Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi. 2018.
+\newblock \href {https://aclanthology.org/D18-1360/} {Multi-task identification
+  of entities, relations, and coreference for scientific knowledge graph
+  construction}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}, pages 3219--3232, Brussels, Belgium.
+
+\bibitem[{Luo et~al.(2025)Luo, Zhao, Gong, Haffari, Li, and
+  Pan}]{luo2025kgtrie}
+Linhao Luo, Zicheng Zhao, Chen Gong, Gholamreza Haffari, Yuan-Fang Li, and
+  Shirui Pan. 2025.
+\newblock \href {https://arxiv.org/abs/2410.13080} {Graph-constrained
+  reasoning: Faithful reasoning on knowledge graphs with large language
+  models}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}.
+
+\bibitem[{Mehenni and Zouaq(2024)}]{ekaw2024_ontology_beam}
+Gaya Mehenni and Amal Zouaq. 2024.
+\newblock \href {https://doi.org/10.1007/978-3-031-77792-9_23}
+  {Ontology-constrained generation of domain-specific clinical summaries}.
+\newblock In \emph{Knowledge Engineering and Knowledge Management ({EKAW}
+  2024)}, volume 15370 of \emph{Lecture Notes in Computer Science}, pages
+  382--398. Springer.
+
+\bibitem[{M\"{u}ndler et~al.(2025)M\"{u}ndler, He, Wang, Sen, Song, and
+  Vechev}]{pldi2025_type_constrained_codegen}
+Niels M\"{u}ndler, Jingxuan He, Hao Wang, Koushik Sen, Dawn Song, and Martin
+  Vechev. 2025.
+\newblock \href {https://doi.org/10.1145/3729274} {Type-constrained code
+  generation with language models}.
+\newblock \emph{Proceedings of the ACM on Programming Languages}, 9(PLDI).
+
+\bibitem[{Olasunkanmi et~al.(2025)Olasunkanmi, Satusky, Yi, Bizon, Lee, and
+  Ahalt}]{olasunkanmi2025relate}
+Olawumi Olasunkanmi, Mathew Satusky, Hong Yi, Chris Bizon, Harlin Lee, and
+  Stanley Ahalt. 2025.
+\newblock \href {https://arxiv.org/abs/2509.19057} {{RELATE}: Relation
+  extraction in biomedical abstracts with {LLMs} and ontology constraints}.
+\newblock \emph{arXiv preprint arXiv:2509.19057}.
+
+\bibitem[{Paolini et~al.(2021)Paolini, Athiwaratkun, Krone, Ma, Achille,
+  Anubhai, Nogueira~dos Santos, Xiang, and Soatto}]{paolini2021tanl}
+Giovanni Paolini, Ben Athiwaratkun, Jason Krone, Jie Ma, Alessandro Achille,
+  Rishita Anubhai, C{\'\i}cero Nogueira~dos Santos, Bing Xiang, and Stefano
+  Soatto. 2021.
+\newblock \href {https://openreview.net/forum?id=US-TP-xnXI} {Structured
+  prediction as translation between augmented natural languages}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Park et~al.(2024)Park, Wang, Berg-Kirkpatrick, Polikarpova, and
+  D'Antoni}]{park2024grammar}
+Kanghee Park, Jiayu Wang, Taylor Berg-Kirkpatrick, Nadia Polikarpova, and Loris
+  D'Antoni. 2024.
+\newblock \href {https://arxiv.org/abs/2405.21047} {Grammar-aligned decoding}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Poesia et~al.(2022)Poesia, Polozov, Le, Tiwari, Soares, Meek, and
+  Gulwani}]{synchromesh_iclr2022}
+Gabriel Poesia, Oleksandr Polozov, Vu~Le, Ashish Tiwari, Gustavo Soares,
+  Christopher Meek, and Sumit Gulwani. 2022.
+\newblock \href {https://openreview.net/forum?id=KmtVD97J43e} {Synchromesh:
+  Reliable code generation from pre-trained language models}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Qi et~al.(2024)Qi, Peng, Wang, Xu, Hou, and Li}]{qi2024adelie}
+Yunjia Qi, Hao Peng, Xiaozhi Wang, Bin Xu, Lei Hou, and Juanzi Li. 2024.
+\newblock \href {https://aclanthology.org/2024.emnlp-main.419/} {{ADELIE}:
+  Aligning large language models on information extraction}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing}, Miami, Florida, USA.
+
+\bibitem[{{Qwen Team}(2025)}]{qwen2025qwen3}
+{Qwen Team}. 2025.
+\newblock \href {https://arxiv.org/abs/2505.09388} {Qwen3 technical report}.
+\newblock \emph{arXiv preprint arXiv:2505.09388}.
+
+\bibitem[{Regino and dos Reis(2025)}]{regino2025kgcurator}
+Andr{\'e}~Gomes Regino and Julio~Cesar dos Reis. 2025.
+\newblock \href {https://aclanthology.org/2025.genaik-1.10/} {Can {LLMs} be
+  knowledge graph curators for validating triple insertions?}
+\newblock In \emph{Proceedings of the Workshop on Generative {AI} and Knowledge
+  Graphs ({GenAIK}) at {COLING} 2025}, pages 87--99, Abu Dhabi, UAE.
+
+\bibitem[{Riedel et~al.(2010)Riedel, Yao, and McCallum}]{riedel2010modeling}
+Sebastian Riedel, Limin Yao, and Andrew McCallum. 2010.
+\newblock Modeling relations and their mentions without labeled text.
+\newblock In \emph{Joint European Conference on Machine Learning and Knowledge
+  Discovery in Databases}, pages 148--163. Springer.
+
+\bibitem[{Roth and Yih(2004)}]{roth_yih_2004}
+Dan Roth and Wen-tau Yih. 2004.
+\newblock \href {https://aclanthology.org/W04-2401/} {A linear programming
+  formulation for global inference in natural language tasks}.
+\newblock In \emph{Proceedings of the Eighth Conference on Computational
+  Natural Language Learning ({CoNLL}-2004) at {HLT}-{NAACL} 2004}, pages 1--8,
+  Boston, Massachusetts, USA.
+
+\bibitem[{Sainz et~al.(2024)Sainz, Garc{\'\i}a-Ferrero, Agerri, Lopez~de
+  Lacalle, Rigau, and Agirre}]{sainz2024gollie}
+Oscar Sainz, Iker Garc{\'\i}a-Ferrero, Rodrigo Agerri, Oier Lopez~de Lacalle,
+  German Rigau, and Eneko Agirre. 2024.
+\newblock \href {https://openreview.net/forum?id=Y3wpuxd7u9} {{GoLLIE}:
+  Annotation guidelines improve zero-shot information-extraction}.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}.
+
+\bibitem[{Sakota and West(2025)}]{boostcd2025}
+Marija Sakota and Robert West. 2025.
+\newblock \href {https://aclanthology.org/2025.emnlp-main.926/} {Combining
+  constrained and unconstrained decoding via boosting: {BoostCD} and its
+  application to information extraction}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Schall and de~Melo(2025)}]{schall2025hiddencost}
+Maximilian Schall and Gerard de~Melo. 2025.
+\newblock \href {https://aclanthology.org/2025.ranlp-1.124/} {The hidden cost
+  of structure: How constrained decoding affects language model performance}.
+\newblock In \emph{Proceedings of the 15th International Conference on Recent
+  Advances in Natural Language Processing ({RANLP} 2025)}, Varna, Bulgaria.
+
+\bibitem[{Scholak et~al.(2021)Scholak, Schucher, and
+  Bahdanau}]{scholak2021picard}
+Torsten Scholak, Nathan Schucher, and Dzmitry Bahdanau. 2021.
+\newblock \href {https://aclanthology.org/2021.emnlp-main.779/} {{PICARD}:
+  Parsing incrementally for constrained auto-regressive decoding from language
+  models}.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Tam et~al.(2024)Tam, Wu, Tsai, Lin, Lee, and
+  Chen}]{tam2024letmespeak}
+Zhi~Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and
+  Yun-Nung Chen. 2024.
+\newblock \href {https://aclanthology.org/2024.emnlp-industry.91/} {Let me
+  speak freely? {A} study on the impact of format restrictions on large
+  language model performance}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing: Industry Track}, pages 1218--1236, Miami,
+  Florida, US.
+
+\bibitem[{Ugare et~al.(2025{\natexlab{a}})Ugare, Gumaste, Suresh, Singh, and
+  Misailovic}]{ugare2025itergen}
+Shubham Ugare, Rohan Gumaste, Tarun Suresh, Gagandeep Singh, and Sasa
+  Misailovic. 2025{\natexlab{a}}.
+\newblock \href {https://openreview.net/forum?id=ac93gRzxxV} {{IterGen}:
+  Iterative semantic-aware structured {LLM} generation with backtracking}.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations}.
+
+\bibitem[{Ugare et~al.(2025{\natexlab{b}})Ugare, Suresh, Kang, Misailovic, and
+  Singh}]{ugare2024syncode}
+Shubham Ugare, Tarun Suresh, Hangoo Kang, Sasa Misailovic, and Gagandeep Singh.
+  2025{\natexlab{b}}.
+\newblock \href {https://openreview.net/forum?id=HiUZtgAPoH} {{SynCode}: {LLM}
+  generation with grammar augmentation}.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Upadhyay et~al.(2023)Upadhyay, Balalau, and
+  Manolescu}]{upadhyay2023openie}
+Prajna Upadhyay, Oana Balalau, and Ioana Manolescu. 2023.
+\newblock \href {https://aclanthology.org/2023.findings-eacl.95/} {Open
+  information extraction with entity focused constraints}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  {EACL} 2023}.
+
+\bibitem[{Vukovic et~al.(2024)Vukovic, Arps, van Niekerk, Ruppik, Lin, Heck,
+  and Ga\v{s}i\'{c}}]{vukovic2024dialogue}
+Renato Vukovic, David Arps, Carel van Niekerk, Benjamin~Matthias Ruppik,
+  Hsien-chin Lin, Michael Heck, and Milica Ga\v{s}i\'{c}. 2024.
+\newblock \href {https://arxiv.org/abs/2408.02361} {Dialogue ontology relation
+  extraction via constrained chain-of-thought decoding}.
+\newblock In \emph{Proceedings of the 25th Annual Meeting of the Special
+  Interest Group on Discourse and Dialogue}, pages 370--384, Kyoto, Japan.
+
+\bibitem[{Wadhwa et~al.(2023)Wadhwa, Amir, and Wallace}]{wadhwa2023revisiting}
+Somin Wadhwa, Silvio Amir, and Byron Wallace. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.acl-long.868} {Revisiting
+  relation extraction in the era of large language models}.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 15566--15589.
+
+\bibitem[{Wang et~al.(2023)Wang, Zhou, Zu, Xia, Chen, Zhang, Zheng, Ye, Zhang,
+  Gui, Kang, Yang, Li, and Du}]{wang2023instructuie}
+Xiao Wang, Weikang Zhou, Can Zu, Han Xia, Tianze Chen, Yuansen Zhang, Rui
+  Zheng, Junjie Ye, Qi~Zhang, Tao Gui, Jihua Kang, Jingsheng Yang, Siyuan Li,
+  and Chunsai Du. 2023.
+\newblock \href {https://arxiv.org/abs/2304.08085} {{InstructUIE}: Multi-task
+  instruction tuning for unified information extraction}.
+\newblock \emph{arXiv preprint arXiv:2304.08085}.
+
+\bibitem[{Wei et~al.(2023)Wei, Cui, Cheng, Wang, Zhang, Huang, Xie, Xu, Chen,
+  Zhang, Jiang, and Han}]{wei2023zeroshot}
+Xiang Wei, Xingyu Cui, Ning Cheng, Xiaobin Wang, Xin Zhang, Shen Huang, Pengjun
+  Xie, Jinan Xu, Yufeng Chen, Meishan Zhang, Yong Jiang, and Wenjuan Han. 2023.
+\newblock \href {https://arxiv.org/abs/2302.10205} {{ChatIE}: Zero-shot
+  information extraction via chatting with {ChatGPT}}.
+\newblock \emph{arXiv preprint arXiv:2302.10205}.
+
+\bibitem[{Willard and Louf(2023)}]{willard2023outlines}
+Brandon~T. Willard and R{\'e}mi Louf. 2023.
+\newblock \href {https://arxiv.org/abs/2307.09702} {Efficient guided generation
+  for large language models}.
+\newblock \emph{arXiv preprint arXiv:2307.09702}.
+
+\bibitem[{Yan et~al.(2021)Yan, Zhang, Fu, Zhang, and Wei}]{yan2021pfn}
+Zhiheng Yan, Chong Zhang, Jinlan Fu, Qi~Zhang, and Zhongyu Wei. 2021.
+\newblock \href {https://aclanthology.org/2021.emnlp-main.17/} {A partition
+  filter network for joint entity and relation extraction}.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in
+  Natural Language Processing}, pages 185--197.
+
+\bibitem[{Yao et~al.(2019)Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and
+  Sun}]{yao2019docred}
+Yuan Yao, Deming Ye, Peng Li, Xu~Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu,
+  Lixin Huang, Jie Zhou, and Maosong Sun. 2019.
+\newblock \href {https://aclanthology.org/P19-1074/} {{DocRED}: A large-scale
+  document-level relation extraction dataset}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 764--777, Florence, Italy.
+
+\bibitem[{Ye et~al.(2022)Ye, Lin, Li, and Sun}]{ye2022packed}
+Deming Ye, Yankai Lin, Peng Li, and Maosong Sun. 2022.
+\newblock \href {https://aclanthology.org/2022.acl-long.337} {Packed levitated
+  marker for entity and relation extraction}.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 4904--4917,
+  Dublin, Ireland. Association for Computational Linguistics.
+
+\bibitem[{Ye et~al.(2023)Ye, Gui, Xu, Chen, Chen, and Zhang}]{adakgc_emnlp2023}
+Hongbin Ye, Honghao Gui, Xin Xu, Xi~Chen, Huajun Chen, and Ningyu Zhang. 2023.
+\newblock \href {https://aclanthology.org/2023.findings-emnlp.425/}
+  {Schema-adaptable knowledge graph construction}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  {EMNLP} 2023}, pages 6408--6431.
+
+\bibitem[{Zaratiana et~al.(2024)Zaratiana, Tomeh, Dauxais, Holat, and
+  Charnois}]{zaratiana2024enrico}
+Urchade Zaratiana, Nadi Tomeh, Yann Dauxais, Pierre Holat, and Thierry
+  Charnois. 2024.
+\newblock \href {https://arxiv.org/abs/2404.12493} {{EnriCo}: Enriched
+  representation and globally constrained inference for entity and relation
+  extraction}.
+\newblock \emph{arXiv preprint arXiv:2404.12493}.
+
+\bibitem[{Zheng et~al.(2024)Zheng, Yin, Xie, Sun, Huang, Yu, Cao, Kozyrakis,
+  Stoica, Gonzalez, Barrett, and Sheng}]{zheng2024sglang}
+Lianmin Zheng, Liangsheng Yin, Zhiqiang Xie, Chuyue Sun, Jeff Huang, Cody~Hao
+  Yu, Shiyi Cao, Christos Kozyrakis, Ion Stoica, Joseph~E. Gonzalez, Clark
+  Barrett, and Ying Sheng. 2024.
+\newblock \href {https://arxiv.org/abs/2312.07104} {{SGLang}: Efficient
+  execution of structured language model programs}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37.
+
+\bibitem[{Zhong and Chen(2021)}]{zhong2021frustratingly}
+Zexuan Zhong and Danqi Chen. 2021.
+\newblock \href {https://aclanthology.org/2021.naacl-main.5} {A frustratingly
+  easy approach for entity and relation extraction}.
+\newblock In \emph{Proceedings of the 2021 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}, pages 50--61, Online. Association for Computational
+  Linguistics.
+
+\bibitem[{Zhou(2026)}]{zhou2026snowballing}
+Hongxu Zhou. 2026.
+\newblock \href {https://arxiv.org/abs/2604.06066} {From hallucination to
+  structure snowballing: The alignment tax of constrained decoding in {LLM}
+  reflection}.
+\newblock \emph{arXiv preprint arXiv:2604.06066}.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Zhang, Gu, Chen, and
+  Poon}]{zhou2024universalner}
+Wenxuan Zhou, Sheng Zhang, Yu~Gu, Muhao Chen, and Hoifung Poon. 2024.
+\newblock \href {https://openreview.net/forum?id=r65xfUb76p} {{UniversalNER}:
+  Targeted distillation from large language models for open named entity
+  recognition}.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}.
+
+\bibitem[{Zhou et~al.(2026)Zhou, Butler, Yang, Rihm, Angkanaporn, Akroyd,
+  Mosbach, and Kraft}]{zhou2026ontologytools}
+Xiaochi Zhou, Patrick Butler, Changxuan Yang, Simon~D. Rihm, Thitikarn
+  Angkanaporn, Jethro Akroyd, Sebastian Mosbach, and Markus Kraft. 2026.
+\newblock \href {https://arxiv.org/abs/2602.03439} {Ontology-to-tools
+  compilation for executable semantic constraint enforcement in {LLM} agents}.
+\newblock \emph{arXiv preprint arXiv:2602.03439}.
+
+\end{thebibliography}

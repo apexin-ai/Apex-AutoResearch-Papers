@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44763ffc86f9c26f31a5",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh fix jinja template",
+  "task_key": "worker_ssh_fix-jinja-template_20260512T225704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-jinja-template_20260512T225704_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "1095ea03112f940a4ab5460d3809cd547bacd85cad6faa6d6b05f5ae05137e7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 结果\n\n**修改文件**：`/root/autodl-tmp/prov_grounded_uie/outputs/sft/merged/chat_template.jinja`\n\n**Diff**：\n```diff\n86,88c86\n<     {%- if enable_thinking is defined and enable_thinking is false %}\n<         {{- '<think>\\n\\n</think>\\n\\n' }}\n<     {%- endif %}\n---\n>     {{- '<think>\\n\\n</think>\\n\\n' }}\n```\n\n**验证**：`apply_chat_template` 不传 `enable_thinking` 时输出包含 `<think>\\n\\n</think>\\n\\n`，模型不会进入 thinking mode。\n\n**sft_eval_v4**：不受影响，已加载到 GPU 内存的模型不读磁盘文件。tokenizer_config.json 中无嵌入模板，也未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-jinja-template.md"
+}

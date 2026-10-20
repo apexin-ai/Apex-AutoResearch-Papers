@@ -1,0 +1,154 @@
+% Section 5 — SciERC Results (Draft)
+% Data source: Phase 2 SciERC registry experiments
+% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,
+%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2
+% All numbers verified against registry 2026-05-14.
+
+\subsection{Results on SciERC}
+\label{sec:scierc-results}
+
+Table~\ref{tab:scierc-ablation} presents the five-way ablation on SciERC,
+evaluating each constraint layer independently and in combination.
+All experiments use Qwen3-8B in a zero-shot setting on 551 test documents
+with identical prompts and decoding parameters;
+only the active constraint layers differ.
+
+% ──────────────────────────────────────────
+%  Table: SciERC five-way ablation
+% ──────────────────────────────────────────
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}l rrrrr rr@{}}
+\toprule
+& \multicolumn{5}{c}{\textbf{Violation Rates (\%)}}
+& \multicolumn{2}{c}{\textbf{F1}} \\
+\cmidrule(lr){2-6} \cmidrule(l){7-8}
+\textbf{Mode}
+  & DR\,$\downarrow$ & $\Delta$DR
+  & RV\,$\downarrow$ & ET\,$\downarrow$ & CF
+  & Rel.\,$\uparrow$ & Ent.\,$\uparrow$ \\
+\midrule
+Unconstrained
+  & 15.37 & ---
+  & 1.39  & 0.40
+  & 0.08
+  & 8.23  & 31.01 \\
+Grammar
+  & 14.84 & $\downarrow$3\%
+  & \textbf{0} & \textbf{0}
+  & 0.08
+  & 8.23  & 30.98 \\
+Semantic
+  & 11.65 & $\downarrow$24\%
+  & 1.51  & 0.40
+  & 2.71
+  & 8.15  & 31.01 \\
+Full (S1)
+  & \textbf{0.93} & $\downarrow$\textbf{94\%}
+  & \textbf{0} & \textbf{0}
+  & 9.90
+  & \textbf{8.36} & 30.98 \\
+Full (S2)
+  & 0.97  & $\downarrow$94\%
+  & \textbf{0} & \textbf{0}
+  & 8.03
+  & 8.03  & \textbf{31.90} \\
+\bottomrule
+\end{tabular}
+\caption{Five-way ablation on SciERC (551 documents, Qwen3-8B, zero-shot).
+DR: domain/range violation rate;
+RV: relation vocabulary violation rate;
+ET: entity type violation rate;
+CF: cross-field consistency violation rate.
+$\Delta$DR: relative DR reduction vs.\ the unconstrained baseline.
+$\downarrow$\,/\,$\uparrow$: lower\,/\,higher is better.
+Best per column in \textbf{bold} (CF excluded---see text).
+F1 scores are multiplied by 100.}
+\label{tab:scierc-ablation}
+\end{table}
+
+% ──────────────────────────────────────────
+%  (a) Core result
+% ──────────────────────────────────────────
+\paragraph{Core result: near-complete DR elimination at zero F1 cost.}
+The full two-layer constraint configuration (S1) reduces domain/range
+violations from 15.37\% to 0.93\%, a 94\% relative reduction,
+% phase2_scierc_unconstrained: DR=0.1537; phase2_scierc_full_s1: DR=0.0093
+while relation F1 moves from 8.23 to 8.36 (+0.13\,pp).
+% phase2_scierc_unconstrained: R-F1=0.0823; phase2_scierc_full_s1: R-F1=0.0836
+This difference is not statistically significant and is best
+characterized as F1-neutral: constraint enforcement neither improves
+nor degrades extraction quality.
+At the per-relation level, violations drop from 42.42\% to 2.82\% on
+\textsc{Compare}, from 33.54\% to 1.21\% on \textsc{Feature-of}, and
+reach 0\% on four of seven relation types
+(\textsc{Conjunction}, \textsc{Hyponym-of}, \textsc{Part-of},
+\textsc{Used-for}).
+% phase2_scierc_full_s1 per_relation_dr: Compare=0.0282,
+%   Feature-of=0.0121, Hyponym-of=0, Part-of=0, Used-for=0, Conjunction=0
+However, full constraint enforcement elevates cross-field consistency
+violations from 0.08\% to 9.90\%;
+% phase2_scierc_unconstrained: CF=0.0008; phase2_scierc_full_s1: CF=0.099
+we analyze this trade-off in Section~\ref{sec:discussion}.
+
+% ──────────────────────────────────────────
+%  (b) Grammar layer
+% ──────────────────────────────────────────
+\paragraph{Grammar layer: cost-free structural guarantees.}
+Grammar-only constraints completely eliminate both relation vocabulary
+violations (1.39\%\,$\to$\,0\%) and entity type violations
+(0.40\%\,$\to$\,0\%), with no measurable impact on F1
+(R-F1 8.23, E-F1 30.98).
+% phase2_scierc_grammar_only: RV=0, ET=0, R-F1=0.0823, E-F1=0.3098
+Domain/range violations remain effectively unchanged
+(15.37\%\,$\to$\,14.84\%, $-$0.53\,pp), confirming that grammar
+constraints enforce output structure---valid JSON, correct relation
+vocabulary, valid entity types---but do not address cross-field
+semantic constraints.
+% phase2_scierc_grammar_only: DR=0.1484
+The grammar layer thus provides two categories of violation elimination
+at zero cost, establishing the structural preconditions on which the
+semantic layer depends.
+
+% ──────────────────────────────────────────
+%  (c) Enabling dependency
+% ──────────────────────────────────────────
+\paragraph{Enabling dependency: grammar enables semantic enforcement.}
+Applying semantic constraints alone reduces DR by only 24\%
+(15.37\%\,$\to$\,11.65\%) and, critically, cannot eliminate
+relation vocabulary violations (RV\,=\,1.51\%) or entity type
+violations (ET\,=\,0.40\%).
+% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004
+When the grammar layer is added (Full S1), DR drops a further 92\%
+relative to the semantic-only configuration
+(11.65\%\,$\to$\,0.93\%).
+% phase2_scierc_full_s1: DR=0.0093; delta=(11.65-0.93)/11.65=0.920
+This demonstrates an \emph{enabling dependency} rather than mere
+additivity: without grammar-enforced vocabulary constraints, the
+semantic layer encounters out-of-vocabulary relation types for which
+no domain/range rules exist, rendering its type checking ineffective.
+The two layers are therefore complementary with a prerequisite
+structure---grammar must be active for semantic constraints to reach
+their full enforcement capacity.
+
+% ──────────────────────────────────────────
+%  (d) S1 vs S2
+% ──────────────────────────────────────────
+\paragraph{S1 vs.\ S2: single-pass suffices.}
+The two-pass strategy (S2) achieves comparable DR
+(0.97\% vs.\ 0.93\%) but lower relation F1
+(8.03 vs.\ 8.36, $-$0.33\,pp) and generates fewer relation triples
+(1{,}644 vs.\ 1{,}729).
+% phase2_scierc_full_s2: DR=0.0097, R-F1=0.0803, triples=1644
+% phase2_scierc_full_s1: DR=0.0093, R-F1=0.0836, triples=1729
+S2 shows a modestly lower CF rate (8.03\% vs.\ 9.90\%), but both
+configurations exhibit substantially elevated CF relative to the
+unconstrained baseline (0.08\%), indicating that two-pass decoding
+does not resolve the cross-field consistency trade-off
+(Section~\ref{sec:discussion}).
+% phase2_scierc_full_s2: CF=0.0803; phase2_scierc_full_s1: CF=0.099
+The two-pass separation offers no clear advantage over single-pass
+enforcement; we adopt S1 as the primary configuration for its
+simplicity and marginally stronger extraction performance.

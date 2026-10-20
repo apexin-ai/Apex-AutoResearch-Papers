@@ -1,0 +1,17 @@
+\begin{abstract}
+LLM-based information extraction systems produce systematic ontology constraint violations during autoregressive generation.
+On SciERC (7 relation types), 15.4\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.7\%.
+These violations concentrate on tightly constrained relations (e.g., \textsc{Compare}: 42.4\%, \textsc{Feature-of}: 33.5\%), while loosely constrained relations exhibit near-zero violation rates.
+%
+Schema-informed prompting reduces violations by 62\% on SciERC but only 31\% on DocRED, and is unreliable at the per-relation level---\textsc{Evaluate-for} violations \emph{increase} by 5.8 percentage points.
+Prompt-level intervention thus scales poorly with ontology complexity.
+%
+We present \textsc{OntoCoDec}, which automatically compiles IE ontology schemas into two composable constraint layers for autoregressive decoding:
+(1)~a \emph{grammar layer}, implemented via XGrammar, that enforces JSON structural validity and restricts entity-type and relation vocabularies to schema-defined values; and
+(2)~a \emph{semantic layer} (TypeConstraintProcessor) that enforces cross-field domain/range constraints through a stateful entity registry and dynamic logit masking.
+The two layers compose via bitwise AND on token-level masks, with an enabling dependency: the grammar layer guarantees well-formed output, upon which the semantic layer enforces relational type rules.
+%
+On SciERC, \textsc{OntoCoDec} reduces domain/range violations from 15.37\% to 0.93\% ($\downarrow$94\%) while completely eliminating entity-type and relation-vocabulary violations, with no degradation in extraction F1 ({+}0.13pp, not statistically significant).
+\placeholder{DocRED results.}
+However, cross-field consistency violations increase from 0.08\% to 9.9\%, a systematic side effect of per-relation independent type enforcement that represents an open challenge for future constraint composition.
+\end{abstract}

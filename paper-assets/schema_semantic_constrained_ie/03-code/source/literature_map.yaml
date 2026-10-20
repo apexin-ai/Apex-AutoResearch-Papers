@@ -1,0 +1,158 @@
+meta:
+  last_updated: "2026-05-20T12:00:00Z"
+  total_papers: 10
+
+categories:
+  - key: "grammar_constrained"
+    name: "Grammar-Constrained Decoding"
+    narrative: "Token-level structural constraints via CFG/PDA for LLM generation"
+  - key: "semantic_constrained"
+    name: "Semantic-Aware Constrained Decoding"
+    narrative: "Beyond grammar — enforcing semantic validity during generation"
+  - key: "schema_ie"
+    name: "Schema-Guided Information Extraction"
+    narrative: "Leveraging ontology/schema to guide LLM-based IE"
+  - key: "quality_impact"
+    name: "Constraint Quality Impact Analysis"
+    narrative: "Studies on how constrained decoding affects output quality"
+
+papers:
+  dong2025xgrammar:
+    title: "XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models"
+    authors: ["Dong, Y."]
+    year: 2025
+    venue: "MLSys"
+    url: "https://arxiv.org/abs/2411.15100"
+    bibtex_key: "dong2025xgrammar"
+    category: "grammar_constrained"
+    role: "method-component"
+    relevance: "Foundation of grammar constraint layer; XGrammar is directly used in OntoCoDec's Level 1 constraints"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  sainz2024gollie:
+    title: "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling"
+    authors: ["Sainz, O."]
+    year: 2024
+    venue: "ICLR"
+    url: "https://arxiv.org/abs/2310.03668"
+    bibtex_key: "sainz2024gollie"
+    category: "schema_ie"
+    role: "direct-competitor"
+    relevance: "Schema-guided IE with LLMs via code-style guidelines; competing approach using prompt-level schema enforcement"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  scholak2021picard:
+    title: "PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models"
+    authors: ["Scholak, T.", "Schucher, N.", "Bahdanau, D."]
+    year: 2021
+    venue: "EMNLP"
+    url: "https://arxiv.org/abs/2109.05093"
+    bibtex_key: "scholak2021picard"
+    category: "semantic_constrained"
+    role: "foundation"
+    relevance: "Semantic constrained decoding for SQL; closest methodological parallel — incremental parsing with semantic validity checks"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  geng2023gcd:
+    title: "Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning"
+    authors: ["Geng, S."]
+    year: 2023
+    venue: "EMNLP"
+    url: "https://arxiv.org/abs/2305.13971"
+    bibtex_key: "geng2023gcd"
+    category: "grammar_constrained"
+    role: "direct-competitor"
+    relevance: "Grammar-constrained decoding applied to NLP tasks; directly comparable zero-shot approach"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  sakota2025boostcd:
+    title: "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction"
+    authors: ["Sakota, M."]
+    year: 2025
+    venue: "EMNLP"
+    url: "https://arxiv.org/abs/2506.14901"
+    bibtex_key: "sakota2025boostcd"
+    category: "schema_ie"
+    role: "direct-competitor"
+    relevance: "Most direct competitor — constrained decoding for IE with quality-constraint tradeoff analysis"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  li2024knowcoder:
+    title: "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction"
+    authors: ["Li, Z."]
+    year: 2024
+    venue: "ACL"
+    url: "https://arxiv.org/abs/2403.07969"
+    bibtex_key: "li2024knowcoder"
+    category: "schema_ie"
+    role: "direct-competitor"
+    relevance: "Schema-aware IE via code representation; encodes ontology into code structure for universal IE"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  ugare2025itergen:
+    title: "IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking"
+    authors: ["Ugare, S."]
+    year: 2025
+    venue: "ICLR"
+    url: "https://arxiv.org/abs/2410.07295"
+    bibtex_key: "ugare2025itergen"
+    category: "semantic_constrained"
+    role: "direct-competitor"
+    relevance: "Semantic-aware structured generation with backtracking; addresses same problem of grammar insufficiency for semantic constraints"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  josifoski2022genie:
+    title: "GenIE: Generative Information Extraction"
+    authors: ["Josifoski, M."]
+    year: 2022
+    venue: "NAACL"
+    url: "https://arxiv.org/abs/2112.08340"
+    bibtex_key: "josifoski2022genie"
+    category: "schema_ie"
+    role: "foundation"
+    relevance: "Generative IE with trie-based prefix constrained decoding; early work on constraint-guided IE generation"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  li2023codeie:
+    title: "CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors"
+    authors: ["Li, P."]
+    year: 2023
+    venue: "ACL"
+    url: "https://arxiv.org/abs/2305.05711"
+    bibtex_key: "li2023codeie"
+    category: "schema_ie"
+    role: "direct-competitor"
+    relevance: "Code generation approach to IE; leverages code structure for implicit schema compliance"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"
+
+  banerjee2025crane:
+    title: "CRANE: Reasoning with Constrained LLM Generation"
+    authors: ["Banerjee, P."]
+    year: 2025
+    venue: "ICML"
+    url: "https://arxiv.org/abs/2502.09061"
+    bibtex_key: "banerjee2025crane"
+    category: "quality_impact"
+    role: "background"
+    relevance: "Studies quality impact of constrained decoding on reasoning; relevant to F1 impact analysis"
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-20T12:00:00Z"

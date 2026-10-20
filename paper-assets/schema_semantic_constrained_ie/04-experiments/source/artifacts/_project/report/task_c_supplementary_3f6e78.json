@@ -1,0 +1,98 @@
+{
+  "subtask1_wikievents_kappa": {
+    "kappa_bar": 0.0291,
+    "entity_types_count": 27,
+    "event_types_count": 56,
+    "A_squared": 729,
+    "mean_sigma_r": 21.21,
+    "min_sigma_r": 6,
+    "max_sigma_r": 43,
+    "total_valid_pairs": 1188,
+    "comparison": {
+      "SciERC": 0.38,
+      "DocRED": 0.82,
+      "WikiEvents": 0.0291
+    },
+    "interpretation": "WikiEvents has the tightest schema by far (κ̄=0.029 vs SciERC=0.38, DocRED=0.82). With 27 entity types and highly specific role-type constraints (avg 21.2 valid pairs vs 729 possible), the constraint space is ~97% pruned per event type. This explains why constrained decoding eliminates violations so effectively on WikiEvents."
+  },
+  "subtask2_70b_cf": {
+    "note": "70B experiment is DocRED only (Llama-3.1-70B-Instruct-AWQ-INT4). No 70B SciERC experiment exists.",
+    "total_cf_analysis_v2": "7.01%",
+    "total_cf_unified_eval": "5.15%",
+    "cf_violations_unified_eval": 856,
+    "cf_violations_tcr": 1988,
+    "cf_counting_discrepancy": "analysis_v2 (7.01%) uses fixed_20260514_v2 checker; unified_eval (5.15%) counts 856 CF entities / 16606 total predicted entities; TCR (11.61%) counts 1988 CF entities / 17120 unique entities with a more aggressive entity-level scan",
+    "comparison_with_8b": {
+      "70b_llama_zs_docred_constrained_CF": "5.15-7.01%",
+      "8b_qwen_zs_docred_constrained_CF": "2.57%",
+      "8b_qwen_ft_docred_constrained_CF": "0.27%",
+      "8b_llama_ft_docred_constrained_CF": "0.21%"
+    },
+    "top_confusion_pairs_8b_docred_qwen_zs": [
+      {"pair": ["PER", "ORG"], "count": 271},
+      {"pair": ["PER", "LOC"], "count": 201},
+      {"pair": ["PER", "PER"], "count": 173},
+      {"pair": ["MISC", "PER"], "count": 133},
+      {"pair": ["ORG", "PER"], "count": 129}
+    ],
+    "interpretation": "The 70B CF rate (5-7%) is 2-3x higher than 8B ZS (2.57%) and 20-30x higher than 8B FT (0.2-0.3%). Primary causes: (1) Zero-shot setting — fine-tuning teaches schema compliance, drastically reducing CF; (2) INT4 quantization likely contributes — reduced precision may degrade type consistency for entity mentions appearing in multiple relations; (3) Not a pure scale effect — 8B ZS Llama also shows high CF (1357 entities), suggesting the ZS→FT gap is the dominant factor."
+  },
+  "subtask3_citations": {
+    "regino2025kgcurator": {
+      "status": "REAL",
+      "title": "Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?",
+      "authors": "André Gomes Regino, Julio Cesar dos Reis",
+      "venue": "GenAIK Workshop, COLING 2025, Abu Dhabi",
+      "pages": "87-99",
+      "evidence": "https://aclanthology.org/2025.genaik-1.10/"
+    },
+    "formattax2026": {
+      "status": "REAL",
+      "title": "The Format Tax",
+      "authors": "Ivan Yee Lee, Loris D'Antoni, Taylor Berg-Kirkpatrick",
+      "venue": "arXiv preprint, April 2026",
+      "evidence": "https://arxiv.org/abs/2604.03616"
+    }
+  },
+  "subtask4_r_f1_range": {
+    "scierc_qwen_ft": {
+      "unconstrained_R_F1": 43.86,
+      "constrained_R_F1": 43.77,
+      "delta_pp": -0.09
+    },
+    "scierc_llama_ft": {
+      "unconstrained_R_F1": 45.45,
+      "constrained_R_F1": 45.47,
+      "delta_pp": 0.02
+    },
+    "docred_qwen_ft": {
+      "unconstrained_R_F1": 40.86,
+      "constrained_R_F1": 40.56,
+      "delta_pp": -0.30
+    },
+    "docred_llama_ft": {
+      "unconstrained_R_F1": 43.72,
+      "constrained_R_F1": 43.78,
+      "delta_pp": 0.06
+    },
+    "wikievents_qwen_ft": {
+      "metric": "Arg-F1 (not R-F1)",
+      "unconstrained_Arg_F1": 7.85,
+      "constrained_Arg_F1": 8.18,
+      "delta_pp": 0.33,
+      "note": "point estimates from r12_wikievents_bootstrap.json"
+    },
+    "wikievents_llama_ft": {
+      "metric": "Arg-F1 (not R-F1)",
+      "unconstrained_Arg_F1": 9.98,
+      "constrained_Arg_F1": 8.91,
+      "delta_pp": -1.07,
+      "note": "point estimates from r12_wikievents_bootstrap.json; CIs overlap"
+    },
+    "re_only_all_within_06pp": true,
+    "re_only_max_abs_delta": 0.30,
+    "including_ee_all_within_06pp": false,
+    "including_ee_max_abs_delta": 1.07,
+    "verdict": "The ±0.6pp claim holds for R-F1 on RE datasets (SciERC, DocRED): max |Δ|=0.30pp. However, WikiEvents Llama FT shows Arg-F1 delta of −1.07pp (constrained underperforms unconstrained), exceeding the ±0.6pp bound. If the abstract claim is scoped to R-F1 only, it is accurate. If intended to cover all datasets including WikiEvents Arg-F1, it needs qualification — either widen to ±1.1pp or explicitly exclude WikiEvents (where CIs overlap anyway, so the difference is not statistically significant)."
+  }
+}

@@ -1,0 +1,88 @@
+paper_key: "gcd"
+title: "Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning"
+venue: "EMNLP 2023"
+full_text_available: true
+
+research:
+  baselines: [GenIE T5-base, GENRE, BLINK, ReFinED, "Le & Titov 2018", "Kitaev & Klein 2018", "Zhang et al. 2020"]
+  metrics:
+    - {name: "micro-F1", direction: "higher_better"}
+    - {name: "micro-accuracy", direction: "higher_better"}
+    - {name: "bracketing F1", direction: "higher_better"}
+  datasets:
+    - {name: "SynthIE-text", size: "10K val, 50K test"}
+    - {name: "AIDA-CoNLL", size: "entity disambiguation"}
+    - {name: "MSNBC", size: "entity disambiguation"}
+    - {name: "ACE2004", size: "entity disambiguation"}
+    - {name: "AQUAINT", size: "entity disambiguation"}
+    - {name: "Penn Treebank", size: "filtered <64 tokens"}
+  ablation_dimensions: [input_dependent_vs_independent_grammar, model_size, length_normalization_alpha]
+  training_recipe:
+    optimizer: "N/A (no finetuning)"
+    lr: "N/A"
+    hardware: "few-shot with 4-8 demonstrations"
+    decoding: "constrained beam search, beam=2, length penalty=1.0"
+  method_family: "Context-free grammar constrained decoding with Grammatical Framework"
+
+positioning:
+  core_claim: "用形式文法约束 LLM 解码，无需微调即可在结构化 NLP 任务上接近或超过微调 baseline"
+  key_results: "cIE: LLaMA-33B constrained 36.0 F1 vs unconstrained 17.5 (vs GenIE 34.8); ED: 80.3% vs 54.1% unconstrained"
+  limitations:
+    - "无法应用于闭源 API 模型（GPT-3.5, GPT-4）"
+    - "语法复杂度影响延迟（0.05s-0.5s/token）"
+    - "对需要深层句法理解的任务效果差（CP F1 仅~55% vs 专用模型 95%+）"
+    - "tokenizer 依赖的语法变体处理缺乏原则性方法"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "LLM 在结构化输出上挣扎——无法保证格式正确性"
+  tension: "微调昂贵且对每个任务都需要重做，而无约束生成格式错误率高"
+  key_insight: "Section 3 提出 input-dependent grammar：根据输入动态调整语法，从而适应不同任务"
+  argument_chain: "结构化输出难题 → 形式文法可描述输出空间 → input-dependent 语法适配任务 → 跨 3 任务验证 → 无需微调接近 SOTA"
+  contribution_framing: "3项贡献：GCD 统一框架、input-dependent grammar、跨任务实证验证"
+  intro_structure: "5段：问题背景→微调局限→GCD 提出→三任务验证→贡献列表"
+  notable_technique: "发现并解决 likelihood misalignment 问题——LLM 偏好短序列，用 length normalization (α=2.5) 修复"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "GCD 框架概览：输入 → 语法构造 → 约束解码 → 结构化输出"
+    narrative_role: "直观展示无微调的约束解码管线"
+    design_elements: ["流程图", "语法示例", "三任务统一展示"]
+    visual_style: "水平流程图，从输入到输出"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "constrained vs unconstrained across model sizes"
+      how_gain_highlighted: "约束解码带来的巨大提升（17.5→36.0 F1）"
+      design_note: "直接对比同一模型加约束和不加约束的效果"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["model size", "grammar type (IDG vs IIG)"]
+      design_note: "展示 input-dependent grammar 在各模型尺寸上的一致优势"
+  figure_narrative_role: "Figure 1 (method overview) → Figure 2 (grammar examples) → Figure 3-4 (results + ablation)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "tasks × metrics"
+    row_organization: "by_category"
+    col_organization: "grouped_by_task"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 7
+    design_note: "跨 3 个任务统一展示，强调 GCD 的通用性"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["grammar type (IDG/IIG)", "length normalization"]
+      variation_style: "full_numbers"
+      design_note: "对比 input-dependent vs independent 语法效果"
+  supplementary_tables:
+    in_appendix: true
+    content: "各 ED 数据集详细结果、语法延迟分析"
+    reason: "主表聚焦核心对比，细粒度数据放附录"

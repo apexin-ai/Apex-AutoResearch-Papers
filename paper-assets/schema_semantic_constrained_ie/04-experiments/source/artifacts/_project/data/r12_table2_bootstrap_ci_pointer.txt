@@ -1,0 +1,1 @@
+See /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json on westd-16980. Script: /root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py

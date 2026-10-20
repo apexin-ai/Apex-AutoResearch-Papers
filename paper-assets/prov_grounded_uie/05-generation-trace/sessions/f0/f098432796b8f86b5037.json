@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f098432796b8f86b5037",
+  "project": "prov_grounded_uie",
+  "kind": "worker",
+  "title": "code grpo pilot v1",
+  "task_key": "worker_code_grpo_pilot_v1_20260512T231217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_pilot_v1_20260512T231217.log",
+    "occurrence": 1,
+    "bytes": 899954,
+    "sha256": "1c02bd452e5fb5b59ffe432ef635266d595d892412e8325c212f9175229d1465"
+  },
+  "statistics": {
+    "messages": 351,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 115,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 351,
+      "chunks": [
+        {
+          "path": "f098432796b8f86b5037-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f098432796b8f86b5037-part-0002.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grpo-pilot-v1.md"
+}

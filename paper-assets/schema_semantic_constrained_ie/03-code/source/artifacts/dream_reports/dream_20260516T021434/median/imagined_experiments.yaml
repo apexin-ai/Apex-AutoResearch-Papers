@@ -1,0 +1,353 @@
+tier: median
+narrative_guidance: 'Composability claim requires calibration: ''OntoCoDec composes
+  with FT at minimal cost'' rather than ''zero cost.'' FT is the primary mechanism
+  for violation reduction (DR 18.7%→0.76% Qwen, 26.07%→0.49% Llama), OntoCoDec provides
+  the residual guarantee with a small but acceptable F1 trade-off in the FT regime.
+  DocRED high tightness (τ̄=0.842) causes more frequent grammar-first fallback than
+  SciERC (τ̄=0.333), explaining why DR does not reach 0% even with FT+constrained.
+  Well-calibrated FT models have less headroom for constraint-driven precision gains
+  — unlike zero-shot where grammar eliminates OOV FPs (RV 29.66%→0%), FT baseline
+  RV is already <0.3%, so grammar layer has negligible F1 benefit, while semantic
+  layer''s logit masking introduces mild overhead. Paper still strong: zero-shot results
+  are the core contribution; FT composability is §5.4 supplementary validation showing
+  method robustness. Soften ''zero F1 cost'' to ''negligible F1 cost'' in abstract.
+  Still targets Accept.
+
+  '
+imagined_experiments:
+- name: Qwen DocRED FT + OntoCoDec constrained eval
+  plan_id: w5_qwen_docred_lora_constrained_eval
+  description: 'Full S1 constrained decoding (grammar+semantic) on Qwen3-8B fine-tuned
+    with LoRA on DocRED training set. Completes the 2×2 composability matrix (base/FT
+    × unconstrained/constrained) for Qwen on DocRED. Baseline: FT unconstrained DR=0.76%,
+    RV=0.27%, ET=0%, CF=0.12%, R-F1=40.86%, E-F1=82.15%, parse_fail=7.11%.
+
+    '
+  expected_results:
+    DR_pct: 0.32
+    RV_pct: 0.0
+    ET_pct: 0.0
+    CF_pct: 1.5
+    R_F1: 40.35
+    R_precision: 36.05
+    R_recall: 45.8
+    E_F1: 81.9
+    E_precision: 85.2
+    E_recall: 78.85
+    parse_fail_rate_pct: 9.2
+    total_entities_pred: ~18050
+    total_relations_pred: ~15800
+    R_F1_delta_pp: -0.51
+    E_F1_delta_pp: -0.25
+    DR_reduction_from_ft_unconstrained_pct: -57.9
+    CF_increase_from_ft_unconstrained_pp: 1.38
+  result_rationale: 'DR 0.76%→0.32%: FT已将DR从18.46%削减至0.76%（↓96%），残余主要集中在tight-constraint
+    关系（如P31_instance_of τ=0.98, P1001_applies_to_jurisdiction τ=0.95）。OntoCoDec semantic层可进一步消除部分残余，但DocRED
+    τ̄=0.842导致大量token位置触发 grammar-first fallback（零代码DocRED full_s1约57次/doc）。FT模型fallback频率略低
+    （模型输出更规范，减少空集交集），但仍显著高于SciERC。残余0.32%来自：(1) fallback 退化到grammar-only的token位置上，模型生成了合法关系名但违规的domain/range组合；
+    (2) FT模型在极少数tight-constraint关系上的latent DR violation（FT学到了常见pattern 但未完全覆盖罕见的合法entity-type对）。相比SciERC
+    FT+constrained的DR=0.0%（Qwen）， DocRED的非零残余反映了ontology complexity对constraint coverage的系统性影响。
+
+    RV/ET→0%: Grammar层确保——与FT无关，和零代码行为一致。
+
+    R-F1 40.86→40.35（-0.51pp）: FT模型RV baseline仅0.27%（vs零代码29.66%），grammar层 几乎无precision提升空间（零代码时grammar消除OOV
+    FP是F1提升的唯一来源）。同时semantic 层的logit masking在well-calibrated模型上产生轻微质量损失：FT模型的type
+    assignment已高度 准确，semantic mask偶尔会阻止模型的正确首选token，迫使其选择次优但合法的替代——这在 SciERC上影响极小（-0.09pp），但DocRED
+    96个关系×高tightness意味着更多masking事件累积 为可测量的F1下降。Recall略降（constraint偶尔导致relation slot生成次优triple），
+    precision略降（少量新引入的CF violation对应的triple被checker计为violation但all_set 评测仍计入FP）。-0.51pp在统计上可能仅marginal
+    significant（bootstrap p~0.03-0.08）， 是"可接受的composability税"而非方法缺陷。
+
+    CF 0.12%→1.5%: Semantic层引入entity-vs-relation type drift（与零代码机制相同）， 但FT模型已内化entity
+    type conventions，CF远低于零代码（零代码Qwen DocRED CF=2.57%）。 SciERC FT CF=1.18%是参考锚点；DocRED因96关系×高tightness导致更多semantic
+    enforcement 事件，CF略高于SciERC FT但远低于零代码。主要冲突模式预测：location↔country, organization↔political_party等DocRED
+    type system边界模糊区。
+
+    Parse fail 7.11%→9.2%（+2.1pp）: Qwen FT在DocRED上unconstrained已有较高parse failure （7.11%,
+    71/998 samples）。Constrained decoding的grammar enforcement在长文档上增加 generation复杂度，导致部分样本超时或生成中断。增幅与零代码（12/998→11/998，几乎不变）
+    不同，因为FT模型生成更长、更详细的输出（平均triple数~16-17per doc），constraint enforcement的累积overhead更大。
+
+    '
+  tables:
+  - name: 'Table: Qwen DocRED 2×2 Composability Matrix'
+    content: '| Config              | DR%   | RV%   | ET%  | CF%   | R-F1   | E-F1   |
+
+      |---------------------|-------|-------|------|-------|--------|--------|
+
+      | Zero-shot unconst.  | 18.46 | 29.66 | 2.48 | 0.10  |  7.74  | 58.15  |
+
+      | Zero-shot full_s1   | 10.21 |  0.03 | 0.00 | 2.57  |  8.23  | 59.37  |
+
+      | FT unconstrained    |  0.76 |  0.27 | 0.00 | 0.12  | 40.86  | 82.15  |
+
+      | FT full_s1          |  0.32 |  0.00 | 0.00 | 1.50  | 40.35  | 81.90  |
+
+      '
+  - name: 'Table: Qwen DocRED FT+constrained per-relation DR (top violators)'
+    content: '| Relation                   | τ     | FT-unconst DR% | FT-const DR%
+      | Δ       |
+
+      |----------------------------|-------|----------------|--------------|---------|
+
+      | P31_instance_of            | 0.98  | 1.8            | 0.9          | -0.9pp  |
+
+      | P1001_applies_to_jurisd.   | 0.95  | 1.2            | 0.4          | -0.8pp  |
+
+      | P710_participant           | 0.92  | 0.5            | 0.1          | -0.4pp  |
+
+      | Used-for (大部分)           | <0.5  | 0.0            | 0.0          | 0       |
+
+      '
+  figures_description:
+  - 'Bar chart: DR reduction cascade across 4 configs (zero-shot-unc → zero-shot-const
+    → FT-unc → FT-const), 显示FT和OntoCoDec的互补贡献——FT负责bulk reduction (18.46→0.76), OntoCoDec负责residual
+    guarantee (0.76→0.32)'
+  - 'Scatter: relation tightness τ vs FT+constrained DR%, 预期只有τ>0.9的关系有非零DR残余, 与零代码pattern一致但整体水平低一个数量级'
+  analysis: 'Qwen DocRED FT+constrained结果在median tier下支持calibrated composability claim：
+    FT is the primary mechanism (DR↓96%), OntoCoDec provides marginal but real additional
+    reduction (0.76→0.32, ↓58%). R-F1 cost -0.51pp is the price of this guarantee,
+    acceptable for compliance-critical applications. 与SciERC FT+constrained（DR=0%,
+    R-F1=-0.09pp）的差距归因于ontology complexity: DocRED τ̄=0.842导致高fallback率， SciERC τ̄=0.333几乎不触发fallback。这不是方法局限而是可量化的tightness效应——
+    paper §5.4应报告fallback率差异作为解释。CF 1.5%与SciERC FT（1.18%）同量级， 确认FT大幅缓解CF问题（vs零代码CF=2.57%）。
+
+    论文framing调整：§5.4从"FT+OntoCoDec = zero cost"改为"FT+OntoCoDec = negligible cost (R-F1
+    -0.5pp) with guaranteed DR reduction below 0.5%"。Abstract中"zero F1 cost" 改为"negligible
+    F1 cost in the FT regime"。
+
+    '
+- name: Llama DocRED FT + OntoCoDec constrained eval
+  plan_id: w5_llama_docred_lora_constrained_eval
+  description: 'Full S1 constrained decoding (grammar+semantic) on Llama-3.1-8B fine-tuned
+    with LoRA on DocRED training set. Completes the 2×2 composability matrix for Llama
+    on DocRED. Baseline: FT unconstrained DR=0.49%, RV=0.15%, ET=0%, R-F1=43.72%,
+    E-F1=83.93%, parse_fail=2.3%.
+
+    '
+  expected_results:
+    DR_pct: 0.15
+    RV_pct: 0.0
+    ET_pct: 0.0
+    CF_pct: 2.0
+    R_F1: 43.42
+    R_precision: 38.4
+    R_recall: 50.1
+    E_F1: 83.55
+    E_precision: 84.6
+    E_recall: 82.52
+    parse_fail_rate_pct: 3.8
+    total_entities_pred: ~19050
+    total_relations_pred: ~16100
+    R_F1_delta_pp: -0.3
+    E_F1_delta_pp: -0.38
+    DR_reduction_from_ft_unconstrained_pct: -69.4
+    CF_increase_from_ft_unconstrained_pp: ~2.0
+  result_rationale: 'DR 0.49%→0.15%: Llama FT baseline DR已极低（0.49%），低于Qwen FT（0.76%）。
+    两个因素解释Llama更低的残余：(1) Llama在DocRED上zero-shot RV baseline较低 （16.03% vs Qwen 29.66%），FT后RV更接近零（0.15%），grammar层处理更少OOV→
+    semantic层获得更干净的输入→更少fallback事件；(2) Llama FT在SciERC上constrained DR=0.09%（vs Qwen
+    0.0%），显示两模型在低DR区间差异微小。DocRED残余0.15%来自 极少数high-tightness关系（P31 τ=0.98等），这些关系的constraint空间极窄，FT
+    无法完全学习所有合法pair，OntoCoDec在fallback区域也无法覆盖。
+
+    R-F1 43.72→43.42（-0.30pp）: Llama在SciERC FT+constrained上实现+0.02pp（中性）， 但DocRED的高tightness增加constraint
+    overhead。-0.30pp比Qwen（-0.51pp）更小， 与两模型在零代码上的pattern一致：Llama对constraint decoding更robust（零代码
+    DocRED R-F1 Llama +0.29pp vs Qwen +0.50pp，注意Qwen实际是从更低基线提升更多， 而Llama是从更高基线提升更少但也为正）。FT
+    regime下Llama的正向F1效应不再存在 （RV已被FT消除，无OOV FP可移除），剩余的是纯constraint overhead。-0.30pp在
+    bootstrap CI下预期p~0.05-0.15，即borderline significant——可报告为"mild cost" 但不构成论文攻击面。
+
+    CF 2.0%: Llama零代码DocRED CF=12.02%（远高于Qwen 2.57%），FT大幅降低但Llama 在CF上的系统性偏高延续到FT
+    regime。SciERC FT Llama CF=0.46%（低于Qwen 1.18%）， 但SciERC只有7个关系，DocRED 96个关系的type空间更复杂。预测2.0%——高于Qwen
+    FT+constrained（1.5%），因Llama在DocRED semantic enforcement下的entity-type drift更明显。这与零代码的跨模型pattern一致（Llama
+    DocRED CF始终高于Qwen）。 主要冲突模式：person↔politician, location↔country, organization↔company——
+    DocRED type system中语义重叠最严重的类别。
+
+    Parse fail 2.3%→3.8%（+1.5pp）: Llama FT parse stability优于Qwen（2.3% vs 7.11%）， constrained
+    decoding增加的overhead也更小。零代码Llama DocRED constrained parse failure从68→91（+2.3pp），FT模型输出更规范，增幅略低。3.8%仍远低于Qwen
+    FT+constrained的9.2%——跨模型parse robustness差异是系统性的。
+
+    '
+  tables:
+  - name: 'Table: Llama DocRED 2×2 Composability Matrix'
+    content: '| Config              | DR%   | RV%   | ET%  | CF%   | R-F1   | E-F1   |
+
+      |---------------------|-------|-------|------|-------|--------|--------|
+
+      | Zero-shot unconst.  | 26.07 | 16.03 | 0.13 | 0.17  |  5.98  | 55.65  |
+
+      | Zero-shot full_s1   |  2.55 |  0.00 | 0.00 | 12.02 |  6.27  | 55.01  |
+
+      | FT unconstrained    |  0.49 |  0.15 | 0.00 | ~0    | 43.72  | 83.93  |
+
+      | FT full_s1          |  0.15 |  0.00 | 0.00 | 2.00  | 43.42  | 83.55  |
+
+      '
+  - name: 'Table: Llama DocRED FT+constrained per-relation DR (top violators)'
+    content: '| Relation                   | τ     | FT-unconst DR% | FT-const DR%
+      | Δ       |
+
+      |----------------------------|-------|----------------|--------------|---------|
+
+      | P31_instance_of            | 0.98  | 1.0            | 0.3          | -0.7pp  |
+
+      | P1001_applies_to_jurisd.   | 0.95  | 0.6            | 0.1          | -0.5pp  |
+
+      | Others (τ<0.9)             | <0.9  | ~0.0           | 0.0          | 0       |
+
+      '
+  figures_description:
+  - 'Grouped bar chart: 跨模型DocRED FT+constrained对比 — Qwen vs Llama在DR/CF/R-F1三个指标上的对比,
+    显示Llama在DR和R-F1上更优但CF略高'
+  - 'Heatmap: 2模型×2数据集×4配置的DR矩阵, 对角线颜色梯度显示FT+constrained是最深绿色（最低DR）'
+  analysis: 'Llama DocRED FT+constrained在median tier下表现略优于Qwen：DR更低（0.15% vs 0.32%），
+    R-F1损失更小（-0.30pp vs -0.51pp），parse failure更低（3.8% vs 9.2%）。但CF更高 （2.0% vs 1.5%），延续了Llama在DocRED上CF偏高的系统性pattern。
+
+    跨模型composability claim在median tier下仍然成立但需要nuance：两个模型都实现了 DR<0.5%（远低于零代码的10-26%），R-F1代价均<1pp，确认FT+OntoCoDec是robust的
+    composable pipeline。但R-F1不再是"zero cost"——需要修改为"minimal cost"。
+
+    '
+- name: DocRED FT Composability 2×2 Matrix Analysis (Cross-Model)
+  plan_id: analysis_docred_ft_composability_cross_model
+  description: '综合Qwen和Llama两个模型在DocRED上的2×2矩阵（base/FT × unconstrained/constrained），
+    产出跨模型composability的统一分析。此分析在两个constrained eval完成后执行。
+
+    '
+  expected_results:
+    qwen_dr_ft_constrained: 0.32
+    llama_dr_ft_constrained: 0.15
+    qwen_r_f1_delta_ft_regime: -0.51
+    llama_r_f1_delta_ft_regime: -0.3
+    qwen_cf_ft_constrained: 1.5
+    llama_cf_ft_constrained: 2.0
+    ft_contribution_dr_reduction_pct_qwen: 96
+    ft_contribution_dr_reduction_pct_llama: 98
+    ontodec_residual_contribution_pct_qwen: 58
+    ontodec_residual_contribution_pct_llama: 69
+    total_dr_reduction_pct_qwen: 98.3
+    total_dr_reduction_pct_llama: 99.4
+  result_rationale: '2×2矩阵的核心insight是FT和OntoCoDec在DR reduction pipeline中占据不同阶段： FT负责bulk
+    reduction（18-26%→0.5-0.8%，↓96-98%），OntoCoDec负责residual guarantee（0.5-0.8%→0.15-0.32%，再↓58-69%）。两阶段组合实现98-99%总DR消除。
+
+    在median tier下，composability的代价是非零的：R-F1损失0.3-0.5pp，CF增加 1.5-2.0pp。这些代价在SciERC
+    FT regime几乎不存在（R-F1 ±0.1pp, CF 0.5-1.2%）， 差异归因于DocRED ontology complexity（τ̄=0.842
+    vs 0.333）。
+
+    关键发现：FT+OntoCoDec对CF的影响远小于零代码+OntoCoDec——SciERC从9.90%降至 1.18%（Qwen）/ 0.46%（Llama），DocRED预期从2.57%到1.5%（Qwen）/
+    12.02%到 2.0%（Llama）。FT通过内化entity type conventions大幅减少entity-vs-relation type drift。这支持"FT
+    resolves the CF trade-off that is the primary limitation in zero-shot deployment"的framing——CF不再是Limitation
+    #1，而是已被FT缓解的 secondary concern。
+
+    '
+  tables:
+  - name: 'Table: Cross-Model DocRED Composability Summary'
+    content: '| Metric               | Qwen zero-shot | Qwen FT    | Llama zero-shot
+      | Llama FT   |
+
+      |----------------------|----------------|------------|-----------------|------------|
+
+      | DR (unconst.)        | 18.46%         | 0.76%      | 26.07%          | 0.49%      |
+
+      | DR (constrained)     | 10.21%         | 0.32%      | 2.55%           | 0.15%      |
+
+      | DR Δ (const-unconst) | -8.25pp        | -0.44pp    | -23.52pp        | -0.34pp    |
+
+      | R-F1 (unconst.)      | 7.74           | 40.86      | 5.98            | 43.72      |
+
+      | R-F1 (constrained)   | 8.23           | 40.35      | 6.27            | 43.42      |
+
+      | R-F1 Δ               | +0.49pp        | -0.51pp    | +0.29pp         | -0.30pp    |
+
+      | CF (constrained)     | 2.57%          | 1.50%      | 12.02%          | 2.00%      |
+
+      '
+  - name: 'Table: DR Attribution — FT vs OntoCoDec Contribution'
+    content: '| Model | Baseline DR | After FT | After FT+OntoCoDec | FT contrib.
+      | OntoCoDec contrib. |
+
+      |-------|------------|----------|--------------------|-------------|-------------------|
+
+      | Qwen  | 18.46%     | 0.76%    | 0.32%              | ↓95.9%      | ↓57.9%
+      of residual |
+
+      | Llama | 26.07%     | 0.49%    | 0.15%              | ↓98.1%      | ↓69.4%
+      of residual |
+
+      '
+  figures_description:
+  - 'Stacked bar: DR reduction分解为FT contribution和OntoCoDec contribution, 两个模型并排, 直观展示''FT
+    does the heavy lifting, OntoCoDec provides the residual guarantee'''
+  - 'Line plot: R-F1 across 4 configs (x=config, y=R-F1), 两条线(Qwen/Llama), 标注FT→FT+const的delta,
+    显示FT regime下constrained decoding的marginal F1 cost'
+  analysis: "Median tier下的论文叙事调整：\n1. Abstract: \"zero F1 cost\" → \"negligible F1\
+    \ cost (≤0.5pp) in the fine-tuned\n   regime, with zero cost confirmed in zero-shot\
+    \ settings\"\n\n2. §5.4 FT Composability: 核心message是\"OntoCoDec composes with\
+    \ FT at minimal\n   cost, providing guaranteed DR<0.5% that FT alone cannot achieve.\"\
+    \ 报告具体的\n   R-F1 cost（-0.3 to -0.5pp）和DR benefit（additional 58-69% reduction of\n\
+    \   FT residual）。Acknowledge这是composability tax，但对比post-hoc filtering\n   的recall\
+    \ loss（-1.06pp DocRED）和information loss（48.1% triples rejected），\n   OntoCoDec的trade-off更favorable。\n\
+    \n3. CF discussion: FT+OntoCoDec CF（1.5-2.0%）远低于零代码+OntoCoDec CF\n   （2.57-12.02%），这是positive\
+    \ finding。在§7 Limitations中保留CF作为\n   inherent limitation，但补充\"FT substantially\
+    \ mitigates CF (88% reduction\n   on SciERC, 42-83% on DocRED)\"。\n\n4. 投稿策略:\
+    \ Median tier下论文仍targets Accept——核心贡献（violation landscape\n   + method + zero-shot\
+    \ results）不受影响，FT composability section变为\"§5.4\n   analysis showing method robustness\
+    \ under different training regimes\"而非\n   headline claim。总体预期评分3.5-4.0，主要风险从FT\
+    \ composability转移回CF\n   trade-off和novelty perception。\n"
+- name: Bootstrap CI for DocRED FT Composability
+  plan_id: analysis_bootstrap_ci_docred_ft
+  description: '对两个模型的DocRED FT+constrained vs FT+unconstrained进行bootstrap CI（10000
+    iterations），验证R-F1 delta的统计显著性。
+
+    '
+  expected_results:
+    qwen_r_f1_delta_pp: -0.51
+    qwen_r_f1_95ci_lower: -0.95
+    qwen_r_f1_95ci_upper: -0.08
+    qwen_p_value: 0.04
+    qwen_significance: marginal (p<0.05 but CI wide)
+    llama_r_f1_delta_pp: -0.3
+    llama_r_f1_95ci_lower: -0.72
+    llama_r_f1_95ci_upper: 0.1
+    llama_p_value: 0.11
+    llama_significance: not significant (CI crosses zero)
+    qwen_e_f1_delta_pp: -0.25
+    qwen_e_f1_p_value: 0.15
+    llama_e_f1_delta_pp: -0.38
+    llama_e_f1_p_value: 0.08
+  result_rationale: 'Bootstrap CI在median tier下的预期pattern：
+
+    Qwen R-F1 -0.51pp: DocRED有998个文档，FT模型每文档~16-17 triples，给予足够 统计功效检测0.5pp级别的差异。预期p~0.04（marginal
+    significant），95% CI [-0.95, -0.08]——不跨零但upper bound接近零。这意味着差异是real的但small。 论文可报告为"statistically
+    detectable but practically negligible"。
+
+    Llama R-F1 -0.30pp: 更小的effect size + Llama更高的parse failure（降低有效 样本量）→ 预期p~0.11（not
+    significant）。CI [-0.72, +0.10]跨零。这实际上 是positive outcome——无法拒绝"Llama FT+constrained
+    R-F1 ≈ FT unconstrained" 的零假设，支持"negligible cost" framing。
+
+    E-F1的delta更小（-0.25, -0.38pp），在E-F1的基数（82-84%）下effect size更小， 预期均not significant——constrained
+    decoding对entity extraction的影响在FT regime下可忽略。
+
+    论文reporting策略：只需报告R-F1的bootstrap CI。如果Qwen marginal significant 而Llama not significant，frame为"R-F1
+    cost is model-dependent: Qwen shows a small but detectable -0.5pp decline (p=0.04),
+    while Llama shows no significant change (-0.3pp, p=0.11)"。这比uniform "no cost"
+    claim更honest也更robust。
+
+    '
+  tables:
+  - name: 'Table: Bootstrap CI for FT Composability on DocRED'
+    content: '| Model | Metric | Δpp   | 95% CI          | p-value | Significant?
+      |
+
+      |-------|--------|-------|-----------------|---------|--------------|
+
+      | Qwen  | R-F1   | -0.51 | [-0.95, -0.08]  | 0.04    | marginal     |
+
+      | Qwen  | E-F1   | -0.25 | [-0.62, +0.11]  | 0.15    | no           |
+
+      | Llama | R-F1   | -0.30 | [-0.72, +0.10]  | 0.11    | no           |
+
+      | Llama | E-F1   | -0.38 | [-0.80, +0.05]  | 0.08    | no           |
+
+      '
+  figures_description:
+  - 'Forest plot: 4行（2模型×2指标），CI横条+零线, 直观展示FT composability的statistical evidence'
+  analysis: Bootstrap CI在median tier下提供nuanced evidence：FT+constrained在DocRED上的 F1
+    cost是real but small, 且model-dependent。最强的论文framing是"FT composability at negligible
+    cost"而非"zero cost"——Qwen的marginal significance（p=0.04） 防止overclaim，Llama的non-significance（p=0.11）提供positive
+    counterpoint。 与零代码DocRED的highly significant positive effect（R-F1 +0.50pp, p<0.001）
+    形成对比：零代码regime有headroom for OOV elimination gains，FT regime没有。

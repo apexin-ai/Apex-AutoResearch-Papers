@@ -1,0 +1,66 @@
+\relax 
+\citation{willard2023efficient,dong2024xgrammar}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{dong2024xgrammar}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Grammar-Constrained Decoding}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}IE Ontology Structure}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: OntoCoDec{} Framework}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Ontology Compiler}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}TypeConstraintProcessor (Semantic Layer)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Decoding Strategy: S1 (Single-Pass)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Constraint Decidability}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments: Zero-Shot Regime}{3}{}\protected@file@percent }
+\newlabel{sec:zs}{{4}{3}{}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{3}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Qwen3-8B DocRED composability matrix. PF = parse failure rate (\%). Zero-shot constrained decoding is a win-win (DR$\downarrow $, R-F1$\uparrow $). Fine-tuned constrained decoding eliminates residual DR but at substantial R-F1 and CF cost.}}{4}{}\protected@file@percent }
+\newlabel{tab:qwen-docred-ft}{{1}{4}{}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Zero-Shot Results (from prior work, summarized for context).}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments: Fine-Tuned Regime and Regime-Dependent Analysis}{4}{}\protected@file@percent }
+\newlabel{sec:ft}{{5}{4}{}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Fine-Tuning Setup}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Qwen3-8B on DocRED (Fine-Tuned)}{4}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Llama-3.1-8B DocRED composability matrix. The same regime-dependent pattern emerges: zero-shot benefits, fine-tuned costs.}}{5}{}\protected@file@percent }
+\newlabel{tab:llama-docred-ft}{{2}{5}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Llama-3.1-8B on DocRED (Fine-Tuned)}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model Consistency}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Regime-Dependent Cost-Benefit Analysis}{5}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model fine-tuned composability summary on DocRED. Deltas are FT constrained minus FT unconstrained. Both models exhibit the same \{DR$\downarrow $, R-F1$\downarrow $, CF$\uparrow $, PF$\uparrow $\} pattern with comparable magnitudes.}}{6}{}\protected@file@percent }
+\newlabel{tab:cross-model}{{3}{6}{}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Constraint ROI across regimes. ROI = $|\Delta $DR$|$ / $|\Delta $R-F1 cost$|$. $+\infty $ indicates F1 improved (no cost). Favorable regimes ($\text  {$\mathsurround \z@ \mathchar "558$}$) show ROI $\gg $ 1 or positive F1; unfavorable regimes ($\times $) show ROI $<$ 1.}}{6}{}\protected@file@percent }
+\newlabel{tab:roi}{{4}{6}{}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mechanism: Why Complex Ontologies Are Unfavorable Under FT.}{6}{}\protected@file@percent }
+\citation{willard2023efficient}
+\citation{scholak2021picard}
+\citation{poesia2022synchromesh}
+\citation{dong2024xgrammar}
+\citation{zhang2017position,han2018fewrel}
+\citation{wadhwa2023revisiting,li2023revisiting}
+\citation{li2020dice}
+\citation{zhang2019ernie}
+\citation{bordes2013translating}
+\citation{park2024grammar}
+\@writefile{toc}{\contentsline {paragraph}{Practitioner Guidance.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constrained Decoding for Structured Generation.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Type-Constrained IE.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ontology-Guided NLP.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality Degradation Under Constraints.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Field Consistency.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Parse Failure Increase.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Scope.}{7}{}\protected@file@percent }
+\bibcite{willard2023efficient}{{1}{2023}{{Willard and Louf}}{{}}}
+\bibcite{dong2024xgrammar}{{2}{2024}{{Dong et~al.}}{{}}}
+\bibcite{scholak2021picard}{{3}{2021}{{Scholak et~al.}}{{}}}
+\bibcite{poesia2022synchromesh}{{4}{2022}{{Poesia et~al.}}{{}}}
+\bibcite{zhang2017position}{{5}{2017}{{Zhang et~al.}}{{}}}
+\bibcite{han2018fewrel}{{6}{2018}{{Han et~al.}}{{}}}
+\bibcite{wadhwa2023revisiting}{{7}{2023}{{Wadhwa et~al.}}{{}}}
+\bibcite{li2023revisiting}{{8}{2023}{{Li et~al.}}{{}}}
+\bibcite{li2020dice}{{9}{2020}{{Li et~al.}}{{}}}
+\bibcite{zhang2019ernie}{{10}{2019}{{Zhang et~al.}}{{}}}
+\bibcite{bordes2013translating}{{11}{2013}{{Bordes et~al.}}{{}}}
+\bibcite{park2024grammar}{{12}{2024}{{Park et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{}\protected@file@percent }
+\gdef \@abspage@last{8}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb7c754313ad72659c6e",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "ssh urgent status",
+  "task_key": "worker_ssh_urgent-status_20260512T225001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-status_20260512T225001_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "d96d5c6d2e40b625a5f560137fbf0a02ef68e1285bd7a1645c84589a8a3d94e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**检查 1：sft_eval_v4 进度**\n- PID 40391 **运行中**，已跑 1h11m44s\n- 进度：**456/985**（~46%），当前 running RE-F1 = 0.2828\n- 模型：`./outputs/sft/merged`（Mistral-Small-3.1-24B），batch_size=8，GPU 0\n\n**检查 2：GPU 状态**\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 29,625 / 97,887 MiB (30%) | 91% |\n| 1 | 49,832 / 97,887 MiB (51%) | 100% |\n\n两块 GPU 都在工作。cuda:1 满载运行。\n\n**检查 3：data_utils.py `/no_think`**\n- **已添加**，3 处匹配（`data_utils.py` 在项目根目录，非 `src/`）：\n  - L19: system prompt 默认包含 `/no_think`\n  - L214-215: 动态检查 system message，缺失时自动补加"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status.md"
+}

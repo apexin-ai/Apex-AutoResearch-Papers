@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4069459692a530c2d26",
+  "project": "prov_grounded_uie",
+  "kind": "result",
+  "title": "research grpo trl params",
+  "task_key": "worker_research_grpo-trl-params_20260512T170255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_grpo-trl-params_20260512T170255_result.json",
+    "occurrence": 1,
+    "bytes": 1462,
+    "sha256": "625570d0a3660d4ddc5abb044c3ba192fb5c1f57cfd7493d41c935c37b090065"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是报告：\n\n---\n\n## TRL 1.1.0 GRPOConfig 长度控制参数调查报告\n\n**TRL 版本**: 1.1.0\n\n### 可用的长度控制参数\n\n| 参数 | 默认值 | 含义 |\n|------|--------|------|\n| `max_completion_length` | 256 | 生成阶段 `max_new_tokens`，控制 completion 最大 token 数 |\n| `mask_truncated_completions` | False | 若为 True，被截断（未生成 EOS）的 completion 在 loss 中被 mask 掉 |\n\n### 关键发现\n\n- **`max_prompt_length` 已被移除**，GRPOConfig 中不存在任何 prompt 长度截断参数。\n- **`_tokenize_prompts()` 源码确认**：prompt 直接 tokenize，无任何截断逻辑。\n- `max_completion_length` 作为 `max_new_tokens` 传给 generation，仅控制生成长度。\n- tokenizer 初始化时设置了 `truncation_side=\"left\"`，但 `_tokenize_prompts` 调用时未传 `truncation=True`，所以实际不截断。\n\n### 推荐截断策略\n\n**必须在数据预处理阶段自行截断 prompt**。建议实现：\n\n```python\n# 数据预处理时截断 prompt（对话格式）\nmax_prompt_tokens = 1024  # 根据模型 context 和 max_completion_length 计算\ntokenized = tokenizer.apply_chat_template(prompt, tokenize=True)\nif len(tokenized) > max_prompt_tokens:\n    # 左截断：保留最后 max_prompt_tokens 个 token\n    # 或直接跳过过长样本\n    pass\n```\n\n上限参考：`model_max_length - max_completion_length`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-grpo-trl-params.md"
+}

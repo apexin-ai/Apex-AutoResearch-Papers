@@ -1,0 +1,8 @@
+\begin{abstract}
+Large language models for information extraction generate structurally valid but ontologically invalid triples: entity types that violate the schema's domain/range constraints for the predicted relation.
+These domain/range violations (DR) persist even after fine-tuning and cannot be resolved by grammar-constrained decoding, which lacks cross-field type awareness.
+We present \textsc{OntoCoDec} (\textbf{Onto}logy-\textbf{Co}mpiled \textbf{Dec}oding), a two-layer constrained decoding framework that compiles IE ontologies into decoding-time constraints: a grammar layer enforces structural validity; a semantic layer dynamically enforces cross-field type constraints during generation.
+The two layers interact non-additively: grammar-only reduces DR by 3\% and semantic-only by 24\%, yet their composition achieves 94\%.
+Composed with LoRA fine-tuning across three model families and two relation extraction datasets (up to 96 relations), OntoCoDec reduces DR to $\leq$\,0.21\% with minimal F1 impact ($\pm$0.3\,pp), converting irrecoverable type errors into correctable cross-field inconsistencies; beam search ($k{=}4$) achieves near-zero violations at ${\sim}$1.5$\times$ unconstrained latency.
+Validation on a 70B model shows the semantic layer's independent effectiveness grows from 24\% to 84\% DR reduction with scale\footnote{Code and data are available at \url{https://anonymous.4open.science/r/schema_semantic_constrained_ie-FE20/}.}.
+\end{abstract}
