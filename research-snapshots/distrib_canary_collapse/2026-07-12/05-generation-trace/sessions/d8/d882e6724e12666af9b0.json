@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d882e6724e12666af9b0",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目路径: /root/autodl-tmp/distrib_canary_collapse/ 服务器: westd-19828, conda base 环境 permutation_granger.py: ",
+  "task_key": "b9140287-b69f-4d0a-baa1-435ef33d06ec",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/b9140287-b69f-4d0a-baa1-435ef33d06ec.jsonl",
+    "occurrence": 1,
+    "bytes": 753211,
+    "sha256": "a2a69f109a0c6a8f195c6982018cdb113efbbf2160045501221223034ad1f553"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 1,
+    "tool_calls": 59,
+    "roles": {
+      "record": 42,
+      "user": 1,
+      "assistant": 43,
+      "tool_call": 59,
+      "tool_result": 59
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d882e6724e12666af9b0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "d882e6724e12666af9b0-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "d882e6724e12666af9b0-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-root-autodl-tmp-distrib-canary-collapse-westd-19828-conda-base-p.md"
+}

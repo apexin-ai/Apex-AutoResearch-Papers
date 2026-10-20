@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "e6367f6933fb4388ac4e",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] [综合指令 — 替换所有旧消息，按顺序执行] ## 1. 立即：a050_postd093 cron 循环终止 + registry 修正 实验 `alpha_sweep_a050_postd093_s42_fp",
+  "task_key": "03a2869b-b1ba-4137-be6f-7ed289814997",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/03a2869b-b1ba-4137-be6f-7ed289814997.jsonl",
+    "occurrence": 1,
+    "bytes": 627007,
+    "sha256": "adf541506a767c3d96998cc491c8c825341aa4247f5f8cda6213ee60ccee980c"
+  },
+  "statistics": {
+    "messages": 81,
+    "user_turns": 1,
+    "tool_calls": 22,
+    "roles": {
+      "record": 20,
+      "user": 1,
+      "assistant": 17,
+      "tool_call": 22,
+      "tool_result": 21
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e6367f6933fb4388ac4e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "e6367f6933fb4388ac4e-part-0001.json",
+          "message_count": 72
+        },
+        {
+          "path": "e6367f6933fb4388ac4e-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-1-a050-postd093-cron-registry-alpha-sweep-a050-postd093-s42-fp.md"
+}

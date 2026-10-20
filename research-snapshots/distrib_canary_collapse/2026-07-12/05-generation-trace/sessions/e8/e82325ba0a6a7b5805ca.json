@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "id": "e82325ba0a6a7b5805ca",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Check these 5 bib entries in /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+  "task_key": "agent-a92a7df2e360deb9c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a92a7df2e360deb9c.jsonl",
+    "occurrence": 1,
+    "bytes": 31207,
+    "sha256": "58e5003f24b5ae63c7cac5083d91dfd1f8baf51e4592ace0c7810f34bfe11453"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 1,
+      "tool_result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T12:59:14.207Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Check these 5 bib entries in /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib for potential issues:\n1. seddik2025statistical (arXiv:2602.10531) — is arXiv ID 2602 valid? That would be Feb 2026. Check if year matches.\n2. marchi2025challenging (arXiv:2505.19046) — is this May 2025? year=2025 would be correct.\n3. li2025verification (arXiv:2510.16657) — Oct 2025, year=2025 correct?\n4. marcinkevics2022neural (arXiv:2208.03703) — Aug 2022, year=2022 correct?\n5. zeng2025kangci (arXiv:2501.08958) — Jan 2025, year=2025 correct?\n\nAlso check: do any use \"and others\" that should have full author lists? Just report findings, don't edit anything. Brief report."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "af5f7eef-fa93-4da7-ae4b-237e11470a7a",
+            "agentId": "a92a7df2e360deb9c",
+            "type": "user",
+            "uuid": "f9fb25c2-649a-43bf-97c4-82887e887848",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "8511ba8b-a64f-4b5d-8675-2224f77390fd",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "crispy-pondering-harbor"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T12:59:16.308Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll check those bib entries for you. Let me read the references file first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9fb25c2-649a-43bf-97c4-82887e887848",
+            "isSidechain": true,
+            "agentId": "a92a7df2e360deb9c",
+            "requestId": "req_011CbMS9YvppsXzXji1M7u2d",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6916e985-ea80-48a2-9ae0-b45f71342cfd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "8511ba8b-a64f-4b5d-8675-2224f77390fd",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "crispy-pondering-harbor",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017rSpHdgFFVLharmdJgvgMt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37426,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 37426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T12:59:16.464Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NJKvtLvHyJSsGDsCT4Lg9n",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6916e985-ea80-48a2-9ae0-b45f71342cfd",
+            "isSidechain": true,
+            "agentId": "a92a7df2e360deb9c",
+            "requestId": "req_011CbMS9YvppsXzXji1M7u2d",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "78ad9128-9276-44fa-abf1-75a08dcd064f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "8511ba8b-a64f-4b5d-8675-2224f77390fd",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "crispy-pondering-harbor",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017rSpHdgFFVLharmdJgvgMt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37426,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 37426
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 37426,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 37426,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T12:59:16.481Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NJKvtLvHyJSsGDsCT4Lg9n",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% GAME THEORY / ATTRIBUTION\n3\t% ============================================================\n4\t\n5\t@incollection{shapley1953value,\n6\t  title     = {A Value for $n$-Person Games},\n7\t  author    = {Shapley, Lloyd S.},\n8\t  booktitle = {Contributions to the Theory of Games II},\n9\t  editor    = {Kuhn, Harold W. and Tucker, Albert W.},\n10\t  pages     = {307--317},\n11\t  year      = {1953},\n12\t  publisher = {Princeton University Press},\n13\t}\n14\t\n15\t% ============================================================\n16\t% AI TEXT DETECTION\n17\t% ============================================================\n18\t\n19\t@inproceedings{mitchell2023detectgpt,\n20\t  title     = {DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n21\t  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D and Finn, Chelsea},\n22\t  booktitle = {ICML},\n23\t  year      = {2023},\n24\t}\n25\t\n26\t% ============================================================\n27\t% CORE MODEL COLLAPSE\n28\t% ============================================================\n29\t\n30\t@inproceedings{hataya2023will,\n31\t  title     = {Will Large-scale Generative Models Corrupt Future Datasets?},\n32\t  author    = {Hataya, Ryuichiro and Bao, Han and Arai, Hiromi},\n33\t  booktitle = {ICCV},\n34\t  year      = {2023},\n35\t}\n36\t\n37\t@article{shumailov2024curse,\n38\t  title     = {The Curse of Recursion: Training on Generated Data Makes Models Forget},\n39\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Gal, Yarin and Papernot, Nicolas and Anderson, Ross},\n40\t  journal   = {Nature},\n41\t  year      = {2024},\n42\t  url       = {https://arxiv.org/abs/2305.17493},\n43\t}\n44\t\n45\t@inproceedings{alemohammad2024mad,\n46\t  title     = {Self-Consuming Generative Models Go {MAD}},\n47\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard},\n48\t  booktitle = {International Conference on Learning Representations},\n49\t  year      = {2024},\n50\t  url       = {https://arxiv.org/abs/2307.01850},\n51\t}\n52\t\n53\t@inproceedings{dohmatob2024tale,\n54\t  title     = {A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n55\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and others},\n56\t  booktitle = {International Conference on Machine Learning},\n57\t  year      = {2024},\n58\t  url       = {https://arxiv.org/abs/2402.07043},\n59\t}\n60\t\n61\t@inproceedings{dohmatob2025strong,\n62\t  title     = {Strong Model Collapse},\n63\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n64\t  booktitle = {International Conference on Learning Representations},\n65\t  year      = {2025},\n66\t  url       = {https://arxiv.org/abs/2410.04840},\n67\t}\n68\t\n69\t@article{du2026geometric,\n70\t  title     = {Escaping Mode Collapse in {LLM} Generation via Geometric Regulation},\n71\t  author    = {Du, Xin and Tanaka-Ishii, Kumiko},\n72\t  journal   = {arXiv preprint arXiv:2605.00435},\n73\t  year      = {2026},\n74\t  url       = {https://arxiv.org/abs/2605.00435},\n75\t}\n76\t\n77\t% ============================================================\n78\t% CANARY / EARLY WARNING METRICS\n79\t% ============================================================\n80\t\n81\t@article{du2025scales,\n82\t  title     = {Characterizing Model Behavior Under Synthetic Data Training: An Empirical Study Across Scales and Mixing Ratios},\n83\t  author    = {Du, Y. and Wu, G. and Tang, G. and Wang, W. and Fan, Q.},\n84\t  journal   = {arXiv preprint arXiv:2510.05133},\n85\t  year      = {2025},\n86\t  url       = {https://arxiv.org/abs/2510.05133},\n87\t}\n88\t\n89\t@article{gambetta2024surplexity,\n90\t  title     = {Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative {AI}},\n91\t  author    = {Gambetta, Daniele and others},\n92\t  journal   = {arXiv preprint arXiv:2410.12341},\n93\t  year      = {2024},\n94\t  url       = {https://arxiv.org/abs/2410.12341},\n95\t}\n96\t\n97\t\n98\t@article{sigma2026spectral,\n99\t  title     = {{SIGMA}: Scalable Spectral Insights for {LLM} Model Collapse},\n100\t  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander},\n101\t  journal   = {arXiv preprint arXiv:2601.03385},\n102\t  year      = {2026},\n103\t  url       = {https://arxiv.org/abs/2601.03385},\n104\t}\n105\t\n106\t\n107\t\n108\t@article{seddik2025statistical,\n109\t  title     = {A Statistical Analysis of Iterative Training Data Contamination},\n110\t  author    = {Seddik, Mohamed El Amine and others},\n111\t  journal   = {arXiv preprint arXiv:2602.10531},\n112\t  year      = {2025},\n113\t  url       = {https://arxiv.org/abs/2602.10531},\n114\t}\n115\t\n116\t@article{marchi2025challenging,\n117\t  title     = {Challenging the Universality of Model Collapse},\n118\t  author    = {Marchi, Andrea and others},\n119\t  journal   = {arXiv preprint arXiv:2505.19046},\n120\t  year      = {2025},\n121\t  url       = {https://arxiv.org/abs/2505.19046},\n122\t}\n123\t\n124\t@article{li2025verification,\n125\t  title     = {Verification-Based Mitigation of Model Collapse},\n126\t  author    = {Li, Yang and others},\n127\t  journal   = {arXiv preprint arXiv:2510.16657},\n128\t  year      = {2025},\n129\t  url       = {https://arxiv.org/abs/2510.16657},\n130\t}\n131\t\n132\t% ============================================================\n133\t% DIVERSITY METRICS (BACKGROUND)\n134\t% ============================================================\n135\t\n136\t\n137\t@inproceedings{li2016diversity,\n138\t  title     = {A Diversity-Promoting Objective Function for Neural Conversation Models},\n139\t  author    = {Li, Jiwei and others},\n140\t  booktitle = {North American Chapter of the Association for Computational Linguistics},\n141\t  year      = {2016},\n142\t  url       = {https://arxiv.org/abs/1510.03055},\n143\t}\n144\t\n145\t@inproceedings{pillutla2021mauve,\n146\t  title     = {{MAUVE}: Measuring the Gap Between Neural Text and Human Text using Divergence Frontiers},\n147\t  author    = {Pillutla, Krishna and Swayamdipta, Swabha and Zellers, Rowan and Thickstun, John and Welleck, Sean and Choi, Yejin and Harchaoui, Zaid},\n148\t  booktitle = {Advances in Neural Information Processing Systems},\n149\t  year      = {2021},\n150\t  url       = {https://arxiv.org/abs/2102.01454},\n151\t}\n152\t\n153\t% ============================================================\n154\t% DATA MIXING & ACCUMULATION\n155\t% ============================================================\n156\t\n157\t@inproceedings{kazdan2025collapse,\n158\t  title     = {Collapse or Thrive? {P}erils and Promises of Synthetic Data in a Self-Generating World},\n159\t  author    = {Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David L. and Koyejo, Sanmi},\n160\t  booktitle = {International Conference on Machine Learning},\n161\t  year      = {2025},\n162\t  url       = {https://arxiv.org/abs/2410.16713},\n163\t}\n164\t\n165\t@inproceedings{dey2024breaking,\n166\t  title     = {Is Model Collapse Inevitable? {B}reaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n167\t  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n168\t  booktitle = {International Conference on Machine Learning},\n169\t  year      = {2024},\n170\t  url       = {https://arxiv.org/abs/2404.01413},\n171\t}\n172\t\n173\t% ============================================================\n174\t% MITIGATION & VERIFICATION\n175\t% ============================================================\n176\t\n177\t@article{dces2026counter,\n178\t  title     = {Countering Model Collapse in Iterative Self-Training via Dynamic Center-Edge Sampling},\n179\t  author    = {Zhu, Bingze and Xie, Yubo},\n180\t  journal   = {Electronics},\n181\t  year      = {2026},\n182\t  url       = {https://www.mdpi.com/2079-9292/15/4/869},\n183\t}\n184\t\n185\t@article{drayson2025detection,\n186\t  title     = {Machine-generated text detection prevents language model collapse},\n187\t  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n188\t  journal   = {arXiv preprint arXiv:2502.15654},\n189\t  year      = {2025},\n190\t  url       = {https://arxiv.org/abs/2502.15654},\n191\t}\n192\t\n193\t% ============================================================\n194\t% POSITION / SURVEY / EPISTEMICS / ANALYTICAL ROBUSTNESS\n195\t% ============================================================\n196\t\n197\t@inproceedings{bell2022modeling,\n198\t  title     = {Modeling the Machine Learning Multiverse},\n199\t  author    = {Bell, Samuel J. and Kampman, Onno P. and Dodge, Jesse and Lawrence, Neil D.},\n200\t  booktitle = {Advances in Neural Information Processing Systems},\n201\t  year      = {2022},\n202\t  url       = {https://arxiv.org/abs/2206.05985},\n203\t}\n204\t\n205\t@article{kapoor2024reforms,\n206\t  title     = {{REFORMS}: Consensus-based Recommendations for Machine-learning-based Science},\n207\t  author    = {Kapoor, Sayash and Cantrell, Emily and Peng, Kenny and Pham, Thanh Hien and Bail, Christopher A. and Gundersen, Odd Erik and Hofman, Jake M. and Hullman, Jessica and Lones, Michael A. and Malik, Momin M. and Nanayakkara, Priyanka and Poldrack, Russell A. and Raji, Inioluwa Deborah and Roberts, Michael and Salganik, Matthew J. and Serra-Garcia, Marta and Stewart, Brandon M. and Vandewiele, Gilles and Narayanan, Arvind},\n208\t  journal   = {Science Advances},\n209\t  volume    = {10},\n210\t  number    = {18},\n211\t  pages     = {eadk3452},\n212\t  year      = {2024},\n213\t  doi       = {10.1126/sciadv.adk3452},\n214\t}\n215\t\n216\t@article{coretta2023multidimensional,\n217\t  title     = {Multidimensional Signals and Analytic Flexibility: Estimating Degrees of Freedom in Human-Speech Analyses},\n218\t  author    = {Coretta, Stefano and Casillas, Joseph V. and Roessig, Simon and Franke, Michael and others},\n219\t  journal   = {Advances in Methods and Practices in Psychological Science},\n220\t  volume    = {6},\n221\t  number    = {3},\n222\t  year      = {2023},\n223\t  doi       = {10.1177/25152459231162567},\n224\t}\n225\t\n226\t@article{simonsohn2020specification,\n227\t  title     = {Specification curve analysis},\n228\t  author    = {Simonsohn, Uri and Simmons, Joseph P. and Nelson, Leif D.},\n229\t  journal   = {Nature Human Behaviour},\n230\t  volume    = {4},\n231\t  number    = {11},\n232\t  pages     = {1208--1214},\n233\t  year      = {2020},\n234\t  doi       = {10.1038/s41562-020-0912-z},\n235\t}\n236\t\n237\t@article{steegen2016increasing,\n238\t  title     = {Increasing Transparency Through a Multiverse Analysis},\n239\t  author    = {Steegen, Sara and Tuerlinckx, Francis and Gelman, Andrew and Vanpaemel, Wolf},\n240\t  journal   = {Perspectives on Psychological Science},\n241\t  volume    = {11},\n242\t  number    = {5},\n243\t  pages     = {702--712},\n244\t  year      = {2016},\n245\t  doi       = {10.1177/1745691616658637},\n246\t}\n247\t\n248\t@article{runge2019detecting,\n249\t  title     = {Detecting and quantifying causal associations in large nonlinear time series datasets},\n250\t  author    = {Runge, Jakob and Nowack, Peer and Kretschmer, Marlene and Flaxman, Seth and Sejdinovic, Dino},\n251\t  journal   = {Science Advances},\n252\t  volume    = {5},\n253\t  number    = {11},\n254\t  pages     = {eaau4996},\n255\t  year      = {2019},\n256\t  doi       = {10.1126/sciadv.aau4996},\n257\t}\n258\t\n259\t@inproceedings{padmakumar2024writing,\n260\t  title     = {Does Writing with Language Models Reduce Content Diversity?},\n261\t  author    = {Padmakumar, Vishakh and He, He},\n262\t  booktitle = {ICLR},\n263\t  year      = {2024},\n264\t}\n265\t\n266\t@article{schaeffer2025position,\n267\t  title     = {Position: Model Collapse Does Not Mean What You Think},\n268\t  author    = {Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi},\n269\t  journal   = {arXiv preprint arXiv:2503.03150},\n270\t  year      = {2025},\n271\t  url       = {https://arxiv.org/abs/2503.03150},\n272\t}\n273\t\n274\t% ============================================================\n275\t% METHODOLOGY (GRANGER / LEAD-LAG)\n276\t% ============================================================\n277\t\n278\t@article{granger1969investigating,\n279\t  author    = {Granger, Clive W. J.},\n280\t  title     = {Investigating Causal Relations by Econometric Models and Cross-spectral Methods},\n281\t  journal   = {Econometrica},\n282\t  volume    = {37},\n283\t  number    = {3},\n284\t  pages     = {424--438},\n285\t  year      = {1969},\n286\t  publisher = {Wiley},\n287\t}\n288\t\n289\t@article{shojaie2022granger,\n290\t  title     = {{Granger} Causality: A Review and Recent Advances},\n291\t  author    = {Shojaie, Ali and Fox, Emily B.},\n292\t  journal   = {Annual Review of Statistics and Its Application},\n293\t  year      = {2022},\n294\t  url       = {https://arxiv.org/abs/2105.02675},\n295\t}\n296\t\n297\t@article{marcinkevics2022neural,\n298\t  title     = {{Granger} Causality Using Neural Networks},\n299\t  author    = {Marcinkevics, Raphael and Vogt, Julia},\n300\t  journal   = {arXiv preprint arXiv:2208.03703},\n301\t  year      = {2022},\n302\t  url       = {https://arxiv.org/abs/2208.03703},\n303\t}\n304\t\n305\t@article{tank2021neural,\n306\t  title     = {Neural {Granger} Causality},\n307\t  author    = {Tank, Alex and Covert, Ian and Foti, Nicholas and Shojaie, Ali and Fox, Emily B.},\n308\t  journal   = {IEEE Transactions on Pattern Analysis and Machine Intelligence},\n309\t  volume    = {44},\n310\t  number    = {8},\n311\t  pages     = {4267--4279},\n312\t  year      = {2021},\n313\t  doi       = {10.1109/TPAMI.2021.3065601},\n314\t}\n315\t\n316\t@article{zeng2025kangci,\n317\t  title     = {{Kolmogorov-Arnold} Networks for Time Series {Granger} Causality Inference},\n318\t  author    = {Zeng, Hongyu and others},\n319\t  journal   = {arXiv preprint arXiv:2501.08958},\n320\t  year      = {2025},\n321\t  url       = {https://arxiv.org/abs/2501.08958},\n322\t}\n323\t\n324\t@article{granger1974spurious,\n325\t  title     = {Spurious Regressions in Econometrics},\n326\t  author    = {Granger, Clive W. J. and Newbold, Paul},\n327\t  journal   = {Journal of Econometrics},\n328\t  volume    = {2},\n329\t  number    = {2},\n330\t  pages     = {111--120},\n331\t  year      = {1974},\n332\t  doi       = {10.1016/0304-4076(74)90034-7},\n333\t}\n334\t\n335\t@article{toda1995statistical,\n336\t  title     = {Statistical Inference in Vector Autoregressions with Possibly Integrated Processes},\n337\t  author    = {Toda, Hiro Y. and Yamamoto, Taku},\n338\t  journal   = {Journal of Econometrics},\n339\t  volume    = {66},\n340\t  number    = {1--2},\n341\t  pages     = {225--250},\n342\t  year      = {1995},\n343\t  doi       = {10.1016/0304-4076(94)01616-8},\n344\t}\n345\t\n346\t@article{schreiber2000measuring,\n347\t  title     = {Measuring Information Transfer},\n348\t  author    = {Schreiber, Thomas},\n349\t  journal   = {Physical Review Letters},\n350\t  volume    = {85},\n351\t  number    = {2},\n352\t  pages     = {461--464},\n353\t  year      = {2000},\n354\t}\n355\t\n356\t% ============================================================\n357\t% EARLY WARNING SIGNALS / TIPPING POINTS (ECOLOGICAL THEORY)\n358\t% ============================================================\n359\t\n360\t@article{scheffer2009early,\n361\t  title     = {Early-warning signals for critical transitions},\n362\t  author    = {Scheffer, Marten and Bascompte, Jordi and Brock, William A. and Brovkin, Victor and Carpenter, Stephen R. and Dakos, Vasilis and Held, Hermann and van Nes, Egbert H. and Rietkerk, Max and Sugihara, George},\n363\t  journal   = {Nature},\n364\t  year      = {2009},\n365\t  doi       = {10.1038/nature08227},\n366\t}\n367\t\n368\t@article{scheffer2012anticipating,\n369\t  title     = {Anticipating Critical Transitions},\n370\t  author    = {Scheffer, Marten and Carpenter, Stephen R. and Lenton, Timothy M. and Bascompte, Jordi and Brock, William and Dakos, Vasilis and van de Koppel, Johan and van de Leemput, Ingrid A. and Levin, Simon A. and van Nes, Egbert H. and Pascual, Mercedes and Vandermeer, John},\n371\t  journal   = {Science},\n372\t  volume    = {338},\n373\t  number    = {6105},\n374\t  pages     = {344--348},\n375\t  year      = {2012},\n376\t  doi       = {10.1126/science.1225244},\n377\t}\n378\t\n379\t\n380\t@article{boettiger2012limits,\n381\t  title     = {Quantifying Limits to Detection of Early Warning for Critical Transitions},\n382\t  author    = {Boettiger, Carl and Hastings, Alan},\n383\t  journal   = {Journal of the Royal Society Interface},\n384\t  year      = {2012},\n385\t  doi       = {10.1098/rsif.2012.0125},\n386\t}\n387\t\n388\t@article{dakos2012methods,\n389\t  title     = {Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data},\n390\t  author    = {Dakos, Vasilis and Carpenter, Stephen R. and Brock, William A. and Ellison, Aaron M. and Guttal, Vishwesha and Ives, Anthony R. and K\\'{e}fi, Sonia and Livina, Vasilis and Seekell, David A. and van Nes, Egbert H. and Scheffer, Marten},\n391\t  journal   = {PLoS ONE},\n392\t  year      = {2012},\n393\t  volume    = {7},\n394\t  number    = {7},\n395\t  pages     = {e41010},\n396\t  doi       = {10.1371/journal.pone.0041010},\n397\t}\n398\t\n399\t@inproceedings{gu2024cmr,\n400\t  title     = {{CMR} Scaling Law: Predicting Critical Mixture Ratios for Continual Pre-training of Language Models},\n401\t  author    = {Gu, Jiawei and Yang, Zacc and Ding, Chuanghao and Zhao, Rui and Tan, Fei},\n402\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n403\t  year      = {2024},\n404\t  url       = {https://arxiv.org/abs/2407.17467},\n405\t}\n406\t\n407\t@inproceedings{gu2025datamixing,\n408\t  title     = {Data Mixing Can Induce Phase Transitions in Knowledge Acquisition},\n409\t  author    = {Gu, Xinran and Liang, Hayden and Pehlevan, Cengiz},\n410\t  booktitle = {Advances in Neural Information Processing Systems},\n411\t  year      = {2025},\n412\t  note      = {Spotlight},\n413\t  url       = {https://arxiv.org/abs/2505.18091},\n414\t}\n415\t\n416\t% ============================================================\n417\t% MODELS\n418\t% ============================================================\n419\t\n420\t@inproceedings{biderman2023pythia,\n421\t  title     = {Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling},\n422\t  author    = {Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin Gregory and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purber, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and van der Wal, Oskar},\n423\t  booktitle = {International Conference on Machine Learning},\n424\t  year      = {2023},\n425\t  url       = {https://arxiv.org/abs/2304.01373},\n426\t}\n427\t\n428\t% ============================================================\n429\t% DATASETS\n430\t% ============================================================\n431\t\n432\t@inproceedings{merity2017pointer,\n433\t  title     = {Pointer Sentinel Mixture Models},\n434\t  author    = {Merity, Stephen and Xiong, Caiming and Bradbury, James and Socher, Richard},\n435\t  booktitle = {International Conference on Learning Representations},\n436\t  year      = {2017},\n437\t  url       = {https://arxiv.org/abs/1609.07843},\n438\t}\n439\t\n440\t% ============================================================\n441\t% STATISTICAL METHODOLOGY\n442\t% ============================================================\n443\t\n444\t@article{page1954continuous,\n445\t  title     = {Continuous Inspection Schemes},\n446\t  author    = {Page, E. S.},\n447\t  journal   = {Biometrika},\n448\t  volume    = {41},\n449\t  number    = {1--2},\n450\t  pages     = {100--115},\n451\t  year      = {1954},\n452\t  doi       = {10.1093/biomet/41.1-2.100},\n453\t}\n454\t\n455\t@article{phipson2010permutation,\n456\t  title     = {Permutation P-values Should Never Be Zero: Calculating Exact P-values When Permutations Are Randomly Drawn},\n457\t  author    = {Phipson, Belinda and Smyth, Gordon K.},\n458\t  journal   = {Statistical Applications in Genetics and Molecular Biology},\n459\t  volume    = {9},\n460\t  number    = {1},\n461\t  pages     = {Article 39},\n462\t  year      = {2010},\n463\t  doi       = {10.2202/1544-6115.1585},\n464\t}\n465\t\n466\t@article{truong2026phase,\n467\t  title     = {On the Phase Transition of Model Collapse in Iterative Training},\n468\t  author    = {Truong, Lan V. and Truong, Nhan},\n469\t  journal   = {arXiv preprint arXiv:2512.12381},\n470\t  year      = {2026},\n471\t}\n472\t\n473\t@article{benjamini1995controlling,\n474\t  title     = {Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing},\n475\t  author    = {Benjamini, Yoav and Hochberg, Yosef},\n476\t  journal   = {Journal of the Royal Statistical Society: Series B (Methodological)},\n477\t  volume    = {57},\n478\t  number    = {1},\n479\t  pages     = {289--300},\n480\t  year      = {1995},\n481\t  doi       = {10.1111/j.2517-6161.1995.tb02031.x},\n482\t}\n483\t\n484\t@article{benjamini2001control,\n485\t  title     = {The Control of the False Discovery Rate in Multiple Testing under Dependency},\n486\t  author    = {Benjamini, Yoav and Yekutieli, Daniel},\n487\t  journal   = {Annals of Statistics},\n488\t  volume    = {29},\n489\t  number    = {4},\n490\t  pages     = {1165--1188},\n491\t  year      = {2001},\n492\t}\n493\t\n494\t@inproceedings{shi2025closer,\n495\t  title     = {A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n496\t  author    = {Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n497\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n498\t  year      = {2025},\n499\t  note      = {Spotlight. arXiv:2509.16499},\n500\t  url       = {https://arxiv.org/abs/2509.16499},\n501\t}\n502\t\n503\t@article{briesch2023large,\n504\t  title     = {Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n505\t  author    = {Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n506\t  journal   = {arXiv preprint arXiv:2311.16822},\n507\t  year      = {2023},\n508\t}\n509\t\n510\t@inproceedings{feng2024beyond,\n511\t  title     = {Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification},\n512\t  author    = {Feng, Yunzhen and Dohmatob, Elvis and Yang, Pu and Charton, Fran\\c{c}ois and Kempe, Julia},\n513\t  booktitle = {International Conference on Machine Learning (ICML)},\n514\t  year      = {2024},\n515\t}\n516\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78ad9128-9276-44fa-abf1-75a08dcd064f",
+            "isSidechain": true,
+            "promptId": "af5f7eef-fa93-4da7-ae4b-237e11470a7a",
+            "agentId": "a92a7df2e360deb9c",
+            "type": "user",
+            "uuid": "07f0eb73-f587-418a-b5f9-11553fe15cfe",
+            "sourceToolAssistantUUID": "78ad9128-9276-44fa-abf1-75a08dcd064f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "8511ba8b-a64f-4b5d-8675-2224f77390fd",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "crispy-pondering-harbor"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T12:59:24.328Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me analyze the 5 entries you mentioned against their arXiv dates:\n\n## Findings:\n\n**1. seddik2025statistical (arXiv:2602.10531)**\n- **arXiv ID 2602.10531** = Feb 2026\n- **BibTeX year**: 2025\n- **ISSUE**: Year mismatch. arXiv 26YY IDs are 2026 papers, but year field says 2025.\n- **Also has \"and others\"**: Yes, should list full author list if available.\n\n**2. marchi2025challenging (arXiv:2505.19046)**\n- **arXiv ID 2505.19046** = May 2025\n- **BibTeX year**: 2025\n- **CORRECT**: Matches properly.\n- **Also has \"and others\"**: Yes, full author list needed.\n\n**3. li2025verification (arXiv:2510.16657)**\n- **arXiv ID 2510.16657** = Oct 2025\n- **BibTeX year**: 2025\n- **CORRECT**: Matches properly.\n- **Also has \"and others\"**: Yes, full author list needed.\n\n**4. marcinkevics2022neural (arXiv:2208.03703)**\n- **arXiv ID 2208.03703** = Aug 2022\n- **BibTeX year**: 2022\n- **CORRECT**: Matches properly.\n- **No \"and others\"**: Correct full author list is present.\n\n**5. zeng2025kangci (arXiv:2501.08958)**\n- **arXiv ID 2501.08958** = Jan 2025\n- **BibTeX year**: 2025\n- **CORRECT**: Matches properly.\n- **Also has \"and others\"**: Yes, full author list needed.\n\n## Summary:\n\n**Critical issue**: `seddik2025statistical` has **year=2025** but arXiv 2602 is a Feb 2026 paper—should be **year=2026**.\n\n**\"and others\" issues** (3 entries need full author lists for compliance with some venue standards):\n- seddik2025statistical\n- marchi2025challenging\n- li2025verification\n- zeng2025kangci\n\nThe entry `gambetta2024surplexity` (line 91) also uses \"and others\" for completeness."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07f0eb73-f587-418a-b5f9-11553fe15cfe",
+            "isSidechain": true,
+            "agentId": "a92a7df2e360deb9c",
+            "requestId": "req_011CbMS9icErEuRh4f3gVV9v",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3299df05-fe16-40d1-ac8e-b370d0b9cd8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "8511ba8b-a64f-4b5d-8675-2224f77390fd",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "crispy-pondering-harbor",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013FpoR5BQwFkvPZiMjnC61k",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 8936,
+                "cache_read_input_tokens": 37426,
+                "output_tokens": 571,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8936
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 571,
+                    "cache_read_input_tokens": 37426,
+                    "cache_creation_input_tokens": 8936,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8936,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-check-these-5-bib-entries-in-home-ubuntu-agent-ml-research-idea-gen-0514-4-pro.md"
+}
